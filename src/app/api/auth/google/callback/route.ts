@@ -40,6 +40,14 @@ function signInErrorRedirect(request: Request, message: string) {
 function toSafeErrorMessage(error: unknown): string {
   const message = error instanceof Error ? error.message : "";
   const normalized = message.toLowerCase();
+  const errorCode =
+    typeof error === "object" && error !== null && "code" in error
+      ? (error as { code?: unknown }).code
+      : undefined;
+
+  if (errorCode === 5 || normalized.includes("not_found")) {
+    return "Firestore database was not found. Enable Firestore in this Firebase project.";
+  }
 
   if (message.includes("Missing required Firebase env var:")) {
     return message;
