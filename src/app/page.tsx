@@ -50,7 +50,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
       />
 
-      <section className="w-full relative py-[100px] md:py-[146px] flex flex-col items-center justify-center overflow-hidden">
+      <section className="w-full relative pt-[50px] md:pt-[73px] pb-[100px] md:pb-[146px] flex flex-col items-center justify-center overflow-hidden">
         <div className="max-w-[1512px] mx-auto px-4 md:px-6 w-full flex flex-col md:flex-row items-center gap-12 z-10">
           <div className="flex-1 flex flex-col items-start px-[24px]">
             <h1 className="font-plus-jakarta text-[48px] md:text-[64px] lg:text-[72px] font-extrabold leading-[0.95em] mb-6 text-foreground">
