@@ -7,18 +7,22 @@ export default function ServicesPage() {
       title: "Professional CV Writing (100% ATS-Friendly)",
       desc: "Role-targeted CVs with clean structure, proper keywords, and achievement-based writing to pass ATS and impress recruiters.",
       isMostPopular: true,
+      href: "/services/packages/cv-writing",
     },
     {
       title: "Cover Letter Writing",
       desc: "Cover letters that communicate relevance, confidence, and proof-based value for competitive and international applications.",
+      href: "/services/packages/cover-letter-writing",
     },
     {
       title: "LinkedIn Account Optimization",
       desc: "Headline, About, and experience positioning for stronger recruiter discovery and profile conversion.",
+      href: "/services/packages/linkedin-optimization",
     },
     {
       title: "CV Review Service",
       desc: "Detailed expert feedback on your existing CV with ATS recommendations, stronger content direction, and clear structure fixes.",
+      href: "/services/packages/cv-review",
     },
   ];
 
@@ -87,8 +91,8 @@ export default function ServicesPage() {
                 <p className="text-text-body mb-8 flex-grow text-lg leading-relaxed">
                   {service.desc}
                 </p>
-                <Link href="/contact" className="text-brand-dark hover:text-brand-main font-semibold flex items-center gap-2 group-hover:translate-x-2 transition-transform text-lg">
-                  Let's Discuss 
+                <Link href={service.href} className="text-brand-dark hover:text-brand-main font-semibold flex items-center gap-2 group-hover:translate-x-2 transition-transform text-lg">
+                  See More
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                 </Link>
               </div>

@@ -17,6 +17,17 @@ type CartItem = {
 
 const formatLkr = (price: number) => `LKR ${price.toLocaleString("en-LK")}`;
 
+async function readJsonSafely(response: Response): Promise<Record<string, unknown>> {
+  const raw = await response.text();
+  if (!raw) return {};
+
+  try {
+    return JSON.parse(raw) as Record<string, unknown>;
+  } catch {
+    return {};
+  }
+}
+
 export default function CartPage() {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -32,7 +43,7 @@ export default function CartPage() {
       setIsLoading(true);
       setError("");
       const response = await fetch("/api/cart", { cache: "no-store" });
-      const payload = await response.json();
+      const payload = await readJsonSafely(response);
 
       if (response.status === 401) {
         window.location.assign(`/auth/signin?returnTo=${encodeURIComponent("/cart")}`);
@@ -40,10 +51,11 @@ export default function CartPage() {
       }
 
       if (!response.ok) {
-        throw new Error(payload?.error ?? "Failed to load cart");
+        const message = typeof payload.error === "string" ? payload.error : "Failed to load cart";
+        throw new Error(message);
       }
 
-      setItems(payload.items ?? []);
+      setItems(Array.isArray(payload.items) ? (payload.items as CartItem[]) : []);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Failed to load cart");
     } finally {
@@ -56,16 +68,30 @@ export default function CartPage() {
   }, []);
 
   const updateQty = async (itemId: string, quantity: number) => {
-    await fetch("/api/cart", {
+    setError("");
+    const response = await fetch("/api/cart", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ itemId, quantity }),
     });
+    const payload = await readJsonSafely(response);
+    if (!response.ok) {
+      const message = typeof payload.error === "string" ? payload.error : "Failed to update cart";
+      setError(message);
+      return;
+    }
     await loadCart();
   };
 
   const removeItem = async (itemId: string) => {
-    await fetch(`/api/cart?itemId=${encodeURIComponent(itemId)}`, { method: "DELETE" });
+    setError("");
+    const response = await fetch(`/api/cart?itemId=${encodeURIComponent(itemId)}`, { method: "DELETE" });
+    const payload = await readJsonSafely(response);
+    if (!response.ok) {
+      const message = typeof payload.error === "string" ? payload.error : "Failed to update cart";
+      setError(message);
+      return;
+    }
     await loadCart();
   };
 

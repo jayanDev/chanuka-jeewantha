@@ -22,6 +22,17 @@ type AuthMe = {
   role: "customer" | "admin";
 };
 
+async function readJsonSafely(response: Response): Promise<Record<string, unknown>> {
+  const raw = await response.text();
+  if (!raw) return {};
+
+  try {
+    return JSON.parse(raw) as Record<string, unknown>;
+  } catch {
+    return {};
+  }
+}
+
 const whatsappNumber = "94773902230";
 
 const buildWhatsAppUrl = (
@@ -50,26 +61,38 @@ export default function PricingPage() {
 
   useEffect(() => {
     const load = async () => {
-      const [productsRes, authRes] = await Promise.all([
-        fetch("/api/products", { cache: "no-store" }),
-        fetch("/api/auth/me", { cache: "no-store" }),
-      ]);
+      try {
+        const [productsRes, authRes] = await Promise.all([
+          fetch("/api/products", { cache: "no-store" }),
+          fetch("/api/auth/me", { cache: "no-store" }),
+        ]);
 
-      const productsPayload = await productsRes.json();
-      const authPayload = await authRes.json();
+        const productsPayload = await readJsonSafely(productsRes);
+        const authPayload = await readJsonSafely(authRes);
 
-      const map: Record<string, ProductRecord> = {};
-      for (const product of productsPayload.products ?? []) {
-        map[product.slug] = product;
+        if (!productsRes.ok) {
+          const message = typeof productsPayload.error === "string" ? productsPayload.error : "Failed to load package catalog.";
+          setFeedback(message);
+          return;
+        }
+
+        const map: Record<string, ProductRecord> = {};
+        const products = Array.isArray(productsPayload.products) ? (productsPayload.products as ProductRecord[]) : [];
+        for (const product of products) {
+          map[product.slug] = product;
+        }
+        setProductsBySlug(map);
+        setActiveUser((authPayload.user as AuthMe | null) ?? null);
+      } catch {
+        setFeedback("Failed to load package catalog.");
       }
-      setProductsBySlug(map);
-      setActiveUser(authPayload.user ?? null);
     };
 
     void load();
   }, []);
 
   const addToCart = async (pkg: PackageProduct) => {
+    setFeedback("");
     const product = productsBySlug[pkg.slug];
     if (!product) {
       setFeedback("Package catalog is syncing. Please retry in a few seconds.");
@@ -81,19 +104,24 @@ export default function PricingPage() {
       return;
     }
 
-    const response = await fetch("/api/cart", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ productId: product.id, quantity: 1 }),
-    });
+    try {
+      const response = await fetch("/api/cart", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productId: product.id, quantity: 1 }),
+      });
 
-    const payload = await response.json();
-    if (!response.ok) {
-      setFeedback(payload?.error ?? "Failed to add to cart.");
-      return;
+      const payload = await readJsonSafely(response);
+      if (!response.ok) {
+        const message = typeof payload.error === "string" ? payload.error : "Failed to add to cart.";
+        setFeedback(message);
+        return;
+      }
+
+      setFeedback(`${pkg.name} added to cart.`);
+    } catch {
+      setFeedback("Failed to add to cart.");
     }
-
-    setFeedback(`${pkg.name} added to cart.`);
   };
 
   const buyNow = (pkg: PackageProduct) => {

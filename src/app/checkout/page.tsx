@@ -24,6 +24,17 @@ type Product = {
 
 const formatLkr = (price: number) => `LKR ${price.toLocaleString("en-LK")}`;
 
+async function readJsonSafely(response: Response): Promise<Record<string, unknown>> {
+  const raw = await response.text();
+  if (!raw) return {};
+
+  try {
+    return JSON.parse(raw) as Record<string, unknown>;
+  } catch {
+    return {};
+  }
+}
+
 export default function CheckoutPage() {
   const params = useSearchParams();
 
@@ -64,18 +75,25 @@ export default function CheckoutPage() {
           fetch("/api/products", { cache: "no-store" }),
         ]);
 
-        const cartPayload = await cartRes.json();
+        const cartPayload = await readJsonSafely(cartRes);
         if (cartRes.status === 401) {
-          window.location.assign(`/auth/signin?returnTo=${encodeURIComponent("/checkout")}`);
+          const returnPath = `/checkout${window.location.search}`;
+          window.location.assign(`/auth/signin?returnTo=${encodeURIComponent(returnPath)}`);
           return;
         }
-        if (!cartRes.ok) throw new Error(cartPayload?.error ?? "Failed to load cart");
+        if (!cartRes.ok) {
+          const message = typeof cartPayload.error === "string" ? cartPayload.error : "Failed to load cart";
+          throw new Error(message);
+        }
 
-        const productsPayload = await productsRes.json();
-        if (!productsRes.ok) throw new Error(productsPayload?.error ?? "Failed to load products");
+        const productsPayload = await readJsonSafely(productsRes);
+        if (!productsRes.ok) {
+          const message = typeof productsPayload.error === "string" ? productsPayload.error : "Failed to load products";
+          throw new Error(message);
+        }
 
-        setCartItems(cartPayload.items ?? []);
-        setProducts(productsPayload.products ?? []);
+        setCartItems(Array.isArray(cartPayload.items) ? (cartPayload.items as CartItem[]) : []);
+        setProducts(Array.isArray(productsPayload.products) ? (productsPayload.products as Product[]) : []);
       } catch (err: unknown) {
         setError(err instanceof Error ? err.message : "Failed to load checkout");
       } finally {
@@ -127,9 +145,10 @@ export default function CheckoutPage() {
         body: formData,
       });
 
-      const payload = await response.json();
+      const payload = await readJsonSafely(response);
       if (!response.ok) {
-        throw new Error(payload?.error ?? "Failed to place order");
+        const message = typeof payload.error === "string" ? payload.error : "Failed to place order";
+        throw new Error(message);
       }
 
       setSuccess("Order submitted successfully. We will verify your transfer and confirm your service.");
