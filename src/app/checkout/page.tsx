@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { paymentInstructions } from "@/lib/packages-catalog";
 import SeasonalOfferBanner from "@/components/SeasonalOfferBanner";
+import { buildOfferPreviewHeaders, withOfferPreviewUrl } from "@/lib/offer-preview-client";
 
 type CartItem = {
   id: string;
@@ -51,6 +52,7 @@ export default function CheckoutPage() {
   const [buyNowQuantity, setBuyNowQuantity] = useState(1);
   const [paymentPersonName, setPaymentPersonName] = useState("");
   const [paymentWhatsApp, setPaymentWhatsApp] = useState("");
+  const [couponCode, setCouponCode] = useState("");
   const [paymentRef, setPaymentRef] = useState("");
   const [note, setNote] = useState("");
   const [slip, setSlip] = useState<File | null>(null);
@@ -74,8 +76,8 @@ export default function CheckoutPage() {
         setError("");
 
         const [cartRes, productsRes] = await Promise.all([
-          fetch("/api/cart", { cache: "no-store" }),
-          fetch("/api/products", { cache: "no-store" }),
+          fetch(withOfferPreviewUrl("/api/cart"), { cache: "no-store", headers: buildOfferPreviewHeaders() }),
+          fetch(withOfferPreviewUrl("/api/products"), { cache: "no-store", headers: buildOfferPreviewHeaders() }),
         ]);
 
         const cartPayload = await readJsonSafely(cartRes);
@@ -129,6 +131,7 @@ export default function CheckoutPage() {
     formData.append("mode", mode);
     formData.append("paymentPersonName", paymentPersonName);
     formData.append("paymentWhatsApp", paymentWhatsApp);
+    formData.append("couponCode", couponCode);
     formData.append("paymentRef", paymentRef);
     formData.append("note", note);
     formData.append("slip", slip);
@@ -147,6 +150,7 @@ export default function CheckoutPage() {
     try {
       const response = await fetch("/api/orders", {
         method: "POST",
+        headers: buildOfferPreviewHeaders(),
         body: formData,
       });
 
@@ -160,6 +164,7 @@ export default function CheckoutPage() {
       setSlip(null);
       setPaymentPersonName("");
       setPaymentWhatsApp("");
+      setCouponCode("");
       setPaymentRef("");
       setNote("");
       if (mode === "cart") {
@@ -217,6 +222,7 @@ export default function CheckoutPage() {
                 <div>
                   <label className="mb-2 block text-sm font-medium">Select Package</label>
                   <select
+                    aria-label="Select Package"
                     value={buyNowProductId}
                     onChange={(event) => setBuyNowProductId(event.target.value)}
                     className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
@@ -234,6 +240,7 @@ export default function CheckoutPage() {
                   <label className="mb-2 block text-sm font-medium">Quantity</label>
                   <input
                     type="number"
+                    aria-label="Quantity"
                     min={1}
                     max={10}
                     value={buyNowQuantity}
@@ -249,6 +256,7 @@ export default function CheckoutPage() {
               <label className="mb-2 block text-sm font-medium">Payment Person Name</label>
               <input
                 type="text"
+                aria-label="Payment Person Name"
                 value={paymentPersonName}
                 onChange={(event) => setPaymentPersonName(event.target.value)}
                 required
@@ -260,6 +268,7 @@ export default function CheckoutPage() {
               <label className="mb-2 block text-sm font-medium">WhatsApp Number</label>
               <input
                 type="tel"
+                aria-label="WhatsApp Number"
                 value={paymentWhatsApp}
                 onChange={(event) => setPaymentWhatsApp(event.target.value)}
                 required
@@ -269,9 +278,22 @@ export default function CheckoutPage() {
             </div>
 
             <div>
+              <label className="mb-2 block text-sm font-medium">Coupon Code (optional)</label>
+              <input
+                type="text"
+                aria-label="Coupon Code"
+                value={couponCode}
+                onChange={(event) => setCouponCode(event.target.value.toUpperCase())}
+                className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
+                placeholder="NEWYEAR50"
+              />
+            </div>
+
+            <div>
               <label className="mb-2 block text-sm font-medium">Payment Reference (Optional)</label>
               <input
                 type="text"
+                aria-label="Payment Reference"
                 value={paymentRef}
                 onChange={(event) => setPaymentRef(event.target.value)}
                 className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
@@ -282,6 +304,7 @@ export default function CheckoutPage() {
               <label className="mb-2 block text-sm font-medium">Upload Payment Slip (JPG, PNG, WEBP, PDF)</label>
               <input
                 type="file"
+                aria-label="Payment Slip Upload"
                 accept=".jpg,.jpeg,.png,.webp,.pdf"
                 onChange={(event) => setSlip(event.target.files?.[0] ?? null)}
                 required
@@ -292,6 +315,7 @@ export default function CheckoutPage() {
             <div>
               <label className="mb-2 block text-sm font-medium">Notes (optional)</label>
               <textarea
+                aria-label="Order Notes"
                 value={note}
                 onChange={(event) => setNote(event.target.value)}
                 rows={4}

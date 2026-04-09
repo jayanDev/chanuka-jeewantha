@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import { packageProducts } from "@/lib/packages-catalog";
-import { applyOfferToPrice, getActiveSeasonalOffer } from "@/lib/seasonal-offers";
+import { applyOfferToPrice, getEffectiveSeasonalOffer } from "@/lib/seasonal-offers";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    const activeOffer = await getActiveSeasonalOffer();
+    const activeOffer = await getEffectiveSeasonalOffer(request);
     const products = packageProducts
       .map((item) => {
-        const pricing = applyOfferToPrice(item.priceLkr, item.slug, activeOffer);
+        const pricing = applyOfferToPrice(item.priceLkr, item.slug, item.category, activeOffer);
         return {
           id: item.slug,
           slug: item.slug,

@@ -118,6 +118,8 @@ Required environment variables:
 ```bash
 GOOGLE_CLIENT_ID="your-google-oauth-client-id"
 GOOGLE_CLIENT_SECRET="your-google-oauth-client-secret"
+# Optional: comma-separated list of emails that should get admin role after Google sign-in.
+GOOGLE_ADMIN_EMAILS="admin1@example.com,admin2@example.com"
 ```
 
 Google Cloud OAuth settings:

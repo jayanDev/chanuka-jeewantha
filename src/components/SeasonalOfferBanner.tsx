@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { buildOfferPreviewHeaders, withOfferPreviewUrl } from "@/lib/offer-preview-client";
 
 type ActiveOffer = {
   id: string;
   title: string;
   discountPercent: number;
-  scope: "all" | "selected";
+  scope: "all" | "selected" | "category";
   selectedServiceSlugs: string[];
+  selectedCategories: string[];
   startAtMs: number;
   endAtMs: number;
 };
@@ -42,7 +44,10 @@ export default function SeasonalOfferBanner() {
 
   useEffect(() => {
     const load = async () => {
-      const response = await fetch("/api/offers/active", { cache: "no-store" });
+      const response = await fetch(withOfferPreviewUrl("/api/offers/active"), {
+        cache: "no-store",
+        headers: buildOfferPreviewHeaders(),
+      });
       const payload = await readJsonSafely(response);
       if (!response.ok || !payload.offer || typeof payload.offer !== "object") {
         setOffer(null);
@@ -55,6 +60,7 @@ export default function SeasonalOfferBanner() {
         discountPercent?: unknown;
         scope?: unknown;
         selectedServiceSlugs?: unknown;
+        selectedCategories?: unknown;
         startAtMs?: unknown;
         endAtMs?: unknown;
       };
@@ -74,13 +80,24 @@ export default function SeasonalOfferBanner() {
         id: next.id,
         title: next.title,
         discountPercent: next.discountPercent,
-        scope: next.scope === "selected" ? "selected" : "all",
+        scope: next.scope === "selected" ? "selected" : next.scope === "category" ? "category" : "all",
         selectedServiceSlugs: Array.isArray(next.selectedServiceSlugs)
           ? next.selectedServiceSlugs.filter((item): item is string => typeof item === "string")
+          : [],
+        selectedCategories: Array.isArray(next.selectedCategories)
+          ? next.selectedCategories.filter((item): item is string => typeof item === "string")
           : [],
         startAtMs: next.startAtMs,
         endAtMs: next.endAtMs,
       });
+
+      if (typeof next.id === "string") {
+        void fetch("/api/offers/impression", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", ...Object.fromEntries(new Headers(buildOfferPreviewHeaders()).entries()) },
+          body: JSON.stringify({ offerId: next.id }),
+        });
+      }
     };
 
     void load();
@@ -109,7 +126,9 @@ export default function SeasonalOfferBanner() {
   const offerScopeText =
     offer.scope === "all"
       ? "All services included"
-      : `${offer.selectedServiceSlugs.length} selected services included`;
+      : offer.scope === "selected"
+        ? `${offer.selectedServiceSlugs.length} selected services included`
+        : `${offer.selectedCategories.length} categories included`;
 
   return (
     <section className="w-full bg-brand-main text-white border-b border-brand-dark/20">

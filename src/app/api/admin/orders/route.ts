@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
 import { getRequestUser } from "@/lib/auth-server";
 import { isTrustedOrigin } from "@/lib/security";
 import { orderStatusUpdateSchema } from "@/lib/validation";
 import { notifyOrderStatusChanged } from "@/lib/notifications";
+import { getFirebaseDb } from "@/lib/firebase-admin";
+
+const ORDERS_COLLECTION = "orders";
 
 async function requireAdmin(request: Request) {
   const user = await getRequestUser(request);
@@ -15,27 +17,71 @@ export async function GET(request: Request) {
   const admin = await requireAdmin(request);
   if (!admin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const orders = await prisma.order.findMany({
-    include: {
-      user: {
-        select: {
-          id: true,
-          name: true,
-          email: true,
+  const db = getFirebaseDb();
+  const snapshot = await db.collection(ORDERS_COLLECTION).get();
+
+  const orders = snapshot.docs
+    .map((doc) => {
+      const data = doc.data() as {
+        status?: unknown;
+        totalLkr?: unknown;
+        paymentRef?: unknown;
+        paymentSlipUrl?: unknown;
+        userId?: unknown;
+        userName?: unknown;
+        userEmail?: unknown;
+        createdAtMs?: unknown;
+        items?: unknown;
+      };
+
+      const rawItems = Array.isArray(data.items) ? data.items : [];
+      const items = rawItems
+        .map((item) => {
+          if (!item || typeof item !== "object") return null;
+          const entry = item as {
+            id?: unknown;
+            productName?: unknown;
+            quantity?: unknown;
+            priceLkr?: unknown;
+          };
+
+          if (
+            typeof entry.id !== "string" ||
+            typeof entry.productName !== "string" ||
+            typeof entry.quantity !== "number" ||
+            typeof entry.priceLkr !== "number"
+          ) {
+            return null;
+          }
+
+          return {
+            id: entry.id,
+            productName: entry.productName,
+            quantity: entry.quantity,
+            priceLkr: entry.priceLkr,
+          };
+        })
+        .filter((item): item is NonNullable<typeof item> => Boolean(item));
+
+      return {
+        id: doc.id,
+        userId: typeof data.userId === "string" ? data.userId : "",
+        status: typeof data.status === "string" ? data.status : "payment_submitted",
+        totalLkr: typeof data.totalLkr === "number" ? data.totalLkr : 0,
+        paymentRef: typeof data.paymentRef === "string" ? data.paymentRef : "",
+        paymentSlipUrl: typeof data.paymentSlipUrl === "string" ? data.paymentSlipUrl : "",
+        createdAtMs: typeof data.createdAtMs === "number" ? data.createdAtMs : 0,
+        user: {
+          id: typeof data.userId === "string" ? data.userId : "",
+          name: typeof data.userName === "string" ? data.userName : "Customer",
+          email: typeof data.userEmail === "string" ? data.userEmail : "unknown@example.com",
         },
-      },
-      items: {
-        select: {
-          id: true,
-          productName: true,
-          quantity: true,
-          priceLkr: true,
-        },
-      },
-    },
-    orderBy: { createdAt: "desc" },
-    take: 200,
-  });
+        items,
+      };
+    })
+    .sort((a, b) => b.createdAtMs - a.createdAtMs)
+    .slice(0, 200)
+    .map(({ createdAtMs: _ignore, ...order }) => order);
 
   return NextResponse.json({ orders });
 }
@@ -58,41 +104,61 @@ export async function PATCH(request: Request) {
     );
   }
 
-  const existingOrder = await prisma.order.findUnique({
-    where: { id: parsed.data.orderId },
-    select: {
-      id: true,
-      totalLkr: true,
-      paymentRef: true,
-      status: true,
-      user: {
-        select: {
-          name: true,
-          email: true,
-        },
-      },
-      items: {
-        select: {
-          productName: true,
-          quantity: true,
-          priceLkr: true,
-        },
-      },
-    },
-  });
+  const db = getFirebaseDb();
+  const ref = db.collection(ORDERS_COLLECTION).doc(parsed.data.orderId);
+  const existingOrderSnap = await ref.get();
 
-  if (!existingOrder) {
+  if (!existingOrderSnap.exists) {
     return NextResponse.json({ error: "Order not found" }, { status: 404 });
   }
 
-  const order = await prisma.order.update({
-    where: { id: parsed.data.orderId },
-    data: { status: parsed.data.status },
-    select: {
-      id: true,
-      status: true,
+  const existingData = existingOrderSnap.data() as {
+    id?: unknown;
+    totalLkr?: unknown;
+    paymentRef?: unknown;
+    status?: unknown;
+    userName?: unknown;
+    userEmail?: unknown;
+    items?: unknown;
+  };
+
+  const existingOrder = {
+    id: existingOrderSnap.id,
+    totalLkr: typeof existingData.totalLkr === "number" ? existingData.totalLkr : 0,
+    paymentRef: typeof existingData.paymentRef === "string" ? existingData.paymentRef : "",
+    status: typeof existingData.status === "string" ? existingData.status : "payment_submitted",
+    user: {
+      name: typeof existingData.userName === "string" ? existingData.userName : "Customer",
+      email: typeof existingData.userEmail === "string" ? existingData.userEmail : "unknown@example.com",
     },
-  });
+    items: Array.isArray(existingData.items)
+      ? existingData.items
+          .map((item) => {
+            if (!item || typeof item !== "object") return null;
+            const entry = item as { productName?: unknown; quantity?: unknown; priceLkr?: unknown };
+            if (
+              typeof entry.productName !== "string" ||
+              typeof entry.quantity !== "number" ||
+              typeof entry.priceLkr !== "number"
+            ) {
+              return null;
+            }
+
+            return {
+              productName: entry.productName,
+              quantity: entry.quantity,
+              priceLkr: entry.priceLkr,
+            };
+          })
+          .filter((item): item is NonNullable<typeof item> => Boolean(item))
+      : [],
+  };
+  await ref.set({ status: parsed.data.status, updatedAtMs: Date.now() }, { merge: true });
+
+  const order = {
+    id: parsed.data.orderId,
+    status: parsed.data.status,
+  };
 
   if (existingOrder.status !== parsed.data.status) {
     await notifyOrderStatusChanged({

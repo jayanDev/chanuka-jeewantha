@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import SeasonalOfferBanner from "@/components/SeasonalOfferBanner";
+import { buildOfferPreviewHeaders, withOfferPreviewUrl } from "@/lib/offer-preview-client";
 
 type CartItem = {
   id: string;
@@ -43,7 +44,10 @@ export default function CartPage() {
     try {
       setIsLoading(true);
       setError("");
-      const response = await fetch("/api/cart", { cache: "no-store" });
+      const response = await fetch(withOfferPreviewUrl("/api/cart"), {
+        cache: "no-store",
+        headers: buildOfferPreviewHeaders(),
+      });
       const payload = await readJsonSafely(response);
 
       if (response.status === 401) {
@@ -72,7 +76,7 @@ export default function CartPage() {
     setError("");
     const response = await fetch("/api/cart", {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
+      headers: buildOfferPreviewHeaders({ "Content-Type": "application/json" }),
       body: JSON.stringify({ itemId, quantity }),
     });
     const payload = await readJsonSafely(response);
@@ -86,7 +90,10 @@ export default function CartPage() {
 
   const removeItem = async (itemId: string) => {
     setError("");
-    const response = await fetch(`/api/cart?itemId=${encodeURIComponent(itemId)}`, { method: "DELETE" });
+    const response = await fetch(withOfferPreviewUrl(`/api/cart?itemId=${encodeURIComponent(itemId)}`), {
+      method: "DELETE",
+      headers: buildOfferPreviewHeaders(),
+    });
     const payload = await readJsonSafely(response);
     if (!response.ok) {
       const message = typeof payload.error === "string" ? payload.error : "Failed to update cart";
@@ -134,6 +141,7 @@ export default function CartPage() {
                   <label className="text-sm">Qty</label>
                   <input
                     type="number"
+                    aria-label="Quantity"
                     min={1}
                     max={10}
                     value={item.quantity}

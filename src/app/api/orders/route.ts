@@ -8,7 +8,8 @@ import { isTrustedOrigin } from "@/lib/security";
 import { notifyOrderCreated } from "@/lib/notifications";
 import { getFirebaseDb } from "@/lib/firebase-admin";
 import { packageProducts } from "@/lib/packages-catalog";
-import { applyOfferToPrice, getActiveSeasonalOffer } from "@/lib/seasonal-offers";
+import { applyOfferToPrice, getEffectiveSeasonalOffer, incrementOfferAnalytics } from "@/lib/seasonal-offers";
+import { markCouponUsed, validateCouponForItems } from "@/lib/coupons";
 
 const ORDERS_COLLECTION = "orders";
 const CART_COLLECTION = "cart_items";
@@ -140,6 +141,7 @@ export async function POST(request: Request) {
     const formData = await request.formData();
     const mode = String(formData.get("mode") ?? "cart");
     const paymentRef = String(formData.get("paymentRef") ?? "").trim();
+    const couponCode = String(formData.get("couponCode") ?? "").trim();
     const note = String(formData.get("note") ?? "").trim();
     const file = formData.get("slip");
     const paymentPersonName = String(formData.get("paymentPersonName") ?? "").trim();
@@ -169,8 +171,8 @@ export async function POST(request: Request) {
 
     const db = getFirebaseDb();
     const productMap = getProductMap();
-    const activeOffer = await getActiveSeasonalOffer();
-    let products: Array<{ id: string; name: string; priceLkr: number; quantity: number }> = [];
+    const activeOffer = await getEffectiveSeasonalOffer(request);
+    let products: Array<{ id: string; name: string; category: string; priceLkr: number; quantity: number }> = [];
 
     if (mode === "buy_now") {
       const productId = String(formData.get("productId") ?? "");
@@ -180,9 +182,9 @@ export async function POST(request: Request) {
       if (!product) {
         return NextResponse.json({ error: "Selected package is unavailable" }, { status: 404 });
       }
-      const pricing = applyOfferToPrice(product.priceLkr, product.slug, activeOffer);
+      const pricing = applyOfferToPrice(product.priceLkr, product.slug, product.category, activeOffer);
 
-      products = [{ id: product.slug, name: product.name, priceLkr: pricing.priceLkr, quantity }];
+      products = [{ id: product.slug, name: product.name, category: product.category, priceLkr: pricing.priceLkr, quantity }];
     } else {
       const cartSnapshot = await db.collection(CART_COLLECTION).where("userId", "==", user.id).get();
 
@@ -195,11 +197,12 @@ export async function POST(request: Request) {
 
           const product = productMap.get(data.productId);
           if (!product) return null;
-          const pricing = applyOfferToPrice(product.priceLkr, product.slug, activeOffer);
+          const pricing = applyOfferToPrice(product.priceLkr, product.slug, product.category, activeOffer);
 
           return {
             id: product.slug,
             name: product.name,
+            category: product.category,
             priceLkr: pricing.priceLkr,
             quantity: Math.max(1, Math.floor(data.quantity)),
           };
@@ -211,7 +214,32 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "No items to checkout" }, { status: 400 });
     }
 
-    const totalLkr = products.reduce((sum, item) => sum + item.priceLkr * item.quantity, 0);
+    const subtotalLkr = products.reduce((sum, item) => sum + item.priceLkr * item.quantity, 0);
+
+    let couponId: string | null = null;
+    let couponDiscountLkr = 0;
+    if (couponCode) {
+      const couponResult = await validateCouponForItems({
+        code: couponCode,
+        userId: user.id,
+        subtotalLkr,
+        items: products.map((item) => ({
+          slug: item.id,
+          category: item.category,
+          priceLkr: item.priceLkr,
+          quantity: item.quantity,
+        })),
+      });
+
+      if (!couponResult.ok) {
+        return NextResponse.json({ error: couponResult.error }, { status: 400 });
+      }
+
+      couponId = couponResult.coupon.id;
+      couponDiscountLkr = couponResult.discountLkr;
+    }
+
+    const totalLkr = Math.max(1, subtotalLkr - couponDiscountLkr);
     const paymentSlipUrl = await saveSlip(file);
 
     const orderId = randomUUID();
@@ -227,8 +255,13 @@ export async function POST(request: Request) {
     const order = {
       id: orderId,
       userId: user.id,
+      userName: user.name,
+      userEmail: user.email,
       totalLkr,
+      subtotalLkr,
       paymentRef,
+      couponCode: couponCode || null,
+      couponDiscountLkr,
       note: note || null,
       paymentSlipUrl,
       status: "payment_submitted",
@@ -244,6 +277,13 @@ export async function POST(request: Request) {
     if (mode !== "buy_now") {
       const cartSnapshot = await db.collection(CART_COLLECTION).where("userId", "==", user.id).get();
       await Promise.all(cartSnapshot.docs.map((doc) => doc.ref.delete()));
+    }
+
+    if (activeOffer) {
+      await incrementOfferAnalytics(activeOffer.id, "conversionCount");
+    }
+    if (couponId) {
+      await markCouponUsed({ couponId, userId: user.id });
     }
 
     await notifyOrderCreated({

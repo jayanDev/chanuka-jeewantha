@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { formatLkr, packageCategories, type PackageProduct } from "@/lib/packages-catalog";
+import { buildOfferPreviewHeaders, withOfferPreviewUrl } from "@/lib/offer-preview-client";
 
 type ProductRecord = {
   id: string;
@@ -65,8 +66,8 @@ export default function PricingPage() {
     const load = async () => {
       try {
         const [productsRes, authRes] = await Promise.all([
-          fetch("/api/products", { cache: "no-store" }),
-          fetch("/api/auth/me", { cache: "no-store" }),
+          fetch(withOfferPreviewUrl("/api/products"), { cache: "no-store", headers: buildOfferPreviewHeaders() }),
+          fetch(withOfferPreviewUrl("/api/auth/me"), { cache: "no-store", headers: buildOfferPreviewHeaders() }),
         ]);
 
         const productsPayload = await readJsonSafely(productsRes);
@@ -109,7 +110,7 @@ export default function PricingPage() {
     try {
       const response = await fetch("/api/cart", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: buildOfferPreviewHeaders({ "Content-Type": "application/json" }),
         body: JSON.stringify({ productId: product.id, quantity: 1 }),
       });
 

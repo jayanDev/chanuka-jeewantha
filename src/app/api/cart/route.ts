@@ -4,7 +4,12 @@ import { cartItemSchema, cartUpdateSchema } from "@/lib/validation";
 import { isTrustedOrigin } from "@/lib/security";
 import { getFirebaseDb } from "@/lib/firebase-admin";
 import { packageProducts } from "@/lib/packages-catalog";
-import { applyOfferToPrice, getActiveSeasonalOffer } from "@/lib/seasonal-offers";
+import {
+  applyOfferToPrice,
+  getEffectiveSeasonalOffer,
+  incrementOfferAnalytics,
+  resolveOfferDiscountPercent,
+} from "@/lib/seasonal-offers";
 
 const CART_COLLECTION = "cart_items";
 
@@ -22,7 +27,7 @@ export async function GET(request: Request) {
     if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const db = getFirebaseDb();
-    const activeOffer = await getActiveSeasonalOffer();
+    const activeOffer = await getEffectiveSeasonalOffer(request);
     const productMap = getProductMap();
     const snapshot = await db.collection(CART_COLLECTION).where("userId", "==", user.id).get();
 
@@ -39,7 +44,7 @@ export async function GET(request: Request) {
 
         const product = productMap.get(data.productId);
         if (!product) return null;
-        const pricing = applyOfferToPrice(product.priceLkr, product.slug, activeOffer);
+        const pricing = applyOfferToPrice(product.priceLkr, product.slug, product.category, activeOffer);
 
         return {
           id: doc.id,
@@ -92,6 +97,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Product not found" }, { status: 404 });
     }
 
+    const activeOffer = await getEffectiveSeasonalOffer(request);
+    const discountPercent = resolveOfferDiscountPercent(product.slug, product.category, activeOffer);
+
     const db = getFirebaseDb();
     const docId = makeCartItemId(user.id, product.slug);
     const ref = db.collection(CART_COLLECTION).doc(docId);
@@ -112,6 +120,10 @@ export async function POST(request: Request) {
       },
       { merge: true },
     );
+
+    if (activeOffer && discountPercent > 0) {
+      await incrementOfferAnalytics(activeOffer.id, "cartAddCount");
+    }
 
     return NextResponse.json({ ok: true });
   } catch {
