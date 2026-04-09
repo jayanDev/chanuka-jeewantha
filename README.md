@@ -83,6 +83,32 @@ npm run start
 - `npm run db:studio` opens Prisma Studio
 - `npm run test:watch` runs unit tests in watch mode
 
+## Firebase Setup (Firestore)
+
+Firebase Admin support is now added for server-side database access.
+
+1. Install dependencies (already included in project):
+
+```bash
+npm install
+```
+
+2. Add Firebase Admin env vars (see `.env.example`):
+
+```bash
+FIREBASE_PROJECT_ID="your-project-id"
+FIREBASE_CLIENT_EMAIL="firebase-adminsdk-xxxx@your-project-id.iam.gserviceaccount.com"
+FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+```
+
+3. Verify connection:
+
+```bash
+GET /api/firebase/health
+```
+
+If successful, the endpoint returns `ok: true` and lists existing collections.
+
 ## Image Location And Naming
 
 Store all website images in [public/images/README.md](public/images/README.md).
