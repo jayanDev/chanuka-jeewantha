@@ -44,7 +44,7 @@ export default function BusinessesPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Businesses</span>
           </div>
-          <h1 className="font-plus-jakarta text-[48px] md:text-[64px] lg:text-[72px] font-bold leading-[1.1] max-w-5xl">
+          <h1 className="font-plus-jakarta text-[48px] md:text-[64px] lg:text-[72px] font-bold leading-[1.1] max-w-5xl !text-white">
             Explore the ventures behind <span className="text-brand-main">my career ecosystem</span>.
           </h1>
         </div>

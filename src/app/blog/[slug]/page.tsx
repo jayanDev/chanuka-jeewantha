@@ -149,7 +149,7 @@ export default async function BlogPostPage({
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main line-clamp-1 max-w-[200px] sm:max-w-none">{title}</span>
           </div>
-          <h1 className="font-plus-jakarta text-[40px] md:text-[56px] lg:text-[64px] font-bold leading-[1.1] max-w-4xl mb-8">
+          <h1 className="font-plus-jakarta text-[40px] md:text-[56px] lg:text-[64px] font-bold leading-[1.1] max-w-4xl mb-8 !text-white">
             {title || "Career profile strategy that improves interview chances"}
           </h1>
 

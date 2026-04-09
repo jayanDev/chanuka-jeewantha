@@ -60,7 +60,7 @@ export default async function BlogPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Blog</span>
           </div>
-          <h1 className="font-plus-jakarta text-[48px] md:text-[64px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl">
+          <h1 className="font-plus-jakarta text-[48px] md:text-[64px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
             Read my latest articles on <span className="text-brand-main">career strategy</span> and job search growth.
           </h1>
         </div>

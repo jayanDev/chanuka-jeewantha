@@ -24,7 +24,7 @@ export default function AboutPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">About</span>
           </div>
-          <h1 className="font-plus-jakarta text-[48px] md:text-[64px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl">
+          <h1 className="font-plus-jakarta text-[48px] md:text-[64px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
             Career growth is not guesswork, it is <span className="text-brand-main">strategy and proof</span>
           </h1>
         </div>

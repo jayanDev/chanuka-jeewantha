@@ -196,7 +196,7 @@ export default function PricingPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Pricing</span>
           </div>
-          <h1 className="font-plus-jakarta text-[48px] md:text-[64px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl">
+          <h1 className="font-plus-jakarta text-[48px] md:text-[64px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
             Career Packages Built for <span className="text-brand-main">Every Stage.</span>
           </h1>
         </div>

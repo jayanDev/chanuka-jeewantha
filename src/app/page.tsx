@@ -211,8 +211,8 @@ export default function Home() {
         <div className="max-w-[1512px] mx-auto px-4 md:px-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div className="max-w-3xl">
-              <span className="text-white font-semibold tracking-wider uppercase mb-2 block">Latest Insights</span>
-              <h2 className="text-[40px] md:text-[56px] font-bold font-plus-jakarta leading-[1.1] text-white">
+              <span className="!text-white font-semibold tracking-wider uppercase mb-2 block">Latest Insights</span>
+              <h2 className="text-[40px] md:text-[56px] font-bold font-plus-jakarta leading-[1.1] !text-white">
                 Career guidance for ATS-ready applications, LinkedIn visibility, and strategic growth.
               </h2>
             </div>
@@ -228,8 +228,8 @@ export default function Home() {
               "LinkedIn profile mistakes that reduce recruiter reach",
             ].map((title) => (
               <div key={title} className="bg-zinc-900/40 border border-white/20 rounded-[20px] p-8 hover:bg-zinc-800/60 transition-colors">
-                <h3 className="text-[24px] font-bold font-plus-jakarta mb-3 text-white">{title}</h3>
-                <p className="text-white text-sm mb-6">
+                <h3 className="text-[24px] font-bold font-plus-jakarta mb-3 !text-white">{title}</h3>
+                <p className="!text-white text-sm mb-6">
                   Practical guidance built for today&#39;s hiring behavior and competitive job market positioning.
                 </p>
                 <Link href="/blog" className="text-white font-semibold transition-colors">

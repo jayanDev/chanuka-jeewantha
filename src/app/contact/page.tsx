@@ -65,7 +65,7 @@ export default function ContactPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Contact</span>
           </div>
-          <h1 className="font-plus-jakarta text-[48px] md:text-[64px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl">
+          <h1 className="font-plus-jakarta text-[48px] md:text-[64px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
             Let&#39;s build your <span className="text-brand-main">next career breakthrough</span>.
           </h1>
         </div>

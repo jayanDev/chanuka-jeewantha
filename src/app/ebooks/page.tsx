@@ -26,7 +26,7 @@ export default function EbooksPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Ebooks</span>
           </div>
-          <h1 className="font-plus-jakarta text-[48px] md:text-[64px] lg:text-[72px] font-bold leading-[1.1] max-w-5xl">
+          <h1 className="font-plus-jakarta text-[48px] md:text-[64px] lg:text-[72px] font-bold leading-[1.1] max-w-5xl !text-white">
             Read free career guides and discover premium <span className="text-brand-main">paid ebook toolkits</span>.
           </h1>
         </div>

@@ -45,7 +45,7 @@ export default function CaseStudiesPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Case Studies</span>
           </div>
-          <h1 className="font-plus-jakarta text-[48px] md:text-[64px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl">
+          <h1 className="font-plus-jakarta text-[48px] md:text-[64px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
             Success stories & <span className="text-brand-main">Impact.</span>
           </h1>
         </div>
