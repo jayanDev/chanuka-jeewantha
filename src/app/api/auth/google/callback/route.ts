@@ -39,6 +39,24 @@ function signInErrorRedirect(request: Request, message: string) {
 
 function toSafeErrorMessage(error: unknown): string {
   const message = error instanceof Error ? error.message : "";
+  const normalized = message.toLowerCase();
+
+  if (message.includes("Missing required Firebase env var:")) {
+    return message;
+  }
+
+  if (normalized.includes("private key")) {
+    return "Firebase private key is invalid. Check FIREBASE_PRIVATE_KEY in Vercel.";
+  }
+
+  if (
+    normalized.includes("permission_denied") ||
+    normalized.includes("permission denied") ||
+    normalized.includes("does not have permission")
+  ) {
+    return "Firebase service account lacks Firestore permissions.";
+  }
+
   if (message.includes("FIREBASE_")) {
     return "Firebase is not configured. Please set Firebase env vars in Vercel.";
   }
@@ -194,6 +212,7 @@ export async function GET(request: Request) {
 
     return response;
   } catch (error) {
+    console.error("Google OAuth callback failed", error);
     return signInErrorRedirect(request, toSafeErrorMessage(error));
   }
 }
