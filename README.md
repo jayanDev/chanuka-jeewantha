@@ -109,6 +109,31 @@ GET /api/firebase/health
 
 If successful, the endpoint returns `ok: true` and lists existing collections.
 
+## Google Sign-In Setup
+
+Google OAuth is available on both sign-in and sign-up pages.
+
+Required environment variables:
+
+```bash
+GOOGLE_CLIENT_ID="your-google-oauth-client-id"
+GOOGLE_CLIENT_SECRET="your-google-oauth-client-secret"
+```
+
+Google Cloud OAuth settings:
+
+- Authorized redirect URI:
+
+```text
+https://your-domain.com/api/auth/google/callback
+```
+
+For local development also add:
+
+```text
+http://localhost:3000/api/auth/google/callback
+```
+
 ## Image Location And Naming
 
 Store all website images in [public/images/README.md](public/images/README.md).

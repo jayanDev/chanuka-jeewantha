@@ -8,11 +8,13 @@ export default function SignInPage() {
   const router = useRouter();
   const params = useSearchParams();
   const returnTo = params.get("returnTo") ?? "/";
+  const oauthError = params.get("oauthError") ?? "";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const displayError = error || oauthError;
 
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -47,11 +49,30 @@ export default function SignInPage() {
           <h1 className="text-3xl font-bold font-plus-jakarta text-foreground mb-2">Sign In</h1>
           <p className="text-text-body mb-8">Access your cart, checkout, and order history.</p>
 
-          {error && (
+          {displayError && (
             <p className="mb-6 rounded-[10px] border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-              {error}
+              {displayError}
             </p>
           )}
+
+          <a
+            href={`/api/auth/google/start?returnTo=${encodeURIComponent(returnTo)}`}
+            className="mb-6 inline-flex w-full items-center justify-center gap-3 rounded-[10px] border border-zinc-300 bg-white px-5 py-3 font-medium text-foreground transition-colors hover:border-zinc-400"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path fill="#EA4335" d="M12 10.2v3.9h5.5c-.2 1.2-.9 2.3-2 3l3.2 2.5c1.9-1.7 3-4.3 3-7.4 0-.7-.1-1.4-.2-2H12z" />
+              <path fill="#34A853" d="M12 22c2.7 0 5-0.9 6.7-2.4l-3.2-2.5c-.9.6-2.1 1-3.5 1-2.7 0-4.9-1.8-5.7-4.2l-3.3 2.6C4.7 19.8 8.1 22 12 22z" />
+              <path fill="#4A90E2" d="M6.3 13.9c-.2-.6-.3-1.2-.3-1.9s.1-1.3.3-1.9L3 7.5C2.4 8.8 2 10.3 2 12s.4 3.2 1 4.5l3.3-2.6z" />
+              <path fill="#FBBC05" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.8-2.8C17 3 14.7 2 12 2 8.1 2 4.7 4.2 3 7.5l3.3 2.6c.8-2.4 3-4.2 5.7-4.2z" />
+            </svg>
+            Continue with Google
+          </a>
+
+          <div className="mb-6 flex items-center gap-3 text-xs uppercase tracking-wide text-zinc-400">
+            <span className="h-px flex-1 bg-zinc-200" />
+            <span>or sign in with email</span>
+            <span className="h-px flex-1 bg-zinc-200" />
+          </div>
 
           <form onSubmit={onSubmit} className="space-y-5">
             <div>
