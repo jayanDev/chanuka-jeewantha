@@ -66,6 +66,8 @@ export async function GET(request: Request) {
           status?: unknown;
           totalLkr?: unknown;
           paymentRef?: unknown;
+          paymentPersonName?: unknown;
+          paymentWhatsApp?: unknown;
           paymentSlipUrl?: unknown;
           note?: unknown;
           createdAtMs?: unknown;
@@ -107,6 +109,8 @@ export async function GET(request: Request) {
           status: typeof data.status === "string" ? data.status : "payment_submitted",
           totalLkr: typeof data.totalLkr === "number" ? data.totalLkr : 0,
           paymentRef: typeof data.paymentRef === "string" ? data.paymentRef : "",
+          paymentPersonName: typeof data.paymentPersonName === "string" ? data.paymentPersonName : "",
+          paymentWhatsApp: typeof data.paymentWhatsApp === "string" ? data.paymentWhatsApp : "",
           paymentSlipUrl: typeof data.paymentSlipUrl === "string" ? data.paymentSlipUrl : "",
           note: typeof data.note === "string" ? data.note : null,
           createdAt: new Date(createdAtMs).toISOString(),
@@ -137,9 +141,16 @@ export async function POST(request: Request) {
     const paymentRef = String(formData.get("paymentRef") ?? "").trim();
     const note = String(formData.get("note") ?? "").trim();
     const file = formData.get("slip");
+    const paymentPersonName = String(formData.get("paymentPersonName") ?? "").trim();
+    const paymentWhatsApp = String(formData.get("paymentWhatsApp") ?? "").trim();
 
-    if (!paymentRef || paymentRef.length < 3) {
-      return NextResponse.json({ error: "Payment reference is required" }, { status: 400 });
+    if (paymentPersonName.length < 2) {
+      return NextResponse.json({ error: "Payment person name is required" }, { status: 400 });
+    }
+
+    const normalizedWhatsApp = paymentWhatsApp.replace(/\s+/g, "");
+    if (!/^\+?[0-9]{9,15}$/.test(normalizedWhatsApp)) {
+      return NextResponse.json({ error: "Valid WhatsApp number is required" }, { status: 400 });
     }
 
     if (!(file instanceof File) || file.size === 0) {
@@ -220,6 +231,8 @@ export async function POST(request: Request) {
       createdAtMs,
       updatedAtMs: createdAtMs,
       items,
+      paymentPersonName,
+      paymentWhatsApp: normalizedWhatsApp,
     };
 
     await db.collection(ORDERS_COLLECTION).doc(orderId).set(order);
@@ -233,7 +246,7 @@ export async function POST(request: Request) {
       orderId: order.id,
       customerName: user.name,
       customerEmail: user.email,
-      paymentRef,
+      paymentRef: paymentRef || `${paymentPersonName} (${normalizedWhatsApp})`,
       totalLkr: order.totalLkr,
       items: order.items.map((item) => ({
         productName: item.productName,

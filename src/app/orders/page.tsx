@@ -15,6 +15,8 @@ type Order = {
   status: "pending_payment" | "payment_submitted" | "confirmed" | "in_progress" | "completed" | "cancelled";
   totalLkr: number;
   paymentRef: string;
+  paymentPersonName: string;
+  paymentWhatsApp: string;
   paymentSlipUrl: string;
   note: string | null;
   createdAt: string;
@@ -92,7 +94,9 @@ export default function OrdersPage() {
                   <div>
                     <h2 className="text-xl font-bold text-foreground">Order #{order.id.slice(0, 8)}</h2>
                     <p className="text-sm text-zinc-500">Placed on {new Date(order.createdAt).toLocaleDateString("en-LK")}</p>
-                    <p className="text-sm text-zinc-500">Payment ref: {order.paymentRef}</p>
+                    <p className="text-sm text-zinc-500">Payment person: {order.paymentPersonName || "-"}</p>
+                    <p className="text-sm text-zinc-500">WhatsApp: {order.paymentWhatsApp || "-"}</p>
+                    {order.paymentRef && <p className="text-sm text-zinc-500">Payment ref: {order.paymentRef}</p>}
                     <a href={order.paymentSlipUrl} target="_blank" rel="noreferrer" className="text-sm text-brand-main font-medium">
                       View Submitted Slip
                     </a>

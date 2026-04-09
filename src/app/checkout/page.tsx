@@ -48,6 +48,8 @@ export default function CheckoutPage() {
   const [mode, setMode] = useState<"cart" | "buy_now">("cart");
   const [buyNowProductId, setBuyNowProductId] = useState("");
   const [buyNowQuantity, setBuyNowQuantity] = useState(1);
+  const [paymentPersonName, setPaymentPersonName] = useState("");
+  const [paymentWhatsApp, setPaymentWhatsApp] = useState("");
   const [paymentRef, setPaymentRef] = useState("");
   const [note, setNote] = useState("");
   const [slip, setSlip] = useState<File | null>(null);
@@ -124,6 +126,8 @@ export default function CheckoutPage() {
 
     const formData = new FormData();
     formData.append("mode", mode);
+    formData.append("paymentPersonName", paymentPersonName);
+    formData.append("paymentWhatsApp", paymentWhatsApp);
     formData.append("paymentRef", paymentRef);
     formData.append("note", note);
     formData.append("slip", slip);
@@ -153,6 +157,8 @@ export default function CheckoutPage() {
 
       setSuccess("Order submitted successfully. We will verify your transfer and confirm your service.");
       setSlip(null);
+      setPaymentPersonName("");
+      setPaymentWhatsApp("");
       setPaymentRef("");
       setNote("");
       if (mode === "cart") {
@@ -236,12 +242,34 @@ export default function CheckoutPage() {
             )}
 
             <div>
-              <label className="mb-2 block text-sm font-medium">Payment Reference (Name or Mobile Number)</label>
+              <label className="mb-2 block text-sm font-medium">Payment Person Name</label>
+              <input
+                type="text"
+                value={paymentPersonName}
+                onChange={(event) => setPaymentPersonName(event.target.value)}
+                required
+                className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
+              />
+            </div>
+
+            <div>
+              <label className="mb-2 block text-sm font-medium">WhatsApp Number</label>
+              <input
+                type="tel"
+                value={paymentWhatsApp}
+                onChange={(event) => setPaymentWhatsApp(event.target.value)}
+                required
+                className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
+                placeholder="e.g. 0773902230"
+              />
+            </div>
+
+            <div>
+              <label className="mb-2 block text-sm font-medium">Payment Reference (Optional)</label>
               <input
                 type="text"
                 value={paymentRef}
                 onChange={(event) => setPaymentRef(event.target.value)}
-                required
                 className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
               />
             </div>
