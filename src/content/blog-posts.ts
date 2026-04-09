@@ -10,6 +10,17 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "about-chanuka-jeewantha",
+    title: "About Chanuka Jeewantha: Career Development Specialist",
+    excerpt:
+      "A full introduction to Chanuka Jeewantha's ATS-friendly CV method, LinkedIn growth strategy, and end-to-end career development services.",
+    content:
+      "My name is Chanuka Jeewantha, and I help job seekers and professionals build clear, competitive career brands through ATS-friendly CVs, cover letters, LinkedIn optimization, portfolio strategy, and coaching.",
+    category: "About Chanuka Jeewantha",
+    publishedAt: "2026-02-08",
+    author: "Chanuka Jeewantha",
+  },
+  {
     slug: "why-qualified-candidates-dont-get-interviews",
     title: "Why qualified candidates still get ignored in hiring",
     excerpt:

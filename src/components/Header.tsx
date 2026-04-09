@@ -88,6 +88,9 @@ export default function Header() {
             <Link href="/ebooks" className={desktopNavLinkClass}>
               Ebooks
             </Link>
+            <Link href="/resources" className={desktopNavLinkClass}>
+              Resources
+            </Link>
             <Link href="/pricing" className={desktopNavLinkClass}>
               Pricing
             </Link>
@@ -194,6 +197,9 @@ export default function Header() {
           </Link>
           <Link href="/ebooks" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>
             Ebooks
+          </Link>
+          <Link href="/resources" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>
+            Resources
           </Link>
           <Link href="/pricing" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>
             Pricing

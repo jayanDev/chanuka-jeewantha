@@ -1,10 +1,12 @@
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import BlogCommentForm from "@/components/BlogCommentForm";
-import { getPostBySlug } from "@/content/blog-posts";
+import ServiceSidebarAds from "@/components/ServiceSidebarAds";
+import { blogPosts, getPostBySlug } from "@/content/blog-posts";
 
 export async function generateMetadata({
   params,
@@ -108,6 +110,8 @@ export default async function BlogPostPage({
   }
 
   const title = post.title;
+  const isAboutChanukaArticle = post.slug === "about-chanuka-jeewantha";
+  const recentPosts = blogPosts.filter((item) => item.slug !== post.slug).slice(0, 3);
 
   const blogLd = {
     "@context": "https://schema.org",
@@ -177,46 +181,91 @@ export default async function BlogPostPage({
       <section className="w-full py-[96px] bg-white">
         <div className="max-w-[1512px] mx-auto px-4 md:px-6">
           <div className="flex flex-col lg:flex-row gap-[48px] justify-between">
-            
+
             {/* Left Column: Article Body */}
             <article className="w-full lg:w-[65%] flex flex-col gap-8">
               {/* Featured Image */}
-              <div className="w-full h-[400px] md:h-[500px] bg-zinc-200 rounded-[20px] overflow-hidden flex items-center justify-center mb-4">
-                <span className="font-mono text-zinc-500">Featured Image Placeholder</span>
+              <div className="relative w-full h-[420px] md:h-[520px] rounded-[20px] overflow-hidden mb-4 border border-zinc-200">
+                <Image
+                  src="/images/about-page-chanuka.jpg"
+                  alt="About Chanuka Jeewantha"
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 65vw"
+                />
               </div>
 
               {/* Article Content */}
               <div className="prose prose-lg max-w-none text-text-body font-poppins">
-                <p className="leading-relaxed mb-6">
-                  {post.content}
-                </p>
-                <h3 className="text-[28px] font-bold font-plus-jakarta text-foreground mt-10 mb-4">The core principles of career positioning</h3>
-                <p className="leading-relaxed mb-6">
-                  Career materials must match real hiring behavior. Recruiters scan quickly, ATS systems filter based on structure and keywords, and employers prioritize clear results over generic responsibilities.
-                </p>
-                
-                {/* Blockquote styling from template */}
-                <blockquote className="border-l-4 border-brand-main bg-zinc-50 p-6 md:p-8 rounded-r-[20px] my-8 italic text-xl text-foreground font-medium">
-                  "A strong career is not built by guesswork. It is built by clarity, positioning, and proof."
-                </blockquote>
-                
-                <p className="leading-relaxed mb-6">
-                  When your CV, cover letter, and LinkedIn profile communicate measurable value, your interview conversion improves and your professional confidence grows.
-                </p>
+                {isAboutChanukaArticle ? (
+                  <>
+                    <p className="leading-relaxed mb-6">
+                      If you have ever wondered why your job applications get no response, no calls, and no interviews, the reason is often not your potential. It is positioning. Today, career documents are filtered by ATS systems, scanned quickly by recruiters, and compared against hundreds of candidates with similar backgrounds.
+                    </p>
+                    <p className="leading-relaxed mb-6">
+                      My name is <strong>Chanuka Jeewantha</strong>. I am a <strong>Career Development Specialist</strong> helping people build a modern career brand through ATS-friendly CV writing, high-impact cover letters, LinkedIn account optimization, portfolio and personal website positioning, coaching, and career roadmap strategy.
+                    </p>
 
-                {/* Inner Image Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
-                   <div className="h-[300px] bg-zinc-200 rounded-[20px] flex items-center justify-center">
-                     <span className="font-mono text-zinc-500 text-sm">Content Image 1</span>
-                   </div>
-                   <div className="h-[300px] bg-zinc-200 rounded-[20px] flex items-center justify-center">
-                     <span className="font-mono text-zinc-500 text-sm">Content Image 2</span>
-                   </div>
-                </div>
+                    <blockquote className="border-l-4 border-brand-main bg-zinc-50 p-6 md:p-8 rounded-r-[20px] my-8 italic text-xl text-foreground font-medium">
+                      "A strong career is not built by guesswork. It is built by clarity, positioning, and proof."
+                    </blockquote>
 
-                <p className="leading-relaxed mb-6">
-                  Ultimately, successful job search outcomes come from clear professional communication. When your profile is aligned, specific, and evidence-driven, decision-makers trust you faster.
-                </p>
+                    <h3 className="text-[28px] font-bold font-plus-jakarta text-foreground mt-10 mb-4">Why career development changed</h3>
+                    <ul>
+                      <li>Most companies use ATS systems for early shortlisting.</li>
+                      <li>Recruiters often scan CVs in 6-10 seconds on first review.</li>
+                      <li>Hiring teams prioritize measurable outcomes and evidence.</li>
+                      <li>LinkedIn acts like a search engine for talent discovery.</li>
+                    </ul>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
+                      <div className="relative h-[320px] rounded-[20px] overflow-hidden border border-zinc-200">
+                        <Image src="/images/about-chanuka.jpg" alt="Chanuka Jeewantha career consultation" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+                      </div>
+                      <div className="relative h-[320px] rounded-[20px] overflow-hidden border border-zinc-200">
+                        <Image src="/images/chanuka-jeewantha-career-development-specialist.jpg" alt="Chanuka Jeewantha career development specialist" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+                      </div>
+                    </div>
+
+                    <h3 className="text-[28px] font-bold font-plus-jakarta text-foreground mt-10 mb-4">Core services Chanuka provides</h3>
+                    <ul>
+                      <li><strong>Professional CV Writing:</strong> 100% ATS-friendly structure, keyword alignment, and achievement-focused storytelling.</li>
+                      <li><strong>Cover Letter Writing:</strong> role-specific letters that communicate relevance, confidence, and value.</li>
+                      <li><strong>LinkedIn Optimization:</strong> profile SEO with headline, about, and experience strategy, backed by 30K+ follower growth proof.</li>
+                      <li><strong>Personal Website & Portfolio Support:</strong> digital presence that turns claims into visible proof.</li>
+                      <li><strong>Career Coaching & Roadmaps:</strong> practical direction for role targeting, transitions, and long-term growth.</li>
+                    </ul>
+
+                    <div className="relative w-full h-[360px] rounded-[20px] overflow-hidden border border-zinc-200 my-10">
+                      <Image src="/images/linkedin-optimization-30k-followers-proof.jpg" alt="LinkedIn optimization and follower growth proof" fill className="object-cover" sizes="100vw" />
+                    </div>
+
+                    <h3 className="text-[28px] font-bold font-plus-jakarta text-foreground mt-10 mb-4">Who this is ideal for</h3>
+                    <ul>
+                      <li>Graduates building their first professional profile.</li>
+                      <li>Mid-level professionals targeting better-paying opportunities.</li>
+                      <li>Candidates switching industries and needing better positioning.</li>
+                      <li>Professionals applying for international roles.</li>
+                      <li>Individuals who need clarity, confidence, and strategic career direction.</li>
+                    </ul>
+
+                    <p className="leading-relaxed mb-6">
+                      The goal is simple: build a profile that is easy to understand, difficult to ignore, and strategically aligned with real hiring behavior.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p className="leading-relaxed mb-6">{post.content}</p>
+                    <h3 className="text-[28px] font-bold font-plus-jakarta text-foreground mt-10 mb-4">The core principles of career positioning</h3>
+                    <p className="leading-relaxed mb-6">
+                      Career materials must match real hiring behavior. Recruiters scan quickly, ATS systems filter based on structure and keywords, and employers prioritize clear results over generic responsibilities.
+                    </p>
+                    <blockquote className="border-l-4 border-brand-main bg-zinc-50 p-6 md:p-8 rounded-r-[20px] my-8 italic text-xl text-foreground font-medium">
+                      "A strong career is not built by guesswork. It is built by clarity, positioning, and proof."
+                    </blockquote>
+                  </>
+                )}
               </div>
 
               {/* Tags & Share */}
@@ -237,8 +286,8 @@ export default async function BlogPostPage({
 
               {/* Author Box */}
               <div className="bg-zinc-50 rounded-[20px] p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6 mt-4">
-                <div className="w-[100px] h-[100px] rounded-full bg-zinc-300 flex-shrink-0 border-4 border-white shadow-sm flex items-center justify-center overflow-hidden">
-                  <span className="font-mono text-zinc-500 text-xs">Photo</span>
+                <div className="relative w-[100px] h-[100px] rounded-full flex-shrink-0 border-4 border-white shadow-sm overflow-hidden">
+                  <Image src="/images/hero-chanuka.jpg" alt="Chanuka Jeewantha" fill className="object-cover" sizes="100px" />
                 </div>
                 <div className="flex flex-col text-center sm:text-left">
                   <h4 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-2">Chanuka Jeewantha</h4>
@@ -256,47 +305,32 @@ export default async function BlogPostPage({
 
             </article>
 
-            {/* Right Column: Sidebar (Optional/Placeholder) */}
+            {/* Right Column: Sidebar */}
             <aside className="w-full lg:w-[30%] flex flex-col gap-10">
-              
-              {/* Search Widget */}
-              <div className="bg-zinc-50 rounded-[20px] p-8">
-                <h4 className="text-[20px] font-bold font-plus-jakarta text-foreground mb-4">Search</h4>
-                <div className="relative">
-                  <input type="text" placeholder="Search..." className="w-full px-4 py-3 rounded-[10px] bg-white border border-zinc-200 pr-12 focus:outline-none focus:border-brand-main transition-colors" />
-                  <button aria-label="Search posts" title="Search posts" className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-brand-main">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                  </button>
-                </div>
-              </div>
+              <ServiceSidebarAds title="Career Services" />
 
               {/* Recent Posts Widget */}
               <div className="bg-zinc-50 rounded-[20px] p-8">
                 <h4 className="text-[20px] font-bold font-plus-jakarta text-foreground mb-6">Recent Posts</h4>
                 <div className="flex flex-col gap-6">
-                  {[1, 2, 3].map((post) => (
-                    <Link href={`/blog/post-${post}`} key={post} className="flex gap-4 group">
-                      <div className="w-[80px] h-[80px] bg-zinc-200 rounded-[10px] flex-shrink-0 flex items-center justify-center overflow-hidden">
-                        <span className="font-mono text-zinc-500 text-[10px]">Img</span>
+                  {recentPosts.map((recentPost, index) => (
+                    <Link href={`/blog/${recentPost.slug}`} key={recentPost.slug} className="flex gap-4 group">
+                      <div className="relative w-[80px] h-[80px] rounded-[10px] flex-shrink-0 overflow-hidden border border-zinc-200">
+                        <Image
+                          src={index % 2 === 0 ? "/images/about-chanuka.jpg" : "/images/testimonial-chanuka.jpg"}
+                          alt={recentPost.title}
+                          fill
+                          className="object-cover"
+                          sizes="80px"
+                        />
                       </div>
                       <div className="flex flex-col">
-                        <h5 className="font-bold text-foreground text-sm group-hover:text-brand-main transition-colors line-clamp-2 mb-2">How to build a CV that recruiters read in seconds</h5>
-                        <span className="text-xs text-text-light">Oct 20, 2025</span>
+                        <h5 className="font-bold text-foreground text-sm group-hover:text-brand-main transition-colors line-clamp-2 mb-2">{recentPost.title}</h5>
+                        <span className="text-xs text-text-light">{recentPost.publishedAt}</span>
                       </div>
                     </Link>
                   ))}
                 </div>
-              </div>
-
-              {/* Categories Widget */}
-              <div className="bg-zinc-50 rounded-[20px] p-8">
-                <h4 className="text-[20px] font-bold font-plus-jakarta text-foreground mb-6">Categories</h4>
-                <ul className="flex flex-col gap-3">
-                  <li><Link href="#" className="flex justify-between items-center text-text-body hover:text-brand-main transition-colors"><span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-brand-main"></div>ATS CV Writing</span> <span>(5)</span></Link></li>
-                  <li><Link href="#" className="flex justify-between items-center text-text-body hover:text-brand-main transition-colors"><span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-brand-main"></div>LinkedIn Optimization</span> <span>(3)</span></Link></li>
-                  <li><Link href="#" className="flex justify-between items-center text-text-body hover:text-brand-main transition-colors"><span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-brand-main"></div>Career Coaching</span> <span>(8)</span></Link></li>
-                  <li><Link href="#" className="flex justify-between items-center text-text-body hover:text-brand-main transition-colors"><span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-brand-main"></div>Career Roadmaps</span> <span>(2)</span></Link></li>
-                </ul>
               </div>
 
             </aside>

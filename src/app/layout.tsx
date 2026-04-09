@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppOrderButton from "@/components/WhatsAppOrderButton";
+import AnalyticsHeartbeat from "@/components/AnalyticsHeartbeat";
 import { getBaseUrl } from "@/lib/site-url";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -51,6 +52,7 @@ export default function RootLayout({
       className={`${plusJakarta.variable} ${poppins.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-poppins">
+        <AnalyticsHeartbeat />
         <Header />
         <main className="flex-grow">
           {children}

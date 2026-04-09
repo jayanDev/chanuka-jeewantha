@@ -2,10 +2,20 @@ import React from "react";
 import Link from "next/link";
 import SubscribeForm from "@/components/SubscribeForm";
 import SeasonalOfferBanner from "@/components/SeasonalOfferBanner";
+import { packageProducts } from "@/lib/packages-catalog";
 
 export default async function ServiceDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const serviceName = slug.replace(/-/g, " ").toUpperCase();
+  const serviceCategoryMap: Record<string, string[]> = {
+    "cv-writing": ["CV Writing"],
+    "cover-letter-writing": ["Cover Letter Writing"],
+    "linkedin-optimization": ["LinkedIn Optimization"],
+    "cv-review": ["CV Review"],
+  };
+
+  const categoryMatch = serviceCategoryMap[slug] ?? [];
+  const relatedPackages = packageProducts.filter((pkg) => categoryMatch.includes(pkg.category));
 
   return (
     <>
@@ -55,6 +65,26 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
             <p>
               The outcome is a stronger professional identity that improves shortlisting potential, interview conversion, and career direction confidence.
             </p>
+
+            {relatedPackages.length > 0 && (
+              <>
+                <h3>Explore Related Packages</h3>
+                <div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                  {relatedPackages.map((pkg) => (
+                    <div key={pkg.slug} className="rounded-[14px] border border-zinc-200 p-4 bg-zinc-50">
+                      <p className="font-semibold text-foreground mb-2">{pkg.name}</p>
+                      <p className="text-sm text-text-body mb-3">{pkg.audience}</p>
+                      <Link
+                        href={`/packages/${pkg.slug}`}
+                        className="inline-flex items-center gap-2 rounded-[10px] bg-brand-main px-3 py-2 text-xs font-semibold text-white transition-colors hover:bg-brand-dark"
+                      >
+                        See More
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
           </article>
         </div>
       </section>
