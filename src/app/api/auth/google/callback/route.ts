@@ -2,7 +2,6 @@ import { randomBytes } from "node:crypto";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { createSession, getSessionCookieName, getSessionExpiryDate, hashPassword } from "@/lib/auth";
-import { getBaseUrl } from "@/lib/site-url";
 
 const TOKEN_URL = "https://oauth2.googleapis.com/token";
 const USERINFO_URL = "https://openidconnect.googleapis.com/v1/userinfo";
@@ -14,6 +13,15 @@ function sanitizeReturnTo(value: string | null): string {
   if (!value.startsWith("/")) return "/";
   if (value.startsWith("//")) return "/";
   return value;
+}
+
+function getAdminEmailSet(): Set<string> {
+  return new Set(
+    (process.env.GOOGLE_ADMIN_EMAILS ?? "")
+      .split(",")
+      .map((value) => value.trim().toLowerCase())
+      .filter(Boolean),
+  );
 }
 
 function signInErrorRedirect(request: Request, message: string) {
@@ -59,7 +67,7 @@ export async function GET(request: Request) {
     return signInErrorRedirect(request, "Google sign-in is not configured");
   }
 
-  const redirectUri = `${getBaseUrl()}/api/auth/google/callback`;
+  const redirectUri = `${requestUrl.origin}/api/auth/google/callback`;
 
   try {
     const tokenResponse = await fetch(TOKEN_URL, {
@@ -111,10 +119,12 @@ export async function GET(request: Request) {
     const email = profile.email.toLowerCase();
     const fallbackName = email.split("@")[0] ?? "Google User";
     const displayName = (profile.name?.trim() || fallbackName).slice(0, 120);
+    const adminEmailSet = getAdminEmailSet();
+    const shouldBeAdmin = adminEmailSet.has(email);
 
     let user = await prisma.appUser.findUnique({
       where: { email },
-      select: { id: true },
+      select: { id: true, role: true },
     });
 
     if (!user) {
@@ -123,8 +133,15 @@ export async function GET(request: Request) {
           name: displayName,
           email,
           passwordHash: hashPassword(randomBytes(32).toString("hex")),
+          role: shouldBeAdmin ? "admin" : "customer",
         },
-        select: { id: true },
+        select: { id: true, role: true },
+      });
+    } else if (shouldBeAdmin && user.role !== "admin") {
+      user = await prisma.appUser.update({
+        where: { id: user.id },
+        data: { role: "admin" },
+        select: { id: true, role: true },
       });
     }
 

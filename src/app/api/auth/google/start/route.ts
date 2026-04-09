@@ -1,6 +1,5 @@
 import { randomBytes } from "node:crypto";
 import { NextResponse } from "next/server";
-import { getBaseUrl } from "@/lib/site-url";
 
 const GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth";
 const OAUTH_STATE_COOKIE = "google_oauth_state";
@@ -23,7 +22,7 @@ export async function GET(request: Request) {
   const returnTo = sanitizeReturnTo(requestUrl.searchParams.get("returnTo"));
   const state = randomBytes(24).toString("hex");
 
-  const redirectUri = `${getBaseUrl()}/api/auth/google/callback`;
+  const redirectUri = `${requestUrl.origin}/api/auth/google/callback`;
   const params = new URLSearchParams({
     client_id: clientId,
     redirect_uri: redirectUri,
