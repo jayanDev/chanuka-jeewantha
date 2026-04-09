@@ -48,8 +48,8 @@ export default async function ResourceSinglePage({ params }: ResourcePageProps) 
 
   return (
     <>
-      <section className="w-full bg-foreground text-white pt-[180px] pb-[90px]">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-6">
+      <section className="w-full bg-foreground text-white pt-[120px] md:pt-[180px] pb-[72px] md:pb-[90px]">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-2 text-white/85 font-medium mb-8">
             <Link href="/" className="hover:text-brand-main transition-colors">Home</Link>
             <span className="text-brand-main text-xs">/</span>
@@ -57,15 +57,15 @@ export default async function ResourceSinglePage({ params }: ResourcePageProps) 
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">{resource.title}</span>
           </div>
-          <h1 className="text-[44px] md:text-[62px] font-bold font-plus-jakarta leading-[1.08] mb-4 !text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]">
+          <h1 className="text-[32px] sm:text-[44px] md:text-[62px] font-bold font-plus-jakarta leading-[1.08] mb-4 !text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]">
             {resource.title} <span className="text-brand-main">Resource</span>
           </h1>
           <p className="text-xl text-white/90 max-w-3xl">{resource.subtitle}</p>
         </div>
       </section>
 
-      <section className="w-full bg-zinc-50 py-[96px]">
-        <div className="max-w-[1512px] mx-auto px-4 md:px-6">
+      <section className="w-full bg-zinc-50 py-[64px] sm:py-[80px] md:py-[96px]">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-10 items-start">
             <article className="rounded-[22px] border border-zinc-200 bg-white p-7 md:p-10">
               <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-[16px] border border-zinc-200 bg-zinc-50">

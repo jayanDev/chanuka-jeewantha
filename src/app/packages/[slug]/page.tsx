@@ -38,8 +38,8 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
 
   return (
     <>
-      <section className="w-full bg-foreground text-white pt-[180px] pb-[90px]">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-6">
+      <section className="w-full bg-foreground text-white pt-[120px] md:pt-[180px] pb-[72px] md:pb-[90px]">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-2 text-white/85 font-medium mb-8">
             <Link href="/" className="hover:text-brand-main transition-colors">Home</Link>
             <span className="text-brand-main text-xs">/</span>
@@ -48,7 +48,7 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
             <span className="text-brand-main">{pkg.name}</span>
           </div>
 
-          <h1 className="text-[44px] md:text-[62px] font-bold font-plus-jakarta leading-[1.08] mb-4 !text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]">
+          <h1 className="text-[32px] sm:text-[44px] md:text-[62px] font-bold font-plus-jakarta leading-[1.08] mb-4 !text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]">
             {packageTitleMain}{" "}
             {hasPackageWord && <span className="text-brand-main">Package</span>}
           </h1>
@@ -57,7 +57,7 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
       </section>
 
       <section className="w-full py-[90px] bg-white">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-6 grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10">
           <article className="rounded-[22px] border border-zinc-200 p-8">
             <p className="text-sm uppercase tracking-wide text-zinc-500 mb-2">Category</p>
             <p className="text-lg font-semibold text-foreground mb-5">{pkg.category}</p>

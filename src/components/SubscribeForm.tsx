@@ -39,14 +39,14 @@ export default function SubscribeForm() {
   };
 
   return (
-    <section className="w-full py-[96px] bg-brand-main text-white relative overflow-hidden">
+    <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-brand-main text-white relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-dark opacity-30 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
 
-      <div className="max-w-[1512px] mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center text-center">
+      <div className="max-w-[1512px] mx-auto px-4 sm:px-6 relative z-10 flex flex-col items-center text-center">
         <span className="text-foreground font-bold tracking-wider uppercase mb-4 block">Newsletter</span>
-        <h2 className="text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground mb-6 leading-[1.1] max-w-2xl">
+        <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground mb-6 leading-[1.1] max-w-2xl">
           Subscribe to get latest updates.
         </h2>
         <p className="text-text-body text-lg mb-10 max-w-xl text-zinc-800">

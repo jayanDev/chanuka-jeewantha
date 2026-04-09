@@ -42,33 +42,33 @@ export default async function BlogPage() {
   return (
     <>
       {/* 1. Hero Section */}
-      <section className="w-full bg-foreground text-white pt-[50px] pb-[96px] relative overflow-hidden">
+      <section className="w-full bg-foreground text-white pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
         {/* Background Marquee Text */}
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <span key={i} className="text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
                 BLOG ARTICLES
               </span>
             ))}
           </div>
         </div>
 
-        <div className="max-w-[1512px] mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center text-center">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6 relative z-10 flex flex-col items-center text-center">
           <div className="flex items-center gap-2 text-text-light font-medium mb-6">
             <Link href="/" className="hover:text-brand-main transition-colors">Home</Link>
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Blog</span>
           </div>
-          <h1 className="font-plus-jakarta text-[48px] md:text-[64px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
+          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
             Read my latest articles on <span className="text-brand-main">career strategy</span> and job search growth.
           </h1>
         </div>
       </section>
 
       {/* 2. Blog Grid Section */}
-      <section className="w-full py-[96px] bg-white">
-        <div className="max-w-[1512px] mx-auto px-4 md:px-6">
+      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
               <div key={post.slug} className="border border-zinc-200 rounded-[24px] p-6 hover:shadow-lg transition-shadow group flex flex-col">

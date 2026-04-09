@@ -14,7 +14,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
   return (
     <section className="w-full min-h-screen bg-zinc-50 py-10">
-      <div className="mx-auto w-full max-w-6xl px-4 md:px-6 space-y-6">
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 space-y-6">
         <header className="rounded-[20px] border border-zinc-200 bg-white p-6 md:p-8">
           <h1 className="text-3xl md:text-4xl font-bold font-plus-jakarta text-foreground mb-2">Admin Dashboard</h1>
           <p className="text-text-body">Manage statistics, offers, approvals, orders, and system settings.</p>

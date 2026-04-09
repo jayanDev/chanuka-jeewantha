@@ -71,7 +71,7 @@ export default function OrdersPage() {
 
   return (
     <section className="w-full bg-zinc-50 py-16 min-h-[70vh]">
-      <div className="mx-auto w-full max-w-5xl px-4 md:px-6 space-y-6">
+      <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 space-y-6">
         <div className="flex items-center justify-between">
           <h1 className="text-4xl font-bold font-plus-jakarta text-foreground">My Orders</h1>
           <Link href="/pricing" className="text-brand-main font-medium">Order More Packages</Link>

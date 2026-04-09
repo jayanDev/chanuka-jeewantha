@@ -78,7 +78,7 @@ export default function ReviewsAdminPage() {
 
   return (
     <section className="w-full min-h-screen bg-zinc-50 py-16">
-      <div className="mx-auto w-full max-w-5xl px-4 md:px-6">
+      <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
         <div className="mb-8 rounded-[20px] border border-zinc-200 bg-white p-8">
           <h1 className="mb-2 text-[34px] font-bold font-plus-jakarta text-foreground">Review Moderation</h1>
           <p className="mb-6 text-text-body">

@@ -49,8 +49,8 @@ export default async function EbookSinglePage({ params }: EbookPageProps) {
 
   return (
     <>
-      <section className="w-full bg-foreground text-white pt-[170px] pb-[90px]">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-6">
+      <section className="w-full bg-foreground text-white pt-[116px] md:pt-[170px] pb-[72px] md:pb-[90px]">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-2 text-text-light font-medium mb-8">
             <Link href="/" className="hover:text-brand-main transition-colors">Home</Link>
             <span className="text-brand-main text-xs">/</span>
@@ -68,7 +68,7 @@ export default async function EbookSinglePage({ params }: EbookPageProps) {
               <span className="mb-4 inline-flex rounded-full bg-brand-main/15 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-brand-main">
                 {ebook.category === "paid" ? "Paid Ebook" : "Free Ebook"}
               </span>
-              <h1 className="text-[42px] md:text-[56px] font-bold font-plus-jakarta leading-[1.08] mb-3 text-white">{ebook.title}</h1>
+              <h1 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta leading-[1.08] mb-3 text-white">{ebook.title}</h1>
               <p className="text-[22px] font-semibold text-brand-light mb-5">{ebook.subtitle}</p>
               <p className="text-text-light text-lg leading-relaxed mb-8">{ebook.description}</p>
 

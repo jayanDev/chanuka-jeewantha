@@ -51,9 +51,9 @@ export default function Home() {
       />
 
       <section className="w-full relative pt-[50px] md:pt-[73px] pb-[100px] md:pb-[146px] flex flex-col items-center justify-center overflow-hidden">
-        <div className="max-w-[1512px] mx-auto px-4 md:px-6 w-full flex flex-col md:flex-row items-center gap-12 z-10">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6 w-full flex flex-col md:flex-row items-center gap-12 z-10">
           <div className="flex-1 flex flex-col items-start px-[24px]">
-            <h1 className="font-plus-jakarta text-[48px] md:text-[64px] lg:text-[72px] font-extrabold leading-[0.95em] mb-6 text-foreground">
+            <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-extrabold leading-[0.95em] mb-6 text-foreground">
               Hi, I am <br /> <span className="text-brand-main">Chanuka Jeewantha</span>
             </h1>
             <p className="text-text-body text-[16px] md:text-[24px] font-medium max-w-2xl mb-8">
@@ -120,12 +120,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full py-[96px]">
-        <div className="max-w-[1512px] mx-auto px-4 md:px-6">
+      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px]">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div>
               <span className="text-brand-main font-semibold tracking-wider uppercase mb-2 block">What I Do</span>
-              <h2 className="text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground leading-[1.1]">
+              <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground leading-[1.1]">
                 Career Services <span className="text-brand-light">That Deliver Results</span>
               </h2>
             </div>
@@ -162,8 +162,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full py-[96px] bg-white">
-        <div className="max-w-[1512px] mx-auto px-4 md:px-6">
+      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-0">
             <div className="w-full lg:w-[49%] aspect-[4/5] rounded-[20px] relative overflow-hidden border border-zinc-200">
               <Image
@@ -207,12 +207,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full py-[96px] bg-foreground text-white">
-        <div className="max-w-[1512px] mx-auto px-4 md:px-6">
+      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-foreground text-white">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div className="max-w-3xl">
               <span className="!text-white font-semibold tracking-wider uppercase mb-2 block">Latest Insights</span>
-              <h2 className="text-[40px] md:text-[56px] font-bold font-plus-jakarta leading-[1.1] !text-white">
+              <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta leading-[1.1] !text-white">
                 Career guidance for ATS-ready applications, LinkedIn visibility, and strategic growth.
               </h2>
             </div>

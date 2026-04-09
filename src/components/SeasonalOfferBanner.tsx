@@ -134,7 +134,7 @@ export default function SeasonalOfferBanner() {
 
   return (
     <section className="w-full bg-brand-main text-white border-b border-brand-dark/20">
-      <div className="max-w-[1512px] mx-auto px-4 md:px-6 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+      <div className="max-w-[1512px] mx-auto px-4 sm:px-6 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
         <p className="font-semibold text-sm md:text-base">
           {offer.title}: {offer.discountPercent}% OFF
           <span className="font-normal opacity-90"> • {offerScopeText}</span>

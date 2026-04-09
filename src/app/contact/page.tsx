@@ -47,33 +47,33 @@ export default function ContactPage() {
   return (
     <>
       {/* 1. Hero Section */}
-      <section className="w-full bg-foreground text-white pt-[50px] pb-[96px] relative overflow-hidden">
+      <section className="w-full bg-foreground text-white pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
         {/* Background Marquee Text */}
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <span key={i} className="text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
                 CONTACT US
               </span>
             ))}
           </div>
         </div>
 
-        <div className="max-w-[1512px] mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center text-center">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6 relative z-10 flex flex-col items-center text-center">
           <div className="flex items-center gap-2 text-text-light font-medium mb-6">
             <Link href="/" className="hover:text-brand-main transition-colors">Home</Link>
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Contact</span>
           </div>
-          <h1 className="font-plus-jakarta text-[48px] md:text-[64px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
+          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
             Let&#39;s build your <span className="text-brand-main">next career breakthrough</span>.
           </h1>
         </div>
       </section>
 
       {/* 2. Contact Split Section */}
-      <section className="w-full py-[96px] bg-zinc-50">
-        <div className="max-w-[1512px] mx-auto px-4 md:px-6">
+      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
             
             {/* Left Content */}

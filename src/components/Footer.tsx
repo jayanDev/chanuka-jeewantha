@@ -6,7 +6,7 @@ export default function Footer() {
 
   return (
     <footer className="w-full bg-foreground text-text-light pt-[96px] pb-[32px] overflow-hidden">
-      <div className="max-w-[1512px] mx-auto px-4 md:px-6">
+      <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
         
         {/* Top Section: CTA */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-8">

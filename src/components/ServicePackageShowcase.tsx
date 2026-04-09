@@ -142,8 +142,8 @@ export default function ServicePackageShowcase({ title, description, packages }:
   };
 
   return (
-    <section className="w-full py-[96px] bg-zinc-50">
-      <div className="max-w-[1512px] mx-auto px-4 md:px-6">
+    <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50">
+      <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
         <div className="max-w-5xl mx-auto rounded-[24px] border border-zinc-200 bg-white p-8 md:p-10 text-center mb-8">
           <h2 className="text-[34px] md:text-[42px] font-bold font-plus-jakarta text-foreground mb-4">{title}</h2>
           <p className="text-text-body text-lg leading-relaxed">{description}</p>
