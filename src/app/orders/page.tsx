@@ -23,6 +23,17 @@ type Order = {
 
 const formatLkr = (price: number) => `LKR ${price.toLocaleString("en-LK")}`;
 
+async function readJsonSafely(response: Response): Promise<Record<string, unknown>> {
+  const raw = await response.text();
+  if (!raw) return {};
+
+  try {
+    return JSON.parse(raw) as Record<string, unknown>;
+  } catch {
+    return {};
+  }
+}
+
 export default function OrdersPage() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -33,7 +44,7 @@ export default function OrdersPage() {
       try {
         setIsLoading(true);
         const response = await fetch("/api/orders", { cache: "no-store" });
-        const payload = await response.json();
+        const payload = await readJsonSafely(response);
 
         if (response.status === 401) {
           window.location.assign(`/auth/signin?returnTo=${encodeURIComponent("/orders")}`);
@@ -41,10 +52,11 @@ export default function OrdersPage() {
         }
 
         if (!response.ok) {
-          throw new Error(payload?.error ?? "Failed to load orders");
+          const message = typeof payload.error === "string" ? payload.error : "Failed to load orders";
+          throw new Error(message);
         }
 
-        setOrders(payload.orders ?? []);
+        setOrders(Array.isArray(payload.orders) ? (payload.orders as Order[]) : []);
       } catch (err: unknown) {
         setError(err instanceof Error ? err.message : "Failed to load orders");
       } finally {

@@ -45,25 +45,37 @@ async function saveSlip(file: File): Promise<string> {
 }
 
 export async function GET(request: Request) {
-  const user = await getRequestUser(request);
-  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  try {
+    const user = await getRequestUser(request);
+    if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const orders = await prisma.order.findMany({
-    where: { userId: user.id },
-    include: {
-      items: {
-        select: {
-          id: true,
-          productName: true,
-          quantity: true,
-          priceLkr: true,
+    const orders = await prisma.order.findMany({
+      where: { userId: user.id },
+      include: {
+        items: {
+          select: {
+            id: true,
+            productName: true,
+            quantity: true,
+            priceLkr: true,
+          },
         },
       },
-    },
-    orderBy: { createdAt: "desc" },
-  });
+      orderBy: { createdAt: "desc" },
+    });
 
-  return NextResponse.json({ orders });
+    return NextResponse.json({ orders });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "";
+    if (message.includes("DATABASE_URL")) {
+      return NextResponse.json(
+        { error: "Orders database is not configured. Please set DATABASE_URL in Vercel." },
+        { status: 500 },
+      );
+    }
+
+    return NextResponse.json({ error: "Server error while loading orders" }, { status: 500 });
+  }
 }
 
 export async function POST(request: Request) {
