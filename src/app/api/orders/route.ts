@@ -3,10 +3,18 @@ import path from "node:path";
 import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
 import { put } from "@vercel/blob";
-import { prisma } from "@/lib/prisma";
 import { getRequestUser } from "@/lib/auth-server";
 import { isTrustedOrigin } from "@/lib/security";
 import { notifyOrderCreated } from "@/lib/notifications";
+import { getFirebaseDb } from "@/lib/firebase-admin";
+import { packageProducts } from "@/lib/packages-catalog";
+
+const ORDERS_COLLECTION = "orders";
+const CART_COLLECTION = "cart_items";
+
+function getProductMap() {
+  return new Map(packageProducts.map((item) => [item.slug, item]));
+}
 
 function toInt(value: FormDataEntryValue | null, fallback = 1): number {
   if (!value) return fallback;
@@ -49,31 +57,68 @@ export async function GET(request: Request) {
     const user = await getRequestUser(request);
     if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    const orders = await prisma.order.findMany({
-      where: { userId: user.id },
-      include: {
-        items: {
-          select: {
-            id: true,
-            productName: true,
-            quantity: true,
-            priceLkr: true,
-          },
-        },
-      },
-      orderBy: { createdAt: "desc" },
-    });
+    const db = getFirebaseDb();
+    const snapshot = await db.collection(ORDERS_COLLECTION).where("userId", "==", user.id).get();
+
+    const orders = snapshot.docs
+      .map((doc) => {
+        const data = doc.data() as {
+          status?: unknown;
+          totalLkr?: unknown;
+          paymentRef?: unknown;
+          paymentSlipUrl?: unknown;
+          note?: unknown;
+          createdAtMs?: unknown;
+          items?: unknown;
+        };
+
+        const createdAtMs = typeof data.createdAtMs === "number" ? data.createdAtMs : Date.now();
+        const rawItems = Array.isArray(data.items) ? data.items : [];
+        const items = rawItems
+          .map((item) => {
+            if (!item || typeof item !== "object") return null;
+            const entry = item as {
+              id?: unknown;
+              productName?: unknown;
+              quantity?: unknown;
+              priceLkr?: unknown;
+            };
+
+            if (
+              typeof entry.id !== "string" ||
+              typeof entry.productName !== "string" ||
+              typeof entry.quantity !== "number" ||
+              typeof entry.priceLkr !== "number"
+            ) {
+              return null;
+            }
+
+            return {
+              id: entry.id,
+              productName: entry.productName,
+              quantity: entry.quantity,
+              priceLkr: entry.priceLkr,
+            };
+          })
+          .filter((item): item is NonNullable<typeof item> => Boolean(item));
+
+        return {
+          id: doc.id,
+          status: typeof data.status === "string" ? data.status : "payment_submitted",
+          totalLkr: typeof data.totalLkr === "number" ? data.totalLkr : 0,
+          paymentRef: typeof data.paymentRef === "string" ? data.paymentRef : "",
+          paymentSlipUrl: typeof data.paymentSlipUrl === "string" ? data.paymentSlipUrl : "",
+          note: typeof data.note === "string" ? data.note : null,
+          createdAt: new Date(createdAtMs).toISOString(),
+          createdAtMs,
+          items,
+        };
+      })
+      .sort((a, b) => b.createdAtMs - a.createdAtMs)
+      .map(({ createdAtMs: _ignore, ...order }) => order);
 
     return NextResponse.json({ orders });
-  } catch (error) {
-    const message = error instanceof Error ? error.message : "";
-    if (message.includes("DATABASE_URL")) {
-      return NextResponse.json(
-        { error: "Orders database is not configured. Please set DATABASE_URL in Vercel." },
-        { status: 500 },
-      );
-    }
-
+  } catch {
     return NextResponse.json({ error: "Server error while loading orders" }, { status: 500 });
   }
 }
@@ -110,44 +155,41 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "File size must be less than 8MB" }, { status: 400 });
     }
 
+    const db = getFirebaseDb();
+    const productMap = getProductMap();
     let products: Array<{ id: string; name: string; priceLkr: number; quantity: number }> = [];
 
     if (mode === "buy_now") {
       const productId = String(formData.get("productId") ?? "");
       const quantity = toInt(formData.get("quantity"), 1);
-      const product = await prisma.product.findUnique({
-        where: { id: productId },
-        select: { id: true, name: true, priceLkr: true, isActive: true },
-      });
 
-      if (!product || !product.isActive) {
+      const product = productMap.get(productId);
+      if (!product) {
         return NextResponse.json({ error: "Selected package is unavailable" }, { status: 404 });
       }
 
-      products = [{ ...product, quantity }];
+      products = [{ id: product.slug, name: product.name, priceLkr: product.priceLkr, quantity }];
     } else {
-      const cartItems = await prisma.cartItem.findMany({
-        where: { userId: user.id },
-        include: {
-          product: {
-            select: {
-              id: true,
-              name: true,
-              priceLkr: true,
-              isActive: true,
-            },
-          },
-        },
-      });
+      const cartSnapshot = await db.collection(CART_COLLECTION).where("userId", "==", user.id).get();
 
-      products = cartItems
-        .filter((item) => item.product.isActive)
-        .map((item) => ({
-          id: item.product.id,
-          name: item.product.name,
-          priceLkr: item.product.priceLkr,
-          quantity: item.quantity,
-        }));
+      products = cartSnapshot.docs
+        .map((doc) => {
+          const data = doc.data() as { productId?: unknown; quantity?: unknown };
+          if (typeof data.productId !== "string" || typeof data.quantity !== "number") {
+            return null;
+          }
+
+          const product = productMap.get(data.productId);
+          if (!product) return null;
+
+          return {
+            id: product.slug,
+            name: product.name,
+            priceLkr: product.priceLkr,
+            quantity: Math.max(1, Math.floor(data.quantity)),
+          };
+        })
+        .filter((item): item is NonNullable<typeof item> => Boolean(item));
     }
 
     if (products.length === 0) {
@@ -157,37 +199,34 @@ export async function POST(request: Request) {
     const totalLkr = products.reduce((sum, item) => sum + item.priceLkr * item.quantity, 0);
     const paymentSlipUrl = await saveSlip(file);
 
-    const order = await prisma.order.create({
-      data: {
-        userId: user.id,
-        totalLkr,
-        paymentRef,
-        note: note || null,
-        paymentSlipUrl,
-        status: "payment_submitted",
-        items: {
-          create: products.map((item) => ({
-            productId: item.id,
-            productName: item.name,
-            priceLkr: item.priceLkr,
-            quantity: item.quantity,
-          })),
-        },
-      },
-      include: {
-        items: {
-          select: {
-            id: true,
-            productName: true,
-            quantity: true,
-            priceLkr: true,
-          },
-        },
-      },
-    });
+    const orderId = randomUUID();
+    const createdAtMs = Date.now();
+    const items = products.map((item, index) => ({
+      id: `${orderId}-${index + 1}`,
+      productId: item.id,
+      productName: item.name,
+      priceLkr: item.priceLkr,
+      quantity: item.quantity,
+    }));
+
+    const order = {
+      id: orderId,
+      userId: user.id,
+      totalLkr,
+      paymentRef,
+      note: note || null,
+      paymentSlipUrl,
+      status: "payment_submitted",
+      createdAtMs,
+      updatedAtMs: createdAtMs,
+      items,
+    };
+
+    await db.collection(ORDERS_COLLECTION).doc(orderId).set(order);
 
     if (mode !== "buy_now") {
-      await prisma.cartItem.deleteMany({ where: { userId: user.id } });
+      const cartSnapshot = await db.collection(CART_COLLECTION).where("userId", "==", user.id).get();
+      await Promise.all(cartSnapshot.docs.map((doc) => doc.ref.delete()));
     }
 
     await notifyOrderCreated({
