@@ -82,9 +82,6 @@ export default function Header() {
             <Link href="/services" className={desktopNavLinkClass}>
               Services
             </Link>
-            <Link href="/businesses" className={desktopNavLinkClass}>
-              Businesses
-            </Link>
             <Link href="/ebooks" className={desktopNavLinkClass}>
               Ebooks
             </Link>
@@ -191,9 +188,6 @@ export default function Header() {
           </Link>
           <Link href="/services" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>
             Services
-          </Link>
-          <Link href="/businesses" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>
-            Businesses
           </Link>
           <Link href="/ebooks" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>
             Ebooks

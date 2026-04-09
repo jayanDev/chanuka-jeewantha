@@ -10,14 +10,17 @@ export default function Loading() {
           <div className="absolute inset-3 rounded-full border-r-2 border-brand-light animate-[spin_1.6s_linear_infinite_reverse]" />
           <div className="absolute inset-0 grid place-items-center">
             <span className="text-2xl font-plus-jakarta font-bold tracking-wide text-brand-main">
-              B
+              CJ
             </span>
           </div>
         </div>
 
         <div className="text-center">
           <p className="text-white font-plus-jakarta font-semibold tracking-wide text-lg">
-            Loading Portfolio...
+            Chanuka Jeewantha
+          </p>
+          <p className="text-white/80 font-poppins text-sm mt-1">
+            Loading your career experience...
           </p>
           <div className="mt-2 flex items-center justify-center gap-2">
             <span className="loader-dot dot-delay-0 w-1.5 h-1.5 rounded-full bg-brand-main" />

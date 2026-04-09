@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { getBaseUrl } from "@/lib/site-url";
-import SeasonalOfferBanner from "@/components/SeasonalOfferBanner";
 
 export const metadata: Metadata = {
   title: "Chanuka Jeewantha | Professional CV Writer & Career Development Specialist",
@@ -50,8 +49,6 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
       />
-
-      <SeasonalOfferBanner />
 
       <section className="w-full relative py-[100px] md:py-[146px] flex flex-col items-center justify-center overflow-hidden">
         <div className="max-w-[1512px] mx-auto px-4 md:px-6 w-full flex flex-col md:flex-row items-center gap-12 z-10">

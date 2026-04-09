@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -122,6 +122,7 @@ export default function PricingPage() {
       }
 
       setFeedback(`${pkg.name} added to cart.`);
+      window.alert(`${pkg.name} added to cart.`);
     } catch {
       setFeedback("Failed to add to cart.");
     }
@@ -223,7 +224,7 @@ export default function PricingPage() {
 
   return (
     <>
-      <section className="w-full bg-foreground text-white pt-[200px] pb-[96px] relative overflow-hidden">
+      <section className="w-full bg-foreground text-white pt-[100px] pb-[96px] relative overflow-hidden">
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4, 5].map((i) => (
@@ -281,7 +282,7 @@ export default function PricingPage() {
                   }`}
                 >
                   {category.title.replace(" Packages", "")}
-                  {category.isPriority ? " • Priority" : ""}
+                  {category.isPriority ? " � Priority" : ""}
                 </button>
               ))}
             </div>

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React from "react";
-import SeasonalOfferBanner from "@/components/SeasonalOfferBanner";
 
 export default function ServicesPage() {
   const services = [
@@ -29,10 +28,8 @@ export default function ServicesPage() {
 
   return (
     <>
-      <SeasonalOfferBanner />
-
       {/* 1. Hero Section */}
-      <section className="w-full bg-foreground text-white pt-[200px] pb-[96px] relative overflow-hidden">
+      <section className="w-full bg-foreground text-white pt-[100px] pb-[96px] relative overflow-hidden">
         {/* Background Marquee Text */}
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">

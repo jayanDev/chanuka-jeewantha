@@ -6,7 +6,7 @@ import { formatLkr } from "@/lib/packages-catalog";
 export default function ResourcesPage() {
   return (
     <>
-      <section className="w-full bg-foreground text-white pt-[200px] pb-[96px] relative overflow-hidden">
+      <section className="w-full bg-foreground text-white pt-[100px] pb-[96px] relative overflow-hidden">
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4].map((i) => (

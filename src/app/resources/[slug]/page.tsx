@@ -47,50 +47,58 @@ export default async function ResourceSinglePage({ params }: ResourcePageProps) 
   }
 
   return (
-    <section className="w-full bg-zinc-50 pt-[160px] pb-[96px]">
-      <div className="max-w-[1512px] mx-auto px-4 md:px-6">
-        <div className="flex items-center gap-2 text-text-body font-medium mb-8">
-          <Link href="/" className="hover:text-brand-main transition-colors">Home</Link>
-          <span className="text-brand-main text-xs">/</span>
-          <Link href="/resources" className="hover:text-brand-main transition-colors">Resources</Link>
-          <span className="text-brand-main text-xs">/</span>
-          <span className="text-brand-main">{resource.title}</span>
+    <>
+      <section className="w-full bg-foreground text-white pt-[180px] pb-[90px]">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-6">
+          <div className="flex items-center gap-2 text-text-light font-medium mb-8">
+            <Link href="/" className="hover:text-brand-main transition-colors">Home</Link>
+            <span className="text-brand-main text-xs">/</span>
+            <Link href="/resources" className="hover:text-brand-main transition-colors">Resources</Link>
+            <span className="text-brand-main text-xs">/</span>
+            <span className="text-brand-main">{resource.title}</span>
+          </div>
+          <h1 className="text-[44px] md:text-[62px] font-bold font-plus-jakarta leading-[1.08] mb-4 text-white">
+            {resource.title} <span className="text-brand-main">Resource</span>
+          </h1>
+          <p className="text-xl text-text-light max-w-3xl">{resource.subtitle}</p>
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-10 items-start">
-          <article className="rounded-[22px] border border-zinc-200 bg-white p-7 md:p-10">
-            <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-[16px] border border-zinc-200 bg-zinc-50">
-              <Image src={resource.coverImage} alt={resource.title} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 70vw" />
-            </div>
-            <h1 className="text-[40px] md:text-[52px] font-bold font-plus-jakarta text-foreground leading-[1.1] mb-3">{resource.title}</h1>
-            <p className="text-[22px] font-semibold text-brand-dark mb-6">{resource.subtitle}</p>
-            <p className="text-text-body text-lg leading-relaxed mb-8">{resource.description}</p>
+      <section className="w-full bg-zinc-50 py-[96px]">
+        <div className="max-w-[1512px] mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-10 items-start">
+            <article className="rounded-[22px] border border-zinc-200 bg-white p-7 md:p-10">
+              <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-[16px] border border-zinc-200 bg-zinc-50">
+                <Image src={resource.coverImage} alt={resource.title} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 70vw" />
+              </div>
+              <p className="text-text-body text-lg leading-relaxed mb-8">{resource.description}</p>
 
-            <ul className="space-y-3 mb-8">
-              {resource.highlights.map((highlight) => (
-                <li key={highlight} className="flex items-start gap-3 text-text-body">
-                  <span className="mt-1.5 inline-block h-2.5 w-2.5 rounded-full bg-brand-main" />
-                  <span>{highlight}</span>
-                </li>
-              ))}
-            </ul>
+              <ul className="space-y-3 mb-8">
+                {resource.highlights.map((highlight) => (
+                  <li key={highlight} className="flex items-start gap-3 text-text-body">
+                    <span className="mt-1.5 inline-block h-2.5 w-2.5 rounded-full bg-brand-main" />
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
 
-            <p className="text-[24px] font-bold font-plus-jakarta text-foreground mb-6">{formatLkr(resource.priceLkr)}</p>
-            <a
-              href={getWhatsappOrderLink(resource.title, resource.priceLkr)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-[10px] bg-[#25D366] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#1fb85a]"
-            >
-              Order via WhatsApp
-            </a>
-          </article>
+              <p className="text-[24px] font-bold font-plus-jakarta text-foreground mb-6">{formatLkr(resource.priceLkr)}</p>
+              <a
+                href={getWhatsappOrderLink(resource.title, resource.priceLkr)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-[10px] bg-[#25D366] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#1fb85a]"
+              >
+                Order via WhatsApp
+              </a>
+            </article>
 
-          <aside className="w-full">
-            <ServiceSidebarAds title="Related Services" />
-          </aside>
+            <aside className="w-full">
+              <ServiceSidebarAds title="Related Services" />
+            </aside>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

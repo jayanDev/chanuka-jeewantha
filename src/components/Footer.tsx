@@ -14,7 +14,7 @@ export default function Footer() {
             <p className="text-brand-main font-semibold text-[20px] mb-2 font-poppins uppercase tracking-wider">
               Let's work together
             </p>
-            <h2 className="text-[48px] md:text-[64px] font-bold font-plus-jakarta text-white leading-tight drop-shadow-[0_1px_8px_rgba(0,0,0,0.35)]">
+            <h2 className="text-[48px] md:text-[64px] font-bold font-plus-jakarta !text-white leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)]">
               Chanuka Jeewantha
             </h2>
           </div>

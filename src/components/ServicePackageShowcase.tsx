@@ -102,6 +102,7 @@ export default function ServicePackageShowcase({ title, description, packages }:
       }
 
       setFeedback(`${pkg.name} added to cart.`);
+      window.alert(`${pkg.name} added to cart.`);
     } catch {
       setFeedback("Failed to add to cart.");
     }

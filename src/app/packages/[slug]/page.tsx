@@ -33,6 +33,9 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
     notFound();
   }
 
+  const hasPackageWord = /\bpackage\b/i.test(pkg.name);
+  const packageTitleMain = hasPackageWord ? pkg.name.replace(/\s*package\b/i, "") : pkg.name;
+
   return (
     <>
       <section className="w-full bg-foreground text-white pt-[180px] pb-[90px]">
@@ -46,7 +49,8 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
           </div>
 
           <h1 className="text-[44px] md:text-[62px] font-bold font-plus-jakarta leading-[1.08] mb-4 text-white">
-            {pkg.name}
+            {packageTitleMain}{" "}
+            {hasPackageWord && <span className="text-brand-main">Package</span>}
           </h1>
           <p className="text-xl text-text-light max-w-3xl">{pkg.audience}</p>
         </div>
