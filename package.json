@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "postinstall": "prisma generate",
+    "prebuild": "prisma generate",
     "pretest": "npm run db:push",
     "dev": "node ./scripts/next-wrapper.cjs dev --webpack",
     "build": "node ./scripts/next-wrapper.cjs build --webpack",
