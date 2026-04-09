@@ -102,7 +102,7 @@ export default function Footer() {
 
         {/* Bottom Section: Social & Copyright */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-text-light/60 text-sm">
+          <p className="text-white text-sm">
             &copy; {currentYear} Chanuka Jeewantha. Career Development Services.
           </p>
           <div className="flex items-center gap-4">

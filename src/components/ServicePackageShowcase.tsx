@@ -11,6 +11,8 @@ type ProductRecord = {
   category: string;
   audience: string;
   priceLkr: number;
+  originalPriceLkr?: number;
+  discountPercent?: number;
   delivery: string;
   features: string;
 };
@@ -132,6 +134,13 @@ export default function ServicePackageShowcase({ title, description, packages }:
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {packages.map((pkg) => (
+            (() => {
+              const liveProduct = productsBySlug[pkg.slug];
+              const livePrice = liveProduct?.priceLkr ?? pkg.priceLkr;
+              const originalPrice = liveProduct?.originalPriceLkr ?? pkg.priceLkr;
+              const discountPercent = liveProduct?.discountPercent ?? 0;
+
+              return (
             <article
               key={pkg.slug}
               className={`rounded-[20px] border bg-white p-8 shadow-sm hover:shadow-lg transition-shadow ${
@@ -150,7 +159,11 @@ export default function ServicePackageShowcase({ title, description, packages }:
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="rounded-[12px] bg-zinc-100 p-4">
                   <p className="text-xs uppercase tracking-wide text-zinc-500 mb-1">Price</p>
-                  <p className="text-lg font-semibold text-foreground">{formatLkr(pkg.priceLkr)}</p>
+                  <p className="text-lg font-semibold text-foreground">{formatLkr(livePrice)}</p>
+                  {discountPercent > 0 && originalPrice > livePrice && (
+                    <p className="text-xs text-zinc-500 line-through">{formatLkr(originalPrice)}</p>
+                  )}
+                  {discountPercent > 0 && <p className="text-xs font-semibold text-brand-main">{discountPercent}% OFF</p>}
                 </div>
                 <div className="rounded-[12px] bg-zinc-100 p-4">
                   <p className="text-xs uppercase tracking-wide text-zinc-500 mb-1">Delivery</p>
@@ -184,6 +197,8 @@ export default function ServicePackageShowcase({ title, description, packages }:
                 </button>
               </div>
             </article>
+              );
+            })()
           ))}
         </div>
 

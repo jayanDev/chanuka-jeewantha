@@ -8,6 +8,7 @@ import { isTrustedOrigin } from "@/lib/security";
 import { notifyOrderCreated } from "@/lib/notifications";
 import { getFirebaseDb } from "@/lib/firebase-admin";
 import { packageProducts } from "@/lib/packages-catalog";
+import { applyOfferToPrice, getActiveSeasonalOffer } from "@/lib/seasonal-offers";
 
 const ORDERS_COLLECTION = "orders";
 const CART_COLLECTION = "cart_items";
@@ -168,6 +169,7 @@ export async function POST(request: Request) {
 
     const db = getFirebaseDb();
     const productMap = getProductMap();
+    const activeOffer = await getActiveSeasonalOffer();
     let products: Array<{ id: string; name: string; priceLkr: number; quantity: number }> = [];
 
     if (mode === "buy_now") {
@@ -178,8 +180,9 @@ export async function POST(request: Request) {
       if (!product) {
         return NextResponse.json({ error: "Selected package is unavailable" }, { status: 404 });
       }
+      const pricing = applyOfferToPrice(product.priceLkr, product.slug, activeOffer);
 
-      products = [{ id: product.slug, name: product.name, priceLkr: product.priceLkr, quantity }];
+      products = [{ id: product.slug, name: product.name, priceLkr: pricing.priceLkr, quantity }];
     } else {
       const cartSnapshot = await db.collection(CART_COLLECTION).where("userId", "==", user.id).get();
 
@@ -192,11 +195,12 @@ export async function POST(request: Request) {
 
           const product = productMap.get(data.productId);
           if (!product) return null;
+          const pricing = applyOfferToPrice(product.priceLkr, product.slug, activeOffer);
 
           return {
             id: product.slug,
             name: product.name,
-            priceLkr: product.priceLkr,
+            priceLkr: pricing.priceLkr,
             quantity: Math.max(1, Math.floor(data.quantity)),
           };
         })

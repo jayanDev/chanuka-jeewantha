@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { packageProducts } from "@/lib/packages-catalog";
 
 type AdminReview = {
   id: string;
@@ -30,6 +31,17 @@ type AdminOrder = {
   }>;
 };
 
+type AdminOffer = {
+  id: string;
+  title: string;
+  discountPercent: number;
+  scope: "all" | "selected";
+  selectedServiceSlugs: string[];
+  startAtMs: number;
+  endAtMs: number;
+  isActive: boolean;
+};
+
 const statuses: AdminOrder["status"][] = [
   "pending_payment",
   "payment_submitted",
@@ -41,13 +53,41 @@ const statuses: AdminOrder["status"][] = [
 
 const formatLkr = (price: number) => `LKR ${price.toLocaleString("en-LK")}`;
 
+async function readJsonSafely(response: Response): Promise<Record<string, unknown>> {
+  const raw = await response.text();
+  if (!raw) return {};
+
+  try {
+    return JSON.parse(raw) as Record<string, unknown>;
+  } catch {
+    return {};
+  }
+}
+
+function toDateInputValue(ms: number): string {
+  const date = new Date(ms);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
 export default function AdminDashboardClient() {
   const [orders, setOrders] = useState<AdminOrder[]>([]);
   const [reviews, setReviews] = useState<AdminReview[]>([]);
+  const [offers, setOffers] = useState<AdminOffer[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [offerError, setOfferError] = useState("");
+  const [offerSuccess, setOfferSuccess] = useState("");
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<AdminOrder["status"] | "all">("all");
+  const [offerTitle, setOfferTitle] = useState("");
+  const [offerDiscountPercent, setOfferDiscountPercent] = useState(50);
+  const [offerScope, setOfferScope] = useState<"all" | "selected">("all");
+  const [offerSelectedSlugs, setOfferSelectedSlugs] = useState<string[]>([]);
+  const [offerStartDate, setOfferStartDate] = useState(toDateInputValue(Date.now()));
+  const [offerEndDate, setOfferEndDate] = useState(toDateInputValue(Date.now() + 4 * 86400000));
 
   const pendingOrders = useMemo(
     () => orders.filter((order) => order.status === "payment_submitted").length,
@@ -58,6 +98,11 @@ export default function AdminDashboardClient() {
     () => reviews.filter((review) => !review.isApproved).length,
     [reviews]
   );
+
+  const activeOffersCount = useMemo(() => {
+    const now = Date.now();
+    return offers.filter((offer) => offer.isActive && offer.startAtMs <= now && offer.endAtMs >= now).length;
+  }, [offers]);
 
   const filteredOrders = useMemo(() => {
     const query = search.trim().toLowerCase();
@@ -80,19 +125,40 @@ export default function AdminDashboardClient() {
     setError("");
 
     try {
-      const [ordersRes, reviewsRes] = await Promise.all([
+      const [ordersRes, reviewsRes, offersRes] = await Promise.all([
         fetch("/api/admin/orders", { cache: "no-store" }),
         fetch("/api/admin/reviews", { cache: "no-store" }),
+        fetch("/api/admin/offers", { cache: "no-store" }),
       ]);
 
-      const ordersPayload = await ordersRes.json();
-      const reviewsPayload = await reviewsRes.json();
+      const ordersPayload = await readJsonSafely(ordersRes);
+      const reviewsPayload = await readJsonSafely(reviewsRes);
+      const offersPayload = await readJsonSafely(offersRes);
 
-      if (!ordersRes.ok) throw new Error(ordersPayload?.error ?? "Failed to load orders");
-      if (!reviewsRes.ok) throw new Error(reviewsPayload?.error ?? "Failed to load reviews");
+      const issues: string[] = [];
 
-      setOrders(ordersPayload.orders ?? []);
-      setReviews(reviewsPayload.reviews ?? []);
+      if (ordersRes.ok) {
+        setOrders(Array.isArray(ordersPayload.orders) ? (ordersPayload.orders as AdminOrder[]) : []);
+      } else {
+        setOrders([]);
+        issues.push(typeof ordersPayload.error === "string" ? ordersPayload.error : "Failed to load orders");
+      }
+
+      if (reviewsRes.ok) {
+        setReviews(Array.isArray(reviewsPayload.reviews) ? (reviewsPayload.reviews as AdminReview[]) : []);
+      } else {
+        setReviews([]);
+        issues.push(typeof reviewsPayload.error === "string" ? reviewsPayload.error : "Failed to load reviews");
+      }
+
+      if (offersRes.ok) {
+        setOffers(Array.isArray(offersPayload.offers) ? (offersPayload.offers as AdminOffer[]) : []);
+      } else {
+        setOffers([]);
+        issues.push(typeof offersPayload.error === "string" ? offersPayload.error : "Failed to load offers");
+      }
+
+      setError(issues.join(" | "));
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Failed to load dashboard");
     } finally {
@@ -139,6 +205,91 @@ export default function AdminDashboardClient() {
     }
   };
 
+  const refreshOffers = async () => {
+    const response = await fetch("/api/admin/offers", { cache: "no-store" });
+    const payload = await readJsonSafely(response);
+    if (!response.ok) {
+      setOfferError(typeof payload.error === "string" ? payload.error : "Failed to load offers");
+      return;
+    }
+
+    setOffers(Array.isArray(payload.offers) ? (payload.offers as AdminOffer[]) : []);
+  };
+
+  const createOffer = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setOfferError("");
+    setOfferSuccess("");
+
+    const response = await fetch("/api/admin/offers", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: offerTitle,
+        discountPercent: offerDiscountPercent,
+        scope: offerScope,
+        selectedServiceSlugs: offerSelectedSlugs,
+        startAt: `${offerStartDate}T00:00:00.000Z`,
+        endAt: `${offerEndDate}T23:59:59.000Z`,
+        isActive: true,
+      }),
+    });
+
+    const payload = await readJsonSafely(response);
+    if (!response.ok) {
+      setOfferError(typeof payload.error === "string" ? payload.error : "Failed to create offer");
+      return;
+    }
+
+    setOfferSuccess("Seasonal offer created successfully.");
+    setOfferTitle("");
+    setOfferSelectedSlugs([]);
+    await refreshOffers();
+  };
+
+  const toggleOffer = async (offer: AdminOffer, isActive: boolean) => {
+    setOfferError("");
+    setOfferSuccess("");
+
+    const response = await fetch("/api/admin/offers", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: offer.id, isActive }),
+    });
+
+    const payload = await readJsonSafely(response);
+    if (!response.ok) {
+      setOfferError(typeof payload.error === "string" ? payload.error : "Failed to update offer");
+      return;
+    }
+
+    setOfferSuccess(isActive ? "Offer activated." : "Offer deactivated.");
+    await refreshOffers();
+  };
+
+  const deleteOffer = async (id: string) => {
+    setOfferError("");
+    setOfferSuccess("");
+
+    const response = await fetch(`/api/admin/offers?id=${encodeURIComponent(id)}`, {
+      method: "DELETE",
+    });
+    const payload = await readJsonSafely(response);
+    if (!response.ok) {
+      setOfferError(typeof payload.error === "string" ? payload.error : "Failed to delete offer");
+      return;
+    }
+
+    setOfferSuccess("Offer deleted.");
+    await refreshOffers();
+  };
+
+  const toggleServiceSelection = (slug: string) => {
+    setOfferSelectedSlugs((previous) =>
+      previous.includes(slug) ? previous.filter((item) => item !== slug) : [...previous, slug]
+    );
+  };
+
   return (
     <section className="w-full min-h-screen bg-zinc-50 py-16">
       <div className="mx-auto w-full max-w-6xl px-4 md:px-6 space-y-8">
@@ -168,6 +319,139 @@ export default function AdminDashboardClient() {
           <div className="rounded-[14px] border border-zinc-200 bg-white p-5">
             <p className="text-sm text-zinc-500">Pending Reviews</p>
             <p className="text-3xl font-bold text-foreground">{pendingReviews}</p>
+          </div>
+          <div className="rounded-[14px] border border-zinc-200 bg-white p-5">
+            <p className="text-sm text-zinc-500">Active Offers</p>
+            <p className="text-3xl font-bold text-foreground">{activeOffersCount}</p>
+          </div>
+        </div>
+
+        <div className="rounded-[16px] border border-zinc-200 bg-white p-6 space-y-5">
+          <h2 className="text-2xl font-bold font-plus-jakarta">Seasonal Offers</h2>
+          <p className="text-sm text-zinc-600">Create countdown sales for all services or selected services.</p>
+
+          {offerError && <p className="text-sm text-red-700">{offerError}</p>}
+          {offerSuccess && <p className="text-sm text-green-700">{offerSuccess}</p>}
+
+          <form onSubmit={createOffer} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="md:col-span-2">
+              <label className="mb-1 block text-sm font-medium">Offer title</label>
+              <input
+                type="text"
+                value={offerTitle}
+                onChange={(event) => setOfferTitle(event.target.value)}
+                className="w-full rounded border border-zinc-300 px-3 py-2 text-sm"
+                placeholder="New Year Seasonal Offer"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">Discount %</label>
+              <input
+                type="number"
+                min={1}
+                max={90}
+                value={offerDiscountPercent}
+                onChange={(event) => setOfferDiscountPercent(Number(event.target.value || 1))}
+                className="w-full rounded border border-zinc-300 px-3 py-2 text-sm"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">Scope</label>
+              <select
+                value={offerScope}
+                onChange={(event) => setOfferScope(event.target.value as "all" | "selected")}
+                className="w-full rounded border border-zinc-300 px-3 py-2 text-sm"
+              >
+                <option value="all">All services</option>
+                <option value="selected">Selected services</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">Start date</label>
+              <input
+                type="date"
+                value={offerStartDate}
+                onChange={(event) => setOfferStartDate(event.target.value)}
+                className="w-full rounded border border-zinc-300 px-3 py-2 text-sm"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">End date</label>
+              <input
+                type="date"
+                value={offerEndDate}
+                onChange={(event) => setOfferEndDate(event.target.value)}
+                className="w-full rounded border border-zinc-300 px-3 py-2 text-sm"
+                required
+              />
+            </div>
+
+            {offerScope === "selected" && (
+              <div className="md:col-span-2 rounded border border-zinc-200 p-3">
+                <p className="text-sm font-medium mb-2">Selected services</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-48 overflow-auto">
+                  {packageProducts.map((product) => (
+                    <label key={product.slug} className="inline-flex items-center gap-2 text-sm">
+                      <input
+                        type="checkbox"
+                        checked={offerSelectedSlugs.includes(product.slug)}
+                        onChange={() => toggleServiceSelection(product.slug)}
+                      />
+                      <span>{product.name}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="md:col-span-2">
+              <button type="submit" className="rounded bg-brand-main px-4 py-2 text-sm text-white">
+                Create Offer
+              </button>
+            </div>
+          </form>
+
+          <div className="space-y-3">
+            {offers.map((offer) => (
+              <article key={offer.id} className="rounded border border-zinc-200 p-4">
+                <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                  <div>
+                    <p className="font-semibold text-foreground">{offer.title}</p>
+                    <p className="text-sm text-zinc-600">
+                      {offer.discountPercent}% OFF • {offer.scope === "all" ? "All services" : `${offer.selectedServiceSlugs.length} selected services`}
+                    </p>
+                    <p className="text-xs text-zinc-500">
+                      {new Date(offer.startAtMs).toLocaleDateString("en-LK")} - {new Date(offer.endAtMs).toLocaleDateString("en-LK")}
+                    </p>
+                  </div>
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={() => void toggleOffer(offer, !offer.isActive)}
+                      className="rounded bg-zinc-800 px-3 py-1.5 text-xs text-white"
+                    >
+                      {offer.isActive ? "Deactivate" : "Activate"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => void deleteOffer(offer.id)}
+                      className="rounded bg-red-600 px-3 py-1.5 text-xs text-white"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </article>
+            ))}
+
+            {offers.length === 0 && <p className="text-sm text-zinc-500">No offers created yet.</p>}
           </div>
         </div>
 

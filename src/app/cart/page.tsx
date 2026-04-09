@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import SeasonalOfferBanner from "@/components/SeasonalOfferBanner";
 
 type CartItem = {
   id: string;
@@ -96,8 +97,11 @@ export default function CartPage() {
   };
 
   return (
-    <section className="w-full bg-zinc-50 py-16 min-h-[70vh]">
-      <div className="mx-auto w-full max-w-5xl px-4 md:px-6">
+    <>
+      <SeasonalOfferBanner />
+
+      <section className="w-full bg-zinc-50 py-16 min-h-[70vh]">
+        <div className="mx-auto w-full max-w-5xl px-4 md:px-6">
         <div className="mb-8 flex items-center justify-between">
           <h1 className="text-4xl font-bold font-plus-jakarta text-foreground">Your Cart</h1>
           <Link href="/pricing" className="text-brand-main font-medium">Add More Packages</Link>
@@ -155,7 +159,8 @@ export default function CartPage() {
             </div>
           </div>
         )}
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import SubscribeForm from "@/components/SubscribeForm";
+import SeasonalOfferBanner from "@/components/SeasonalOfferBanner";
 
 export default async function ServiceDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -8,6 +9,8 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
 
   return (
     <>
+      <SeasonalOfferBanner />
+
       <section className="w-full bg-foreground text-white pt-[200px] pb-[96px] relative overflow-hidden">
         <div className="max-w-[1512px] mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center text-center">
           <div className="flex items-center gap-2 text-text-light font-medium mb-6">

@@ -4,6 +4,7 @@ import { cartItemSchema, cartUpdateSchema } from "@/lib/validation";
 import { isTrustedOrigin } from "@/lib/security";
 import { getFirebaseDb } from "@/lib/firebase-admin";
 import { packageProducts } from "@/lib/packages-catalog";
+import { applyOfferToPrice, getActiveSeasonalOffer } from "@/lib/seasonal-offers";
 
 const CART_COLLECTION = "cart_items";
 
@@ -21,6 +22,7 @@ export async function GET(request: Request) {
     if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const db = getFirebaseDb();
+    const activeOffer = await getActiveSeasonalOffer();
     const productMap = getProductMap();
     const snapshot = await db.collection(CART_COLLECTION).where("userId", "==", user.id).get();
 
@@ -37,6 +39,7 @@ export async function GET(request: Request) {
 
         const product = productMap.get(data.productId);
         if (!product) return null;
+        const pricing = applyOfferToPrice(product.priceLkr, product.slug, activeOffer);
 
         return {
           id: doc.id,
@@ -47,7 +50,9 @@ export async function GET(request: Request) {
             slug: product.slug,
             name: product.name,
             category: product.category,
-            priceLkr: product.priceLkr,
+            priceLkr: pricing.priceLkr,
+            originalPriceLkr: pricing.originalPriceLkr,
+            discountPercent: pricing.discountPercent,
             delivery: product.delivery,
           },
         };

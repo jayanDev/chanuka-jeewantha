@@ -11,6 +11,8 @@ type ProductRecord = {
   category: string;
   audience: string;
   priceLkr: number;
+  originalPriceLkr?: number;
+  discountPercent?: number;
   delivery: string;
   features: string;
 };
@@ -140,7 +142,14 @@ export default function PricingPage() {
   };
 
   const renderCard = (categoryTitle: string, pkg: PackageProduct) => (
-    <article
+    (() => {
+      const liveProduct = productsBySlug[pkg.slug];
+      const livePrice = liveProduct?.priceLkr ?? pkg.priceLkr;
+      const originalPrice = liveProduct?.originalPriceLkr ?? pkg.priceLkr;
+      const discountPercent = liveProduct?.discountPercent ?? 0;
+
+      return (
+        <article
       key={pkg.slug}
       className={`rounded-[20px] border bg-white p-8 shadow-sm hover:shadow-lg transition-shadow ${
         pkg.isMostPopular ? "border-brand-main" : "border-zinc-200"
@@ -160,7 +169,11 @@ export default function PricingPage() {
       <div className="grid grid-cols-2 gap-4 mb-6">
         <div className="rounded-[12px] bg-zinc-100 p-4">
           <p className="text-xs uppercase tracking-wide text-zinc-500 mb-1">Price</p>
-          <p className="text-lg font-semibold text-foreground">{formatLkr(pkg.priceLkr)}</p>
+          <p className="text-lg font-semibold text-foreground">{formatLkr(livePrice)}</p>
+          {discountPercent > 0 && originalPrice > livePrice && (
+            <p className="text-xs text-zinc-500 line-through">{formatLkr(originalPrice)}</p>
+          )}
+          {discountPercent > 0 && <p className="text-xs font-semibold text-brand-main">{discountPercent}% OFF</p>}
         </div>
         <div className="rounded-[12px] bg-zinc-100 p-4">
           <p className="text-xs uppercase tracking-wide text-zinc-500 mb-1">Delivery</p>
@@ -193,7 +206,7 @@ export default function PricingPage() {
           Buy Now
         </button>
         <a
-          href={buildWhatsAppUrl(categoryTitle, pkg.name, pkg.priceLkr, pkg.delivery)}
+          href={buildWhatsAppUrl(categoryTitle, pkg.name, livePrice, pkg.delivery)}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center rounded-[10px] bg-[#25D366] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#1fb85a]"
@@ -203,6 +216,8 @@ export default function PricingPage() {
         </a>
       </div>
     </article>
+      );
+    })()
   );
 
   return (

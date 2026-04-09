@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ServicePackageShowcase from "@/components/ServicePackageShowcase";
+import SeasonalOfferBanner from "@/components/SeasonalOfferBanner";
 import { packageCategories } from "@/lib/packages-catalog";
 
 const slugToCategoryTitle: Record<string, string> = {
@@ -33,6 +34,8 @@ export default async function ServicePackagesBySlugPage({
 
   return (
     <>
+      <SeasonalOfferBanner />
+
       <section className="w-full bg-foreground text-white pt-[200px] pb-[96px] relative overflow-hidden">
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">

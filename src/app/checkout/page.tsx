@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { paymentInstructions } from "@/lib/packages-catalog";
+import SeasonalOfferBanner from "@/components/SeasonalOfferBanner";
 
 type CartItem = {
   id: string;
@@ -172,8 +173,11 @@ export default function CheckoutPage() {
   };
 
   return (
-    <section className="w-full bg-zinc-50 py-16 min-h-[70vh]">
-      <div className="mx-auto w-full max-w-5xl px-4 md:px-6 space-y-8">
+    <>
+      <SeasonalOfferBanner />
+
+      <section className="w-full bg-zinc-50 py-16 min-h-[70vh]">
+        <div className="mx-auto w-full max-w-5xl px-4 md:px-6 space-y-8">
         <h1 className="text-4xl font-bold font-plus-jakarta text-foreground">Checkout</h1>
 
         <div className="rounded-[16px] border border-zinc-200 bg-white p-6">
@@ -307,7 +311,8 @@ export default function CheckoutPage() {
             </div>
           </form>
         )}
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 }
