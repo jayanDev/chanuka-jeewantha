@@ -36,6 +36,9 @@ build-output.log
 # env files (can opt-in for committing if needed)
 .env*
 
+# local database
+prisma/dev.db
+
 # vercel
 .vercel
 
