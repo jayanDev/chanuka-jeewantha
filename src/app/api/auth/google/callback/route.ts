@@ -30,6 +30,19 @@ function signInErrorRedirect(request: Request, message: string) {
   return NextResponse.redirect(url);
 }
 
+function toSafeErrorMessage(error: unknown): string {
+  const message = error instanceof Error ? error.message : "";
+  if (message.includes("DATABASE_URL")) {
+    return "Database is not configured. Please set DATABASE_URL in Vercel.";
+  }
+
+  if (message) {
+    return "Google sign-in failed due to server configuration.";
+  }
+
+  return "Google sign-in failed. Please try again.";
+}
+
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get("code");
@@ -180,7 +193,7 @@ export async function GET(request: Request) {
     });
 
     return response;
-  } catch {
-    return signInErrorRedirect(request, "Google sign-in failed. Please try again.");
+  } catch (error) {
+    return signInErrorRedirect(request, toSafeErrorMessage(error));
   }
 }
