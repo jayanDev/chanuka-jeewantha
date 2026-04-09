@@ -18,7 +18,7 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
 
   return (
     <>
-      <section className="w-full bg-foreground text-white pt-[200px] pb-[96px] relative overflow-hidden">
+      <section className="w-full bg-foreground text-white pt-[50px] pb-[96px] relative overflow-hidden">
         <div className="max-w-[1512px] mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center text-center">
           <div className="flex items-center gap-2 text-text-light font-medium mb-6">
             <Link href="/" className="hover:text-brand-main transition-colors">Home</Link>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { formatLkr, packageCategories, type PackageProduct } from "@/lib/packages-catalog";
 import { buildOfferPreviewHeaders, withOfferPreviewUrl } from "@/lib/offer-preview-client";
 
@@ -59,6 +59,8 @@ export default function PricingPage() {
   const [productsBySlug, setProductsBySlug] = useState<Record<string, ProductRecord>>({});
   const [activeUser, setActiveUser] = useState<AuthMe | null>(null);
   const [feedback, setFeedback] = useState("");
+  const [addedBySlug, setAddedBySlug] = useState<Record<string, boolean>>({});
+  const addedTimersRef = useRef<Record<string, number>>({});
 
   const selectedCategory = packageCategories[selectedCategoryIndex];
 
@@ -92,6 +94,12 @@ export default function PricingPage() {
     };
 
     void load();
+
+    return () => {
+      for (const timerId of Object.values(addedTimersRef.current)) {
+        window.clearTimeout(timerId);
+      }
+    };
   }, []);
 
   const addToCart = async (pkg: PackageProduct) => {
@@ -121,8 +129,16 @@ export default function PricingPage() {
         return;
       }
 
-      setFeedback(`${pkg.name} added to cart.`);
-      window.alert(`${pkg.name} added to cart.`);
+      setFeedback("");
+      setAddedBySlug((previous) => ({ ...previous, [pkg.slug]: true }));
+      const activeTimer = addedTimersRef.current[pkg.slug];
+      if (activeTimer) {
+        window.clearTimeout(activeTimer);
+      }
+
+      addedTimersRef.current[pkg.slug] = window.setTimeout(() => {
+        setAddedBySlug((previous) => ({ ...previous, [pkg.slug]: false }));
+      }, 2500);
     } catch {
       setFeedback("Failed to add to cart.");
     }
@@ -196,9 +212,14 @@ export default function PricingPage() {
         <button
           type="button"
           onClick={() => void addToCart(pkg)}
-          className="inline-flex items-center justify-center rounded-[10px] bg-foreground px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-dark"
+          disabled={Boolean(addedBySlug[pkg.slug])}
+          className={`inline-flex items-center justify-center rounded-[10px] px-4 py-2.5 text-sm font-medium text-white transition-colors ${
+            addedBySlug[pkg.slug]
+              ? "bg-green-600"
+              : "bg-foreground hover:bg-brand-dark"
+          }`}
         >
-          Add to Cart
+          {addedBySlug[pkg.slug] ? "Added" : "Add to Cart"}
         </button>
         <button
           type="button"
@@ -224,7 +245,7 @@ export default function PricingPage() {
 
   return (
     <>
-      <section className="w-full bg-foreground text-white pt-[100px] pb-[96px] relative overflow-hidden">
+      <section className="w-full bg-foreground text-white pt-[50px] pb-[96px] relative overflow-hidden">
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4, 5].map((i) => (
@@ -282,7 +303,7 @@ export default function PricingPage() {
                   }`}
                 >
                   {category.title.replace(" Packages", "")}
-                  {category.isPriority ? " � Priority" : ""}
+                  {category.isPriority ? " - Priority" : ""}
                 </button>
               ))}
             </div>

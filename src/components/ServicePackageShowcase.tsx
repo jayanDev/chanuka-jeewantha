@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { formatLkr, type PackageProduct } from "@/lib/packages-catalog";
 import { buildOfferPreviewHeaders, withOfferPreviewUrl } from "@/lib/offer-preview-client";
 
@@ -46,6 +46,8 @@ export default function ServicePackageShowcase({ title, description, packages }:
   const [productsBySlug, setProductsBySlug] = useState<Record<string, ProductRecord>>({});
   const [activeUser, setActiveUser] = useState<AuthMe | null>(null);
   const [feedback, setFeedback] = useState("");
+  const [addedBySlug, setAddedBySlug] = useState<Record<string, boolean>>({});
+  const addedTimersRef = useRef<Record<string, number>>({});
 
   useEffect(() => {
     const load = async () => {
@@ -72,6 +74,12 @@ export default function ServicePackageShowcase({ title, description, packages }:
     };
 
     void load();
+
+    return () => {
+      for (const timerId of Object.values(addedTimersRef.current)) {
+        window.clearTimeout(timerId);
+      }
+    };
   }, []);
 
   const addToCart = async (pkg: PackageProduct) => {
@@ -101,8 +109,16 @@ export default function ServicePackageShowcase({ title, description, packages }:
         return;
       }
 
-      setFeedback(`${pkg.name} added to cart.`);
-      window.alert(`${pkg.name} added to cart.`);
+      setFeedback("");
+      setAddedBySlug((previous) => ({ ...previous, [pkg.slug]: true }));
+      const activeTimer = addedTimersRef.current[pkg.slug];
+      if (activeTimer) {
+        window.clearTimeout(activeTimer);
+      }
+
+      addedTimersRef.current[pkg.slug] = window.setTimeout(() => {
+        setAddedBySlug((previous) => ({ ...previous, [pkg.slug]: false }));
+      }, 2500);
     } catch {
       setFeedback("Failed to add to cart.");
     }
@@ -192,9 +208,14 @@ export default function ServicePackageShowcase({ title, description, packages }:
                 <button
                   type="button"
                   onClick={() => void addToCart(pkg)}
-                  className="inline-flex items-center justify-center rounded-[10px] bg-foreground px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-dark"
+                  disabled={Boolean(addedBySlug[pkg.slug])}
+                  className={`inline-flex items-center justify-center rounded-[10px] px-4 py-2.5 text-sm font-medium text-white transition-colors ${
+                    addedBySlug[pkg.slug]
+                      ? "bg-green-600"
+                      : "bg-foreground hover:bg-brand-dark"
+                  }`}
                 >
-                  Add to Cart
+                  {addedBySlug[pkg.slug] ? "Added" : "Add to Cart"}
                 </button>
                 <button
                   type="button"

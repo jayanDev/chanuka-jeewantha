@@ -29,7 +29,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* 1. Hero Section */}
-      <section className="w-full bg-foreground text-white pt-[100px] pb-[96px] relative overflow-hidden">
+      <section className="w-full bg-foreground text-white pt-[50px] pb-[96px] relative overflow-hidden">
         {/* Background Marquee Text */}
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">

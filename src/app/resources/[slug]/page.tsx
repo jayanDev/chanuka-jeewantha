@@ -50,17 +50,17 @@ export default async function ResourceSinglePage({ params }: ResourcePageProps) 
     <>
       <section className="w-full bg-foreground text-white pt-[180px] pb-[90px]">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6">
-          <div className="flex items-center gap-2 text-text-light font-medium mb-8">
+          <div className="flex items-center gap-2 text-white/85 font-medium mb-8">
             <Link href="/" className="hover:text-brand-main transition-colors">Home</Link>
             <span className="text-brand-main text-xs">/</span>
             <Link href="/resources" className="hover:text-brand-main transition-colors">Resources</Link>
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">{resource.title}</span>
           </div>
-          <h1 className="text-[44px] md:text-[62px] font-bold font-plus-jakarta leading-[1.08] mb-4 text-white">
+          <h1 className="text-[44px] md:text-[62px] font-bold font-plus-jakarta leading-[1.08] mb-4 !text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]">
             {resource.title} <span className="text-brand-main">Resource</span>
           </h1>
-          <p className="text-xl text-text-light max-w-3xl">{resource.subtitle}</p>
+          <p className="text-xl text-white/90 max-w-3xl">{resource.subtitle}</p>
         </div>
       </section>
 

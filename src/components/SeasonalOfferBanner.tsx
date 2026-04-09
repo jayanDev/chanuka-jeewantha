@@ -114,7 +114,9 @@ export default function SeasonalOfferBanner() {
 
   const remaining = useMemo(() => {
     if (!offer) return "";
-    return formatRemaining(offer.endAtMs - now);
+    return offer.startAtMs > now
+      ? formatRemaining(offer.startAtMs - now)
+      : formatRemaining(offer.endAtMs - now);
   }, [offer, now]);
 
   if (!offer) return null;
@@ -138,7 +140,7 @@ export default function SeasonalOfferBanner() {
           <span className="font-normal opacity-90"> • {offerScopeText}</span>
         </p>
         <p className="font-plus-jakarta text-sm md:text-base font-bold tracking-wide">
-          Ends in {remaining}
+          {offer.startAtMs > now ? "Starts in" : "Ends in"} {remaining}
         </p>
       </div>
     </section>

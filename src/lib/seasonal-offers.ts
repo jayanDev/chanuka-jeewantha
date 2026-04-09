@@ -268,6 +268,31 @@ export async function getActiveSeasonalOffer(nowMs = Date.now()): Promise<Active
   return toActiveOffer(active);
 }
 
+export async function getPublicVisibleSeasonalOffer(nowMs = Date.now()): Promise<ActiveSeasonalOffer | null> {
+  const offers = await listSeasonalOffers();
+  const mode = await getOfferPriorityMode();
+
+  const validOffers = offers.filter((offer) => {
+    const status = getCurrentStatus(offer, nowMs);
+    return status === "active" || status === "scheduled";
+  });
+
+  if (validOffers.length === 0) return null;
+
+  const activeOffers = validOffers.filter((offer) => getCurrentStatus(offer, nowMs) === "active");
+  if (activeOffers.length > 0) {
+    const selected = selectByPriority(activeOffers, mode);
+    return selected ? toActiveOffer(selected) : null;
+  }
+
+  const scheduledOffers = validOffers
+    .filter((offer) => getCurrentStatus(offer, nowMs) === "scheduled")
+    .sort((a, b) => a.startAtMs - b.startAtMs || b.discountPercent - a.discountPercent || b.createdAtMs - a.createdAtMs);
+
+  const scheduled = scheduledOffers[0] ?? null;
+  return scheduled ? toActiveOffer(scheduled) : null;
+}
+
 export async function getEffectiveSeasonalOffer(request: Request, nowMs = Date.now()): Promise<ActiveSeasonalOffer | null> {
   const previewId = getOfferPreviewIdFromRequest(request);
   if (previewId) {
@@ -277,7 +302,7 @@ export async function getEffectiveSeasonalOffer(request: Request, nowMs = Date.n
     }
   }
 
-  return getActiveSeasonalOffer(nowMs);
+  return getPublicVisibleSeasonalOffer(nowMs);
 }
 
 export function getOfferStatus(offer: SeasonalOffer, nowMs = Date.now()): "draft" | "scheduled" | "active" | "expired" | "inactive" {
