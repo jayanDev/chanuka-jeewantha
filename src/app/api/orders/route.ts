@@ -2,6 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
+import { put } from "@vercel/blob";
 import { prisma } from "@/lib/prisma";
 import { getRequestUser } from "@/lib/auth-server";
 import { isTrustedOrigin } from "@/lib/security";
@@ -18,6 +19,20 @@ async function saveSlip(file: File): Promise<string> {
   const extension = file.name.includes(".") ? file.name.split(".").pop() : "bin";
   const safeExt = (extension ?? "bin").toLowerCase().replace(/[^a-z0-9]/g, "");
   const filename = `${Date.now()}-${randomUUID()}.${safeExt || "bin"}`;
+
+  // Vercel production deployments should store uploads in blob/object storage.
+  if (process.env.BLOB_READ_WRITE_TOKEN) {
+    const blob = await put(`uploads/slips/${filename}`, file, {
+      access: "public",
+    });
+
+    return blob.url;
+  }
+
+  if (process.env.NODE_ENV === "production") {
+    throw new Error("BLOB_READ_WRITE_TOKEN is required for file uploads in production");
+  }
+
   const relativePath = `/uploads/slips/${filename}`;
   const absoluteDir = path.join(process.cwd(), "public", "uploads", "slips");
   const absolutePath = path.join(absoluteDir, filename);
