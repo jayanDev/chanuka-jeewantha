@@ -1,7 +1,13 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
 import { signUpSchema } from "@/lib/validation";
-import { createSession, getSessionCookieName, getSessionExpiryDate, hashPassword } from "@/lib/auth";
+import {
+  createAuthUser,
+  createSession,
+  findAuthUserByEmail,
+  getSessionCookieName,
+  getSessionExpiryDate,
+  hashPassword,
+} from "@/lib/auth";
 import { isTrustedOrigin } from "@/lib/security";
 
 export async function POST(request: Request) {
@@ -20,27 +26,16 @@ export async function POST(request: Request) {
       );
     }
 
-    const existing = await prisma.appUser.findUnique({
-      where: { email: parsed.data.email.toLowerCase() },
-      select: { id: true },
-    });
+    const existing = await findAuthUserByEmail(parsed.data.email);
 
     if (existing) {
       return NextResponse.json({ error: "Email is already in use" }, { status: 409 });
     }
 
-    const user = await prisma.appUser.create({
-      data: {
-        name: parsed.data.name,
-        email: parsed.data.email.toLowerCase(),
-        passwordHash: hashPassword(parsed.data.password),
-      },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        role: true,
-      },
+    const user = await createAuthUser({
+      name: parsed.data.name,
+      email: parsed.data.email,
+      passwordHash: hashPassword(parsed.data.password),
     });
 
     const token = await createSession(user.id);

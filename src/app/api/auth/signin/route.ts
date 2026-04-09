@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
 import { signInSchema } from "@/lib/validation";
 import {
   createSession,
+  findAuthUserByEmail,
   getSessionCookieName,
   getSessionExpiryDate,
   verifyPassword,
@@ -25,16 +25,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const user = await prisma.appUser.findUnique({
-      where: { email: parsed.data.email.toLowerCase() },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        role: true,
-        passwordHash: true,
-      },
-    });
+    const user = await findAuthUserByEmail(parsed.data.email);
 
     if (!user || !verifyPassword(parsed.data.password, user.passwordHash)) {
       return NextResponse.json({ error: "Invalid email or password" }, { status: 401 });

@@ -1,7 +1,14 @@
 import { randomBytes } from "node:crypto";
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
-import { createSession, getSessionCookieName, getSessionExpiryDate, hashPassword } from "@/lib/auth";
+import {
+  createAuthUser,
+  createSession,
+  findAuthUserByEmail,
+  getSessionCookieName,
+  getSessionExpiryDate,
+  hashPassword,
+  setAuthUserRole,
+} from "@/lib/auth";
 
 const TOKEN_URL = "https://oauth2.googleapis.com/token";
 const USERINFO_URL = "https://openidconnect.googleapis.com/v1/userinfo";
@@ -32,8 +39,8 @@ function signInErrorRedirect(request: Request, message: string) {
 
 function toSafeErrorMessage(error: unknown): string {
   const message = error instanceof Error ? error.message : "";
-  if (message.includes("DATABASE_URL")) {
-    return "Database is not configured. Please set DATABASE_URL in Vercel.";
+  if (message.includes("FIREBASE_")) {
+    return "Firebase is not configured. Please set Firebase env vars in Vercel.";
   }
 
   if (message) {
@@ -135,27 +142,20 @@ export async function GET(request: Request) {
     const adminEmailSet = getAdminEmailSet();
     const shouldBeAdmin = adminEmailSet.has(email);
 
-    let user = await prisma.appUser.findUnique({
-      where: { email },
-      select: { id: true, role: true },
-    });
+    let user = await findAuthUserByEmail(email);
 
     if (!user) {
-      user = await prisma.appUser.create({
-        data: {
-          name: displayName,
-          email,
-          passwordHash: hashPassword(randomBytes(32).toString("hex")),
-          role: shouldBeAdmin ? "admin" : "customer",
-        },
-        select: { id: true, role: true },
+      user = await createAuthUser({
+        name: displayName,
+        email,
+        passwordHash: hashPassword(randomBytes(32).toString("hex")),
+        role: shouldBeAdmin ? "admin" : "customer",
       });
     } else if (shouldBeAdmin && user.role !== "admin") {
-      user = await prisma.appUser.update({
-        where: { id: user.id },
-        data: { role: "admin" },
-        select: { id: true, role: true },
-      });
+      user = await setAuthUserRole(user.id, "admin");
+      if (!user) {
+        return signInErrorRedirect(request, "Failed to update user role");
+      }
     }
 
     const token = await createSession(user.id);
