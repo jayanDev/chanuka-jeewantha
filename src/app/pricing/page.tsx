@@ -282,7 +282,7 @@ export default function PricingPage() {
                   }`}
                 >
                   {category.title.replace(" Packages", "")}
-                  {category.isPriority ? " • Priority" : ""}
+                  {category.isPriority ? " ï¿½ Priority" : ""}
                 </button>
               ))}
             </div>
