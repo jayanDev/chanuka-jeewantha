@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
 import { getBaseUrl } from "@/lib/site-url";
+import { blogPosts } from "@/content/blog-posts";
 
 const baseUrl = getBaseUrl();
 
@@ -27,10 +28,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === "" ? 1 : 0.7,
   }));
 
-  const posts = await prisma.post.findMany({
-    where: { isPublished: true },
-    select: { slug: true, publishedAt: true, updatedAt: true },
-  });
+  let posts: Array<{ slug: string; publishedAt: Date | null; updatedAt: Date }> = [];
+  if (process.env.DATABASE_URL) {
+    try {
+      posts = await prisma.post.findMany({
+        where: { isPublished: true },
+        select: { slug: true, publishedAt: true, updatedAt: true },
+      });
+    } catch {
+      posts = [];
+    }
+  }
+
+  if (posts.length === 0) {
+    posts = blogPosts.map((post) => {
+      const date = post.publishedAt ? new Date(post.publishedAt) : new Date();
+      return {
+        slug: post.slug,
+        publishedAt: date,
+        updatedAt: date,
+      };
+    });
+  }
 
   const blogEntries = posts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,

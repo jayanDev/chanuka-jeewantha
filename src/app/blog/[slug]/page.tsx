@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import BlogCommentForm from "@/components/BlogCommentForm";
+import { getPostBySlug } from "@/content/blog-posts";
 
 export async function generateMetadata({
   params,
@@ -11,10 +12,27 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = await prisma.post.findUnique({
-    where: { slug },
-    select: { title: true, excerpt: true },
-  });
+  let post: { title: string; excerpt: string } | null = null;
+  if (process.env.DATABASE_URL) {
+    try {
+      post = await prisma.post.findUnique({
+        where: { slug },
+        select: { title: true, excerpt: true },
+      });
+    } catch {
+      post = null;
+    }
+  }
+
+  if (!post) {
+    const fallback = getPostBySlug(slug);
+    post = fallback
+      ? {
+          title: fallback.title,
+          excerpt: fallback.excerpt,
+        }
+      : null;
+  }
 
   return {
     title: post ? `${post.title} | Chanuka Jeewantha Blog` : "Post Not Found | Chanuka Jeewantha Blog",
@@ -28,26 +46,66 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const resolvedParams = await params;
-  const post = await prisma.post.findUnique({
-    where: { slug: resolvedParams.slug },
-    select: {
-      id: true,
-      slug: true,
-      title: true,
-      excerpt: true,
-      content: true,
-      category: true,
-      publishedAt: true,
-    },
-  });
+  let post:
+    | {
+        id: string;
+        slug: string;
+        title: string;
+        excerpt: string;
+        content: string;
+        category: string;
+        publishedAt: Date | null;
+      }
+    | null = null;
+
+  if (process.env.DATABASE_URL) {
+    try {
+      post = await prisma.post.findUnique({
+        where: { slug: resolvedParams.slug },
+        select: {
+          id: true,
+          slug: true,
+          title: true,
+          excerpt: true,
+          content: true,
+          category: true,
+          publishedAt: true,
+        },
+      });
+    } catch {
+      post = null;
+    }
+  }
+
+  if (!post) {
+    const fallback = getPostBySlug(resolvedParams.slug);
+    if (fallback) {
+      post = {
+        id: fallback.slug,
+        slug: fallback.slug,
+        title: fallback.title,
+        excerpt: fallback.excerpt,
+        content: fallback.content,
+        category: fallback.category,
+        publishedAt: fallback.publishedAt ? new Date(fallback.publishedAt) : null,
+      };
+    }
+  }
 
   if (!post) {
     notFound();
   }
 
-  const commentCount = await prisma.comment.count({
-    where: { postId: post.id, isApproved: true },
-  });
+  let commentCount = 0;
+  if (process.env.DATABASE_URL) {
+    try {
+      commentCount = await prisma.comment.count({
+        where: { postId: post.id, isApproved: true },
+      });
+    } catch {
+      commentCount = 0;
+    }
+  }
 
   const title = post.title;
 

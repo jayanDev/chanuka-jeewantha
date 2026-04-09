@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
+import { blogPosts } from "@/content/blog-posts";
 
 export const metadata: Metadata = {
   title: "Career Blog | Chanuka Jeewantha",
@@ -10,18 +11,33 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPage() {
-  const posts = await prisma.post.findMany({
-    where: { isPublished: true },
-    orderBy: { publishedAt: "desc" },
-    select: {
-      slug: true,
-      title: true,
-      excerpt: true,
-      category: true,
-      publishedAt: true,
-    },
-    take: 50,
-  });
+  const fallbackPosts = blogPosts.map((post) => ({
+    slug: post.slug,
+    title: post.title,
+    excerpt: post.excerpt,
+    category: post.category,
+    publishedAt: post.publishedAt ? new Date(post.publishedAt) : null,
+  }));
+
+  let posts = fallbackPosts;
+  if (process.env.DATABASE_URL) {
+    try {
+      posts = await prisma.post.findMany({
+        where: { isPublished: true },
+        orderBy: { publishedAt: "desc" },
+        select: {
+          slug: true,
+          title: true,
+          excerpt: true,
+          category: true,
+          publishedAt: true,
+        },
+        take: 50,
+      });
+    } catch {
+      posts = fallbackPosts;
+    }
+  }
 
   return (
     <>
