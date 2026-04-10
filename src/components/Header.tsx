@@ -14,7 +14,9 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [user, setUser] = useState<NavUser | null>(null);
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const firstMobileLinkRef = useRef<HTMLAnchorElement>(null);
+  const profileMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const loadUser = async () => {
@@ -69,6 +71,8 @@ export default function Header() {
       return;
     }
 
+    setIsProfileMenuOpen(false);
+
     document.body.style.overflow = "hidden";
     firstMobileLinkRef.current?.focus();
 
@@ -85,10 +89,35 @@ export default function Header() {
     };
   }, [isMobileMenuOpen]);
 
+  useEffect(() => {
+    if (!isProfileMenuOpen) return;
+
+    const onPointerDown = (event: PointerEvent) => {
+      const target = event.target as Node;
+      if (profileMenuRef.current && !profileMenuRef.current.contains(target)) {
+        setIsProfileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      window.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [isProfileMenuOpen]);
+
   const handleSignOut = async () => {
     await fetch("/api/auth/signout", { method: "POST" });
     window.location.assign("/");
   };
+
+  const profileInitials = user
+    ? user.name
+        .split(" ")
+        .filter(Boolean)
+        .slice(0, 2)
+        .map((part) => part[0]?.toUpperCase() ?? "")
+        .join("") || "U"
+    : "U";
 
   const desktopNavLinkClass = "text-[16px] font-medium text-foreground hover:text-brand-main transition-colors";
   const mobileNavLinkClass = "text-[18px] font-medium text-foreground hover:text-brand-main transition-colors";
@@ -138,10 +167,17 @@ export default function Header() {
               </Link>
             )}
             {user && (
-              <Link href="/notifications" className={`${desktopNavLinkClass} relative inline-flex items-center`}>
-                Notifications
+              <Link
+                href="/notifications"
+                aria-label="Notifications"
+                className="relative inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-zinc-300 text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 0 0-5-5.91V4a1 1 0 0 0-2 0v1.09A6 6 0 0 0 6 11v3.2a2 2 0 0 1-.6 1.4L4 17h5" />
+                  <path d="M9 17a3 3 0 0 0 6 0" />
+                </svg>
                 {unreadNotificationCount > 0 && (
-                  <span className="ml-2 inline-flex min-w-[1.5rem] items-center justify-center rounded-full bg-brand-main px-1.5 py-0.5 text-[11px] font-semibold text-white">
+                  <span className="absolute -right-2 -top-2 inline-flex min-w-[1.25rem] items-center justify-center rounded-full bg-brand-main px-1 py-0.5 text-[10px] font-semibold text-white">
                     {unreadNotificationCount > 99 ? "99+" : unreadNotificationCount}
                   </span>
                 )}
@@ -177,13 +213,61 @@ export default function Header() {
                 </Link>
               </div>
             ) : (
-              <button
-                type="button"
-                onClick={handleSignOut}
-                className="text-[16px] font-medium text-foreground hover:text-brand-main transition-colors"
-              >
-                Sign Out
-              </button>
+              <div ref={profileMenuRef} className="relative">
+                <button
+                  type="button"
+                  aria-label="Profile menu"
+                  aria-expanded={isProfileMenuOpen}
+                  onClick={() => setIsProfileMenuOpen((previous) => !previous)}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-foreground text-sm font-bold text-white transition-opacity hover:opacity-90"
+                >
+                  {profileInitials}
+                </button>
+
+                {isProfileMenuOpen && (
+                  <div className="absolute right-0 top-full z-50 mt-2 w-64 rounded-[12px] border border-zinc-200 bg-white p-2 shadow-xl">
+                    <div className="px-3 py-2 border-b border-zinc-200">
+                      <p className="text-sm font-semibold text-foreground line-clamp-1">{user.name}</p>
+                      <p className="text-xs text-zinc-500 line-clamp-1">{user.email}</p>
+                    </div>
+
+                    <div className="py-1">
+                      <Link
+                        href="/profile"
+                        onClick={() => setIsProfileMenuOpen(false)}
+                        className="block rounded-[8px] px-3 py-2 text-sm text-zinc-700 transition-colors hover:bg-zinc-100"
+                      >
+                        Profile Settings
+                      </Link>
+                      <Link
+                        href="/orders"
+                        onClick={() => setIsProfileMenuOpen(false)}
+                        className="block rounded-[8px] px-3 py-2 text-sm text-zinc-700 transition-colors hover:bg-zinc-100"
+                      >
+                        My Orders
+                      </Link>
+                      <Link
+                        href="/notifications"
+                        onClick={() => setIsProfileMenuOpen(false)}
+                        className="block rounded-[8px] px-3 py-2 text-sm text-zinc-700 transition-colors hover:bg-zinc-100"
+                      >
+                        Notifications
+                      </Link>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsProfileMenuOpen(false);
+                        void handleSignOut();
+                      }}
+                      className="mt-1 w-full rounded-[8px] bg-red-600 px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-red-700"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
+                )}
+              </div>
             )}
           </div>
         </nav>
@@ -257,13 +341,27 @@ export default function Header() {
             </Link>
           )}
           {user && (
-            <Link href="/notifications" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>
-              Notifications
+            <Link
+              href="/notifications"
+              aria-label="Notifications"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="relative inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-zinc-300 text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 0 0-5-5.91V4a1 1 0 0 0-2 0v1.09A6 6 0 0 0 6 11v3.2a2 2 0 0 1-.6 1.4L4 17h5" />
+                <path d="M9 17a3 3 0 0 0 6 0" />
+              </svg>
               {unreadNotificationCount > 0 && (
-                <span className="ml-2 inline-flex min-w-[1.5rem] items-center justify-center rounded-full bg-brand-main px-1.5 py-0.5 text-[11px] font-semibold text-white align-middle">
+                <span className="absolute -right-2 -top-2 inline-flex min-w-[1.25rem] items-center justify-center rounded-full bg-brand-main px-1 py-0.5 text-[10px] font-semibold text-white">
                   {unreadNotificationCount > 99 ? "99+" : unreadNotificationCount}
                 </span>
               )}
+            </Link>
+          )}
+
+          {user && (
+            <Link href="/profile" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>
+              Profile
             </Link>
           )}
           {user?.role === "admin" && (

@@ -158,8 +158,9 @@ export default async function BlogSearchPage({
                 return (
                 <article key={post.slug} className="border border-zinc-200 rounded-[24px] p-6 hover:shadow-lg transition-shadow group flex flex-col">
                   <div className="w-full h-[220px] bg-zinc-200 rounded-[16px] overflow-hidden mb-5 flex-shrink-0">
-                    <div className="w-full h-full bg-zinc-300 flex items-center justify-center font-mono text-zinc-500 text-sm group-hover:scale-105 transition-transform duration-500">
-                      Image
+                    <div className="w-full h-full bg-zinc-300 flex flex-col items-center justify-center font-mono text-zinc-500 text-sm text-center group-hover:scale-105 transition-transform duration-500">
+                      <span className="font-semibold tracking-wide">Placeholder</span>
+                      <span className="mt-1 text-xs">100% x 220px</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-4 mb-3">

@@ -74,8 +74,10 @@ export default function PortfolioPage() {
                     {item % 2 === 0 ? "CV + LinkedIn Results" : "Career Coaching Outcomes"}
                   </div>
                   {/* Project Image */}
-                  <div className="w-full h-full bg-zinc-300 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105">
-                    <span className="font-mono text-zinc-500">Project Image {item}</span>
+                  <div className="w-full h-full bg-zinc-300 flex flex-col items-center justify-center text-center grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105">
+                    <span className="font-mono text-zinc-500 font-semibold">Project Image {item}</span>
+                    <span className="mt-1 font-mono text-xs text-zinc-500">100% x 400px (mobile)</span>
+                    <span className="font-mono text-xs text-zinc-500">100% x 500px (desktop)</span>
                   </div>
                 </div>
                 <h3 className="text-[32px] font-bold font-plus-jakarta mb-2 group-hover:text-brand-main transition-colors text-foreground">

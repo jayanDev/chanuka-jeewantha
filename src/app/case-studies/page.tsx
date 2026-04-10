@@ -87,7 +87,10 @@ export default function CaseStudiesPage() {
                     {study.category}
                   </div>
                   {/* <Image fill src="/study-img.jpg" className="object-cover" alt={study.title} /> */}
-                  <div className="w-full h-full flex items-center justify-center text-zinc-400 font-bold text-xl uppercase tracking-widest bg-zinc-300">Image {study.id}</div>
+                  <div className="w-full h-full flex flex-col items-center justify-center text-zinc-400 bg-zinc-300 text-center">
+                    <p className="font-bold text-xl uppercase tracking-widest">Image {study.id}</p>
+                    <p className="mt-1 text-sm font-mono">Aspect 4:3 (eg: 1200 x 900)</p>
+                  </div>
                 </div>
 
                 <div className="w-full md:w-1/2 flex flex-col">

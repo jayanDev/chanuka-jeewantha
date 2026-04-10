@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { buildOfferPreviewHeaders, withOfferPreviewUrl } from "@/lib/offer-preview-client";
 
@@ -133,15 +134,27 @@ export default function SeasonalOfferBanner() {
         : `${offer.selectedCategories.length} categories included`;
 
   return (
-    <section className="w-full bg-brand-main text-white border-b border-brand-dark/20">
-      <div className="max-w-[1512px] mx-auto px-4 sm:px-6 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-        <p className="font-semibold text-sm md:text-base">
-          {offer.title}: {offer.discountPercent}% OFF
-          <span className="font-normal opacity-90"> • {offerScopeText}</span>
-        </p>
-        <p className="font-plus-jakarta text-sm md:text-base font-bold tracking-wide">
-          {offer.startAtMs > now ? "Starts in" : "Ends in"} {remaining}
-        </p>
+    <section className="w-full border-b border-red-900/30 bg-red-600 text-white">
+      <div className="mx-auto flex max-w-[1512px] flex-col gap-3 px-4 py-4 sm:px-6 md:flex-row md:items-center md:justify-between animate-pulse">
+        <div className="flex items-start gap-3">
+          <span className="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-white animate-bounce" aria-hidden="true" />
+          <p className="font-semibold text-sm md:text-base leading-relaxed">
+            {offer.title}: {offer.discountPercent}% OFF
+            <span className="font-normal opacity-90"> • {offerScopeText}</span>
+          </p>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-3">
+          <p className="font-plus-jakarta text-sm md:text-base font-bold tracking-wide">
+            {offer.startAtMs > now ? "Starts in" : "Ends in"} {remaining}
+          </p>
+          <Link
+            href="/offers"
+            className="rounded-[10px] border border-white/70 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-white hover:text-red-700"
+          >
+            View Offers
+          </Link>
+        </div>
       </div>
     </section>
   );

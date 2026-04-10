@@ -65,3 +65,23 @@ export const orderStatusUpdateSchema = z.object({
     "cancelled",
   ]),
 });
+
+export const profileUpdateSchema = z.object({
+  name: z.string().min(2).max(80),
+  whatsappNumber: z.string().trim().max(20).optional(),
+  linkedinUrl: z.string().trim().max(200).optional(),
+  timezone: z.string().trim().max(80).optional(),
+  receiveOfferAlerts: z.boolean().optional(),
+  receiveOrderAlerts: z.boolean().optional(),
+});
+
+export const passwordChangeSchema = z
+  .object({
+    currentPassword: z.string().min(6).max(128),
+    newPassword: z.string().min(6).max(128),
+    confirmPassword: z.string().min(6).max(128),
+  })
+  .refine((value) => value.newPassword === value.confirmPassword, {
+    path: ["confirmPassword"],
+    message: "New password and confirmation do not match",
+  });

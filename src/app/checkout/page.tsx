@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { paymentInstructions } from "@/lib/packages-catalog";
-import SeasonalOfferBanner from "@/components/SeasonalOfferBanner";
 import { buildOfferPreviewHeaders, withOfferPreviewUrl } from "@/lib/offer-preview-client";
 
 type CartItem = {
@@ -50,6 +49,7 @@ type SelectedItem = {
 };
 
 const formatLkr = (price: number) => `LKR ${price.toLocaleString("en-LK")}`;
+const whatsappSupportNumber = "94773902230";
 
 async function readJsonSafely(response: Response): Promise<Record<string, unknown>> {
   const raw = await response.text();
@@ -87,6 +87,22 @@ export default function CheckoutPage() {
   const [quoteSummary, setQuoteSummary] = useState<QuoteSummary | null>(null);
   const [isQuoteLoading, setIsQuoteLoading] = useState(false);
   const [couponPreviewError, setCouponPreviewError] = useState("");
+  const [hasSubmittedOrder, setHasSubmittedOrder] = useState(false);
+  const [showReminderModal, setShowReminderModal] = useState(false);
+  const [latestOrderId, setLatestOrderId] = useState("");
+  const [orderWarning, setOrderWarning] = useState("");
+  const [confirmWhatsAppAccuracy, setConfirmWhatsAppAccuracy] = useState(false);
+
+  const buildWhatsAppReminderUrl = (orderId: string) => {
+    const orderRef = orderId || "pending";
+    return `https://wa.me/${whatsappSupportNumber}?text=${encodeURIComponent(
+      [
+        "Hello Chanuka, I placed an order through the website.",
+        `Order ID: ${orderRef}`,
+        "If my slip or CV upload is missing, I am sharing it here now.",
+      ].join("\n")
+    )}`;
+  };
 
   useEffect(() => {
     const queryMode = params.get("mode");
@@ -286,6 +302,26 @@ export default function CheckoutPage() {
     setError("");
     setSuccess("");
 
+    if (hasSubmittedOrder) {
+      return;
+    }
+
+    if (paymentPersonName.trim().length < 2) {
+      setError("Payment person name is required.");
+      return;
+    }
+
+    const normalizedWhatsApp = paymentWhatsApp.replace(/\D/g, "");
+    if (!/^\d{10,15}$/.test(normalizedWhatsApp)) {
+      setError("Enter a valid WhatsApp number with 10-15 digits.");
+      return;
+    }
+
+    if (!confirmWhatsAppAccuracy) {
+      setError("Please confirm your WhatsApp number is 100% correct.");
+      return;
+    }
+
     if (!slip) {
       setError("Please upload your payment slip.");
       return;
@@ -329,13 +365,19 @@ export default function CheckoutPage() {
         throw new Error(message);
       }
 
-      const warningText =
-        typeof payload.warning === "string" && payload.warning.trim().length > 0
-          ? ` ${payload.warning}`
+      const warningText = typeof payload.warning === "string" ? payload.warning.trim() : "";
+      const orderId =
+        payload.order &&
+        typeof payload.order === "object" &&
+        typeof (payload.order as { id?: unknown }).id === "string"
+          ? ((payload.order as { id: string }).id)
           : "";
-      setSuccess(
-        `Order submitted successfully. We will verify your transfer and confirm your service.${warningText}`
-      );
+
+      setSuccess("Order submitted successfully. We will verify your transfer and confirm your service.");
+      setOrderWarning(warningText);
+      setLatestOrderId(orderId);
+      setHasSubmittedOrder(true);
+      setShowReminderModal(true);
       setSlip(null);
       setCurrentCv(null);
       setPaymentPersonName("");
@@ -345,6 +387,7 @@ export default function CheckoutPage() {
       setLinkedinUrl("");
       setExtraDetails("");
       setCouponPreviewError("");
+      setConfirmWhatsAppAccuracy(false);
       if (mode === "cart") {
         setCartItems([]);
       }
@@ -357,8 +400,6 @@ export default function CheckoutPage() {
 
   return (
     <>
-      <SeasonalOfferBanner />
-
       <section className="w-full bg-zinc-50 py-16 min-h-[70vh]">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 space-y-8">
           <h1 className="text-4xl font-bold font-plus-jakarta text-foreground">Checkout</h1>
@@ -431,7 +472,7 @@ export default function CheckoutPage() {
                 )}
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium">Payment Person Name</label>
+                  <label className="mb-2 block text-sm font-medium">Payment Person Name *</label>
                   <input
                     type="text"
                     aria-label="Payment Person Name"
@@ -443,16 +484,33 @@ export default function CheckoutPage() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium">WhatsApp Number</label>
+                  <label className="mb-2 block text-sm font-medium">WhatsApp Number *</label>
                   <input
                     type="tel"
                     aria-label="WhatsApp Number"
                     value={paymentWhatsApp}
                     onChange={(event) => setPaymentWhatsApp(event.target.value)}
                     required
+                    inputMode="numeric"
                     className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
                     placeholder="e.g. 0773902230"
                   />
+                  <p className="mt-2 text-xs font-medium text-red-600">
+                    Please enter your WhatsApp number carefully. This must be 100% correct for order updates.
+                  </p>
+                </div>
+
+                <div>
+                  <label className="inline-flex items-start gap-2 text-sm text-zinc-700">
+                    <input
+                      type="checkbox"
+                      checked={confirmWhatsAppAccuracy}
+                      onChange={(event) => setConfirmWhatsAppAccuracy(event.target.checked)}
+                      required
+                      className="mt-1"
+                    />
+                    <span>I confirm the WhatsApp number above is 100% correct.</span>
+                  </label>
                 </div>
 
                 <div>
@@ -504,7 +562,7 @@ export default function CheckoutPage() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium">Upload Payment Slip (JPG, PNG, WEBP, PDF)</label>
+                  <label className="mb-2 block text-sm font-medium">Upload Payment Slip * (JPG, PNG, WEBP, PDF)</label>
                   <input
                     type="file"
                     aria-label="Payment Slip Upload"
@@ -530,12 +588,15 @@ export default function CheckoutPage() {
                 <div className="flex flex-wrap gap-3">
                   <button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || hasSubmittedOrder}
                     className="rounded-[10px] bg-brand-main px-6 py-3 text-white font-medium hover:bg-brand-dark disabled:opacity-60"
                   >
-                    {isSubmitting ? "Submitting order..." : "Submit Order"}
+                    {isSubmitting ? "Submitting order..." : hasSubmittedOrder ? "Submitted" : "Submit Order"}
                   </button>
                   <Link href="/cart" className="rounded-[10px] border border-zinc-300 px-6 py-3 font-medium text-foreground">Back to Cart</Link>
+                  <Link href="/offers" className="rounded-[10px] border border-brand-main px-6 py-3 font-medium text-brand-main hover:bg-brand-main hover:text-white transition-colors">
+                    Check Available Offers
+                  </Link>
                 </div>
               </form>
 
@@ -601,6 +662,42 @@ export default function CheckoutPage() {
           )}
         </div>
       </section>
+
+      {showReminderModal && (
+        <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/50 px-4">
+          <div className="w-full max-w-lg rounded-[16px] border border-zinc-200 bg-white p-6 shadow-2xl">
+            <h2 className="text-2xl font-bold font-plus-jakarta text-foreground mb-3">Order Submitted</h2>
+            <p className="text-zinc-700 mb-3">
+              Your order has been submitted. Please keep your WhatsApp available for faster confirmation and delivery updates.
+            </p>
+            {latestOrderId && (
+              <p className="text-sm font-semibold text-zinc-800 mb-3">Order ID: {latestOrderId}</p>
+            )}
+            {orderWarning && (
+              <p className="rounded-[10px] border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800 mb-4">
+                {orderWarning}
+              </p>
+            )}
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={buildWhatsAppReminderUrl(latestOrderId)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-[10px] bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1fb85a]"
+              >
+                Send Message on WhatsApp
+              </a>
+              <button
+                type="button"
+                onClick={() => setShowReminderModal(false)}
+                className="rounded-[10px] border border-zinc-300 px-4 py-2.5 text-sm font-semibold text-zinc-700 hover:border-zinc-400"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

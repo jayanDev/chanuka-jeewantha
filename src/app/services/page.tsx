@@ -106,7 +106,10 @@ export default function ServicesPage() {
                   </div>
                 )}
                 <div className="w-full h-[250px] bg-zinc-200 rounded-[15px] mb-8 flex items-center justify-center overflow-hidden relative">
-                  <span className="text-zinc-500 font-mono text-sm group-hover:scale-105 transition-transform duration-500">Service Image {index + 1}</span>
+                  <div className="text-zinc-500 font-mono text-sm text-center group-hover:scale-105 transition-transform duration-500">
+                    <p className="font-semibold tracking-wide">Service Image {index + 1}</p>
+                    <p className="mt-1 text-xs">100% x 250px</p>
+                  </div>
                 </div>
                 <h3 className="text-[28px] font-bold font-plus-jakarta mb-4 text-foreground">{service.title}</h3>
                 <p className="text-text-body mb-8 flex-grow text-lg leading-relaxed">

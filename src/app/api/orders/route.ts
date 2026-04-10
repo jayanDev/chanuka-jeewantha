@@ -435,9 +435,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Payment person name is required" }, { status: 400 });
     }
 
-    const normalizedWhatsApp = paymentWhatsApp.replace(/\s+/g, "");
-    if (!/^\+?[0-9]{9,15}$/.test(normalizedWhatsApp)) {
-      return NextResponse.json({ error: "Valid WhatsApp number is required" }, { status: 400 });
+    const normalizedWhatsApp = paymentWhatsApp.replace(/\D/g, "");
+    if (!/^\d{10,15}$/.test(normalizedWhatsApp)) {
+      return NextResponse.json({ error: "Valid WhatsApp number is required (10-15 digits)." }, { status: 400 });
     }
 
     const linkedinUrl = normalizeLinkedinUrl(linkedinRaw);
@@ -553,7 +553,7 @@ export async function POST(request: Request) {
       console.error("Order slip upload failed:", error);
       paymentSlipUploadFailed = true;
       uploadWarnings.push(
-        "We received your order, but the payment slip could not be saved. Please send your slip on WhatsApp so we can verify faster."
+        "Slip upload failed in system. Please send slip via WhatsApp if not already shared."
       );
     }
 
@@ -572,7 +572,7 @@ export async function POST(request: Request) {
         console.error("Current CV upload failed:", error);
         currentCvUploadFailed = true;
         uploadWarnings.push(
-          "Your current CV was not saved to storage. Please share it on WhatsApp so we can proceed without delay."
+          "Current CV upload failed. Please send your CV via WhatsApp."
         );
       }
     }
