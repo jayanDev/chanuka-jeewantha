@@ -12,6 +12,8 @@ export default function OrdersClient() {
   const [handoverFiles, setHandoverFiles] = useState<Record<string, File[]>>({});
   const [handoverNotes, setHandoverNotes] = useState<Record<string, string>>({});
   const [handoverLoadingOrderId, setHandoverLoadingOrderId] = useState("");
+  const [revisionResponses, setRevisionResponses] = useState<Record<string, string>>({});
+  const [revisionLoadingKey, setRevisionLoadingKey] = useState("");
 
   const loadOrders = async () => {
     const response = await fetch("/api/admin/orders", { cache: "no-store" });
@@ -86,6 +88,42 @@ export default function OrdersClient() {
     }
   };
 
+  const updateRevision = async (input: {
+    orderId: string;
+    revisionId: string;
+    status: "in_review" | "resolved";
+  }) => {
+    const key = `${input.orderId}:${input.revisionId}:${input.status}`;
+    setRevisionLoadingKey(key);
+    setError("");
+
+    try {
+      const response = await fetch("/api/admin/orders/revisions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          orderId: input.orderId,
+          revisionId: input.revisionId,
+          status: input.status,
+          adminResponse: revisionResponses[input.revisionId] ?? "",
+        }),
+      });
+      const payload = await readJsonSafely(response);
+
+      if (!response.ok) {
+        setError(typeof payload.error === "string" ? payload.error : "Failed to update revision status");
+        return;
+      }
+
+      setRevisionResponses((previous) => ({ ...previous, [input.revisionId]: "" }));
+      await loadOrders();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to update revision status");
+    } finally {
+      setRevisionLoadingKey("");
+    }
+  };
+
   const filteredOrders = useMemo(() => {
     const query = search.trim().toLowerCase();
     return orders.filter((order) => {
@@ -99,7 +137,8 @@ export default function OrdersClient() {
         order.paymentRef.toLowerCase().includes(query) ||
         order.paymentPersonName.toLowerCase().includes(query) ||
         order.paymentWhatsApp.toLowerCase().includes(query) ||
-        order.items.some((item) => item.productName.toLowerCase().includes(query))
+        order.items.some((item) => item.productName.toLowerCase().includes(query)) ||
+        order.revisions.some((revision) => revision.message.toLowerCase().includes(query))
       );
     });
   }, [orders, search, statusFilter]);
@@ -244,6 +283,8 @@ export default function OrdersClient() {
               <input
                 type="file"
                 multiple
+                aria-label="Select handover documents"
+                title="Select handover documents"
                 onChange={(event) =>
                   setHandoverFiles((previous) => ({
                     ...previous,
@@ -292,6 +333,78 @@ export default function OrdersClient() {
                     {update.details && <p className="mt-1">{update.details}</p>}
                   </li>
                 ))}
+              </ul>
+            )}
+          </div>
+
+          <div className="rounded border border-zinc-200 p-4 space-y-3">
+            <h4 className="font-semibold text-foreground">Revision Requests</h4>
+            {order.revisions.length === 0 ? (
+              <p className="text-sm text-zinc-500">No revision requests from customer yet.</p>
+            ) : (
+              <ul className="space-y-3 text-sm">
+                {order.revisions.map((revision) => {
+                  const inReviewKey = `${order.id}:${revision.id}:in_review`;
+                  const resolvedKey = `${order.id}:${revision.id}:resolved`;
+
+                  return (
+                    <li key={revision.id} className="rounded border border-zinc-200 bg-zinc-50 p-3 space-y-2">
+                      <p className="text-xs uppercase tracking-wide text-zinc-500">Status: {revision.status}</p>
+                      <p className="text-zinc-800">{revision.message}</p>
+                      <p className="text-xs text-zinc-500">
+                        Requested: {new Date(revision.requestedAtMs).toLocaleString("en-LK")}
+                      </p>
+                      {revision.adminResponse && (
+                        <p className="text-xs text-zinc-600">Last admin note: {revision.adminResponse}</p>
+                      )}
+
+                      <input
+                        type="text"
+                        value={revisionResponses[revision.id] ?? ""}
+                        onChange={(event) =>
+                          setRevisionResponses((previous) => ({
+                            ...previous,
+                            [revision.id]: event.target.value,
+                          }))
+                        }
+                        placeholder="Add admin note for customer"
+                        className="w-full rounded border border-zinc-300 px-3 py-2 text-sm"
+                      />
+
+                      <div className="flex flex-wrap items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            void updateRevision({
+                              orderId: order.id,
+                              revisionId: revision.id,
+                              status: "in_review",
+                            })
+                          }
+                          disabled={revisionLoadingKey === inReviewKey || revision.status === "in_review"}
+                          className="rounded border border-zinc-300 px-3 py-1.5 text-xs font-medium text-zinc-700 hover:border-brand-main hover:text-brand-main disabled:opacity-60"
+                        >
+                          {revisionLoadingKey === inReviewKey ? "Updating..." : "Mark In Progress"}
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() =>
+                            void updateRevision({
+                              orderId: order.id,
+                              revisionId: revision.id,
+                              status: "resolved",
+                            })
+                          }
+                          disabled={revisionLoadingKey === resolvedKey || revision.status === "resolved"}
+                          className="rounded bg-brand-main px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-dark disabled:opacity-60"
+                        >
+                          {revisionLoadingKey === resolvedKey ? "Resolving..." : "Mark Resolved"}
+                        </button>
+                      </div>
+                    </li>
+                  );
+                })}
               </ul>
             )}
           </div>

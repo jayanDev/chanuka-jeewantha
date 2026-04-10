@@ -34,8 +34,19 @@ export type AdminOrder = {
     id: string;
     fileName: string;
     url: string;
+    downloadUrl?: string;
     uploadedAtMs: number;
     uploadedBy: string;
+  }>;
+  revisions: Array<{
+    id: string;
+    message: string;
+    status: "open" | "in_review" | "resolved";
+    requestedAtMs: number;
+    requestedByUserId: string;
+    resolvedAtMs: number | null;
+    resolvedBy: string | null;
+    adminResponse: string | null;
   }>;
   updates: Array<{
     id: string;

@@ -1,7 +1,23 @@
 import Link from "next/link";
 import React from "react";
+import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo";
+import { buildBreadcrumbList } from "@/lib/structured-data";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Career Services | CV Writing, LinkedIn Optimization, Coaching",
+  description:
+    "Explore Chanuka Jeewantha's career development services including ATS-friendly CV writing, cover letters, LinkedIn optimization, and coaching.",
+  path: "/services",
+  keywords: ["career services Sri Lanka", "ATS CV writing", "LinkedIn optimization", "career coaching"],
+});
 
 export default function ServicesPage() {
+  const breadcrumbLd = buildBreadcrumbList([
+    { name: "Home", path: "/" },
+    { name: "Services", path: "/services" },
+  ]);
+
   const services = [
     {
       title: "Professional CV Writing (100% ATS-Friendly)",
@@ -28,6 +44,11 @@ export default function ServicesPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+
       {/* 1. Hero Section */}
       <section className="w-full bg-foreground text-white pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
         {/* Background Marquee Text */}
@@ -104,6 +125,24 @@ export default function ServicesPage() {
               Additional services will be added soon. Current priority packages are CV Writing, Cover Letter Writing, LinkedIn Optimization, and CV Review.
             </p>
           </div>
+
+          <aside className="mt-8 rounded-[16px] border border-zinc-200 bg-zinc-50 p-6">
+            <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Plan Your Next Step</h2>
+            <p className="text-text-body mb-5">
+              Compare packages, check free and paid resources, or contact me for custom guidance.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/pricing" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                Compare Pricing
+              </Link>
+              <Link href="/resources" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                Browse Resources
+              </Link>
+              <Link href="/contact" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                Contact for Advice
+              </Link>
+            </div>
+          </aside>
         </div>
       </section>
     </>

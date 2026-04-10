@@ -5,6 +5,7 @@ import { isTrustedOrigin } from "@/lib/security";
 import { getFirebaseDb } from "@/lib/firebase-admin";
 import { isAllowedFileType, saveUploadedFile } from "@/lib/upload-storage";
 import { notifyOrderHandoverReady, notifyOrderStatusChanged } from "@/lib/notifications";
+import { createUserNotification } from "@/lib/user-notifications";
 
 const ORDERS_COLLECTION = "orders";
 
@@ -200,6 +201,7 @@ export async function POST(request: Request) {
       handoverDocuments?: unknown;
       updates?: unknown;
       items?: unknown;
+      userId?: unknown;
     };
 
     const uploadedAtMs = Date.now();
@@ -296,27 +298,49 @@ export async function POST(request: Request) {
       : [];
 
     if (previousStatus !== nextStatus) {
-      await notifyOrderStatusChanged({
+      try {
+        await notifyOrderStatusChanged({
+          orderId,
+          customerName,
+          customerEmail,
+          paymentRef,
+          totalLkr,
+          status: nextStatus,
+          items,
+        });
+      } catch (error) {
+        console.error("Order status notify failed after handover:", error);
+      }
+    }
+
+    try {
+      await notifyOrderHandoverReady({
         orderId,
         customerName,
         customerEmail,
-        paymentRef,
-        totalLkr,
-        status: nextStatus,
-        items,
+        documents: uploadedDocs.map((doc) => ({
+          fileName: doc.fileName,
+          url: doc.url,
+        })),
+        note,
       });
+    } catch (error) {
+      console.error("Order handover notify failed:", error);
     }
 
-    await notifyOrderHandoverReady({
-      orderId,
-      customerName,
-      customerEmail,
-      documents: uploadedDocs.map((doc) => ({
-        fileName: doc.fileName,
-        url: doc.url,
-      })),
-      note,
-    });
+    if (typeof data.userId === "string" && data.userId) {
+      try {
+        await createUserNotification({
+          userId: data.userId,
+          orderId,
+          type: "handover_ready",
+          title: "Handover documents are ready",
+          message: `Your deliverables for order ${orderId.slice(0, 8)} are now available in your order timeline.`,
+        });
+      } catch (error) {
+        console.error("In-app handover notification failed:", error);
+      }
+    }
 
     return NextResponse.json({
       ok: true,

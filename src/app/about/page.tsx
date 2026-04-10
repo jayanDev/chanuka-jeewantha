@@ -1,10 +1,31 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
+import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo";
+import { buildBreadcrumbList } from "@/lib/structured-data";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "About Chanuka Jeewantha | Career Development Specialist",
+  description:
+    "Learn about Chanuka Jeewantha's background, experience, and approach to ATS-friendly CV writing, LinkedIn optimization, and career growth strategy.",
+  path: "/about",
+  keywords: ["about Chanuka Jeewantha", "career specialist", "professional CV writer", "LinkedIn strategist"],
+});
 
 export default function AboutPage() {
+  const breadcrumbLd = buildBreadcrumbList([
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+  ]);
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+
       {/* 1. Hero Section */}
       <section className="w-full bg-foreground text-white pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
         {/* Background Marquee Text */}
@@ -63,6 +84,28 @@ export default function AboutPage() {
                 I support fresh graduates, mid-level professionals, career switchers, and international applicants through role-specific strategy, clear communication, and proof-driven career storytelling.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full py-[40px] sm:py-[56px] bg-zinc-50 border-t border-zinc-200">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
+          <h2 className="text-[24px] md:text-[30px] font-bold font-plus-jakarta text-foreground mb-3">
+            Explore More Career Support
+          </h2>
+          <p className="text-text-body mb-5">
+            Continue with service details, package pricing, or practical career insights.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/services" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              Explore Services
+            </Link>
+            <Link href="/pricing" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              Compare Pricing
+            </Link>
+            <Link href="/blog" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              Read Career Blog
+            </Link>
           </div>
         </div>
       </section>

@@ -1,9 +1,30 @@
 import Link from "next/link";
 import React from "react";
+import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo";
+import { buildBreadcrumbList } from "@/lib/structured-data";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Portfolio | Career Branding Work",
+  description:
+    "Browse Chanuka Jeewantha's portfolio examples focused on career branding, profile positioning, and interview readiness outcomes.",
+  path: "/portfolio",
+  keywords: ["career portfolio", "career branding work", "CV and LinkedIn portfolio"],
+});
 
 export default function PortfolioPage() {
+  const breadcrumbLd = buildBreadcrumbList([
+    { name: "Home", path: "/" },
+    { name: "Portfolio", path: "/portfolio" },
+  ]);
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+
       {/* 1. Hero Section */}
       <section className="w-full bg-foreground text-white pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
         {/* Background Marquee Text */}
@@ -64,6 +85,24 @@ export default function PortfolioPage() {
               </div>
             ))}
           </div>
+
+          <aside className="mt-10 rounded-[16px] border border-zinc-200 bg-white p-6">
+            <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Build From Examples to Execution</h2>
+            <p className="text-text-body mb-5">
+              Use these samples as inspiration, then move to practical packages and direct support.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/case-studies" className="rounded-[10px] border border-zinc-300 bg-zinc-50 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                Read Case Studies
+              </Link>
+              <Link href="/services" className="rounded-[10px] border border-zinc-300 bg-zinc-50 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                Explore Services
+              </Link>
+              <Link href="/contact" className="rounded-[10px] border border-zinc-300 bg-zinc-50 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                Contact Now
+              </Link>
+            </div>
+          </aside>
         </div>
       </section>
     </>

@@ -3,14 +3,31 @@ import React from "react";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { blogPosts } from "@/content/blog-posts";
+import { buildPageMetadata } from "@/lib/seo";
+import { buildBreadcrumbList } from "@/lib/structured-data";
 
-export const metadata: Metadata = {
+export const dynamic = "force-static";
+export const revalidate = 3600;
+
+export const metadata: Metadata = buildPageMetadata({
   title: "Career Blog | Chanuka Jeewantha",
   description:
     "Career-focused articles on ATS-friendly CV writing, LinkedIn optimization, coaching, and roadmap strategy.",
-};
+  path: "/blog",
+  keywords: [
+    "career blog",
+    "ATS CV tips",
+    "LinkedIn optimization guide",
+    "interview preparation",
+  ],
+});
 
 export default async function BlogPage() {
+  const breadcrumbLd = buildBreadcrumbList([
+    { name: "Home", path: "/" },
+    { name: "Blog", path: "/blog" },
+  ]);
+
   const fallbackPosts = blogPosts.map((post) => ({
     slug: post.slug,
     title: post.title,
@@ -41,6 +58,11 @@ export default async function BlogPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+
       {/* 1. Hero Section */}
       <section className="w-full bg-foreground text-white pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
         {/* Background Marquee Text */}
@@ -69,6 +91,26 @@ export default async function BlogPage() {
       {/* 2. Blog Grid Section */}
       <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
+          <form action="/blog/search" method="get" className="mb-8 max-w-xl">
+            <label htmlFor="q" className="mb-2 block text-sm font-semibold text-zinc-700">
+              Search blog articles
+            </label>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <input
+                id="q"
+                name="q"
+                placeholder="Search CV, LinkedIn, interview, ATS..."
+                className="w-full rounded-[10px] border border-zinc-300 px-4 py-3 text-sm focus:border-brand-main focus:outline-none"
+              />
+              <button
+                type="submit"
+                className="rounded-[10px] bg-foreground px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-zinc-800"
+              >
+                Search
+              </button>
+            </div>
+          </form>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
               <div key={post.slug} className="border border-zinc-200 rounded-[24px] p-6 hover:shadow-lg transition-shadow group flex flex-col">
@@ -105,6 +147,24 @@ export default async function BlogPage() {
               </button>
             </div>
           </div>
+
+          <aside className="mt-10 rounded-[16px] border border-zinc-200 bg-zinc-50 p-6">
+            <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Related Career Paths</h2>
+            <p className="text-text-body mb-5">
+              Move from reading to action with services, resources, and premium ebooks.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/services" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                Explore Services
+              </Link>
+              <Link href="/resources" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                View Resources
+              </Link>
+              <Link href="/ebooks" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                Read Ebooks
+              </Link>
+            </div>
+          </aside>
         </div>
       </section>
     </>

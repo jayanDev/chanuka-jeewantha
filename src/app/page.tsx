@@ -2,12 +2,21 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { getBaseUrl } from "@/lib/site-url";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Chanuka Jeewantha | Professional CV Writer & Career Development Specialist",
   description:
     "I help job seekers win interviews through ATS-friendly CV writing, LinkedIn optimization, coaching, and clear career strategy.",
-};
+  path: "/",
+  keywords: [
+    "ATS-friendly CV writing",
+    "career development specialist",
+    "LinkedIn optimization",
+    "career coaching",
+    "professional CV writer Sri Lanka",
+  ],
+});
 
 export default function Home() {
   const services = [
@@ -211,7 +220,7 @@ export default function Home() {
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div className="max-w-3xl">
-              <span className="!text-white font-semibold tracking-wider uppercase mb-2 block">Latest Insights</span>
+              <span className="text-brand-main font-semibold tracking-wider uppercase mb-2 block">Latest Insights</span>
               <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta leading-[1.1] !text-white">
                 Career guidance for ATS-ready applications, LinkedIn visibility, and strategic growth.
               </h2>

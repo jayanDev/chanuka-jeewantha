@@ -1,7 +1,9 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ServicePackageShowcase from "@/components/ServicePackageShowcase";
 import { packageCategories } from "@/lib/packages-catalog";
+import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 
 const slugToCategoryTitle: Record<string, string> = {
   "cv-writing": "CV Writing Packages",
@@ -12,6 +14,30 @@ const slugToCategoryTitle: Record<string, string> = {
 
 export function generateStaticParams() {
   return Object.keys(slugToCategoryTitle).map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const categoryTitle = slugToCategoryTitle[slug];
+
+  if (!categoryTitle) {
+    return buildNoIndexMetadata({
+      title: "Service Packages Not Found",
+      description: "The requested package category is unavailable.",
+      path: `/services/packages/${slug}`,
+    });
+  }
+
+  return buildPageMetadata({
+    title: `${categoryTitle} | Chanuka Jeewantha`,
+    description: `Explore ${categoryTitle.toLowerCase()} designed for ATS performance, recruiter readability, and practical career outcomes.`,
+    path: `/services/packages/${slug}`,
+    keywords: [categoryTitle, "career package", "job seeker services", "Chanuka Jeewantha"],
+  });
 }
 
 export default async function ServicePackagesBySlugPage({

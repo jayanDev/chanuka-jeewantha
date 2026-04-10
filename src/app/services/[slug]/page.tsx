@@ -1,7 +1,52 @@
 import React from "react";
 import Link from "next/link";
+import type { Metadata } from "next";
 import SubscribeForm from "@/components/SubscribeForm";
 import { packageProducts } from "@/lib/packages-catalog";
+import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
+
+const serviceMetadataMap: Record<string, { title: string; description: string }> = {
+  "cv-writing": {
+    title: "CV Writing Service | ATS-Friendly CV Strategy",
+    description:
+      "Get ATS-friendly CV writing support with role-aligned positioning, measurable achievement language, and recruiter-ready structure.",
+  },
+  "cover-letter-writing": {
+    title: "Cover Letter Writing Service",
+    description:
+      "Professional cover letter writing tailored to your target role, highlighting your value with concise and persuasive messaging.",
+  },
+  "linkedin-optimization": {
+    title: "LinkedIn Optimization Service",
+    description:
+      "Improve your LinkedIn visibility with optimized headline, about section, keyword strategy, and profile positioning.",
+  },
+  "cv-review": {
+    title: "CV Review Service",
+    description:
+      "Get expert feedback on your current CV with practical recommendations for ATS compatibility and stronger interview conversion.",
+  },
+};
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const entry = serviceMetadataMap[slug];
+
+  if (!entry) {
+    return buildNoIndexMetadata({
+      title: "Service Not Found",
+      description: "The requested service page is unavailable.",
+      path: `/services/${slug}`,
+    });
+  }
+
+  return buildPageMetadata({
+    title: entry.title,
+    description: entry.description,
+    path: `/services/${slug}`,
+    keywords: ["career services", slug.replaceAll("-", " "), "Chanuka Jeewantha"],
+  });
+}
 
 export default async function ServiceDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

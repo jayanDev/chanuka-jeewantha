@@ -7,6 +7,9 @@ import { prisma } from "@/lib/prisma";
 import BlogCommentForm from "@/components/BlogCommentForm";
 import ServiceSidebarAds from "@/components/ServiceSidebarAds";
 import { blogPosts, getPostBySlug } from "@/content/blog-posts";
+import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
+import { buildBreadcrumbList } from "@/lib/structured-data";
+import { getBaseUrl } from "@/lib/site-url";
 
 export async function generateMetadata({
   params,
@@ -14,12 +17,19 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  let post: { title: string; excerpt: string } | null = null;
+  const baseUrl = getBaseUrl();
+  let post: {
+    title: string;
+    excerpt: string;
+    publishedAt?: string | Date | null;
+    updatedAt?: string | Date | null;
+    category?: string | null;
+  } | null = null;
   if (process.env.DATABASE_URL) {
     try {
       post = await prisma.post.findUnique({
         where: { slug },
-        select: { title: true, excerpt: true },
+        select: { title: true, excerpt: true, publishedAt: true, updatedAt: true, category: true },
       });
     } catch {
       post = null;
@@ -32,13 +42,53 @@ export async function generateMetadata({
       ? {
           title: fallback.title,
           excerpt: fallback.excerpt,
+          publishedAt: fallback.publishedAt ?? null,
+          updatedAt: fallback.publishedAt ?? null,
+          category: fallback.category,
         }
       : null;
   }
 
+  if (!post) {
+    return buildNoIndexMetadata({
+      title: "Post Not Found | Chanuka Jeewantha Blog",
+      description: "This blog post is not available.",
+      path: `/blog/${slug}`,
+    });
+  }
+
+  const base = buildPageMetadata({
+    title: `${post.title} | Chanuka Jeewantha Blog`,
+    description: post.excerpt,
+    path: `/blog/${slug}`,
+    type: "article",
+  });
+
+  const ogImagePath = `/blog/${slug}/opengraph-image`;
+
   return {
-    title: post ? `${post.title} | Chanuka Jeewantha Blog` : "Post Not Found | Chanuka Jeewantha Blog",
-    description: post?.excerpt ?? "Read Chanuka Jeewantha's latest career insights.",
+    ...base,
+    openGraph: {
+      ...(base.openGraph ?? {}),
+      type: "article",
+      publishedTime: post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined,
+      modifiedTime: post.updatedAt ? new Date(post.updatedAt).toISOString() : undefined,
+      authors: [`${baseUrl}/about`],
+      section: typeof post.category === "string" ? post.category : undefined,
+      tags: typeof post.category === "string" ? [post.category] : undefined,
+      images: [
+        {
+          url: ogImagePath,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      ...(base.twitter ?? {}),
+      images: [ogImagePath],
+    },
   };
 }
 
@@ -57,6 +107,7 @@ export default async function BlogPostPage({
         content: string;
         category: string;
         publishedAt: Date | null;
+        updatedAt: Date | null;
       }
     | null = null;
 
@@ -72,6 +123,7 @@ export default async function BlogPostPage({
           content: true,
           category: true,
           publishedAt: true,
+          updatedAt: true,
         },
       });
     } catch {
@@ -90,6 +142,7 @@ export default async function BlogPostPage({
         content: fallback.content,
         category: fallback.category,
         publishedAt: fallback.publishedAt ? new Date(fallback.publishedAt) : null,
+        updatedAt: fallback.publishedAt ? new Date(fallback.publishedAt) : null,
       };
     }
   }
@@ -112,24 +165,60 @@ export default async function BlogPostPage({
   const title = post.title;
   const isAboutChanukaArticle = post.slug === "about-chanuka-jeewantha";
   const recentPosts = blogPosts.filter((item) => item.slug !== post.slug).slice(0, 3);
+  const baseUrl = getBaseUrl();
+  const articleUrl = `${baseUrl}/blog/${post.slug}`;
+  const articleImageUrl = `${baseUrl}/blog/${post.slug}/opengraph-image`;
+  const publishedIso = post.publishedAt ? post.publishedAt.toISOString() : new Date().toISOString();
+  const modifiedIso = post.updatedAt ? post.updatedAt.toISOString() : publishedIso;
+  const wordCount = post.content.split(/\s+/).filter(Boolean).length;
 
   const blogLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "@id": `${articleUrl}#article`,
     headline: title,
-    datePublished: post.publishedAt ? post.publishedAt.toISOString().slice(0, 10) : "2025-10-24",
+    datePublished: publishedIso,
+    dateModified: modifiedIso,
+    url: articleUrl,
+    mainEntityOfPage: articleUrl,
+    image: [articleImageUrl],
+    inLanguage: "en-LK",
+    articleSection: post.category,
+    wordCount,
+    keywords: [post.category, "career development", "ATS CV", "LinkedIn optimization"],
     author: {
       "@type": "Person",
       name: "Chanuka Jeewantha",
+      url: `${baseUrl}/about`,
     },
+    publisher: {
+      "@type": "Organization",
+      "@id": `${baseUrl}#organization`,
+      name: "Chanuka Jeewantha",
+      logo: {
+        "@type": "ImageObject",
+        url: `${baseUrl}/images/hero-chanuka.jpg`,
+      },
+    },
+    isAccessibleForFree: true,
     description: post.excerpt,
   };
+
+  const breadcrumbLd = buildBreadcrumbList([
+    { name: "Home", path: "/" },
+    { name: "Blog", path: "/blog" },
+    { name: title, path: `/blog/${post.slug}` },
+  ]);
 
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
 
       {/* 1. Hero Section */}

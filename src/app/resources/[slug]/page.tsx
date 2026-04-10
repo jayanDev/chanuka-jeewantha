@@ -5,6 +5,9 @@ import { notFound } from "next/navigation";
 import ServiceSidebarAds from "@/components/ServiceSidebarAds";
 import { getResourceBySlug, digitalResources } from "@/lib/resources";
 import { formatLkr } from "@/lib/packages-catalog";
+import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
+import { buildBreadcrumbList } from "@/lib/structured-data";
+import { getBaseUrl } from "@/lib/site-url";
 
 type ResourcePageProps = {
   params: Promise<{ slug: string }>;
@@ -30,11 +33,40 @@ export async function generateMetadata({ params }: ResourcePageProps): Promise<M
   const { slug } = await params;
   const resource = getResourceBySlug(slug);
 
-  if (!resource) return { title: "Resource Not Found" };
+  if (!resource) {
+    return buildNoIndexMetadata({
+      title: "Resource Not Found",
+      description: "The requested resource is unavailable.",
+      path: `/resources/${slug}`,
+    });
+  }
 
-  return {
+  const base = buildPageMetadata({
     title: `${resource.title} | Chanuka Resources`,
     description: resource.description,
+    path: `/resources/${slug}`,
+    keywords: [resource.title, "career resources", "digital products", "job search toolkit"],
+  });
+
+  const ogImagePath = `/resources/${slug}/opengraph-image`;
+
+  return {
+    ...base,
+    openGraph: {
+      ...(base.openGraph ?? {}),
+      images: [
+        {
+          url: ogImagePath,
+          width: 1200,
+          height: 630,
+          alt: resource.title,
+        },
+      ],
+    },
+    twitter: {
+      ...(base.twitter ?? {}),
+      images: [ogImagePath],
+    },
   };
 }
 
@@ -46,8 +78,55 @@ export default async function ResourceSinglePage({ params }: ResourcePageProps) 
     notFound();
   }
 
+  const baseUrl = getBaseUrl();
+  const resourceUrl = `${baseUrl}/resources/${resource.slug}`;
+  const imageUrl = `${baseUrl}${resource.coverImage}`;
+
+  const breadcrumbLd = buildBreadcrumbList([
+    { name: "Home", path: "/" },
+    { name: "Resources", path: "/resources" },
+    { name: resource.title, path: `/resources/${resource.slug}` },
+  ]);
+
+  const productLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": `${resourceUrl}#product`,
+    name: resource.title,
+    description: resource.description,
+    image: [imageUrl],
+    sku: resource.slug,
+    category: "Digital Career Resource",
+    brand: {
+      "@type": "Brand",
+      name: "Chanuka Jeewantha",
+    },
+    offers: {
+      "@type": "Offer",
+      url: resourceUrl,
+      priceCurrency: "LKR",
+      price: resource.priceLkr,
+      availability: "https://schema.org/InStock",
+      itemCondition: "https://schema.org/NewCondition",
+      seller: {
+        "@type": "Organization",
+        "@id": `${baseUrl}#organization`,
+        name: "Chanuka Jeewantha",
+      },
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productLd) }}
+      />
+
       <section className="w-full bg-foreground text-white pt-[120px] md:pt-[180px] pb-[72px] md:pb-[90px]">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-2 text-white/85 font-medium mb-8">

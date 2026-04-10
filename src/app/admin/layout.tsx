@@ -1,5 +1,13 @@
+import type { Metadata } from "next";
+import { buildNoIndexMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { requireAdminPage } from "@/lib/admin-server";
+
+export const metadata: Metadata = buildNoIndexMetadata({
+  title: "Admin Dashboard",
+  description: "Internal admin area for order and content management.",
+  path: "/admin",
+});
 
 const adminLinks = [
   { href: "/admin/stats", label: "Stats" },

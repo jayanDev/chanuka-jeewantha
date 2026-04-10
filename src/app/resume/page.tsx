@@ -1,4 +1,14 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Resume Profile | Chanuka Jeewantha",
+  description:
+    "View Chanuka Jeewantha's professional profile and career development background.",
+  path: "/resume",
+  keywords: ["Chanuka resume", "career development specialist profile"],
+});
 
 export default function ResumePage() {
   return (

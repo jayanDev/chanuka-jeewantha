@@ -13,6 +13,7 @@ type NavUser = {
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [user, setUser] = useState<NavUser | null>(null);
+  const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
   const firstMobileLinkRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
@@ -28,6 +29,39 @@ export default function Header() {
 
     void loadUser();
   }, []);
+
+  useEffect(() => {
+    if (!user) {
+      setUnreadNotificationCount(0);
+      return;
+    }
+
+    let isActive = true;
+    const loadNotifications = async () => {
+      try {
+        const response = await fetch("/api/notifications", { cache: "no-store" });
+        if (!response.ok) return;
+        const payload = (await response.json()) as { unreadCount?: unknown };
+        if (isActive && typeof payload.unreadCount === "number") {
+          setUnreadNotificationCount(Math.max(0, payload.unreadCount));
+        }
+      } catch {
+        // Ignore notification polling errors in header.
+      }
+    };
+
+    void loadNotifications();
+
+    const onFocus = () => {
+      void loadNotifications();
+    };
+
+    window.addEventListener("focus", onFocus);
+    return () => {
+      isActive = false;
+      window.removeEventListener("focus", onFocus);
+    };
+  }, [user]);
 
   useEffect(() => {
     if (!isMobileMenuOpen) {
@@ -101,6 +135,16 @@ export default function Header() {
             {user && (
               <Link href="/orders" className={desktopNavLinkClass}>
                 My Orders
+              </Link>
+            )}
+            {user && (
+              <Link href="/notifications" className={`${desktopNavLinkClass} relative inline-flex items-center`}>
+                Notifications
+                {unreadNotificationCount > 0 && (
+                  <span className="ml-2 inline-flex min-w-[1.5rem] items-center justify-center rounded-full bg-brand-main px-1.5 py-0.5 text-[11px] font-semibold text-white">
+                    {unreadNotificationCount > 99 ? "99+" : unreadNotificationCount}
+                  </span>
+                )}
               </Link>
             )}
             {user?.role === "admin" && (
@@ -217,6 +261,16 @@ export default function Header() {
           {user && (
             <Link href="/orders" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>
               My Orders
+            </Link>
+          )}
+          {user && (
+            <Link href="/notifications" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>
+              Notifications
+              {unreadNotificationCount > 0 && (
+                <span className="ml-2 inline-flex min-w-[1.5rem] items-center justify-center rounded-full bg-brand-main px-1.5 py-0.5 text-[11px] font-semibold text-white align-middle">
+                  {unreadNotificationCount > 99 ? "99+" : unreadNotificationCount}
+                </span>
+              )}
             </Link>
           )}
           {user?.role === "admin" && (

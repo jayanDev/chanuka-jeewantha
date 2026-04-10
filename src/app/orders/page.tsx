@@ -14,8 +14,20 @@ type HandoverDocument = {
   id: string;
   fileName: string;
   url: string;
+  downloadUrl?: string;
   uploadedAtMs: number;
   uploadedBy: string;
+};
+
+type OrderRevision = {
+  id: string;
+  message: string;
+  status: "open" | "in_review" | "resolved";
+  requestedAtMs: number;
+  requestedByUserId: string;
+  resolvedAtMs: number | null;
+  resolvedBy: string | null;
+  adminResponse: string | null;
 };
 
 type OrderUpdate = {
@@ -48,6 +60,7 @@ type Order = {
   createdAt: string;
   items: OrderItem[];
   handoverDocuments: HandoverDocument[];
+  revisions: OrderRevision[];
   updates: OrderUpdate[];
 };
 
@@ -71,6 +84,15 @@ function getProgressPercent(status: Order["status"]): number {
   return Math.round(((index + 1) / statusOrder.length) * 100);
 }
 
+function getProgressWidthClass(status: Order["status"]): string {
+  if (status === "cancelled") return "w-0";
+  if (status === "pending_payment") return "w-[10%]";
+  if (status === "payment_submitted") return "w-[25%]";
+  if (status === "confirmed") return "w-[50%]";
+  if (status === "in_progress") return "w-[75%]";
+  return "w-full";
+}
+
 async function readJsonSafely(response: Response): Promise<Record<string, unknown>> {
   const raw = await response.text();
   if (!raw) return {};
@@ -86,34 +108,69 @@ export default function OrdersPage() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [revisionDrafts, setRevisionDrafts] = useState<Record<string, string>>({});
+  const [revisionLoadingOrderId, setRevisionLoadingOrderId] = useState("");
+
+  const loadOrders = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch("/api/orders", { cache: "no-store" });
+      const payload = await readJsonSafely(response);
+
+      if (response.status === 401) {
+        window.location.assign(`/auth/signin?returnTo=${encodeURIComponent("/orders")}`);
+        return;
+      }
+
+      if (!response.ok) {
+        const message = typeof payload.error === "string" ? payload.error : "Failed to load orders";
+        throw new Error(message);
+      }
+
+      setOrders(Array.isArray(payload.orders) ? (payload.orders as Order[]) : []);
+      setError("");
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Failed to load orders");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const load = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch("/api/orders", { cache: "no-store" });
-        const payload = await readJsonSafely(response);
-
-        if (response.status === 401) {
-          window.location.assign(`/auth/signin?returnTo=${encodeURIComponent("/orders")}`);
-          return;
-        }
-
-        if (!response.ok) {
-          const message = typeof payload.error === "string" ? payload.error : "Failed to load orders";
-          throw new Error(message);
-        }
-
-        setOrders(Array.isArray(payload.orders) ? (payload.orders as Order[]) : []);
-      } catch (err: unknown) {
-        setError(err instanceof Error ? err.message : "Failed to load orders");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    void load();
+    void loadOrders();
   }, []);
+
+  const submitRevision = async (orderId: string) => {
+    const message = (revisionDrafts[orderId] ?? "").trim();
+    if (message.length < 10) {
+      setError("Please include at least 10 characters when requesting a revision.");
+      return;
+    }
+
+    setRevisionLoadingOrderId(orderId);
+    setError("");
+
+    try {
+      const response = await fetch("/api/orders/revisions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderId, message }),
+      });
+      const payload = await readJsonSafely(response);
+
+      if (!response.ok) {
+        setError(typeof payload.error === "string" ? payload.error : "Failed to submit revision request");
+        return;
+      }
+
+      setRevisionDrafts((previous) => ({ ...previous, [orderId]: "" }));
+      await loadOrders();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to submit revision request");
+    } finally {
+      setRevisionLoadingOrderId("");
+    }
+  };
 
   const totalValue = useMemo(() => orders.reduce((sum, order) => sum + order.totalLkr, 0), [orders]);
 
@@ -189,8 +246,7 @@ export default function OrdersPage() {
                   </div>
                   <div className="h-2 rounded-full bg-zinc-200 overflow-hidden">
                     <div
-                      className={`h-full ${order.status === "cancelled" ? "bg-red-500" : "bg-brand-main"}`}
-                      style={{ width: `${getProgressPercent(order.status)}%` }}
+                      className={`h-full ${order.status === "cancelled" ? "bg-red-500" : "bg-brand-main"} ${getProgressWidthClass(order.status)}`}
                     />
                   </div>
                 </div>
@@ -216,7 +272,12 @@ export default function OrdersPage() {
                     <ul className="space-y-2 text-sm">
                       {order.handoverDocuments.map((doc) => (
                         <li key={doc.id}>
-                          <a href={doc.url} target="_blank" rel="noreferrer" className="text-brand-main hover:underline">
+                          <a
+                            href={doc.downloadUrl ?? doc.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-brand-main hover:underline"
+                          >
                             {doc.fileName}
                           </a>
                           <span className="text-zinc-500"> - {new Date(doc.uploadedAtMs).toLocaleString("en-LK")}</span>
@@ -224,6 +285,48 @@ export default function OrdersPage() {
                       ))}
                     </ul>
                   )}
+                </div>
+
+                <div className="rounded border border-zinc-200 p-4 space-y-3">
+                  <h3 className="font-semibold text-foreground">Revision Requests</h3>
+                  {order.revisions.length === 0 ? (
+                    <p className="text-sm text-zinc-500">No revision requests submitted yet.</p>
+                  ) : (
+                    <ul className="space-y-2 text-sm text-zinc-700">
+                      {order.revisions.map((revision) => (
+                        <li key={revision.id} className="rounded bg-zinc-50 px-3 py-2">
+                          <p className="text-xs uppercase tracking-wide text-zinc-500">Status: {revision.status}</p>
+                          <p className="mt-1">{revision.message}</p>
+                          <p className="text-xs text-zinc-500 mt-1">
+                            Requested: {new Date(revision.requestedAtMs).toLocaleString("en-LK")}
+                          </p>
+                          {revision.adminResponse && <p className="mt-1 text-zinc-600">Admin note: {revision.adminResponse}</p>}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  <textarea
+                    value={revisionDrafts[order.id] ?? ""}
+                    onChange={(event) =>
+                      setRevisionDrafts((previous) => ({
+                        ...previous,
+                        [order.id]: event.target.value,
+                      }))
+                    }
+                    rows={3}
+                    placeholder="Need changes to final deliverables? Describe exactly what should be revised."
+                    className="w-full rounded border border-zinc-300 px-3 py-2 text-sm"
+                  />
+
+                  <button
+                    type="button"
+                    onClick={() => void submitRevision(order.id)}
+                    disabled={revisionLoadingOrderId === order.id || order.status === "cancelled"}
+                    className="rounded bg-foreground px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-60"
+                  >
+                    {revisionLoadingOrderId === order.id ? "Submitting..." : "Request Revision"}
+                  </button>
                 </div>
 
                 <div className="rounded border border-zinc-200 p-4">

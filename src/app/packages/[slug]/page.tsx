@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { packageProducts, formatLkr } from "@/lib/packages-catalog";
+import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 
 type PackagePageProps = {
   params: Promise<{ slug: string }>;
@@ -16,13 +17,19 @@ export async function generateMetadata({ params }: PackagePageProps): Promise<Me
   const pkg = packageProducts.find((item) => item.slug === slug);
 
   if (!pkg) {
-    return { title: "Package Not Found" };
+    return buildNoIndexMetadata({
+      title: "Package Not Found",
+      description: "The requested package is unavailable.",
+      path: `/packages/${slug}`,
+    });
   }
 
-  return {
+  return buildPageMetadata({
     title: `${pkg.name} | Chanuka Packages`,
     description: `${pkg.name} - ${pkg.audience}. Delivery: ${pkg.delivery}. Price: ${formatLkr(pkg.priceLkr)}.`,
-  };
+    path: `/packages/${slug}`,
+    keywords: [pkg.name, pkg.category, "career services", "ATS CV writing"],
+  });
 }
 
 export default async function PackageSinglePage({ params }: PackagePageProps) {

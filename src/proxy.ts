@@ -8,12 +8,13 @@ function isProtectedPath(pathname: string): boolean {
     pathname.startsWith("/cart") ||
     pathname.startsWith("/checkout") ||
     pathname.startsWith("/orders") ||
+    pathname.startsWith("/notifications") ||
     pathname.startsWith("/admin") ||
     pathname.startsWith("/reviews-admin")
   );
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
   const sessionToken = request.cookies.get(SESSION_COOKIE)?.value;
 
@@ -31,5 +32,14 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/cart/:path*", "/checkout/:path*", "/orders/:path*", "/admin/:path*", "/reviews-admin/:path*", "/auth/signin", "/auth/signup"],
+  matcher: [
+    "/cart/:path*",
+    "/checkout/:path*",
+    "/orders/:path*",
+    "/notifications/:path*",
+    "/admin/:path*",
+    "/reviews-admin/:path*",
+    "/auth/signin",
+    "/auth/signup",
+  ],
 };

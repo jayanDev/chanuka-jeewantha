@@ -5,6 +5,7 @@ import { isTrustedOrigin } from "@/lib/security";
 import { orderStatusUpdateSchema } from "@/lib/validation";
 import { notifyOrderStatusChanged } from "@/lib/notifications";
 import { getFirebaseDb } from "@/lib/firebase-admin";
+import { createUserNotification } from "@/lib/user-notifications";
 
 const ORDERS_COLLECTION = "orders";
 
@@ -32,6 +33,17 @@ type OrderUpdate = {
   details: string | null;
   actorRole: "system" | "admin" | "customer";
   status: OrderProgressStatus;
+};
+
+type OrderRevision = {
+  id: string;
+  message: string;
+  status: "open" | "in_review" | "resolved";
+  requestedAtMs: number;
+  requestedByUserId: string;
+  resolvedAtMs: number | null;
+  resolvedBy: string | null;
+  adminResponse: string | null;
 };
 
 async function requireAdmin(request: Request) {
@@ -134,6 +146,50 @@ function parseOrderUpdates(value: unknown): OrderUpdate[] {
     .sort((a, b) => a.atMs - b.atMs);
 }
 
+function parseOrderRevisions(value: unknown): OrderRevision[] {
+  if (!Array.isArray(value)) return [];
+
+  return value
+    .map((entry) => {
+      if (!entry || typeof entry !== "object") return null;
+      const row = entry as {
+        id?: unknown;
+        message?: unknown;
+        status?: unknown;
+        requestedAtMs?: unknown;
+        requestedByUserId?: unknown;
+        resolvedAtMs?: unknown;
+        resolvedBy?: unknown;
+        adminResponse?: unknown;
+      };
+
+      if (
+        typeof row.id !== "string" ||
+        typeof row.message !== "string" ||
+        typeof row.requestedAtMs !== "number" ||
+        typeof row.requestedByUserId !== "string"
+      ) {
+        return null;
+      }
+
+      const status: OrderRevision["status"] =
+        row.status === "in_review" || row.status === "resolved" ? row.status : "open";
+
+      return {
+        id: row.id,
+        message: row.message,
+        status,
+        requestedAtMs: row.requestedAtMs,
+        requestedByUserId: row.requestedByUserId,
+        resolvedAtMs: typeof row.resolvedAtMs === "number" ? row.resolvedAtMs : null,
+        resolvedBy: typeof row.resolvedBy === "string" ? row.resolvedBy : null,
+        adminResponse: typeof row.adminResponse === "string" ? row.adminResponse : null,
+      };
+    })
+    .filter((item): item is NonNullable<typeof item> => Boolean(item))
+    .sort((a, b) => b.requestedAtMs - a.requestedAtMs);
+}
+
 export async function GET(request: Request) {
   const admin = await requireAdmin(request);
   if (!admin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -165,6 +221,7 @@ export async function GET(request: Request) {
         userEmail?: unknown;
         createdAtMs?: unknown;
         handoverDocuments?: unknown;
+        revisions?: unknown;
         updates?: unknown;
         items?: unknown;
       };
@@ -231,6 +288,7 @@ export async function GET(request: Request) {
           email: typeof data.userEmail === "string" ? data.userEmail : "unknown@example.com",
         },
         handoverDocuments: parseHandoverDocuments(data.handoverDocuments),
+        revisions: parseOrderRevisions(data.revisions),
         updates: parseOrderUpdates(data.updates),
         items,
       };
@@ -277,10 +335,12 @@ export async function PATCH(request: Request) {
     userEmail?: unknown;
     items?: unknown;
     updates?: unknown;
+    userId?: unknown;
   };
 
   const existingOrder = {
     id: existingOrderSnap.id,
+    userId: typeof existingData.userId === "string" ? existingData.userId : "",
     totalLkr: typeof existingData.totalLkr === "number" ? existingData.totalLkr : 0,
     paymentRef: typeof existingData.paymentRef === "string" ? existingData.paymentRef : "",
     status: typeof existingData.status === "string" ? existingData.status : "payment_submitted",
@@ -334,19 +394,37 @@ export async function PATCH(request: Request) {
   };
 
   if (existingOrder.status !== parsed.data.status) {
-    await notifyOrderStatusChanged({
-      orderId: existingOrder.id,
-      customerName: existingOrder.user.name,
-      customerEmail: existingOrder.user.email,
-      paymentRef: existingOrder.paymentRef,
-      totalLkr: existingOrder.totalLkr,
-      status: parsed.data.status,
-      items: existingOrder.items.map((item) => ({
-        productName: item.productName,
-        quantity: item.quantity,
-        priceLkr: item.priceLkr,
-      })),
-    });
+    try {
+      await notifyOrderStatusChanged({
+        orderId: existingOrder.id,
+        customerName: existingOrder.user.name,
+        customerEmail: existingOrder.user.email,
+        paymentRef: existingOrder.paymentRef,
+        totalLkr: existingOrder.totalLkr,
+        status: parsed.data.status,
+        items: existingOrder.items.map((item) => ({
+          productName: item.productName,
+          quantity: item.quantity,
+          priceLkr: item.priceLkr,
+        })),
+      });
+    } catch (error) {
+      console.error("Order status notify failed:", error);
+    }
+
+    if (existingOrder.userId) {
+      try {
+        await createUserNotification({
+          userId: existingOrder.userId,
+          orderId: existingOrder.id,
+          type: "order_status",
+          title: "Order status updated",
+          message: `Your order ${existingOrder.id.slice(0, 8)} is now ${parsed.data.status.replaceAll("_", " ")}.`,
+        });
+      } catch (error) {
+        console.error("In-app status notification failed:", error);
+      }
+    }
   }
 
   return NextResponse.json({ ok: true, order });

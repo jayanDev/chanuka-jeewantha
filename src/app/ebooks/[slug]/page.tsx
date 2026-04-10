@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ebooks, getEbookBySlug } from "@/lib/ebooks";
 import { formatLkr } from "@/lib/packages-catalog";
+import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
+import { getBaseUrl } from "@/lib/site-url";
 
 type EbookPageProps = {
   params: Promise<{ slug: string }>;
@@ -30,13 +32,19 @@ export async function generateMetadata({ params }: EbookPageProps): Promise<Meta
   const ebook = getEbookBySlug(slug);
 
   if (!ebook) {
-    return { title: "Ebook Not Found" };
+    return buildNoIndexMetadata({
+      title: "Ebook Not Found",
+      description: "The requested ebook is unavailable.",
+      path: `/ebooks/${slug}`,
+    });
   }
 
-  return {
+  return buildPageMetadata({
     title: `${ebook.title} | Chanuka Ebooks`,
     description: ebook.description,
-  };
+    path: `/ebooks/${slug}`,
+    keywords: [ebook.title, "career ebooks", "job seeker guide", ebook.category === "paid" ? "paid ebook" : "free ebook"],
+  });
 }
 
 export default async function EbookSinglePage({ params }: EbookPageProps) {
@@ -47,8 +55,49 @@ export default async function EbookSinglePage({ params }: EbookPageProps) {
     notFound();
   }
 
+  const baseUrl = getBaseUrl();
+  const ebookUrl = `${baseUrl}/ebooks/${ebook.slug}`;
+  const imageUrl = `${baseUrl}${ebook.coverImage}`;
+  const paidProductLd =
+    ebook.category === "paid" && typeof ebook.priceLkr === "number"
+      ? {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "@id": `${ebookUrl}#product`,
+          name: ebook.title,
+          description: ebook.description,
+          image: [imageUrl],
+          sku: ebook.slug,
+          category: "Digital Career Ebook",
+          brand: {
+            "@type": "Brand",
+            name: "Chanuka Jeewantha",
+          },
+          offers: {
+            "@type": "Offer",
+            url: ebookUrl,
+            priceCurrency: "LKR",
+            price: ebook.priceLkr,
+            availability: "https://schema.org/InStock",
+            itemCondition: "https://schema.org/NewCondition",
+            seller: {
+              "@type": "Organization",
+              "@id": `${baseUrl}#organization`,
+              name: "Chanuka Jeewantha",
+            },
+          },
+        }
+      : null;
+
   return (
     <>
+      {paidProductLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(paidProductLd) }}
+        />
+      )}
+
       <section className="w-full bg-foreground text-white pt-[116px] md:pt-[170px] pb-[72px] md:pb-[90px]">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-2 text-text-light font-medium mb-8">

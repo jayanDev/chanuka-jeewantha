@@ -1,7 +1,23 @@
 import React from "react";
 import Link from "next/link";
+import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo";
+import { buildBreadcrumbList } from "@/lib/structured-data";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Case Studies | Career Profile Transformations",
+  description:
+    "Review practical case studies showing CV, LinkedIn, and coaching outcomes from Chanuka Jeewantha's career services.",
+  path: "/case-studies",
+  keywords: ["career case studies", "CV transformation", "LinkedIn case study"],
+});
 
 export default function CaseStudiesPage() {
+  const breadcrumbLd = buildBreadcrumbList([
+    { name: "Home", path: "/" },
+    { name: "Case Studies", path: "/case-studies" },
+  ]);
+
   const caseStudies = [
     {
       id: 1,
@@ -28,6 +44,11 @@ export default function CaseStudiesPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+
       <section className="w-full bg-foreground text-white pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
@@ -86,6 +107,24 @@ export default function CaseStudiesPage() {
               </div>
             ))}
           </div>
+
+          <aside className="mt-10 rounded-[16px] border border-zinc-200 bg-white p-6">
+            <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Keep Exploring Results</h2>
+            <p className="text-text-body mb-5">
+              Compare service scope, portfolio samples, and implementation packages.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/portfolio" className="rounded-[10px] border border-zinc-300 bg-zinc-50 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                View Portfolio
+              </Link>
+              <Link href="/services" className="rounded-[10px] border border-zinc-300 bg-zinc-50 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                Explore Services
+              </Link>
+              <Link href="/pricing" className="rounded-[10px] border border-zinc-300 bg-zinc-50 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                Compare Pricing
+              </Link>
+            </div>
+          </aside>
         </div>
       </section>
     </>

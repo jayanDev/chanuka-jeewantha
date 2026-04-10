@@ -8,6 +8,8 @@ import { packageProducts } from "@/lib/packages-catalog";
 import { applyOfferToPrice, getEffectiveSeasonalOffer, incrementOfferAnalytics } from "@/lib/seasonal-offers";
 import { markCouponUsed, validateCouponForItems } from "@/lib/coupons";
 import { isAllowedFileType, saveUploadedFile } from "@/lib/upload-storage";
+import { createHandoverDownloadToken } from "@/lib/order-download-token";
+import { createUserNotification } from "@/lib/user-notifications";
 
 const ORDERS_COLLECTION = "orders";
 const CART_COLLECTION = "cart_items";
@@ -46,6 +48,18 @@ type HandoverDocument = {
   url: string;
   uploadedAtMs: number;
   uploadedBy: string;
+  downloadUrl?: string;
+};
+
+type OrderRevision = {
+  id: string;
+  message: string;
+  status: "open" | "in_review" | "resolved";
+  requestedAtMs: number;
+  requestedByUserId: string;
+  resolvedAtMs: number | null;
+  resolvedBy: string | null;
+  adminResponse: string | null;
 };
 
 function getProductMap() {
@@ -57,6 +71,21 @@ function toInt(value: FormDataEntryValue | null, fallback = 1): number {
   const parsed = Number(value);
   if (!Number.isFinite(parsed)) return fallback;
   return Math.max(1, Math.floor(parsed));
+}
+
+function parseOrderStatus(value: unknown, fallback: OrderProgressStatus = "payment_submitted"): OrderProgressStatus {
+  if (
+    value === "pending_payment" ||
+    value === "payment_submitted" ||
+    value === "confirmed" ||
+    value === "in_progress" ||
+    value === "completed" ||
+    value === "cancelled"
+  ) {
+    return value;
+  }
+
+  return fallback;
 }
 
 function parseHandoverDocuments(value: unknown): HandoverDocument[] {
@@ -129,16 +158,6 @@ function parseOrderUpdates(value: unknown): OrderUpdate[] {
       const actorRole: OrderUpdate["actorRole"] =
         row.actorRole === "admin" ? "admin" : row.actorRole === "customer" ? "customer" : "system";
 
-      const status: OrderProgressStatus =
-        row.status === "pending_payment" ||
-        row.status === "payment_submitted" ||
-        row.status === "confirmed" ||
-        row.status === "in_progress" ||
-        row.status === "completed" ||
-        row.status === "cancelled"
-          ? row.status
-          : "payment_submitted";
-
       return {
         id: row.id,
         atMs: row.atMs,
@@ -146,11 +165,55 @@ function parseOrderUpdates(value: unknown): OrderUpdate[] {
         title: row.title,
         details: typeof row.details === "string" ? row.details : null,
         actorRole,
-        status,
+        status: parseOrderStatus(row.status),
       };
     })
     .filter((item): item is NonNullable<typeof item> => Boolean(item))
     .sort((a, b) => a.atMs - b.atMs);
+}
+
+function parseOrderRevisions(value: unknown): OrderRevision[] {
+  if (!Array.isArray(value)) return [];
+
+  return value
+    .map((entry) => {
+      if (!entry || typeof entry !== "object") return null;
+      const row = entry as {
+        id?: unknown;
+        message?: unknown;
+        status?: unknown;
+        requestedAtMs?: unknown;
+        requestedByUserId?: unknown;
+        resolvedAtMs?: unknown;
+        resolvedBy?: unknown;
+        adminResponse?: unknown;
+      };
+
+      if (
+        typeof row.id !== "string" ||
+        typeof row.message !== "string" ||
+        typeof row.requestedAtMs !== "number" ||
+        typeof row.requestedByUserId !== "string"
+      ) {
+        return null;
+      }
+
+      const status: OrderRevision["status"] =
+        row.status === "in_review" || row.status === "resolved" ? row.status : "open";
+
+      return {
+        id: row.id,
+        message: row.message,
+        status,
+        requestedAtMs: row.requestedAtMs,
+        requestedByUserId: row.requestedByUserId,
+        resolvedAtMs: typeof row.resolvedAtMs === "number" ? row.resolvedAtMs : null,
+        resolvedBy: typeof row.resolvedBy === "string" ? row.resolvedBy : null,
+        adminResponse: typeof row.adminResponse === "string" ? row.adminResponse : null,
+      };
+    })
+    .filter((item): item is NonNullable<typeof item> => Boolean(item))
+    .sort((a, b) => b.requestedAtMs - a.requestedAtMs);
 }
 
 function normalizeLinkedinUrl(raw: string): string | null {
@@ -253,6 +316,7 @@ export async function GET(request: Request) {
           note?: unknown;
           createdAtMs?: unknown;
           handoverDocuments?: unknown;
+          revisions?: unknown;
           updates?: unknown;
           items?: unknown;
         };
@@ -287,9 +351,28 @@ export async function GET(request: Request) {
           })
           .filter((item): item is NonNullable<typeof item> => Boolean(item));
 
+        const handoverDocuments = parseHandoverDocuments(data.handoverDocuments).map((handoverDocument) => {
+          const token = createHandoverDownloadToken({
+            userId: user.id,
+            orderId: doc.id,
+            documentId: handoverDocument.id,
+          });
+          const query = new URLSearchParams({
+            orderId: doc.id,
+            documentId: handoverDocument.id,
+            exp: String(token.expiresAtMs),
+            sig: token.signature,
+          });
+
+          return {
+            ...handoverDocument,
+            downloadUrl: `/api/orders/handover/download?${query.toString()}`,
+          };
+        });
+
         return {
           id: doc.id,
-          status: typeof data.status === "string" ? data.status : "payment_submitted",
+          status: parseOrderStatus(data.status),
           totalLkr: typeof data.totalLkr === "number" ? data.totalLkr : 0,
           subtotalLkr: typeof data.subtotalLkr === "number" ? data.subtotalLkr : 0,
           couponDiscountLkr: typeof data.couponDiscountLkr === "number" ? data.couponDiscountLkr : 0,
@@ -309,7 +392,8 @@ export async function GET(request: Request) {
               : typeof data.note === "string"
                 ? data.note
                 : null,
-          handoverDocuments: parseHandoverDocuments(data.handoverDocuments),
+          handoverDocuments,
+          revisions: parseOrderRevisions(data.revisions),
           updates: parseOrderUpdates(data.updates),
           createdAt: new Date(createdAtMs).toISOString(),
           createdAtMs,
@@ -564,6 +648,7 @@ export async function POST(request: Request) {
       paymentPersonName,
       paymentWhatsApp: normalizedWhatsApp,
       handoverDocuments: [] as HandoverDocument[],
+      revisions: [] as OrderRevision[],
       updates,
     };
 
@@ -596,6 +681,18 @@ export async function POST(request: Request) {
       });
     } catch (error) {
       console.error("Order notification failed:", error);
+    }
+
+    try {
+      await createUserNotification({
+        userId: user.id,
+        orderId,
+        type: "order_created",
+        title: "Order received",
+        message: `We received your order ${orderId.slice(0, 8)} and payment details. Our team will review it shortly.`,
+      });
+    } catch (error) {
+      console.error("In-app notification create failed:", error);
     }
 
     return NextResponse.json({

@@ -1,5 +1,16 @@
 import Link from "next/link";
 import React from "react";
+import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo";
+import { buildBreadcrumbList, buildFaqPageSchema } from "@/lib/structured-data";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "FAQ | Career Services Questions",
+  description:
+    "Find answers about ATS CV writing, LinkedIn optimization, coaching sessions, delivery timelines, and career support services.",
+  path: "/faq",
+  keywords: ["career service FAQ", "CV writing questions", "LinkedIn optimization FAQ"],
+});
 
 export default function FAQPage() {
   const faqs = [
@@ -25,8 +36,29 @@ export default function FAQPage() {
     }
   ];
 
+  const faqLd = buildFaqPageSchema(
+    faqs.map((item) => ({
+      question: item.q,
+      answer: item.a,
+    }))
+  );
+
+  const breadcrumbLd = buildBreadcrumbList([
+    { name: "Home", path: "/" },
+    { name: "FAQ", path: "/faq" },
+  ]);
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+
       <section className="w-full bg-foreground text-white pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
