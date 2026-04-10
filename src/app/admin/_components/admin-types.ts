@@ -11,12 +11,41 @@ export type AdminOrder = {
   id: string;
   status: "pending_payment" | "payment_submitted" | "confirmed" | "in_progress" | "completed" | "cancelled";
   totalLkr: number;
+  subtotalLkr: number;
+  couponDiscountLkr: number;
+  couponCode: string | null;
   paymentRef: string;
   paymentSlipUrl: string;
+  paymentSlipUploadFailed: boolean;
+  paymentPersonName: string;
+  paymentWhatsApp: string;
+  currentCvUrl: string | null;
+  currentCvFileName: string | null;
+  currentCvUploadFailed: boolean;
+  linkedinUrl: string | null;
+  extraDetails: string | null;
+  createdAt: string | null;
   user: {
+    id: string;
     name: string;
     email: string;
   };
+  handoverDocuments: Array<{
+    id: string;
+    fileName: string;
+    url: string;
+    uploadedAtMs: number;
+    uploadedBy: string;
+  }>;
+  updates: Array<{
+    id: string;
+    atMs: number;
+    type: "order_created" | "status_updated" | "handover_uploaded" | "order_warning";
+    title: string;
+    details: string | null;
+    actorRole: "system" | "admin" | "customer";
+    status: "pending_payment" | "payment_submitted" | "confirmed" | "in_progress" | "completed" | "cancelled";
+  }>;
   items: Array<{
     id: string;
     productName: string;

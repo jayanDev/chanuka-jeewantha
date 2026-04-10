@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
 import { getRequestUser } from "@/lib/auth-server";
 import { isTrustedOrigin } from "@/lib/security";
@@ -7,10 +8,130 @@ import { getFirebaseDb } from "@/lib/firebase-admin";
 
 const ORDERS_COLLECTION = "orders";
 
+type OrderProgressStatus =
+  | "pending_payment"
+  | "payment_submitted"
+  | "confirmed"
+  | "in_progress"
+  | "completed"
+  | "cancelled";
+
+type HandoverDocument = {
+  id: string;
+  fileName: string;
+  url: string;
+  uploadedAtMs: number;
+  uploadedBy: string;
+};
+
+type OrderUpdate = {
+  id: string;
+  atMs: number;
+  type: "order_created" | "status_updated" | "handover_uploaded" | "order_warning";
+  title: string;
+  details: string | null;
+  actorRole: "system" | "admin" | "customer";
+  status: OrderProgressStatus;
+};
+
 async function requireAdmin(request: Request) {
   const user = await getRequestUser(request);
   if (!user || user.role !== "admin") return null;
   return user;
+}
+
+function parseHandoverDocuments(value: unknown): HandoverDocument[] {
+  if (!Array.isArray(value)) return [];
+
+  return value
+    .map((entry) => {
+      if (!entry || typeof entry !== "object") return null;
+      const row = entry as {
+        id?: unknown;
+        fileName?: unknown;
+        url?: unknown;
+        uploadedAtMs?: unknown;
+        uploadedBy?: unknown;
+      };
+
+      if (
+        typeof row.id !== "string" ||
+        typeof row.fileName !== "string" ||
+        typeof row.url !== "string" ||
+        typeof row.uploadedAtMs !== "number" ||
+        typeof row.uploadedBy !== "string"
+      ) {
+        return null;
+      }
+
+      return {
+        id: row.id,
+        fileName: row.fileName,
+        url: row.url,
+        uploadedAtMs: row.uploadedAtMs,
+        uploadedBy: row.uploadedBy,
+      };
+    })
+    .filter((item): item is NonNullable<typeof item> => Boolean(item));
+}
+
+function parseOrderUpdates(value: unknown): OrderUpdate[] {
+  if (!Array.isArray(value)) return [];
+
+  return value
+    .map((entry) => {
+      if (!entry || typeof entry !== "object") return null;
+      const row = entry as {
+        id?: unknown;
+        atMs?: unknown;
+        type?: unknown;
+        title?: unknown;
+        details?: unknown;
+        actorRole?: unknown;
+        status?: unknown;
+      };
+
+      if (
+        typeof row.id !== "string" ||
+        typeof row.atMs !== "number" ||
+        typeof row.type !== "string" ||
+        typeof row.title !== "string" ||
+        typeof row.actorRole !== "string" ||
+        typeof row.status !== "string"
+      ) {
+        return null;
+      }
+
+      const type: OrderUpdate["type"] =
+        row.type === "status_updated" || row.type === "handover_uploaded" || row.type === "order_warning"
+          ? row.type
+          : "order_created";
+
+      const actorRole: OrderUpdate["actorRole"] =
+        row.actorRole === "admin" ? "admin" : row.actorRole === "customer" ? "customer" : "system";
+
+      const status: OrderProgressStatus =
+        row.status === "pending_payment" ||
+        row.status === "payment_submitted" ||
+        row.status === "confirmed" ||
+        row.status === "in_progress" ||
+        row.status === "completed" ||
+        row.status === "cancelled"
+          ? row.status
+          : "payment_submitted";
+
+      return {
+        id: row.id,
+        atMs: row.atMs,
+        type,
+        title: row.title,
+        details: typeof row.details === "string" ? row.details : null,
+        actorRole,
+        status,
+      };
+    })
+    .filter((item): item is NonNullable<typeof item> => Boolean(item))
+    .sort((a, b) => a.atMs - b.atMs);
 }
 
 export async function GET(request: Request) {
@@ -25,12 +146,26 @@ export async function GET(request: Request) {
       const data = doc.data() as {
         status?: unknown;
         totalLkr?: unknown;
+        subtotalLkr?: unknown;
+        couponDiscountLkr?: unknown;
+        couponCode?: unknown;
         paymentRef?: unknown;
         paymentSlipUrl?: unknown;
+        paymentSlipUploadFailed?: unknown;
+        paymentPersonName?: unknown;
+        paymentWhatsApp?: unknown;
+        currentCvUrl?: unknown;
+        currentCvFileName?: unknown;
+        currentCvUploadFailed?: unknown;
+        linkedinUrl?: unknown;
+        extraDetails?: unknown;
+        note?: unknown;
         userId?: unknown;
         userName?: unknown;
         userEmail?: unknown;
         createdAtMs?: unknown;
+        handoverDocuments?: unknown;
+        updates?: unknown;
         items?: unknown;
       };
 
@@ -63,19 +198,40 @@ export async function GET(request: Request) {
         })
         .filter((item): item is NonNullable<typeof item> => Boolean(item));
 
+      const createdAtMs = typeof data.createdAtMs === "number" ? data.createdAtMs : 0;
+
       return {
         id: doc.id,
         userId: typeof data.userId === "string" ? data.userId : "",
         status: typeof data.status === "string" ? data.status : "payment_submitted",
         totalLkr: typeof data.totalLkr === "number" ? data.totalLkr : 0,
+        subtotalLkr: typeof data.subtotalLkr === "number" ? data.subtotalLkr : 0,
+        couponDiscountLkr: typeof data.couponDiscountLkr === "number" ? data.couponDiscountLkr : 0,
+        couponCode: typeof data.couponCode === "string" ? data.couponCode : null,
         paymentRef: typeof data.paymentRef === "string" ? data.paymentRef : "",
         paymentSlipUrl: typeof data.paymentSlipUrl === "string" ? data.paymentSlipUrl : "",
-        createdAtMs: typeof data.createdAtMs === "number" ? data.createdAtMs : 0,
+        paymentSlipUploadFailed: data.paymentSlipUploadFailed === true,
+        paymentPersonName: typeof data.paymentPersonName === "string" ? data.paymentPersonName : "",
+        paymentWhatsApp: typeof data.paymentWhatsApp === "string" ? data.paymentWhatsApp : "",
+        currentCvUrl: typeof data.currentCvUrl === "string" ? data.currentCvUrl : null,
+        currentCvFileName: typeof data.currentCvFileName === "string" ? data.currentCvFileName : null,
+        currentCvUploadFailed: data.currentCvUploadFailed === true,
+        linkedinUrl: typeof data.linkedinUrl === "string" ? data.linkedinUrl : null,
+        extraDetails:
+          typeof data.extraDetails === "string"
+            ? data.extraDetails
+            : typeof data.note === "string"
+              ? data.note
+              : null,
+        createdAt: createdAtMs > 0 ? new Date(createdAtMs).toISOString() : null,
+        createdAtMs,
         user: {
           id: typeof data.userId === "string" ? data.userId : "",
           name: typeof data.userName === "string" ? data.userName : "Customer",
           email: typeof data.userEmail === "string" ? data.userEmail : "unknown@example.com",
         },
+        handoverDocuments: parseHandoverDocuments(data.handoverDocuments),
+        updates: parseOrderUpdates(data.updates),
         items,
       };
     })
@@ -120,6 +276,7 @@ export async function PATCH(request: Request) {
     userName?: unknown;
     userEmail?: unknown;
     items?: unknown;
+    updates?: unknown;
   };
 
   const existingOrder = {
@@ -152,8 +309,24 @@ export async function PATCH(request: Request) {
           })
           .filter((item): item is NonNullable<typeof item> => Boolean(item))
       : [],
+    updates: parseOrderUpdates(existingData.updates),
   };
-  await ref.set({ status: parsed.data.status, updatedAtMs: Date.now() }, { merge: true });
+
+  const now = Date.now();
+  const updates = [...existingOrder.updates];
+  if (existingOrder.status !== parsed.data.status) {
+    updates.push({
+      id: randomUUID(),
+      atMs: now,
+      type: "status_updated",
+      title: `Status changed to ${parsed.data.status}`,
+      details: `Updated by admin ${admin.name}`,
+      actorRole: "admin",
+      status: parsed.data.status,
+    });
+  }
+
+  await ref.set({ status: parsed.data.status, updatedAtMs: now, updates }, { merge: true });
 
   const order = {
     id: parsed.data.orderId,

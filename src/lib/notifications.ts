@@ -14,6 +14,17 @@ type OrderNotificationPayload = {
   status?: string;
 };
 
+type OrderHandoverPayload = {
+  orderId: string;
+  customerName: string;
+  customerEmail: string;
+  documents: Array<{
+    fileName: string;
+    url: string;
+  }>;
+  note?: string;
+};
+
 function formatLkr(value: number): string {
   return `LKR ${value.toLocaleString("en-LK")}`;
 }
@@ -44,7 +55,20 @@ function buildOrderStatusMessage(payload: OrderNotificationPayload): string {
   ].join("\n");
 }
 
-async function sendEmail(subject: string, text: string): Promise<void> {
+function buildOrderHandoverMessage(payload: OrderHandoverPayload): string {
+  return [
+    "Your order handover is ready",
+    `Order ID: ${payload.orderId}`,
+    `Customer: ${payload.customerName} (${payload.customerEmail})`,
+    payload.note ? `Admin Note: ${payload.note}` : null,
+    "Documents:",
+    ...payload.documents.map((doc) => `- ${doc.fileName}: ${doc.url}`),
+  ]
+    .filter((line): line is string => Boolean(line))
+    .join("\n");
+}
+
+async function sendAdminEmail(subject: string, text: string): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.NOTIFICATION_EMAIL_TO;
   const from = process.env.NOTIFICATION_EMAIL_FROM;
@@ -62,6 +86,29 @@ async function sendEmail(subject: string, text: string): Promise<void> {
     body: JSON.stringify({
       from,
       to,
+      subject,
+      text,
+    }),
+  });
+}
+
+async function sendCustomerEmail(toEmail: string, subject: string, text: string): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.NOTIFICATION_EMAIL_FROM;
+
+  if (!apiKey || !from || !toEmail) {
+    return;
+  }
+
+  await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from,
+      to: toEmail,
       subject,
       text,
     }),
@@ -90,7 +137,18 @@ async function sendWhatsApp(message: string): Promise<void> {
 export async function notifyOrderCreated(payload: OrderNotificationPayload): Promise<void> {
   const message = buildOrderCreatedMessage(payload);
   const tasks = [
-    sendEmail(`New order: ${payload.orderId}`, message),
+    sendAdminEmail(`New order: ${payload.orderId}`, message),
+    sendCustomerEmail(
+      payload.customerEmail,
+      `Order received: ${payload.orderId}`,
+      [
+        "We received your order successfully.",
+        `Order ID: ${payload.orderId}`,
+        `Payment Ref: ${payload.paymentRef}`,
+        `Total: ${formatLkr(payload.totalLkr)}`,
+        "We will review and update your order progress soon.",
+      ].join("\n")
+    ),
     sendWhatsApp(message),
   ];
 
@@ -105,7 +163,45 @@ export async function notifyOrderCreated(payload: OrderNotificationPayload): Pro
 export async function notifyOrderStatusChanged(payload: OrderNotificationPayload): Promise<void> {
   const message = buildOrderStatusMessage(payload);
   const tasks = [
-    sendEmail(`Order status updated: ${payload.orderId}`, message),
+    sendAdminEmail(`Order status updated: ${payload.orderId}`, message),
+    sendCustomerEmail(
+      payload.customerEmail,
+      `Order update: ${payload.orderId}`,
+      [
+        `Your order status is now: ${payload.status ?? "updated"}`,
+        `Order ID: ${payload.orderId}`,
+        `Total: ${formatLkr(payload.totalLkr)}`,
+        "Login to your account to view full progress and updates.",
+      ].join("\n")
+    ),
+    sendWhatsApp(message),
+  ];
+
+  const results = await Promise.allSettled(tasks);
+  for (const result of results) {
+    if (result.status === "rejected") {
+      console.error("Notification error:", result.reason);
+    }
+  }
+}
+
+export async function notifyOrderHandoverReady(payload: OrderHandoverPayload): Promise<void> {
+  const message = buildOrderHandoverMessage(payload);
+  const tasks = [
+    sendAdminEmail(`Order handover uploaded: ${payload.orderId}`, message),
+    sendCustomerEmail(
+      payload.customerEmail,
+      `Your order is ready: ${payload.orderId}`,
+      [
+        "Your order deliverables are ready for handover.",
+        `Order ID: ${payload.orderId}`,
+        payload.note ? `Admin Note: ${payload.note}` : null,
+        "Documents:",
+        ...payload.documents.map((doc) => `- ${doc.fileName}: ${doc.url}`),
+      ]
+        .filter((line): line is string => Boolean(line))
+        .join("\n")
+    ),
     sendWhatsApp(message),
   ];
 
