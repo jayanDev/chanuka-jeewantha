@@ -160,7 +160,13 @@ export default function CheckoutPage() {
         throw new Error(message);
       }
 
-      setSuccess("Order submitted successfully. We will verify your transfer and confirm your service.");
+      const warningText =
+        typeof payload.warning === "string" && payload.warning.trim().length > 0
+          ? ` ${payload.warning}`
+          : "";
+      setSuccess(
+        `Order submitted successfully. We will verify your transfer and confirm your service.${warningText}`
+      );
       setSlip(null);
       setPaymentPersonName("");
       setPaymentWhatsApp("");

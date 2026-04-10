@@ -242,17 +242,13 @@ export async function POST(request: Request) {
     const totalLkr = Math.max(1, subtotalLkr - couponDiscountLkr);
 
     let paymentSlipUrl = "";
+    let uploadWarning: string | null = null;
     try {
       paymentSlipUrl = await saveSlip(file);
     } catch (error) {
       console.error("Order slip upload failed:", error);
-      return NextResponse.json(
-        {
-          error:
-            "Payment slip upload is temporarily unavailable. Please try again in a few minutes or contact support on WhatsApp.",
-        },
-        { status: 503 }
-      );
+      uploadWarning =
+        "We received your order, but the slip upload could not be saved. Please send the payment slip on WhatsApp so we can verify faster.";
     }
 
     const orderId = randomUUID();
@@ -277,6 +273,7 @@ export async function POST(request: Request) {
       couponDiscountLkr,
       note: note || null,
       paymentSlipUrl,
+      paymentSlipUploadFailed: Boolean(uploadWarning),
       status: "payment_submitted",
       createdAtMs,
       updatedAtMs: createdAtMs,
@@ -316,7 +313,7 @@ export async function POST(request: Request) {
       console.error("Order notification failed:", error);
     }
 
-    return NextResponse.json({ ok: true, order });
+    return NextResponse.json({ ok: true, order, warning: uploadWarning });
   } catch (error) {
     console.error("Order placement failed:", error);
     return NextResponse.json({ error: "Server error while placing order" }, { status: 500 });
