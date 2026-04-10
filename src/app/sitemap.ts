@@ -42,27 +42,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === "" ? 1 : 0.7,
   }));
 
-  let posts: Array<{ slug: string; publishedAt: Date | null; updatedAt: Date }> = [];
+  const fallbackPosts: Array<{ slug: string; publishedAt: Date | null; updatedAt: Date }> = blogPosts.map((post) => {
+    const date = post.publishedAt ? new Date(post.publishedAt) : new Date();
+    return {
+      slug: post.slug,
+      publishedAt: date,
+      updatedAt: date,
+    };
+  });
+
+  let posts: Array<{ slug: string; publishedAt: Date | null; updatedAt: Date }> = fallbackPosts;
   if (process.env.DATABASE_URL) {
     try {
-      posts = await prisma.post.findMany({
+      const dbPosts = await prisma.post.findMany({
         where: { isPublished: true },
         select: { slug: true, publishedAt: true, updatedAt: true },
       });
-    } catch {
-      posts = [];
-    }
-  }
 
-  if (posts.length === 0) {
-    posts = blogPosts.map((post) => {
-      const date = post.publishedAt ? new Date(post.publishedAt) : new Date();
-      return {
-        slug: post.slug,
-        publishedAt: date,
-        updatedAt: date,
-      };
-    });
+      const dbSlugs = new Set(dbPosts.map((item) => item.slug));
+      posts = [
+        ...dbPosts,
+        ...fallbackPosts.filter((item) => !dbSlugs.has(item.slug)),
+      ];
+    } catch {
+      posts = fallbackPosts;
+    }
   }
 
   const blogEntries = posts.map((post) => ({

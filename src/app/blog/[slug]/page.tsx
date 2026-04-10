@@ -10,6 +10,7 @@ import { blogPosts, getPostBySlug } from "@/content/blog-posts";
 import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
 import { getBaseUrl } from "@/lib/site-url";
+import { packageProducts } from "@/lib/packages-catalog";
 
 export async function generateMetadata({
   params,
@@ -24,6 +25,7 @@ export async function generateMetadata({
     publishedAt?: string | Date | null;
     updatedAt?: string | Date | null;
     category?: string | null;
+    keywords?: string[];
   } | null = null;
   if (process.env.DATABASE_URL) {
     try {
@@ -45,6 +47,7 @@ export async function generateMetadata({
           publishedAt: fallback.publishedAt ?? null,
           updatedAt: fallback.publishedAt ?? null,
           category: fallback.category,
+          keywords: fallback.keywords,
         }
       : null;
   }
@@ -62,6 +65,7 @@ export async function generateMetadata({
     description: post.excerpt,
     path: `/blog/${slug}`,
     type: "article",
+    keywords: post.keywords,
   });
 
   const ogImagePath = `/blog/${slug}/opengraph-image`;
@@ -98,6 +102,7 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const resolvedParams = await params;
+  const fallbackPost = getPostBySlug(resolvedParams.slug);
   let post:
     | {
         id: string;
@@ -132,17 +137,16 @@ export default async function BlogPostPage({
   }
 
   if (!post) {
-    const fallback = getPostBySlug(resolvedParams.slug);
-    if (fallback) {
+    if (fallbackPost) {
       post = {
-        id: fallback.slug,
-        slug: fallback.slug,
-        title: fallback.title,
-        excerpt: fallback.excerpt,
-        content: fallback.content,
-        category: fallback.category,
-        publishedAt: fallback.publishedAt ? new Date(fallback.publishedAt) : null,
-        updatedAt: fallback.publishedAt ? new Date(fallback.publishedAt) : null,
+        id: fallbackPost.slug,
+        slug: fallbackPost.slug,
+        title: fallbackPost.title,
+        excerpt: fallbackPost.excerpt,
+        content: fallbackPost.content,
+        category: fallbackPost.category,
+        publishedAt: fallbackPost.publishedAt ? new Date(fallbackPost.publishedAt) : null,
+        updatedAt: fallbackPost.publishedAt ? new Date(fallbackPost.publishedAt) : null,
       };
     }
   }
@@ -163,6 +167,7 @@ export default async function BlogPostPage({
   }
 
   const title = post.title;
+  const contentPost = getPostBySlug(post.slug) ?? fallbackPost;
   const isAboutChanukaArticle = post.slug === "about-chanuka-jeewantha";
   const recentPosts = blogPosts.filter((item) => item.slug !== post.slug).slice(0, 3);
   const baseUrl = getBaseUrl();
@@ -171,6 +176,21 @@ export default async function BlogPostPage({
   const publishedIso = post.publishedAt ? post.publishedAt.toISOString() : new Date().toISOString();
   const modifiedIso = post.updatedAt ? post.updatedAt.toISOString() : publishedIso;
   const wordCount = post.content.split(/\s+/).filter(Boolean).length;
+  const packageInfo = contentPost?.packageSlug
+    ? packageProducts.find((item) => item.slug === contentPost.packageSlug)
+    : null;
+  const tagKeywords =
+    contentPost?.keywords && contentPost.keywords.length > 0
+      ? contentPost.keywords.slice(0, 5)
+      : [post.category, "career development", "ATS CV", "LinkedIn optimization"];
+  const ctaButtons =
+    contentPost?.ctaButtons && contentPost.ctaButtons.length > 0
+      ? contentPost.ctaButtons
+      : [
+          { label: "Compare Packages", href: "/pricing" },
+          { label: "View Services", href: "/services" },
+          { label: "Contact Chanuka", href: "/contact" },
+        ];
 
   const blogLd = {
     "@context": "https://schema.org",
@@ -185,7 +205,7 @@ export default async function BlogPostPage({
     inLanguage: "en-LK",
     articleSection: post.category,
     wordCount,
-    keywords: [post.category, "career development", "ATS CV", "LinkedIn optimization"],
+    keywords: tagKeywords,
     author: {
       "@type": "Person",
       name: "Chanuka Jeewantha",
@@ -204,6 +224,45 @@ export default async function BlogPostPage({
     description: post.excerpt,
   };
 
+  const faqLd =
+    contentPost?.faqs && contentPost.faqs.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: contentPost.faqs.map((faq) => ({
+            "@type": "Question",
+            name: faq.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: faq.answer,
+            },
+          })),
+        }
+      : null;
+
+  const packageLd = packageInfo
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        name: packageInfo.name,
+        category: packageInfo.category,
+        description: `${packageInfo.name} for ${packageInfo.audience}. Delivery: ${packageInfo.delivery}.`,
+        url: `${baseUrl}/packages/${packageInfo.slug}`,
+        brand: {
+          "@type": "Brand",
+          name: "Chanuka Jeewantha",
+        },
+        offers: {
+          "@type": "Offer",
+          url: `${baseUrl}/packages/${packageInfo.slug}`,
+          priceCurrency: "LKR",
+          price: packageInfo.priceLkr,
+          availability: "https://schema.org/InStock",
+          itemCondition: "https://schema.org/NewCondition",
+        },
+      }
+    : null;
+
   const breadcrumbLd = buildBreadcrumbList([
     { name: "Home", path: "/" },
     { name: "Blog", path: "/blog" },
@@ -220,6 +279,18 @@ export default async function BlogPostPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
+      {faqLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+      )}
+      {packageLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(packageLd) }}
+        />
+      )}
 
       {/* 1. Hero Section */}
       <section className="w-full bg-foreground text-white pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
@@ -346,23 +417,87 @@ export default async function BlogPostPage({
                 ) : (
                   <>
                     <p className="leading-relaxed mb-6">{post.content}</p>
-                    <h3 className="text-[28px] font-bold font-plus-jakarta text-foreground mt-10 mb-4">The core principles of career positioning</h3>
-                    <p className="leading-relaxed mb-6">
-                      Career materials must match real hiring behavior. Recruiters scan quickly, ATS systems filter based on structure and keywords, and employers prioritize clear results over generic responsibilities.
-                    </p>
-                    <blockquote className="border-l-4 border-brand-main bg-zinc-50 p-6 md:p-8 rounded-r-[20px] my-8 italic text-xl text-foreground font-medium">
-                      "A strong career is not built by guesswork. It is built by clarity, positioning, and proof."
-                    </blockquote>
+                    {contentPost?.sections && contentPost.sections.length > 0 ? (
+                      contentPost.sections.map((section) => (
+                        <div key={section.heading}>
+                          <h3 className="text-[28px] font-bold font-plus-jakarta text-foreground mt-10 mb-4">
+                            {section.heading}
+                          </h3>
+                          {section.paragraphs.map((paragraph, index) => (
+                            <p key={`${section.heading}-${index}`} className="leading-relaxed mb-6">
+                              {paragraph}
+                            </p>
+                          ))}
+                          {section.bullets && section.bullets.length > 0 && (
+                            <ul>
+                              {section.bullets.map((bullet) => (
+                                <li key={bullet}>{bullet}</li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      ))
+                    ) : (
+                      <>
+                        <h3 className="text-[28px] font-bold font-plus-jakarta text-foreground mt-10 mb-4">The core principles of career positioning</h3>
+                        <p className="leading-relaxed mb-6">
+                          Career materials must match real hiring behavior. Recruiters scan quickly, ATS systems filter based on structure and keywords, and employers prioritize clear results over generic responsibilities.
+                        </p>
+                        <blockquote className="border-l-4 border-brand-main bg-zinc-50 p-6 md:p-8 rounded-r-[20px] my-8 italic text-xl text-foreground font-medium">
+                          "A strong career is not built by guesswork. It is built by clarity, positioning, and proof."
+                        </blockquote>
+                      </>
+                    )}
                   </>
                 )}
               </div>
+
+              <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6 md:p-8">
+                <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Take Action</h3>
+                <p className="text-text-body mb-5">
+                  Move from reading to results with a clear next step.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {ctaButtons.map((button) => (
+                    <Link
+                      key={`${button.href}-${button.label}`}
+                      href={button.href}
+                      className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+                    >
+                      {button.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {contentPost?.internalLinks && contentPost.internalLinks.length > 0 && (
+                <div className="rounded-[20px] border border-zinc-200 bg-white p-6 md:p-8">
+                  <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-4">Related Backlinks</h3>
+                  <ul className="space-y-2">
+                    {contentPost.internalLinks.map((linkItem) => (
+                      <li key={`${linkItem.href}-${linkItem.label}`}>
+                        <Link href={linkItem.href} className="text-brand-main hover:text-brand-dark font-medium">
+                          {linkItem.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               {/* Tags & Share */}
               <div className="flex flex-col sm:flex-row items-center justify-between py-6 border-t border-b border-zinc-200 mt-8 gap-4">
                 <div className="flex items-center gap-3">
                   <span className="font-bold text-foreground">Tags:</span>
-                  <Link href="#" className="px-4 py-1.5 bg-zinc-100 hover:bg-brand-main hover:text-white rounded-full text-sm font-medium transition-colors">ATS CV</Link>
-                  <Link href="#" className="px-4 py-1.5 bg-zinc-100 hover:bg-brand-main hover:text-white rounded-full text-sm font-medium transition-colors">LinkedIn</Link>
+                  {tagKeywords.slice(0, 4).map((tag) => (
+                    <Link
+                      key={tag}
+                      href={`/blog/search?q=${encodeURIComponent(tag)}`}
+                      className="px-4 py-1.5 bg-zinc-100 hover:bg-brand-main hover:text-white rounded-full text-sm font-medium transition-colors"
+                    >
+                      {tag}
+                    </Link>
+                  ))}
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="font-bold text-foreground">Share:</span>

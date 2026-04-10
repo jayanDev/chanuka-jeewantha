@@ -1,11 +1,19 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
-import { blogPosts } from "@/content/blog-posts";
+import { blogPosts, getPostBySlug } from "@/content/blog-posts";
 import { buildNoIndexMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
 
 export const dynamic = "force-dynamic";
+
+function sortPostsByDate<T extends { publishedAt: Date | null }>(items: T[]): T[] {
+  return [...items].sort((a, b) => {
+    const aTime = a.publishedAt ? a.publishedAt.getTime() : 0;
+    const bTime = b.publishedAt ? b.publishedAt.getTime() : 0;
+    return bTime - aTime;
+  });
+}
 
 export async function generateMetadata({
   searchParams,
@@ -51,12 +59,13 @@ export default async function BlogSearchPage({
     excerpt: post.excerpt,
     category: post.category,
     publishedAt: post.publishedAt ? new Date(post.publishedAt) : null,
+    packageSlug: post.packageSlug,
   }));
 
-  let posts = fallbackPosts;
+  let posts = sortPostsByDate(fallbackPosts);
   if (process.env.DATABASE_URL) {
     try {
-      posts = await prisma.post.findMany({
+      const dbPostsRaw = await prisma.post.findMany({
         where: { isPublished: true },
         orderBy: { publishedAt: "desc" },
         select: {
@@ -66,10 +75,22 @@ export default async function BlogSearchPage({
           category: true,
           publishedAt: true,
         },
-        take: 100,
+        take: 200,
       });
+
+      const dbPosts = dbPostsRaw.map((item) => ({
+        ...item,
+        packageSlug: getPostBySlug(item.slug)?.packageSlug,
+      }));
+
+      const dbSlugs = new Set(dbPosts.map((item) => item.slug));
+      const merged = [
+        ...dbPosts,
+        ...fallbackPosts.filter((item) => !dbSlugs.has(item.slug)),
+      ];
+      posts = sortPostsByDate(merged);
     } catch {
-      posts = fallbackPosts;
+      posts = sortPostsByDate(fallbackPosts);
     }
   }
 
@@ -130,7 +151,11 @@ export default async function BlogSearchPage({
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {visiblePosts.map((post) => (
+              {visiblePosts.map((post) => {
+                const contentPost = getPostBySlug(post.slug);
+                const packageSlug = post.packageSlug ?? contentPost?.packageSlug;
+
+                return (
                 <article key={post.slug} className="border border-zinc-200 rounded-[24px] p-6 hover:shadow-lg transition-shadow group flex flex-col">
                   <div className="w-full h-[220px] bg-zinc-200 rounded-[16px] overflow-hidden mb-5 flex-shrink-0">
                     <div className="w-full h-full bg-zinc-300 flex items-center justify-center font-mono text-zinc-500 text-sm group-hover:scale-105 transition-transform duration-500">
@@ -147,14 +172,24 @@ export default async function BlogSearchPage({
                     {post.title}
                   </h2>
                   <p className="text-text-body text-sm mb-6 line-clamp-3">{post.excerpt}</p>
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="text-brand-dark font-semibold text-[16px] hover:text-brand-main mt-auto w-fit flex items-center gap-2 border-b border-transparent hover:border-brand-main pb-1 transition-all"
-                  >
-                    Learn More
-                  </Link>
+                  <div className="mt-auto flex flex-wrap items-center gap-3">
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="text-brand-dark font-semibold text-[16px] hover:text-brand-main w-fit flex items-center gap-2 border-b border-transparent hover:border-brand-main pb-1 transition-all"
+                    >
+                      Learn More
+                    </Link>
+                    {packageSlug && (
+                      <Link
+                        href={`/packages/${packageSlug}`}
+                        className="rounded-[10px] border border-zinc-300 bg-white px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+                      >
+                        View Package
+                      </Link>
+                    )}
+                  </div>
                 </article>
-              ))}
+              );})}
             </div>
           )}
 
