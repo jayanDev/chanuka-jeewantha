@@ -40,7 +40,7 @@ async function saveSlip(file: File): Promise<string> {
   }
 
   if (process.env.NODE_ENV === "production") {
-    throw new Error("BLOB_READ_WRITE_TOKEN is required for file uploads in production");
+    throw new Error("Slip upload storage is not configured");
   }
 
   const relativePath = `/uploads/slips/${filename}`;
@@ -240,7 +240,20 @@ export async function POST(request: Request) {
     }
 
     const totalLkr = Math.max(1, subtotalLkr - couponDiscountLkr);
-    const paymentSlipUrl = await saveSlip(file);
+
+    let paymentSlipUrl = "";
+    try {
+      paymentSlipUrl = await saveSlip(file);
+    } catch (error) {
+      console.error("Order slip upload failed:", error);
+      return NextResponse.json(
+        {
+          error:
+            "Payment slip upload is temporarily unavailable. Please try again in a few minutes or contact support on WhatsApp.",
+        },
+        { status: 503 }
+      );
+    }
 
     const orderId = randomUUID();
     const createdAtMs = Date.now();
@@ -286,21 +299,26 @@ export async function POST(request: Request) {
       await markCouponUsed({ couponId, userId: user.id });
     }
 
-    await notifyOrderCreated({
-      orderId: order.id,
-      customerName: user.name,
-      customerEmail: user.email,
-      paymentRef: paymentRef || `${paymentPersonName} (${normalizedWhatsApp})`,
-      totalLkr: order.totalLkr,
-      items: order.items.map((item) => ({
-        productName: item.productName,
-        quantity: item.quantity,
-        priceLkr: item.priceLkr,
-      })),
-    });
+    try {
+      await notifyOrderCreated({
+        orderId: order.id,
+        customerName: user.name,
+        customerEmail: user.email,
+        paymentRef: paymentRef || `${paymentPersonName} (${normalizedWhatsApp})`,
+        totalLkr: order.totalLkr,
+        items: order.items.map((item) => ({
+          productName: item.productName,
+          quantity: item.quantity,
+          priceLkr: item.priceLkr,
+        })),
+      });
+    } catch (error) {
+      console.error("Order notification failed:", error);
+    }
 
     return NextResponse.json({ ok: true, order });
-  } catch {
+  } catch (error) {
+    console.error("Order placement failed:", error);
     return NextResponse.json({ error: "Server error while placing order" }, { status: 500 });
   }
 }
