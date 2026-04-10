@@ -30,7 +30,16 @@ function sortPostsByDate<T extends { publishedAt: Date | null }>(items: T[]): T[
   });
 }
 
-export default async function BlogPage() {
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) {
+  const resolvedSearchParams = await searchParams;
+  const requestedPage = Number.parseInt(String(resolvedSearchParams.page ?? "1"), 10);
+  const safePage = Number.isFinite(requestedPage) && requestedPage > 0 ? requestedPage : 1;
+  const postsPerPage = 9;
+
   const breadcrumbLd = buildBreadcrumbList([
     { name: "Home", path: "/" },
     { name: "Blog", path: "/blog" },
@@ -76,6 +85,14 @@ export default async function BlogPage() {
       posts = sortPostsByDate(fallbackPosts);
     }
   }
+
+  const totalPages = Math.max(1, Math.ceil(posts.length / postsPerPage));
+  const currentPage = Math.min(safePage, totalPages);
+  const startIndex = (currentPage - 1) * postsPerPage;
+  const visiblePosts = posts.slice(startIndex, startIndex + postsPerPage);
+  const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
+
+  const buildPageHref = (page: number) => (page <= 1 ? "/blog" : `/blog?page=${page}`);
 
   return (
     <>
@@ -133,7 +150,7 @@ export default async function BlogPage() {
           </form>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post) => {
+            {visiblePosts.map((post) => {
               const contentPost = getPostBySlug(post.slug);
               const packageSlug = post.packageSlug ?? contentPost?.packageSlug;
 
@@ -175,14 +192,47 @@ export default async function BlogPage() {
             );})}
           </div>
           
-          {/* Pagination Placeholder */}
           <div className="w-full flex justify-center mt-16">
-            <div className="flex gap-2">
-              <button aria-label="Page 1" title="Page 1" className="w-10 h-10 rounded-full flex items-center justify-center bg-brand-main text-white font-semibold">1</button>
-              <button aria-label="Page 2" title="Page 2" className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-zinc-100 text-text-body transition-colors">2</button>
-              <button aria-label="Next page" title="Next page" className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-zinc-100 text-text-body transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
-              </button>
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              <Link
+                href={buildPageHref(Math.max(1, currentPage - 1))}
+                aria-disabled={currentPage === 1}
+                className={`h-10 min-w-10 rounded-full flex items-center justify-center px-3 text-sm font-semibold transition-colors ${
+                  currentPage === 1
+                    ? "pointer-events-none bg-zinc-100 text-zinc-400"
+                    : "hover:bg-zinc-100 text-text-body"
+                }`}
+              >
+                Prev
+              </Link>
+
+              {pageNumbers.map((pageNumber) => (
+                <Link
+                  key={pageNumber}
+                  href={buildPageHref(pageNumber)}
+                  aria-label={`Page ${pageNumber}`}
+                  title={`Page ${pageNumber}`}
+                  className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-colors ${
+                    pageNumber === currentPage
+                      ? "bg-brand-main text-white"
+                      : "hover:bg-zinc-100 text-text-body"
+                  }`}
+                >
+                  {pageNumber}
+                </Link>
+              ))}
+
+              <Link
+                href={buildPageHref(Math.min(totalPages, currentPage + 1))}
+                aria-disabled={currentPage === totalPages}
+                className={`h-10 min-w-10 rounded-full flex items-center justify-center px-3 text-sm font-semibold transition-colors ${
+                  currentPage === totalPages
+                    ? "pointer-events-none bg-zinc-100 text-zinc-400"
+                    : "hover:bg-zinc-100 text-text-body"
+                }`}
+              >
+                Next
+              </Link>
             </div>
           </div>
 
