@@ -1,19 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { prisma } from "@/lib/prisma";
-import { blogPosts, getPostBySlug } from "@/content/blog-posts";
+import { getPostBySlug } from "@/content/blog-posts";
 import { buildNoIndexMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
+import { getCachedBlogListing } from "@/lib/blog-listing";
 
 export const dynamic = "force-dynamic";
-
-function sortPostsByDate<T extends { publishedAt: Date | null }>(items: T[]): T[] {
-  return [...items].sort((a, b) => {
-    const aTime = a.publishedAt ? a.publishedAt.getTime() : 0;
-    const bTime = b.publishedAt ? b.publishedAt.getTime() : 0;
-    return bTime - aTime;
-  });
-}
 
 export async function generateMetadata({
   searchParams,
@@ -52,47 +44,7 @@ export default async function BlogSearchPage({
     { name: "Blog", path: "/blog" },
     { name: "Search", path: "/blog/search" },
   ]);
-
-  const fallbackPosts = blogPosts.map((post) => ({
-    slug: post.slug,
-    title: post.title,
-    excerpt: post.excerpt,
-    category: post.category,
-    publishedAt: post.publishedAt ? new Date(post.publishedAt) : null,
-    packageSlug: post.packageSlug,
-  }));
-
-  let posts = sortPostsByDate(fallbackPosts);
-  if (process.env.DATABASE_URL) {
-    try {
-      const dbPostsRaw = await prisma.post.findMany({
-        where: { isPublished: true },
-        orderBy: { publishedAt: "desc" },
-        select: {
-          slug: true,
-          title: true,
-          excerpt: true,
-          category: true,
-          publishedAt: true,
-        },
-        take: 200,
-      });
-
-      const dbPosts = dbPostsRaw.map((item) => ({
-        ...item,
-        packageSlug: getPostBySlug(item.slug)?.packageSlug,
-      }));
-
-      const dbSlugs = new Set(dbPosts.map((item) => item.slug));
-      const merged = [
-        ...dbPosts,
-        ...fallbackPosts.filter((item) => !dbSlugs.has(item.slug)),
-      ];
-      posts = sortPostsByDate(merged);
-    } catch {
-      posts = sortPostsByDate(fallbackPosts);
-    }
-  }
+  const posts = await getCachedBlogListing();
 
   const visiblePosts = normalizedQuery
     ? posts.filter(

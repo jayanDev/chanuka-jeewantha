@@ -35,7 +35,14 @@ export async function GET() {
         return b.discountPercent - a.discountPercent;
       });
 
-    return NextResponse.json({ offers: publicOffers });
+    return NextResponse.json(
+      { offers: publicOffers },
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=120, stale-while-revalidate=900",
+        },
+      }
+    );
   } catch {
     return NextResponse.json({ error: "Failed to load offers" }, { status: 500 });
   }

@@ -77,6 +77,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.65,
   }));
 
+  const blogPostsPerPage = 9;
+  const blogTotalPages = Math.max(1, Math.ceil(posts.length / blogPostsPerPage));
+  const blogIndexEntries = Array.from({ length: blogTotalPages }, (_, index) => {
+    const page = index + 1;
+    return {
+      url: page === 1 ? `${baseUrl}/blog` : `${baseUrl}/blog?page=${page}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: page === 1 ? 0.72 : 0.62,
+    };
+  });
+
   const packageEntries = packageProducts.map((item) => ({
     url: `${baseUrl}/packages/${item.slug}`,
     lastModified: new Date(),
@@ -98,5 +110,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: item.category === "free" ? 0.66 : 0.64,
   }));
 
-  return [...staticEntries, ...blogEntries, ...packageEntries, ...resourceEntries, ...ebookEntries];
+  return [
+    ...staticEntries,
+    ...blogIndexEntries,
+    ...blogEntries,
+    ...packageEntries,
+    ...resourceEntries,
+    ...ebookEntries,
+  ];
 }

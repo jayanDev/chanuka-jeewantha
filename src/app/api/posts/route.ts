@@ -17,7 +17,14 @@ export async function GET() {
       take: 50,
     });
 
-    return NextResponse.json({ posts });
+    return NextResponse.json(
+      { posts },
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=300, stale-while-revalidate=3600",
+        },
+      }
+    );
   } catch {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }

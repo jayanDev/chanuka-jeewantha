@@ -1,31 +1,41 @@
 import Link from "next/link";
 import React from "react";
 import type { Metadata } from "next";
-import { prisma } from "@/lib/prisma";
-import { blogPosts, getPostBySlug } from "@/content/blog-posts";
+import { getPostBySlug } from "@/content/blog-posts";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
+import { getCachedBlogListing } from "@/lib/blog-listing";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "Career Blog | Chanuka Jeewantha",
-  description:
-    "Career-focused articles on ATS-friendly CV writing, LinkedIn optimization, coaching, and roadmap strategy.",
-  path: "/blog",
-  keywords: [
-    "career blog",
-    "ATS CV tips",
-    "LinkedIn optimization guide",
-    "interview preparation",
-  ],
-});
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}): Promise<Metadata> {
+  const resolvedSearchParams = await searchParams;
+  const requestedPage = Number.parseInt(String(resolvedSearchParams.page ?? "1"), 10);
+  const page = Number.isFinite(requestedPage) && requestedPage > 1 ? requestedPage : 1;
 
-function sortPostsByDate<T extends { publishedAt: Date | null }>(items: T[]): T[] {
-  return [...items].sort((a, b) => {
-    const aTime = a.publishedAt ? a.publishedAt.getTime() : 0;
-    const bTime = b.publishedAt ? b.publishedAt.getTime() : 0;
-    return bTime - aTime;
+  const title =
+    page > 1 ? `Career Blog Page ${page} | Chanuka Jeewantha` : "Career Blog | Chanuka Jeewantha";
+
+  const description =
+    page > 1
+      ? `Career blog page ${page}: ATS-friendly CV writing, LinkedIn optimization, and job search strategy articles.`
+      : "Career-focused articles on ATS-friendly CV writing, LinkedIn optimization, coaching, and roadmap strategy.";
+
+  return buildPageMetadata({
+    title,
+    description,
+    path: page > 1 ? `/blog?page=${page}` : "/blog",
+    keywords: [
+      "career blog",
+      "ATS CV tips",
+      "LinkedIn optimization guide",
+      "interview preparation",
+      page > 1 ? `career blog page ${page}` : "career blog page 1",
+    ],
   });
 }
 
@@ -43,47 +53,7 @@ export default async function BlogPage({
     { name: "Home", path: "/" },
     { name: "Blog", path: "/blog" },
   ]);
-
-  const fallbackPosts = blogPosts.map((post) => ({
-    slug: post.slug,
-    title: post.title,
-    excerpt: post.excerpt,
-    category: post.category,
-    publishedAt: post.publishedAt ? new Date(post.publishedAt) : null,
-    packageSlug: post.packageSlug,
-  }));
-
-  let posts = sortPostsByDate(fallbackPosts);
-  if (process.env.DATABASE_URL) {
-    try {
-      const dbPostsRaw = await prisma.post.findMany({
-        where: { isPublished: true },
-        orderBy: { publishedAt: "desc" },
-        select: {
-          slug: true,
-          title: true,
-          excerpt: true,
-          category: true,
-          publishedAt: true,
-        },
-        take: 120,
-      });
-
-      const dbPosts = dbPostsRaw.map((item) => ({
-        ...item,
-        packageSlug: getPostBySlug(item.slug)?.packageSlug,
-      }));
-
-      const dbSlugs = new Set(dbPosts.map((item) => item.slug));
-      const merged = [
-        ...dbPosts,
-        ...fallbackPosts.filter((item) => !dbSlugs.has(item.slug)),
-      ];
-      posts = sortPostsByDate(merged);
-    } catch {
-      posts = sortPostsByDate(fallbackPosts);
-    }
-  }
+  const posts = await getCachedBlogListing();
 
   const totalPages = Math.max(1, Math.ceil(posts.length / postsPerPage));
   const currentPage = Math.min(safePage, totalPages);

@@ -28,7 +28,14 @@ export async function GET(request: Request) {
         return a.category.localeCompare(b.category);
       });
 
-    return NextResponse.json({ products });
+    return NextResponse.json(
+      { products },
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=300, stale-while-revalidate=3600",
+        },
+      }
+    );
   } catch {
     return NextResponse.json({ error: "Server error while loading products" }, { status: 500 });
   }
