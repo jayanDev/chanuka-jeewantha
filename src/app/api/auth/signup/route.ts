@@ -10,6 +10,29 @@ import {
 } from "@/lib/auth";
 import { isTrustedOrigin } from "@/lib/security";
 
+function toSafeAuthErrorMessage(error: unknown): string {
+  const message = error instanceof Error ? error.message : "";
+  const normalized = message.toLowerCase();
+
+  if (message.includes("Missing required Firebase env var:")) {
+    return message;
+  }
+
+  if (normalized.includes("private key")) {
+    return "Firebase private key is invalid. Check FIREBASE_PRIVATE_KEY.";
+  }
+
+  if (normalized.includes("permission_denied") || normalized.includes("permission denied")) {
+    return "Firebase service account does not have Firestore permissions.";
+  }
+
+  if (normalized.includes("not_found") || normalized.includes("not found")) {
+    return "Firestore database was not found. Enable Firestore in your Firebase project.";
+  }
+
+  return "Server error while signing up";
+}
+
 export async function POST(request: Request) {
   try {
     if (!isTrustedOrigin(request)) {
@@ -52,7 +75,7 @@ export async function POST(request: Request) {
     });
 
     return response;
-  } catch {
-    return NextResponse.json({ error: "Server error while signing up" }, { status: 500 });
+  } catch (error) {
+    return NextResponse.json({ error: toSafeAuthErrorMessage(error) }, { status: 500 });
   }
 }
