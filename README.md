@@ -109,6 +109,29 @@ GET /api/firebase/health
 
 If successful, the endpoint returns `ok: true` and lists existing collections.
 
+## File Upload Storage (Payment Slips / Current CV)
+
+Order uploads require production storage configuration.
+
+You can use either:
+
+1. Vercel Blob (preferred when deployed on Vercel)
+
+```bash
+BLOB_READ_WRITE_TOKEN="<your-vercel-blob-token>"
+```
+
+2. Firebase Storage (fallback/alternative)
+
+```bash
+FIREBASE_PROJECT_ID="your-project-id"
+FIREBASE_CLIENT_EMAIL="firebase-adminsdk-xxxx@your-project-id.iam.gserviceaccount.com"
+FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+FIREBASE_STORAGE_BUCKET="your-project-id.appspot.com"
+```
+
+Without one of these, uploads may fail in production and order APIs will warn about missing saved files.
+
 ## Google Sign-In Setup
 
 Google OAuth is available on both sign-in and sign-up pages.

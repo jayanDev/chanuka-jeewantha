@@ -2,11 +2,26 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
 import { put } from "@vercel/blob";
+import { getFirebaseStorageBucket } from "@/lib/firebase-admin";
 
 type SaveUploadedFileInput = {
   file: File;
   folder: string;
 };
+
+async function withRetry<T>(work: () => Promise<T>, attempts = 2): Promise<T> {
+  let lastError: unknown;
+
+  for (let index = 0; index < attempts; index += 1) {
+    try {
+      return await work();
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  throw lastError instanceof Error ? lastError : new Error("Upload failed after retries");
+}
 
 function sanitizeSegment(value: string): string {
   return value.trim().toLowerCase().replace(/[^a-z0-9/_-]/g, "");
@@ -39,17 +54,64 @@ export async function saveUploadedFile(input: SaveUploadedFileInput): Promise<st
   const safeFolder = sanitizeSegment(input.folder);
   const safeExt = getSafeExtension(input.file.name);
   const filename = `${Date.now()}-${randomUUID()}.${safeExt}`;
+  const objectPath = `uploads/${safeFolder}/${filename}`;
 
   if (process.env.BLOB_READ_WRITE_TOKEN) {
-    const blob = await put(`uploads/${safeFolder}/${filename}`, input.file, {
-      access: "public",
-    });
+    const blob = await withRetry(
+      async () =>
+        put(objectPath, input.file, {
+          access: "public",
+        }),
+      2
+    );
 
     return blob.url;
   }
 
+  const hasFirebaseAdminConfig = Boolean(
+    process.env.FIREBASE_PROJECT_ID &&
+      process.env.FIREBASE_CLIENT_EMAIL &&
+      process.env.FIREBASE_PRIVATE_KEY
+  );
+
+  if (hasFirebaseAdminConfig) {
+    try {
+      const bucket = getFirebaseStorageBucket();
+      const fileRef = bucket.file(objectPath);
+      const bytes = Buffer.from(await input.file.arrayBuffer());
+      const downloadToken = randomUUID();
+
+      await withRetry(
+        async () =>
+          fileRef.save(bytes, {
+            resumable: false,
+            contentType: input.file.type || "application/octet-stream",
+            metadata: {
+              metadata: {
+                firebaseStorageDownloadTokens: downloadToken,
+              },
+            },
+          }),
+        2
+      );
+
+      return `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${encodeURIComponent(
+        objectPath
+      )}?alt=media&token=${downloadToken}`;
+    } catch (error) {
+      console.error("Firebase Storage upload failed:", error);
+      if (process.env.NODE_ENV === "production") {
+        throw new Error(
+          "Upload storage failed. Verify FIREBASE_STORAGE_BUCKET permissions or set BLOB_READ_WRITE_TOKEN."
+        );
+      }
+    }
+  }
+
   if (process.env.NODE_ENV === "production") {
-    throw new Error("Upload storage is not configured");
+    throw new Error(
+      "Upload storage is not configured. Set BLOB_READ_WRITE_TOKEN or Firebase Storage env vars."
+    );
   }
 
   const relativePath = `/uploads/${safeFolder}/${filename}`;
