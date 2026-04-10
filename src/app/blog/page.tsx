@@ -6,8 +6,7 @@ import { blogPosts, getPostBySlug } from "@/content/blog-posts";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
 
-export const dynamic = "force-static";
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Career Blog | Chanuka Jeewantha",
