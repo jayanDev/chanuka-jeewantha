@@ -5,10 +5,12 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppOrderButton from "@/components/WhatsAppOrderButton";
 import AnalyticsHeartbeat from "@/components/AnalyticsHeartbeat";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import SeasonalOfferBanner from "@/components/SeasonalOfferBanner";
 import { getBaseUrl } from "@/lib/site-url";
 
 const siteUrl = getBaseUrl();
+const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
 const organizationId = `${siteUrl}#organization`;
 const websiteId = `${siteUrl}#website`;
 
@@ -136,6 +138,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
         />
+        {gaMeasurementId ? <GoogleAnalytics measurementId={gaMeasurementId} /> : null}
         <AnalyticsHeartbeat />
         <Header />
         <SeasonalOfferBanner />

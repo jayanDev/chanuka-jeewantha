@@ -159,6 +159,20 @@ For local development also add:
 http://localhost:3000/api/auth/google/callback
 ```
 
+## Google Analytics (GA4)
+
+To enable Google Analytics, set this public environment variable in your deployment:
+
+```bash
+NEXT_PUBLIC_GA_MEASUREMENT_ID="G-XXXXXXXXXX"
+```
+
+Implementation notes:
+
+- GA script loads globally in root layout.
+- Initial page view is tracked by GA config.
+- Route-change page views are tracked for App Router navigation.
+
 ## Image Location And Naming
 
 Store all website images in [public/images/README.md](public/images/README.md).
