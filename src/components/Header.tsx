@@ -185,13 +185,6 @@ export default function Header() {
                 Sign Out
               </button>
             )}
-
-            <Link
-              href="/checkout"
-              className="px-[25px] py-[15px] bg-brand-main hover:bg-brand-dark text-white rounded-[10px] text-[16px] font-medium transition-colors"
-            >
-              Place Order
-            </Link>
           </div>
         </nav>
 
@@ -302,15 +295,6 @@ export default function Header() {
               Sign Out
             </button>
           )}
-          <div className="w-full flex justify-center mt-2">
-            <Link 
-              href="/checkout" 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="px-[32px] py-[16px] bg-brand-main hover:bg-brand-dark w-full text-center max-w-xs text-white rounded-[10px] text-[18px] font-medium transition-colors"
-            >
-              Place Order
-            </Link>
-          </div>
         </nav>
       </div>
     </header>
