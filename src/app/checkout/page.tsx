@@ -62,6 +62,71 @@ async function readJsonSafely(response: Response): Promise<Record<string, unknow
   }
 }
 
+type UploadDocumentFieldProps = {
+  id: string;
+  label: string;
+  accept: string;
+  required?: boolean;
+  file: File | null;
+  onChange: (file: File | null) => void;
+  placeholder: string;
+  hint: string;
+};
+
+function UploadDocumentField({
+  id,
+  label,
+  accept,
+  required = false,
+  file,
+  onChange,
+  placeholder,
+  hint,
+}: UploadDocumentFieldProps) {
+  const fileSizeLabel = file ? `${(file.size / (1024 * 1024)).toFixed(2)} MB` : "";
+
+  return (
+    <div>
+      <label htmlFor={id} className="mb-2 block text-sm font-medium">
+        {label}
+        {required ? " *" : ""}
+      </label>
+      <label
+        htmlFor={id}
+        className="block cursor-pointer rounded-[12px] border-2 border-dashed border-zinc-300 bg-zinc-50 px-4 py-5 transition-colors hover:border-brand-main hover:bg-brand-main/5"
+      >
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p className="text-sm font-semibold text-zinc-800">{file ? file.name : placeholder}</p>
+            <p className="mt-1 text-xs text-zinc-500">{file ? `Selected file size: ${fileSizeLabel}` : hint}</p>
+          </div>
+          <span className="rounded-full border border-zinc-300 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-700">
+            {file ? "Change file" : "Choose file"}
+          </span>
+        </div>
+      </label>
+      <input
+        id={id}
+        type="file"
+        aria-label={label}
+        accept={accept}
+        required={required}
+        onChange={(event) => onChange(event.target.files?.[0] ?? null)}
+        className="sr-only"
+      />
+      {file && (
+        <button
+          type="button"
+          onClick={() => onChange(null)}
+          className="mt-2 text-xs font-medium text-red-600 hover:text-red-700"
+        >
+          Remove selected file
+        </button>
+      )}
+    </div>
+  );
+}
+
 export default function CheckoutPage() {
   const params = useSearchParams();
 
@@ -452,9 +517,22 @@ export default function CheckoutPage() {
                         {products.map((product) => (
                           <option key={product.id} value={product.id}>
                             {product.name} - {formatLkr(product.priceLkr)}
+                            {product.originalPriceLkr > product.priceLkr
+                              ? ` (Original ${formatLkr(product.originalPriceLkr)})`
+                              : ""}
                           </option>
                         ))}
                       </select>
+                      {buyNowProduct && (
+                        <p className="mt-2 text-xs text-zinc-600">
+                          Original price: <span className="line-through">{formatLkr(buyNowProduct.originalPriceLkr)}</span>
+                          {buyNowProduct.originalPriceLkr > buyNowProduct.priceLkr && (
+                            <>
+                              {" "}Now: <span className="font-semibold text-emerald-700">{formatLkr(buyNowProduct.priceLkr)}</span>
+                            </>
+                          )}
+                        </p>
+                      )}
                     </div>
                     <div>
                       <label className="mb-2 block text-sm font-medium">Quantity</label>
@@ -550,28 +628,26 @@ export default function CheckoutPage() {
                   />
                 </div>
 
-                <div>
-                  <label className="mb-2 block text-sm font-medium">Upload Current CV (optional - PDF, DOC, DOCX)</label>
-                  <input
-                    type="file"
-                    aria-label="Current CV Upload"
-                    accept=".pdf,.doc,.docx"
-                    onChange={(event) => setCurrentCv(event.target.files?.[0] ?? null)}
-                    className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
-                  />
-                </div>
+                <UploadDocumentField
+                  id="current-cv-upload"
+                  label="Upload Current CV (optional)"
+                  accept=".pdf,.doc,.docx"
+                  file={currentCv}
+                  onChange={setCurrentCv}
+                  placeholder="Upload your current CV document"
+                  hint="Supported: PDF, DOC, DOCX"
+                />
 
-                <div>
-                  <label className="mb-2 block text-sm font-medium">Upload Payment Slip * (JPG, PNG, WEBP, PDF)</label>
-                  <input
-                    type="file"
-                    aria-label="Payment Slip Upload"
-                    accept=".jpg,.jpeg,.png,.webp,.pdf"
-                    onChange={(event) => setSlip(event.target.files?.[0] ?? null)}
-                    required
-                    className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
-                  />
-                </div>
+                <UploadDocumentField
+                  id="payment-slip-upload"
+                  label="Upload Payment Slip"
+                  accept=".jpg,.jpeg,.png,.webp,.pdf"
+                  required
+                  file={slip}
+                  onChange={setSlip}
+                  placeholder="Upload your payment slip"
+                  hint="Required. Supported: JPG, PNG, WEBP, PDF"
+                />
 
                 <div>
                   <label className="mb-2 block text-sm font-medium">Extra details (optional)</label>
@@ -613,8 +689,8 @@ export default function CheckoutPage() {
                       <span className="font-medium">{activeSummary.itemCount}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span>Subtotal</span>
-                      <span>{formatLkr(activeSummary.subtotalLkr)}</span>
+                      <span>Original subtotal</span>
+                      <span>{formatLkr(activeSummary.originalSubtotalLkr)}</span>
                     </div>
                     {activeSummary.offerDiscountLkr > 0 && (
                       <div className="flex items-center justify-between text-emerald-700">
@@ -622,6 +698,10 @@ export default function CheckoutPage() {
                         <span>-{formatLkr(activeSummary.offerDiscountLkr)}</span>
                       </div>
                     )}
+                    <div className="flex items-center justify-between">
+                      <span>Subtotal after offer</span>
+                      <span>{formatLkr(activeSummary.subtotalLkr)}</span>
+                    </div>
                     <div className="flex items-center justify-between text-emerald-700">
                       <span>Coupon discount</span>
                       <span>-{formatLkr(activeSummary.couponDiscountLkr)}</span>
@@ -640,7 +720,8 @@ export default function CheckoutPage() {
                       <ul className="space-y-1 text-xs text-zinc-700">
                         {selectedItems.map((item) => (
                           <li key={item.id}>
-                            {item.name} x {item.quantity} ({formatLkr(item.priceLkr)})
+                            {item.name} x {item.quantity} ({formatLkr(item.priceLkr)}
+                            {item.originalPriceLkr > item.priceLkr ? ` from ${formatLkr(item.originalPriceLkr)}` : ""})
                           </li>
                         ))}
                       </ul>
