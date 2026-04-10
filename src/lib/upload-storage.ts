@@ -2,7 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
 import { put } from "@vercel/blob";
-import { getFirebaseStorageBucket } from "@/lib/firebase-admin";
+import { getFirebaseStorageBucketNames, getFirebaseStorageService } from "@/lib/firebase-admin";
 
 type SaveUploadedFileInput = {
   file: File;
@@ -76,26 +76,47 @@ export async function saveUploadedFile(input: SaveUploadedFileInput): Promise<st
 
   if (hasFirebaseAdminConfig) {
     try {
-      const bucket = getFirebaseStorageBucket();
-      const fileRef = bucket.file(objectPath);
       const bytes = Buffer.from(await input.file.arrayBuffer());
       const downloadToken = randomUUID();
+      const storage = getFirebaseStorageService();
+      const bucketNames = getFirebaseStorageBucketNames();
 
-      await withRetry(
-        async () =>
-          fileRef.save(bytes, {
-            resumable: false,
-            contentType: input.file.type || "application/octet-stream",
-            metadata: {
-              metadata: {
-                firebaseStorageDownloadTokens: downloadToken,
-              },
-            },
-          }),
-        2
-      );
+      let uploadedBucketName = "";
+      let lastUploadError: unknown = null;
 
-      return `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${encodeURIComponent(
+      for (const bucketName of bucketNames) {
+        try {
+          const bucket = storage.bucket(bucketName);
+          const fileRef = bucket.file(objectPath);
+
+          await withRetry(
+            async () =>
+              fileRef.save(bytes, {
+                resumable: false,
+                contentType: input.file.type || "application/octet-stream",
+                metadata: {
+                  metadata: {
+                    firebaseStorageDownloadTokens: downloadToken,
+                  },
+                },
+              }),
+            2
+          );
+
+          uploadedBucketName = bucket.name;
+          break;
+        } catch (error) {
+          lastUploadError = error;
+        }
+      }
+
+      if (!uploadedBucketName) {
+        throw lastUploadError instanceof Error
+          ? lastUploadError
+          : new Error("No writable Firebase storage bucket was found");
+      }
+
+      return `https://firebasestorage.googleapis.com/v0/b/${uploadedBucketName}/o/${encodeURIComponent(
         objectPath
       )}?alt=media&token=${downloadToken}`;
     } catch (error) {

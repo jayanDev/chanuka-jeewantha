@@ -11,6 +11,16 @@ function requireEnv(name: string): string {
   return value;
 }
 
+function normalizeBucketName(value: string | undefined): string {
+  if (!value) return "";
+  return value
+    .trim()
+    .replace(/^gs:\/\//i, "")
+    .replace(/^https?:\/\//i, "")
+    .replace(/\/$/, "")
+    .replace(/\/.*$/, "");
+}
+
 function getFirebaseApp(): App {
   const apps = getApps();
   if (apps.length > 0) {
@@ -19,7 +29,18 @@ function getFirebaseApp(): App {
 
   const projectId = requireEnv("FIREBASE_PROJECT_ID");
   const clientEmail = requireEnv("FIREBASE_CLIENT_EMAIL");
-  const privateKey = requireEnv("FIREBASE_PRIVATE_KEY").replace(/\\n/g, "\n");
+  let privateKey = requireEnv("FIREBASE_PRIVATE_KEY").trim();
+
+  // Some env providers store PEM values wrapped in quotes.
+  if (
+    (privateKey.startsWith('"') && privateKey.endsWith('"')) ||
+    (privateKey.startsWith("'") && privateKey.endsWith("'"))
+  ) {
+    privateKey = privateKey.slice(1, -1);
+  }
+
+  // Accept both literal "\\n" and real newlines in env values.
+  privateKey = privateKey.replace(/\\n/g, "\n");
   const storageBucket = process.env.FIREBASE_STORAGE_BUCKET?.trim();
 
   return initializeApp({
@@ -40,16 +61,30 @@ export function getFirebaseDb() {
 
 export function getFirebaseStorageBucket() {
   const app = getFirebaseApp();
-  const configuredBucket = process.env.FIREBASE_STORAGE_BUCKET?.trim();
+  const candidates = getFirebaseStorageBucketNames();
 
-  if (configuredBucket) {
-    return getStorage(app).bucket(configuredBucket);
-  }
-
-  const projectId = typeof app.options.projectId === "string" ? app.options.projectId : "";
-  if (!projectId) {
+  if (candidates.length === 0) {
     throw new Error("Firebase project ID is not configured for storage uploads");
   }
 
-  return getStorage(app).bucket(`${projectId}.appspot.com`);
+  return getStorage(app).bucket(candidates[0]);
+}
+
+export function getFirebaseStorageService() {
+  const app = getFirebaseApp();
+  return getStorage(app);
+}
+
+export function getFirebaseStorageBucketNames(): string[] {
+  const app = getFirebaseApp();
+  const projectId = typeof app.options.projectId === "string" ? app.options.projectId.trim() : "";
+  const configuredBucket = normalizeBucketName(process.env.FIREBASE_STORAGE_BUCKET);
+
+  const candidates = [configuredBucket];
+  if (projectId) {
+    candidates.push(`${projectId}.appspot.com`);
+    candidates.push(`${projectId}.firebasestorage.app`);
+  }
+
+  return candidates.filter((value, index, array) => Boolean(value) && array.indexOf(value) === index);
 }
