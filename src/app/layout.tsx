@@ -68,8 +68,21 @@ export const metadata: Metadata = {
     template: "%s | Chanuka Jeewantha",
   },
   applicationName: "Chanuka Jeewantha",
+  manifest: "/site.webmanifest",
+  themeColor: "#ef4444",
   description:
     "Professional CV writing, LinkedIn optimization, career coaching, and roadmap support by Chanuka Jeewantha.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/icons/icon-192.svg", type: "image/svg+xml" },
+    ],
+  },
   alternates: {
     canonical: "/",
   },
