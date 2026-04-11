@@ -22,6 +22,26 @@ function sanitizeReturnTo(value: string | null): string {
   return value;
 }
 
+function buildGoogleRedirectUri(requestUrl: URL): string {
+  const configuredRedirectUri = process.env.GOOGLE_REDIRECT_URI?.trim();
+  if (configuredRedirectUri) {
+    try {
+      return new URL(configuredRedirectUri).toString();
+    } catch {
+      // Fall back to origin-based construction when env value is malformed.
+    }
+  }
+
+  const configuredOrigin =
+    process.env.GOOGLE_REDIRECT_ORIGIN?.trim() ||
+    process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
+    process.env.SITE_URL?.trim() ||
+    requestUrl.origin;
+
+  const normalizedOrigin = configuredOrigin.replace(/\/$/, "");
+  return `${normalizedOrigin}/api/auth/google/callback`;
+}
+
 function getAdminEmailSet(): Set<string> {
   return new Set(
     (process.env.GOOGLE_ADMIN_EMAILS ?? "")
@@ -113,7 +133,7 @@ export async function GET(request: Request) {
     return signInErrorRedirect(request, "Google sign-in is not configured");
   }
 
-  const redirectUri = `${requestUrl.origin}/api/auth/google/callback`;
+  const redirectUri = buildGoogleRedirectUri(requestUrl);
 
   try {
     const tokenResponse = await fetch(TOKEN_URL, {
