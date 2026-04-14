@@ -5,6 +5,7 @@ import { digitalResources } from "@/lib/resources";
 import { formatLkr } from "@/lib/packages-catalog";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
+import ResourceFilterClient from "./_components/ResourceFilterClient";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Digital Resources | Career Toolkits",
@@ -52,25 +53,7 @@ export default function ResourcesPage() {
 
       <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {digitalResources.map((resource) => (
-              <article key={resource.slug} className="rounded-[22px] border border-zinc-200 p-7 bg-white shadow-sm">
-                <div className="relative mb-6 aspect-[4/3] overflow-hidden rounded-[14px] border border-zinc-200 bg-zinc-50">
-                  <Image src={resource.coverImage} alt={resource.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
-                </div>
-                <div className="mb-4 inline-flex items-center gap-2 rounded-[10px] border border-brand-main/40 bg-brand-main/10 px-3 py-1.5">
-                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-brand-dark">Paid Resource</span>
-                </div>
-                <h2 className="text-[30px] font-bold font-plus-jakarta text-foreground mb-2">{resource.title}</h2>
-                <p className="text-brand-dark font-semibold mb-3">{resource.subtitle}</p>
-                <p className="text-text-body mb-5">{resource.description}</p>
-                <p className="text-[22px] font-bold font-plus-jakarta text-foreground mb-6">{formatLkr(resource.priceLkr)}</p>
-                <Link href={`/resources/${resource.slug}`} className="rounded-[10px] bg-brand-main px-5 py-2.5 font-medium text-white transition-colors hover:bg-brand-dark">
-                  View Resource
-                </Link>
-              </article>
-            ))}
-          </div>
+          <ResourceFilterClient resources={digitalResources} />
 
           <aside className="mt-8 rounded-[16px] border border-zinc-200 bg-zinc-50 p-6">
             <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Related Career Assets</h2>

@@ -132,18 +132,24 @@ export default async function EbookSinglePage({ params }: EbookPageProps) {
 
               {ebook.category === "free" ? (
                 <div className="flex flex-wrap gap-3">
-                  <a
-                    href={ebook.sampleReadPath ?? "/blog"}
+                  <Link
+                    href={`/ebooks/${ebook.slug}/read/0`}
                     className="rounded-[10px] bg-brand-main px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-dark"
                   >
                     Read Now
-                  </a>
+                  </Link>
                   <Link href="/contact" className="rounded-[10px] border border-white/35 px-6 py-3 font-semibold text-white transition-colors hover:border-brand-main hover:text-brand-main">
                     Ask a Question
                   </Link>
                 </div>
               ) : (
                 <div className="flex flex-wrap gap-3">
+                  <Link
+                    href={`/ebooks/${ebook.slug}/read/0`}
+                    className="rounded-[10px] bg-brand-main px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-dark"
+                  >
+                    Start Reading (Free Preview)
+                  </Link>
                   <a
                     href={getWhatsappOrderLink(ebook.title, ebook.priceLkr)}
                     target="_blank"

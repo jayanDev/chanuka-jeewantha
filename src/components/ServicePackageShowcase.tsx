@@ -43,6 +43,7 @@ async function readJsonSafely(response: Response): Promise<Record<string, unknow
 }
 
 export default function ServicePackageShowcase({ title, description, packages }: Props) {
+  const fiverrGigUrl = "https://www.fiverr.com/s/kLBDGAb";
   const [productsBySlug, setProductsBySlug] = useState<Record<string, ProductRecord>>({});
   const [activeUser, setActiveUser] = useState<AuthMe | null>(null);
   const [feedback, setFeedback] = useState("");
@@ -224,6 +225,16 @@ export default function ServicePackageShowcase({ title, description, packages }:
                 >
                   Buy Now
                 </button>
+                {pkg.category === "CV Writing" && (
+                  <a
+                    href={fiverrGigUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center rounded-[10px] border border-emerald-300 bg-emerald-50 px-4 py-2.5 text-sm font-semibold text-emerald-800 transition-colors hover:bg-emerald-100"
+                  >
+                    Fiverr
+                  </a>
+                )}
               </div>
             </article>
               );

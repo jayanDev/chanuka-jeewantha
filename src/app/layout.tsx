@@ -9,6 +9,7 @@ import AnalyticsHeartbeat from "@/components/AnalyticsHeartbeat";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import SeasonalOfferBanner from "@/components/SeasonalOfferBanner";
 import { getBaseUrl } from "@/lib/site-url";
+import { TARGET_SEO_KEYWORDS } from "@/lib/seo";
 
 const siteUrl = getBaseUrl();
 const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
@@ -24,7 +25,7 @@ const organizationLd = {
   image: `${siteUrl}/images/hero-chanuka.jpg`,
   logo: `${siteUrl}/images/hero-chanuka.jpg`,
   description:
-    "Professional CV writing, LinkedIn optimization, career coaching, and roadmap support by Chanuka Jeewantha.",
+    "Professional CV Writing Services, ATS Friendly CV maker, Cover Letter Writing, and LinkedIn Optimization by Career Specialist Chanuka Jeewantha.",
   areaServed: "Sri Lanka",
   sameAs: [
     "https://www.linkedin.com/in/chanuka-jeewantha/",
@@ -53,25 +54,30 @@ const websiteLd = {
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
+  display: "swap",
 });
+
+export const viewport = {
+  themeColor: "#ef4444",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Chanuka Jeewantha - Career Development Specialist",
+    default: "ATS Friendly CV Maker & Professional CV Writing Services | Chanuka Jeewantha",
     template: "%s | Chanuka Jeewantha",
   },
   applicationName: "Chanuka Jeewantha",
   manifest: "/site.webmanifest",
-  themeColor: "#ef4444",
   description:
-    "Professional CV writing, LinkedIn optimization, career coaching, and roadmap support by Chanuka Jeewantha.",
+    "Ranked #1 CV maker in Sri Lanka. I provide Professional CV Writing Services, ATS-friendly CV design, Cover Letter Writing, and complete LinkedIn Optimization.",
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -86,13 +92,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  keywords: [
-    "ATS CV writing Sri Lanka",
-    "LinkedIn optimization Sri Lanka",
-    "career coach Sri Lanka",
-    "professional CV writer",
-    "Chanuka Jeewantha",
-  ],
+  keywords: TARGET_SEO_KEYWORDS,
   authors: [{ name: "Chanuka Jeewantha", url: siteUrl }],
   creator: "Chanuka Jeewantha",
   publisher: "Chanuka Jeewantha",

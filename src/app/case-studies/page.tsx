@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
@@ -24,6 +25,7 @@ export default function CaseStudiesPage() {
       title: "ATS CV Rewrite for International Applications",
       category: "ATS CV Writing",
       year: "2024",
+      image: "/images/chanuka-jeewantha-career-development-specialist.jpg",
       desc: "Role-targeted CV transformation focused on keyword alignment, measurable achievements, and recruiter readability.",
     },
     {
@@ -31,6 +33,7 @@ export default function CaseStudiesPage() {
       title: "LinkedIn Profile Optimization Sprint",
       category: "LinkedIn Optimization",
       year: "2023",
+      image: "/images/linkedin-optimization-30k-followers-proof.jpg",
       desc: "Complete profile positioning update with stronger headline, About narrative, and experience storytelling for better visibility.",
     },
     {
@@ -38,6 +41,7 @@ export default function CaseStudiesPage() {
       title: "Career Coaching + Roadmap Execution",
       category: "Career Coaching",
       year: "2022",
+      image: "/images/about-page-chanuka.jpg",
       desc: "Step-by-step roadmap and coaching support to transition from uncertainty to focused applications and interview readiness.",
     }
   ];
@@ -80,17 +84,18 @@ export default function CaseStudiesPage() {
                 key={study.id} 
                 className={`flex flex-col md:flex-row gap-12 items-center ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
               >
-                {/* Image Placeholder */}
                 <div className="w-full md:w-1/2 aspect-[4/3] bg-zinc-200 rounded-[24px] relative overflow-hidden group">
                   <div className="absolute inset-0 bg-brand-main/20 group-hover:bg-transparent transition-colors z-10" />
                   <div className="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur text-foreground px-4 py-1 rounded-full text-sm font-bold shadow-sm">
                     {study.category}
                   </div>
-                  {/* <Image fill src="/study-img.jpg" className="object-cover" alt={study.title} /> */}
-                  <div className="w-full h-full flex flex-col items-center justify-center text-zinc-400 bg-zinc-300 text-center">
-                    <p className="font-bold text-xl uppercase tracking-widest">Image {study.id}</p>
-                    <p className="mt-1 text-sm font-mono">Aspect 4:3 (eg: 1200 x 900)</p>
-                  </div>
+                  <Image
+                    fill
+                    src={study.image}
+                    alt={study.title}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
                 </div>
 
                 <div className="w-full md:w-1/2 flex flex-col">

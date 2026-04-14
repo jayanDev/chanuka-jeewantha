@@ -78,6 +78,8 @@ export default async function ResourceSinglePage({ params }: ResourcePageProps) 
     notFound();
   }
 
+  const priceLkr = resource.priceLkr ?? 0;
+
   const baseUrl = getBaseUrl();
   const resourceUrl = `${baseUrl}/resources/${resource.slug}`;
   const imageUrl = `${baseUrl}${resource.coverImage}`;
@@ -161,9 +163,9 @@ export default async function ResourceSinglePage({ params }: ResourcePageProps) 
                 ))}
               </ul>
 
-              <p className="text-[24px] font-bold font-plus-jakarta text-foreground mb-6">{formatLkr(resource.priceLkr)}</p>
+              <p className="text-[24px] font-bold font-plus-jakarta text-foreground mb-6">{formatLkr(priceLkr)}</p>
               <a
-                href={getWhatsappOrderLink(resource.title, resource.priceLkr)}
+                href={getWhatsappOrderLink(resource.title, priceLkr)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-[10px] bg-[#25D366] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#1fb85a]"

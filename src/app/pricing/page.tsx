@@ -2,8 +2,39 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { formatLkr, packageCategories, type PackageProduct } from "@/lib/packages-catalog";
+import {
+  formatLkr,
+  packageCategories,
+  type PackageCategoryKey,
+  type PackageProduct,
+} from "@/lib/packages-catalog";
 import { buildOfferPreviewHeaders, withOfferPreviewUrl } from "@/lib/offer-preview-client";
+import {
+  calculateBundlePricing,
+  getConfigurableBundleRule,
+  isConfigurableBundleSlug,
+  type BundleSelection,
+} from "@/lib/bundle-pricing";
+
+const bundleCategoryIndex = packageCategories.findIndex((category) => category.key === "bundle-discount");
+
+function getInitialCategoryIndex(): number {
+  if (typeof window === "undefined") {
+    return bundleCategoryIndex >= 0 ? bundleCategoryIndex : 0;
+  }
+
+  const categoryKey = (new URL(window.location.href).searchParams.get("category") ?? "").trim() as PackageCategoryKey;
+  if (!categoryKey) {
+    return bundleCategoryIndex >= 0 ? bundleCategoryIndex : 0;
+  }
+
+  const index = packageCategories.findIndex((category) => category.key === categoryKey);
+  return index >= 0 ? index : (bundleCategoryIndex >= 0 ? bundleCategoryIndex : 0);
+}
+
+const cvOptions = packageCategories.find((category) => category.key === "cv-writing")?.packages ?? [];
+const coverLetterOptions = packageCategories.find((category) => category.key === "cover-letter")?.packages ?? [];
+const linkedinOptions = packageCategories.find((category) => category.key === "linkedin")?.packages ?? [];
 
 type ProductRecord = {
   id: string;
@@ -25,6 +56,12 @@ type AuthMe = {
   role: "customer" | "admin";
 };
 
+type BundleSelectionState = {
+  cvSlug: string;
+  coverLetterSlug: string;
+  linkedinSlug: string;
+};
+
 async function readJsonSafely(response: Response): Promise<Record<string, unknown>> {
   const raw = await response.text();
   if (!raw) return {};
@@ -37,6 +74,7 @@ async function readJsonSafely(response: Response): Promise<Record<string, unknow
 }
 
 const whatsappNumber = "94773902230";
+const fiverrGigUrl = "https://www.fiverr.com/s/kLBDGAb";
 
 const buildWhatsAppUrl = (
   categoryTitle: string,
@@ -55,14 +93,51 @@ const buildWhatsAppUrl = (
   )}`;
 
 export default function PricingPage() {
-  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
+  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(getInitialCategoryIndex);
   const [productsBySlug, setProductsBySlug] = useState<Record<string, ProductRecord>>({});
   const [activeUser, setActiveUser] = useState<AuthMe | null>(null);
   const [feedback, setFeedback] = useState("");
   const [addedBySlug, setAddedBySlug] = useState<Record<string, boolean>>({});
+  const [bundleSelections, setBundleSelections] = useState<Record<string, BundleSelectionState>>({});
   const addedTimersRef = useRef<Record<string, number>>({});
 
   const selectedCategory = packageCategories[selectedCategoryIndex];
+  const mobileCategoryIndexes = packageCategories.map((_, index) => index);
+
+  const getBundleSelectionState = (slug: string): BundleSelectionState =>
+    bundleSelections[slug] ?? {
+      cvSlug: "",
+      coverLetterSlug: "",
+      linkedinSlug: "",
+    };
+
+  const updateBundleSelection = (
+    slug: string,
+    field: keyof BundleSelectionState,
+    value: string
+  ) => {
+    setBundleSelections((previous) => ({
+      ...previous,
+      [slug]: {
+        ...getBundleSelectionState(slug),
+        [field]: value,
+      },
+    }));
+  };
+
+  const jumpToCategory = (key: PackageCategoryKey, index: number) => {
+    setSelectedCategoryIndex(index);
+
+    window.requestAnimationFrame(() => {
+      const desktop = window.matchMedia("(min-width: 768px)").matches;
+      const selector = desktop
+        ? `[data-category-anchor-desktop="${key}"]`
+        : `[data-category-anchor-mobile="${key}"]`;
+
+      const target = document.querySelector(selector);
+      target?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  };
 
   useEffect(() => {
     const load = async () => {
@@ -102,7 +177,7 @@ export default function PricingPage() {
     };
   }, []);
 
-  const addToCart = async (pkg: PackageProduct) => {
+  const addToCart = async (pkg: PackageProduct, bundleSelection?: BundleSelection) => {
     setFeedback("");
     const product = productsBySlug[pkg.slug];
     if (!product) {
@@ -119,7 +194,7 @@ export default function PricingPage() {
       const response = await fetch("/api/cart", {
         method: "POST",
         headers: buildOfferPreviewHeaders({ "Content-Type": "application/json" }),
-        body: JSON.stringify({ productId: product.id, quantity: 1 }),
+        body: JSON.stringify({ productId: product.id, quantity: 1, bundleSelection }),
       });
 
       const payload = await readJsonSafely(response);
@@ -144,27 +219,71 @@ export default function PricingPage() {
     }
   };
 
-  const buyNow = (pkg: PackageProduct) => {
+  const buyNow = (pkg: PackageProduct, bundleSelection?: BundleSelection) => {
     const product = productsBySlug[pkg.slug];
     if (!product) {
       setFeedback("Package catalog is syncing. Please retry in a few seconds.");
       return;
     }
 
+    const checkoutParams = new URLSearchParams({
+      mode: "buy_now",
+      productId: product.id,
+    });
+    if (bundleSelection) {
+      checkoutParams.set("bundleSelection", JSON.stringify(bundleSelection));
+    }
+
+    const checkoutUrl = `/checkout?${checkoutParams.toString()}`;
+
     if (!activeUser) {
-      window.location.assign(`/auth/signin?returnTo=${encodeURIComponent(`/checkout?mode=buy_now&productId=${product.id}`)}`);
+      window.location.assign(`/auth/signin?returnTo=${encodeURIComponent(checkoutUrl)}`);
       return;
     }
 
-    window.location.assign(`/checkout?mode=buy_now&productId=${encodeURIComponent(product.id)}`);
+    window.location.assign(checkoutUrl);
   };
 
   const renderCard = (categoryTitle: string, pkg: PackageProduct) => (
     (() => {
       const liveProduct = productsBySlug[pkg.slug];
-      const livePrice = liveProduct?.priceLkr ?? pkg.priceLkr;
-      const originalPrice = liveProduct?.originalPriceLkr ?? pkg.priceLkr;
-      const discountPercent = liveProduct?.discountPercent ?? 0;
+      let configurableSlug: Parameters<typeof calculateBundlePricing>[0] | null = null;
+      if (isConfigurableBundleSlug(pkg.slug)) {
+        configurableSlug = pkg.slug;
+      }
+      const selectionState = getBundleSelectionState(pkg.slug);
+      let computedBundlePrice: ReturnType<typeof calculateBundlePricing> | null = null;
+
+      if (configurableSlug && selectionState.cvSlug && selectionState.coverLetterSlug) {
+        const bundleRule = getConfigurableBundleRule(configurableSlug);
+        const hasRequiredLinkedin = !bundleRule.requireLinkedin || Boolean(selectionState.linkedinSlug);
+        if (hasRequiredLinkedin) {
+          try {
+            const bundleSlug = configurableSlug;
+            computedBundlePrice = calculateBundlePricing(bundleSlug, {
+              cvSlug: selectionState.cvSlug,
+              coverLetterSlug: selectionState.coverLetterSlug,
+              linkedinSlug: selectionState.linkedinSlug || undefined,
+            });
+          } catch {
+            computedBundlePrice = null;
+          }
+        }
+      }
+
+      const livePrice = computedBundlePrice?.priceLkr ?? liveProduct?.priceLkr ?? pkg.priceLkr;
+      const originalPrice = computedBundlePrice?.originalPriceLkr ?? liveProduct?.originalPriceLkr ?? pkg.priceLkr;
+      const discountPercent = computedBundlePrice?.discountPercent ?? liveProduct?.discountPercent ?? 0;
+      const isBulkBuy = pkg.slug.startsWith("bulk-cv-");
+      const isCvWritingPackage = pkg.category === "CV Writing";
+      const selectionReady = !configurableSlug || Boolean(computedBundlePrice);
+      const bundleSelectionPayload: BundleSelection | undefined = computedBundlePrice
+        ? {
+            cvSlug: computedBundlePrice.selection.cvSlug,
+            coverLetterSlug: computedBundlePrice.selection.coverLetterSlug,
+            linkedinSlug: computedBundlePrice.selection.linkedinSlug || undefined,
+          }
+        : undefined;
 
       return (
         <article
@@ -173,6 +292,11 @@ export default function PricingPage() {
         pkg.isMostPopular ? "border-brand-main" : "border-zinc-200"
       }`}
     >
+      {isBulkBuy && (
+        <div className="mb-4 inline-flex items-center gap-2 rounded-[10px] border border-amber-300 bg-amber-50 px-3 py-1.5 shadow-sm">
+          <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-700">Bulk Buy</span>
+        </div>
+      )}
       {pkg.isMostPopular && (
         <div className="mb-5 inline-flex items-center gap-2 rounded-[10px] border border-brand-main/40 bg-white px-3 py-1.5 shadow-sm">
           <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-main text-white">
@@ -183,6 +307,73 @@ export default function PricingPage() {
       )}
       <h4 className="text-[26px] font-bold font-plus-jakarta text-foreground mb-2">{pkg.name}</h4>
       <p className="text-text-body mb-6">{pkg.audience}</p>
+
+      {configurableSlug && (
+        <div className="mb-6 rounded-[12px] border border-zinc-200 bg-zinc-50 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.1em] text-zinc-500">Build Package</p>
+          <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
+            <label className="text-sm text-zinc-700">
+              <span className="mb-1 block font-medium">Step 1 - Select CV Package</span>
+              <select
+                value={selectionState.cvSlug}
+                onChange={(event) => updateBundleSelection(pkg.slug, "cvSlug", event.target.value)}
+                className="w-full rounded-[10px] border border-zinc-300 bg-white px-3 py-2"
+              >
+                <option value="">Choose CV package</option>
+                {cvOptions.map((option) => (
+                  <option key={option.slug} value={option.slug}>
+                    {option.name} - {formatLkr(option.priceLkr)}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="text-sm text-zinc-700">
+              <span className="mb-1 block font-medium">Step 2 - Select Cover Letter</span>
+              <select
+                value={selectionState.coverLetterSlug}
+                onChange={(event) => updateBundleSelection(pkg.slug, "coverLetterSlug", event.target.value)}
+                className="w-full rounded-[10px] border border-zinc-300 bg-white px-3 py-2"
+              >
+                <option value="">Choose Cover Letter package</option>
+                {coverLetterOptions.map((option) => (
+                  <option key={option.slug} value={option.slug}>
+                    {option.name} - {formatLkr(option.priceLkr)}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            {getConfigurableBundleRule(configurableSlug).requireLinkedin && (
+              <label className="text-sm text-zinc-700 md:col-span-2">
+                <span className="mb-1 block font-medium">Step 3 - Select LinkedIn Optimization</span>
+                <select
+                  value={selectionState.linkedinSlug}
+                  onChange={(event) => updateBundleSelection(pkg.slug, "linkedinSlug", event.target.value)}
+                  className="w-full rounded-[10px] border border-zinc-300 bg-white px-3 py-2"
+                >
+                  <option value="">Choose LinkedIn package</option>
+                  {linkedinOptions.map((option) => (
+                    <option key={option.slug} value={option.slug}>
+                      {option.name} - {formatLkr(option.priceLkr)}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            )}
+          </div>
+          {!computedBundlePrice && (
+            <p className="mt-3 text-xs font-medium text-amber-700">
+              Complete all required selections to calculate final bundle price.
+            </p>
+          )}
+          {computedBundlePrice && (
+            <p className="mt-3 text-xs font-semibold text-emerald-700">
+              Savings: {formatLkr(computedBundlePrice.originalPriceLkr - computedBundlePrice.priceLkr)} ({computedBundlePrice.discountPercent}% OFF)
+            </p>
+          )}
+        </div>
+      )}
 
       <div className="grid grid-cols-2 gap-4 mb-6">
         <div className="rounded-[12px] bg-zinc-100 p-4">
@@ -211,8 +402,8 @@ export default function PricingPage() {
       <div className="flex flex-wrap gap-2">
         <button
           type="button"
-          onClick={() => void addToCart(pkg)}
-          disabled={Boolean(addedBySlug[pkg.slug])}
+          onClick={() => void addToCart(pkg, bundleSelectionPayload)}
+          disabled={Boolean(addedBySlug[pkg.slug]) || !selectionReady}
           className={`inline-flex items-center justify-center rounded-[10px] px-4 py-2.5 text-sm font-medium text-white transition-colors ${
             addedBySlug[pkg.slug]
               ? "bg-green-600"
@@ -223,11 +414,22 @@ export default function PricingPage() {
         </button>
         <button
           type="button"
-          onClick={() => buyNow(pkg)}
-          className="inline-flex items-center justify-center rounded-[10px] bg-brand-main px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-dark"
+          onClick={() => buyNow(pkg, bundleSelectionPayload)}
+          disabled={!selectionReady}
+          className="inline-flex items-center justify-center rounded-[10px] bg-brand-main px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-50"
         >
           Buy Now
         </button>
+        {isCvWritingPackage && (
+          <a
+            href={fiverrGigUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-[10px] border border-emerald-300 bg-emerald-50 px-4 py-2.5 text-sm font-semibold text-emerald-800 transition-colors hover:bg-emerald-100"
+          >
+            Order on Fiverr (50% OFF)
+          </a>
+        )}
         <a
           href={buildWhatsAppUrl(categoryTitle, pkg.name, livePrice, pkg.delivery)}
           target="_blank"
@@ -270,6 +472,29 @@ export default function PricingPage() {
 
       <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
+          {bundleCategoryIndex >= 0 && (
+            <div className="max-w-5xl mx-auto mb-8 rounded-[20px] border border-emerald-300 bg-gradient-to-r from-emerald-50 to-white p-6 md:p-8">
+              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-700">Bundle Highlight</p>
+                  <h3 className="mt-2 text-[26px] font-bold font-plus-jakarta text-foreground">
+                    Bundle Discount Packs - Save Up to 30%
+                  </h3>
+                  <p className="mt-2 text-text-body">
+                    Build your Trinity or Duo combo by selecting package tiers and instantly see your bundled savings.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => jumpToCategory("bundle-discount", bundleCategoryIndex)}
+                  className="inline-flex items-center justify-center rounded-[10px] bg-emerald-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-700"
+                >
+                  View Bundle Discounts
+                </button>
+              </div>
+            </div>
+          )}
+
           <div className="text-center mb-16">
             <span className="text-brand-main font-semibold tracking-wider uppercase mb-2 block">Packages</span>
             <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground leading-[1.1]">
@@ -285,13 +510,32 @@ export default function PricingPage() {
               Add packages to cart or use Buy Now, then complete checkout with bank transfer reference and payment slip upload.
             </p>
             <p className="mt-4 text-brand-dark font-semibold">Bank transfer only. Slip upload required for order confirmation.</p>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+              <a
+                href={fiverrGigUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-[10px] bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-emerald-700"
+              >
+                Order on Fiverr (50% OFF)
+              </a>
+              <Link
+                href="/fiverr-orders"
+                className="inline-flex items-center justify-center rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+              >
+                View Fiverr CV Offers
+              </Link>
+            </div>
             {feedback && <p className="mt-4 text-sm font-medium text-brand-dark">{feedback}</p>}
           </div>
 
           <div className="md:hidden mb-8">
             <p className="text-sm font-semibold uppercase tracking-wide text-zinc-500 mb-3">Browse by category</p>
             <div className="flex gap-3 overflow-x-auto pb-2">
-              {packageCategories.map((category, index) => (
+              {mobileCategoryIndexes.map((index) => {
+                const category = packageCategories[index];
+
+                return (
                 <button
                   key={category.title}
                   type="button"
@@ -305,12 +549,13 @@ export default function PricingPage() {
                   {category.title.replace(" Packages", "")}
                   {category.isPriority ? " - Priority" : ""}
                 </button>
-              ))}
+                );
+              })}
             </div>
           </div>
 
           <div className="md:hidden">
-            <section key={selectedCategory.title}>
+            <section key={selectedCategory.title} data-category-anchor-mobile={selectedCategory.key}>
               <div className="mb-8">
                 <div className="mb-3 flex items-center gap-3">
                   <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">
@@ -332,7 +577,7 @@ export default function PricingPage() {
 
           <div className="hidden md:block space-y-16">
             {packageCategories.map((category) => (
-              <section key={category.title}>
+              <section key={category.title} data-category-anchor-desktop={category.key}>
                 <div className="mb-8">
                   <div className="mb-3 flex items-center gap-3">
                     <h3 className="text-[34px] md:text-[42px] font-bold font-plus-jakarta text-foreground">

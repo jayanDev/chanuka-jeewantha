@@ -265,7 +265,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
         bullets: [
           "Premium CV writing and design",
           "ATS target range for stronger system visibility",
-          "Cover letter included to strengthen applications",
+          "Achievement-first narrative structure",
         ],
       },
       {
@@ -288,9 +288,9 @@ const packageGuideDrafts: PackageGuideDraft[] = [
           "It is best for mid-level professionals and managers who want stronger interview conversion for better-paying or more strategic roles.",
       },
       {
-        question: "Does this package include a cover letter?",
+        question: "Can I add a cover letter with this package?",
         answer:
-          "Yes. A cover letter is included to support better application relevance and consistency with your upgraded CV.",
+          "Yes. You can add a separate cover letter package or choose a discount bundle that combines CV and cover letter services.",
       },
       {
         question: "Can this help with international job applications?",
@@ -332,7 +332,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
         heading: "How the Executive Package Strengthens Positioning",
         paragraphs: [
           "This package structures your experience around strategic impact rather than operational detail. It highlights leadership narrative, governance discipline, and value delivery.",
-          "The package also includes aligned LinkedIn support to ensure your public executive profile reinforces the same leadership story.",
+          "You can optionally pair this with a LinkedIn optimization package to keep your executive profile aligned with the same leadership story.",
         ],
         bullets: [
           "Tailored executive CV and resume writing",

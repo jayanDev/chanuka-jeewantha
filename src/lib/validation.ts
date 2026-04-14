@@ -47,6 +47,13 @@ export const signInSchema = z.object({
 export const cartItemSchema = z.object({
   productId: z.string().min(1),
   quantity: z.number().int().min(1).max(10).default(1),
+  bundleSelection: z
+    .object({
+      cvSlug: z.string().min(1),
+      coverLetterSlug: z.string().min(1),
+      linkedinSlug: z.string().min(1).optional(),
+    })
+    .optional(),
 });
 
 export const cartUpdateSchema = z.object({

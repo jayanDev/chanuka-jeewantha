@@ -197,8 +197,9 @@ export default function ProfilePageClient() {
               <h2 className="text-2xl font-bold font-plus-jakarta text-foreground">Account</h2>
 
               <div>
-                <label className="mb-2 block text-sm font-medium">Full Name</label>
+                <label htmlFor="profile-full-name" className="mb-2 block text-sm font-medium">Full Name</label>
                 <input
+                  id="profile-full-name"
                   type="text"
                   value={name}
                   onChange={(event) => setName(event.target.value)}
@@ -208,8 +209,9 @@ export default function ProfilePageClient() {
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium">Email (read-only)</label>
+                <label htmlFor="profile-email" className="mb-2 block text-sm font-medium">Email (read-only)</label>
                 <input
+                  id="profile-email"
                   type="email"
                   value={profile?.email ?? ""}
                   readOnly
@@ -218,8 +220,9 @@ export default function ProfilePageClient() {
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium">WhatsApp Number</label>
+                <label htmlFor="profile-whatsapp" className="mb-2 block text-sm font-medium">WhatsApp Number</label>
                 <input
+                  id="profile-whatsapp"
                   type="tel"
                   value={whatsappNumber}
                   onChange={(event) => setWhatsappNumber(event.target.value)}
@@ -230,8 +233,9 @@ export default function ProfilePageClient() {
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium">LinkedIn Profile URL</label>
+                <label htmlFor="profile-linkedin" className="mb-2 block text-sm font-medium">LinkedIn Profile URL</label>
                 <input
+                  id="profile-linkedin"
                   type="url"
                   value={linkedinUrl}
                   onChange={(event) => setLinkedinUrl(event.target.value)}
@@ -241,8 +245,9 @@ export default function ProfilePageClient() {
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium">Timezone</label>
+                <label htmlFor="profile-timezone" className="mb-2 block text-sm font-medium">Timezone</label>
                 <input
+                  id="profile-timezone"
                   type="text"
                   value={timezone}
                   onChange={(event) => setTimezone(event.target.value)}
@@ -253,19 +258,21 @@ export default function ProfilePageClient() {
               <div className="space-y-2">
                 <label className="inline-flex items-center gap-2 text-sm">
                   <input
+                    id="profile-receive-offers"
                     type="checkbox"
                     checked={receiveOfferAlerts}
                     onChange={(event) => setReceiveOfferAlerts(event.target.checked)}
                   />
-                  Receive website offer alerts
+                  <span id="profile-receive-offers-label">Receive website offer alerts</span>
                 </label>
                 <label className="inline-flex items-center gap-2 text-sm">
                   <input
+                    id="profile-receive-orders"
                     type="checkbox"
                     checked={receiveOrderAlerts}
                     onChange={(event) => setReceiveOrderAlerts(event.target.checked)}
                   />
-                  Receive order progress alerts
+                  <span id="profile-receive-orders-label">Receive order progress alerts</span>
                 </label>
               </div>
 
@@ -282,8 +289,9 @@ export default function ProfilePageClient() {
               <h2 className="text-2xl font-bold font-plus-jakarta text-foreground">Security</h2>
 
               <div>
-                <label className="mb-2 block text-sm font-medium">Current Password</label>
+                <label htmlFor="profile-current-password" className="mb-2 block text-sm font-medium">Current Password</label>
                 <input
+                  id="profile-current-password"
                   type="password"
                   value={currentPassword}
                   onChange={(event) => setCurrentPassword(event.target.value)}
@@ -294,8 +302,9 @@ export default function ProfilePageClient() {
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium">New Password</label>
+                <label htmlFor="profile-new-password" className="mb-2 block text-sm font-medium">New Password</label>
                 <input
+                  id="profile-new-password"
                   type="password"
                   value={newPassword}
                   onChange={(event) => setNewPassword(event.target.value)}
@@ -306,8 +315,9 @@ export default function ProfilePageClient() {
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium">Confirm New Password</label>
+                <label htmlFor="profile-confirm-password" className="mb-2 block text-sm font-medium">Confirm New Password</label>
                 <input
+                  id="profile-confirm-password"
                   type="password"
                   value={confirmPassword}
                   onChange={(event) => setConfirmPassword(event.target.value)}
@@ -325,6 +335,28 @@ export default function ProfilePageClient() {
                 {isSavingPassword ? "Updating..." : "Change Password"}
               </button>
             </form>
+
+            <section className="rounded-[16px] border border-zinc-200 bg-white p-6 space-y-4">
+              <h2 className="text-2xl font-bold font-plus-jakarta text-foreground">Affiliate Program</h2>
+              <p className="text-text-body">
+                Invite friends with your referral link, track conversions, and unlock free package rewards as your
+                affiliate points increase.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/affiliate"
+                  className="rounded-[10px] bg-brand-main px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
+                >
+                  Open Affiliate Dashboard
+                </Link>
+                <Link
+                  href="/affiliate#how-it-works"
+                  className="rounded-[10px] border border-zinc-300 px-5 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main"
+                >
+                  View Program Rules
+                </Link>
+              </div>
+            </section>
           </div>
 
           <aside className="rounded-[16px] border border-zinc-200 bg-white p-6 h-fit space-y-4 lg:sticky lg:top-24">
@@ -337,6 +369,9 @@ export default function ProfilePageClient() {
             </Link>
             <Link href="/cart" className="block rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
               Cart
+            </Link>
+            <Link href="/affiliate" className="block rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
+              Affiliate Program
             </Link>
             <button
               type="button"

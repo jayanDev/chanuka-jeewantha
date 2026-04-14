@@ -1,10 +1,13 @@
 import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
 import { getRequestUser } from "@/lib/auth-server";
 import { isTrustedOrigin } from "@/lib/security";
 import { notifyOrderCreated } from "@/lib/notifications";
 import { getFirebaseDb } from "@/lib/firebase-admin";
+import { prisma } from "@/lib/prisma";
 import { packageProducts } from "@/lib/packages-catalog";
+import { calculateBundlePricing, isConfigurableBundleSlug, type BundleSelection } from "@/lib/bundle-pricing";
 import { applyOfferToPrice, getEffectiveSeasonalOffer, incrementOfferAnalytics } from "@/lib/seasonal-offers";
 import { markCouponUsed, validateCouponForItems } from "@/lib/coupons";
 import { isAllowedFileType, saveUploadedFile } from "@/lib/upload-storage";
@@ -61,6 +64,66 @@ type OrderRevision = {
   resolvedBy: string | null;
   adminResponse: string | null;
 };
+
+async function creditAffiliateReferral(input: {
+  referralCode: string;
+  referredUserId: string;
+  referredEmail: string;
+  packageNames: string[];
+}) {
+  const affiliate = await prisma.affiliateProfile.findUnique({
+    where: { referralCode: input.referralCode.toUpperCase() },
+    select: {
+      id: true,
+      userId: true,
+    },
+  });
+
+  if (!affiliate) {
+    return;
+  }
+
+  // Prevent self-referrals.
+  if (affiliate.userId === input.referredUserId) {
+    return;
+  }
+
+  const referredEmail = input.referredEmail.trim().toLowerCase();
+  const existing = await prisma.referralTransaction.findFirst({
+    where: {
+      affiliateProfileId: affiliate.id,
+      referredEmail,
+    },
+    select: {
+      id: true,
+    },
+  });
+
+  // Count only the first successful purchase per referred account.
+  if (existing) {
+    return;
+  }
+
+  const packageName = input.packageNames.filter(Boolean).slice(0, 3).join(" + ") || "Website package order";
+
+  await prisma.$transaction([
+    prisma.referralTransaction.create({
+      data: {
+        affiliateProfileId: affiliate.id,
+        referredEmail,
+        packageName,
+      },
+    }),
+    prisma.affiliateProfile.update({
+      where: { id: affiliate.id },
+      data: {
+        successfulReferrals: {
+          increment: 1,
+        },
+      },
+    }),
+  ]);
+}
 
 function getProductMap() {
   return new Map(packageProducts.map((item) => [item.slug, item]));
@@ -216,6 +279,26 @@ function parseOrderRevisions(value: unknown): OrderRevision[] {
     .sort((a, b) => b.requestedAtMs - a.requestedAtMs);
 }
 
+function parseBundleSelection(input: unknown): BundleSelection | null {
+  if (!input || typeof input !== "object") return null;
+
+  const row = input as {
+    cvSlug?: unknown;
+    coverLetterSlug?: unknown;
+    linkedinSlug?: unknown;
+  };
+
+  if (typeof row.cvSlug !== "string" || typeof row.coverLetterSlug !== "string") {
+    return null;
+  }
+
+  return {
+    cvSlug: row.cvSlug,
+    coverLetterSlug: row.coverLetterSlug,
+    linkedinSlug: typeof row.linkedinSlug === "string" ? row.linkedinSlug : undefined,
+  };
+}
+
 function normalizeLinkedinUrl(raw: string): string | null {
   if (!raw) return null;
 
@@ -235,6 +318,7 @@ function normalizeLinkedinUrl(raw: string): string | null {
 function toOrderProducts(input: {
   mode: string;
   buyNowProductId: string;
+  buyNowBundleSelection: BundleSelection | null;
   buyNowQuantity: number;
   userId: string;
   db: ReturnType<typeof getFirebaseDb>;
@@ -247,7 +331,24 @@ function toOrderProducts(input: {
       return Promise.resolve([]);
     }
 
-    const pricing = applyOfferToPrice(product.priceLkr, product.slug, product.category, input.activeOffer);
+    let pricing = applyOfferToPrice(product.priceLkr, product.slug, product.category, input.activeOffer);
+    if (isConfigurableBundleSlug(product.slug)) {
+      if (!input.buyNowBundleSelection) {
+        return Promise.resolve([]);
+      }
+
+      try {
+        const bundlePricing = calculateBundlePricing(product.slug, input.buyNowBundleSelection);
+        pricing = {
+          priceLkr: bundlePricing.priceLkr,
+          originalPriceLkr: bundlePricing.originalPriceLkr,
+          discountPercent: bundlePricing.discountPercent,
+        };
+      } catch {
+        return Promise.resolve([]);
+      }
+    }
+
     return Promise.resolve([
       {
         id: product.slug,
@@ -266,14 +367,32 @@ function toOrderProducts(input: {
     .then((cartSnapshot) =>
       cartSnapshot.docs
         .map((doc) => {
-          const data = doc.data() as { productId?: unknown; quantity?: unknown };
+          const data = doc.data() as { productId?: unknown; quantity?: unknown; bundleSelection?: unknown };
           if (typeof data.productId !== "string" || typeof data.quantity !== "number") {
             return null;
           }
 
           const product = input.productMap.get(data.productId);
           if (!product) return null;
-          const pricing = applyOfferToPrice(product.priceLkr, product.slug, product.category, input.activeOffer);
+
+          let pricing = applyOfferToPrice(product.priceLkr, product.slug, product.category, input.activeOffer);
+          if (isConfigurableBundleSlug(product.slug)) {
+            const selection = parseBundleSelection(data.bundleSelection);
+            if (!selection) {
+              return null;
+            }
+
+            try {
+              const bundlePricing = calculateBundlePricing(product.slug, selection);
+              pricing = {
+                priceLkr: bundlePricing.priceLkr,
+                originalPriceLkr: bundlePricing.originalPriceLkr,
+                discountPercent: bundlePricing.discountPercent,
+              };
+            } catch {
+              return null;
+            }
+          }
 
           return {
             id: product.slug,
@@ -477,16 +596,28 @@ export async function POST(request: Request) {
     const db = getFirebaseDb();
     const productMap = getProductMap();
     const activeOffer = await getEffectiveSeasonalOffer(request);
+    const cookieStore = await cookies();
+    const referredByCode = cookieStore.get("referred_by")?.value?.trim().toUpperCase() ?? null;
 
     let products: Array<{ id: string; name: string; category: string; priceLkr: number; quantity: number }> = [];
+    let buyNowBundleSelection: BundleSelection | null = null;
 
     if (mode === "buy_now") {
       const productId = String(formData.get("productId") ?? "");
       const quantity = toInt(formData.get("quantity"), 1);
+      const bundleSelectionRaw = String(formData.get("bundleSelection") ?? "").trim();
+      if (bundleSelectionRaw) {
+        try {
+          buyNowBundleSelection = parseBundleSelection(JSON.parse(bundleSelectionRaw));
+        } catch {
+          buyNowBundleSelection = null;
+        }
+      }
 
       products = await toOrderProducts({
         mode,
         buyNowProductId: productId,
+        buyNowBundleSelection,
         buyNowQuantity: quantity,
         userId: user.id,
         db,
@@ -501,6 +632,7 @@ export async function POST(request: Request) {
       products = await toOrderProducts({
         mode,
         buyNowProductId: "",
+        buyNowBundleSelection: null,
         buyNowQuantity: 1,
         userId: user.id,
         db,
@@ -647,6 +779,7 @@ export async function POST(request: Request) {
       items,
       paymentPersonName,
       paymentWhatsApp: normalizedWhatsApp,
+      referredByCode,
       handoverDocuments: [] as HandoverDocument[],
       revisions: [] as OrderRevision[],
       updates,
@@ -693,6 +826,20 @@ export async function POST(request: Request) {
       });
     } catch (error) {
       console.error("In-app notification create failed:", error);
+    }
+
+    if (referredByCode) {
+      try {
+        await creditAffiliateReferral({
+          referralCode: referredByCode,
+          referredUserId: user.id,
+          referredEmail: user.email,
+          packageNames: order.items.map((item) => item.productName),
+        });
+      } catch (error) {
+        // Keep order flow successful even if affiliate crediting fails.
+        console.error("Affiliate referral credit failed:", error);
+      }
     }
 
     return NextResponse.json({

@@ -5,11 +5,10 @@ import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Career Services | CV Writing, LinkedIn Optimization, Coaching",
+  title: "CV Writing Services & Linkedin Optimization Sri Lanka | Services",
   description:
-    "Explore Chanuka Jeewantha's career development services including ATS-friendly CV writing, cover letters, LinkedIn optimization, and coaching.",
+    "Expert CV writing services. Get an ATS Friendly CV, Cover Letter Writing, and Linkedin Optimization by Chanuka Jeewantha.",
   path: "/services",
-  keywords: ["career services Sri Lanka", "ATS CV writing", "LinkedIn optimization", "career coaching"],
 });
 
 export default function ServicesPage() {

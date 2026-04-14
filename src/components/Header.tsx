@@ -10,6 +10,21 @@ type NavUser = {
   role: "customer" | "admin";
 };
 
+type PrimaryNavLink = {
+  href: string;
+  label: string;
+};
+
+const primaryNavLinks: PrimaryNavLink[] = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/ebooks", label: "Ebooks" },
+  { href: "/resources", label: "Resources" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/contact", label: "Contact" },
+];
+
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [user, setUser] = useState<NavUser | null>(null);
@@ -34,7 +49,6 @@ export default function Header() {
 
   useEffect(() => {
     if (!user) {
-      setUnreadNotificationCount(0);
       return;
     }
 
@@ -70,8 +84,6 @@ export default function Header() {
       document.body.style.overflow = "";
       return;
     }
-
-    setIsProfileMenuOpen(false);
 
     document.body.style.overflow = "hidden";
     firstMobileLinkRef.current?.focus();
@@ -121,9 +133,10 @@ export default function Header() {
 
   const desktopNavLinkClass = "text-[16px] font-medium text-foreground hover:text-brand-main transition-colors";
   const mobileNavLinkClass = "text-[18px] font-medium text-foreground hover:text-brand-main transition-colors";
+  const displayUnreadNotificationCount = user ? unreadNotificationCount : 0;
 
   return (
-    <header className="w-full max-w-[1512px] mx-auto px-4 sm:px-6 py-[32px] md:py-8 relative z-50">
+    <header suppressHydrationWarning className="w-full max-w-[1512px] mx-auto px-4 sm:px-6 py-[32px] md:py-8 relative z-50">
       <div className="flex items-center justify-between relative bg-white z-50 py-2">
         {/* Logo Container */}
         <div className="flex-shrink-0 w-auto md:mr-8">
@@ -136,27 +149,11 @@ export default function Header() {
         <nav className="hidden md:flex flex-1 items-center">
           <div className="flex flex-1 justify-center">
             <div className="flex items-center gap-6">
-            <Link href="/" className={desktopNavLinkClass}>
-              Home
-            </Link>
-            <Link href="/about" className={desktopNavLinkClass}>
-              About
-            </Link>
-            <Link href="/services" className={desktopNavLinkClass}>
-              Services
-            </Link>
-            <Link href="/ebooks" className={desktopNavLinkClass}>
-              Ebooks
-            </Link>
-            <Link href="/resources" className={desktopNavLinkClass}>
-              Resources
-            </Link>
-            <Link href="/pricing" className={desktopNavLinkClass}>
-              Pricing
-            </Link>
-            <Link href="/contact" className={desktopNavLinkClass}>
-              Contact
-            </Link>
+            {primaryNavLinks.map((link) => (
+              <Link key={link.href} href={link.href} className={desktopNavLinkClass}>
+                {link.label}
+              </Link>
+            ))}
             </div>
           </div>
 
@@ -176,9 +173,9 @@ export default function Header() {
                   <path d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 0 0-5-5.91V4a1 1 0 0 0-2 0v1.09A6 6 0 0 0 6 11v3.2a2 2 0 0 1-.6 1.4L4 17h5" />
                   <path d="M9 17a3 3 0 0 0 6 0" />
                 </svg>
-                {unreadNotificationCount > 0 && (
+                {displayUnreadNotificationCount > 0 && (
                   <span className="absolute -right-2 -top-2 inline-flex min-w-[1.25rem] items-center justify-center rounded-full bg-brand-main px-1 py-0.5 text-[10px] font-semibold text-white">
-                    {unreadNotificationCount > 99 ? "99+" : unreadNotificationCount}
+                    {displayUnreadNotificationCount > 99 ? "99+" : displayUnreadNotificationCount}
                   </span>
                 )}
               </Link>
@@ -217,7 +214,6 @@ export default function Header() {
                 <button
                   type="button"
                   aria-label="Profile menu"
-                  aria-expanded={isProfileMenuOpen}
                   onClick={() => setIsProfileMenuOpen((previous) => !previous)}
                   className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-foreground text-sm font-bold text-white transition-opacity hover:opacity-90"
                 >
@@ -276,7 +272,15 @@ export default function Header() {
         <div className="flex md:hidden">
           <button 
             className="rounded bg-brand-main p-2 text-white"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={() => {
+              setIsMobileMenuOpen((previous) => {
+                const next = !previous;
+                if (next) {
+                  setIsProfileMenuOpen(false);
+                }
+                return next;
+              });
+            }}
             aria-label="Toggle mobile menu"
             aria-controls="mobile-navigation"
           >
@@ -301,24 +305,17 @@ export default function Header() {
         }`}
       >
         <nav className="flex flex-col items-center gap-6 px-4">
-          <Link ref={firstMobileLinkRef} href="/" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>
-            Home
-          </Link>
-          <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>
-            About
-          </Link>
-          <Link href="/services" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>
-            Services
-          </Link>
-          <Link href="/ebooks" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>
-            Ebooks
-          </Link>
-          <Link href="/resources" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>
-            Resources
-          </Link>
-          <Link href="/pricing" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>
-            Pricing
-          </Link>
+          {primaryNavLinks.map((link, index) => (
+            <Link
+              key={link.href}
+              ref={index === 0 ? firstMobileLinkRef : undefined}
+              href={link.href}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={mobileNavLinkClass}
+            >
+              {link.label}
+            </Link>
+          ))}
 
           {user && (
             <Link
@@ -351,9 +348,9 @@ export default function Header() {
                 <path d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 0 0-5-5.91V4a1 1 0 0 0-2 0v1.09A6 6 0 0 0 6 11v3.2a2 2 0 0 1-.6 1.4L4 17h5" />
                 <path d="M9 17a3 3 0 0 0 6 0" />
               </svg>
-              {unreadNotificationCount > 0 && (
+              {displayUnreadNotificationCount > 0 && (
                 <span className="absolute -right-2 -top-2 inline-flex min-w-[1.25rem] items-center justify-center rounded-full bg-brand-main px-1 py-0.5 text-[10px] font-semibold text-white">
-                  {unreadNotificationCount > 99 ? "99+" : unreadNotificationCount}
+                  {displayUnreadNotificationCount > 99 ? "99+" : displayUnreadNotificationCount}
                 </span>
               )}
             </Link>

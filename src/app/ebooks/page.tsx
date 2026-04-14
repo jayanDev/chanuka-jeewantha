@@ -1,27 +1,23 @@
-import Image from "next/image";
+import { buildPageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ebooks } from "@/lib/ebooks";
-import { formatLkr } from "@/lib/packages-catalog";
-import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
+import { digitalProducts } from "@/lib/digital-products";
+import StoreFilterClient from "./_components/StoreFilterClient";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Career Ebooks | Free and Premium Guides",
+  title: "Digital Products & Templates | Chanuka Jeewantha",
   description:
-    "Read free career ebooks and premium strategy guides covering ATS CV writing, LinkedIn visibility, and interview preparation.",
+    "Explore our premium digital product store. Download ATS CV Templates, Ebooks, Cover Letters, and Career Guides to fast-track your job search.",
   path: "/ebooks",
-  keywords: ["career ebooks", "ATS CV guide", "LinkedIn ebook", "interview preparation ebook"],
+  keywords: ["CV templates", "cover letter templates", "career ebooks", "digital store"],
 });
 
 export default function EbooksPage() {
   const breadcrumbLd = buildBreadcrumbList([
     { name: "Home", path: "/" },
-    { name: "Ebooks", path: "/ebooks" },
+    { name: "Store", path: "/ebooks" },
   ]);
-
-  const freeEbooks = ebooks.filter((ebook) => ebook.category === "free");
-  const paidEbooks = ebooks.filter((ebook) => ebook.category === "paid");
 
   return (
     <>
@@ -48,60 +44,17 @@ export default function EbooksPage() {
             <span className="text-brand-main">Ebooks</span>
           </div>
           <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-5xl !text-white">
-            Read free career guides and discover premium <span className="text-brand-main">paid ebook toolkits</span>.
+            Premium Digital <span className="text-brand-main">Product Store</span>
           </h1>
+          <p className="text-text-light text-[18px] md:text-[22px] max-w-2xl leading-relaxed mt-6">
+            Download professional CV templates, cover letters, and career strategy ebooks to fast-track your job search.
+          </p>
         </div>
       </section>
 
-      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
+      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50/50">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
-          <div className="mb-12">
-            <span className="text-brand-main font-semibold tracking-wider uppercase mb-2 block">Free Ebooks</span>
-            <h2 className="text-[36px] md:text-[48px] font-bold font-plus-jakarta text-foreground">Start Reading For Free</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-            {freeEbooks.map((ebook) => (
-              <article key={ebook.slug} className="rounded-[22px] border border-zinc-200 p-7 bg-zinc-50">
-                <div className="relative mb-6 aspect-[4/3] overflow-hidden rounded-[14px] border border-zinc-200 bg-white">
-                  <Image src={ebook.coverImage} alt={ebook.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
-                </div>
-                <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground mb-2">{ebook.title}</h3>
-                <p className="text-brand-dark font-semibold mb-3">{ebook.subtitle}</p>
-                <p className="text-text-body mb-6">{ebook.description}</p>
-                <div className="flex flex-wrap gap-3">
-                  <Link href={`/ebooks/${ebook.slug}`} className="rounded-[10px] bg-foreground px-5 py-2.5 font-medium text-white transition-colors hover:bg-brand-dark">
-                    Read Free Ebook
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <div className="mb-12">
-            <span className="text-brand-main font-semibold tracking-wider uppercase mb-2 block">Paid Ebooks</span>
-            <h2 className="text-[36px] md:text-[48px] font-bold font-plus-jakarta text-foreground">Premium Strategy Guides</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {paidEbooks.map((ebook) => (
-              <article key={ebook.slug} className="rounded-[22px] border border-zinc-200 p-7 bg-white shadow-sm">
-                <div className="relative mb-6 aspect-[4/3] overflow-hidden rounded-[14px] border border-zinc-200 bg-zinc-50">
-                  <Image src={ebook.coverImage} alt={ebook.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
-                </div>
-                <div className="mb-4 inline-flex items-center gap-2 rounded-[10px] border border-brand-main/40 bg-brand-main/10 px-3 py-1.5">
-                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-brand-dark">Paid Ebook</span>
-                </div>
-                <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground mb-2">{ebook.title}</h3>
-                <p className="text-brand-dark font-semibold mb-3">{ebook.subtitle}</p>
-                <p className="text-text-body mb-5">{ebook.description}</p>
-                <p className="text-[22px] font-bold font-plus-jakarta text-foreground mb-6">{formatLkr(ebook.priceLkr ?? 0)}</p>
-                <Link href={`/ebooks/${ebook.slug}`} className="rounded-[10px] bg-brand-main px-5 py-2.5 font-medium text-white transition-colors hover:bg-brand-dark">
-                  View Paid Ebook
-                </Link>
-              </article>
-            ))}
-          </div>
+          <StoreFilterClient products={digitalProducts} />
 
           <aside className="mt-8 rounded-[16px] border border-zinc-200 bg-zinc-50 p-6">
             <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Continue Your Career Upgrade</h2>

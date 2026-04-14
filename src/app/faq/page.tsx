@@ -83,8 +83,8 @@ export default function FAQPage() {
       </section>
 
       <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col gap-6">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
+          <div className="mx-auto max-w-4xl flex flex-col gap-6">
             {faqs.map((faq, index) => (
               <details key={index} className="group bg-zinc-50 border border-zinc-200 rounded-[20px] p-6 hover:border-brand-main transition-colors cursor-pointer open:bg-white [&_summary::-webkit-details-marker]:hidden">
                 <summary className="flex justify-between items-center font-bold text-[20px] md:text-[24px] font-plus-jakarta text-foreground outline-none">
@@ -100,7 +100,7 @@ export default function FAQPage() {
             ))}
           </div>
 
-          <div className="mt-16 text-center bg-zinc-50 p-12 rounded-[24px] border border-zinc-200">
+          <div className="mx-auto mt-16 max-w-4xl text-center bg-zinc-50 p-12 rounded-[24px] border border-zinc-200">
              <h3 className="text-[28px] font-bold font-plus-jakarta mb-4 text-foreground">Still have questions?</h3>
              <p className="text-text-body mb-8 text-lg">Can't find the answer you're looking for? Please chat to our friendly team.</p>
              <Link href="/contact" className="px-[32px] py-[16px] bg-brand-main hover:bg-brand-dark text-white rounded-[10px] font-medium transition-colors inline-block">

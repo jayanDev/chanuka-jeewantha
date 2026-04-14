@@ -163,6 +163,18 @@ export default function OffersPageClient() {
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link
+              href="/offers/bundles"
+              className="rounded-[10px] border border-brand-main bg-brand-main/5 px-4 py-2 text-sm font-semibold text-brand-dark transition-colors hover:bg-brand-main hover:text-white"
+            >
+              View Bundle Offer Packages
+            </Link>
+            <Link
+              href="/fiverr-orders"
+              className="rounded-[10px] border border-emerald-300 bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-800 transition-colors hover:bg-emerald-100"
+            >
+              Fiverr Orders - 50% OFF
+            </Link>
+            <Link
               href="/pricing"
               className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
             >

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { buildOfferPreviewHeaders, withOfferPreviewUrl } from "@/lib/offer-preview-client";
 
+const INITIAL_NOW_MS = Date.now();
+
 type ActiveOffer = {
   id: string;
   title: string;
@@ -41,7 +43,7 @@ async function readJsonSafely(response: Response): Promise<Record<string, unknow
 
 export default function SeasonalOfferBanner() {
   const [offer, setOffer] = useState<ActiveOffer | null>(null);
-  const [now, setNow] = useState(Date.now());
+  const [now, setNow] = useState(INITIAL_NOW_MS);
 
   useEffect(() => {
     const load = async () => {

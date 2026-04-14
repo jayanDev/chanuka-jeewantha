@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import SubscribeForm from "@/components/SubscribeForm";
 import { packageProducts } from "@/lib/packages-catalog";
@@ -79,13 +80,19 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
       </section>
 
       <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           {/* Feature Image */}
-          <div className="w-full aspect-[21/9] bg-zinc-200 rounded-[24px] mb-12 flex items-center justify-center text-zinc-500 font-bold uppercase tracking-widest">
-            Service Hero Image
+          <div className="mx-auto max-w-4xl relative w-full aspect-[21/9] bg-zinc-200 rounded-[24px] mb-12 overflow-hidden">
+            <Image
+              src="/images/about-page-chanuka.jpg"
+              alt={`${serviceName} service overview`}
+              fill
+              sizes="(max-width: 1024px) 100vw, 1024px"
+              className="object-cover"
+            />
           </div>
 
-          <article className="prose prose-lg max-w-none prose-headings:font-plus-jakarta prose-headings:text-foreground prose-p:text-text-body prose-a:text-brand-main">
+          <article className="prose prose-lg mx-auto max-w-4xl prose-headings:font-plus-jakarta prose-headings:text-foreground prose-p:text-text-body prose-a:text-brand-main">
             <h2>Overview</h2>
             <p>
               In today&#39;s hiring environment, your professional profile must be clear, role-aligned, and results-focused. This {serviceName.toLowerCase()} service is designed to improve how recruiters and hiring managers understand your value.

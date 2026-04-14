@@ -5,6 +5,11 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { paymentInstructions } from "@/lib/packages-catalog";
 import { buildOfferPreviewHeaders, withOfferPreviewUrl } from "@/lib/offer-preview-client";
+import {
+  calculateBundlePricing,
+  isConfigurableBundleSlug,
+  type BundleSelection,
+} from "@/lib/bundle-pricing";
 
 type CartItem = {
   id: string;
@@ -17,6 +22,7 @@ type CartItem = {
     priceLkr: number;
     originalPriceLkr: number;
     discountPercent: number;
+    bundleSelection?: BundleSelection | null;
   };
 };
 
@@ -28,6 +34,7 @@ type Product = {
   priceLkr: number;
   originalPriceLkr: number;
   discountPercent: number;
+  bundleSelection?: BundleSelection | null;
 };
 
 type QuoteSummary = {
@@ -140,6 +147,7 @@ export default function CheckoutPage() {
   const [mode, setMode] = useState<"cart" | "buy_now">("cart");
   const [buyNowProductId, setBuyNowProductId] = useState("");
   const [buyNowQuantity, setBuyNowQuantity] = useState(1);
+  const [buyNowBundleSelection, setBuyNowBundleSelection] = useState<BundleSelection | null>(null);
   const [paymentPersonName, setPaymentPersonName] = useState("");
   const [paymentWhatsApp, setPaymentWhatsApp] = useState("");
   const [couponCode, setCouponCode] = useState("");
@@ -172,12 +180,33 @@ export default function CheckoutPage() {
   useEffect(() => {
     const queryMode = params.get("mode");
     const queryProductId = params.get("productId");
+    const queryBundleSelection = params.get("bundleSelection");
 
     if (queryMode === "buy_now") {
       setMode("buy_now");
     }
     if (queryProductId) {
       setBuyNowProductId(queryProductId);
+    }
+
+    if (queryBundleSelection) {
+      try {
+        const parsed = JSON.parse(queryBundleSelection) as {
+          cvSlug?: unknown;
+          coverLetterSlug?: unknown;
+          linkedinSlug?: unknown;
+        };
+
+        if (typeof parsed.cvSlug === "string" && typeof parsed.coverLetterSlug === "string") {
+          setBuyNowBundleSelection({
+            cvSlug: parsed.cvSlug,
+            coverLetterSlug: parsed.coverLetterSlug,
+            linkedinSlug: typeof parsed.linkedinSlug === "string" ? parsed.linkedinSlug : undefined,
+          });
+        }
+      } catch {
+        setBuyNowBundleSelection(null);
+      }
     }
   }, [params]);
 
@@ -222,6 +251,17 @@ export default function CheckoutPage() {
   }, []);
 
   const buyNowProduct = products.find((item) => item.id === buyNowProductId);
+  const buyNowBundlePricing = useMemo(() => {
+    if (!buyNowProduct || !isConfigurableBundleSlug(buyNowProduct.slug) || !buyNowBundleSelection) {
+      return null;
+    }
+
+    try {
+      return calculateBundlePricing(buyNowProduct.slug, buyNowBundleSelection);
+    } catch {
+      return null;
+    }
+  }, [buyNowProduct, buyNowBundleSelection]);
 
   const selectedItems = useMemo<SelectedItem[]>(() => {
     if (mode === "buy_now") {
@@ -231,8 +271,8 @@ export default function CheckoutPage() {
           id: buyNowProduct.id,
           name: buyNowProduct.name,
           quantity: buyNowQuantity,
-          priceLkr: buyNowProduct.priceLkr,
-          originalPriceLkr: buyNowProduct.originalPriceLkr,
+          priceLkr: buyNowBundlePricing?.priceLkr ?? buyNowProduct.priceLkr,
+          originalPriceLkr: buyNowBundlePricing?.originalPriceLkr ?? buyNowProduct.originalPriceLkr,
         },
       ];
     }
@@ -244,7 +284,7 @@ export default function CheckoutPage() {
       priceLkr: item.product.priceLkr,
       originalPriceLkr: item.product.originalPriceLkr,
     }));
-  }, [mode, buyNowProduct, buyNowQuantity, cartItems]);
+  }, [mode, buyNowProduct, buyNowQuantity, cartItems, buyNowBundlePricing]);
 
   const fallbackSummary = useMemo<QuoteSummary>(() => {
     const subtotalLkr = selectedItems.reduce((sum, item) => sum + item.priceLkr * item.quantity, 0);
@@ -294,6 +334,7 @@ export default function CheckoutPage() {
             productId: buyNowProductId,
             quantity: buyNowQuantity,
             couponCode: coupon,
+            bundleSelection: mode === "buy_now" ? buyNowBundleSelection : undefined,
           }),
           signal: controller.signal,
         });
@@ -358,9 +399,23 @@ export default function CheckoutPage() {
       window.clearTimeout(timeout);
       controller.abort();
     };
-  }, [isLoading, selectedItems, couponCode, mode, buyNowProductId, buyNowQuantity, fallbackSummary]);
+  }, [
+    isLoading,
+    selectedItems,
+    couponCode,
+    mode,
+    buyNowProductId,
+    buyNowQuantity,
+    buyNowBundleSelection,
+    fallbackSummary,
+  ]);
 
   const activeSummary = quoteSummary ?? fallbackSummary;
+  const totalSavedLkr = Math.max(0, activeSummary.originalSubtotalLkr - activeSummary.totalLkr);
+  const totalSavedPercent =
+    activeSummary.originalSubtotalLkr > 0
+      ? Math.round((totalSavedLkr / activeSummary.originalSubtotalLkr) * 100)
+      : 0;
 
   const onSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -412,8 +467,16 @@ export default function CheckoutPage() {
         return;
       }
 
+      if (buyNowProduct && isConfigurableBundleSlug(buyNowProduct.slug) && !buyNowBundlePricing) {
+        setError("Please configure this bundle from the pricing page before checkout.");
+        return;
+      }
+
       formData.append("productId", buyNowProductId);
       formData.append("quantity", String(buyNowQuantity));
+      if (buyNowBundleSelection) {
+        formData.append("bundleSelection", JSON.stringify(buyNowBundleSelection));
+      }
     }
 
     setIsSubmitting(true);
@@ -710,6 +773,11 @@ export default function CheckoutPage() {
                       <span>Final total</span>
                       <span>{formatLkr(activeSummary.totalLkr)}</span>
                     </div>
+                    {totalSavedLkr > 0 && (
+                      <div className="rounded-[10px] border border-emerald-200 bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-700">
+                        You saved {totalSavedPercent}% ({formatLkr(totalSavedLkr)})
+                      </div>
+                    )}
                   </div>
 
                   <div className="rounded border border-zinc-200 bg-zinc-50 p-3">

@@ -343,7 +343,7 @@ export default async function BlogPostPage({
           <div className="flex flex-col lg:flex-row gap-[48px] justify-between">
 
             {/* Left Column: Article Body */}
-            <article className="w-full lg:w-[65%] flex flex-col gap-8">
+            <article className="w-full lg:w-[65%] flex flex-col gap-8 max-w-[760px]">
               {/* Featured Image */}
               <div className="relative w-full h-[420px] md:h-[520px] rounded-[20px] overflow-hidden mb-4 border border-zinc-200">
                 <Image
@@ -357,7 +357,7 @@ export default async function BlogPostPage({
               </div>
 
               {/* Article Content */}
-              <div className="prose prose-lg max-w-none text-text-body font-poppins">
+              <div className="prose prose-lg prose-zinc max-w-none text-zinc-700 font-poppins leading-loose prose-a:text-brand-main prose-a:font-semibold prose-a:no-underline hover:prose-a:underline prose-headings:font-plus-jakarta prose-headings:text-foreground prose-headings:font-bold prose-blockquote:border-l-4 prose-blockquote:border-brand-main prose-blockquote:bg-zinc-50 prose-blockquote:px-8 prose-blockquote:py-6 prose-blockquote:not-italic prose-blockquote:text-xl prose-blockquote:font-medium prose-blockquote:text-foreground prose-blockquote:rounded-r-[20px] prose-li:marker:text-brand-main prose-li:leading-relaxed">
                 {isAboutChanukaArticle ? (
                   <>
                     <p className="leading-relaxed mb-6">
@@ -530,7 +530,7 @@ export default async function BlogPostPage({
             </article>
 
             {/* Right Column: Sidebar */}
-            <aside className="w-full lg:w-[30%] flex flex-col gap-10">
+            <aside className="w-full lg:w-[30%] flex flex-col gap-10 sticky top-[120px] h-fit">
               <ServiceSidebarAds title="Career Services" />
 
               {/* Recent Posts Widget */}

@@ -13,6 +13,18 @@ type BuildPageMetadataInput = {
 const SITE_NAME = "Chanuka Jeewantha";
 const DEFAULT_OG_IMAGE = "/images/hero-chanuka.jpg";
 
+export const TARGET_SEO_KEYWORDS = [
+  "Chanuka Jeewantha",
+  "ATS Friendly CV",
+  "Linkedin Optimization",
+  "Cover Letter Writing",
+  "Professional CV",
+  "CV Writing",
+  "CV making",
+  "CV maker",
+  "CV Writing Services",
+];
+
 function normalizePath(path: string): string {
   if (!path) return "/";
   if (path === "/") return "/";
@@ -29,10 +41,14 @@ export function buildPageMetadata(input: BuildPageMetadataInput): Metadata {
   const absoluteUrl = toAbsoluteUrl(canonicalPath);
   const noIndex = input.noIndex === true;
 
+  const mergedKeywords = Array.from(
+    new Set([...TARGET_SEO_KEYWORDS, ...(input.keywords || [])])
+  );
+
   return {
     title: input.title,
     description: input.description,
-    keywords: input.keywords,
+    keywords: mergedKeywords,
     alternates: {
       canonical: canonicalPath,
     },

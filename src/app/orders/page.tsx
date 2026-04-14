@@ -239,16 +239,39 @@ export default function OrdersPage() {
                   </div>
                 </div>
 
-                <div>
-                  <div className="mb-2 flex items-center justify-between text-xs text-zinc-500">
-                    <span>Order Progress</span>
-                    <span>{order.status === "cancelled" ? "Cancelled" : `${getProgressPercent(order.status)}%`}</span>
-                  </div>
-                  <div className="h-2 rounded-full bg-zinc-200 overflow-hidden">
-                    <div
-                      className={`h-full ${order.status === "cancelled" ? "bg-red-500" : "bg-brand-main"} ${getProgressWidthClass(order.status)}`}
-                    />
-                  </div>
+                <div className="rounded border border-zinc-200 bg-white p-4">
+                  <h3 className="font-semibold text-foreground mb-4">Live Order Tracking</h3>
+                  {order.updates.length === 0 ? (
+                    <p className="text-sm text-zinc-500">Processing your order...</p>
+                  ) : (
+                    <div className="relative pl-6">
+                      <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-zinc-200" />
+                      <ul className="space-y-6">
+                        {order.updates.map((update, index) => {
+                          const isLast = index === order.updates.length - 1;
+                          return (
+                            <li key={update.id} className="relative">
+                              <div className={`absolute -left-6 top-1 h-3 w-3 rounded-full border-2 border-white ring-2 ${isLast ? "bg-brand-main ring-brand-main animate-pulse" : "bg-zinc-300 ring-zinc-200"}`} />
+                              <div>
+                                <p className={`text-sm font-medium ${isLast ? "text-brand-main" : "text-zinc-800"}`}>{update.title}</p>
+                                <p className="mt-0.5 text-xs text-zinc-500 tracking-wide">
+                                  {new Date(update.atMs).toLocaleString("en-LK", {
+                                    year: "numeric", month: "short", day: "numeric",
+                                    hour: "2-digit", minute: "2-digit"
+                                  })}
+                                </p>
+                                {update.details && (
+                                  <p className="mt-1.5 text-sm text-zinc-600 border-l-2 border-zinc-200 pl-3">
+                                    {update.details}
+                                  </p>
+                                )}
+                              </div>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  )}
                 </div>
 
                 <ul className="space-y-2 text-sm text-zinc-700">

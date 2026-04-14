@@ -56,6 +56,8 @@ export default function Footer() {
               <li><Link href="/portfolio" className="hover:text-brand-main transition-colors text-text-light/80">Portfolio</Link></li>
               <li><Link href="/businesses" className="hover:text-brand-main transition-colors text-text-light/80">Businesses</Link></li>
               <li><Link href="/ebooks" className="hover:text-brand-main transition-colors text-text-light/80">Ebooks</Link></li>
+              <li><Link href="/fiverr-orders" className="hover:text-brand-main transition-colors text-text-light/80">Fiverr Orders (50% OFF)</Link></li>
+              <li><Link href="/affiliate" className="hover:text-brand-main transition-colors text-text-light/80 text-brand-main font-semibold">Affiliate Network [HOT]</Link></li>
               <li><Link href="/blog" className="hover:text-brand-main transition-colors text-text-light/80">Blog</Link></li>
               <li><Link href="/testimonials" className="hover:text-brand-main transition-colors text-text-light/80">Testimonials</Link></li>
             </ul>
@@ -68,6 +70,8 @@ export default function Footer() {
               <li><Link href="/contact" className="hover:text-brand-main transition-colors text-text-light/80">Contact us</Link></li>
               <li><Link href="/help" className="hover:text-brand-main transition-colors text-text-light/80">Help Center</Link></li>
               <li><Link href="/faq" className="hover:text-brand-main transition-colors text-text-light/80">FAQs</Link></li>
+              <li><Link href="/privacy-policy" className="hover:text-brand-main transition-colors text-text-light/80">Privacy Policy</Link></li>
+              <li><Link href="/terms-and-conditions" className="hover:text-brand-main transition-colors text-text-light/80">Terms & Conditions</Link></li>
             </ul>
           </div>
 

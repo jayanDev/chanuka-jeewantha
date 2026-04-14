@@ -6,6 +6,12 @@ import { packageProducts } from "@/lib/packages-catalog";
 import { formatLkr, getScheduleStatus, readJsonSafely, toDateInputValue } from "@/app/admin/_components/admin-utils";
 import type { AdminCoupon, AdminOffer, OfferPriorityMode } from "@/app/admin/_components/admin-types";
 
+const INITIAL_NOW_MS = Date.now();
+const DEFAULT_OFFER_START_DATE = toDateInputValue(INITIAL_NOW_MS);
+const DEFAULT_OFFER_END_DATE = toDateInputValue(INITIAL_NOW_MS + 4 * 86400000);
+const DEFAULT_COUPON_START_DATE = toDateInputValue(INITIAL_NOW_MS);
+const DEFAULT_COUPON_END_DATE = toDateInputValue(INITIAL_NOW_MS + 7 * 86400000);
+
 export default function OffersCouponsClient() {
   const [offers, setOffers] = useState<AdminOffer[]>([]);
   const [coupons, setCoupons] = useState<AdminCoupon[]>([]);
@@ -23,8 +29,8 @@ export default function OffersCouponsClient() {
   const [offerSelectedSlugs, setOfferSelectedSlugs] = useState<string[]>([]);
   const [offerSelectedCategories, setOfferSelectedCategories] = useState<string[]>([]);
   const [offerIsDraft, setOfferIsDraft] = useState(false);
-  const [offerStartDate, setOfferStartDate] = useState(toDateInputValue(Date.now()));
-  const [offerEndDate, setOfferEndDate] = useState(toDateInputValue(Date.now() + 4 * 86400000));
+  const [offerStartDate, setOfferStartDate] = useState(DEFAULT_OFFER_START_DATE);
+  const [offerEndDate, setOfferEndDate] = useState(DEFAULT_OFFER_END_DATE);
 
   const [couponCode, setCouponCode] = useState("");
   const [couponTitle, setCouponTitle] = useState("");
@@ -36,8 +42,8 @@ export default function OffersCouponsClient() {
   const [couponMaxTotalUses, setCouponMaxTotalUses] = useState(100);
   const [couponMaxUsesPerUser, setCouponMaxUsesPerUser] = useState(1);
   const [couponIsDraft, setCouponIsDraft] = useState(false);
-  const [couponStartDate, setCouponStartDate] = useState(toDateInputValue(Date.now()));
-  const [couponEndDate, setCouponEndDate] = useState(toDateInputValue(Date.now() + 7 * 86400000));
+  const [couponStartDate, setCouponStartDate] = useState(DEFAULT_COUPON_START_DATE);
+  const [couponEndDate, setCouponEndDate] = useState(DEFAULT_COUPON_END_DATE);
 
   const serviceCategories = useMemo(
     () => Array.from(new Set(packageProducts.map((item) => item.category))).sort((a, b) => a.localeCompare(b)),
@@ -68,7 +74,16 @@ export default function OffersCouponsClient() {
   };
 
   useEffect(() => {
-    void Promise.all([refreshOffers(), refreshCoupons()]);
+    let isActive = true;
+
+    void (async () => {
+      if (!isActive) return;
+      await Promise.all([refreshOffers(), refreshCoupons()]);
+    })();
+
+    return () => {
+      isActive = false;
+    };
   }, []);
 
   const toggleStringSelection = (

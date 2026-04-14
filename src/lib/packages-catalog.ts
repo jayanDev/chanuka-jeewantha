@@ -2,6 +2,7 @@ export type PackageProduct = {
   slug: string;
   name: string;
   category: string;
+  categoryKey?: PackageCategoryKey;
   audience: string;
   priceLkr: number;
   delivery: string;
@@ -10,7 +11,16 @@ export type PackageProduct = {
   isMostPopular?: boolean;
 };
 
+export type PackageCategoryKey =
+  | "cv-writing"
+  | "cv-review"
+  | "bulk-discount"
+  | "cover-letter"
+  | "linkedin"
+  | "bundle-discount";
+
 export type PackageCategory = {
+  key: PackageCategoryKey;
   title: string;
   description: string;
   isPriority?: boolean;
@@ -28,6 +38,7 @@ export const paymentInstructions = {
 
 export const packageCategories: PackageCategory[] = [
   {
+    key: "cv-writing",
     title: "CV Writing Packages",
     description:
       "Professionally written, ATS-friendly CVs designed to position you clearly and competitively for your target roles.",
@@ -74,7 +85,7 @@ export const packageCategories: PackageCategory[] = [
           "Premium CV writing and design",
           "ATS score target: 80-90%",
           "Unlimited revisions within 3 days",
-          "Free cover letter included",
+          "Role-targeted achievement storytelling",
         ],
         cta: "Message us to upgrade your CV",
         isMostPopular: true,
@@ -89,14 +100,122 @@ export const packageCategories: PackageCategory[] = [
         features: [
           "Tailored executive CV and resume",
           "High-impact design with 100% ATS compliance",
-          "Free professional cover letter",
-          "Free LinkedIn account optimization",
+          "Leadership-focused career narrative",
+          "Executive-level positioning strategy",
         ],
         cta: "Chat now to start your executive CV",
       },
     ],
   },
   {
+    key: "cv-review",
+    title: "CV Review Packages",
+    description:
+      "Detailed expert feedback on your existing CV with clear recommendations for ATS optimization, stronger content, and better structure.",
+    packages: [
+      {
+        slug: "student-cv-review-package",
+        name: "Student CV Review Package",
+        category: "CV Review",
+        audience: "We tell you what to fix - you edit it",
+        priceLkr: 1500,
+        delivery: "2-3 days",
+        features: [
+          "Full CV review",
+          "Clear list of all improvements needed",
+          "ATS keyword and formatting guidance",
+          "Grammar, structure, and layout suggestions",
+        ],
+        cta: "Message us to get your review",
+      },
+      {
+        slug: "starter-cv-review-package",
+        name: "Starter CV Review Package",
+        category: "CV Review",
+        audience: "Perfect for freshers and early-career professionals",
+        priceLkr: 2000,
+        delivery: "2-3 days",
+        features: [
+          "Section-by-section CV review",
+          "ATS keyword alignment tips",
+          "Content clarity suggestions",
+          "Design and layout improvement ideas",
+        ],
+        cta: "Chat with us to start your review",
+      },
+      {
+        slug: "professional-cv-review-package",
+        name: "Professional CV Review Package",
+        category: "CV Review",
+        audience: "For mid-level professionals and specialists",
+        priceLkr: 3000,
+        delivery: "2-3 days",
+        features: [
+          "Deep CV analysis",
+          "ATS optimization recommendations",
+          "Content improvement suggestions",
+          "Layout and achievement enhancement tips",
+        ],
+        cta: "Message us to get your detailed review",
+      },
+      {
+        slug: "executive-cv-review-package",
+        name: "Executive CV Review Package",
+        category: "CV Review",
+        audience: "For senior managers, directors, and C-level roles",
+        priceLkr: 5000,
+        delivery: "2-3 days",
+        features: [
+          "Senior-level CV analysis",
+          "Leadership-oriented improvement guidance",
+          "Keyword strategy recommendations",
+          "Layout and structure refinement suggestions",
+        ],
+        cta: "Chat now for your executive CV review",
+      },
+    ],
+  },
+  {
+    key: "bulk-discount",
+    title: "Bulk Discount Packages",
+    description:
+      "Bulk-buy package builders with stronger discounts based on your selected CV, cover letter, and LinkedIn tiers.",
+    isPriority: true,
+    packages: [
+      {
+        slug: "bulk-cv-5-pack",
+        name: "Bulk CV 5-Pack",
+        category: "Bulk Discount",
+        audience: "Choose CV + Cover Letter + LinkedIn tiers for 5 candidates",
+        priceLkr: 20000,
+        delivery: "3-7 days",
+        features: [
+          "Build from selected CV, Cover Letter, and LinkedIn tiers",
+          "Pricing multiplies by 5 candidates",
+          "20% bulk discount applied to full selection",
+          "Ideal for group and agency orders",
+        ],
+        cta: "Build 5-CV bulk package",
+      },
+      {
+        slug: "bulk-cv-10-pack",
+        name: "Bulk CV 10-Pack",
+        category: "Bulk Discount",
+        audience: "Choose CV + Cover Letter + LinkedIn tiers for 10 candidates",
+        priceLkr: 25000,
+        delivery: "5-10 days",
+        features: [
+          "Build from selected CV, Cover Letter, and LinkedIn tiers",
+          "Pricing multiplies by 10 candidates",
+          "50% bulk discount applied to full selection",
+          "Best value for large-volume orders",
+        ],
+        cta: "Build 10-CV bulk package",
+      },
+    ],
+  },
+  {
+    key: "cover-letter",
     title: "Cover Letter Writing Packages",
     description:
       "Customized cover letters that highlight your value, align with your target role, and strengthen your job application.",
@@ -164,6 +283,7 @@ export const packageCategories: PackageCategory[] = [
     ],
   },
   {
+    key: "linkedin",
     title: "LinkedIn Optimization Packages",
     description:
       "Strategic LinkedIn profile improvement focused on visibility, keyword positioning, personal branding, and recruiter attraction.",
@@ -231,69 +351,42 @@ export const packageCategories: PackageCategory[] = [
     ],
   },
   {
-    title: "CV Review Packages",
+    key: "bundle-discount",
+    title: "Bundle Discount Packages",
     description:
-      "Detailed expert feedback on your existing CV with clear recommendations for ATS optimization, stronger content, and better structure.",
+      "Multi-service bundle builders with automatic savings once you pick your package tiers.",
+    isPriority: true,
     packages: [
       {
-        slug: "student-cv-review-package",
-        name: "Student CV Review Package",
-        category: "CV Review",
-        audience: "We tell you what to fix - you edit it",
-        priceLkr: 1500,
-        delivery: "2-3 days",
+        slug: "career-brand-combo-30",
+        name: "Career Brand Trinity Bundle",
+        category: "Bundle Discount",
+        audience: "Select CV + Cover Letter + LinkedIn tiers and get 30% OFF",
+        priceLkr: 8400,
+        delivery: "3-6 days",
         features: [
-          "Full CV review",
-          "Clear list of all improvements needed",
-          "ATS keyword and formatting guidance",
-          "Grammar, structure, and layout suggestions",
+          "CV Writing + Cover Letter + LinkedIn Optimization",
+          "30% bundle discount after tier selection",
+          "Consistent messaging across all three deliverables",
+          "Built for local and international applications",
         ],
-        cta: "Message us to get your review",
+        cta: "Build Trinity Bundle",
+        isMostPopular: true,
       },
       {
-        slug: "starter-cv-review-package",
-        name: "Starter CV Review Package",
-        category: "CV Review",
-        audience: "Perfect for freshers and early-career professionals",
-        priceLkr: 2000,
-        delivery: "2-3 days",
+        slug: "application-duo-20",
+        name: "Application Duo Bundle",
+        category: "Bundle Discount",
+        audience: "Select CV + Cover Letter tiers and get 20% OFF",
+        priceLkr: 5600,
+        delivery: "2-5 days",
         features: [
-          "Section-by-section CV review",
-          "ATS keyword alignment tips",
-          "Content clarity suggestions",
-          "Design and layout improvement ideas",
+          "CV Writing + Cover Letter",
+          "20% bundle discount after tier selection",
+          "Role-aligned document matching",
+          "Made for faster application readiness",
         ],
-        cta: "Chat with us to start your review",
-      },
-      {
-        slug: "professional-cv-review-package",
-        name: "Professional CV Review Package",
-        category: "CV Review",
-        audience: "For mid-level professionals and specialists",
-        priceLkr: 3000,
-        delivery: "2-3 days",
-        features: [
-          "Deep CV analysis",
-          "ATS optimization recommendations",
-          "Content improvement suggestions",
-          "Layout and achievement enhancement tips",
-        ],
-        cta: "Message us to get your detailed review",
-      },
-      {
-        slug: "executive-cv-review-package",
-        name: "Executive CV Review Package",
-        category: "CV Review",
-        audience: "For senior managers, directors, and C-level roles",
-        priceLkr: 5000,
-        delivery: "2-3 days",
-        features: [
-          "Senior-level CV analysis",
-          "Leadership-oriented improvement guidance",
-          "Keyword strategy recommendations",
-          "Layout and structure refinement suggestions",
-        ],
-        cta: "Chat now for your executive CV review",
+        cta: "Build Duo Bundle",
       },
     ],
   },

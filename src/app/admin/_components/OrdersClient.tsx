@@ -15,6 +15,11 @@ export default function OrdersClient() {
   const [revisionResponses, setRevisionResponses] = useState<Record<string, string>>({});
   const [revisionLoadingKey, setRevisionLoadingKey] = useState("");
 
+  const [activeTab, setActiveTab] = useState<"pending" | "active" | "completed" | "all">("pending");
+  const [updateTitleDrafts, setUpdateTitleDrafts] = useState<Record<string, string>>({});
+  const [updateDetailsDrafts, setUpdateDetailsDrafts] = useState<Record<string, string>>({});
+  const [updateLoadingOrderId, setUpdateLoadingOrderId] = useState("");
+
   const loadOrders = async () => {
     const response = await fetch("/api/admin/orders", { cache: "no-store" });
     const payload = await readJsonSafely(response);
@@ -124,9 +129,50 @@ export default function OrdersClient() {
     }
   };
 
+  const submitCustomUpdate = async (orderId: string, predefinedTitle?: string) => {
+    const title = predefinedTitle || (updateTitleDrafts[orderId] ?? "").trim();
+    if (!title) {
+      setError("Update title is required.");
+      return;
+    }
+
+    setUpdateLoadingOrderId(orderId);
+    setError("");
+
+    try {
+      const response = await fetch("/api/admin/orders/updates", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          orderId,
+          title,
+          details: updateDetailsDrafts[orderId] ?? "",
+        }),
+      });
+      const payload = await readJsonSafely(response);
+
+      if (!response.ok) {
+        setError(typeof payload.error === "string" ? payload.error : "Failed to add update");
+        return;
+      }
+
+      setUpdateTitleDrafts((previous) => ({ ...previous, [orderId]: "" }));
+      setUpdateDetailsDrafts((previous) => ({ ...previous, [orderId]: "" }));
+      await loadOrders();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to add update");
+    } finally {
+      setUpdateLoadingOrderId("");
+    }
+  };
+
   const filteredOrders = useMemo(() => {
     const query = search.trim().toLowerCase();
     return orders.filter((order) => {
+      if (activeTab === "pending" && order.status !== "pending_payment" && order.status !== "payment_submitted") return false;
+      if (activeTab === "active" && order.status !== "confirmed" && order.status !== "in_progress") return false;
+      if (activeTab === "completed" && order.status !== "completed" && order.status !== "cancelled") return false;
+
       const byStatus = statusFilter === "all" || order.status === statusFilter;
       if (!byStatus) return false;
       if (!query) return true;
@@ -141,7 +187,7 @@ export default function OrdersClient() {
         order.revisions.some((revision) => revision.message.toLowerCase().includes(query))
       );
     });
-  }, [orders, search, statusFilter]);
+  }, [orders, search, statusFilter, activeTab]);
 
   return (
     <section className="space-y-4">
@@ -157,6 +203,37 @@ export default function OrdersClient() {
             className="rounded bg-foreground px-4 py-2 text-sm text-white"
           >
             Refresh
+          </button>
+        </div>
+
+        <div className="mt-6 flex border-b border-zinc-200">
+          <button
+            type="button"
+            className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === "pending" ? "border-brand-main text-brand-main" : "border-transparent text-zinc-500 hover:text-zinc-700"}`}
+            onClick={() => setActiveTab("pending")}
+          >
+            Pending Verification
+          </button>
+          <button
+            type="button"
+            className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === "active" ? "border-brand-main text-brand-main" : "border-transparent text-zinc-500 hover:text-zinc-700"}`}
+            onClick={() => setActiveTab("active")}
+          >
+            Active Work
+          </button>
+          <button
+            type="button"
+            className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === "completed" ? "border-brand-main text-brand-main" : "border-transparent text-zinc-500 hover:text-zinc-700"}`}
+            onClick={() => setActiveTab("completed")}
+          >
+            Completed/Cancelled
+          </button>
+          <button
+            type="button"
+            className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === "all" ? "border-brand-main text-brand-main" : "border-transparent text-zinc-500 hover:text-zinc-700"}`}
+            onClick={() => setActiveTab("all")}
+          >
+            All Orders
           </button>
         </div>
 
@@ -319,13 +396,13 @@ export default function OrdersClient() {
           </div>
 
           <div className="rounded border border-zinc-200 p-4">
-            <h4 className="font-semibold text-foreground mb-3">Progress Timeline</h4>
+            <h4 className="font-semibold text-foreground mb-3">Progress Timeline & Live Tracking</h4>
             {order.updates.length === 0 ? (
               <p className="text-sm text-zinc-500">No updates yet.</p>
             ) : (
-              <ul className="space-y-2 text-sm text-zinc-700">
+              <ul className="space-y-2 text-sm text-zinc-700 mb-6">
                 {order.updates.map((update) => (
-                  <li key={update.id} className="rounded bg-zinc-50 px-3 py-2">
+                  <li key={update.id} className="rounded bg-zinc-50 px-3 py-2 border-l-2 border-brand-main">
                     <p className="font-medium text-zinc-900">{update.title}</p>
                     <p className="text-xs text-zinc-500">
                       {new Date(update.atMs).toLocaleString("en-LK")} by {update.actorRole}
@@ -335,6 +412,53 @@ export default function OrdersClient() {
                 ))}
               </ul>
             )}
+
+            <div className="mt-4 pt-4 border-t border-zinc-200 space-y-3">
+              <p className="text-sm font-medium text-foreground">Post a Live Tracking Update</p>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={() => void submitCustomUpdate(order.id, "CV Analysis Started 🔍")}
+                  disabled={updateLoadingOrderId === order.id}
+                  className="rounded border border-zinc-300 bg-white px-3 py-1.5 text-xs font-medium text-zinc-700 hover:border-brand-main disabled:opacity-60"
+                >
+                  Analysis Started
+                </button>
+                <button
+                  type="button"
+                  onClick={() => void submitCustomUpdate(order.id, "First Draft Preparing 📝")}
+                  disabled={updateLoadingOrderId === order.id}
+                  className="rounded border border-zinc-300 bg-white px-3 py-1.5 text-xs font-medium text-zinc-700 hover:border-brand-main disabled:opacity-60"
+                >
+                  Drafting
+                </button>
+                <button
+                  type="button"
+                  onClick={() => void submitCustomUpdate(order.id, "Finalizing Documents ✨")}
+                  disabled={updateLoadingOrderId === order.id}
+                  className="rounded border border-zinc-300 bg-white px-3 py-1.5 text-xs font-medium text-zinc-700 hover:border-brand-main disabled:opacity-60"
+                >
+                  Finalizing Docs
+                </button>
+              </div>
+              <div className="flex flex-col gap-2 md:flex-row">
+                <input
+                  type="text"
+                  placeholder="Custom tracking title (e.g., Calling for details)"
+                  value={updateTitleDrafts[order.id] ?? ""}
+                  onChange={(e) => setUpdateTitleDrafts(prev => ({ ...prev, [order.id]: e.target.value }))}
+                  className="flex-1 rounded border border-zinc-300 px-3 py-2 text-sm"
+                />
+                <button
+                  type="button"
+                  onClick={() => void submitCustomUpdate(order.id)}
+                  disabled={updateLoadingOrderId === order.id || !(updateTitleDrafts[order.id]?.trim())}
+                  className="rounded bg-foreground px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-60"
+                >
+                  Post Update
+                </button>
+              </div>
+            </div>
           </div>
 
           <div className="rounded border border-zinc-200 p-4 space-y-3">

@@ -5,17 +5,10 @@ import { getBaseUrl } from "@/lib/site-url";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Chanuka Jeewantha | Professional CV Writer & Career Development Specialist",
+  title: "Professional CV Writing Services & ATS Friendly CV Maker | Chanuka Jeewantha",
   description:
-    "I help job seekers win interviews through ATS-friendly CV writing, LinkedIn optimization, coaching, and clear career strategy.",
+    "Need a Professional CV? I am an expert CV maker offering ATS Friendly CV writing, Cover Letter Writing, and complete LinkedIn Optimization services.",
   path: "/",
-  keywords: [
-    "ATS-friendly CV writing",
-    "career development specialist",
-    "LinkedIn optimization",
-    "career coaching",
-    "professional CV writer Sri Lanka",
-  ],
 });
 
 export default function Home() {
@@ -51,6 +44,87 @@ export default function Home() {
       "https://www.youtube.com/@chanukajeewantha",
     ],
   };
+
+  const testimonialHighlights = [
+    {
+      quote: "My ATS score improved and I got interviews within two weeks.",
+      name: "Kasun R.",
+      role: "Operations Executive",
+      outcome: "2x more interview callbacks",
+    },
+    {
+      quote: "LinkedIn profile optimization gave me inbound recruiter messages.",
+      name: "Sanduni M.",
+      role: "Marketing Specialist",
+      outcome: "Weekly recruiter inquiries",
+    },
+    {
+      quote: "Clear strategy, fast delivery, and practical career guidance.",
+      name: "Dilan P.",
+      role: "Software Engineer",
+      outcome: "Shortlisted for overseas roles",
+    },
+  ];
+
+  const ebookHighlights = [
+    {
+      title: "කෝටිපතියෙක් වීමේ වේගවත් මඟ",
+      image: "/images/millionaire-fastlane-cover.jpg",
+      badge: "Bestseller",
+    },
+    {
+      title: "ගැඹුරු කාර්යය (Deep Work)",
+      image: "/images/Deep Work.jpg",
+      badge: "Productivity",
+    },
+    {
+      title: "සාර්ථක වෘත්තීය ජීවිතයක නීති සහ මූලධර්ම",
+      image: "/images/So Good They Can't Ignore You.jpg",
+      badge: "Career Growth",
+    },
+  ];
+
+  const resourceHighlights = [
+    {
+      title: "ATS CV Keyword Checklist",
+      desc: "A practical one-page checklist to improve ATS matching before every application.",
+      href: "/blog",
+      type: "Guide",
+    },
+    {
+      title: "Interview Preparation Blueprint",
+      desc: "A structured plan to prepare stories, outcomes, and confidence for interview day.",
+      href: "/blog",
+      type: "Blueprint",
+    },
+    {
+      title: "LinkedIn Profile Optimization Guide",
+      desc: "Improve headline clarity, keyword coverage, and recruiter-facing profile positioning.",
+      href: "/services/linkedin-optimization",
+      type: "Template",
+    },
+  ];
+
+  const fastMovingPackages = [
+    {
+      title: "Professional CV Package",
+      note: "ATS-friendly with role-focused achievement writing",
+      href: "/pricing",
+      tag: "Popular",
+    },
+    {
+      title: "Career Brand Trinity Bundle",
+      note: "CV + Cover Letter + LinkedIn complete bundle",
+      href: "/offers/career-brand-trinity-bundle",
+      tag: "Bundle",
+    },
+    {
+      title: "Bulk CV 5-Pack",
+      note: "Best value for teams, agencies, and frequent applicants",
+      href: "/offers/bulk-cv-5-pack",
+      tag: "Bulk",
+    },
+  ];
 
   return (
     <>
@@ -245,6 +319,134 @@ export default function Home() {
                   Read More
                 </Link>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full border-t border-zinc-200 bg-zinc-50 py-[72px]">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Digital Store</span>
+              <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Ebooks</h3>
+            </div>
+            <Link href="/ebooks" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
+              See More
+            </Link>
+          </div>
+          <div className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-3 snap-x snap-mandatory md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+            {ebookHighlights.map((item) => (
+              <article key={item.title} className="group min-w-[84%] snap-start overflow-hidden rounded-[20px] border border-zinc-200 bg-white shadow-[0_10px_24px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.12)] sm:min-w-[58%] md:min-w-0">
+                <div className="relative aspect-[5/4] overflow-hidden">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <span className="absolute left-3 top-3 rounded-full bg-brand-main px-3 py-1 text-xs font-semibold text-white">{item.badge}</span>
+                </div>
+                <div className="p-5">
+                  <p className="line-clamp-2 text-[16px] font-bold leading-snug text-zinc-900">{item.title}</p>
+                  <Link href="/ebooks" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
+                    Explore Ebook
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full border-t border-zinc-200 bg-white py-[72px]">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Tools & Guides</span>
+              <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Resources</h3>
+            </div>
+            <Link href="/blog" className="rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
+              See More
+            </Link>
+          </div>
+          <div className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-3 snap-x snap-mandatory md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+            {resourceHighlights.map((item) => (
+              <article key={item.title} className="min-w-[84%] snap-start rounded-[20px] border border-zinc-200 bg-zinc-50/70 p-6 transition-all hover:-translate-y-1 hover:border-brand-main/40 hover:bg-white hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)] sm:min-w-[58%] md:min-w-0">
+                <span className="mb-3 inline-flex rounded-full border border-brand-main/30 bg-brand-main/10 px-3 py-1 text-xs font-semibold text-brand-dark">{item.type}</span>
+                <h4 className="mb-2 text-[20px] font-bold font-plus-jakarta text-zinc-900">{item.title}</h4>
+                <p className="mb-5 text-sm leading-relaxed text-zinc-600">{item.desc}</p>
+                <Link href={item.href} className="inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
+                  Open Resource
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full border-t border-zinc-200 bg-zinc-50 py-[72px]">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">High Demand</span>
+              <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Fast Moving Packages</h3>
+            </div>
+            <Link href="/pricing" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
+              See More
+            </Link>
+          </div>
+          <div className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-3 snap-x snap-mandatory md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+            {fastMovingPackages.map((item) => (
+              <article key={item.title} className="group min-w-[84%] snap-start rounded-[20px] border border-zinc-200 bg-white p-6 shadow-[0_8px_20px_rgba(0,0,0,0.05)] transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.1)] sm:min-w-[58%] md:min-w-0">
+                <div className="mb-4 flex items-center justify-between">
+                  <span className="inline-flex rounded-full bg-brand-main px-3 py-1 text-xs font-semibold text-white">{item.tag}</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-main"><path d="M20 12v10H4V12" /><path d="M2 7h20v5H2z" /><path d="M12 22V7" /><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" /><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" /></svg>
+                </div>
+                <h4 className="mb-2 text-[20px] font-bold font-plus-jakarta text-zinc-900">{item.title}</h4>
+                <p className="mb-5 text-sm leading-relaxed text-zinc-600">{item.note}</p>
+                <Link href={item.href} className="inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
+                  View Package
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full border-t border-zinc-200 bg-white py-[72px]">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Client Voice</span>
+              <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Testimonials</h3>
+            </div>
+            <Link href="/testimonials" className="rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
+              See More
+            </Link>
+          </div>
+          <div className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-3 snap-x snap-mandatory md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+            {testimonialHighlights.map((item) => (
+              <article key={item.name} className="group min-w-[84%] snap-start rounded-[20px] border border-zinc-200 bg-gradient-to-br from-white to-zinc-50 p-6 shadow-[0_10px_24px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] sm:min-w-[58%] md:min-w-0">
+                <div className="mb-5 flex items-center justify-between">
+                  <div className="flex items-center gap-1 text-[#f59e0b]" aria-hidden="true">
+                    {Array.from({ length: 5 }).map((_, idx) => (
+                      <svg key={idx} xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+                    ))}
+                  </div>
+                  <span className="rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold text-brand-dark">Verified Review</span>
+                </div>
+                <p className="mb-5 text-[15px] leading-relaxed text-zinc-700">"{item.quote}"</p>
+                <div className="rounded-[12px] border border-zinc-200 bg-white px-4 py-3">
+                  <p className="text-sm font-bold text-zinc-900">{item.name}</p>
+                  <p className="text-xs text-zinc-500">{item.role}</p>
+                  <p className="mt-1 text-xs font-semibold text-brand-main">{item.outcome}</p>
+                </div>
+              </article>
             ))}
           </div>
         </div>

@@ -6,11 +6,10 @@ import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "About Chanuka Jeewantha | Career Development Specialist",
+  title: "About Chanuka Jeewantha | Professional CV Writer & Linkedin Optimization Expert",
   description:
-    "Learn about Chanuka Jeewantha's background, experience, and approach to ATS-friendly CV writing, LinkedIn optimization, and career growth strategy.",
+    "Chanuka Jeewantha is a Career Specialist providing CV Writing Services, Professional CV making, and ATS Friendly CV optimization in Sri Lanka.",
   path: "/about",
-  keywords: ["about Chanuka Jeewantha", "career specialist", "professional CV writer", "LinkedIn strategist"],
 });
 
 export default function AboutPage() {

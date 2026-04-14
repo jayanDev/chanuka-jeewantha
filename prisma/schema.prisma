@@ -155,6 +155,8 @@ model AppUser {
   cartItems CartItem[]
   orders   Order[]
   reviews  ServiceReview[]
+  ebookProgress EbookProgress[]
+  affiliateProfile AffiliateProfile?
 }
 
 model AuthSession {
@@ -242,4 +244,44 @@ model RateLimitBucket {
   updatedAt DateTime @updatedAt
 
   @@index([resetAt])
+}
+
+model EbookProgress {
+  id                String   @id @default(cuid())
+  userId            String
+  ebookSlug         String
+  completedChapters String   @default("[]")
+  isCompleted       Boolean  @default(false)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user AppUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, ebookSlug])
+  @@index([userId])
+}
+
+model AffiliateProfile {
+  id               String   @id @default(cuid())
+  userId           String   @unique
+  referralCode     String   @unique
+  totalClicks      Int      @default(0)
+  successfulReferrals Int   @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  user             AppUser  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions     ReferralTransaction[]
+}
+
+model ReferralTransaction {
+  id                 String   @id @default(cuid())
+  affiliateProfileId String
+  referredEmail      String   // The email of the person who bought
+  packageName        String   // e.g. "Student Package"
+  createdAt          DateTime @default(now())
+
+  affiliateProfile   AffiliateProfile @relation(fields: [affiliateProfileId], references: [id], onDelete: Cascade)
+  
+  @@index([affiliateProfileId])
 }

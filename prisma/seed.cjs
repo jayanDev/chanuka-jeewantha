@@ -102,6 +102,7 @@ const products = [
   { slug: "starter-cv-review-package", name: "Starter CV Review Package", category: "CV Review", audience: "Perfect for freshers and early-career professionals", priceLkr: 2000, delivery: "2-3 days", features: JSON.stringify(["Section-by-section CV review", "ATS keyword alignment tips", "Content clarity suggestions", "Design and layout improvement ideas"]) },
   { slug: "professional-cv-review-package", name: "Professional CV Review Package", category: "CV Review", audience: "For mid-level professionals and specialists", priceLkr: 3000, delivery: "2-3 days", features: JSON.stringify(["Deep CV analysis", "ATS optimization recommendations", "Content improvement suggestions", "Layout and achievement enhancement tips"]) },
   { slug: "executive-cv-review-package", name: "Executive CV Review Package", category: "CV Review", audience: "For senior managers, directors, and C-level roles", priceLkr: 5000, delivery: "2-3 days", features: JSON.stringify(["Senior-level CV analysis", "Leadership-oriented improvement guidance", "Keyword strategy recommendations", "Layout and structure refinement suggestions"]) },
+  { slug: "kotipathiyek-vime-vegawath-maga", name: "කෝටිපතියෙක් වීමේ වේගවත් මඟ", category: "Ebook", audience: "For aspiring entrepreneurs and wealth builders", priceLkr: 2500, delivery: "Instant Access", features: JSON.stringify(["Lifetime digital access", "60+ engaging chapters", "Read on any device", "Dynamic reading experience"]) },
 ];
 
 function hashPassword(password) {

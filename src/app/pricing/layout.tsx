@@ -3,11 +3,10 @@ import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Pricing | CV, LinkedIn, and Career Packages",
+  title: "Pricing | CV Writing Services, CV Maker & Linkedin Optimization",
   description:
-    "Compare CV writing, cover letter, LinkedIn optimization, and coaching package pricing from Chanuka Jeewantha.",
+    "Compare Professional CV Writing Services, ATS Friendly CV creation packages, and LinkedIn Optimization pricing by career expert Chanuka Jeewantha.",
   path: "/pricing",
-  keywords: ["career services pricing", "CV package price", "LinkedIn optimization price"],
 });
 
 export default function PricingLayout({ children }: { children: React.ReactNode }) {

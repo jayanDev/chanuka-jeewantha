@@ -5,6 +5,12 @@ import { isTrustedOrigin } from "@/lib/security";
 import { getFirebaseDb } from "@/lib/firebase-admin";
 import { packageProducts } from "@/lib/packages-catalog";
 import {
+  calculateBundlePricing,
+  isConfigurableBundleSlug,
+  serializeBundleSelection,
+  type BundleSelection,
+} from "@/lib/bundle-pricing";
+import {
   applyOfferToPrice,
   getEffectiveSeasonalOffer,
   incrementOfferAnalytics,
@@ -17,8 +23,8 @@ function getProductMap() {
   return new Map(packageProducts.map((item) => [item.slug, item]));
 }
 
-function makeCartItemId(userId: string, productId: string): string {
-  return `${userId}__${productId}`;
+function makeCartItemId(userId: string, productId: string, bundleSignature?: string): string {
+  return bundleSignature ? `${userId}__${productId}__${bundleSignature}` : `${userId}__${productId}`;
 }
 
 export async function GET(request: Request) {
@@ -37,6 +43,7 @@ export async function GET(request: Request) {
           productId?: unknown;
           quantity?: unknown;
           createdAtMs?: unknown;
+          bundleSelection?: unknown;
         };
 
         if (typeof data.productId !== "string") return null;
@@ -44,7 +51,52 @@ export async function GET(request: Request) {
 
         const product = productMap.get(data.productId);
         if (!product) return null;
-        const pricing = applyOfferToPrice(product.priceLkr, product.slug, product.category, activeOffer);
+
+        let priceLkr = product.priceLkr;
+        let originalPriceLkr = product.priceLkr;
+        let discountPercent = 0;
+        let bundleSelection: BundleSelection | null = null;
+
+        if (isConfigurableBundleSlug(product.slug)) {
+          const raw = data.bundleSelection;
+          const parsedSelection =
+            raw && typeof raw === "object"
+              ? {
+                  cvSlug: typeof (raw as { cvSlug?: unknown }).cvSlug === "string" ? (raw as { cvSlug: string }).cvSlug : "",
+                  coverLetterSlug:
+                    typeof (raw as { coverLetterSlug?: unknown }).coverLetterSlug === "string"
+                      ? (raw as { coverLetterSlug: string }).coverLetterSlug
+                      : "",
+                  linkedinSlug:
+                    typeof (raw as { linkedinSlug?: unknown }).linkedinSlug === "string"
+                      ? (raw as { linkedinSlug: string }).linkedinSlug
+                      : undefined,
+                }
+              : null;
+
+          if (!parsedSelection || !parsedSelection.cvSlug || !parsedSelection.coverLetterSlug) {
+            return null;
+          }
+
+          try {
+            const pricing = calculateBundlePricing(product.slug, parsedSelection);
+            priceLkr = pricing.priceLkr;
+            originalPriceLkr = pricing.originalPriceLkr;
+            discountPercent = pricing.discountPercent;
+            bundleSelection = {
+              cvSlug: pricing.selection.cvSlug,
+              coverLetterSlug: pricing.selection.coverLetterSlug,
+              linkedinSlug: pricing.selection.linkedinSlug || undefined,
+            };
+          } catch {
+            return null;
+          }
+        } else {
+          const pricing = applyOfferToPrice(product.priceLkr, product.slug, product.category, activeOffer);
+          priceLkr = pricing.priceLkr;
+          originalPriceLkr = pricing.originalPriceLkr;
+          discountPercent = pricing.discountPercent;
+        }
 
         return {
           id: doc.id,
@@ -55,10 +107,11 @@ export async function GET(request: Request) {
             slug: product.slug,
             name: product.name,
             category: product.category,
-            priceLkr: pricing.priceLkr,
-            originalPriceLkr: pricing.originalPriceLkr,
-            discountPercent: pricing.discountPercent,
+            priceLkr,
+            originalPriceLkr,
+            discountPercent,
             delivery: product.delivery,
+            bundleSelection,
           },
         };
       })
@@ -97,11 +150,36 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Product not found" }, { status: 404 });
     }
 
+    let bundleSelection: BundleSelection | null = null;
+    let bundleSignature: string | undefined;
+
+    if (isConfigurableBundleSlug(product.slug)) {
+      const payloadSelection = parsed.data.bundleSelection;
+      if (!payloadSelection) {
+        return NextResponse.json({ error: "Bundle selection is required for this package." }, { status: 400 });
+      }
+
+      try {
+        const pricing = calculateBundlePricing(product.slug, payloadSelection);
+        bundleSelection = {
+          cvSlug: pricing.selection.cvSlug,
+          coverLetterSlug: pricing.selection.coverLetterSlug,
+          linkedinSlug: pricing.selection.linkedinSlug || undefined,
+        };
+        bundleSignature = serializeBundleSelection(bundleSelection);
+      } catch (error) {
+        const message = error instanceof Error ? error.message : "Invalid bundle selection.";
+        return NextResponse.json({ error: message }, { status: 400 });
+      }
+    } else if (parsed.data.bundleSelection) {
+      return NextResponse.json({ error: "Bundle selection is only allowed for configurable bundles." }, { status: 400 });
+    }
+
     const activeOffer = await getEffectiveSeasonalOffer(request);
     const discountPercent = resolveOfferDiscountPercent(product.slug, product.category, activeOffer);
 
     const db = getFirebaseDb();
-    const docId = makeCartItemId(user.id, product.slug);
+    const docId = makeCartItemId(user.id, product.slug, bundleSignature);
     const ref = db.collection(CART_COLLECTION).doc(docId);
     const existing = await ref.get();
     const currentQty = existing.exists
@@ -113,6 +191,7 @@ export async function POST(request: Request) {
         userId: user.id,
         productId: product.slug,
         quantity: currentQty + parsed.data.quantity,
+        bundleSelection,
         updatedAtMs: Date.now(),
         createdAtMs: existing.exists
           ? (existing.data() as { createdAtMs?: unknown }).createdAtMs ?? Date.now()

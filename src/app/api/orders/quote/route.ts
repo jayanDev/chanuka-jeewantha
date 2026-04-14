@@ -3,6 +3,7 @@ import { getRequestUser } from "@/lib/auth-server";
 import { isTrustedOrigin } from "@/lib/security";
 import { getFirebaseDb } from "@/lib/firebase-admin";
 import { packageProducts } from "@/lib/packages-catalog";
+import { calculateBundlePricing, isConfigurableBundleSlug, type BundleSelection } from "@/lib/bundle-pricing";
 import { applyOfferToPrice, getEffectiveSeasonalOffer } from "@/lib/seasonal-offers";
 import { validateCouponForItems } from "@/lib/coupons";
 
@@ -13,6 +14,7 @@ type QuoteRequest = {
   productId?: unknown;
   quantity?: unknown;
   couponCode?: unknown;
+  bundleSelection?: unknown;
 };
 
 function getProductMap() {
@@ -61,7 +63,41 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Selected package is unavailable" }, { status: 404 });
       }
 
-      const pricing = applyOfferToPrice(product.priceLkr, product.slug, product.category, activeOffer);
+      let pricing = applyOfferToPrice(product.priceLkr, product.slug, product.category, activeOffer);
+      if (isConfigurableBundleSlug(product.slug)) {
+        const selectionRaw = body.bundleSelection;
+        const selection =
+          selectionRaw && typeof selectionRaw === "object"
+            ? {
+                cvSlug: typeof (selectionRaw as { cvSlug?: unknown }).cvSlug === "string" ? (selectionRaw as { cvSlug: string }).cvSlug : "",
+                coverLetterSlug:
+                  typeof (selectionRaw as { coverLetterSlug?: unknown }).coverLetterSlug === "string"
+                    ? (selectionRaw as { coverLetterSlug: string }).coverLetterSlug
+                    : "",
+                linkedinSlug:
+                  typeof (selectionRaw as { linkedinSlug?: unknown }).linkedinSlug === "string"
+                    ? (selectionRaw as { linkedinSlug: string }).linkedinSlug
+                    : undefined,
+              }
+            : null;
+
+        if (!selection || !selection.cvSlug || !selection.coverLetterSlug) {
+          return NextResponse.json({ error: "Bundle configuration is required." }, { status: 400 });
+        }
+
+        try {
+          const bundlePricing = calculateBundlePricing(product.slug, selection);
+          pricing = {
+            priceLkr: bundlePricing.priceLkr,
+            originalPriceLkr: bundlePricing.originalPriceLkr,
+            discountPercent: bundlePricing.discountPercent,
+          };
+        } catch (error) {
+          const message = error instanceof Error ? error.message : "Invalid bundle configuration.";
+          return NextResponse.json({ error: message }, { status: 400 });
+        }
+      }
+
       products = [
         {
           slug: product.slug,
@@ -75,7 +111,7 @@ export async function POST(request: Request) {
       const cartSnapshot = await db.collection(CART_COLLECTION).where("userId", "==", user.id).get();
       products = cartSnapshot.docs
         .map((doc) => {
-          const data = doc.data() as { productId?: unknown; quantity?: unknown };
+          const data = doc.data() as { productId?: unknown; quantity?: unknown; bundleSelection?: unknown };
           if (typeof data.productId !== "string" || typeof data.quantity !== "number") {
             return null;
           }
@@ -83,7 +119,40 @@ export async function POST(request: Request) {
           const product = productMap.get(data.productId);
           if (!product) return null;
 
-          const pricing = applyOfferToPrice(product.priceLkr, product.slug, product.category, activeOffer);
+          let pricing = applyOfferToPrice(product.priceLkr, product.slug, product.category, activeOffer);
+          if (isConfigurableBundleSlug(product.slug)) {
+            const raw = data.bundleSelection;
+            const selection: BundleSelection | null =
+              raw && typeof raw === "object"
+                ? {
+                    cvSlug: typeof (raw as { cvSlug?: unknown }).cvSlug === "string" ? (raw as { cvSlug: string }).cvSlug : "",
+                    coverLetterSlug:
+                      typeof (raw as { coverLetterSlug?: unknown }).coverLetterSlug === "string"
+                        ? (raw as { coverLetterSlug: string }).coverLetterSlug
+                        : "",
+                    linkedinSlug:
+                      typeof (raw as { linkedinSlug?: unknown }).linkedinSlug === "string"
+                        ? (raw as { linkedinSlug: string }).linkedinSlug
+                        : undefined,
+                  }
+                : null;
+
+            if (!selection || !selection.cvSlug || !selection.coverLetterSlug) {
+              return null;
+            }
+
+            try {
+              const bundlePricing = calculateBundlePricing(product.slug, selection);
+              pricing = {
+                priceLkr: bundlePricing.priceLkr,
+                originalPriceLkr: bundlePricing.originalPriceLkr,
+                discountPercent: bundlePricing.discountPercent,
+              };
+            } catch {
+              return null;
+            }
+          }
+
           return {
             slug: product.slug,
             category: product.category,

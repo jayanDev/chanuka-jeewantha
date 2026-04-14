@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seo";
@@ -13,6 +14,15 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 export default function PortfolioPage() {
+  const portfolioImages = [
+    "/images/hero-chanuka.jpg",
+    "/images/about-page-chanuka.jpg",
+    "/images/chanuka-jeewantha-career-development-specialist.jpg",
+    "/images/linkedin-optimization-30k-followers-proof.jpg",
+    "/images/about-chanuka.jpg",
+    "/images/testimonial-chanuka.jpg",
+  ];
+
   const breadcrumbLd = buildBreadcrumbList([
     { name: "Home", path: "/" },
     { name: "Portfolio", path: "/portfolio" },
@@ -73,12 +83,13 @@ export default function PortfolioPage() {
                   <div className="absolute top-6 left-6 z-10 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold border border-zinc-200 shadow-sm text-foreground">
                     {item % 2 === 0 ? "CV + LinkedIn Results" : "Career Coaching Outcomes"}
                   </div>
-                  {/* Project Image */}
-                  <div className="w-full h-full bg-zinc-300 flex flex-col items-center justify-center text-center grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105">
-                    <span className="font-mono text-zinc-500 font-semibold">Project Image {item}</span>
-                    <span className="mt-1 font-mono text-xs text-zinc-500">100% x 400px (mobile)</span>
-                    <span className="font-mono text-xs text-zinc-500">100% x 500px (desktop)</span>
-                  </div>
+                  <Image
+                    src={portfolioImages[item - 1]}
+                    alt={`Career portfolio sample ${item}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+                  />
                 </div>
                 <h3 className="text-[32px] font-bold font-plus-jakarta mb-2 group-hover:text-brand-main transition-colors text-foreground">
                   Career Case Portfolio {item}

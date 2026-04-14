@@ -23,7 +23,26 @@ export default function ReviewsClient() {
   };
 
   useEffect(() => {
-    void loadReviews();
+    let isActive = true;
+
+    void (async () => {
+      const response = await fetch("/api/admin/reviews", { cache: "no-store" });
+      const payload = await readJsonSafely(response);
+      if (!isActive) return;
+
+      if (!response.ok) {
+        setError(typeof payload.error === "string" ? payload.error : "Failed to load reviews");
+        setReviews([]);
+        return;
+      }
+
+      setError("");
+      setReviews(Array.isArray(payload.reviews) ? (payload.reviews as AdminReview[]) : []);
+    })();
+
+    return () => {
+      isActive = false;
+    };
   }, []);
 
   const pendingReviews = useMemo(() => reviews.filter((review) => !review.isApproved).length, [reviews]);
