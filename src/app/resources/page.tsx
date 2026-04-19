@@ -1,8 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { digitalResources } from "@/lib/resources";
-import { formatLkr } from "@/lib/packages-catalog";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
 import ResourceFilterClient from "./_components/ResourceFilterClient";

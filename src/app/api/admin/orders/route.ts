@@ -294,8 +294,7 @@ export async function GET(request: Request) {
       };
     })
     .sort((a, b) => b.createdAtMs - a.createdAtMs)
-    .slice(0, 200)
-    .map(({ createdAtMs: _ignore, ...order }) => order);
+    .slice(0, 200);
 
   return NextResponse.json({ orders });
 }

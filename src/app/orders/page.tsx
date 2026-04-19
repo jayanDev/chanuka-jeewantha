@@ -75,24 +75,6 @@ const statusLabel: Record<Order["status"], string> = {
   cancelled: "Cancelled",
 };
 
-const statusOrder: Order["status"][] = ["payment_submitted", "confirmed", "in_progress", "completed"];
-
-function getProgressPercent(status: Order["status"]): number {
-  if (status === "cancelled") return 0;
-  const index = statusOrder.indexOf(status);
-  if (index < 0) return 10;
-  return Math.round(((index + 1) / statusOrder.length) * 100);
-}
-
-function getProgressWidthClass(status: Order["status"]): string {
-  if (status === "cancelled") return "w-0";
-  if (status === "pending_payment") return "w-[10%]";
-  if (status === "payment_submitted") return "w-[25%]";
-  if (status === "confirmed") return "w-[50%]";
-  if (status === "in_progress") return "w-[75%]";
-  return "w-full";
-}
-
 async function readJsonSafely(response: Response): Promise<Record<string, unknown>> {
   const raw = await response.text();
   if (!raw) return {};

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { packageProducts, formatLkr } from "@/lib/packages-catalog";
 import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
+import { buildBreadcrumbList, buildProductSchema } from "@/lib/structured-data";
 
 type PackagePageProps = {
   params: Promise<{ slug: string }>;
@@ -42,9 +43,30 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
 
   const hasPackageWord = /\bpackage\b/i.test(pkg.name);
   const packageTitleMain = hasPackageWord ? pkg.name.replace(/\s*package\b/i, "") : pkg.name;
+  const breadcrumbLd = buildBreadcrumbList([
+    { name: "Home", path: "/" },
+    { name: "Services", path: "/services" },
+    { name: pkg.name, path: `/packages/${pkg.slug}` },
+  ]);
+  const productLd = buildProductSchema({
+    name: pkg.name,
+    description: `${pkg.audience}. Delivery: ${pkg.delivery}. Includes: ${pkg.features.slice(0, 3).join(", ")}.`,
+    path: `/packages/${pkg.slug}`,
+    category: pkg.category,
+    priceLkr: pkg.priceLkr,
+    sku: pkg.slug,
+  });
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productLd) }}
+      />
       <section className="w-full bg-foreground text-white pt-[120px] md:pt-[180px] pb-[72px] md:pb-[90px]">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-2 text-white/85 font-medium mb-8">

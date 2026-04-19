@@ -5,7 +5,7 @@ import fs from "fs/promises";
 import path from "path";
 import Link from "next/link";
 import { formatLkr } from "@/lib/packages-catalog";
-import { ebooks, getEbookBySlug } from "@/lib/ebooks";
+import { getEbookBySlug } from "@/lib/ebooks";
 import ChapterNavigator from "../_components/ChapterNavigator";
 import ReaderProtection from "../_components/ReaderProtection";
 
@@ -86,7 +86,7 @@ export default async function ChapterPage({ params }: Props) {
       "utf-8"
     );
     chapterData = JSON.parse(rawChapter);
-  } catch (err) {
+  } catch {
     notFound(); // 404 if chapter doesn't exist
   }
 

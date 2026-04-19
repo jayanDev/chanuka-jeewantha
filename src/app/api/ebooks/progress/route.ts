@@ -85,7 +85,7 @@ export async function POST(request: Request) {
 
   const shouldMarkCompleted = isCurrentlyCompleted || isFinalChapter;
 
-  const progress = await prisma.ebookProgress.upsert({
+  await prisma.ebookProgress.upsert({
     where: {
       userId_ebookSlug: {
         userId: user.id,

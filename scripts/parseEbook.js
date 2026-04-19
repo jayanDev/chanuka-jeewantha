@@ -177,13 +177,6 @@ const cleanElement = (el) => {
     if (!text && !el.querySelector('img')) return null;
 
     // Check if this text matches any subtopic
-    const stringDistance = (a, b) => {
-        let matches = 0;
-        let wordsA = a.split(' ');
-        for (const w of wordsA) { if (b.includes(w) && w.length > 3) matches++; }
-        return matches;
-    };
-    
     // Exact or partial strict match
     const matchesSubtopic = subtopicsRawList.some(topic => text.includes(topic) || (text.length === topic.length && text === topic));
     

@@ -519,8 +519,7 @@ export async function GET(request: Request) {
           items,
         };
       })
-      .sort((a, b) => b.createdAtMs - a.createdAtMs)
-      .map(({ createdAtMs: _ignore, ...order }) => order);
+      .sort((a, b) => b.createdAtMs - a.createdAtMs);
 
     return NextResponse.json({ orders });
   } catch (error) {

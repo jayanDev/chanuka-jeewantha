@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seo";
-import { buildBreadcrumbList } from "@/lib/structured-data";
+import { buildBreadcrumbList, buildFaqPageSchema } from "@/lib/structured-data";
 import { formatLkr, packageCategories, paymentInstructions } from "@/lib/packages-catalog";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -50,12 +50,22 @@ export default function HelpPage() {
     { name: "Home", path: "/" },
     { name: "Help", path: "/help" },
   ]);
+  const faqLd = buildFaqPageSchema(
+    quickHelpTopics.map((topic) => ({
+      question: topic.title,
+      answer: topic.answer,
+    }))
+  );
 
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
 
       <section className="w-full border-b border-zinc-200 bg-zinc-50 py-[90px]">

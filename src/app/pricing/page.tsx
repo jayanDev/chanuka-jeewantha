@@ -171,7 +171,8 @@ export default function PricingPage() {
     void load();
 
     return () => {
-      for (const timerId of Object.values(addedTimersRef.current)) {
+      const timers = addedTimersRef.current;
+      for (const timerId of Object.values(timers)) {
         window.clearTimeout(timerId);
       }
     };

@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import Link from "next/link";
-import { ebooks, getEbookBySlug } from "@/lib/ebooks";
+import { getEbookBySlug } from "@/lib/ebooks";
 import { notFound } from "next/navigation";
 import { getServerUser } from "@/lib/auth-server";
 import { prisma } from "@/lib/prisma";

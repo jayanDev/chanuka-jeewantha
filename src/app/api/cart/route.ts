@@ -116,8 +116,7 @@ export async function GET(request: Request) {
         };
       })
       .filter((item): item is NonNullable<typeof item> => Boolean(item))
-      .sort((a, b) => b.createdAtMs - a.createdAtMs)
-      .map(({ createdAtMs: _ignore, ...item }) => item);
+      .sort((a, b) => b.createdAtMs - a.createdAtMs);
 
     return NextResponse.json({ items });
   } catch {
