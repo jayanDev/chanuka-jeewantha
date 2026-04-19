@@ -3724,9 +3724,9 @@ export const cvSeriesEn: BlogPost[] = [
   },
   {
     slug: 'writing-a-cover-letter-when-you-dont-have-the-required-experience',
-    title: 'Writing a Cover Letter When You Don''t Have the Required Experience',
-    excerpt: 'Learn more about Writing a Cover Letter When You Don''t Have the Required Experience in this comprehensive guide tailored for 2026.',
-    content: 'This article delves deeply into Writing a Cover Letter When You Don''t Have the Required Experience. Understanding this is critical for modern job seekers adjusting to the 2026 hiring landscape.',
+    title: 'Writing a Cover Letter When You Don\'t Have the Required Experience',
+    excerpt: 'Learn more about Writing a Cover Letter When You Don\'t Have the Required Experience in this comprehensive guide tailored for 2026.',
+    content: 'This article delves deeply into Writing a Cover Letter When You Don\'t Have the Required Experience. Understanding this is critical for modern job seekers adjusting to the 2026 hiring landscape.',
     category: 'Cover Letter',
     publishedAt: '2026-04-19',
     author: 'Chanuka Jeewantha',
