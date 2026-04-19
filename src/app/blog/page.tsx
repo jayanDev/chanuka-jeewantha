@@ -3,9 +3,10 @@ import Image from "next/image";
 import React from "react";
 import type { Metadata } from "next";
 import { getPostBySlug } from "@/content/blog-posts";
-import { buildPageMetadata } from "@/lib/seo";
+import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
 import { getCachedBlogListing } from "@/lib/blog-listing";
+import { getBlogCategoryPath } from "@/lib/blog-discovery";
 
 export const revalidate = 3600;
 
@@ -27,16 +28,22 @@ export async function generateMetadata({
       ? `Career blog page ${page}: ATS-friendly CV writing, LinkedIn optimization, and job search strategy articles.`
       : "Career-focused articles on ATS-friendly CV writing, LinkedIn optimization, coaching, and roadmap strategy.";
 
-  const search = new URLSearchParams();
-  if (page > 1) search.set("page", page.toString());
-  if (activeCategory) search.set("category", activeCategory);
-  const qs = search.toString();
-  const path = qs ? `/blog?${qs}` : "/blog";
+  if (activeCategory) {
+    return buildNoIndexMetadata({
+      title,
+      description,
+      path: page > 1 ? `/blog?category=${encodeURIComponent(activeCategory)}&page=${page}` : `/blog?category=${encodeURIComponent(activeCategory)}`,
+      keywords: [
+        "career blog",
+        activeCategory.toLowerCase(),
+      ],
+    });
+  }
 
   return buildPageMetadata({
     title,
     description,
-    path,
+    path: page > 1 ? `/blog?page=${page}` : "/blog",
     keywords: [
       "career blog",
       "ATS CV tips",
@@ -94,7 +101,7 @@ export default async function BlogPage({
   
   const buildCategoryHref = (category: string | null) => {
     if (!category) return "/blog";
-    return `/blog?category=${encodeURIComponent(category)}`;
+    return getBlogCategoryPath(category);
   };
 
   const getCoverImage = (category: string) => {

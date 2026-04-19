@@ -11,6 +11,7 @@ import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
 import { getBaseUrl } from "@/lib/site-url";
 import { packageProducts } from "@/lib/packages-catalog";
+import { isIndexableFallbackBlogPost } from "@/lib/blog-discovery";
 
 export async function generateMetadata({
   params,
@@ -56,6 +57,15 @@ export async function generateMetadata({
     return buildNoIndexMetadata({
       title: "Post Not Found | Chanuka Jeewantha Blog",
       description: "This blog post is not available.",
+      path: `/blog/${slug}`,
+    });
+  }
+
+  const fallbackPost = getPostBySlug(slug);
+  if (fallbackPost && !isIndexableFallbackBlogPost(fallbackPost)) {
+    return buildNoIndexMetadata({
+      title: `${fallbackPost.title} | Chanuka Jeewantha Blog`,
+      description: fallbackPost.excerpt,
       path: `/blog/${slug}`,
     });
   }
@@ -169,7 +179,9 @@ export default async function BlogPostPage({
   const title = post.title;
   const contentPost = getPostBySlug(post.slug) ?? fallbackPost;
   const isAboutChanukaArticle = post.slug === "about-chanuka-jeewantha";
-  const recentPosts = blogPosts.filter((item) => item.slug !== post.slug).slice(0, 3);
+  const recentPosts = blogPosts
+    .filter((item) => item.slug !== post.slug && isIndexableFallbackBlogPost(item))
+    .slice(0, 3);
   const baseUrl = getBaseUrl();
   const articleUrl = `${baseUrl}/blog/${post.slug}`;
   const articleImageUrl = `${baseUrl}/blog/${post.slug}/opengraph-image`;
@@ -503,7 +515,7 @@ export default async function BlogPostPage({
                   <span className="font-bold text-foreground">Share:</span>
                   <div className="flex gap-2">
                     <button aria-label="Share on Facebook" title="Share on Facebook" className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center hover:bg-brand-main hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></button>
-                    <button aria-label="Share on X" title="Share on X" className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center hover:bg-brand-main hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></button>
+                    <button aria-label="Share on X" title="Share on X" className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center hover:bg-brand-main hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
                   </div>
                 </div>
               </div>

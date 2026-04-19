@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import SeasonalOfferBanner from "@/components/SeasonalOfferBanner";
 import { buildOfferPreviewHeaders, withOfferPreviewUrl } from "@/lib/offer-preview-client";
 
 type CartItem = {
@@ -104,11 +103,8 @@ export default function CartPage() {
   };
 
   return (
-    <>
-      <SeasonalOfferBanner />
-
-      <section className="w-full bg-zinc-50 py-16 min-h-[70vh]">
-        <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
+    <section className="w-full bg-zinc-50 py-16 min-h-[70vh]">
+      <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
         <div className="mb-8 flex items-center justify-between">
           <h1 className="text-4xl font-bold font-plus-jakarta text-foreground">Your Cart</h1>
           <Link href="/pricing" className="text-brand-main font-medium">Add More Packages</Link>
@@ -132,7 +128,7 @@ export default function CartPage() {
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                   <div>
                     <h2 className="text-xl font-bold text-foreground">{item.product.name}</h2>
-                    <p className="text-sm text-zinc-500">{item.product.category} • {item.product.delivery}</p>
+                    <p className="text-sm text-zinc-500">{item.product.category} / {item.product.delivery}</p>
                   </div>
                   <p className="text-lg font-semibold text-foreground">{formatLkr(item.product.priceLkr)}</p>
                 </div>
@@ -159,7 +155,7 @@ export default function CartPage() {
               </article>
             ))}
 
-            <div className="rounded-[16px] border border-zinc-200 bg-white p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div className="rounded-[16px] border border-zinc-200 bg-white p-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
               <p className="text-xl font-bold text-foreground">Total: {formatLkr(total)}</p>
               <Link href="/checkout" className="inline-block rounded-[10px] bg-brand-main px-6 py-3 text-white font-medium hover:bg-brand-dark">
                 Proceed to Checkout
@@ -167,8 +163,7 @@ export default function CartPage() {
             </div>
           </div>
         )}
-        </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { reviewModerationSchema } from "@/lib/validation";
 
@@ -66,6 +67,8 @@ export async function PATCH(request: Request) {
         createdAt: true,
       },
     });
+
+    revalidateTag("public-reviews");
 
     return NextResponse.json({ ok: true, review });
   } catch {

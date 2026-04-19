@@ -137,7 +137,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* CSS-only reveal animation to avoid hydration-time DOM mutations */
 @media (prefers-reduced-motion: no-preference) {
-  main section {
+  .reveal-section {
     opacity: 0;
     filter: blur(2px);
     transform: translate3d(0, 28px, 0) scale(0.995);
@@ -145,31 +145,31 @@ h1, h2, h3, h4, h5, h6 {
     will-change: transform, opacity;
   }
 
-  main section:nth-of-type(3n + 1) {
+  .reveal-section:nth-of-type(3n + 1) {
     transform: translate3d(0, 28px, 0) scale(0.995);
   }
 
-  main section:nth-of-type(3n + 2) {
+  .reveal-section:nth-of-type(3n + 2) {
     transform: translate3d(-36px, 0, 0);
   }
 
-  main section:nth-of-type(3n + 3) {
+  .reveal-section:nth-of-type(3n + 3) {
     transform: translate3d(36px, 0, 0);
   }
 
-  main section:nth-of-type(4n + 1) {
+  .reveal-section:nth-of-type(4n + 1) {
     animation-delay: 0ms;
   }
 
-  main section:nth-of-type(4n + 2) {
+  .reveal-section:nth-of-type(4n + 2) {
     animation-delay: 90ms;
   }
 
-  main section:nth-of-type(4n + 3) {
+  .reveal-section:nth-of-type(4n + 3) {
     animation-delay: 180ms;
   }
 
-  main section:nth-of-type(4n + 4) {
+  .reveal-section:nth-of-type(4n + 4) {
     animation-delay: 270ms;
   }
 }

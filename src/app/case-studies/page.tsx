@@ -4,6 +4,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
+import { caseStudies } from "@/lib/case-studies";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Case Studies | Career Profile Transformations",
@@ -18,33 +19,6 @@ export default function CaseStudiesPage() {
     { name: "Home", path: "/" },
     { name: "Case Studies", path: "/case-studies" },
   ]);
-
-  const caseStudies = [
-    {
-      id: 1,
-      title: "ATS CV Rewrite for International Applications",
-      category: "ATS CV Writing",
-      year: "2024",
-      image: "/images/chanuka-jeewantha-career-development-specialist.jpg",
-      desc: "Role-targeted CV transformation focused on keyword alignment, measurable achievements, and recruiter readability.",
-    },
-    {
-      id: 2,
-      title: "LinkedIn Profile Optimization Sprint",
-      category: "LinkedIn Optimization",
-      year: "2023",
-      image: "/images/linkedin-optimization-30k-followers-proof.jpg",
-      desc: "Complete profile positioning update with stronger headline, About narrative, and experience storytelling for better visibility.",
-    },
-    {
-      id: 3,
-      title: "Career Coaching + Roadmap Execution",
-      category: "Career Coaching",
-      year: "2022",
-      image: "/images/about-page-chanuka.jpg",
-      desc: "Step-by-step roadmap and coaching support to transition from uncertainty to focused applications and interview readiness.",
-    }
-  ];
 
   return (
     <>
@@ -81,7 +55,7 @@ export default function CaseStudiesPage() {
           <div className="flex flex-col gap-16">
             {caseStudies.map((study, index) => (
               <div 
-                key={study.id} 
+                key={study.slug} 
                 className={`flex flex-col md:flex-row gap-12 items-center ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
               >
                 <div className="w-full md:w-1/2 aspect-[4/3] bg-zinc-200 rounded-[24px] relative overflow-hidden group">
@@ -104,10 +78,10 @@ export default function CaseStudiesPage() {
                     {study.title}
                   </h2>
                   <p className="text-text-body text-lg leading-relaxed mb-8">
-                    {study.desc}
+                    {study.summary}
                   </p>
                   
-                  <Link href={`/portfolio`} className="group flex items-center gap-4 text-foreground font-bold hover:text-brand-main transition-colors w-max">
+                  <Link href={`/case-studies/${study.slug}`} className="group flex items-center gap-4 text-foreground font-bold hover:text-brand-main transition-colors w-max">
                     <span className="border-b-2 border-foreground group-hover:border-brand-main pb-1 transition-colors">Read Case Study</span>
                     <svg className="w-6 h-6 transform group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                   </Link>
@@ -127,6 +101,9 @@ export default function CaseStudiesPage() {
               </Link>
               <Link href="/services" className="rounded-[10px] border border-zinc-300 bg-zinc-50 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Explore Services
+              </Link>
+              <Link href="/services/personal-website" className="rounded-[10px] border border-zinc-300 bg-zinc-50 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                Personal Website Service
               </Link>
               <Link href="/pricing" className="rounded-[10px] border border-zinc-300 bg-zinc-50 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Compare Pricing

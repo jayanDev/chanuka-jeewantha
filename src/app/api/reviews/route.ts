@@ -1,24 +1,13 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { isTrustedOrigin } from "@/lib/security";
 import { reviewSchema } from "@/lib/validation";
+import { getCachedPublicReviews } from "@/lib/reviews";
+import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
-    const reviews = await prisma.serviceReview.findMany({
-      where: { isApproved: true },
-      orderBy: { createdAt: "desc" },
-      take: 24,
-      select: {
-        id: true,
-        name: true,
-        message: true,
-        rating: true,
-        createdAt: true,
-      },
-    });
-
+    const reviews = await getCachedPublicReviews();
     return NextResponse.json({ reviews });
   } catch {
     return NextResponse.json(

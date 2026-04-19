@@ -43,7 +43,7 @@ export default function Footer() {
               Chanuka.
             </Link>
             <p className="text-text-light/80 text-[16px] leading-relaxed max-w-sm">
-              Professional CV Writer and Career Development Specialist with 8+ years of experience in ATS-friendly CV writing, LinkedIn optimization, and coaching.
+              Professional CV Writer and Career Development Specialist with 8+ years of experience in ATS-friendly CV writing, LinkedIn optimization, personal websites, and career coaching.
             </p>
           </div>
 
@@ -53,12 +53,21 @@ export default function Footer() {
             <ul className="flex flex-col gap-3">
               <li><Link href="/about" className="hover:text-brand-main transition-colors text-text-light/80">About us</Link></li>
               <li><Link href="/services" className="hover:text-brand-main transition-colors text-text-light/80">Services</Link></li>
+              <li><Link href="/tools" className="hover:text-brand-main transition-colors text-text-light/80">Free Tools</Link></li>
+              <li><Link href="/career-quiz" className="hover:text-brand-main transition-colors text-text-light/80">Career Quiz</Link></li>
+              <li><Link href="/results" className="hover:text-brand-main transition-colors text-text-light/80">Results</Link></li>
+              <li><Link href="/booking" className="hover:text-brand-main transition-colors text-text-light/80">Booking</Link></li>
+              <li><Link href="/reviews" className="hover:text-brand-main transition-colors text-text-light/80">Google Reviews</Link></li>
+              <li><Link href="/workshops" className="hover:text-brand-main transition-colors text-text-light/80">Workshops</Link></li>
+              <li><Link href="/services/industries" className="hover:text-brand-main transition-colors text-text-light/80">Industry Pages</Link></li>
+              <li><Link href="/services/personal-website" className="hover:text-brand-main transition-colors text-text-light/80">Personal Websites</Link></li>
               <li><Link href="/portfolio" className="hover:text-brand-main transition-colors text-text-light/80">Portfolio</Link></li>
               <li><Link href="/businesses" className="hover:text-brand-main transition-colors text-text-light/80">Businesses</Link></li>
               <li><Link href="/ebooks" className="hover:text-brand-main transition-colors text-text-light/80">Ebooks</Link></li>
               <li><Link href="/fiverr-orders" className="hover:text-brand-main transition-colors text-text-light/80">Fiverr Orders (50% OFF)</Link></li>
               <li><Link href="/affiliate" className="hover:text-brand-main transition-colors text-text-light/80 text-brand-main font-semibold">Affiliate Network [HOT]</Link></li>
               <li><Link href="/blog" className="hover:text-brand-main transition-colors text-text-light/80">Blog</Link></li>
+              <li><Link href="/feed.xml" className="hover:text-brand-main transition-colors text-text-light/80">RSS Feed</Link></li>
               <li><Link href="/testimonials" className="hover:text-brand-main transition-colors text-text-light/80">Testimonials</Link></li>
             </ul>
           </div>
@@ -114,7 +123,7 @@ export default function Footer() {
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
             </a>
             <a href="https://www.linkedin.com/in/chanuka-jeewantha/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-10 h-10 rounded-full bg-text-body/20 flex items-center justify-center text-white hover:bg-brand-main transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
             </a>
             <a href="https://www.youtube.com/@chanukajeewantha" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="w-10 h-10 rounded-full bg-text-body/20 flex items-center justify-center text-white hover:bg-brand-main transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>

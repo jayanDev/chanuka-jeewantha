@@ -3,6 +3,12 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { getBaseUrl } from "@/lib/site-url";
 import { buildPageMetadata } from "@/lib/seo";
+import { ebooks } from "@/lib/ebooks";
+import { getCachedPublicReviews } from "@/lib/reviews";
+import { getCachedBlogListing } from "@/lib/blog-listing";
+import { digitalResources } from "@/lib/resources";
+import { careerTools } from "@/lib/tools";
+import { industryLandingPages } from "@/lib/industry-pages";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Professional CV Writing Services & ATS Friendly CV Maker | Chanuka Jeewantha",
@@ -11,24 +17,41 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/",
 });
 
-export default function Home() {
+function getBlogCoverImage(category: string) {
+  const normalized = category.toLowerCase();
+  if (normalized.includes("linkedin")) return "/images/linkedin-optimization-30k-followers-proof.jpg";
+  if (normalized.includes("coach") || normalized.includes("roadmap") || normalized.includes("career")) return "/images/about-page-chanuka.jpg";
+  if (normalized.includes("cv") || normalized.includes("ats")) return "/images/chanuka-jeewantha-career-development-specialist.jpg";
+  return "/images/hero-chanuka.jpg";
+}
+
+export default async function Home() {
+  const [blogPosts, publicReviews] = await Promise.all([
+    getCachedBlogListing(),
+    getCachedPublicReviews(),
+  ]);
+
   const services = [
     {
       title: "Professional CV Writing (100% ATS-Friendly)",
       desc: "Role-targeted CVs built for ATS parsing and recruiter readability, focused on results and measurable achievements.",
+      href: "/services/packages/cv-writing",
       isMostPopular: true,
     },
     {
       title: "Cover Letter Writing",
       desc: "Customized cover letters that communicate your value clearly, match your target role, and strengthen each application.",
+      href: "/services/packages/cover-letter-writing",
     },
     {
       title: "LinkedIn Account Optimization",
       desc: "Search-optimized LinkedIn profiles with clear positioning, keyword strategy, and profile branding improvements.",
+      href: "/services/packages/linkedin-optimization",
     },
     {
       title: "CV Review Service",
       desc: "Expert CV reviews with clear ATS, structure, and impact improvements so you can implement high-value changes confidently.",
+      href: "/services/packages/cv-review",
     },
   ];
 
@@ -45,65 +68,27 @@ export default function Home() {
     ],
   };
 
-  const testimonialHighlights = [
-    {
-      quote: "My ATS score improved and I got interviews within two weeks.",
-      name: "Kasun R.",
-      role: "Operations Executive",
-      outcome: "2x more interview callbacks",
-    },
-    {
-      quote: "LinkedIn profile optimization gave me inbound recruiter messages.",
-      name: "Sanduni M.",
-      role: "Marketing Specialist",
-      outcome: "Weekly recruiter inquiries",
-    },
-    {
-      quote: "Clear strategy, fast delivery, and practical career guidance.",
-      name: "Dilan P.",
-      role: "Software Engineer",
-      outcome: "Shortlisted for overseas roles",
-    },
-  ];
+  const latestPosts = blogPosts.slice(0, 3);
+  const testimonialHighlights = publicReviews.slice(0, 3);
+  const ebookHighlights = ebooks.slice(0, 3).map((ebook, index) => ({
+    slug: ebook.slug,
+    title: ebook.title,
+    image: ebook.coverImage,
+    badge: index === 0 ? "Bestseller" : index === 1 ? "Productivity" : "Career Growth",
+  }));
 
-  const ebookHighlights = [
-    {
-      title: "කෝටිපතියෙක් වීමේ වේගවත් මඟ",
-      image: "/images/millionaire-fastlane-cover.jpg",
-      badge: "Bestseller",
-    },
-    {
-      title: "ගැඹුරු කාර්යය (Deep Work)",
-      image: "/images/Deep Work.jpg",
-      badge: "Productivity",
-    },
-    {
-      title: "සාර්ථක වෘත්තීය ජීවිතයක නීති සහ මූලධර්ම",
-      image: "/images/So Good They Can't Ignore You.jpg",
-      badge: "Career Growth",
-    },
-  ];
+  const resourceHighlights = digitalResources
+    .filter((resource) => resource.category === "free")
+    .slice(0, 3)
+    .map((resource) => ({
+      title: resource.title,
+      desc: resource.description,
+      href: `/resources/${resource.slug}`,
+      type: resource.resourceType,
+    }));
 
-  const resourceHighlights = [
-    {
-      title: "ATS CV Keyword Checklist",
-      desc: "A practical one-page checklist to improve ATS matching before every application.",
-      href: "/blog",
-      type: "Guide",
-    },
-    {
-      title: "Interview Preparation Blueprint",
-      desc: "A structured plan to prepare stories, outcomes, and confidence for interview day.",
-      href: "/blog",
-      type: "Blueprint",
-    },
-    {
-      title: "LinkedIn Profile Optimization Guide",
-      desc: "Improve headline clarity, keyword coverage, and recruiter-facing profile positioning.",
-      href: "/services/linkedin-optimization",
-      type: "Template",
-    },
-  ];
+  const toolHighlights = careerTools.slice(0, 3);
+  const industryHighlights = industryLandingPages.slice(0, 3);
 
   const fastMovingPackages = [
     {
@@ -133,7 +118,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
       />
 
-      <section className="w-full relative pt-[50px] md:pt-[73px] pb-[100px] md:pb-[146px] flex flex-col items-center justify-center overflow-hidden">
+      <section className="reveal-section w-full relative pt-[50px] md:pt-[73px] pb-[100px] md:pb-[146px] flex flex-col items-center justify-center overflow-hidden">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6 w-full flex flex-col md:flex-row items-center gap-12 z-10">
           <div className="flex-1 flex flex-col items-start px-[24px]">
             <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-extrabold leading-[0.95em] mb-6 text-foreground">
@@ -180,7 +165,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full bg-foreground py-6 overflow-hidden transform -rotate-2 scale-105 my-12">
+      <section className="reveal-section w-full bg-foreground py-6 overflow-hidden transform -rotate-2 scale-105 my-12">
         <div className="flex whitespace-nowrap">
           <div className="flex gap-[50px] md:gap-[90px] px-[25px] md:px-[45px] animate-[marquee_20s_linear_infinite]">
             {[
@@ -203,7 +188,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px]">
+      <section className="reveal-section w-full py-[64px] sm:py-[80px] md:py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div>
@@ -235,7 +220,7 @@ export default function Home() {
                 )}
                 <h3 className="text-[28px] font-bold font-plus-jakarta mb-4">{service.title}</h3>
                 <p className="text-text-body mb-8 flex-grow">{service.desc}</p>
-                <Link href="/services" className="text-brand-dark hover:text-brand-main font-semibold flex items-center gap-2 transition-transform hover:translate-x-2">
+                <Link href={service.href} className="text-brand-dark hover:text-brand-main font-semibold flex items-center gap-2 transition-transform hover:translate-x-2">
                   Learn More
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                 </Link>
@@ -245,7 +230,65 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
+      <section className="reveal-section w-full border-y border-zinc-200 bg-zinc-50 py-[64px] sm:py-[80px] md:py-[96px]">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+            <div className="max-w-3xl">
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Decision Support</span>
+              <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Choose the right next move</h3>
+              <p className="mt-3 text-text-body">
+                Use the quiz, browse proof, or go straight to tailored industry pages if you want a faster and more relevant path.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+            <article className="rounded-[20px] border border-zinc-200 bg-white p-6 shadow-sm">
+              <span className="inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
+                Start Here
+              </span>
+              <h4 className="mt-4 text-[24px] font-bold font-plus-jakarta text-foreground">Take the career quiz</h4>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-600">
+                Answer a few quick questions and get a practical recommendation across CV writing, LinkedIn, interviews, and digital presence.
+              </p>
+              <Link href="/career-quiz" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
+                Open Quiz
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+              </Link>
+            </article>
+
+            <article className="rounded-[20px] border border-zinc-200 bg-white p-6 shadow-sm">
+              <span className="inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
+                Proof
+              </span>
+              <h4 className="mt-4 text-[24px] font-bold font-plus-jakarta text-foreground">See real results</h4>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-600">
+                Browse case studies and testimonials to understand how CV, LinkedIn, and digital-presence work turns into clearer outcomes.
+              </p>
+              <Link href="/results" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
+                Browse Results
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+              </Link>
+            </article>
+
+            <article className="rounded-[20px] border border-zinc-200 bg-white p-6 shadow-sm">
+              <span className="inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
+                Relevance
+              </span>
+              <h4 className="mt-4 text-[24px] font-bold font-plus-jakarta text-foreground">Go to your audience page</h4>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-600">
+                Explore tailored service guidance for software, finance, marketing, HR, engineering, and fresh-graduate audiences.
+              </p>
+              <Link href="/services/industries" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
+                View Industry Pages
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+              </Link>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="reveal-section w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-0">
             <div className="w-full lg:w-[49%] aspect-[4/5] rounded-[20px] relative overflow-hidden border border-zinc-200">
@@ -290,7 +333,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-foreground text-white">
+      <section className="reveal-section w-full py-[64px] sm:py-[80px] md:py-[96px] bg-foreground text-white">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div className="max-w-3xl">
@@ -305,26 +348,34 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              "Why qualified candidates still get ignored",
-              "How to turn responsibilities into achievement bullets",
-              "LinkedIn profile mistakes that reduce recruiter reach",
-            ].map((title) => (
-              <div key={title} className="bg-zinc-900/40 border border-white/20 rounded-[20px] p-8 hover:bg-zinc-800/60 transition-colors">
-                <h3 className="text-[24px] font-bold font-plus-jakarta mb-3 !text-white">{title}</h3>
-                <p className="!text-white text-sm mb-6">
-                  Practical guidance built for today&#39;s hiring behavior and competitive job market positioning.
-                </p>
-                <Link href="/blog" className="text-white font-semibold transition-colors">
-                  Read More
-                </Link>
-              </div>
+            {latestPosts.map((post) => (
+              <article key={post.slug} className="overflow-hidden rounded-[20px] border border-white/20 bg-zinc-900/40 transition-colors hover:bg-zinc-800/60">
+                <div className="relative aspect-[5/3] overflow-hidden">
+                  <Image
+                    src={getBlogCoverImage(post.category)}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-8">
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-brand-subtle">
+                    {post.category}
+                  </p>
+                  <h3 className="text-[24px] font-bold font-plus-jakarta mb-3 !text-white">{post.title}</h3>
+                  <p className="!text-white text-sm mb-6 line-clamp-3">{post.excerpt}</p>
+                  <Link href={`/blog/${post.slug}`} className="text-white font-semibold transition-colors">
+                    Read More
+                  </Link>
+                </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="w-full border-t border-zinc-200 bg-zinc-50 py-[72px]">
+      <section className="reveal-section w-full border-t border-zinc-200 bg-zinc-50 py-[72px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <div>
@@ -337,7 +388,7 @@ export default function Home() {
           </div>
           <div className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-3 snap-x snap-mandatory md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
             {ebookHighlights.map((item) => (
-              <article key={item.title} className="group min-w-[84%] snap-start overflow-hidden rounded-[20px] border border-zinc-200 bg-white shadow-[0_10px_24px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.12)] sm:min-w-[58%] md:min-w-0">
+              <article key={item.slug} className="group min-w-[84%] snap-start overflow-hidden rounded-[20px] border border-zinc-200 bg-white shadow-[0_10px_24px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.12)] sm:min-w-[58%] md:min-w-0">
                 <div className="relative aspect-[5/4] overflow-hidden">
                   <Image
                     src={item.image}
@@ -350,7 +401,7 @@ export default function Home() {
                 </div>
                 <div className="p-5">
                   <p className="line-clamp-2 text-[16px] font-bold leading-snug text-zinc-900">{item.title}</p>
-                  <Link href="/ebooks" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
+                  <Link href={`/ebooks/${item.slug}`} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
                     Explore Ebook
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
                   </Link>
@@ -361,14 +412,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full border-t border-zinc-200 bg-white py-[72px]">
+      <section className="reveal-section w-full border-t border-zinc-200 bg-white py-[72px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <div>
-              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Tools & Guides</span>
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Guides & Templates</span>
               <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Resources</h3>
             </div>
-            <Link href="/blog" className="rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
+            <Link href="/resources" className="rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
               See More
             </Link>
           </div>
@@ -388,7 +439,102 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full border-t border-zinc-200 bg-zinc-50 py-[72px]">
+      <section className="reveal-section w-full border-t border-zinc-200 bg-zinc-50 py-[72px]">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Interactive Help</span>
+              <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Free Career Tools</h3>
+            </div>
+            <Link href="/tools" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
+              See More
+            </Link>
+          </div>
+          <div className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-3 snap-x snap-mandatory md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+            {toolHighlights.map((tool) => (
+              <article key={tool.slug} className="min-w-[84%] snap-start rounded-[20px] border border-zinc-200 bg-white p-6 shadow-[0_8px_22px_rgba(0,0,0,0.05)] transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.1)] sm:min-w-[58%] md:min-w-0">
+                <span className="mb-3 inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
+                  {tool.category}
+                </span>
+                <h4 className="mb-2 text-[20px] font-bold font-plus-jakarta text-zinc-900">{tool.title}</h4>
+                <p className="mb-5 text-sm leading-relaxed text-zinc-600">{tool.summary}</p>
+                <Link href={`/tools/${tool.slug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
+                  Open Tool
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="reveal-section w-full border-t border-zinc-200 bg-zinc-50 py-[72px]">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Audience Pages</span>
+              <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Industry-Focused Guidance</h3>
+            </div>
+            <Link href="/services/industries" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
+              See More
+            </Link>
+          </div>
+          <div className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-3 snap-x snap-mandatory md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+            {industryHighlights.map((item) => (
+              <article key={item.slug} className="group min-w-[84%] snap-start rounded-[20px] border border-zinc-200 bg-white p-6 shadow-[0_8px_20px_rgba(0,0,0,0.05)] transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.1)] sm:min-w-[58%] md:min-w-0">
+                <div className="mb-4 flex items-center justify-between">
+                  <span className="inline-flex rounded-full bg-brand-main px-3 py-1 text-xs font-semibold text-white">{item.name}</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-main"><path d="M3 21h18" /><path d="M5 21V7l8-4v18" /><path d="M19 21V11l-6-4" /></svg>
+                </div>
+                <h4 className="mb-2 text-[20px] font-bold font-plus-jakarta text-zinc-900">{item.name}</h4>
+                <p className="mb-5 text-sm leading-relaxed text-zinc-600">{item.heroSummary}</p>
+                <Link href={`/services/industries/${item.slug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
+                  View Career Page
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="reveal-section w-full border-t border-zinc-200 bg-white py-[72px]">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Client Voice</span>
+              <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Testimonials</h3>
+            </div>
+            <Link href="/testimonials" className="rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
+              See More
+            </Link>
+          </div>
+          <div className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-3 snap-x snap-mandatory md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+            {testimonialHighlights.map((item) => (
+              <article key={item.id} className="group min-w-[84%] snap-start rounded-[20px] border border-zinc-200 bg-gradient-to-br from-white to-zinc-50 p-6 shadow-[0_10px_24px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] sm:min-w-[58%] md:min-w-0">
+                <div className="mb-5 flex items-center justify-between">
+                  <div className="flex items-center gap-1 text-[#f59e0b]" aria-hidden="true">
+                    {Array.from({ length: item.rating }).map((_, idx) => (
+                      <svg key={idx} xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+                    ))}
+                  </div>
+                  <span className="rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold text-brand-dark">Verified Review</span>
+                </div>
+                <p className="mb-5 text-[15px] leading-relaxed text-zinc-700">"{item.message}"</p>
+                <div className="rounded-[12px] border border-zinc-200 bg-white px-4 py-3">
+                  <p className="text-sm font-bold text-zinc-900">{item.name}</p>
+                  <p className="text-xs text-zinc-500">
+                    {item.role ?? new Date(item.createdAt).toLocaleDateString("en-LK")}
+                  </p>
+                  {item.outcome ? <p className="mt-1 text-xs font-semibold text-brand-main">{item.outcome}</p> : null}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="reveal-section w-full border-t border-zinc-200 bg-zinc-50 py-[72px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <div>
@@ -412,40 +558,6 @@ export default function Home() {
                   View Package
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
                 </Link>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="w-full border-t border-zinc-200 bg-white py-[72px]">
-        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
-          <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Client Voice</span>
-              <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Testimonials</h3>
-            </div>
-            <Link href="/testimonials" className="rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
-              See More
-            </Link>
-          </div>
-          <div className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-3 snap-x snap-mandatory md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
-            {testimonialHighlights.map((item) => (
-              <article key={item.name} className="group min-w-[84%] snap-start rounded-[20px] border border-zinc-200 bg-gradient-to-br from-white to-zinc-50 p-6 shadow-[0_10px_24px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] sm:min-w-[58%] md:min-w-0">
-                <div className="mb-5 flex items-center justify-between">
-                  <div className="flex items-center gap-1 text-[#f59e0b]" aria-hidden="true">
-                    {Array.from({ length: 5 }).map((_, idx) => (
-                      <svg key={idx} xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
-                    ))}
-                  </div>
-                  <span className="rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold text-brand-dark">Verified Review</span>
-                </div>
-                <p className="mb-5 text-[15px] leading-relaxed text-zinc-700">"{item.quote}"</p>
-                <div className="rounded-[12px] border border-zinc-200 bg-white px-4 py-3">
-                  <p className="text-sm font-bold text-zinc-900">{item.name}</p>
-                  <p className="text-xs text-zinc-500">{item.role}</p>
-                  <p className="mt-1 text-xs font-semibold text-brand-main">{item.outcome}</p>
-                </div>
               </article>
             ))}
           </div>

@@ -6,11 +6,11 @@ import { buildBreadcrumbList } from "@/lib/structured-data";
 import ResourceFilterClient from "./_components/ResourceFilterClient";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Digital Resources | Career Toolkits",
+  title: "Digital Resources | Free and Paid Career Toolkits",
   description:
-    "Access premium digital resources, templates, and strategy toolkits for CV writing, LinkedIn growth, and interview conversion.",
+    "Access free and paid digital resources, templates, and strategy toolkits for CV writing, LinkedIn growth, and interview conversion.",
   path: "/resources",
-  keywords: ["career resources", "job seeker toolkits", "interview templates", "career digital products"],
+  keywords: ["career resources", "job seeker toolkits", "interview templates", "career digital products", "free CV resources"],
 });
 
 export default function ResourcesPage() {
@@ -44,7 +44,7 @@ export default function ResourcesPage() {
             <span className="text-brand-main">Resources</span>
           </div>
           <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-5xl !text-white">
-            Paid Digital <span className="text-brand-main">Resources</span> for career growth and interview conversion.
+            Free and paid <span className="text-brand-main">resources</span> for career growth, stronger positioning, and interview conversion.
           </h1>
         </div>
       </section>
@@ -56,9 +56,12 @@ export default function ResourcesPage() {
           <aside className="mt-8 rounded-[16px] border border-zinc-200 bg-zinc-50 p-6">
             <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Related Career Assets</h2>
             <p className="text-text-body mb-5">
-              Pair these resources with practical services and deeper reading.
+              Start with free tools, then pair them with deeper reading and practical services.
             </p>
             <div className="flex flex-wrap gap-3">
+              <Link href="/tools" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                Use Free Tools
+              </Link>
               <Link href="/ebooks" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Explore Ebooks
               </Link>

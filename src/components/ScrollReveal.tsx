@@ -5,7 +5,7 @@ import { useEffect } from "react";
 export default function ScrollReveal() {
   useEffect(() => {
     const sections = Array.from(
-      document.querySelectorAll<HTMLElement>("main section")
+      document.querySelectorAll<HTMLElement>("main .reveal-section")
     );
 
     if (!sections.length) return;

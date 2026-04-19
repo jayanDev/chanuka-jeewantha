@@ -18,6 +18,8 @@ const businesses = [
     summary:
       "High-impact CV writing, LinkedIn optimization, and career strategy support for job seekers locally and globally.",
     focus: ["ATS CV Writing", "LinkedIn Optimization", "Career Coaching"],
+    href: "/services",
+    ctaLabel: "Explore services",
   },
   {
     name: "Career Growth Workshops",
@@ -25,13 +27,17 @@ const businesses = [
     summary:
       "Live and cohort-style sessions for universities, private institutes, and professional communities.",
     focus: ["Interview Readiness", "Personal Branding", "Job Search Strategy"],
+    href: "/workshops",
+    ctaLabel: "View workshops",
   },
   {
     name: "Digital Career Products",
     type: "Product Line",
     summary:
-      "Templates, checklists, and guided ebook systems to help candidates execute faster with clear frameworks.",
-    focus: ["Ebooks", "Application Templates", "Action Trackers"],
+      "Templates, checklists, free tools, and guided ebook systems to help candidates execute faster with clear frameworks.",
+    focus: ["Ebooks", "Free Tools", "Application Templates"],
+    href: "/resources",
+    ctaLabel: "Browse resources",
   },
 ];
 
@@ -107,8 +113,8 @@ export default function BusinessesPage() {
                   ))}
                 </ul>
 
-                <Link href="/contact" className="inline-flex items-center gap-2 font-semibold text-brand-dark transition-colors hover:text-brand-main">
-                  Collaborate on this
+                <Link href={business.href} className="inline-flex items-center gap-2 font-semibold text-brand-dark transition-colors hover:text-brand-main">
+                  {business.ctaLabel}
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                 </Link>
               </article>
@@ -123,6 +129,12 @@ export default function BusinessesPage() {
             <div className="flex flex-wrap gap-3">
               <Link href="/services" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Services
+              </Link>
+              <Link href="/tools" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                Free Tools
+              </Link>
+              <Link href="/workshops" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                Workshops
               </Link>
               <Link href="/case-studies" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Case Studies

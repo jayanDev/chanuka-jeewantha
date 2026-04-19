@@ -1,8 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
+import { industryLandingPages } from "@/lib/industry-pages";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "CV Writing Services & Linkedin Optimization Sri Lanka | Services",
@@ -16,6 +18,7 @@ export default function ServicesPage() {
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
   ]);
+  const industryHighlights = industryLandingPages.slice(0, 3);
 
   const services = [
     {
@@ -23,21 +26,36 @@ export default function ServicesPage() {
       desc: "Role-targeted CVs with clean structure, proper keywords, and achievement-based writing to pass ATS and impress recruiters.",
       isMostPopular: true,
       href: "/services/packages/cv-writing",
+      image: "/images/chanuka-jeewantha-career-development-specialist.jpg",
+      alt: "ATS-friendly CV writing service",
     },
     {
       title: "Cover Letter Writing",
       desc: "Cover letters that communicate relevance, confidence, and proof-based value for competitive and international applications.",
       href: "/services/packages/cover-letter-writing",
+      image: "/images/about-page-chanuka.jpg",
+      alt: "Cover letter writing service",
     },
     {
       title: "LinkedIn Account Optimization",
       desc: "Headline, About, and experience positioning for stronger recruiter discovery and profile conversion.",
       href: "/services/packages/linkedin-optimization",
+      image: "/images/linkedin-optimization-30k-followers-proof.jpg",
+      alt: "LinkedIn optimization service",
     },
     {
       title: "CV Review Service",
       desc: "Detailed expert feedback on your existing CV with ATS recommendations, stronger content direction, and clear structure fixes.",
       href: "/services/packages/cv-review",
+      image: "/images/testimonial-chanuka.jpg",
+      alt: "CV review service",
+    },
+    {
+      title: "Personal Website & Career Portfolio",
+      desc: "A portfolio-style personal website that gives your career brand a public proof layer beyond the CV, LinkedIn profile, and application documents.",
+      href: "/services/personal-website",
+      image: "/images/hero-chanuka.jpg",
+      alt: "Personal website and career portfolio service",
     },
   ];
 
@@ -48,9 +66,7 @@ export default function ServicesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
 
-      {/* 1. Hero Section */}
-      <section className="w-full bg-foreground text-white pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
-        {/* Background Marquee Text */}
+      <section className="reveal-section w-full bg-foreground text-white pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -73,8 +89,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* 2. Services Grid Section */}
-      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
+      <section className="reveal-section w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div>
@@ -89,7 +104,7 @@ export default function ServicesPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {services.map((service, index) => (
+            {services.map((service) => (
               <div
                 key={service.title}
                 className={`bg-[#f0f9ff]/40 rounded-[20px] p-8 md:p-12 hover:shadow-xl transition-shadow flex flex-col group border ${
@@ -104,11 +119,14 @@ export default function ServicesPage() {
                     <span className="text-xs font-bold uppercase tracking-[0.14em] text-brand-dark">Client Favorite</span>
                   </div>
                 )}
-                <div className="w-full h-[250px] bg-zinc-200 rounded-[15px] mb-8 flex items-center justify-center overflow-hidden relative">
-                  <div className="text-zinc-500 font-mono text-sm text-center group-hover:scale-105 transition-transform duration-500">
-                    <p className="font-semibold tracking-wide">Service Image {index + 1}</p>
-                    <p className="mt-1 text-xs">100% x 250px</p>
-                  </div>
+                <div className="relative mb-8 h-[250px] w-full overflow-hidden rounded-[15px] border border-zinc-200 bg-zinc-100">
+                  <Image
+                    src={service.image}
+                    alt={service.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
                 <h3 className="text-[28px] font-bold font-plus-jakarta mb-4 text-foreground">{service.title}</h3>
                 <p className="text-text-body mb-8 flex-grow text-lg leading-relaxed">
@@ -124,9 +142,69 @@ export default function ServicesPage() {
 
           <div className="mt-10 rounded-[16px] border border-[#e1f5fe] bg-[#f0f9ff]/60 p-6 text-center">
             <p className="text-text-body text-lg">
-              Additional services will be added soon. Current priority packages are CV Writing, Cover Letter Writing, LinkedIn Optimization, and CV Review.
+              Build a stronger career stack by combining ATS-ready documents, LinkedIn positioning, and a portfolio-style personal website for better digital presence.
             </p>
           </div>
+
+          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+            <article className="rounded-[18px] border border-zinc-200 bg-zinc-50 p-6">
+              <span className="inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
+                Free Visibility Layer
+              </span>
+              <h2 className="mt-4 text-[26px] font-bold font-plus-jakarta text-foreground">Use free career tools before you buy</h2>
+              <p className="mt-3 text-text-body">
+                Try the ATS audit, LinkedIn headline generator, and interview story bank to improve readiness and create stronger entry points into paid services.
+              </p>
+              <Link href="/tools" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
+                Explore Free Tools
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+              </Link>
+            </article>
+
+            <article className="rounded-[18px] border border-zinc-200 bg-zinc-50 p-6">
+              <span className="inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
+                Group Programs
+              </span>
+              <h2 className="mt-4 text-[26px] font-bold font-plus-jakarta text-foreground">Book workshops for campuses and institutes</h2>
+              <p className="mt-3 text-text-body">
+                Extend the same career strategy to student communities, university career units, and professional groups through practical workshops.
+              </p>
+              <Link href="/workshops" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
+                View Workshops
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+              </Link>
+            </article>
+          </div>
+
+          <section className="mt-10 rounded-[18px] border border-zinc-200 bg-white p-6">
+            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <div>
+                <span className="inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
+                  SEO Growth Layer
+                </span>
+                <h2 className="mt-4 text-[28px] font-bold font-plus-jakarta text-foreground">Browse audience-specific service pages</h2>
+                <p className="mt-3 text-text-body">
+                  Explore tailored guidance for different industries and role groups instead of relying on one generic service path.
+                </p>
+              </div>
+              <Link href="/services/industries" className="rounded-[10px] bg-foreground px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-main">
+                View All Industry Pages
+              </Link>
+            </div>
+
+            <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+              {industryHighlights.map((item) => (
+                <article key={item.slug} className="rounded-[16px] border border-zinc-200 bg-zinc-50 p-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-main">{item.name}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-zinc-600">{item.heroSummary}</p>
+                  <Link href={`/services/industries/${item.slug}`} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
+                    Open Page
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                  </Link>
+                </article>
+              ))}
+            </div>
+          </section>
 
           <aside className="mt-8 rounded-[16px] border border-zinc-200 bg-zinc-50 p-6">
             <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Plan Your Next Step</h2>
@@ -137,8 +215,17 @@ export default function ServicesPage() {
               <Link href="/pricing" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Compare Pricing
               </Link>
+              <Link href="/tools" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                Use Free Tools
+              </Link>
               <Link href="/resources" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Browse Resources
+              </Link>
+              <Link href="/services/industries" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                Industry Pages
+              </Link>
+              <Link href="/workshops" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                Book Workshops
               </Link>
               <Link href="/contact" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Contact for Advice

@@ -97,7 +97,10 @@ export default function SeasonalOfferBanner() {
       if (typeof next.id === "string") {
         void fetch("/api/offers/impression", {
           method: "POST",
-          headers: { "Content-Type": "application/json", ...Object.fromEntries(new Headers(buildOfferPreviewHeaders()).entries()) },
+          headers: {
+            "Content-Type": "application/json",
+            ...Object.fromEntries(new Headers(buildOfferPreviewHeaders()).entries()),
+          },
           body: JSON.stringify({ offerId: next.id }),
         });
       }
@@ -142,7 +145,7 @@ export default function SeasonalOfferBanner() {
           <span className="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-white animate-bounce" aria-hidden="true" />
           <p className="font-semibold text-sm md:text-base leading-relaxed">
             {offer.title}: {offer.discountPercent}% OFF
-            <span className="font-normal opacity-90"> • {offerScopeText}</span>
+            <span className="font-normal opacity-90"> - {offerScopeText}</span>
           </p>
         </div>
 

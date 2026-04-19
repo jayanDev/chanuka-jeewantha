@@ -1,6 +1,7 @@
 import { unstable_cache } from "next/cache";
 import { blogPosts, getPostBySlug } from "@/content/blog-posts";
 import { prisma } from "@/lib/prisma";
+import { getIndexableFallbackBlogPosts } from "@/lib/blog-discovery";
 
 export type BlogListingPost = {
   slug: string;
@@ -19,7 +20,7 @@ function sortPostsByDate<T extends { publishedAt: Date | null }>(items: T[]): T[
   });
 }
 
-const fallbackPosts: BlogListingPost[] = blogPosts.map((post) => ({
+const fallbackPosts: BlogListingPost[] = getIndexableFallbackBlogPosts(blogPosts).map((post) => ({
   slug: post.slug,
   title: post.title,
   excerpt: post.excerpt,

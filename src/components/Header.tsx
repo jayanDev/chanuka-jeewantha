@@ -15,25 +15,35 @@ type PrimaryNavLink = {
   label: string;
 };
 
+type HeaderProps = {
+  initialUser?: NavUser | null;
+};
+
 const primaryNavLinks: PrimaryNavLink[] = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
-  { href: "/ebooks", label: "Ebooks" },
+  { href: "/tools", label: "Tools" },
   { href: "/resources", label: "Resources" },
+  { href: "/ebooks", label: "Ebooks" },
   { href: "/pricing", label: "Pricing" },
+  { href: "/booking", label: "Booking" },
   { href: "/contact", label: "Contact" },
 ];
 
-export default function Header() {
+export default function Header({ initialUser = null }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [user, setUser] = useState<NavUser | null>(null);
+  const [user, setUser] = useState<NavUser | null>(initialUser);
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const firstMobileLinkRef = useRef<HTMLAnchorElement>(null);
   const profileMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (initialUser) {
+      return;
+    }
+
     const loadUser = async () => {
       try {
         const response = await fetch("/api/auth/me", { cache: "no-store" });
@@ -45,7 +55,7 @@ export default function Header() {
     };
 
     void loadUser();
-  }, []);
+  }, [initialUser]);
 
   useEffect(() => {
     if (!user) {
@@ -366,9 +376,6 @@ export default function Header() {
               Admin
             </Link>
           )}
-          <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>
-            Contact
-          </Link>
           {!user ? (
             <div className="flex w-full max-w-xs flex-col gap-3">
               <Link href="/auth/signin" onClick={() => setIsMobileMenuOpen(false)} className="rounded-[10px] border border-zinc-300 px-4 py-3 text-center text-[16px] font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">

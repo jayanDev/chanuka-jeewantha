@@ -45,17 +45,17 @@ export default function SubscribeForm() {
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-dark opacity-30 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
 
       <div className="max-w-[1512px] mx-auto px-4 sm:px-6 relative z-10 flex flex-col items-center text-center">
-        <span className="text-foreground font-bold tracking-wider uppercase mb-4 block">Newsletter</span>
+        <span className="text-foreground font-bold tracking-wider uppercase mb-4 block">Career Updates</span>
         <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground mb-6 leading-[1.1] max-w-2xl">
-          Subscribe to get latest updates.
+          Get free career resources and new strategy guides.
         </h2>
         <p className="text-text-body text-lg mb-10 max-w-xl text-zinc-800">
-          Join my newsletter to get the latest articles, resources, and design inspiration directly in your inbox.
+          Join the list for ATS CV tips, LinkedIn positioning ideas, interview-prep resources, and future digital toolkits.
         </p>
 
         {status === "success" && (
           <div className="mb-6 p-4 w-full max-w-2xl bg-white/20 border border-white/50 rounded-[10px] text-foreground font-medium text-center">
-            Thanks for subscribing! Keep an eye on your inbox.
+            Thanks for subscribing. You will receive future career resources and updates in your inbox.
           </div>
         )}
 

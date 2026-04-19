@@ -5,6 +5,10 @@ import { blogPosts } from "@/content/blog-posts";
 import { packageProducts } from "@/lib/packages-catalog";
 import { digitalResources } from "@/lib/resources";
 import { ebooks } from "@/lib/ebooks";
+import { caseStudies } from "@/lib/case-studies";
+import { getBlogCategoryPath, getIndexableFallbackBlogPosts } from "@/lib/blog-discovery";
+import { careerTools } from "@/lib/tools";
+import { industryLandingPages } from "@/lib/industry-pages";
 
 const baseUrl = getBaseUrl();
 
@@ -21,9 +25,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/services/packages/cover-letter-writing",
     "/services/packages/linkedin-optimization",
     "/services/packages/cv-review",
+    "/services/personal-website",
+    "/services/industries",
     "/businesses",
     "/ebooks",
     "/resources",
+    "/tools",
+    "/booking",
+    "/reviews",
+    "/career-quiz",
+    "/results",
+    "/workshops",
     "/portfolio",
     "/offers",
     "/offers/bundles",
@@ -45,6 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/terms-and-conditions",
     "/resume",
     "/blog",
+    "/feed.xml",
   ];
 
   const staticEntries = staticRoutes.map((route) => ({
@@ -54,21 +67,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === "" ? 1 : 0.7,
   }));
 
-  const fallbackPosts: Array<{ slug: string; publishedAt: Date | null; updatedAt: Date }> = blogPosts.map((post) => {
+  const fallbackPosts: Array<{ slug: string; publishedAt: Date | null; updatedAt: Date; category: string }> = getIndexableFallbackBlogPosts(blogPosts).map((post) => {
     const date = post.publishedAt ? new Date(post.publishedAt) : new Date();
     return {
       slug: post.slug,
       publishedAt: date,
       updatedAt: date,
+      category: post.category,
     };
   });
 
-  let posts: Array<{ slug: string; publishedAt: Date | null; updatedAt: Date }> = fallbackPosts;
+  let posts: Array<{ slug: string; publishedAt: Date | null; updatedAt: Date; category: string }> = fallbackPosts;
   if (process.env.DATABASE_URL) {
     try {
       const dbPosts = await prisma.post.findMany({
         where: { isPublished: true },
-        select: { slug: true, publishedAt: true, updatedAt: true },
+        select: { slug: true, publishedAt: true, updatedAt: true, category: true },
       });
 
       const dbSlugs = new Set(dbPosts.map((item) => item.slug));
@@ -100,6 +114,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
+  const categoryEntries = Array.from(new Set(posts.map((post) => post.category)))
+    .sort()
+    .map((category) => ({
+      url: `${baseUrl}${getBlogCategoryPath(category)}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.69,
+    }));
+
   const packageEntries = packageProducts.map((item) => ({
     url: `${baseUrl}/packages/${item.slug}`,
     lastModified: new Date(),
@@ -114,6 +137,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.68,
   }));
 
+  const toolEntries = careerTools.map((item) => ({
+    url: `${baseUrl}/tools/${item.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.69,
+  }));
+
+  const industryEntries = industryLandingPages.map((item) => ({
+    url: `${baseUrl}/services/industries/${item.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.71,
+  }));
+
   const ebookEntries = ebooks.map((item) => ({
     url: `${baseUrl}/ebooks/${item.slug}`,
     lastModified: new Date(),
@@ -121,12 +158,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: item.category === "free" ? 0.66 : 0.64,
   }));
 
+  const caseStudyEntries = caseStudies.map((item) => ({
+    url: `${baseUrl}/case-studies/${item.slug}`,
+    lastModified: new Date(`${item.year}-01-01T00:00:00.000Z`),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   return [
     ...staticEntries,
     ...blogIndexEntries,
+    ...categoryEntries,
     ...blogEntries,
     ...packageEntries,
     ...resourceEntries,
+    ...toolEntries,
+    ...industryEntries,
     ...ebookEntries,
+    ...caseStudyEntries,
   ];
 }

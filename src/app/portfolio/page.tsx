@@ -4,6 +4,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
+import { caseStudies } from "@/lib/case-studies";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Portfolio | Career Branding Work",
@@ -14,15 +15,6 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 export default function PortfolioPage() {
-  const portfolioImages = [
-    "/images/hero-chanuka.jpg",
-    "/images/about-page-chanuka.jpg",
-    "/images/chanuka-jeewantha-career-development-specialist.jpg",
-    "/images/linkedin-optimization-30k-followers-proof.jpg",
-    "/images/about-chanuka.jpg",
-    "/images/testimonial-chanuka.jpg",
-  ];
-
   const breadcrumbLd = buildBreadcrumbList([
     { name: "Home", path: "/" },
     { name: "Portfolio", path: "/portfolio" },
@@ -75,27 +67,36 @@ export default function PortfolioPage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 gap-y-12">
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <div key={item} className="group cursor-pointer">
-                <div className="relative w-full h-[400px] md:h-[500px] bg-zinc-200 rounded-[20px] overflow-hidden mb-6">
-                  {/* Category Badge */}
-                  <div className="absolute top-6 left-6 z-10 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold border border-zinc-200 shadow-sm text-foreground">
-                    {item % 2 === 0 ? "CV + LinkedIn Results" : "Career Coaching Outcomes"}
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+            {caseStudies.map((study) => (
+              <article key={study.slug} className="group overflow-hidden rounded-[20px] border border-zinc-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.1)]">
+                <div className="relative h-[320px] overflow-hidden">
+                  <div className="absolute top-6 left-6 z-10 rounded-full border border-zinc-200 bg-white/90 px-4 py-2 text-sm font-semibold text-foreground shadow-sm backdrop-blur-sm">
+                    {study.category}
                   </div>
                   <Image
-                    src={portfolioImages[item - 1]}
-                    alt={`Career portfolio sample ${item}`}
+                    src={study.image}
+                    alt={study.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <h3 className="text-[32px] font-bold font-plus-jakarta mb-2 group-hover:text-brand-main transition-colors text-foreground">
-                  Career Case Portfolio {item}
-                </h3>
-                <p className="text-text-body text-lg">Structured examples showing how strategy, messaging, and proof improved interview readiness.</p>
-              </div>
+                <div className="p-6">
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">{study.year}</p>
+                  <h3 className="mb-3 text-[28px] font-bold font-plus-jakarta text-foreground transition-colors group-hover:text-brand-main">
+                    {study.title}
+                  </h3>
+                  <p className="mb-5 text-base leading-relaxed text-text-body">{study.summary}</p>
+                  <Link
+                    href={`/case-studies/${study.slug}`}
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main"
+                  >
+                    Open Case Study
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                  </Link>
+                </div>
+              </article>
             ))}
           </div>
 
@@ -110,6 +111,9 @@ export default function PortfolioPage() {
               </Link>
               <Link href="/services" className="rounded-[10px] border border-zinc-300 bg-zinc-50 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Explore Services
+              </Link>
+              <Link href="/services/personal-website" className="rounded-[10px] border border-zinc-300 bg-zinc-50 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                Personal Website Service
               </Link>
               <Link href="/contact" className="rounded-[10px] border border-zinc-300 bg-zinc-50 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Contact Now

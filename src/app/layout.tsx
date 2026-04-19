@@ -8,6 +8,7 @@ import WhatsAppOrderButton from "@/components/WhatsAppOrderButton";
 import AnalyticsHeartbeat from "@/components/AnalyticsHeartbeat";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import SeasonalOfferBanner from "@/components/SeasonalOfferBanner";
+import { getServerUser } from "@/lib/auth-server";
 import { getBaseUrl } from "@/lib/site-url";
 import { TARGET_SEO_KEYWORDS } from "@/lib/seo";
 
@@ -133,14 +134,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const currentUser = await getServerUser();
+
   return (
     <html
-      lang="en"
+      lang="en-LK"
       className={`${plusJakarta.variable} ${poppins.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-poppins">
@@ -158,7 +161,7 @@ export default function RootLayout({
           </Suspense>
         ) : null}
         <AnalyticsHeartbeat />
-        <Header />
+        <Header initialUser={currentUser} />
         <SeasonalOfferBanner />
         <main className="flex-grow">
           {children}

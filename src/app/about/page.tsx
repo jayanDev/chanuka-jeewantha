@@ -93,14 +93,17 @@ export default function AboutPage() {
             Explore More Career Support
           </h2>
           <p className="text-text-body mb-5">
-            Continue with service details, package pricing, or practical career insights.
+            Continue with service details, free tools, workshop options, or practical career insights.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link href="/services" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
               Explore Services
             </Link>
-            <Link href="/pricing" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
-              Compare Pricing
+            <Link href="/tools" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              Use Free Tools
+            </Link>
+            <Link href="/workshops" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              View Workshops
             </Link>
             <Link href="/blog" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
               Read Career Blog

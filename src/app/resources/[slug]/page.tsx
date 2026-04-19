@@ -79,6 +79,7 @@ export default async function ResourceSinglePage({ params }: ResourcePageProps) 
   }
 
   const priceLkr = resource.priceLkr ?? 0;
+  const isFreeResource = resource.category === "free";
 
   const baseUrl = getBaseUrl();
   const resourceUrl = `${baseUrl}/resources/${resource.slug}`;
@@ -107,7 +108,7 @@ export default async function ResourceSinglePage({ params }: ResourcePageProps) 
       "@type": "Offer",
       url: resourceUrl,
       priceCurrency: "LKR",
-      price: resource.priceLkr,
+      price: isFreeResource ? 0 : resource.priceLkr,
       availability: "https://schema.org/InStock",
       itemCondition: "https://schema.org/NewCondition",
       seller: {
@@ -163,15 +164,56 @@ export default async function ResourceSinglePage({ params }: ResourcePageProps) 
                 ))}
               </ul>
 
-              <p className="text-[24px] font-bold font-plus-jakarta text-foreground mb-6">{formatLkr(priceLkr)}</p>
-              <a
-                href={getWhatsappOrderLink(resource.title, priceLkr)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-[10px] bg-[#25D366] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#1fb85a]"
-              >
-                Order via WhatsApp
-              </a>
+              {resource.contentSections && resource.contentSections.length > 0 ? (
+                <div className="space-y-8 border-t border-zinc-200 pt-8">
+                  {resource.contentSections.map((section) => (
+                    <section key={section.heading}>
+                      <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">{section.heading}</h2>
+                      <div className="mt-4 space-y-4 text-text-body">
+                        {section.paragraphs.map((paragraph) => (
+                          <p key={paragraph}>{paragraph}</p>
+                        ))}
+                      </div>
+                      {section.bullets && section.bullets.length > 0 ? (
+                        <ul className="mt-5 space-y-3">
+                          {section.bullets.map((bullet) => (
+                            <li key={bullet} className="flex items-start gap-3 text-text-body">
+                              <span className="mt-1.5 inline-block h-2.5 w-2.5 rounded-full bg-brand-main" />
+                              <span>{bullet}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                    </section>
+                  ))}
+                </div>
+              ) : null}
+
+              <div className="mt-8 rounded-[16px] border border-zinc-200 bg-zinc-50 p-6">
+                <p className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-zinc-500">
+                  {isFreeResource ? "Access" : "Investment"}
+                </p>
+                <p className="mb-6 text-[24px] font-bold font-plus-jakarta text-foreground">
+                  {isFreeResource ? "Free Resource" : formatLkr(priceLkr)}
+                </p>
+                {isFreeResource ? (
+                  <Link
+                    href={resource.primaryActionHref ?? "/blog"}
+                    className="inline-flex items-center gap-2 rounded-[10px] bg-foreground px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-main"
+                  >
+                    {resource.primaryActionLabel ?? "Explore Related Guides"}
+                  </Link>
+                ) : (
+                  <a
+                    href={getWhatsappOrderLink(resource.title, priceLkr)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-[10px] bg-[#25D366] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#1fb85a]"
+                  >
+                    Order via WhatsApp
+                  </a>
+                )}
+              </div>
             </article>
 
             <aside className="w-full">
