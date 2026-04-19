@@ -58,7 +58,7 @@ export async function PATCH(request: Request) {
     },
   });
 
-  revalidateTag("public-reviews");
+  revalidateTag("public-reviews", "global");
 
   return NextResponse.json({ ok: true, review });
 }
