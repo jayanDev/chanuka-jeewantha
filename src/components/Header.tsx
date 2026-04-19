@@ -23,7 +23,6 @@ const primaryNavLinks: PrimaryNavLink[] = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
-  { href: "/tools", label: "Tools" },
   { href: "/resources", label: "Resources" },
   { href: "/ebooks", label: "Ebooks" },
   { href: "/pricing", label: "Pricing" },
