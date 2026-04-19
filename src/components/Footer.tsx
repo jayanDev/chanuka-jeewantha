@@ -56,7 +56,6 @@ export default function Footer() {
               <li><Link href="/tools" className="hover:text-brand-main transition-colors text-text-light/80">Free Tools</Link></li>
               <li><Link href="/career-quiz" className="hover:text-brand-main transition-colors text-text-light/80">Career Quiz</Link></li>
               <li><Link href="/results" className="hover:text-brand-main transition-colors text-text-light/80">Results</Link></li>
-              <li><Link href="/booking" className="hover:text-brand-main transition-colors text-text-light/80">Booking</Link></li>
               <li><Link href="/reviews" className="hover:text-brand-main transition-colors text-text-light/80">Google Reviews</Link></li>
               <li><Link href="/workshops" className="hover:text-brand-main transition-colors text-text-light/80">Workshops</Link></li>
               <li><Link href="/services/industries" className="hover:text-brand-main transition-colors text-text-light/80">Industry Pages</Link></li>

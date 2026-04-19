@@ -27,7 +27,6 @@ const primaryNavLinks: PrimaryNavLink[] = [
   { href: "/resources", label: "Resources" },
   { href: "/ebooks", label: "Ebooks" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/booking", label: "Booking" },
   { href: "/contact", label: "Contact" },
 ];
 
