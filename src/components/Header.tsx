@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import SearchModal from "@/components/SearchModal";
 
@@ -31,6 +32,8 @@ const primaryNavLinks: PrimaryNavLink[] = [
 ];
 
 export default function Header({ initialUser = null }: HeaderProps) {
+  const pathname = usePathname();
+  const isReaderView = pathname?.includes("/read");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [user, setUser] = useState<NavUser | null>(initialUser);
@@ -146,8 +149,8 @@ export default function Header({ initialUser = null }: HeaderProps) {
   const displayUnreadNotificationCount = user ? unreadNotificationCount : 0;
 
   return (
-    <header suppressHydrationWarning className="w-full max-w-[1512px] mx-auto px-4 sm:px-6 py-[32px] md:py-8 relative z-50">
-      <div className="flex items-center justify-between relative bg-background z-50 py-2">
+    <header suppressHydrationWarning className="w-full max-w-[1512px] mx-auto px-4 sm:px-6 py-[32px] md:py-8 relative z-40">
+      <div className="flex items-center justify-between relative bg-background z-40 py-2">
         {/* Logo Container */}
         <div className="flex-shrink-0 w-auto md:mr-8">
           <Link href="/" className="text-2xl font-bold font-plus-jakarta text-foreground">

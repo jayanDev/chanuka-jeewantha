@@ -41,7 +41,7 @@ export default function ReaderProgressTracker({
   const overallProgress = ((currentIndex) / totalChapters) * 100;
 
   return (
- <div className="fixed top-0 left-0 w-full z-50 bg-white backdrop-blur-md border-b border-zinc-200 shadow-sm transition-all">
+    <div className="fixed top-0 left-0 w-full !z-[100] bg-white backdrop-blur-md border-b border-zinc-200 shadow-sm transition-all">
       <div className="h-1 w-full bg-zinc-100 flex">
         {/* Book progress (light green) */}
         <div

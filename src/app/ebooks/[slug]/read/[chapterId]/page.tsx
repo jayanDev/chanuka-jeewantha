@@ -157,13 +157,63 @@ export default async function ChapterPage({ params }: Props) {
     );
   }
 
+  // Clean chapter data for rendering if it has duplicate chapter names
+  const displayTitle = chapterData.title.replace(/^පරිච්[ඡජ]ේදය \d+:\s*/, "");
+  
+  // Transform existing bold text into proper subtopics if it matches heuristics
+  // Or if it starts with a number like "1. "
+  let displayContent = chapterData.content;
+  
+  if (slug === "gaburu-karyaya") {
+      // Clean intro
+      displayContent = displayContent.replace(/<p[^>]*>.*?<span[^>]*>(?:<b>.*?<\/b>|<strong>.*?<\/strong>|[^<]*?)\d+\.\s+(.*?)<\/span>.*?<\/p>/gi, '<h3 class="ebook-subtopic">$1</h3>');
+      displayContent = displayContent.replace(/<p[^>]*>\s*<span[^>]*>\s*\d+\.\s+(.*?)\s*<\/span>\s*<\/p>/gi, '<h3 class="ebook-subtopic">$1</h3>');
+      
+      // Look for exactly named topics
+      const exactTopics = [
+        "සාමාන්‍ය කාර්යය (Shallow Work) කියන්නේ මොකක්ද?",
+        "ගැඹුරු කාර්යය (Deep Work) කියන්නේ මොකක්ද?",
+        "ඇයි මේක අද කාලෙට මේ තරම් වැදගත් වෙන්නේ?",
+        "Deep Work කියන්නේ ගොඩක් වටිනා දෙයක් (Deep Work Is Valuable)",
+        "මේ විදිහට වැඩ කරන අය ගොඩක් අඩුයි (Deep Work Is Rare)",
+        "මේක අර්ථවත් දෙයක් (Deep Work Is Meaningful)",
+        "නීතිය 1: ගැඹුරින් වැඩ කරන්න (Rule #1: Work Deeply)",
+        "පුරුද්දක් විදිහට කරන්නේ කොහොමද?",
+        "සැමියා පුරුද්දක් කරගන්න ක‍්‍රම 4ක්",
+        "දෙවෙනි ක්‍රමය: Bimodal Philosophy (බෙදාගන්නා පදනම)",
+        "තුන්වෙනි ක්‍රමය: Rhythmic Philosophy (රිද්මයානුකූල පදනම)",
+        "හතරවෙනි ක්‍රමය: Journalistic Philosophy (මාධ්‍යවේදී පදනම)",
+        "දිනපතා පුරුද්ද පවත්වා ගැනීමට පියවර 4ක්",
+        "නීතිය 2: කම්මැලිකමට ආදරය කරන්න",
+        "Digital Detox එකක් නෙවේ, Focus Training එකක්",
+        "අවධානය දියුණු කරගන්න ප්‍රායෝගික ක්‍රම",
+        "නීතිය 3: සමාජ ජාල වලින් ඈත් වෙන්න",
+        "නීතිය 4: සාමාන්‍ය වැඩ (Shallow Work)",
+        "සාමාන්‍ය වැඩ අඩු කරගන්න Practical ක්‍රම"
+      ];
+      
+      exactTopics.forEach(topic => {
+          // Replace exactly matching lines
+          const regex = new RegExp(`<p[^>]*>.*?<span[^>]*>.*?(?:\\d+\\.\\s*)?${topic.replace(/[.*+?^$\\{\\}()|[\\]\\\\]/g, '\\$&')}.*?<\\/span>.*?<\\/p>`, 'gi');
+          displayContent = displayContent.replace(regex, `<h3 class="ebook-subtopic">${topic}</h3>`);
+      });
+  }
+
+  // Generic cleanup just in case
+  displayContent = displayContent.replace(/<p[^>]*>\s*<b>(.*?)<\/b>\s*<\/p>/gi, function(match, p1) {
+      if (p1.length < 150 && !p1.includes('? ') && p1.length > 5) {
+          return `<h3 class="ebook-subtopic">${p1.replace(/^\\d+\\.\\s*/, '')}</h3>`;
+      }
+      return match;
+  });
+
   return (
     <div className="max-w-3xl mx-auto px-5 py-24 md:py-28 lg:px-8 selection:bg-brand-main/20 selection:text-foreground">
       <ReaderProtection />
       <ReaderProgressTracker 
         currentIndex={currentIndex} 
         totalChapters={totalChapters} 
-        chapterTitle={chapterData.title} 
+        chapterTitle={displayTitle} 
         ebookTitle={ebook.title} 
         slug={slug} 
       />
@@ -259,7 +309,7 @@ export default async function ChapterPage({ params }: Props) {
           {currentIndex === 0 ? "Introduction" : `Chapter ${currentIndex}`}
         </span>
         <h1 className="text-4xl md:text-5xl font-extrabold font-plus-jakarta text-foreground leading-[1.2]">
-          {chapterData.title}
+          {displayTitle}
         </h1>
       </header>
 
@@ -267,7 +317,7 @@ export default async function ChapterPage({ params }: Props) {
          className="ebook-content text-lg md:text-xl font-poppins 
                     prose-p:leading-relaxed prose-headings:font-plus-jakarta
                     tracking-[0.01em]"
-         dangerouslySetInnerHTML={{ __html: chapterData.content }}
+         dangerouslySetInnerHTML={{ __html: displayContent }}
       />
       
       {/* Gamified Navigation / Victory Screen */}
@@ -285,7 +335,7 @@ export default async function ChapterPage({ params }: Props) {
               You Did It!
             </h2>
             <p className="text-zinc-400 text-lg md:text-xl mb-10 leading-relaxed max-w-lg mx-auto">
-              You've officially completed the Fastlane journey. You are now equipped with the mindset to accelerate your wealth creation.
+              You've officially completed the {ebook.title} journey. You are now equipped with the knowledge and mindset to advance your success!
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link

@@ -425,11 +425,11 @@ export default async function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {resourceHighlights.map((item) => (
- <article key={item.title} className="group h-full flex flex-col rounded-[20px] border border-zinc-700 bg-zinc-800 p-8 transition-all hover:-translate-y-1 hover:border-brand-main/40 hover:bg-white hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)]">
- <span className="mb-3 self-start inline-flex rounded-full border border-brand-main/30 bg-brand-main/10 px-3 py-1 text-xs font-semibold text-white group-hover:text-black">{item.type}</span>
- <h4 className="mb-2 text-[20px] font-bold font-plus-jakarta text-white group-hover:text-black transition-colors">{item.title}</h4>
- <p className="mb-5 text-sm leading-relaxed text-white group-hover:text-black transition-colors">{item.desc}</p>
- <Link href={item.href} className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors group-hover:text-black">
+ <article key={item.title} className="group h-full flex flex-col rounded-[20px] border border-zinc-700 bg-zinc-800 p-8 transition-all hover:-translate-y-1 hover:border-brand-main/40 hover:shadow-[0_16px_36px_rgba(255,255,255,0.05)]">
+ <span className="mb-3 self-start inline-flex rounded-full border border-brand-main/30 bg-brand-main/10 px-3 py-1 text-xs font-semibold text-white">{item.type}</span>
+ <h4 className="mb-2 text-[20px] font-bold font-plus-jakarta text-white transition-colors">{item.title}</h4>
+ <p className="mb-5 text-sm leading-relaxed text-white transition-colors">{item.desc}</p>
+ <Link href={item.href} className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-brand-main">
                   Open Resource
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
                 </Link>
@@ -480,9 +480,9 @@ export default async function Home() {
               See More
             </Link>
           </div>
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6 block">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonialHighlights.map((item) => (
- <article key={item.id} className="group break-inside-avoid inline-block w-full rounded-[20px] border border-zinc-200 bg-gradient-to-br from-white to-zinc-50 p-6 shadow-[0_10px_24px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)]">
+ <article key={item.id} className="group flex flex-col w-full rounded-[20px] border border-zinc-200 bg-gradient-to-br from-white to-zinc-50 p-6 shadow-[0_10px_24px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)]">
                 <div className="mb-5 flex items-center justify-between">
                   <div className="flex items-center gap-1 text-[#f59e0b]" aria-hidden="true">
                     {Array.from({ length: item.rating }).map((_, idx) => (
@@ -492,7 +492,7 @@ export default async function Home() {
                   <span className="rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold text-brand-dark">Verified Review</span>
                 </div>
  <p className="mb-5 text-[15px] leading-relaxed text-zinc-700">"{item.message}"</p>
- <div className="rounded-[12px] border border-zinc-200 bg-white px-4 py-3">
+ <div className="mt-auto rounded-[12px] border border-zinc-200 bg-white px-4 py-3">
  <p className="text-sm font-bold text-zinc-900">{item.name}</p>
                   <p className="text-xs text-zinc-500">
                     {item.role ?? new Date(item.createdAt).toLocaleDateString("en-LK")}

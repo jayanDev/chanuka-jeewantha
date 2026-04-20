@@ -32,6 +32,29 @@
 			"type": "shell",
 			"command": "git add . ; git commit -m \"feat: parse Deep Work ebook and clean Fastlane intro\" ; git push",
 			"isBackground": false
+		},
+		{
+			"label": "git push",
+			"type": "shell",
+			"command": "git add . && git commit -m \"feat: parse Deep Work ebook and clean Fastlane intro\" && git push",
+			"isBackground": false
+		},
+		{
+			"label": "git push valid",
+			"type": "shell",
+			"command": "git commit -m 'feat: parse Deep Work ebook and clean Fastlane intro'; git push",
+			"isBackground": false
+		},
+		{
+			"label": "Fix Gaburu Karyaya",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"scripts/fixGaburuKaryaya.js"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
 		}
 	]
 }
