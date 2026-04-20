@@ -4,6 +4,10 @@
     "title": "හැඳින්වීම"
   },
   {
+    "kind": "section",
+    "title": "නියමය 1: ඔයාගේ 'Passion' එක (ආසාව) පස්සේ යන්න එපා (Don't Follow Your Passion)"
+  },
+  {
     "id": 1,
     "title": "පළවෙනි පරිච්ඡේදය: ස්ටීව් ජොබ්ස්ගේ \"Passion\" එක ගැන ඇත්ත කතාව (The \"Passion\" of Steve Jobs)"
   },
@@ -14,6 +18,10 @@
   {
     "id": 3,
     "title": "තුන්වෙනි පරිච්ඡේදය: ඒ වගේම 'Passion' එක පස්සේ විතරක් යන එක භයානකයි (Passion Is Dangerous)"
+  },
+  {
+    "kind": "section",
+    "title": "නියමය 2: කාටවත් ඔයාව මඟහරින්න බැරි වෙන තරමටම ඔයාගේ වැඩේට දක්ෂ වෙන්න (Be So Good They Can't Ignore You - Or, the Importance of Skill)"
   },
   {
     "id": 4,
@@ -32,6 +40,10 @@
     "title": "හත්වෙනි පරිච්ඡේදය: තමන්ගේ වැඩේට උපරිම දක්ෂයෙක් වෙන්නේ කොහොමද? (Becoming a Craftsman)"
   },
   {
+    "kind": "section",
+    "title": "නියමය 3: උසස්වීමක් (Promotion) වුණත් ප්‍රතික්ෂේප කරන්න පුළුවන් වෙන්න ඕනේ - තමන්ගේ දේවල් තමන්ටම පාලනය කරන්න පුළුවන් වීමේ වැදගත්කම (Turn Down a Promotion - Or, the Importance of Control)"
+  },
+  {
     "id": 8,
     "title": "අටවෙනි පරිච්ඡේදය: සිහින රැකියාවකට තියෙන එකම බෙහෙත (The Dream-Job Elixir)"
   },
@@ -48,6 +60,10 @@
     "title": "එකොළොස්වෙනි පරිච්ඡේදය: මේ උගුල් වලින් බේරිලා සාර්ථක වෙන්නේ කොහොමද? (Avoiding the Control Traps)"
   },
   {
+    "kind": "section",
+    "title": "නියමය 4: පොඩියට හිතලා ලොකු වැඩක් කරන්න - තමන්ගේම කියලා මෙහෙයුමක් (Mission) තියෙන එකේ වැදගත්කම (Think Small, Act Big - Or, the Importance of Mission)"
+  },
+  {
     "id": 12,
     "title": "දොළොස්වෙනි පරිච්ඡේදය: පාඩිස් සබේටිගේ අර්ථවත් ජීවිතය (The Meaningful Life of Pardis Sabeti)"
   },
@@ -62,5 +78,9 @@
   {
     "id": 15,
     "title": "පහළොස්වෙනි පරිච්ඡේදය: Mission එකක් ලෝකෙට ගෙනියන්න අනිවාර්යයෙන්ම මාකටින් (Marketing) ඕනේ වෙනවා (Missions Require Marketing)"
+  },
+  {
+    "id": 16,
+    "title": "අවසානය: \"නිවැරදි රැකියාව\" හොයනවට වඩා \"නිවැරදි විදිහට වැඩ කරන එක\" තමයි වැදගත් (Conclusion)"
   }
 ]
