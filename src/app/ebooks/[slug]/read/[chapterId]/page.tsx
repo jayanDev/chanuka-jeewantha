@@ -200,7 +200,7 @@ export default async function ChapterPage({ params }: Props) {
   }
 
   // Generic cleanup just in case
-  displayContent = displayContent.replace(/<p[^>]*>\s*<b>(.*?)<\/b>\s*<\/p>/gi, function(match, p1) {
+  displayContent = displayContent.replace(/<p[^>]*>\s*<b>(.*?)<\/b>\s*<\/p>/gi, function(match: string, p1: string) {
       if (p1.length < 150 && !p1.includes('? ') && p1.length > 5) {
           return `<h3 class="ebook-subtopic">${p1.replace(/^\\d+\\.\\s*/, '')}</h3>`;
       }
