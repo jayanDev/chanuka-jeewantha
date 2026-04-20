@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { getBaseUrl } from "@/lib/site-url";
@@ -375,7 +375,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="reveal-section w-full border-t border-zinc-200 bg-zinc-50 py-[72px]">
+      <section className="reveal-section w-full border-t border-zinc-200 bg-[#F4F7F6] py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <div>
@@ -386,9 +386,9 @@ export default async function Home() {
               See More
             </Link>
           </div>
-          <div className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-3 snap-x snap-mandatory md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {ebookHighlights.map((item) => (
-              <article key={item.slug} className="group min-w-[84%] snap-start overflow-hidden rounded-[20px] border border-zinc-200 bg-white shadow-[0_10px_24px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.12)] sm:min-w-[58%] md:min-w-0">
+              <article key={item.slug} className="group flex flex-col justify-between overflow-hidden rounded-[20px] border border-zinc-200 bg-white shadow-[0_10px_24px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.12)] sm:min-w-[58%] md:min-w-0">
                 <div className="relative aspect-[5/4] overflow-hidden">
                   <Image
                     src={item.image}
@@ -412,24 +412,24 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="reveal-section w-full border-t border-zinc-200 bg-white py-[72px]">
+      <section className="reveal-section w-full border-t border-zinc-200 bg-zinc-900 py-[96px] text-white">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <div>
               <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Guides & Templates</span>
-              <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Resources</h3>
+              <h3 className="text-[30px] font-bold font-plus-jakarta text-white">Resources</h3>
             </div>
             <Link href="/resources" className="rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
               See More
             </Link>
           </div>
-          <div className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-3 snap-x snap-mandatory md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {resourceHighlights.map((item) => (
-              <article key={item.title} className="min-w-[84%] snap-start rounded-[20px] border border-zinc-200 bg-zinc-50/70 p-6 transition-all hover:-translate-y-1 hover:border-brand-main/40 hover:bg-white hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)] sm:min-w-[58%] md:min-w-0">
-                <span className="mb-3 inline-flex rounded-full border border-brand-main/30 bg-brand-main/10 px-3 py-1 text-xs font-semibold text-brand-dark">{item.type}</span>
-                <h4 className="mb-2 text-[20px] font-bold font-plus-jakarta text-zinc-900">{item.title}</h4>
-                <p className="mb-5 text-sm leading-relaxed text-zinc-600">{item.desc}</p>
-                <Link href={item.href} className="inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
+              <article key={item.title} className="h-full flex flex-col rounded-[20px] border border-zinc-200 bg-zinc-800 border-zinc-700 p-8 transition-all hover:-translate-y-1 hover:border-brand-main/40 hover:bg-white hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)] sm:min-w-[58%] md:min-w-0">
+                <span className="mb-3 inline-flex rounded-full border border-brand-main/30 bg-brand-main/10 px-3 py-1 text-xs font-semibold text-brand-light">{item.type}</span>
+                <h4 className="mb-2 text-[20px] font-bold font-plus-jakarta text-zinc-50">{item.title}</h4>
+                <p className="mb-5 text-sm leading-relaxed text-zinc-400">{item.desc}</p>
+                <Link href={item.href} className="inline-flex items-center gap-2 text-sm font-semibold text-brand-light transition-colors hover:text-brand-main">
                   Open Resource
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
                 </Link>
@@ -439,7 +439,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="reveal-section w-full border-t border-zinc-200 bg-zinc-50 py-[72px]">
+      <section className="reveal-section w-full border-t border-zinc-200 bg-[#F4F7F6] py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <div>
@@ -450,9 +450,9 @@ export default async function Home() {
               See More
             </Link>
           </div>
-          <div className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-3 snap-x snap-mandatory md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {toolHighlights.map((tool) => (
-              <article key={tool.slug} className="min-w-[84%] snap-start rounded-[20px] border border-zinc-200 bg-white p-6 shadow-[0_8px_22px_rgba(0,0,0,0.05)] transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.1)] sm:min-w-[58%] md:min-w-0">
+              <article key={tool.slug} className="flex flex-col justify-between rounded-[20px] border border-zinc-200 bg-white p-8 shadow-[0_8px_22px_rgba(0,0,0,0.05)] transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.1)] sm:min-w-[58%] md:min-w-0">
                 <span className="mb-3 inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
                   {tool.category}
                 </span>
@@ -468,7 +468,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="reveal-section w-full border-t border-zinc-200 bg-zinc-50 py-[72px]">
+      <section className="reveal-section w-full border-y border-zinc-200 bg-white py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <div>
@@ -479,9 +479,9 @@ export default async function Home() {
               See More
             </Link>
           </div>
-          <div className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-3 snap-x snap-mandatory md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+          <div className="flex flex-col gap-6 sm:grid sm:grid-cols-2 lg:flex lg:flex-row">
             {industryHighlights.map((item) => (
-              <article key={item.slug} className="group min-w-[84%] snap-start rounded-[20px] border border-zinc-200 bg-white p-6 shadow-[0_8px_20px_rgba(0,0,0,0.05)] transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.1)] sm:min-w-[58%] md:min-w-0">
+              <article key={item.slug} className="group flex-1 flex flex-col justify-between rounded-[20px] border border-zinc-200 bg-white p-6 shadow-[0_8px_20px_rgba(0,0,0,0.05)] transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.1)] sm:min-w-[58%] md:min-w-0">
                 <div className="mb-4 flex items-center justify-between">
                   <span className="inline-flex rounded-full bg-brand-main px-3 py-1 text-xs font-semibold text-white">{item.name}</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-main"><path d="M3 21h18" /><path d="M5 21V7l8-4v18" /><path d="M19 21V11l-6-4" /></svg>
@@ -498,7 +498,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="reveal-section w-full border-t border-zinc-200 bg-white py-[72px]">
+      <section className="reveal-section w-full border-t border-zinc-200 bg-brand-dark/[0.02] py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <div>
@@ -509,9 +509,9 @@ export default async function Home() {
               See More
             </Link>
           </div>
-          <div className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-3 snap-x snap-mandatory md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6 block">
             {testimonialHighlights.map((item) => (
-              <article key={item.id} className="group min-w-[84%] snap-start rounded-[20px] border border-zinc-200 bg-gradient-to-br from-white to-zinc-50 p-6 shadow-[0_10px_24px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] sm:min-w-[58%] md:min-w-0">
+              <article key={item.id} className="group break-inside-avoid inline-block w-full rounded-[20px] border border-zinc-200 bg-gradient-to-br from-white to-zinc-50 p-6 shadow-[0_10px_24px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] sm:min-w-[58%] md:min-w-0">
                 <div className="mb-5 flex items-center justify-between">
                   <div className="flex items-center gap-1 text-[#f59e0b]" aria-hidden="true">
                     {Array.from({ length: item.rating }).map((_, idx) => (
@@ -534,27 +534,27 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="reveal-section w-full border-t border-zinc-200 bg-zinc-50 py-[72px]">
+      <section className="reveal-section w-full border-t border-zinc-200 bg-zinc-950 text-white py-[120px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <div>
               <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">High Demand</span>
-              <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Fast Moving Packages</h3>
+              <h3 className="text-[30px] font-bold font-plus-jakarta text-white">Fast Moving Packages</h3>
             </div>
-            <Link href="/pricing" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
+            <Link href="/pricing" className="rounded-[10px] border bg-zinc-800 text-white border-zinc-700 hover:border-brand-main transition-colors hover:border-brand-main hover:text-brand-main">
               See More
             </Link>
           </div>
-          <div className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-3 snap-x snap-mandatory md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {fastMovingPackages.map((item) => (
-              <article key={item.title} className="group min-w-[84%] snap-start rounded-[20px] border border-zinc-200 bg-white p-6 shadow-[0_8px_20px_rgba(0,0,0,0.05)] transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.1)] sm:min-w-[58%] md:min-w-0">
+              <article key={item.title} className="group h-full flex flex-col items-start border-zinc-800 bg-zinc-900 group rounded-[20px] border border-zinc-200 bg-zinc-900 p-8 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl hover:border-brand-main/50 sm:min-w-[58%] md:min-w-0">
                 <div className="mb-4 flex items-center justify-between">
                   <span className="inline-flex rounded-full bg-brand-main px-3 py-1 text-xs font-semibold text-white">{item.tag}</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-main"><path d="M20 12v10H4V12" /><path d="M2 7h20v5H2z" /><path d="M12 22V7" /><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" /><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" /></svg>
                 </div>
-                <h4 className="mb-2 text-[20px] font-bold font-plus-jakarta text-zinc-900">{item.title}</h4>
-                <p className="mb-5 text-sm leading-relaxed text-zinc-600">{item.note}</p>
-                <Link href={item.href} className="inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
+                <h4 className="mb-2 text-[20px] font-bold font-plus-jakarta text-white">{item.title}</h4>
+                <p className="mb-5 text-sm leading-relaxed text-zinc-300">{item.note}</p>
+                <Link href={item.href} className="inline-flex items-center gap-2 text-sm font-semibold text-brand-light transition-colors hover:text-brand-main">
                   View Package
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
                 </Link>
@@ -566,3 +566,4 @@ export default async function Home() {
     </>
   );
 }
+
