@@ -100,14 +100,14 @@ function UploadDocumentField({
       </label>
       <label
         htmlFor={id}
-        className="block cursor-pointer rounded-[12px] border-2 border-dashed border-zinc-300 bg-zinc-50 px-4 py-5 transition-colors hover:border-brand-main hover:bg-brand-main/5"
+        className="block cursor-pointer rounded-[12px] border-2 border-dashed border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-4 py-5 transition-colors hover:border-brand-main hover:bg-brand-main/5"
       >
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p className="text-sm font-semibold text-zinc-800">{file ? file.name : placeholder}</p>
+            <p className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">{file ? file.name : placeholder}</p>
             <p className="mt-1 text-xs text-zinc-500">{file ? `Selected file size: ${fileSizeLabel}` : hint}</p>
           </div>
-          <span className="rounded-full border border-zinc-300 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-700">
+          <span className="rounded-full border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-1.5 text-xs font-semibold text-zinc-700 dark:text-zinc-300">
             {file ? "Change file" : "Choose file"}
           </span>
         </div>
@@ -528,7 +528,7 @@ export default function CheckoutPage() {
 
   return (
     <>
-      <section className="w-full bg-zinc-50 py-16 min-h-[70vh]">
+      <section className="w-full bg-zinc-50 dark:bg-zinc-900 py-16 min-h-[70vh]">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 space-y-8">
           <h1 className="text-4xl font-bold font-plus-jakarta text-foreground">Checkout</h1>
 
@@ -539,8 +539,8 @@ export default function CheckoutPage() {
             <p>Loading checkout...</p>
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px] gap-6 items-start">
-              <form onSubmit={onSubmit} className="space-y-6 rounded-[16px] border border-zinc-200 bg-white p-6">
-                <div className="rounded-[16px] border border-zinc-200 bg-zinc-50 p-5">
+              <form onSubmit={onSubmit} className="space-y-6 rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6">
+                <div className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-5">
                   <h2 className="text-xl font-bold mb-3">Payment Instructions</h2>
                   <p className="text-text-body mb-4 text-sm">{paymentInstructions.methodNote}</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
@@ -573,7 +573,7 @@ export default function CheckoutPage() {
                         aria-label="Select Package"
                         value={buyNowProductId}
                         onChange={(event) => setBuyNowProductId(event.target.value)}
-                        className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
+                        className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3"
                         required
                       >
                         <option value="">Choose package</option>
@@ -587,7 +587,7 @@ export default function CheckoutPage() {
                         ))}
                       </select>
                       {buyNowProduct && (
-                        <p className="mt-2 text-xs text-zinc-600">
+                        <p className="mt-2 text-xs text-zinc-600 dark:text-zinc-400">
                           Original price: <span className="line-through">{formatLkr(buyNowProduct.originalPriceLkr)}</span>
                           {buyNowProduct.originalPriceLkr > buyNowProduct.priceLkr && (
                             <>
@@ -606,7 +606,7 @@ export default function CheckoutPage() {
                         max={10}
                         value={buyNowQuantity}
                         onChange={(event) => setBuyNowQuantity(Number(event.target.value || 1))}
-                        className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
+                        className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3"
                       />
                     </div>
                   </div>
@@ -620,7 +620,7 @@ export default function CheckoutPage() {
                     value={paymentPersonName}
                     onChange={(event) => setPaymentPersonName(event.target.value)}
                     required
-                    className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
+                    className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3"
                   />
                 </div>
 
@@ -633,7 +633,7 @@ export default function CheckoutPage() {
                     onChange={(event) => setPaymentWhatsApp(event.target.value)}
                     required
                     inputMode="numeric"
-                    className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
+                    className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3"
                     placeholder="e.g. 0773902230"
                   />
                   <p className="mt-2 text-xs font-medium text-red-600">
@@ -642,7 +642,7 @@ export default function CheckoutPage() {
                 </div>
 
                 <div>
-                  <label className="inline-flex items-start gap-2 text-sm text-zinc-700">
+                  <label className="inline-flex items-start gap-2 text-sm text-zinc-700 dark:text-zinc-300">
                     <input
                       type="checkbox"
                       checked={confirmWhatsAppAccuracy}
@@ -661,7 +661,7 @@ export default function CheckoutPage() {
                     aria-label="LinkedIn Profile URL"
                     value={linkedinUrl}
                     onChange={(event) => setLinkedinUrl(event.target.value)}
-                    className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
+                    className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3"
                     placeholder="https://www.linkedin.com/in/your-profile"
                   />
                 </div>
@@ -673,7 +673,7 @@ export default function CheckoutPage() {
                     aria-label="Coupon Code"
                     value={couponCode}
                     onChange={(event) => setCouponCode(event.target.value.toUpperCase())}
-                    className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
+                    className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3"
                     placeholder="NEWYEAR50"
                   />
                   {isQuoteLoading && <p className="mt-2 text-xs text-zinc-500">Calculating coupon...</p>}
@@ -687,7 +687,7 @@ export default function CheckoutPage() {
                     aria-label="Payment Reference"
                     value={paymentRef}
                     onChange={(event) => setPaymentRef(event.target.value)}
-                    className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
+                    className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3"
                   />
                 </div>
 
@@ -719,7 +719,7 @@ export default function CheckoutPage() {
                     value={extraDetails}
                     onChange={(event) => setExtraDetails(event.target.value)}
                     rows={4}
-                    className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
+                    className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3"
                     placeholder="Share target roles, industry preferences, deadlines, or specific instructions."
                   />
                 </div>
@@ -732,7 +732,7 @@ export default function CheckoutPage() {
                   >
                     {isSubmitting ? "Submitting order..." : hasSubmittedOrder ? "Submitted" : "Submit Order"}
                   </button>
-                  <Link href="/cart" className="rounded-[10px] border border-zinc-300 px-6 py-3 font-medium text-foreground">Back to Cart</Link>
+                  <Link href="/cart" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-6 py-3 font-medium text-foreground">Back to Cart</Link>
                   <Link href="/offers" className="rounded-[10px] border border-brand-main px-6 py-3 font-medium text-brand-main hover:bg-brand-main hover:text-white transition-colors">
                     Check Available Offers
                   </Link>
@@ -740,9 +740,9 @@ export default function CheckoutPage() {
               </form>
 
               <aside className="space-y-4 lg:sticky lg:top-24">
-                <div className="rounded-[16px] border border-zinc-200 bg-white p-5 space-y-4">
+                <div className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5 space-y-4">
                   <h2 className="text-xl font-bold">Order Summary</h2>
-                  <div className="space-y-2 text-sm text-zinc-700">
+                  <div className="space-y-2 text-sm text-zinc-700 dark:text-zinc-300">
                     <div className="flex items-center justify-between">
                       <span>Mode</span>
                       <span className="font-medium">{mode === "buy_now" ? "Buy Now" : "Cart Checkout"}</span>
@@ -769,7 +769,7 @@ export default function CheckoutPage() {
                       <span>Coupon discount</span>
                       <span>-{formatLkr(activeSummary.couponDiscountLkr)}</span>
                     </div>
-                    <div className="border-t border-zinc-200 pt-2 flex items-center justify-between text-base font-bold text-foreground">
+                    <div className="border-t border-zinc-200 dark:border-zinc-800 pt-2 flex items-center justify-between text-base font-bold text-foreground">
                       <span>Final total</span>
                       <span>{formatLkr(activeSummary.totalLkr)}</span>
                     </div>
@@ -780,12 +780,12 @@ export default function CheckoutPage() {
                     )}
                   </div>
 
-                  <div className="rounded border border-zinc-200 bg-zinc-50 p-3">
-                    <p className="text-xs font-semibold text-zinc-800 mb-1">Included packages</p>
+                  <div className="rounded border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-3">
+                    <p className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 mb-1">Included packages</p>
                     {selectedItems.length === 0 ? (
                       <p className="text-xs text-zinc-500">No items selected yet.</p>
                     ) : (
-                      <ul className="space-y-1 text-xs text-zinc-700">
+                      <ul className="space-y-1 text-xs text-zinc-700 dark:text-zinc-300">
                         {selectedItems.map((item) => (
                           <li key={item.id}>
                             {item.name} x {item.quantity} ({formatLkr(item.priceLkr)}
@@ -797,9 +797,9 @@ export default function CheckoutPage() {
                   </div>
                 </div>
 
-                <div className="rounded-[16px] border border-zinc-200 bg-white p-5">
+                <div className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
                   <h3 className="font-semibold text-foreground mb-2">What happens next</h3>
-                  <ul className="space-y-1 text-sm text-zinc-600">
+                  <ul className="space-y-1 text-sm text-zinc-600 dark:text-zinc-400">
                     <li>1. Your payment details are reviewed by admin.</li>
                     <li>2. Order status updates appear in My Orders.</li>
                     <li>3. Final deliverables are uploaded for handover.</li>
@@ -814,13 +814,13 @@ export default function CheckoutPage() {
 
       {showReminderModal && (
         <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/50 px-4">
-          <div className="w-full max-w-lg rounded-[16px] border border-zinc-200 bg-white p-6 shadow-2xl">
+          <div className="w-full max-w-lg rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-2xl">
             <h2 className="text-2xl font-bold font-plus-jakarta text-foreground mb-3">Order Submitted</h2>
-            <p className="text-zinc-700 mb-3">
+            <p className="text-zinc-700 dark:text-zinc-300 mb-3">
               Your order has been submitted. Please keep your WhatsApp available for faster confirmation and delivery updates.
             </p>
             {latestOrderId && (
-              <p className="text-sm font-semibold text-zinc-800 mb-3">Order ID: {latestOrderId}</p>
+              <p className="text-sm font-semibold text-zinc-800 dark:text-zinc-200 mb-3">Order ID: {latestOrderId}</p>
             )}
             {orderWarning && (
               <p className="rounded-[10px] border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800 mb-4">
@@ -839,7 +839,7 @@ export default function CheckoutPage() {
               <button
                 type="button"
                 onClick={() => setShowReminderModal(false)}
-                className="rounded-[10px] border border-zinc-300 px-4 py-2.5 text-sm font-semibold text-zinc-700 hover:border-zinc-400"
+                className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-2.5 text-sm font-semibold text-zinc-700 dark:text-zinc-300 hover:border-zinc-400"
               >
                 Close
               </button>

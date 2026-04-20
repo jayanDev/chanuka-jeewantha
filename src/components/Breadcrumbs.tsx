@@ -21,7 +21,7 @@ export default function Breadcrumbs() {
   };
 
   return (
-    <nav className="w-full bg-zinc-50 border-b border-zinc-200 py-3 mt-[73px]" aria-label="Breadcrumb">
+    <nav className="w-full bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 py-3 mt-[73px]" aria-label="Breadcrumb">
       <div className="max-w-[1512px] mx-auto px-4 sm:px-6 flex items-center text-sm overflow-x-auto whitespace-nowrap">
         <Link href="/" className="text-zinc-500 hover:text-brand-main transition-colors">
           Home

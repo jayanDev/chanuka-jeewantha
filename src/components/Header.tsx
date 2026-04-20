@@ -173,7 +173,7 @@ export default function Header({ initialUser = null }: HeaderProps) {
               type="button"
               onClick={() => setIsSearchOpen(true)}
               aria-label="Search"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-zinc-300 text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-zinc-300 dark:border-zinc-700 text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <circle cx="11" cy="11" r="8"></circle>
@@ -190,7 +190,7 @@ export default function Header({ initialUser = null }: HeaderProps) {
               <Link
                 href="/notifications"
                 aria-label="Notifications"
-                className="relative inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-zinc-300 text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+                className="relative inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-zinc-300 dark:border-zinc-700 text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 0 0-5-5.91V4a1 1 0 0 0-2 0v1.09A6 6 0 0 0 6 11v3.2a2 2 0 0 1-.6 1.4L4 17h5" />
@@ -213,7 +213,7 @@ export default function Header({ initialUser = null }: HeaderProps) {
               <Link
                 href="/cart"
                 aria-label="Cart"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-zinc-300 text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-zinc-300 dark:border-zinc-700 text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <circle cx="8" cy="21" r="1" />
@@ -225,7 +225,7 @@ export default function Header({ initialUser = null }: HeaderProps) {
 
             {!user ? (
               <div className="flex items-center gap-3">
-                <Link href="/auth/signin" className="rounded-[10px] border border-zinc-300 px-4 py-2 text-[15px] font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+                <Link href="/auth/signin" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-[15px] font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                   Sign In
                 </Link>
                 <Link href="/auth/signup" className="rounded-[10px] bg-brand-main px-4 py-2 text-[15px] font-semibold text-white transition-colors hover:bg-brand-dark">
@@ -346,7 +346,7 @@ export default function Header({ initialUser = null }: HeaderProps) {
             <Link
               href="/cart"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="inline-flex items-center gap-2 rounded-[10px] border border-zinc-300 px-4 py-2 text-[16px] font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+              className="inline-flex items-center gap-2 rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-[16px] font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <circle cx="8" cy="21" r="1" />
@@ -367,7 +367,7 @@ export default function Header({ initialUser = null }: HeaderProps) {
               href="/notifications"
               aria-label="Notifications"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="relative inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-zinc-300 text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+              className="relative inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-zinc-300 dark:border-zinc-700 text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 0 0-5-5.91V4a1 1 0 0 0-2 0v1.09A6 6 0 0 0 6 11v3.2a2 2 0 0 1-.6 1.4L4 17h5" />
@@ -393,7 +393,7 @@ export default function Header({ initialUser = null }: HeaderProps) {
           )}
           {!user ? (
             <div className="flex w-full max-w-xs flex-col gap-3">
-              <Link href="/auth/signin" onClick={() => setIsMobileMenuOpen(false)} className="rounded-[10px] border border-zinc-300 px-4 py-3 text-center text-[16px] font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/auth/signin" onClick={() => setIsMobileMenuOpen(false)} className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3 text-center text-[16px] font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Sign In
               </Link>
               <Link href="/auth/signup" onClick={() => setIsMobileMenuOpen(false)} className="rounded-[10px] bg-brand-main px-4 py-3 text-center text-[16px] font-semibold text-white transition-colors hover:bg-brand-dark">

@@ -110,8 +110,8 @@ export default async function ChapterPage({ params }: Props) {
 
   if (isLocked) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-zinc-50 px-6 py-24 text-center selection:bg-transparent">
-        <div className="mx-auto max-w-xl rounded-3xl border border-zinc-200 bg-white p-10 md:p-14 shadow-xl text-center">
+      <div className="flex min-h-screen flex-col items-center justify-center bg-zinc-50 dark:bg-zinc-900 px-6 py-24 text-center selection:bg-transparent">
+        <div className="mx-auto max-w-xl rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-10 md:p-14 shadow-xl text-center">
           <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-brand-main/10 text-brand-dark">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +131,7 @@ export default async function ChapterPage({ params }: Props) {
           <h1 className="font-plus-jakarta text-3xl font-bold text-foreground mb-4">
             Unlock Full Access to Keep Reading
           </h1>
-          <p className="text-zinc-600 mb-10 text-lg leading-relaxed">
+          <p className="text-zinc-600 dark:text-zinc-400 mb-10 text-lg leading-relaxed">
             You've reached the end of the free preview for{" "}
             <strong>{ebook.title}</strong>. Purchasing this ebook gives you instant access to all {totalChapters} chapters, lifetime updates, and actionable insights.
           </p>
@@ -146,7 +146,7 @@ export default async function ChapterPage({ params }: Props) {
             {!user && (
               <Link
                 href={`/auth/signin?returnTo=/ebooks/${slug}/read/${chapterId}`}
-                className="rounded-xl border-2 border-zinc-200 bg-white px-8 py-4 font-bold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main w-full sm:w-auto"
+                className="rounded-xl border-2 border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-8 py-4 font-bold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main w-full sm:w-auto"
               >
                 I already bought this
               </Link>
@@ -254,7 +254,7 @@ export default async function ChapterPage({ params }: Props) {
          }
       `}} />
 
-      <header className="mb-14 border-b border-zinc-200 pb-10">
+      <header className="mb-14 border-b border-zinc-200 dark:border-zinc-800 pb-10">
         <span className="text-brand-dark font-medium tracking-widest uppercase text-sm mb-3 block">
           {currentIndex === 0 ? "Introduction" : `Chapter ${currentIndex}`}
         </span>
@@ -272,7 +272,7 @@ export default async function ChapterPage({ params }: Props) {
       
       {/* Gamified Navigation / Victory Screen */}
       {isFinalChapter ? (
-        <div className="mt-20 border-t border-zinc-100 pt-16 pb-20">
+        <div className="mt-20 border-t border-zinc-100 dark:border-zinc-800 pt-16 pb-20">
           <div className="max-w-2xl mx-auto bg-gradient-to-br from-zinc-900 to-black rounded-3xl p-10 md:p-14 text-white shadow-2xl text-center relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-main via-yellow-400 to-brand-main"></div>
             <div className="w-28 h-28 mx-auto mb-8 relative">

@@ -41,7 +41,7 @@ export default function ReaderProgressTracker({
   const overallProgress = ((currentIndex) / totalChapters) * 100;
 
   return (
-    <div className="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-zinc-200 shadow-sm transition-all">
+    <div className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-zinc-900/95 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800 shadow-sm transition-all">
       <div className="h-1 w-full bg-zinc-100 flex">
         {/* Book progress (light green) */}
         <div
@@ -56,13 +56,13 @@ export default function ReaderProgressTracker({
         style={{ width: `${scrollProgress}%` }}
       />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-        <Link href={`/ebooks/${slug}`} className="flex items-center gap-2 text-zinc-600 hover:text-brand-dark transition-colors">
+        <Link href={`/ebooks/${slug}`} className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400 hover:text-brand-dark transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             <span className="text-sm font-medium hidden sm:inline">{ebookTitle}</span>
         </Link>
         <div className="text-xs sm:text-sm font-medium text-zinc-500 flex items-center gap-3">
           <span className="truncate max-w-[150px] sm:max-w-xs">{chapterTitle}</span>
-          <span className="bg-zinc-100 px-2 py-1 rounded text-zinc-700">
+          <span className="bg-zinc-100 px-2 py-1 rounded text-zinc-700 dark:text-zinc-300">
             {currentIndex} / {totalChapters}
           </span>
         </div>

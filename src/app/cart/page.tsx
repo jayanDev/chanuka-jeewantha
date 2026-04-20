@@ -103,7 +103,7 @@ export default function CartPage() {
   };
 
   return (
-    <section className="w-full bg-zinc-50 py-16 min-h-[70vh]">
+    <section className="w-full bg-zinc-50 dark:bg-zinc-900 py-16 min-h-[70vh]">
       <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
         <div className="mb-8 flex items-center justify-between">
           <h1 className="text-4xl font-bold font-plus-jakarta text-foreground">Your Cart</h1>
@@ -117,14 +117,14 @@ export default function CartPage() {
         {isLoading ? (
           <p className="text-text-body">Loading cart...</p>
         ) : items.length === 0 ? (
-          <div className="rounded-[16px] border border-zinc-200 bg-white p-8 text-center">
+          <div className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 text-center">
             <p className="text-text-body mb-4">Your cart is empty.</p>
             <Link href="/pricing" className="inline-block rounded-[10px] bg-brand-main px-5 py-3 text-white font-medium">Browse Packages</Link>
           </div>
         ) : (
           <div className="space-y-4">
             {items.map((item) => (
-              <article key={item.id} className="rounded-[16px] border border-zinc-200 bg-white p-6">
+              <article key={item.id} className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6">
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                   <div>
                     <h2 className="text-xl font-bold text-foreground">{item.product.name}</h2>
@@ -142,7 +142,7 @@ export default function CartPage() {
                     max={10}
                     value={item.quantity}
                     onChange={(event) => void updateQty(item.id, Number(event.target.value || 1))}
-                    className="w-20 rounded border border-zinc-300 px-2 py-1"
+                    className="w-20 rounded border border-zinc-300 dark:border-zinc-700 px-2 py-1"
                   />
                   <button
                     type="button"
@@ -155,7 +155,7 @@ export default function CartPage() {
               </article>
             ))}
 
-            <div className="rounded-[16px] border border-zinc-200 bg-white p-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
               <p className="text-xl font-bold text-foreground">Total: {formatLkr(total)}</p>
               <Link href="/checkout" className="inline-block rounded-[10px] bg-brand-main px-6 py-3 text-white font-medium hover:bg-brand-dark">
                 Proceed to Checkout

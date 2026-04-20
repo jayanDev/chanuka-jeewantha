@@ -360,14 +360,14 @@ export default async function BlogPostPage({
       </section>
 
       {/* 2. Main Content Area */}
-      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
+      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white dark:bg-zinc-900">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="flex flex-col lg:flex-row gap-[48px] justify-between">
 
             {/* Left Column: Article Body */}
             <article className="w-full lg:w-[65%] flex flex-col gap-8 max-w-[760px]">
               {/* Featured Image */}
-              <div className="relative w-full h-[420px] md:h-[520px] rounded-[20px] overflow-hidden mb-4 border border-zinc-200">
+              <div className="relative w-full h-[420px] md:h-[520px] rounded-[20px] overflow-hidden mb-4 border border-zinc-200 dark:border-zinc-800">
                 <Image
                   src="/images/about-page-chanuka.jpg"
                   alt="About Chanuka Jeewantha"
@@ -379,7 +379,7 @@ export default async function BlogPostPage({
               </div>
 
               {/* Article Content */}
-              <div className="prose prose-lg prose-zinc max-w-none text-zinc-700 font-poppins leading-loose prose-a:text-brand-main prose-a:font-semibold prose-a:no-underline hover:prose-a:underline prose-headings:font-plus-jakarta prose-headings:text-foreground prose-headings:font-bold prose-blockquote:border-l-4 prose-blockquote:border-brand-main prose-blockquote:bg-zinc-50 prose-blockquote:px-8 prose-blockquote:py-6 prose-blockquote:not-italic prose-blockquote:text-xl prose-blockquote:font-medium prose-blockquote:text-foreground prose-blockquote:rounded-r-[20px] prose-li:marker:text-brand-main prose-li:leading-relaxed">
+              <div className="prose prose-lg prose-zinc max-w-none text-zinc-700 dark:text-zinc-300 font-poppins leading-loose prose-a:text-brand-main prose-a:font-semibold prose-a:no-underline hover:prose-a:underline prose-headings:font-plus-jakarta prose-headings:text-foreground prose-headings:font-bold prose-blockquote:border-l-4 prose-blockquote:border-brand-main prose-blockquote:bg-zinc-50 dark:bg-zinc-900 prose-blockquote:px-8 prose-blockquote:py-6 prose-blockquote:not-italic prose-blockquote:text-xl prose-blockquote:font-medium prose-blockquote:text-foreground prose-blockquote:rounded-r-[20px] prose-li:marker:text-brand-main prose-li:leading-relaxed">
                 {isAboutChanukaArticle ? (
                   <>
                     <p className="leading-relaxed mb-6">
@@ -389,7 +389,7 @@ export default async function BlogPostPage({
                       My name is <strong>Chanuka Jeewantha</strong>. I am a <strong>Career Development Specialist</strong> helping people build a modern career brand through ATS-friendly CV writing, high-impact cover letters, LinkedIn account optimization, portfolio and personal website positioning, coaching, and career roadmap strategy.
                     </p>
 
-                    <blockquote className="border-l-4 border-brand-main bg-zinc-50 p-6 md:p-8 rounded-r-[20px] my-8 italic text-xl text-foreground font-medium">
+                    <blockquote className="border-l-4 border-brand-main bg-zinc-50 dark:bg-zinc-900 p-6 md:p-8 rounded-r-[20px] my-8 italic text-xl text-foreground font-medium">
                       "A strong career is not built by guesswork. It is built by clarity, positioning, and proof."
                     </blockquote>
 
@@ -402,10 +402,10 @@ export default async function BlogPostPage({
                     </ul>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
-                      <div className="relative h-[320px] rounded-[20px] overflow-hidden border border-zinc-200">
+                      <div className="relative h-[320px] rounded-[20px] overflow-hidden border border-zinc-200 dark:border-zinc-800">
                         <Image src="/images/about-chanuka.jpg" alt="Chanuka Jeewantha career consultation" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
                       </div>
-                      <div className="relative h-[320px] rounded-[20px] overflow-hidden border border-zinc-200">
+                      <div className="relative h-[320px] rounded-[20px] overflow-hidden border border-zinc-200 dark:border-zinc-800">
                         <Image src="/images/chanuka-jeewantha-career-development-specialist.jpg" alt="Chanuka Jeewantha career development specialist" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
                       </div>
                     </div>
@@ -419,7 +419,7 @@ export default async function BlogPostPage({
                       <li><strong>Career Coaching & Roadmaps:</strong> practical direction for role targeting, transitions, and long-term growth.</li>
                     </ul>
 
-                    <div className="relative w-full h-[360px] rounded-[20px] overflow-hidden border border-zinc-200 my-10">
+                    <div className="relative w-full h-[360px] rounded-[20px] overflow-hidden border border-zinc-200 dark:border-zinc-800 my-10">
                       <Image src="/images/linkedin-optimization-30k-followers-proof.jpg" alt="LinkedIn optimization and follower growth proof" fill className="object-cover" sizes="100vw" />
                     </div>
 
@@ -465,7 +465,7 @@ export default async function BlogPostPage({
                         <p className="leading-relaxed mb-6">
                           Career materials must match real hiring behavior. Recruiters scan quickly, ATS systems filter based on structure and keywords, and employers prioritize clear results over generic responsibilities.
                         </p>
-                        <blockquote className="border-l-4 border-brand-main bg-zinc-50 p-6 md:p-8 rounded-r-[20px] my-8 italic text-xl text-foreground font-medium">
+                        <blockquote className="border-l-4 border-brand-main bg-zinc-50 dark:bg-zinc-900 p-6 md:p-8 rounded-r-[20px] my-8 italic text-xl text-foreground font-medium">
                           "A strong career is not built by guesswork. It is built by clarity, positioning, and proof."
                         </blockquote>
                       </>
@@ -474,7 +474,7 @@ export default async function BlogPostPage({
                 )}
               </div>
 
-              <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6 md:p-8">
+              <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6 md:p-8">
                 <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Take Action</h3>
                 <p className="text-text-body mb-5">
                   Move from reading to results with a clear next step.
@@ -484,7 +484,7 @@ export default async function BlogPostPage({
                     <Link
                       key={`${button.href}-${button.label}`}
                       href={button.href}
-                      className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+                      className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
                     >
                       {button.label}
                     </Link>
@@ -493,7 +493,7 @@ export default async function BlogPostPage({
               </div>
 
               {contentPost?.internalLinks && contentPost.internalLinks.length > 0 && (
-                <div className="rounded-[20px] border border-zinc-200 bg-white p-6 md:p-8">
+                <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 md:p-8">
                   <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-4">Related Backlinks</h3>
                   <ul className="space-y-2">
                     {contentPost.internalLinks.map((linkItem) => (
@@ -508,7 +508,7 @@ export default async function BlogPostPage({
               )}
 
               {/* Tags & Share */}
-              <div className="flex flex-col sm:flex-row items-center justify-between py-6 border-t border-b border-zinc-200 mt-8 gap-4">
+              <div className="flex flex-col sm:flex-row items-center justify-between py-6 border-t border-b border-zinc-200 dark:border-zinc-800 mt-8 gap-4">
                 <div className="flex items-center gap-3">
                   <span className="font-bold text-foreground">Tags:</span>
                   {tagKeywords.slice(0, 4).map((tag) => (
@@ -531,7 +531,7 @@ export default async function BlogPostPage({
               </div>
 
               {/* Author Box */}
-              <div className="bg-zinc-50 rounded-[20px] p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6 mt-4">
+              <div className="bg-zinc-50 dark:bg-zinc-900 rounded-[20px] p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6 mt-4">
                 <div className="relative w-[100px] h-[100px] rounded-full flex-shrink-0 border-4 border-white shadow-sm overflow-hidden">
                   <Image src="/images/hero-chanuka.jpg" alt="Chanuka Jeewantha" fill className="object-cover" sizes="100px" />
                 </div>
@@ -556,12 +556,12 @@ export default async function BlogPostPage({
               <ServiceSidebarAds title="Career Services" />
 
               {/* Recent Posts Widget */}
-              <div className="bg-zinc-50 rounded-[20px] p-8">
+              <div className="bg-zinc-50 dark:bg-zinc-900 rounded-[20px] p-8">
                 <h4 className="text-[20px] font-bold font-plus-jakarta text-foreground mb-6">Recent Posts</h4>
                 <div className="flex flex-col gap-6">
                   {recentPosts.map((recentPost, index) => (
                     <Link href={`/blog/${recentPost.slug}`} key={recentPost.slug} className="flex gap-4 group">
-                      <div className="relative w-[80px] h-[80px] rounded-[10px] flex-shrink-0 overflow-hidden border border-zinc-200">
+                      <div className="relative w-[80px] h-[80px] rounded-[10px] flex-shrink-0 overflow-hidden border border-zinc-200 dark:border-zinc-800">
                         <Image
                           src={index % 2 === 0 ? "/images/about-chanuka.jpg" : "/images/testimonial-chanuka.jpg"}
                           alt={recentPost.title}

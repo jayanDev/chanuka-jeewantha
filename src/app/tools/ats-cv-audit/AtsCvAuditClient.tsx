@@ -117,19 +117,19 @@ export default function AtsCvAuditClient() {
   return (
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_360px]">
       <div className="space-y-6">
-        <div className="rounded-[20px] border border-zinc-200 bg-white p-6 shadow-sm">
+        <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-sm">
           <div className="mb-4 flex flex-wrap gap-3">
             <button
               type="button"
               onClick={() => setCvText(sampleCv)}
-              className="rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main"
+              className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-sm font-semibold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main"
             >
               Load Sample CV
             </button>
             <button
               type="button"
               onClick={() => setJobDescription(sampleJobDescription)}
-              className="rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main"
+              className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-sm font-semibold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main"
             >
               Load Sample Job Description
             </button>
@@ -143,7 +143,7 @@ export default function AtsCvAuditClient() {
                 onChange={(event) => setCvText(event.target.value)}
                 rows={12}
                 placeholder="Paste your CV text here..."
-                className="w-full rounded-[14px] border border-zinc-300 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-brand-main"
+                className="w-full rounded-[14px] border border-zinc-300 dark:border-zinc-700 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-brand-main"
               />
             </label>
 
@@ -154,7 +154,7 @@ export default function AtsCvAuditClient() {
                 onChange={(event) => setJobDescription(event.target.value)}
                 rows={10}
                 placeholder="Paste the job description here..."
-                className="w-full rounded-[14px] border border-zinc-300 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-brand-main"
+                className="w-full rounded-[14px] border border-zinc-300 dark:border-zinc-700 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-brand-main"
               />
             </label>
           </div>
@@ -162,13 +162,13 @@ export default function AtsCvAuditClient() {
       </div>
 
       <aside className="space-y-6">
-        <div className="rounded-[20px] border border-zinc-200 bg-white p-6 shadow-sm">
+        <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-sm">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">ATS Score</p>
           <div className="mt-4 flex items-end gap-3">
             <p className="text-[56px] font-bold font-plus-jakarta text-foreground">{analysis?.totalScore ?? 0}</p>
             <p className="mb-2 text-sm font-medium text-zinc-500">/ 100</p>
           </div>
-          <p className="mt-4 text-sm leading-relaxed text-zinc-600">
+          <p className="mt-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
             {analysis
               ? "Use this as a practical readiness signal, not a final hiring prediction. The goal is stronger alignment and clearer proof."
               : "Paste both your CV and the target job description to generate an audit."}
@@ -177,9 +177,9 @@ export default function AtsCvAuditClient() {
 
         {analysis ? (
           <>
-            <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6">
+            <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6">
               <h3 className="text-[22px] font-bold font-plus-jakarta text-foreground">Quick Signals</h3>
-              <ul className="mt-4 space-y-3 text-sm text-zinc-700">
+              <ul className="mt-4 space-y-3 text-sm text-zinc-700 dark:text-zinc-300">
                 <li>CV word count: {analysis.cvWords}</li>
                 <li>Matched target keywords: {analysis.matchedKeywords.length}</li>
                 <li>Missing important keywords: {analysis.missingKeywords.length}</li>
@@ -188,7 +188,7 @@ export default function AtsCvAuditClient() {
               </ul>
             </div>
 
-            <div className="rounded-[20px] border border-zinc-200 bg-white p-6">
+            <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6">
               <h3 className="text-[22px] font-bold font-plus-jakarta text-foreground">Matched Keywords</h3>
               <div className="mt-4 flex flex-wrap gap-2">
                 {analysis.matchedKeywords.length > 0 ? analysis.matchedKeywords.map((keyword) => (
@@ -199,7 +199,7 @@ export default function AtsCvAuditClient() {
               </div>
             </div>
 
-            <div className="rounded-[20px] border border-zinc-200 bg-white p-6">
+            <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6">
               <h3 className="text-[22px] font-bold font-plus-jakarta text-foreground">Missing Keywords</h3>
               <div className="mt-4 flex flex-wrap gap-2">
                 {analysis.missingKeywords.length > 0 ? analysis.missingKeywords.map((keyword) => (
@@ -210,11 +210,11 @@ export default function AtsCvAuditClient() {
               </div>
             </div>
 
-            <div className="rounded-[20px] border border-zinc-200 bg-white p-6">
+            <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6">
               <h3 className="text-[22px] font-bold font-plus-jakarta text-foreground">What Is Working</h3>
               <ul className="mt-4 space-y-3">
                 {analysis.strengths.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-zinc-700">
+                  <li key={item} className="flex items-start gap-3 text-sm text-zinc-700 dark:text-zinc-300">
                     <span className="mt-1.5 inline-block h-2.5 w-2.5 rounded-full bg-emerald-500" />
                     <span>{item}</span>
                   </li>
@@ -222,11 +222,11 @@ export default function AtsCvAuditClient() {
               </ul>
             </div>
 
-            <div className="rounded-[20px] border border-zinc-200 bg-white p-6">
+            <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6">
               <h3 className="text-[22px] font-bold font-plus-jakarta text-foreground">What To Improve</h3>
               <ul className="mt-4 space-y-3">
                 {analysis.improvements.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-zinc-700">
+                  <li key={item} className="flex items-start gap-3 text-sm text-zinc-700 dark:text-zinc-300">
                     <span className="mt-1.5 inline-block h-2.5 w-2.5 rounded-full bg-brand-main" />
                     <span>{item}</span>
                   </li>

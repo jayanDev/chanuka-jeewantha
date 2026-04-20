@@ -135,7 +135,7 @@ export default function WorkshopsPage() {
         </div>
       </section>
 
-      <section className="w-full bg-white py-[64px] sm:py-[80px] md:py-[96px]">
+      <section className="w-full bg-white dark:bg-zinc-900 py-[64px] sm:py-[80px] md:py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-14 max-w-4xl">
             <span className="text-brand-main font-semibold tracking-wider uppercase mb-2 block">Workshop Tracks</span>
@@ -149,14 +149,14 @@ export default function WorkshopsPage() {
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {workshopTracks.map((track) => (
-              <article key={track.title} className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-8">
+              <article key={track.title} className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-8">
                 <h3 className="text-[26px] font-bold font-plus-jakarta text-foreground">{track.title}</h3>
                 <p className="mt-4 text-base leading-relaxed text-text-body">{track.summary}</p>
               </article>
             ))}
           </div>
 
-          <div className="mt-10 rounded-[20px] border border-zinc-200 bg-white p-8 shadow-sm">
+          <div className="mt-10 rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 shadow-sm">
             <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Ideal For</h3>
             <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
               {[
@@ -165,18 +165,18 @@ export default function WorkshopsPage() {
                 "Student clubs and alumni groups",
                 "Employability and graduate-readiness programs",
               ].map((item) => (
-                <div key={item} className="rounded-[16px] border border-zinc-200 bg-zinc-50 p-5 text-sm font-medium text-zinc-700">
+                <div key={item} className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-5 text-sm font-medium text-zinc-700 dark:text-zinc-300">
                   {item}
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="mt-10 rounded-[20px] border border-zinc-200 bg-zinc-50 p-8">
+          <div className="mt-10 rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-8">
             <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Frequently Asked Questions</h3>
             <div className="mt-6 space-y-5">
               {faqs.map((faq) => (
-                <div key={faq.question} className="rounded-[16px] border border-zinc-200 bg-white p-5">
+                <div key={faq.question} className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
                   <p className="text-lg font-semibold text-foreground">{faq.question}</p>
                   <p className="mt-2 text-text-body">{faq.answer}</p>
                 </div>
@@ -184,7 +184,7 @@ export default function WorkshopsPage() {
             </div>
           </div>
 
-          <aside className="mt-10 rounded-[20px] border border-zinc-200 bg-foreground p-8 text-background">
+          <aside className="mt-10 rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-foreground p-8 text-background">
             <h3 className="text-[30px] font-bold font-plus-jakarta !text-white">Book a Workshop</h3>
             <p className="mt-4 max-w-3xl text-text-light">
               If you want a workshop for your campus, institute, or community, the fastest next step is to reach out with audience size, session goals, and preferred format.
@@ -193,7 +193,7 @@ export default function WorkshopsPage() {
               <Link href="/contact" className="rounded-[10px] bg-brand-main px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-dark">
                 Contact for Workshop Booking
               </Link>
-              <Link href="/businesses" className="rounded-[10px] border border-white/30 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-foreground">
+              <Link href="/businesses" className="rounded-[10px] border border-white/30 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white dark:bg-zinc-900 hover:text-foreground">
                 Explore Business Lines
               </Link>
             </div>

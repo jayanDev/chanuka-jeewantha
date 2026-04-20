@@ -70,7 +70,7 @@ export default function BeforeAfterSlider({
   return (
     <div
       ref={containerRef}
-      className={`relative select-none overflow-hidden rounded-[20px] border border-zinc-200 shadow-lg ${className}`}
+      className={`relative select-none overflow-hidden rounded-[20px] border border-zinc-200 dark:border-zinc-800 shadow-lg ${className}`}
       onMouseMove={onMouseMove}
       onMouseUp={onMouseUp}
       onMouseLeave={onMouseUp}
@@ -112,7 +112,7 @@ export default function BeforeAfterSlider({
 
       {/* Divider line */}
       <div
-        className="absolute inset-y-0 z-10 w-px bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+        className="absolute inset-y-0 z-10 w-px bg-white dark:bg-zinc-900 shadow-[0_0_8px_rgba(255,255,255,0.8)]"
         style={{ left: `${position}%` }}
         aria-hidden="true"
       />
@@ -120,7 +120,7 @@ export default function BeforeAfterSlider({
       {/* Drag handle */}
       <button
         type="button"
-        className="absolute top-1/2 z-20 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-xl ring-2 ring-brand-main focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-main transition-transform hover:scale-110 active:scale-95"
+        className="absolute top-1/2 z-20 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white dark:bg-zinc-900 shadow-xl ring-2 ring-brand-main focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-main transition-transform hover:scale-110 active:scale-95"
         style={{ left: `${position}%` }}
         onMouseDown={onMouseDown}
         onTouchStart={() => { isDragging.current = true; }}

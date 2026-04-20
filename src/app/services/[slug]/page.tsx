@@ -101,7 +101,7 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
         </div>
       </section>
 
-      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
+      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white dark:bg-zinc-900">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mx-auto max-w-4xl relative w-full aspect-[21/9] bg-zinc-200 rounded-[24px] mb-12 overflow-hidden">
             <Image
@@ -141,7 +141,7 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
                 <h3>Explore Related Packages</h3>
                 <div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                   {relatedPackages.map((pkg) => (
-                    <div key={pkg.slug} className="rounded-[14px] border border-zinc-200 p-4 bg-zinc-50">
+                    <div key={pkg.slug} className="rounded-[14px] border border-zinc-200 dark:border-zinc-800 p-4 bg-zinc-50 dark:bg-zinc-900">
                       <p className="font-semibold text-foreground mb-2">{pkg.name}</p>
                       <p className="text-sm text-text-body mb-3">{pkg.audience}</p>
                       <Link

@@ -132,11 +132,11 @@ export default function TestimonialsPage() {
       </section>
 
       {/* 2. Highlight Quote & Profile */}
-      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
+      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white dark:bg-zinc-900">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="flex flex-col lg:flex-row items-center gap-[48px]">
             {/* Left Image */}
-            <div className="relative w-full lg:w-1/2 h-[488px] lg:h-[664px] rounded-[30px] overflow-hidden flex-shrink-0 border border-zinc-200">
+            <div className="relative w-full lg:w-1/2 h-[488px] lg:h-[664px] rounded-[30px] overflow-hidden flex-shrink-0 border border-zinc-200 dark:border-zinc-800">
               <Image
                 src="/images/testimonial-chanuka.jpg"
                 alt="Chanuka Jeewantha testimonial profile"
@@ -157,7 +157,7 @@ export default function TestimonialsPage() {
               <p className="text-[24px] md:text-[32px] font-medium text-text-body leading-relaxed italic">
                 "A strong career is not built by guesswork. It is built by clarity, positioning, and proof."
               </p>
-              <div className="rounded-[16px] border border-zinc-200 bg-zinc-50 p-5">
+              <div className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-5">
                 <p className="text-sm uppercase tracking-wide text-zinc-500 mb-2">Public review summary</p>
                 <div className="flex items-center gap-4">
                   <Stars rating={Math.round(averageRating)} />
@@ -179,9 +179,9 @@ export default function TestimonialsPage() {
       </section>
 
       {/* 3. Review Form */}
-      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50 border-y border-zinc-200">
+      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50 dark:bg-zinc-900 border-y border-zinc-200 dark:border-zinc-800">
         <div className="max-w-[920px] mx-auto px-4 sm:px-6">
-          <div className="bg-white rounded-[24px] border border-zinc-200 p-8 md:p-10 shadow-sm">
+          <div className="bg-white dark:bg-zinc-900 rounded-[24px] border border-zinc-200 dark:border-zinc-800 p-8 md:p-10 shadow-sm">
             <h2 className="text-[32px] md:text-[40px] font-bold font-plus-jakarta text-foreground mb-2">
               Leave Your Review
             </h2>
@@ -224,7 +224,7 @@ export default function TestimonialsPage() {
                   minLength={2}
                   maxLength={80}
                   placeholder="Your name"
-                  className="w-full rounded-[10px] border border-zinc-300 bg-white px-4 py-3 focus:border-brand-main focus:outline-none"
+                  className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 focus:border-brand-main focus:outline-none"
                 />
               </div>
 
@@ -270,7 +270,7 @@ export default function TestimonialsPage() {
                   maxLength={1000}
                   rows={5}
                   placeholder="Share your experience"
-                  className="w-full rounded-[10px] border border-zinc-300 bg-white px-4 py-3 focus:border-brand-main focus:outline-none"
+                  className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 focus:border-brand-main focus:outline-none"
                 />
               </div>
 
@@ -287,12 +287,12 @@ export default function TestimonialsPage() {
       </section>
 
       {/* 4. Client Reviews Grid */}
-      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50">
+      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50 dark:bg-zinc-900">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           {isLoadingReviews ? (
             <p className="text-center text-text-body text-lg">Loading reviews...</p>
           ) : reviews.length === 0 ? (
-            <div className="rounded-[20px] border border-zinc-200 bg-white p-10 text-center">
+            <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-10 text-center">
               <p className="text-lg text-text-body">
                 No reviews submitted yet. Share this page with your clients and collect your first review.
               </p>
@@ -300,7 +300,7 @@ export default function TestimonialsPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {reviews.map((review) => (
-                <article key={review.id} className="bg-white border border-zinc-200 rounded-[20px] p-8 flex flex-col gap-6 hover:shadow-md transition-shadow">
+                <article key={review.id} className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-[20px] p-8 flex flex-col gap-6 hover:shadow-md transition-shadow">
                   <Stars rating={review.rating} />
                   <p className="text-[16px] italic text-text-body/90 flex-grow">
                     "{review.message}"

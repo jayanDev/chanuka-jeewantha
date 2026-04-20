@@ -124,7 +124,7 @@ export default async function BlogCategoryPage({ params }: BlogCategoryPageProps
         </div>
       </section>
 
-      <section className="w-full bg-zinc-50 py-[64px] sm:py-[80px] md:py-[96px]">
+      <section className="w-full bg-zinc-50 dark:bg-zinc-900 py-[64px] sm:py-[80px] md:py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
             <div>
@@ -135,7 +135,7 @@ export default async function BlogCategoryPage({ params }: BlogCategoryPageProps
             </div>
             <Link
               href="/blog"
-              className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main"
+              className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main"
             >
               Browse All Articles
             </Link>
@@ -143,7 +143,7 @@ export default async function BlogCategoryPage({ params }: BlogCategoryPageProps
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
             {posts.map((post) => (
-              <article key={post.slug} className="overflow-hidden rounded-[20px] border border-zinc-200 bg-white transition-all hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)]">
+              <article key={post.slug} className="overflow-hidden rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 transition-all hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)]">
                 <div className="relative aspect-[5/3] overflow-hidden">
                   <Image
                     src={getCoverImage(post.category)}
@@ -162,7 +162,7 @@ export default async function BlogCategoryPage({ params }: BlogCategoryPageProps
                       {post.title}
                     </Link>
                   </h3>
-                  <p className="mb-6 text-sm leading-relaxed text-zinc-600">{post.excerpt}</p>
+                  <p className="mb-6 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{post.excerpt}</p>
                   <Link href={`/blog/${post.slug}`} className="text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
                     Read Article
                   </Link>

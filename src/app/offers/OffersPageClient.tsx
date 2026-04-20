@@ -152,9 +152,9 @@ export default function OffersPageClient() {
   };
 
   return (
-    <section className="w-full bg-zinc-50 py-[64px] sm:py-[80px] md:py-[96px]">
+    <section className="w-full bg-zinc-50 dark:bg-zinc-900 py-[64px] sm:py-[80px] md:py-[96px]">
       <div className="mx-auto w-full max-w-[1512px] px-4 sm:px-6 space-y-8">
-        <div className="rounded-[20px] border border-zinc-200 bg-white p-6 md:p-8">
+        <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 md:p-8">
           <h1 className="text-[36px] md:text-[52px] font-bold font-plus-jakarta text-foreground leading-[1.1]">
             Website Offers and Deals
           </h1>
@@ -176,7 +176,7 @@ export default function OffersPageClient() {
             </Link>
             <Link
               href="/pricing"
-              className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+              className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
             >
               Compare Full Pricing
             </Link>
@@ -190,19 +190,19 @@ export default function OffersPageClient() {
         </div>
 
         {feedback && (
-          <p className="rounded-[10px] border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-700">{feedback}</p>
+          <p className="rounded-[10px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-4 py-3 text-sm text-zinc-700 dark:text-zinc-300">{feedback}</p>
         )}
 
         {isLoading ? (
-          <div className="rounded-[16px] border border-zinc-200 bg-white p-6 text-sm text-zinc-600">Loading offers...</div>
+          <div className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 text-sm text-zinc-600 dark:text-zinc-400">Loading offers...</div>
         ) : offersWithProducts.length === 0 ? (
-          <div className="rounded-[16px] border border-zinc-200 bg-white p-6 text-sm text-zinc-600">
+          <div className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 text-sm text-zinc-600 dark:text-zinc-400">
             No offers are available right now.
           </div>
         ) : (
           <div className="space-y-6">
             {offersWithProducts.map((offer) => (
-              <article key={offer.id} className="rounded-[20px] border border-zinc-200 bg-white p-6 md:p-8">
+              <article key={offer.id} className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 md:p-8">
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                   <div>
                     <div className="mb-2 flex flex-wrap items-center gap-2">
@@ -218,24 +218,24 @@ export default function OffersPageClient() {
                     <h2 className="text-[26px] md:text-[32px] font-bold font-plus-jakarta text-foreground">
                       {offer.title}
                     </h2>
-                    <p className="mt-2 text-sm text-zinc-600">
+                    <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                       {new Date(offer.startAt).toLocaleDateString("en-LK")} - {new Date(offer.endAt).toLocaleDateString("en-LK")}
                     </p>
                   </div>
                 </div>
 
                 {offer.products.length === 0 ? (
-                  <p className="mt-5 text-sm text-zinc-600">No packages are currently attached to this offer.</p>
+                  <p className="mt-5 text-sm text-zinc-600 dark:text-zinc-400">No packages are currently attached to this offer.</p>
                 ) : (
                   <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2">
                     {offer.products.map((pkg) => {
                       const discountedPrice = computeDiscountedPrice(pkg.priceLkr, offer.discountPercent);
 
                       return (
-                        <div key={`${offer.id}-${pkg.slug}`} className="rounded-[14px] border border-zinc-200 bg-zinc-50 p-4">
+                        <div key={`${offer.id}-${pkg.slug}`} className="rounded-[14px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
                           <p className="text-sm font-semibold text-brand-main mb-1">{pkg.category}</p>
                           <h3 className="text-lg font-bold text-foreground">{pkg.name}</h3>
-                          <p className="mt-1 text-sm text-zinc-600">{pkg.audience}</p>
+                          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{pkg.audience}</p>
 
                           <div className="mt-3 flex items-baseline gap-2">
                             <span className="text-xl font-bold text-foreground">{formatLkr(discountedPrice)}</span>
@@ -260,7 +260,7 @@ export default function OffersPageClient() {
                             </button>
                             <Link
                               href={`/packages/${pkg.slug}`}
-                              className="rounded-[10px] border border-zinc-300 px-3 py-2 text-xs font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main"
+                              className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-xs font-semibold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main"
                             >
                               View Details
                             </Link>

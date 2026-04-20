@@ -53,7 +53,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* 2. Portfolio Grid Section */}
-      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50">
+      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50 dark:bg-zinc-900">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div>
@@ -69,9 +69,9 @@ export default function PortfolioPage() {
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
             {caseStudies.map((study) => (
-              <article key={study.slug} className="group overflow-hidden rounded-[20px] border border-zinc-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.1)]">
+              <article key={study.slug} className="group overflow-hidden rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.1)]">
                 <div className="relative h-[320px] overflow-hidden">
-                  <div className="absolute top-6 left-6 z-10 rounded-full border border-zinc-200 bg-white/90 px-4 py-2 text-sm font-semibold text-foreground shadow-sm backdrop-blur-sm">
+                  <div className="absolute top-6 left-6 z-10 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/90 px-4 py-2 text-sm font-semibold text-foreground shadow-sm backdrop-blur-sm">
                     {study.category}
                   </div>
                   <Image
@@ -100,22 +100,22 @@ export default function PortfolioPage() {
             ))}
           </div>
 
-          <aside className="mt-10 rounded-[16px] border border-zinc-200 bg-white p-6">
+          <aside className="mt-10 rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6">
             <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Build From Examples to Execution</h2>
             <p className="text-text-body mb-5">
               Use these samples as inspiration, then move to practical packages and direct support.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link href="/case-studies" className="rounded-[10px] border border-zinc-300 bg-zinc-50 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/case-studies" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Read Case Studies
               </Link>
-              <Link href="/services" className="rounded-[10px] border border-zinc-300 bg-zinc-50 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/services" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Explore Services
               </Link>
-              <Link href="/services/personal-website" className="rounded-[10px] border border-zinc-300 bg-zinc-50 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/services/personal-website" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Personal Website Service
               </Link>
-              <Link href="/contact" className="rounded-[10px] border border-zinc-300 bg-zinc-50 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/contact" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Contact Now
               </Link>
             </div>

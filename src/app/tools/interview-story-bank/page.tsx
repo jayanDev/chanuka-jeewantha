@@ -73,15 +73,15 @@ export default function InterviewStoryBankPage() {
         </div>
       </section>
 
-      <section className="w-full bg-zinc-50 py-[64px] sm:py-[80px] md:py-[96px]">
+      <section className="w-full bg-zinc-50 dark:bg-zinc-900 py-[64px] sm:py-[80px] md:py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <InterviewStoryBankClient />
         </div>
       </section>
 
-      <section className="w-full bg-white py-[40px] sm:py-[56px] border-t border-zinc-200">
+      <section className="w-full bg-white dark:bg-zinc-900 py-[40px] sm:py-[56px] border-t border-zinc-200 dark:border-zinc-800">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
-          <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6">
+          <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6">
             <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">Build interview readiness beyond one answer</h2>
             <p className="mt-3 text-text-body">
               The highest-converting candidates do not memorize random responses. They build a small bank of proof-based stories and adapt them for different questions.
@@ -90,10 +90,10 @@ export default function InterviewStoryBankPage() {
               <Link href="/resources/interview-story-bank-template" className="rounded-[10px] bg-brand-main px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-dark">
                 Free Interview Template
               </Link>
-              <Link href="/career-quiz" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/career-quiz" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Take Career Quiz
               </Link>
-              <Link href="/workshops" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/workshops" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Explore Workshops
               </Link>
             </div>

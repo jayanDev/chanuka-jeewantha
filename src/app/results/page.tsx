@@ -74,11 +74,11 @@ export default async function ResultsPage() {
         </div>
       </section>
 
-      <section className="w-full bg-zinc-50 py-[64px] sm:py-[80px] md:py-[96px]">
+      <section className="w-full bg-zinc-50 dark:bg-zinc-900 py-[64px] sm:py-[80px] md:py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <ResultsHubClient items={items} focusAreas={focusAreas} />
 
-          <aside className="mt-10 rounded-[20px] border border-zinc-200 bg-white p-6 shadow-sm">
+          <aside className="mt-10 rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-sm">
             <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground">What to do after reviewing proof</h2>
             <p className="mt-3 text-text-body">
               If you have seen enough to know the direction, take the quiz for a tailored recommendation or go straight to services and pricing.
@@ -87,10 +87,10 @@ export default async function ResultsPage() {
               <Link href="/career-quiz" className="rounded-[10px] bg-brand-main px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-dark">
                 Take Career Quiz
               </Link>
-              <Link href="/services" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/services" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Explore Services
               </Link>
-              <Link href="/pricing" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/pricing" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Compare Pricing
               </Link>
             </div>

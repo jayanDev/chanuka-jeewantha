@@ -109,7 +109,7 @@ export default async function EbookSinglePage({ params }: EbookPageProps) {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-[420px_1fr] gap-10 items-start">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] border border-white/15 bg-white/5">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] border border-white/15 bg-white dark:bg-zinc-900/5">
               <Image src={ebook.coverImage} alt={ebook.title} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 420px" />
             </div>
 

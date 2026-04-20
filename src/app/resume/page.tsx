@@ -12,7 +12,7 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function ResumePage() {
   return (
-    <section className="w-full py-[120px] bg-white">
+    <section className="w-full py-[120px] bg-white dark:bg-zinc-900">
       <div className="max-w-[960px] mx-auto px-4 sm:px-6 text-center">
         <span className="text-brand-main font-semibold tracking-wider uppercase mb-3 block">Resume</span>
         <h1 className="font-plus-jakarta text-[30px] sm:text-[40px] md:text-[56px] font-bold text-foreground leading-[1.1] mb-6">

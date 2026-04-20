@@ -85,9 +85,9 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
         </div>
       </section>
 
-      <section className="w-full py-[90px] bg-white">
+      <section className="w-full py-[90px] bg-white dark:bg-zinc-900">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10">
-          <article className="rounded-[22px] border border-zinc-200 p-8">
+          <article className="rounded-[22px] border border-zinc-200 dark:border-zinc-800 p-8">
             <p className="text-sm uppercase tracking-wide text-zinc-500 mb-2">Category</p>
             <p className="text-lg font-semibold text-foreground mb-5">{pkg.category}</p>
 
@@ -111,20 +111,20 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
               <Link href="/checkout" className="rounded-[10px] bg-brand-main px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-dark">
                 Buy This Package
               </Link>
-              <Link href="/contact" className="rounded-[10px] border border-zinc-300 px-6 py-3 font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/contact" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-6 py-3 font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Ask a Question
               </Link>
             </div>
           </article>
 
-          <aside className="rounded-[22px] border border-zinc-200 p-6 bg-zinc-50 h-fit">
+          <aside className="rounded-[22px] border border-zinc-200 dark:border-zinc-800 p-6 bg-zinc-50 dark:bg-zinc-900 h-fit">
             <h3 className="text-xl font-bold font-plus-jakarta text-foreground mb-3">More Packages</h3>
             <div className="space-y-3">
               {packageProducts
                 .filter((item) => item.slug !== pkg.slug)
                 .slice(0, 6)
                 .map((item) => (
-                  <Link key={item.slug} href={`/packages/${item.slug}`} className="block rounded-[10px] border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-700 transition hover:border-brand-main hover:text-brand-main">
+                  <Link key={item.slug} href={`/packages/${item.slug}`} className="block rounded-[10px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 py-2 text-sm text-zinc-700 dark:text-zinc-300 transition hover:border-brand-main hover:text-brand-main">
                     {item.name}
                   </Link>
                 ))}

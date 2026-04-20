@@ -87,11 +87,11 @@ export default function PersonalWebsiteServicePage() {
         </div>
       </section>
 
-      <section className="w-full bg-white py-[64px] sm:py-[80px] md:py-[96px]">
+      <section className="w-full bg-white dark:bg-zinc-900 py-[64px] sm:py-[80px] md:py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_360px]">
-            <article className="rounded-[22px] border border-zinc-200 bg-white p-7 md:p-10 shadow-sm">
-              <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-[18px] border border-zinc-200">
+            <article className="rounded-[22px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-7 md:p-10 shadow-sm">
+              <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-[18px] border border-zinc-200 dark:border-zinc-800">
                 <Image
                   src="/images/hero-chanuka.jpg"
                   alt="Personal website and portfolio service"
@@ -135,19 +135,19 @@ export default function PersonalWebsiteServicePage() {
                 </p>
               </div>
 
-              <div className="mt-10 rounded-[18px] border border-zinc-200 bg-zinc-50 p-6">
+              <div className="mt-10 rounded-[18px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6">
                 <h3 className="text-[26px] font-bold font-plus-jakarta text-foreground">Template Directions</h3>
                 <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3">
                   {websiteDirections.map((item) => (
-                    <div key={item.title} className="rounded-[16px] border border-zinc-200 bg-white p-5">
+                    <div key={item.title} className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
                       <p className="text-[20px] font-bold font-plus-jakarta text-foreground">{item.title}</p>
-                      <p className="mt-3 text-sm leading-relaxed text-zinc-600">{item.summary}</p>
+                      <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{item.summary}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="mt-8 rounded-[18px] border border-zinc-200 bg-white p-6">
+              <div className="mt-8 rounded-[18px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6">
                 <h3 className="text-[26px] font-bold font-plus-jakarta text-foreground">Proof Example</h3>
                 <p className="mt-3 text-text-body">
                   See how a personal website can support public proof, stronger digital presence, and a cleaner professional story across CV, LinkedIn, and outreach.
@@ -156,7 +156,7 @@ export default function PersonalWebsiteServicePage() {
                   <Link href="/case-studies/personal-website-career-portfolio-launch" className="rounded-[10px] bg-brand-main px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-dark">
                     View Personal Website Case Study
                   </Link>
-                  <Link href="/results" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
+                  <Link href="/results" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main">
                     Browse Results Hub
                   </Link>
                 </div>
@@ -164,28 +164,28 @@ export default function PersonalWebsiteServicePage() {
             </article>
 
             <aside className="space-y-6">
-              <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6">
+              <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6">
                 <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">Explore Examples</h3>
                 <div className="mt-5 flex flex-col gap-3">
-                  <Link href="/p/nimal-perera" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
+                  <Link href="/p/nimal-perera" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main">
                     View Sample Career Website
                   </Link>
-                  <Link href="/case-studies/personal-website-career-portfolio-launch" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
+                  <Link href="/case-studies/personal-website-career-portfolio-launch" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main">
                     Personal Website Case Study
                   </Link>
-                  <Link href="/portfolio" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
+                  <Link href="/portfolio" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main">
                     Browse Portfolio
                   </Link>
                 </div>
               </div>
 
-              <div className="rounded-[20px] border border-zinc-200 bg-white p-6">
+              <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6">
                 <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">Plan Your Stack</h3>
                 <div className="mt-5 flex flex-col gap-3">
-                  <Link href="/services/packages/linkedin-optimization" className="rounded-[10px] border border-zinc-300 px-4 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
+                  <Link href="/services/packages/linkedin-optimization" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main">
                     Add LinkedIn Optimization
                   </Link>
-                  <Link href="/services/packages/cv-writing" className="rounded-[10px] border border-zinc-300 px-4 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
+                  <Link href="/services/packages/cv-writing" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main">
                     Add CV Writing
                   </Link>
                   <Link href="/contact" className="rounded-[10px] bg-brand-main px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-dark">
@@ -194,13 +194,13 @@ export default function PersonalWebsiteServicePage() {
                 </div>
               </div>
 
-              <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6">
+              <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6">
                 <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">Need direction first?</h3>
                 <div className="mt-5 flex flex-col gap-3">
-                  <Link href="/career-quiz" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
+                  <Link href="/career-quiz" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main">
                     Take Career Quiz
                   </Link>
-                  <Link href="/services/industries" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
+                  <Link href="/services/industries" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main">
                     Browse Industry Pages
                   </Link>
                 </div>

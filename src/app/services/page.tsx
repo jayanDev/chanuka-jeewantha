@@ -89,7 +89,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="reveal-section w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
+      <section className="reveal-section w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white dark:bg-zinc-900">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div>
@@ -112,14 +112,14 @@ export default function ServicesPage() {
                 }`}
               >
                 {service.isMostPopular && (
-                  <div className="mb-5 inline-flex items-center gap-2 rounded-[10px] border border-brand-main/40 bg-white px-3 py-1.5 shadow-sm">
+                  <div className="mb-5 inline-flex items-center gap-2 rounded-[10px] border border-brand-main/40 bg-white dark:bg-zinc-900 px-3 py-1.5 shadow-sm">
                     <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-main text-white">
                       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
                     </span>
                     <span className="text-xs font-bold uppercase tracking-[0.14em] text-brand-dark">Client Favorite</span>
                   </div>
                 )}
-                <div className="relative mb-8 h-[250px] w-full overflow-hidden rounded-[15px] border border-zinc-200 bg-zinc-100">
+                <div className="relative mb-8 h-[250px] w-full overflow-hidden rounded-[15px] border border-zinc-200 dark:border-zinc-800 bg-zinc-100">
                   <Image
                     src={service.image}
                     alt={service.alt}
@@ -147,7 +147,7 @@ export default function ServicesPage() {
           </div>
 
           <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-            <article className="rounded-[18px] border border-zinc-200 bg-zinc-50 p-6">
+            <article className="rounded-[18px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6">
               <span className="inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
                 Free Visibility Layer
               </span>
@@ -161,7 +161,7 @@ export default function ServicesPage() {
               </Link>
             </article>
 
-            <article className="rounded-[18px] border border-zinc-200 bg-zinc-50 p-6">
+            <article className="rounded-[18px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6">
               <span className="inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
                 Group Programs
               </span>
@@ -176,7 +176,7 @@ export default function ServicesPage() {
             </article>
           </div>
 
-          <section className="mt-10 rounded-[18px] border border-zinc-200 bg-white p-6">
+          <section className="mt-10 rounded-[18px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6">
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div>
                 <span className="inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
@@ -194,9 +194,9 @@ export default function ServicesPage() {
 
             <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
               {industryHighlights.map((item) => (
-                <article key={item.slug} className="rounded-[16px] border border-zinc-200 bg-zinc-50 p-5">
+                <article key={item.slug} className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-5">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-main">{item.name}</p>
-                  <p className="mt-3 text-sm leading-relaxed text-zinc-600">{item.heroSummary}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{item.heroSummary}</p>
                   <Link href={`/services/industries/${item.slug}`} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
                     Open Page
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
@@ -206,28 +206,28 @@ export default function ServicesPage() {
             </div>
           </section>
 
-          <aside className="mt-8 rounded-[16px] border border-zinc-200 bg-zinc-50 p-6">
+          <aside className="mt-8 rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6">
             <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Plan Your Next Step</h2>
             <p className="text-text-body mb-5">
               Compare packages, check free and paid resources, or contact me for custom guidance.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link href="/pricing" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/pricing" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Compare Pricing
               </Link>
-              <Link href="/tools" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/tools" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Use Free Tools
               </Link>
-              <Link href="/resources" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/resources" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Browse Resources
               </Link>
-              <Link href="/services/industries" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/services/industries" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Industry Pages
               </Link>
-              <Link href="/workshops" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/workshops" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Book Workshops
               </Link>
-              <Link href="/contact" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/contact" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Contact for Advice
               </Link>
             </div>

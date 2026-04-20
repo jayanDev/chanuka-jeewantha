@@ -81,7 +81,7 @@ export default function BlogCommentForm({ postSlug }: Props) {
           onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value }))}
           placeholder="Write your thoughts here..."
           required
-          className="w-full resize-none rounded-[10px] border border-zinc-200 bg-white px-4 py-4 transition-colors focus:border-brand-main focus:outline-none focus:ring-1 focus:ring-brand-main"
+          className="w-full resize-none rounded-[10px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-4 py-4 transition-colors focus:border-brand-main focus:outline-none focus:ring-1 focus:ring-brand-main"
         />
       </div>
 
@@ -95,7 +95,7 @@ export default function BlogCommentForm({ postSlug }: Props) {
             onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))}
             placeholder="John Doe"
             required
-            className="w-full rounded-[10px] border border-zinc-200 bg-white px-4 py-4 transition-colors focus:border-brand-main focus:outline-none focus:ring-1 focus:ring-brand-main"
+            className="w-full rounded-[10px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-4 py-4 transition-colors focus:border-brand-main focus:outline-none focus:ring-1 focus:ring-brand-main"
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -107,7 +107,7 @@ export default function BlogCommentForm({ postSlug }: Props) {
             onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
             placeholder="john@example.com"
             required
-            className="w-full rounded-[10px] border border-zinc-200 bg-white px-4 py-4 transition-colors focus:border-brand-main focus:outline-none focus:ring-1 focus:ring-brand-main"
+            className="w-full rounded-[10px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-4 py-4 transition-colors focus:border-brand-main focus:outline-none focus:ring-1 focus:ring-brand-main"
           />
         </div>
       </div>

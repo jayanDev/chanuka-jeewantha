@@ -48,11 +48,11 @@ export default function ChapterNavigator({
   };
 
   return (
-    <div className="mt-20 pt-10 border-t border-zinc-100 pb-20">
+    <div className="mt-20 pt-10 border-t border-zinc-100 dark:border-zinc-800 pb-20">
       {nextChapterId !== null && nextChapterTitle && (
-        <div className="mb-6 rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+        <div className="mb-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5 shadow-sm">
           <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-zinc-500 mb-2">Up Next</p>
-          <p className="text-base font-semibold text-zinc-800 leading-snug">{nextChapterTitle}</p>
+          <p className="text-base font-semibold text-zinc-800 dark:text-zinc-200 leading-snug">{nextChapterTitle}</p>
         </div>
       )}
 
@@ -60,7 +60,7 @@ export default function ChapterNavigator({
         {prevChapterId !== null ? (
           <Link
             href={`/ebooks/${slug}/read/${prevChapterId}`}
-            className="px-6 py-4 border border-zinc-200 rounded-[12px] hover:border-brand-main text-zinc-600 hover:text-brand-main transition-colors flex items-center gap-3 w-full sm:w-auto justify-center"
+            className="px-6 py-4 border border-zinc-200 dark:border-zinc-800 rounded-[12px] hover:border-brand-main text-zinc-600 dark:text-zinc-400 hover:text-brand-main transition-colors flex items-center gap-3 w-full sm:w-auto justify-center"
           >
             &larr; Previous Chapter
           </Link>

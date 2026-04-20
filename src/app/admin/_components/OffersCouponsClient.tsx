@@ -291,11 +291,11 @@ export default function OffersCouponsClient() {
 
   return (
     <section className="space-y-6">
-      <div className="rounded-[16px] border border-zinc-200 bg-white p-6 space-y-5">
+      <div className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 className="text-2xl font-bold font-plus-jakarta">Manage Offers</h2>
-            <p className="text-sm text-zinc-600">Priority rules, targeting, draft scheduling, analytics, and preview mode.</p>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400">Priority rules, targeting, draft scheduling, analytics, and preview mode.</p>
           </div>
           <button type="button" onClick={() => void refreshOffers()} className="rounded bg-foreground px-4 py-2 text-sm text-background">Refresh</button>
         </div>
@@ -308,14 +308,14 @@ export default function OffersCouponsClient() {
           <button
             type="button"
             onClick={() => void changePriorityMode("highest_discount")}
-            className={`rounded px-3 py-1.5 text-xs ${priorityMode === "highest_discount" ? "bg-brand-main text-white" : "bg-zinc-200 text-zinc-800"}`}
+            className={`rounded px-3 py-1.5 text-xs ${priorityMode === "highest_discount" ? "bg-brand-main text-white" : "bg-zinc-200 text-zinc-800 dark:text-zinc-200"}`}
           >
             Highest Discount
           </button>
           <button
             type="button"
             onClick={() => void changePriorityMode("newest")}
-            className={`rounded px-3 py-1.5 text-xs ${priorityMode === "newest" ? "bg-brand-main text-white" : "bg-zinc-200 text-zinc-800"}`}
+            className={`rounded px-3 py-1.5 text-xs ${priorityMode === "newest" ? "bg-brand-main text-white" : "bg-zinc-200 text-zinc-800 dark:text-zinc-200"}`}
           >
             Newest Offer
           </button>
@@ -324,15 +324,15 @@ export default function OffersCouponsClient() {
         <form onSubmit={createOffer} className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="md:col-span-2">
             <label className="mb-1 block text-sm font-medium">Offer title</label>
-            <input type="text" aria-label="Offer title" value={offerTitle} onChange={(event) => setOfferTitle(event.target.value)} className="w-full rounded border border-zinc-300 px-3 py-2 text-sm" required />
+            <input type="text" aria-label="Offer title" value={offerTitle} onChange={(event) => setOfferTitle(event.target.value)} className="w-full rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm" required />
           </div>
           <div>
             <label className="mb-1 block text-sm font-medium">Discount %</label>
-            <input type="number" aria-label="Offer discount percent" min={1} max={90} value={offerDiscountPercent} onChange={(event) => setOfferDiscountPercent(Number(event.target.value || 1))} className="w-full rounded border border-zinc-300 px-3 py-2 text-sm" required />
+            <input type="number" aria-label="Offer discount percent" min={1} max={90} value={offerDiscountPercent} onChange={(event) => setOfferDiscountPercent(Number(event.target.value || 1))} className="w-full rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm" required />
           </div>
           <div>
             <label className="mb-1 block text-sm font-medium">Scope</label>
-            <select aria-label="Offer scope" value={offerScope} onChange={(event) => setOfferScope(event.target.value as "all" | "selected" | "category")} className="w-full rounded border border-zinc-300 px-3 py-2 text-sm">
+            <select aria-label="Offer scope" value={offerScope} onChange={(event) => setOfferScope(event.target.value as "all" | "selected" | "category")} className="w-full rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm">
               <option value="all">All services</option>
               <option value="selected">Selected services</option>
               <option value="category">Selected categories</option>
@@ -340,11 +340,11 @@ export default function OffersCouponsClient() {
           </div>
           <div>
             <label className="mb-1 block text-sm font-medium">Start date</label>
-            <input type="date" aria-label="Offer start date" value={offerStartDate} onChange={(event) => setOfferStartDate(event.target.value)} className="w-full rounded border border-zinc-300 px-3 py-2 text-sm" required />
+            <input type="date" aria-label="Offer start date" value={offerStartDate} onChange={(event) => setOfferStartDate(event.target.value)} className="w-full rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm" required />
           </div>
           <div>
             <label className="mb-1 block text-sm font-medium">End date</label>
-            <input type="date" aria-label="Offer end date" value={offerEndDate} onChange={(event) => setOfferEndDate(event.target.value)} className="w-full rounded border border-zinc-300 px-3 py-2 text-sm" required />
+            <input type="date" aria-label="Offer end date" value={offerEndDate} onChange={(event) => setOfferEndDate(event.target.value)} className="w-full rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm" required />
           </div>
           <label className="inline-flex items-center gap-2 text-sm md:col-span-2">
             <input type="checkbox" aria-label="Offer draft mode" checked={offerIsDraft} onChange={(event) => setOfferIsDraft(event.target.checked)} />
@@ -352,7 +352,7 @@ export default function OffersCouponsClient() {
           </label>
 
           {offerScope === "selected" && (
-            <div className="md:col-span-2 rounded border border-zinc-200 p-3">
+            <div className="md:col-span-2 rounded border border-zinc-200 dark:border-zinc-800 p-3">
               <p className="text-sm font-medium mb-2">Selected services</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-48 overflow-auto">
                 {packageProducts.map((product) => (
@@ -366,7 +366,7 @@ export default function OffersCouponsClient() {
           )}
 
           {offerScope === "category" && (
-            <div className="md:col-span-2 rounded border border-zinc-200 p-3">
+            <div className="md:col-span-2 rounded border border-zinc-200 dark:border-zinc-800 p-3">
               <p className="text-sm font-medium mb-2">Selected categories</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {serviceCategories.map((category) => (
@@ -388,11 +388,11 @@ export default function OffersCouponsClient() {
           {offers.map((offer) => {
             const status = getScheduleStatus(offer.startAtMs, offer.endAtMs, offer.isDraft, offer.isActive);
             return (
-              <article key={offer.id} className="rounded border border-zinc-200 p-4">
+              <article key={offer.id} className="rounded border border-zinc-200 dark:border-zinc-800 p-4">
                 <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                   <div className="space-y-1">
                     <p className="font-semibold text-foreground">{offer.title}</p>
-                    <p className="text-sm text-zinc-600">{offer.discountPercent}% OFF</p>
+                    <p className="text-sm text-zinc-600 dark:text-zinc-400">{offer.discountPercent}% OFF</p>
                     <p className="text-xs text-zinc-500">Status: {status} • Impressions: {offer.impressionCount} • Cart Adds: {offer.cartAddCount} • Conversions: {offer.conversionCount}</p>
                   </div>
 
@@ -400,7 +400,7 @@ export default function OffersCouponsClient() {
                     <button type="button" onClick={() => void updateOffer(offer.id, { isDraft: !offer.isDraft }, offer.isDraft ? "Offer moved out of draft." : "Offer moved to draft.")} className="rounded bg-zinc-700 px-3 py-1.5 text-xs text-white">{offer.isDraft ? "Publish Draft" : "Move to Draft"}</button>
                     <button type="button" onClick={() => void updateOffer(offer.id, { isActive: !offer.isActive }, offer.isActive ? "Offer deactivated." : "Offer activated.")} className="rounded bg-zinc-900 px-3 py-1.5 text-xs text-white">{offer.isActive ? "Deactivate" : "Activate"}</button>
                     <button type="button" onClick={() => void startPreview(offer.id)} className="rounded bg-brand-main px-3 py-1.5 text-xs text-white">Preview on Site</button>
-                    <Link href={`/?offerPreview=${encodeURIComponent(offer.id)}`} target="_blank" className="rounded border border-zinc-300 px-3 py-1.5 text-xs">Open Preview Tab</Link>
+                    <Link href={`/?offerPreview=${encodeURIComponent(offer.id)}`} target="_blank" className="rounded border border-zinc-300 dark:border-zinc-700 px-3 py-1.5 text-xs">Open Preview Tab</Link>
                     <button type="button" onClick={() => void deleteOffer(offer.id)} className="rounded bg-red-600 px-3 py-1.5 text-xs text-white">Delete</button>
                   </div>
                 </div>
@@ -417,11 +417,11 @@ export default function OffersCouponsClient() {
         )}
       </div>
 
-      <div className="rounded-[16px] border border-zinc-200 bg-white p-6 space-y-5">
+      <div className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 className="text-2xl font-bold font-plus-jakarta">Manage Coupons</h2>
-            <p className="text-sm text-zinc-600">Create coupons with usage limits and scope targeting.</p>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400">Create coupons with usage limits and scope targeting.</p>
           </div>
           <button type="button" onClick={() => void refreshCoupons()} className="rounded bg-foreground px-4 py-2 text-sm text-background">Refresh</button>
         </div>
@@ -430,19 +430,19 @@ export default function OffersCouponsClient() {
         {couponSuccess && <p className="text-sm text-green-700">{couponSuccess}</p>}
 
         <form onSubmit={createCouponAction} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input type="text" aria-label="Coupon code" value={couponCode} onChange={(event) => setCouponCode(event.target.value.toUpperCase())} placeholder="NEWYEAR50" className="rounded border border-zinc-300 px-3 py-2 text-sm" required />
-          <input type="text" aria-label="Coupon title" value={couponTitle} onChange={(event) => setCouponTitle(event.target.value)} className="rounded border border-zinc-300 px-3 py-2 text-sm" required />
-          <input type="number" aria-label="Coupon discount percent" min={1} max={90} value={couponDiscountPercent} onChange={(event) => setCouponDiscountPercent(Number(event.target.value || 1))} className="rounded border border-zinc-300 px-3 py-2 text-sm" required />
-          <select aria-label="Coupon scope" value={couponScope} onChange={(event) => setCouponScope(event.target.value as "all" | "selected" | "category")} className="rounded border border-zinc-300 px-3 py-2 text-sm">
+          <input type="text" aria-label="Coupon code" value={couponCode} onChange={(event) => setCouponCode(event.target.value.toUpperCase())} placeholder="NEWYEAR50" className="rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm" required />
+          <input type="text" aria-label="Coupon title" value={couponTitle} onChange={(event) => setCouponTitle(event.target.value)} className="rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm" required />
+          <input type="number" aria-label="Coupon discount percent" min={1} max={90} value={couponDiscountPercent} onChange={(event) => setCouponDiscountPercent(Number(event.target.value || 1))} className="rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm" required />
+          <select aria-label="Coupon scope" value={couponScope} onChange={(event) => setCouponScope(event.target.value as "all" | "selected" | "category")} className="rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm">
             <option value="all">All services</option>
             <option value="selected">Selected services</option>
             <option value="category">Selected categories</option>
           </select>
-          <input type="number" aria-label="Coupon minimum order" min={0} value={couponMinOrderLkr} onChange={(event) => setCouponMinOrderLkr(Number(event.target.value || 0))} className="rounded border border-zinc-300 px-3 py-2 text-sm" />
-          <input type="number" aria-label="Coupon max total uses" min={1} value={couponMaxTotalUses} onChange={(event) => setCouponMaxTotalUses(Number(event.target.value || 1))} className="rounded border border-zinc-300 px-3 py-2 text-sm" />
-          <input type="number" aria-label="Coupon max uses per user" min={1} value={couponMaxUsesPerUser} onChange={(event) => setCouponMaxUsesPerUser(Number(event.target.value || 1))} className="rounded border border-zinc-300 px-3 py-2 text-sm" />
-          <input type="date" aria-label="Coupon start date" value={couponStartDate} onChange={(event) => setCouponStartDate(event.target.value)} className="rounded border border-zinc-300 px-3 py-2 text-sm" required />
-          <input type="date" aria-label="Coupon end date" value={couponEndDate} onChange={(event) => setCouponEndDate(event.target.value)} className="rounded border border-zinc-300 px-3 py-2 text-sm" required />
+          <input type="number" aria-label="Coupon minimum order" min={0} value={couponMinOrderLkr} onChange={(event) => setCouponMinOrderLkr(Number(event.target.value || 0))} className="rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm" />
+          <input type="number" aria-label="Coupon max total uses" min={1} value={couponMaxTotalUses} onChange={(event) => setCouponMaxTotalUses(Number(event.target.value || 1))} className="rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm" />
+          <input type="number" aria-label="Coupon max uses per user" min={1} value={couponMaxUsesPerUser} onChange={(event) => setCouponMaxUsesPerUser(Number(event.target.value || 1))} className="rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm" />
+          <input type="date" aria-label="Coupon start date" value={couponStartDate} onChange={(event) => setCouponStartDate(event.target.value)} className="rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm" required />
+          <input type="date" aria-label="Coupon end date" value={couponEndDate} onChange={(event) => setCouponEndDate(event.target.value)} className="rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm" required />
 
           <label className="inline-flex items-center gap-2 text-sm md:col-span-2">
             <input type="checkbox" checked={couponIsDraft} onChange={(event) => setCouponIsDraft(event.target.checked)} />
@@ -458,11 +458,11 @@ export default function OffersCouponsClient() {
           {coupons.map((coupon) => {
             const status = getScheduleStatus(coupon.startAtMs, coupon.endAtMs, coupon.isDraft, coupon.isActive);
             return (
-              <article key={coupon.id} className="rounded border border-zinc-200 p-4">
+              <article key={coupon.id} className="rounded border border-zinc-200 dark:border-zinc-800 p-4">
                 <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                   <div className="space-y-1">
                     <p className="font-semibold text-foreground">{coupon.code} • {coupon.title}</p>
-                    <p className="text-sm text-zinc-600">{coupon.discountPercent}% OFF • Min {formatLkr(coupon.minOrderLkr)} • Uses {coupon.usedCount}/{coupon.maxTotalUses}</p>
+                    <p className="text-sm text-zinc-600 dark:text-zinc-400">{coupon.discountPercent}% OFF • Min {formatLkr(coupon.minOrderLkr)} • Uses {coupon.usedCount}/{coupon.maxTotalUses}</p>
                     <p className="text-xs text-zinc-500">Status: {status}</p>
                   </div>
 

@@ -78,10 +78,10 @@ export default async function EbookReaderLayout({ params, children }: Props) {
   const hasPremiumAccess = await checkEbookAccess(user?.id, slug);
 
   return (
-    <div className="flex h-screen w-full bg-zinc-50 overflow-hidden font-poppins selection:bg-transparent">
+    <div className="flex h-screen w-full bg-zinc-50 dark:bg-zinc-900 overflow-hidden font-poppins selection:bg-transparent">
       {/* Sidebar Navigation */}
-      <aside className="hidden lg:flex w-80 flex-col border-r border-zinc-200 bg-white">
-        <div className="p-6 border-b border-zinc-100 shrink-0">
+      <aside className="hidden lg:flex w-80 flex-col border-r border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
+        <div className="p-6 border-b border-zinc-100 dark:border-zinc-800 shrink-0">
           <Link
              href={`/ebooks/${slug}`}
              className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-brand-main mb-4 transition-colors"
@@ -123,7 +123,7 @@ export default async function EbookReaderLayout({ params, children }: Props) {
                 key={item.id}
                 href={`/ebooks/${slug}/read/${item.id}`}
                 className={`flex items-start gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 ${
-                  isLocked ? "opacity-60 hover:bg-zinc-50 cursor-pointer" : "hover:bg-brand-main/5 text-zinc-700 hover:text-brand-dark"
+                  isLocked ? "opacity-60 hover:bg-zinc-50 dark:bg-zinc-900 cursor-pointer" : "hover:bg-brand-main/5 text-zinc-700 dark:text-zinc-300 hover:text-brand-dark"
                 }`}
               >
                 <div className="mt-1 shrink-0">
@@ -147,9 +147,9 @@ export default async function EbookReaderLayout({ params, children }: Props) {
 
       {/* Main Reading Area */}
       <main className="flex-1 h-full overflow-hidden relative disable-selection">
-         <div className="lg:hidden border-b border-zinc-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/70 sticky top-0 z-20">
+         <div className="lg:hidden border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/95 backdrop-blur supports-[backdrop-filter]:bg-white dark:bg-zinc-900/70 sticky top-0 z-20">
            <details>
-             <summary className="list-none cursor-pointer px-4 py-3 flex items-center justify-between text-sm font-semibold text-zinc-700">
+             <summary className="list-none cursor-pointer px-4 py-3 flex items-center justify-between text-sm font-semibold text-zinc-700 dark:text-zinc-300">
                <span>Contents</span>
                <span className="text-xs text-zinc-400">Tap to expand</span>
              </summary>
@@ -179,7 +179,7 @@ export default async function EbookReaderLayout({ params, children }: Props) {
                        key={`mobile-${item.id}`}
                        href={`/ebooks/${slug}/read/${item.id}`}
                        className={`flex items-start gap-2.5 rounded-lg px-2.5 py-2 text-sm transition-colors ${
-                         isLocked ? "opacity-60 text-zinc-500" : "text-zinc-700 hover:bg-brand-main/5 hover:text-brand-dark"
+                         isLocked ? "opacity-60 text-zinc-500" : "text-zinc-700 dark:text-zinc-300 hover:bg-brand-main/5 hover:text-brand-dark"
                        }`}
                      >
                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-brand-main shrink-0" />
@@ -201,7 +201,7 @@ export default async function EbookReaderLayout({ params, children }: Props) {
              {Array.from({ length: 15 }).map((_, i) => (
                 <div key={i} className="flex flex-col gap-20">
                    {Array.from({ length: 15 }).map((_, j) => (
-                     <span key={j} className="text-3xl font-black text-black whitespace-nowrap">
+                     <span key={j} className="text-3xl font-black text-black dark:text-white whitespace-nowrap">
                        {user?.email || "chanuka jeewantha"}
                      </span>
                    ))}

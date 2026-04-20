@@ -76,13 +76,13 @@ export default function ToolsPage() {
         </div>
       </section>
 
-      <section className="w-full bg-white py-[64px] sm:py-[80px] md:py-[96px]">
+      <section className="w-full bg-white dark:bg-zinc-900 py-[64px] sm:py-[80px] md:py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
             {careerTools.map((tool) => (
               <article
                 key={tool.slug}
-                className="group overflow-hidden rounded-[22px] border border-zinc-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.1)]"
+                className="group overflow-hidden rounded-[22px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.1)]"
               >
                 <div className="relative aspect-[5/3] overflow-hidden">
                   <Image
@@ -101,7 +101,7 @@ export default function ToolsPage() {
                   <p className="mb-6 text-base leading-relaxed text-text-body">{tool.summary}</p>
                   <ul className="mb-6 space-y-2">
                     {tool.highlights.map((highlight) => (
-                      <li key={highlight} className="flex items-start gap-3 text-sm text-zinc-700">
+                      <li key={highlight} className="flex items-start gap-3 text-sm text-zinc-700 dark:text-zinc-300">
                         <span className="mt-1.5 inline-block h-2.5 w-2.5 rounded-full bg-brand-main" />
                         <span>{highlight}</span>
                       </li>
@@ -119,25 +119,25 @@ export default function ToolsPage() {
             ))}
           </div>
 
-          <aside className="mt-10 rounded-[16px] border border-zinc-200 bg-zinc-50 p-6">
+          <aside className="mt-10 rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6">
             <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Build Beyond Free Tools</h2>
             <p className="text-text-body mb-5">
               Use the free tools for fast clarity, then move to practical services, premium resources, or direct support when you want stronger execution.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link href="/career-quiz" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/career-quiz" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Take Career Quiz
               </Link>
-              <Link href="/results" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/results" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 See Results
               </Link>
-              <Link href="/services" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/services" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Explore Services
               </Link>
-              <Link href="/resources" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/resources" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Browse Resources
               </Link>
-              <Link href="/contact" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/contact" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Contact for Help
               </Link>
             </div>

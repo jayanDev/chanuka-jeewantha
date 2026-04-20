@@ -77,9 +77,9 @@ export default function ReviewsAdminPage() {
   };
 
   return (
-    <section className="w-full min-h-screen bg-zinc-50 py-16">
+    <section className="w-full min-h-screen bg-zinc-50 dark:bg-zinc-900 py-16">
       <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
-        <div className="mb-8 rounded-[20px] border border-zinc-200 bg-white p-8">
+        <div className="mb-8 rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8">
           <h1 className="mb-2 text-[34px] font-bold font-plus-jakarta text-foreground">Review Moderation</h1>
           <p className="mb-6 text-text-body">
             Enter your admin token to approve or hide client reviews. Only approved reviews appear on the testimonials page.
@@ -96,7 +96,7 @@ export default function ReviewsAdminPage() {
                 value={token}
                 onChange={(event) => setToken(event.target.value)}
                 placeholder="Enter REVIEW_ADMIN_TOKEN"
-                className="w-full rounded-[10px] border border-zinc-300 bg-white px-4 py-3 focus:border-brand-main focus:outline-none"
+                className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 focus:border-brand-main focus:outline-none"
               />
             </div>
             <button
@@ -118,15 +118,15 @@ export default function ReviewsAdminPage() {
 
         {reviews.length > 0 && (
           <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-3">
-            <div className="rounded-[14px] border border-zinc-200 bg-white p-5">
+            <div className="rounded-[14px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
               <p className="text-sm text-zinc-500">Total</p>
               <p className="text-2xl font-bold text-foreground">{reviews.length}</p>
             </div>
-            <div className="rounded-[14px] border border-zinc-200 bg-white p-5">
+            <div className="rounded-[14px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
               <p className="text-sm text-zinc-500">Approved</p>
               <p className="text-2xl font-bold text-foreground">{approvedCount}</p>
             </div>
-            <div className="rounded-[14px] border border-zinc-200 bg-white p-5">
+            <div className="rounded-[14px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
               <p className="text-sm text-zinc-500">Pending</p>
               <p className="text-2xl font-bold text-foreground">{pendingCount}</p>
             </div>
@@ -135,7 +135,7 @@ export default function ReviewsAdminPage() {
 
         <div className="space-y-4">
           {reviews.map((review) => (
-            <article key={review.id} className="rounded-[16px] border border-zinc-200 bg-white p-6">
+            <article key={review.id} className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6">
               <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <h2 className="text-xl font-bold font-plus-jakarta text-foreground">{review.name}</h2>

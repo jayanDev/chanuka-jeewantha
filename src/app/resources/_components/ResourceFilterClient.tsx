@@ -48,7 +48,7 @@ export default function ResourceFilterClient({ resources }: { resources: Digital
             placeholder="Search toolkits, CV templates, guides..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-white border-2 border-zinc-200 rounded-[12px] py-4 pl-12 pr-4 outline-none focus:border-brand-main focus:ring-4 focus:ring-brand-main/10 transition-all font-medium text-foreground placeholder:text-zinc-400"
+            className="w-full bg-white dark:bg-zinc-900 border-2 border-zinc-200 dark:border-zinc-800 rounded-[12px] py-4 pl-12 pr-4 outline-none focus:border-brand-main focus:ring-4 focus:ring-brand-main/10 transition-all font-medium text-foreground placeholder:text-zinc-400"
           />
         </div>
         
@@ -60,7 +60,7 @@ export default function ResourceFilterClient({ resources }: { resources: Digital
               className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
                 activeCategory === category
                   ? "bg-brand-dark text-white shadow-md"
-                  : "bg-white text-zinc-600 border border-zinc-200 hover:border-brand-main hover:text-brand-main"
+                  : "bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 hover:border-brand-main hover:text-brand-main"
               }`}
             >
               {category}
@@ -73,8 +73,8 @@ export default function ResourceFilterClient({ resources }: { resources: Digital
       {filteredResources.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {filteredResources.map((resource) => (
-            <article key={resource.slug} className="group rounded-[22px] border border-zinc-200 p-7 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
-              <div className="relative mb-6 aspect-[4/3] overflow-hidden rounded-[14px] border border-zinc-200 bg-zinc-50">
+            <article key={resource.slug} className="group rounded-[22px] border border-zinc-200 dark:border-zinc-800 p-7 bg-white dark:bg-zinc-900 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+              <div className="relative mb-6 aspect-[4/3] overflow-hidden rounded-[14px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900">
                 <Image 
                   src={resource.coverImage} 
                   alt={resource.title} 
@@ -102,12 +102,12 @@ export default function ResourceFilterClient({ resources }: { resources: Digital
               </h2>
               <p className="text-zinc-500 font-semibold mb-4 leading-relaxed">{resource.subtitle}</p>
               
-              <div className="flex-grow pt-4 border-t border-zinc-100">
+              <div className="flex-grow pt-4 border-t border-zinc-100 dark:border-zinc-800">
                 <ul className="space-y-3 mb-6">
                   {resource.highlights.slice(0, 3).map((highlight, idx) => (
                     <li key={idx} className="flex items-start gap-3">
                       <svg className="w-5 h-5 text-brand-main flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                      <span className="text-sm font-medium text-zinc-700">{highlight}</span>
+                      <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{highlight}</span>
                     </li>
                   ))}
                 </ul>
@@ -139,7 +139,7 @@ export default function ResourceFilterClient({ resources }: { resources: Digital
           ))}
         </div>
       ) : (
-        <div className="text-center py-20 bg-zinc-50 rounded-[20px] border border-zinc-200">
+        <div className="text-center py-20 bg-zinc-50 dark:bg-zinc-900 rounded-[20px] border border-zinc-200 dark:border-zinc-800">
           <h3 className="text-2xl font-bold font-plus-jakarta text-foreground mb-2">No resources found</h3>
           <p className="text-zinc-500">Try adjusting your search or category filter.</p>
         </div>

@@ -53,7 +53,7 @@ export default function ContactForm() {
   return (
     <>
       {/* Contact Split Section */}
-      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50">
+      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50 dark:bg-zinc-900">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
 
@@ -79,7 +79,7 @@ export default function ContactForm() {
 
               <div className="flex flex-col gap-8 w-full">
                 {/* Contact Detail 1 */}
-                <div className="bg-white p-6 rounded-[20px] border border-zinc-200 flex items-center gap-6 shadow-sm">
+                <div className="bg-white dark:bg-zinc-900 p-6 rounded-[20px] border border-zinc-200 dark:border-zinc-800 flex items-center gap-6 shadow-sm">
                   <div className="w-[60px] h-[60px] bg-brand-main/10 text-brand-main rounded-full flex items-center justify-center flex-shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                   </div>
@@ -90,7 +90,7 @@ export default function ContactForm() {
                 </div>
 
                 {/* Contact Detail 2 */}
-                <div className="bg-white p-6 rounded-[20px] border border-zinc-200 flex items-center gap-6 shadow-sm">
+                <div className="bg-white dark:bg-zinc-900 p-6 rounded-[20px] border border-zinc-200 dark:border-zinc-800 flex items-center gap-6 shadow-sm">
                   <div className="w-[60px] h-[60px] bg-brand-main/10 text-brand-main rounded-full flex items-center justify-center flex-shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                   </div>
@@ -103,7 +103,7 @@ export default function ContactForm() {
             </div>
 
             {/* Right Content - Form */}
-            <div className="w-full lg:w-1/2 bg-white p-8 md:p-12 rounded-[24px] shadow-lg border border-zinc-100">
+            <div className="w-full lg:w-1/2 bg-white dark:bg-zinc-900 p-8 md:p-12 rounded-[24px] shadow-lg border border-zinc-100 dark:border-zinc-800">
               <h3 className="text-[28px] font-bold font-plus-jakarta mb-8 text-foreground">Send a Message</h3>
               <form className="flex flex-col gap-6" onSubmit={handleSubmit} noValidate>
                 {/* aria-live region announces status changes to screen readers */}
@@ -145,7 +145,7 @@ export default function ContactForm() {
                       placeholder="John Doe"
                       required
                       autoComplete="name"
-                      className="w-full px-4 py-3 rounded-[10px] bg-zinc-50 border border-zinc-200 focus:outline-none focus:border-brand-main focus:ring-1 focus:ring-brand-main transition-colors"
+                      className="w-full px-4 py-3 rounded-[10px] bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:outline-none focus:border-brand-main focus:ring-1 focus:ring-brand-main transition-colors"
                     />
                   </div>
                   <div className="flex flex-col gap-2">
@@ -158,7 +158,7 @@ export default function ContactForm() {
                       placeholder="john@example.com"
                       required
                       autoComplete="email"
-                      className="w-full px-4 py-3 rounded-[10px] bg-zinc-50 border border-zinc-200 focus:outline-none focus:border-brand-main focus:ring-1 focus:ring-brand-main transition-colors"
+                      className="w-full px-4 py-3 rounded-[10px] bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:outline-none focus:border-brand-main focus:ring-1 focus:ring-brand-main transition-colors"
                     />
                   </div>
                 </div>
@@ -171,7 +171,7 @@ export default function ContactForm() {
                     onChange={(e) => setFormData((prev) => ({ ...prev, subject: e.target.value }))}
                     placeholder="Project Inquiry"
                     required
-                    className="w-full px-4 py-3 rounded-[10px] bg-zinc-50 border border-zinc-200 focus:outline-none focus:border-brand-main focus:ring-1 focus:ring-brand-main transition-colors"
+                    className="w-full px-4 py-3 rounded-[10px] bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:outline-none focus:border-brand-main focus:ring-1 focus:ring-brand-main transition-colors"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -183,7 +183,7 @@ export default function ContactForm() {
                     onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
                     placeholder="Tell me about your project..."
                     required
-                    className="w-full px-4 py-3 rounded-[10px] bg-zinc-50 border border-zinc-200 focus:outline-none focus:border-brand-main focus:ring-1 focus:ring-brand-main transition-colors resize-none"
+                    className="w-full px-4 py-3 rounded-[10px] bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:outline-none focus:border-brand-main focus:ring-1 focus:ring-brand-main transition-colors resize-none"
                   ></textarea>
                 </div>
                 <button

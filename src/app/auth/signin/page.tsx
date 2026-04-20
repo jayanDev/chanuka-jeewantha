@@ -43,9 +43,9 @@ export default function SignInPage() {
   };
 
   return (
-    <section className="w-full py-20 bg-zinc-50 min-h-[70vh]">
+    <section className="w-full py-20 bg-zinc-50 dark:bg-zinc-900 min-h-[70vh]">
       <div className="max-w-lg mx-auto px-4">
-        <div className="rounded-[20px] border border-zinc-200 bg-white p-8 md:p-10">
+        <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 md:p-10">
           <h1 className="text-3xl font-bold font-plus-jakarta text-foreground mb-2">Sign In</h1>
           <p className="text-text-body mb-8">Access your cart, checkout, and order history.</p>
 
@@ -57,7 +57,7 @@ export default function SignInPage() {
 
           <a
             href={`/api/auth/google/start?returnTo=${encodeURIComponent(returnTo)}`}
-            className="mb-6 inline-flex w-full items-center justify-center gap-3 rounded-[10px] border border-zinc-300 bg-white px-5 py-3 font-medium text-foreground transition-colors hover:border-zinc-400"
+            className="mb-6 inline-flex w-full items-center justify-center gap-3 rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-5 py-3 font-medium text-foreground transition-colors hover:border-zinc-400"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
               <path fill="#EA4335" d="M12 10.2v3.9h5.5c-.2 1.2-.9 2.3-2 3l3.2 2.5c1.9-1.7 3-4.3 3-7.4 0-.7-.1-1.4-.2-2H12z" />
@@ -83,7 +83,7 @@ export default function SignInPage() {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 required
-                className="w-full rounded-[10px] border border-zinc-300 px-4 py-3 focus:border-brand-main focus:outline-none"
+                className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3 focus:border-brand-main focus:outline-none"
               />
             </div>
 
@@ -96,7 +96,7 @@ export default function SignInPage() {
                 onChange={(event) => setPassword(event.target.value)}
                 required
                 minLength={6}
-                className="w-full rounded-[10px] border border-zinc-300 px-4 py-3 focus:border-brand-main focus:outline-none"
+                className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3 focus:border-brand-main focus:outline-none"
               />
             </div>
 

@@ -72,7 +72,7 @@ export default function CareerQuizPage() {
         </div>
       </section>
 
-      <section className="w-full bg-zinc-50 py-[64px] sm:py-[80px] md:py-[96px]">
+      <section className="w-full bg-zinc-50 dark:bg-zinc-900 py-[64px] sm:py-[80px] md:py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <CareerQuizClient />
         </div>

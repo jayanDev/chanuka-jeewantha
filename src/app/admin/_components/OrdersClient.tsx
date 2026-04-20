@@ -191,11 +191,11 @@ export default function OrdersClient() {
 
   return (
     <section className="space-y-4">
-      <div className="rounded-[16px] border border-zinc-200 bg-white p-6">
+      <div className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6">
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
             <h2 className="text-2xl font-bold font-plus-jakarta">Order Management</h2>
-            <p className="text-sm text-zinc-600">Search, filter, track progress, and hand over final documents.</p>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400">Search, filter, track progress, and hand over final documents.</p>
           </div>
           <button
             type="button"
@@ -206,31 +206,31 @@ export default function OrdersClient() {
           </button>
         </div>
 
-        <div className="mt-6 flex border-b border-zinc-200">
+        <div className="mt-6 flex border-b border-zinc-200 dark:border-zinc-800">
           <button
             type="button"
-            className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === "pending" ? "border-brand-main text-brand-main" : "border-transparent text-zinc-500 hover:text-zinc-700"}`}
+            className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === "pending" ? "border-brand-main text-brand-main" : "border-transparent text-zinc-500 hover:text-zinc-700 dark:text-zinc-300"}`}
             onClick={() => setActiveTab("pending")}
           >
             Pending Verification
           </button>
           <button
             type="button"
-            className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === "active" ? "border-brand-main text-brand-main" : "border-transparent text-zinc-500 hover:text-zinc-700"}`}
+            className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === "active" ? "border-brand-main text-brand-main" : "border-transparent text-zinc-500 hover:text-zinc-700 dark:text-zinc-300"}`}
             onClick={() => setActiveTab("active")}
           >
             Active Work
           </button>
           <button
             type="button"
-            className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === "completed" ? "border-brand-main text-brand-main" : "border-transparent text-zinc-500 hover:text-zinc-700"}`}
+            className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === "completed" ? "border-brand-main text-brand-main" : "border-transparent text-zinc-500 hover:text-zinc-700 dark:text-zinc-300"}`}
             onClick={() => setActiveTab("completed")}
           >
             Completed/Cancelled
           </button>
           <button
             type="button"
-            className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === "all" ? "border-brand-main text-brand-main" : "border-transparent text-zinc-500 hover:text-zinc-700"}`}
+            className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === "all" ? "border-brand-main text-brand-main" : "border-transparent text-zinc-500 hover:text-zinc-700 dark:text-zinc-300"}`}
             onClick={() => setActiveTab("all")}
           >
             All Orders
@@ -244,13 +244,13 @@ export default function OrdersClient() {
             onChange={(event) => setSearch(event.target.value)}
             placeholder="Search customer, email, ref, package"
             aria-label="Order search"
-            className="rounded border border-zinc-300 px-3 py-2 text-sm"
+            className="rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm"
           />
           <select
             aria-label="Order status filter"
             value={statusFilter}
             onChange={(event) => setStatusFilter(event.target.value as AdminOrder["status"] | "all")}
-            className="rounded border border-zinc-300 px-3 py-2 text-sm"
+            className="rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm"
           >
             <option value="all">All statuses</option>
             {statuses.map((status) => (
@@ -263,7 +263,7 @@ export default function OrdersClient() {
       </div>
 
       {filteredOrders.map((order) => (
-        <article key={order.id} className="rounded-[16px] border border-zinc-200 bg-white p-6 space-y-5">
+        <article key={order.id} className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 space-y-5">
           <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
             <div className="space-y-1">
               <h3 className="text-lg font-bold text-foreground">
@@ -289,7 +289,7 @@ export default function OrdersClient() {
                 aria-label="Order status update"
                 value={order.status}
                 onChange={(event) => void updateOrderStatus(order.id, event.target.value as AdminOrder["status"])}
-                className="rounded border border-zinc-300 px-3 py-2"
+                className="rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2"
               >
                 {statuses.map((status) => (
                   <option key={status} value={status}>{status}</option>
@@ -327,19 +327,19 @@ export default function OrdersClient() {
           </div>
 
           {order.extraDetails && (
-            <div className="rounded border border-zinc-200 bg-zinc-50 p-3 text-sm text-zinc-700">
-              <p className="font-medium text-zinc-900 mb-1">Extra details from customer</p>
+            <div className="rounded border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-3 text-sm text-zinc-700 dark:text-zinc-300">
+              <p className="font-medium text-zinc-900 dark:text-zinc-100 mb-1">Extra details from customer</p>
               <p>{order.extraDetails}</p>
             </div>
           )}
 
-          <ul className="space-y-2 text-sm text-zinc-700">
+          <ul className="space-y-2 text-sm text-zinc-700 dark:text-zinc-300">
             {order.items.map((item) => (
               <li key={item.id}>{item.productName} x {item.quantity} ({formatLkr(item.priceLkr)})</li>
             ))}
           </ul>
 
-          <div className="rounded border border-zinc-200 p-4 space-y-3">
+          <div className="rounded border border-zinc-200 dark:border-zinc-800 p-4 space-y-3">
             <h4 className="font-semibold text-foreground">Handover Documents</h4>
             {order.handoverDocuments.length === 0 ? (
               <p className="text-sm text-zinc-500">No handover files uploaded yet.</p>
@@ -368,7 +368,7 @@ export default function OrdersClient() {
                     [order.id]: event.target.files ? Array.from(event.target.files) : [],
                   }))
                 }
-                className="rounded border border-zinc-300 px-3 py-2 text-sm"
+                className="rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm"
                 accept=".pdf,.doc,.docx,.zip"
               />
               <input
@@ -381,7 +381,7 @@ export default function OrdersClient() {
                   }))
                 }
                 placeholder="Optional handover note"
-                className="rounded border border-zinc-300 px-3 py-2 text-sm"
+                className="rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm"
               />
             </div>
 
@@ -395,15 +395,15 @@ export default function OrdersClient() {
             </button>
           </div>
 
-          <div className="rounded border border-zinc-200 p-4">
+          <div className="rounded border border-zinc-200 dark:border-zinc-800 p-4">
             <h4 className="font-semibold text-foreground mb-3">Progress Timeline & Live Tracking</h4>
             {order.updates.length === 0 ? (
               <p className="text-sm text-zinc-500">No updates yet.</p>
             ) : (
-              <ul className="space-y-2 text-sm text-zinc-700 mb-6">
+              <ul className="space-y-2 text-sm text-zinc-700 dark:text-zinc-300 mb-6">
                 {order.updates.map((update) => (
-                  <li key={update.id} className="rounded bg-zinc-50 px-3 py-2 border-l-2 border-brand-main">
-                    <p className="font-medium text-zinc-900">{update.title}</p>
+                  <li key={update.id} className="rounded bg-zinc-50 dark:bg-zinc-900 px-3 py-2 border-l-2 border-brand-main">
+                    <p className="font-medium text-zinc-900 dark:text-zinc-100">{update.title}</p>
                     <p className="text-xs text-zinc-500">
                       {new Date(update.atMs).toLocaleString("en-LK")} by {update.actorRole}
                     </p>
@@ -413,14 +413,14 @@ export default function OrdersClient() {
               </ul>
             )}
 
-            <div className="mt-4 pt-4 border-t border-zinc-200 space-y-3">
+            <div className="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800 space-y-3">
               <p className="text-sm font-medium text-foreground">Post a Live Tracking Update</p>
               <div className="flex flex-wrap gap-2">
                 <button
                   type="button"
                   onClick={() => void submitCustomUpdate(order.id, "CV Analysis Started 🔍")}
                   disabled={updateLoadingOrderId === order.id}
-                  className="rounded border border-zinc-300 bg-white px-3 py-1.5 text-xs font-medium text-zinc-700 hover:border-brand-main disabled:opacity-60"
+                  className="rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:border-brand-main disabled:opacity-60"
                 >
                   Analysis Started
                 </button>
@@ -428,7 +428,7 @@ export default function OrdersClient() {
                   type="button"
                   onClick={() => void submitCustomUpdate(order.id, "First Draft Preparing 📝")}
                   disabled={updateLoadingOrderId === order.id}
-                  className="rounded border border-zinc-300 bg-white px-3 py-1.5 text-xs font-medium text-zinc-700 hover:border-brand-main disabled:opacity-60"
+                  className="rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:border-brand-main disabled:opacity-60"
                 >
                   Drafting
                 </button>
@@ -436,7 +436,7 @@ export default function OrdersClient() {
                   type="button"
                   onClick={() => void submitCustomUpdate(order.id, "Finalizing Documents ✨")}
                   disabled={updateLoadingOrderId === order.id}
-                  className="rounded border border-zinc-300 bg-white px-3 py-1.5 text-xs font-medium text-zinc-700 hover:border-brand-main disabled:opacity-60"
+                  className="rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:border-brand-main disabled:opacity-60"
                 >
                   Finalizing Docs
                 </button>
@@ -447,7 +447,7 @@ export default function OrdersClient() {
                   placeholder="Custom tracking title (e.g., Calling for details)"
                   value={updateTitleDrafts[order.id] ?? ""}
                   onChange={(e) => setUpdateTitleDrafts(prev => ({ ...prev, [order.id]: e.target.value }))}
-                  className="flex-1 rounded border border-zinc-300 px-3 py-2 text-sm"
+                  className="flex-1 rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm"
                 />
                 <button
                   type="button"
@@ -461,7 +461,7 @@ export default function OrdersClient() {
             </div>
           </div>
 
-          <div className="rounded border border-zinc-200 p-4 space-y-3">
+          <div className="rounded border border-zinc-200 dark:border-zinc-800 p-4 space-y-3">
             <h4 className="font-semibold text-foreground">Revision Requests</h4>
             {order.revisions.length === 0 ? (
               <p className="text-sm text-zinc-500">No revision requests from customer yet.</p>
@@ -472,14 +472,14 @@ export default function OrdersClient() {
                   const resolvedKey = `${order.id}:${revision.id}:resolved`;
 
                   return (
-                    <li key={revision.id} className="rounded border border-zinc-200 bg-zinc-50 p-3 space-y-2">
+                    <li key={revision.id} className="rounded border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-3 space-y-2">
                       <p className="text-xs uppercase tracking-wide text-zinc-500">Status: {revision.status}</p>
-                      <p className="text-zinc-800">{revision.message}</p>
+                      <p className="text-zinc-800 dark:text-zinc-200">{revision.message}</p>
                       <p className="text-xs text-zinc-500">
                         Requested: {new Date(revision.requestedAtMs).toLocaleString("en-LK")}
                       </p>
                       {revision.adminResponse && (
-                        <p className="text-xs text-zinc-600">Last admin note: {revision.adminResponse}</p>
+                        <p className="text-xs text-zinc-600 dark:text-zinc-400">Last admin note: {revision.adminResponse}</p>
                       )}
 
                       <input
@@ -492,7 +492,7 @@ export default function OrdersClient() {
                           }))
                         }
                         placeholder="Add admin note for customer"
-                        className="w-full rounded border border-zinc-300 px-3 py-2 text-sm"
+                        className="w-full rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm"
                       />
 
                       <div className="flex flex-wrap items-center gap-2">
@@ -506,7 +506,7 @@ export default function OrdersClient() {
                             })
                           }
                           disabled={revisionLoadingKey === inReviewKey || revision.status === "in_review"}
-                          className="rounded border border-zinc-300 px-3 py-1.5 text-xs font-medium text-zinc-700 hover:border-brand-main hover:text-brand-main disabled:opacity-60"
+                          className="rounded border border-zinc-300 dark:border-zinc-700 px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:border-brand-main hover:text-brand-main disabled:opacity-60"
                         >
                           {revisionLoadingKey === inReviewKey ? "Updating..." : "Mark In Progress"}
                         </button>
