@@ -182,6 +182,7 @@ export default async function ChapterPage({ params }: Props) {
             line-height: 2;
             font-size: 1.15rem;
             color: #3f3f46; /* zinc-700 */
+            text-align: justify;
          }
          @media (max-width: 640px) {
             .ebook-content p {
