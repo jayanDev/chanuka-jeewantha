@@ -222,7 +222,7 @@ const accessRows: TableRow[] = [
         href={googleMapsCidUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center justify-center rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+ className="inline-flex items-center justify-center rounded-[10px] border border-zinc-300 bg-white px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
       >
         Open Google Profile
       </a>
@@ -246,7 +246,7 @@ const accessRows: TableRow[] = [
     value: (
       <Link
         href="/testimonials"
-        className="inline-flex items-center justify-center rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+ className="inline-flex items-center justify-center rounded-[10px] border border-zinc-300 bg-white px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
       >
         View Testimonials
       </Link>
@@ -256,8 +256,8 @@ const accessRows: TableRow[] = [
 
 function renderTable(title: string, rows: TableRow[]) {
   return (
-    <article className="rounded-[24px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm">
-      <div className="border-b border-zinc-200 dark:border-zinc-800 px-6 py-5 sm:px-8">
+ <article className="rounded-[24px] border border-zinc-200 bg-white shadow-sm">
+ <div className="border-b border-zinc-200 px-6 py-5 sm:px-8">
         <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">{title}</h2>
       </div>
       <div className="overflow-x-auto">
@@ -267,11 +267,11 @@ function renderTable(title: string, rows: TableRow[]) {
               <tr key={row.label} className={index % 2 === 0 ? "bg-white" : "bg-zinc-50"}>
                 <th
                   scope="row"
-                  className="w-[240px] border-b border-zinc-200 dark:border-zinc-800 px-6 py-4 text-left text-sm font-semibold uppercase tracking-[0.08em] text-zinc-500 sm:px-8"
+ className="w-[240px] border-b border-zinc-200 px-6 py-4 text-left text-sm font-semibold uppercase tracking-[0.08em] text-zinc-500 sm:px-8"
                 >
                   {row.label}
                 </th>
-                <td className="border-b border-zinc-200 dark:border-zinc-800 px-6 py-4 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300 sm:px-8">
+ <td className="border-b border-zinc-200 px-6 py-4 text-sm leading-relaxed text-zinc-700 sm:px-8">
                   {row.value}
                 </td>
               </tr>
@@ -285,12 +285,12 @@ function renderTable(title: string, rows: TableRow[]) {
 
 function renderPackageTable(category: PackageCategory) {
   return (
-    <article key={category.key} className="rounded-[24px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm">
-      <div className="border-b border-zinc-200 dark:border-zinc-800 px-6 py-5 sm:px-8">
+ <article key={category.key} className="rounded-[24px] border border-zinc-200 bg-white shadow-sm">
+ <div className="border-b border-zinc-200 px-6 py-5 sm:px-8">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
             <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">{category.title}</h2>
-            <p className="mt-2 max-w-4xl text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{category.description}</p>
+ <p className="mt-2 max-w-4xl text-sm leading-relaxed text-zinc-600">{category.description}</p>
           </div>
           {category.isPriority ? (
             <span className="inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
@@ -314,7 +314,7 @@ function renderPackageTable(category: PackageCategory) {
           <tbody>
             {category.packages.map((item, index) => (
               <tr key={item.slug} className={index % 2 === 0 ? "bg-white" : "bg-zinc-50"}>
-                <td className="border-b border-zinc-200 dark:border-zinc-800 px-6 py-5 align-top">
+ <td className="border-b border-zinc-200 px-6 py-5 align-top">
                   <div className="flex flex-col gap-2">
                     <span className="text-base font-bold text-foreground">{item.name}</span>
                     {item.isMostPopular ? (
@@ -324,17 +324,17 @@ function renderPackageTable(category: PackageCategory) {
                     ) : null}
                   </div>
                 </td>
-                <td className="border-b border-zinc-200 dark:border-zinc-800 px-6 py-5 align-top text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+ <td className="border-b border-zinc-200 px-6 py-5 align-top text-sm leading-relaxed text-zinc-700">
                   {item.audience}
                 </td>
-                <td className="border-b border-zinc-200 dark:border-zinc-800 px-6 py-5 align-top">
+ <td className="border-b border-zinc-200 px-6 py-5 align-top">
                   <span className="text-base font-bold text-brand-dark">{formatLkr(item.priceLkr)}</span>
                 </td>
-                <td className="border-b border-zinc-200 dark:border-zinc-800 px-6 py-5 align-top text-sm font-medium text-zinc-700 dark:text-zinc-300">
+ <td className="border-b border-zinc-200 px-6 py-5 align-top text-sm font-medium text-zinc-700">
                   {item.delivery}
                 </td>
-                <td className="border-b border-zinc-200 dark:border-zinc-800 px-6 py-5 align-top">
-                  <ul className="space-y-2 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+ <td className="border-b border-zinc-200 px-6 py-5 align-top">
+ <ul className="space-y-2 text-sm leading-relaxed text-zinc-700">
                     {item.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-2">
                         <span className="mt-1.5 inline-block h-2 w-2 rounded-full bg-brand-main" />
@@ -343,7 +343,7 @@ function renderPackageTable(category: PackageCategory) {
                     ))}
                   </ul>
                 </td>
-                <td className="border-b border-zinc-200 dark:border-zinc-800 px-6 py-5 align-top">
+ <td className="border-b border-zinc-200 px-6 py-5 align-top">
                   <div className="flex min-w-[180px] flex-col gap-2">
                     <Link
                       href={`/packages/${item.slug}`}
@@ -353,7 +353,7 @@ function renderPackageTable(category: PackageCategory) {
                     </Link>
                     <Link
                       href="/booking"
-                      className="inline-flex items-center justify-center rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+ className="inline-flex items-center justify-center rounded-[10px] border border-zinc-300 bg-white px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
                     >
                       Open Booking
                     </Link>
@@ -465,7 +465,7 @@ export default function ReviewsPage() {
         </div>
       </section>
 
-      <section className="w-full bg-white dark:bg-zinc-900 py-[64px] sm:py-[80px] md:py-[96px]">
+ <section className="w-full bg-white py-[64px] sm:py-[80px] md:py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-start">
             <div className="space-y-8">
@@ -474,8 +474,8 @@ export default function ReviewsPage() {
               {renderTable("How to Leave Your Review", stepsRows)}
             </div>
 
-            <aside className="rounded-[24px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6 shadow-sm sm:p-8">
-              <div className="relative mb-6 aspect-[4/5] overflow-hidden rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
+ <aside className="rounded-[24px] border border-zinc-200 bg-zinc-50 p-6 shadow-sm sm:p-8">
+ <div className="relative mb-6 aspect-[4/5] overflow-hidden rounded-[20px] border border-zinc-200 bg-white">
                 <Image
                   src="/images/testimonial-chanuka.jpg"
                   alt="Chanuka Jeewantha Google review request"
@@ -485,7 +485,7 @@ export default function ReviewsPage() {
                 />
               </div>
               <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">Quick Note for Reviewers</h2>
-              <p className="mt-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+ <p className="mt-3 text-sm leading-relaxed text-zinc-700">
                 Honest, specific reviews help future clients understand the quality of the service and the type of results they can expect. A short, genuine review is enough.
               </p>
               <div className="mt-6 flex flex-col gap-3">
@@ -501,7 +501,7 @@ export default function ReviewsPage() {
                   href={googleMapsCidUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+ className="inline-flex items-center justify-center rounded-[10px] border border-zinc-300 bg-white px-4 py-3 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
                 >
                   Open Google Listing
                 </a>
@@ -514,12 +514,12 @@ export default function ReviewsPage() {
         </div>
       </section>
 
-      <section className="w-full bg-zinc-50 dark:bg-zinc-900 py-[64px] sm:py-[80px] md:py-[96px] border-t border-zinc-200 dark:border-zinc-800">
+ <section className="w-full bg-zinc-50 py-[64px] sm:py-[80px] md:py-[96px] border-t border-zinc-200">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6 space-y-8">
           <section className="space-y-8">
-            <div className="rounded-[24px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-6 py-5 shadow-sm sm:px-8">
+ <div className="rounded-[24px] border border-zinc-200 bg-white px-6 py-5 shadow-sm sm:px-8">
               <h2 className="text-[30px] font-bold font-plus-jakarta text-foreground">Package Details Tables</h2>
-              <p className="mt-3 max-w-4xl text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+ <p className="mt-3 max-w-4xl text-sm leading-relaxed text-zinc-600">
                 The tables below show your main package categories, audiences, pricing, delivery timelines, and features so visitors can review the service range before leaving feedback or placing a new order.
               </p>
             </div>

@@ -289,8 +289,8 @@ export default function PricingClient() {
       return (
         <article
       key={pkg.slug}
-      className={`rounded-[20px] border bg-white dark:bg-zinc-900 p-8 shadow-sm hover:shadow-lg transition-shadow ${
-        pkg.isMostPopular ? "border-brand-main" : "border-zinc-200 dark:border-zinc-800"
+ className={`rounded-[20px] border bg-white p-8 shadow-sm hover:shadow-lg transition-shadow ${
+ pkg.isMostPopular ? "border-brand-main" : "border-zinc-200"
       }`}
     >
       {isBulkBuy && (
@@ -299,7 +299,7 @@ export default function PricingClient() {
         </div>
       )}
       {pkg.isMostPopular && (
-        <div className="mb-5 inline-flex items-center gap-2 rounded-[10px] border border-brand-main/40 bg-white dark:bg-zinc-900 px-3 py-1.5 shadow-sm">
+ <div className="mb-5 inline-flex items-center gap-2 rounded-[10px] border border-brand-main/40 bg-white px-3 py-1.5 shadow-sm">
           <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-main text-white">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
           </span>
@@ -310,15 +310,15 @@ export default function PricingClient() {
       <p className="text-text-body mb-6">{pkg.audience}</p>
 
       {configurableSlug && (
-        <div className="mb-6 rounded-[12px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
+ <div className="mb-6 rounded-[12px] border border-zinc-200 bg-zinc-50 p-4">
           <p className="text-xs font-semibold uppercase tracking-[0.1em] text-zinc-500">Build Package</p>
           <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
-            <label className="text-sm text-zinc-700 dark:text-zinc-300">
+ <label className="text-sm text-zinc-700">
               <span className="mb-1 block font-medium">Step 1 - Select CV Package</span>
               <select
                 value={selectionState.cvSlug}
                 onChange={(event) => updateBundleSelection(pkg.slug, "cvSlug", event.target.value)}
-                className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2"
+ className="w-full rounded-[10px] border border-zinc-300 bg-white px-3 py-2"
               >
                 <option value="">Choose CV package</option>
                 {cvOptions.map((option) => (
@@ -329,12 +329,12 @@ export default function PricingClient() {
               </select>
             </label>
 
-            <label className="text-sm text-zinc-700 dark:text-zinc-300">
+ <label className="text-sm text-zinc-700">
               <span className="mb-1 block font-medium">Step 2 - Select Cover Letter</span>
               <select
                 value={selectionState.coverLetterSlug}
                 onChange={(event) => updateBundleSelection(pkg.slug, "coverLetterSlug", event.target.value)}
-                className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2"
+ className="w-full rounded-[10px] border border-zinc-300 bg-white px-3 py-2"
               >
                 <option value="">Choose Cover Letter package</option>
                 {coverLetterOptions.map((option) => (
@@ -346,12 +346,12 @@ export default function PricingClient() {
             </label>
 
             {getConfigurableBundleRule(configurableSlug).requireLinkedin && (
-              <label className="text-sm text-zinc-700 dark:text-zinc-300 md:col-span-2">
+ <label className="text-sm text-zinc-700 md:col-span-2">
                 <span className="mb-1 block font-medium">Step 3 - Select LinkedIn Optimization</span>
                 <select
                   value={selectionState.linkedinSlug}
                   onChange={(event) => updateBundleSelection(pkg.slug, "linkedinSlug", event.target.value)}
-                  className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2"
+ className="w-full rounded-[10px] border border-zinc-300 bg-white px-3 py-2"
                 >
                   <option value="">Choose LinkedIn package</option>
                   {linkedinOptions.map((option) => (
@@ -471,7 +471,7 @@ export default function PricingClient() {
         </div>
       </section>
 
-      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50 dark:bg-zinc-900">
+ <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           {bundleCategoryIndex >= 0 && (
             <div className="max-w-5xl mx-auto mb-8 rounded-[20px] border border-emerald-300 bg-gradient-to-r from-emerald-50 to-white p-6 md:p-8">
@@ -503,7 +503,7 @@ export default function PricingClient() {
             </h2>
           </div>
 
-          <div className="max-w-5xl mx-auto rounded-[24px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 md:p-10 text-center mb-8">
+ <div className="max-w-5xl mx-auto rounded-[24px] border border-zinc-200 bg-white p-8 md:p-10 text-center mb-8">
             <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground mb-4">
               Place orders directly from website
             </h3>
@@ -522,7 +522,7 @@ export default function PricingClient() {
               </a>
               <Link
                 href="/fiverr-orders"
-                className="inline-flex items-center justify-center rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+ className="inline-flex items-center justify-center rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
               >
                 View Fiverr CV Offers
               </Link>
@@ -544,7 +544,7 @@ export default function PricingClient() {
                   className={`whitespace-nowrap rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
                     selectedCategoryIndex === index
                       ? "bg-brand-main text-white border-brand-main"
-                      : "bg-white dark:bg-zinc-900 text-foreground border-zinc-300 dark:border-zinc-700"
+ : "bg-white text-foreground border-zinc-300"
                   }`}
                 >
                   {category.title.replace(" Packages", "")}

@@ -157,15 +157,15 @@ export default function OrdersPage() {
   const totalValue = useMemo(() => orders.reduce((sum, order) => sum + order.totalLkr, 0), [orders]);
 
   return (
-    <section className="w-full bg-zinc-50 dark:bg-zinc-900 py-16 min-h-[70vh]">
+ <section className="w-full bg-zinc-50 py-16 min-h-[70vh]">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 space-y-6">
         <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
           <div>
             <h1 className="text-4xl font-bold font-plus-jakarta text-foreground">My Orders</h1>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400">Track order progress, updates, and final handover documents.</p>
+ <p className="text-sm text-zinc-600">Track order progress, updates, and final handover documents.</p>
           </div>
           <div className="flex items-center gap-4">
-            <p className="text-sm text-zinc-600 dark:text-zinc-400">Total value: <span className="font-semibold text-foreground">{formatLkr(totalValue)}</span></p>
+ <p className="text-sm text-zinc-600">Total value: <span className="font-semibold text-foreground">{formatLkr(totalValue)}</span></p>
             <Link href="/pricing" className="text-brand-main font-medium">Order More Packages</Link>
           </div>
         </div>
@@ -175,14 +175,14 @@ export default function OrdersPage() {
         {isLoading ? (
           <p className="text-text-body">Loading orders...</p>
         ) : orders.length === 0 ? (
-          <div className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 text-center">
+ <div className="rounded-[16px] border border-zinc-200 bg-white p-8 text-center">
             <p className="text-text-body mb-4">You have no orders yet.</p>
             <Link href="/pricing" className="inline-block rounded-[10px] bg-brand-main px-5 py-3 text-white font-medium">Browse Packages</Link>
           </div>
         ) : (
           <div className="space-y-4">
             {orders.map((order) => (
-              <article key={order.id} className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 space-y-4">
+ <article key={order.id} className="rounded-[16px] border border-zinc-200 bg-white p-6 space-y-4">
                 <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                   <div>
                     <h2 className="text-xl font-bold text-foreground">Order #{order.id.slice(0, 8)}</h2>
@@ -221,7 +221,7 @@ export default function OrdersPage() {
                   </div>
                 </div>
 
-                <div className="rounded border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4">
+ <div className="rounded border border-zinc-200 bg-white p-4">
                   <h3 className="font-semibold text-foreground mb-4">Live Order Tracking</h3>
                   {order.updates.length === 0 ? (
                     <p className="text-sm text-zinc-500">Processing your order...</p>
@@ -235,7 +235,7 @@ export default function OrdersPage() {
                             <li key={update.id} className="relative">
                               <div className={`absolute -left-6 top-1 h-3 w-3 rounded-full border-2 border-white ring-2 ${isLast ? "bg-brand-main ring-brand-main animate-pulse" : "bg-zinc-300 ring-zinc-200"}`} />
                               <div>
-                                <p className={`text-sm font-medium ${isLast ? "text-brand-main" : "text-zinc-800 dark:text-zinc-200"}`}>{update.title}</p>
+ <p className={`text-sm font-medium ${isLast ? "text-brand-main" : "text-zinc-800"}`}>{update.title}</p>
                                 <p className="mt-0.5 text-xs text-zinc-500 tracking-wide">
                                   {new Date(update.atMs).toLocaleString("en-LK", {
                                     year: "numeric", month: "short", day: "numeric",
@@ -243,7 +243,7 @@ export default function OrdersPage() {
                                   })}
                                 </p>
                                 {update.details && (
-                                  <p className="mt-1.5 text-sm text-zinc-600 dark:text-zinc-400 border-l-2 border-zinc-200 dark:border-zinc-800 pl-3">
+ <p className="mt-1.5 text-sm text-zinc-600 border-l-2 border-zinc-200 pl-3">
                                     {update.details}
                                   </p>
                                 )}
@@ -256,20 +256,20 @@ export default function OrdersPage() {
                   )}
                 </div>
 
-                <ul className="space-y-2 text-sm text-zinc-700 dark:text-zinc-300">
+ <ul className="space-y-2 text-sm text-zinc-700">
                   {order.items.map((item) => (
                     <li key={item.id}>{item.productName} x {item.quantity} ({formatLkr(item.priceLkr)})</li>
                   ))}
                 </ul>
 
                 {order.extraDetails && (
-                  <div className="rounded bg-zinc-100 px-3 py-2 text-sm text-zinc-700 dark:text-zinc-300">
-                    <p className="font-medium text-zinc-900 dark:text-zinc-100 mb-1">Extra details submitted</p>
+ <div className="rounded bg-zinc-100 px-3 py-2 text-sm text-zinc-700">
+ <p className="font-medium text-zinc-900 mb-1">Extra details submitted</p>
                     <p>{order.extraDetails}</p>
                   </div>
                 )}
 
-                <div className="rounded border border-zinc-200 dark:border-zinc-800 p-4">
+ <div className="rounded border border-zinc-200 p-4">
                   <h3 className="font-semibold text-foreground mb-2">Handover Documents</h3>
                   {order.handoverDocuments.length === 0 ? (
                     <p className="text-sm text-zinc-500">No handover documents yet. You will be notified when files are ready.</p>
@@ -292,20 +292,20 @@ export default function OrdersPage() {
                   )}
                 </div>
 
-                <div className="rounded border border-zinc-200 dark:border-zinc-800 p-4 space-y-3">
+ <div className="rounded border border-zinc-200 p-4 space-y-3">
                   <h3 className="font-semibold text-foreground">Revision Requests</h3>
                   {order.revisions.length === 0 ? (
                     <p className="text-sm text-zinc-500">No revision requests submitted yet.</p>
                   ) : (
-                    <ul className="space-y-2 text-sm text-zinc-700 dark:text-zinc-300">
+ <ul className="space-y-2 text-sm text-zinc-700">
                       {order.revisions.map((revision) => (
-                        <li key={revision.id} className="rounded bg-zinc-50 dark:bg-zinc-900 px-3 py-2">
+ <li key={revision.id} className="rounded bg-zinc-50 px-3 py-2">
                           <p className="text-xs uppercase tracking-wide text-zinc-500">Status: {revision.status}</p>
                           <p className="mt-1">{revision.message}</p>
                           <p className="text-xs text-zinc-500 mt-1">
                             Requested: {new Date(revision.requestedAtMs).toLocaleString("en-LK")}
                           </p>
-                          {revision.adminResponse && <p className="mt-1 text-zinc-600 dark:text-zinc-400">Admin note: {revision.adminResponse}</p>}
+ {revision.adminResponse && <p className="mt-1 text-zinc-600">Admin note: {revision.adminResponse}</p>}
                         </li>
                       ))}
                     </ul>
@@ -321,7 +321,7 @@ export default function OrdersPage() {
                     }
                     rows={3}
                     placeholder="Need changes to final deliverables? Describe exactly what should be revised."
-                    className="w-full rounded border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm"
+ className="w-full rounded border border-zinc-300 px-3 py-2 text-sm"
                   />
 
                   <button
@@ -334,15 +334,15 @@ export default function OrdersPage() {
                   </button>
                 </div>
 
-                <div className="rounded border border-zinc-200 dark:border-zinc-800 p-4">
+ <div className="rounded border border-zinc-200 p-4">
                   <h3 className="font-semibold text-foreground mb-2">Order Updates</h3>
                   {order.updates.length === 0 ? (
                     <p className="text-sm text-zinc-500">No updates yet.</p>
                   ) : (
-                    <ul className="space-y-2 text-sm text-zinc-700 dark:text-zinc-300">
+ <ul className="space-y-2 text-sm text-zinc-700">
                       {order.updates.map((update) => (
-                        <li key={update.id} className="rounded bg-zinc-50 dark:bg-zinc-900 px-3 py-2">
-                          <p className="font-medium text-zinc-900 dark:text-zinc-100">{update.title}</p>
+ <li key={update.id} className="rounded bg-zinc-50 px-3 py-2">
+ <p className="font-medium text-zinc-900">{update.title}</p>
                           <p className="text-xs text-zinc-500">
                             {new Date(update.atMs).toLocaleString("en-LK")} by {update.actorRole}
                           </p>

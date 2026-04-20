@@ -154,20 +154,20 @@ export default async function BlogPage({
         </div>
       </section>
 
-      <section className="w-full py-[64px] sm:py-[80px] bg-zinc-50 dark:bg-zinc-900">
+ <section className="w-full py-[64px] sm:py-[80px] bg-zinc-50">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           
           <div className="flex flex-col lg:flex-row gap-10 items-start">
             <aside className="w-full lg:w-1/4 flex-shrink-0 flex flex-col gap-6 sticky top-24">
-              <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-[16px] p-6">
+ <div className="bg-white border border-zinc-200 rounded-[16px] p-6">
                 <form action="/blog/search" method="get">
-                  <label htmlFor="q" className="mb-3 block text-sm font-bold text-zinc-900 dark:text-zinc-100">Search Blog</label>
+ <label htmlFor="q" className="mb-3 block text-sm font-bold text-zinc-900">Search Blog</label>
                   <div className="flex flex-col gap-3">
                     <input
                       id="q"
                       name="q"
                       placeholder="Search CV, ATS..."
-                      className="w-full rounded-[10px] bg-zinc-100 border border-transparent px-4 py-3 text-sm focus:border-brand-main focus:bg-white dark:bg-zinc-900 focus:outline-none transition-colors"
+ className="w-full rounded-[10px] bg-zinc-100 border border-transparent px-4 py-3 text-sm focus:border-brand-main focus:bg-white focus:outline-none transition-colors"
                     />
                     <button
                       type="submit"
@@ -179,12 +179,12 @@ export default async function BlogPage({
                 </form>
               </div>
 
-              <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-[16px] p-6">
-                <h3 className="font-bold text-zinc-900 dark:text-zinc-100 mb-4 font-plus-jakarta">Categories</h3>
+ <div className="bg-white border border-zinc-200 rounded-[16px] p-6">
+ <h3 className="font-bold text-zinc-900 mb-4 font-plus-jakarta">Categories</h3>
                 <div className="flex flex-col gap-2">
                   <Link 
                     href={buildCategoryHref(null)}
-                    className={`text-sm font-medium py-2 px-3 rounded-lg transition-colors ${!activeCategory ? "bg-brand-main text-white" : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100"}`}
+ className={`text-sm font-medium py-2 px-3 rounded-lg transition-colors ${!activeCategory ? "bg-brand-main text-white" : "text-zinc-600 hover:bg-zinc-100"}`}
                   >
                     All Articles ({allPosts.length})
                   </Link>
@@ -194,7 +194,7 @@ export default async function BlogPage({
                       <Link 
                         key={cat}
                         href={buildCategoryHref(cat)}
-                        className={`text-sm font-medium py-2 px-3 rounded-lg transition-colors flex justify-between items-center ${activeCategory === cat ? "bg-brand-main text-white" : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100"}`}
+ className={`text-sm font-medium py-2 px-3 rounded-lg transition-colors flex justify-between items-center ${activeCategory === cat ? "bg-brand-main text-white" : "text-zinc-600 hover:bg-zinc-100"}`}
                       >
                         <span>{cat}</span>
                         <span className={`text-xs ${activeCategory === cat ? "text-brand-light" : "text-zinc-400"}`}>{count}</span>
@@ -212,7 +212,7 @@ export default async function BlogPage({
                   const packageSlug = post.packageSlug ?? contentPost?.packageSlug;
 
                   return (
-                    <div key={post.slug} className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-[24px] p-5 hover:shadow-xl hover:border-brand-main/30 transition-all group flex flex-col">
+ <div key={post.slug} className="bg-white border border-zinc-200 rounded-[24px] p-5 hover:shadow-xl hover:border-brand-main/30 transition-all group flex flex-col">
                       <div className="relative w-full h-[200px] bg-zinc-100 rounded-[16px] overflow-hidden mb-5 flex-shrink-0">
                         <Image
                           src={getCoverImage(post.category)}
@@ -243,7 +243,7 @@ export default async function BlogPage({
                           {packageSlug && (
                             <Link
                               href={`/packages/${packageSlug}`}
-                              className="rounded-full bg-zinc-100 px-3 py-1.5 text-xs font-semibold text-zinc-600 dark:text-zinc-400 transition-colors hover:bg-brand-main hover:text-white"
+ className="rounded-full bg-zinc-100 px-3 py-1.5 text-xs font-semibold text-zinc-600 transition-colors hover:bg-brand-main hover:text-white"
                             >
                               Package
                             </Link>
@@ -256,12 +256,12 @@ export default async function BlogPage({
               </div>
 
               {totalPages > 1 && (
-                <div className="w-full flex items-center justify-center mt-12 bg-white dark:bg-zinc-900 rounded-[24px] p-4 border border-zinc-200 dark:border-zinc-800 shadow-sm">
+ <div className="w-full flex items-center justify-center mt-12 bg-white rounded-[24px] p-4 border border-zinc-200 shadow-sm">
                   <div className="flex flex-wrap items-center justify-center gap-2">
                     {currentPage > 1 && (
                       <Link
                         href={buildPageHref(Math.max(1, currentPage - 1))}
-                        className="h-10 px-4 rounded-full flex items-center justify-center text-sm font-semibold hover:bg-zinc-100 text-zinc-700 dark:text-zinc-300 transition-colors"
+ className="h-10 px-4 rounded-full flex items-center justify-center text-sm font-semibold hover:bg-zinc-100 text-zinc-700 transition-colors"
                       >
                         Previous
                       </Link>
@@ -269,7 +269,7 @@ export default async function BlogPage({
                     
                     {startPage > 1 && (
                       <>
-                        <Link href={buildPageHref(1)} className="w-10 h-10 rounded-full flex items-center justify-center font-semibold hover:bg-zinc-100 text-zinc-700 dark:text-zinc-300 transition-colors">1</Link>
+ <Link href={buildPageHref(1)} className="w-10 h-10 rounded-full flex items-center justify-center font-semibold hover:bg-zinc-100 text-zinc-700 transition-colors">1</Link>
                         {startPage > 2 && <span className="text-zinc-400 px-2">...</span>}
                       </>
                     )}
@@ -281,7 +281,7 @@ export default async function BlogPage({
                         className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-colors ${
                           pageNumber === currentPage
                             ? "bg-brand-main text-white shadow-md shadow-brand-main/20"
-                            : "hover:bg-zinc-100 text-zinc-700 dark:text-zinc-300"
+ : "hover:bg-zinc-100 text-zinc-700"
                         }`}
                       >
                         {pageNumber}
@@ -291,14 +291,14 @@ export default async function BlogPage({
                     {endPage < totalPages && (
                       <>
                         {endPage < totalPages - 1 && <span className="text-zinc-400 px-2">...</span>}
-                        <Link href={buildPageHref(totalPages)} className="w-10 h-10 rounded-full flex items-center justify-center font-semibold hover:bg-zinc-100 text-zinc-700 dark:text-zinc-300 transition-colors">{totalPages}</Link>
+ <Link href={buildPageHref(totalPages)} className="w-10 h-10 rounded-full flex items-center justify-center font-semibold hover:bg-zinc-100 text-zinc-700 transition-colors">{totalPages}</Link>
                       </>
                     )}
 
                     {currentPage < totalPages && (
                       <Link
                         href={buildPageHref(Math.min(totalPages, currentPage + 1))}
-                        className="h-10 px-4 rounded-full flex items-center justify-center text-sm font-semibold hover:bg-zinc-100 text-zinc-700 dark:text-zinc-300 transition-colors"
+ className="h-10 px-4 rounded-full flex items-center justify-center text-sm font-semibold hover:bg-zinc-100 text-zinc-700 transition-colors"
                       >
                         Next
                       </Link>

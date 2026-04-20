@@ -51,10 +51,10 @@ export default function ToolLeadCapture({
   };
 
   return (
-    <aside className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-sm">
+ <aside className="rounded-[20px] border border-zinc-200 bg-white p-6 shadow-sm">
       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Free Career Updates</p>
       <h3 className="mt-3 text-[24px] font-bold font-plus-jakarta text-foreground">{title}</h3>
-      <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{description}</p>
+ <p className="mt-3 text-sm leading-relaxed text-zinc-600">{description}</p>
 
       {status === "success" ? (
         <div className="mt-5 rounded-[12px] border border-emerald-200 bg-emerald-50 p-4 text-sm font-medium text-emerald-700">
@@ -77,7 +77,7 @@ export default function ToolLeadCapture({
             onChange={(event) => setEmail(event.target.value)}
             disabled={status === "loading"}
             placeholder="Your email address"
-            className="w-full rounded-[12px] border border-zinc-300 dark:border-zinc-700 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-brand-main disabled:opacity-70"
+ className="w-full rounded-[12px] border border-zinc-300 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-brand-main disabled:opacity-70"
             required
           />
           <button

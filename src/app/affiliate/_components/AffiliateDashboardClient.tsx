@@ -80,14 +80,14 @@ export default function AffiliateDashboardClient({ profile, baseUrl, activity }:
 
   const currentScore = profile.successfulReferrals;
   return (
-    <div className="bg-white dark:bg-zinc-900 rounded-[24px] shadow-xl p-8 md:p-12 border border-zinc-200 dark:border-zinc-800">
+ <div className="bg-white rounded-[24px] shadow-xl p-8 md:p-12 border border-zinc-200">
       
       {/* 1. Share Link Section */}
       <div className="mb-16">
         <h2 className="text-xl font-bold font-plus-jakarta mb-4">Your Unique Tracking Link</h2>
         <div className="flex flex-col sm:flex-row items-stretch gap-4">
-          <div className="flex-grow bg-zinc-50 dark:bg-zinc-900 border-2 border-zinc-200 dark:border-zinc-800 rounded-[12px] px-6 py-4 flex items-center overflow-x-auto custom-scrollbar">
-            <span className="font-mono text-zinc-600 dark:text-zinc-400 font-semibold whitespace-nowrap">{referralLink}</span>
+ <div className="flex-grow bg-zinc-50 border-2 border-zinc-200 rounded-[12px] px-6 py-4 flex items-center overflow-x-auto custom-scrollbar">
+ <span className="font-mono text-zinc-600 font-semibold whitespace-nowrap">{referralLink}</span>
           </div>
           <button 
             onClick={handleCopy}
@@ -106,7 +106,7 @@ export default function AffiliateDashboardClient({ profile, baseUrl, activity }:
 
       {/* 2. Top Level Metrics */}
       <div className="grid grid-cols-2 gap-6 mb-16">
-        <div className="bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-[16px] p-6 text-center">
+ <div className="bg-zinc-50 border border-zinc-200 rounded-[16px] p-6 text-center">
           <p className="text-zinc-500 font-bold uppercase tracking-wider text-xs mb-2">Total Link Clicks</p>
           <p className="text-[40px] font-bold font-plus-jakarta text-foreground leading-none">{profile.totalClicks}</p>
         </div>
@@ -118,22 +118,22 @@ export default function AffiliateDashboardClient({ profile, baseUrl, activity }:
 
       {/* 3. The Gamified Progress Engine */}
       <div className="mb-16">
-        <h2 className="text-xl font-bold font-plus-jakarta mb-6 border-b border-zinc-100 dark:border-zinc-800 pb-4">Affiliate Activity</h2>
+ <h2 className="text-xl font-bold font-plus-jakarta mb-6 border-b border-zinc-100 pb-4">Affiliate Activity</h2>
         {activity.length === 0 ? (
-          <div className="rounded-[14px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm text-zinc-600 dark:text-zinc-400">
+ <div className="rounded-[14px] border border-zinc-200 bg-zinc-50 p-4 text-sm text-zinc-600">
             No referral conversions yet. Share your tracking link to start earning rewards.
           </div>
         ) : (
-          <div className="overflow-x-auto rounded-[14px] border border-zinc-200 dark:border-zinc-800">
+ <div className="overflow-x-auto rounded-[14px] border border-zinc-200">
             <table className="min-w-full divide-y divide-zinc-200 text-sm">
-              <thead className="bg-zinc-50 dark:bg-zinc-900 text-left text-xs uppercase tracking-wide text-zinc-500">
+ <thead className="bg-zinc-50 text-left text-xs uppercase tracking-wide text-zinc-500">
                 <tr>
                   <th className="px-4 py-3 font-semibold">Date</th>
                   <th className="px-4 py-3 font-semibold">Referred Email</th>
                   <th className="px-4 py-3 font-semibold">Package</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-100 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300">
+ <tbody className="divide-y divide-zinc-100 bg-white text-zinc-700">
                 {activity.map((row) => (
                   <tr key={row.id}>
                     <td className="px-4 py-3 whitespace-nowrap">
@@ -153,7 +153,7 @@ export default function AffiliateDashboardClient({ profile, baseUrl, activity }:
       </div>
 
       <div className="space-y-12">
-        <h2 className="text-xl font-bold font-plus-jakarta mb-6 border-b border-zinc-100 dark:border-zinc-800 pb-4">Milestone Rewards Tracker</h2>
+ <h2 className="text-xl font-bold font-plus-jakarta mb-6 border-b border-zinc-100 pb-4">Milestone Rewards Tracker</h2>
         
         {/* Student Package Tracker */}
         <div className="relative">
@@ -172,7 +172,7 @@ export default function AffiliateDashboardClient({ profile, baseUrl, activity }:
             <progress
               max={studentTarget}
               value={Math.min(currentScore, studentTarget)}
-              className="h-8 w-full overflow-hidden rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-100 [&::-webkit-progress-bar]:bg-zinc-100 [&::-webkit-progress-value]:bg-gradient-to-r [&::-webkit-progress-value]:from-brand-main [&::-webkit-progress-value]:to-brand-dark [&::-moz-progress-bar]:bg-brand-main"
+ className="h-8 w-full overflow-hidden rounded-full border border-zinc-200 bg-zinc-100 [&::-webkit-progress-bar]:bg-zinc-100 [&::-webkit-progress-value]:bg-gradient-to-r [&::-webkit-progress-value]:from-brand-main [&::-webkit-progress-value]:to-brand-dark [&::-moz-progress-bar]:bg-brand-main"
             />
           </div>
 
@@ -206,7 +206,7 @@ export default function AffiliateDashboardClient({ profile, baseUrl, activity }:
             <progress
               max={starterTarget}
               value={Math.min(currentScore, starterTarget)}
-              className="h-8 w-full overflow-hidden rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-100 [&::-webkit-progress-bar]:bg-zinc-100 [&::-webkit-progress-value]:bg-gradient-to-r [&::-webkit-progress-value]:from-yellow-400 [&::-webkit-progress-value]:to-amber-500 [&::-moz-progress-bar]:bg-amber-500"
+ className="h-8 w-full overflow-hidden rounded-full border border-zinc-200 bg-zinc-100 [&::-webkit-progress-bar]:bg-zinc-100 [&::-webkit-progress-value]:bg-gradient-to-r [&::-webkit-progress-value]:from-yellow-400 [&::-webkit-progress-value]:to-amber-500 [&::-moz-progress-bar]:bg-amber-500"
             />
           </div>
 

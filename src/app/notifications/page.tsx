@@ -123,15 +123,15 @@ export default function NotificationsPage() {
   };
 
   return (
-    <section className="w-full bg-zinc-50 dark:bg-zinc-900 py-16 min-h-[70vh]">
+ <section className="w-full bg-zinc-50 py-16 min-h-[70vh]">
       <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 space-y-6">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
             <h1 className="text-4xl font-bold font-plus-jakarta text-foreground">Notifications</h1>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400">Updates about order progress, handover files, and revisions.</p>
+ <p className="text-sm text-zinc-600">Updates about order progress, handover files, and revisions.</p>
           </div>
           <div className="flex items-center gap-3">
-            <span className="rounded-full bg-zinc-200 px-3 py-1 text-xs font-semibold text-zinc-700 dark:text-zinc-300">
+ <span className="rounded-full bg-zinc-200 px-3 py-1 text-xs font-semibold text-zinc-700">
               Unread: {unreadCount}
             </span>
             <button
@@ -148,10 +148,10 @@ export default function NotificationsPage() {
         {error && <p className="rounded border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>}
 
         {isLoading ? (
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">Loading notifications...</p>
+ <p className="text-sm text-zinc-600">Loading notifications...</p>
         ) : notifications.length === 0 ? (
-          <div className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 text-center">
-            <p className="text-zinc-600 dark:text-zinc-400">No notifications yet.</p>
+ <div className="rounded-[16px] border border-zinc-200 bg-white p-8 text-center">
+ <p className="text-zinc-600">No notifications yet.</p>
             <Link href="/orders" className="mt-3 inline-block text-sm font-medium text-brand-main">
               View your orders
             </Link>
@@ -161,12 +161,12 @@ export default function NotificationsPage() {
             {notifications.map((notification) => (
               <li
                 key={notification.id}
-                className={`rounded-[14px] border p-4 ${notification.isRead ? "border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900" : "border-emerald-200 bg-emerald-50"}`}
+ className={`rounded-[14px] border p-4 ${notification.isRead ? "border-zinc-200 bg-white" : "border-emerald-200 bg-emerald-50"}`}
               >
                 <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
                   <div>
                     <p className="font-semibold text-foreground">{notification.title}</p>
-                    <p className="text-sm text-zinc-700 dark:text-zinc-300 mt-1">{notification.message}</p>
+ <p className="text-sm text-zinc-700 mt-1">{notification.message}</p>
                     <p className="text-xs text-zinc-500 mt-2">
                       {new Date(notification.createdAtMs).toLocaleString("en-LK")}
                     </p>
@@ -182,7 +182,7 @@ export default function NotificationsPage() {
                       type="button"
                       onClick={() => void markNotificationRead(notification.id)}
                       disabled={updatingId === notification.id}
-                      className="rounded border border-zinc-300 dark:border-zinc-700 px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:border-brand-main hover:text-brand-main disabled:opacity-60"
+ className="rounded border border-zinc-300 px-3 py-1.5 text-xs font-medium text-zinc-700 hover:border-brand-main hover:text-brand-main disabled:opacity-60"
                     >
                       {updatingId === notification.id ? "Saving..." : "Mark Read"}
                     </button>

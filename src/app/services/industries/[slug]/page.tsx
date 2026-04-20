@@ -114,16 +114,16 @@ export default async function IndustryServicePage({ params }: IndustryPageProps)
         </div>
       </section>
 
-      <section className="w-full bg-white dark:bg-zinc-900 py-[64px] sm:py-[80px] md:py-[96px]">
+ <section className="w-full bg-white py-[64px] sm:py-[80px] md:py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_360px]">
             <article className="space-y-8">
-              <div className="rounded-[22px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-sm">
+ <div className="rounded-[22px] border border-zinc-200 bg-white p-6 shadow-sm">
                 <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">Who this page is for</h2>
                 <p className="mt-4 text-text-body">{page.description}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {page.sampleRoles.map((role) => (
-                    <span key={role} className="rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 px-3 py-1 text-sm font-medium text-zinc-700 dark:text-zinc-300">
+ <span key={role} className="rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-sm font-medium text-zinc-700">
                       {role}
                     </span>
                   ))}
@@ -131,11 +131,11 @@ export default async function IndustryServicePage({ params }: IndustryPageProps)
               </div>
 
               <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                <section className="rounded-[22px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6">
+ <section className="rounded-[22px] border border-zinc-200 bg-zinc-50 p-6">
                   <h2 className="text-[26px] font-bold font-plus-jakarta text-foreground">Common Positioning Gaps</h2>
                   <ul className="mt-5 space-y-3">
                     {page.challenges.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-zinc-700 dark:text-zinc-300">
+ <li key={item} className="flex items-start gap-3 text-zinc-700">
                         <span className="mt-2 inline-block h-2.5 w-2.5 rounded-full bg-brand-main" />
                         <span>{item}</span>
                       </li>
@@ -143,11 +143,11 @@ export default async function IndustryServicePage({ params }: IndustryPageProps)
                   </ul>
                 </section>
 
-                <section className="rounded-[22px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6">
+ <section className="rounded-[22px] border border-zinc-200 bg-zinc-50 p-6">
                   <h2 className="text-[26px] font-bold font-plus-jakarta text-foreground">Better Direction</h2>
                   <ul className="mt-5 space-y-3">
                     {page.positioningTips.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-zinc-700 dark:text-zinc-300">
+ <li key={item} className="flex items-start gap-3 text-zinc-700">
                         <span className="mt-2 inline-block h-2.5 w-2.5 rounded-full bg-emerald-500" />
                         <span>{item}</span>
                       </li>
@@ -157,7 +157,7 @@ export default async function IndustryServicePage({ params }: IndustryPageProps)
               </div>
 
               {relatedCaseStudies.length > 0 ? (
-                <section className="rounded-[22px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-sm">
+ <section className="rounded-[22px] border border-zinc-200 bg-white p-6 shadow-sm">
                   <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                     <div>
                       <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">Relevant Proof</h2>
@@ -169,10 +169,10 @@ export default async function IndustryServicePage({ params }: IndustryPageProps)
                   </div>
                   <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
                     {relatedCaseStudies.map((study) => (
-                      <article key={study.slug} className="rounded-[18px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-5">
+ <article key={study.slug} className="rounded-[18px] border border-zinc-200 bg-zinc-50 p-5">
                         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-main">{study.category}</p>
                         <h3 className="mt-2 text-[22px] font-bold font-plus-jakarta text-foreground">{study.title}</h3>
-                        <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{study.summary}</p>
+ <p className="mt-3 text-sm leading-relaxed text-zinc-600">{study.summary}</p>
                         <Link href={`/case-studies/${study.slug}`} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
                           Read Case Study
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
@@ -185,14 +185,14 @@ export default async function IndustryServicePage({ params }: IndustryPageProps)
             </article>
 
             <aside className="space-y-6">
-              <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-sm">
+ <div className="rounded-[20px] border border-zinc-200 bg-white p-6 shadow-sm">
                 <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">Recommended Services</h3>
                 <div className="mt-5 flex flex-col gap-3">
                   {page.recommendedServices.map((item) => (
                     <Link
                       key={`${item.href}-${item.label}`}
                       href={item.href}
-                      className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main"
+ className="rounded-[10px] border border-zinc-300 px-4 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main"
                     >
                       {item.label}
                     </Link>
@@ -200,14 +200,14 @@ export default async function IndustryServicePage({ params }: IndustryPageProps)
                 </div>
               </div>
 
-              <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6">
+ <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6">
                 <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">Recommended Free Tools</h3>
                 <div className="mt-5 flex flex-col gap-3">
                   {page.recommendedTools.map((item) => (
                     <Link
                       key={`${item.href}-${item.label}`}
                       href={item.href}
-                      className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main"
+ className="rounded-[10px] border border-zinc-300 bg-white px-4 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main"
                     >
                       {item.label}
                     </Link>
@@ -215,14 +215,14 @@ export default async function IndustryServicePage({ params }: IndustryPageProps)
                 </div>
               </div>
 
-              <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6">
+ <div className="rounded-[20px] border border-zinc-200 bg-white p-6">
                 <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">Related Resources</h3>
                 <div className="mt-5 flex flex-col gap-3">
                   {page.relatedResources.map((item) => (
                     <Link
                       key={`${item.href}-${item.label}`}
                       href={item.href}
-                      className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main"
+ className="rounded-[10px] border border-zinc-300 px-4 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main"
                     >
                       {item.label}
                     </Link>

@@ -24,10 +24,10 @@ export default function Custom404Page() {
           <Link href="/" className="rounded-[10px] bg-brand-main px-5 py-3 font-semibold text-white hover:bg-brand-dark transition-colors">
             Go to Homepage
           </Link>
-          <Link href="/pricing" className="rounded-[10px] border border-white/50 px-5 py-3 font-semibold text-white hover:bg-white dark:bg-zinc-900 hover:text-foreground transition-colors">
+ <Link href="/pricing" className="rounded-[10px] border border-white/50 px-5 py-3 font-semibold text-white hover:bg-white hover:text-foreground transition-colors">
             View Packages
           </Link>
-          <Link href="/contact" className="rounded-[10px] border border-white/50 px-5 py-3 font-semibold text-white hover:bg-white dark:bg-zinc-900 hover:text-foreground transition-colors">
+ <Link href="/contact" className="rounded-[10px] border border-white/50 px-5 py-3 font-semibold text-white hover:bg-white hover:text-foreground transition-colors">
             Contact Support
           </Link>
         </div>

@@ -73,15 +73,15 @@ export default function AtsCvAuditPage() {
         </div>
       </section>
 
-      <section className="w-full bg-zinc-50 dark:bg-zinc-900 py-[64px] sm:py-[80px] md:py-[96px]">
+ <section className="w-full bg-zinc-50 py-[64px] sm:py-[80px] md:py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <AtsCvAuditClient />
         </div>
       </section>
 
-      <section className="w-full bg-white dark:bg-zinc-900 py-[40px] sm:py-[56px] border-t border-zinc-200 dark:border-zinc-800">
+ <section className="w-full bg-white py-[40px] sm:py-[56px] border-t border-zinc-200">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
-          <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6">
+ <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6">
             <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">What to do after the audit</h2>
             <p className="mt-3 text-text-body">
               If the score is weak, move to CV writing or a professional review. If the score is decent but inconsistent, start with the checklist and strengthen your metrics, keywords, and structure.
@@ -90,10 +90,10 @@ export default function AtsCvAuditPage() {
               <Link href="/services/packages/cv-writing" className="rounded-[10px] bg-brand-main px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-dark">
                 Professional CV Writing
               </Link>
-              <Link href="/services/packages/cv-review" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/services/packages/cv-review" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 CV Review Service
               </Link>
-              <Link href="/career-quiz" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/career-quiz" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Take Career Quiz
               </Link>
             </div>

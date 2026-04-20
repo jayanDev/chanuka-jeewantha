@@ -52,23 +52,23 @@ export default function EbooksPage() {
         </div>
       </section>
 
-      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50 dark:bg-zinc-900/50">
+ <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <StoreFilterClient products={digitalProducts} />
 
-          <aside className="mt-8 rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6">
+ <aside className="mt-8 rounded-[16px] border border-zinc-200 bg-zinc-50 p-6">
             <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Continue Your Career Upgrade</h2>
             <p className="text-text-body mb-5">
               Combine ebook learning with implementation support and practical toolkits.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link href="/resources" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/resources" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Browse Resources
               </Link>
-              <Link href="/services" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/services" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Explore Services
               </Link>
-              <Link href="/contact" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/contact" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Talk to Chanuka
               </Link>
             </div>

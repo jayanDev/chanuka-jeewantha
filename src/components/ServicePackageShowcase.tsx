@@ -144,9 +144,9 @@ export default function ServicePackageShowcase({ title, description, packages }:
   };
 
   return (
-    <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50 dark:bg-zinc-900">
+ <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50">
       <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
-        <div className="max-w-5xl mx-auto rounded-[24px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 md:p-10 text-center mb-8">
+ <div className="max-w-5xl mx-auto rounded-[24px] border border-zinc-200 bg-white p-8 md:p-10 text-center mb-8">
           <h2 className="text-[34px] md:text-[42px] font-bold font-plus-jakarta text-foreground mb-4">{title}</h2>
           <p className="text-text-body text-lg leading-relaxed">{description}</p>
           {feedback && <p className="mt-4 text-sm font-medium text-brand-dark">{feedback}</p>}
@@ -163,12 +163,12 @@ export default function ServicePackageShowcase({ title, description, packages }:
               return (
             <article
               key={pkg.slug}
-              className={`rounded-[20px] border bg-white dark:bg-zinc-900 p-8 shadow-sm hover:shadow-lg transition-shadow ${
-                pkg.isMostPopular ? "border-brand-main" : "border-zinc-200 dark:border-zinc-800"
+ className={`rounded-[20px] border bg-white p-8 shadow-sm hover:shadow-lg transition-shadow ${
+ pkg.isMostPopular ? "border-brand-main" : "border-zinc-200"
               }`}
             >
               {pkg.isMostPopular && (
-                <div className="mb-5 inline-flex items-center gap-2 rounded-[10px] border border-brand-main/40 bg-white dark:bg-zinc-900 px-3 py-1.5 shadow-sm">
+ <div className="mb-5 inline-flex items-center gap-2 rounded-[10px] border border-brand-main/40 bg-white px-3 py-1.5 shadow-sm">
                   <span className="text-xs font-bold uppercase tracking-[0.14em] text-brand-dark">Client Favorite</span>
                 </div>
               )}
@@ -203,7 +203,7 @@ export default function ServicePackageShowcase({ title, description, packages }:
               <div className="flex flex-wrap gap-2">
                 <Link
                   href={`/packages/${pkg.slug}`}
-                  className="inline-flex items-center justify-center rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-2.5 text-sm font-medium text-zinc-800 dark:text-zinc-200 transition-colors hover:border-brand-main hover:text-brand-main"
+ className="inline-flex items-center justify-center rounded-[10px] border border-zinc-300 px-4 py-2.5 text-sm font-medium text-zinc-800 transition-colors hover:border-brand-main hover:text-brand-main"
                 >
                   See Details
                 </Link>

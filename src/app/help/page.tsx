@@ -68,7 +68,7 @@ export default function HelpPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
 
-      <section className="w-full border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 py-[90px]">
+ <section className="w-full border-b border-zinc-200 bg-zinc-50 py-[90px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6 text-center">
           <span className="mb-3 block font-semibold uppercase tracking-wider text-brand-main">Help Center</span>
           <h1 className="font-plus-jakarta text-[30px] sm:text-[42px] md:text-[56px] font-bold text-foreground leading-[1.1] mb-5">
@@ -84,14 +84,14 @@ export default function HelpPage() {
             <Link href="/faq" className="px-[28px] py-[14px] border border-foreground text-foreground hover:bg-foreground hover:text-background rounded-[10px] font-medium transition-colors">
               Browse FAQ
             </Link>
-            <Link href="/contact" className="px-[28px] py-[14px] border border-zinc-300 dark:border-zinc-700 text-foreground hover:border-brand-main hover:text-brand-main rounded-[10px] font-medium transition-colors">
+ <Link href="/contact" className="px-[28px] py-[14px] border border-zinc-300 text-foreground hover:border-brand-main hover:text-brand-main rounded-[10px] font-medium transition-colors">
               Contact Support
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="w-full py-[72px] bg-white dark:bg-zinc-900">
+ <section className="w-full py-[72px] bg-white">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-8 flex items-end justify-between gap-4">
             <h2 className="text-[30px] md:text-[40px] font-bold font-plus-jakarta text-foreground">Quick Help Topics</h2>
@@ -99,46 +99,46 @@ export default function HelpPage() {
           </div>
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {quickHelpTopics.map((topic) => (
-              <article key={topic.title} className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 p-5 hover:border-brand-main/40 hover:bg-white dark:bg-zinc-900 transition-colors">
-                <h3 className="text-[18px] font-bold font-plus-jakarta text-zinc-900 dark:text-zinc-100 mb-2">{topic.title}</h3>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{topic.answer}</p>
+ <article key={topic.title} className="rounded-[16px] border border-zinc-200 bg-zinc-50 p-5 hover:border-brand-main/40 hover:bg-white transition-colors">
+ <h3 className="text-[18px] font-bold font-plus-jakarta text-zinc-900 mb-2">{topic.title}</h3>
+ <p className="text-sm text-zinc-600 leading-relaxed">{topic.answer}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="w-full border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 py-[72px]">
+ <section className="w-full border-t border-zinc-200 bg-zinc-50 py-[72px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <h2 className="text-[30px] md:text-[40px] font-bold font-plus-jakarta text-foreground mb-8">Payment Instructions</h2>
-          <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 md:p-8 shadow-sm">
+ <div className="rounded-[20px] border border-zinc-200 bg-white p-6 md:p-8 shadow-sm">
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              <p className="text-sm text-zinc-600 dark:text-zinc-400"><span className="font-semibold text-zinc-900 dark:text-zinc-100">Bank:</span> {paymentInstructions.bank}</p>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400"><span className="font-semibold text-zinc-900 dark:text-zinc-100">Account Name:</span> {paymentInstructions.accountName}</p>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400"><span className="font-semibold text-zinc-900 dark:text-zinc-100">Account Number:</span> {paymentInstructions.accountNumber}</p>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400"><span className="font-semibold text-zinc-900 dark:text-zinc-100">Branch:</span> {paymentInstructions.branch}</p>
+ <p className="text-sm text-zinc-600"><span className="font-semibold text-zinc-900">Bank:</span> {paymentInstructions.bank}</p>
+ <p className="text-sm text-zinc-600"><span className="font-semibold text-zinc-900">Account Name:</span> {paymentInstructions.accountName}</p>
+ <p className="text-sm text-zinc-600"><span className="font-semibold text-zinc-900">Account Number:</span> {paymentInstructions.accountNumber}</p>
+ <p className="text-sm text-zinc-600"><span className="font-semibold text-zinc-900">Branch:</span> {paymentInstructions.branch}</p>
             </div>
-            <p className="mt-4 rounded-[12px] bg-zinc-50 dark:bg-zinc-900 p-4 text-sm text-zinc-700 dark:text-zinc-300">{paymentInstructions.methodNote}</p>
+ <p className="mt-4 rounded-[12px] bg-zinc-50 p-4 text-sm text-zinc-700">{paymentInstructions.methodNote}</p>
           </div>
         </div>
       </section>
 
-      <section className="w-full border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 py-[72px]">
+ <section className="w-full border-t border-zinc-200 bg-white py-[72px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <h2 className="text-[30px] md:text-[40px] font-bold font-plus-jakarta text-foreground mb-8">All Packages and Delivery Details</h2>
           <div className="space-y-8">
             {packageCategories.map((category) => (
-              <article key={category.key} className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-5 md:p-7">
-                <h3 className="text-[24px] font-bold font-plus-jakarta text-zinc-900 dark:text-zinc-100 mb-2">{category.title}</h3>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-5">{category.description}</p>
+ <article key={category.key} className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-5 md:p-7">
+ <h3 className="text-[24px] font-bold font-plus-jakarta text-zinc-900 mb-2">{category.title}</h3>
+ <p className="text-sm text-zinc-600 mb-5">{category.description}</p>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   {category.packages.map((pkg) => (
-                    <div key={pkg.slug} className="rounded-[14px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4">
+ <div key={pkg.slug} className="rounded-[14px] border border-zinc-200 bg-white p-4">
                       <div className="flex items-start justify-between gap-3">
-                        <h4 className="text-[18px] font-bold font-plus-jakarta text-zinc-900 dark:text-zinc-100">{pkg.name}</h4>
+ <h4 className="text-[18px] font-bold font-plus-jakarta text-zinc-900">{pkg.name}</h4>
                         <span className="rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold text-brand-dark">{formatLkr(pkg.priceLkr)}</span>
                       </div>
-                      <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">{pkg.audience}</p>
+ <p className="mt-2 text-sm text-zinc-600">{pkg.audience}</p>
                       <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-zinc-500">Delivery: {pkg.delivery}</p>
                     </div>
                   ))}
@@ -149,20 +149,20 @@ export default function HelpPage() {
         </div>
       </section>
 
-      <section className="w-full border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 py-[72px]">
+ <section className="w-full border-t border-zinc-200 bg-zinc-50 py-[72px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <h2 className="text-[30px] md:text-[40px] font-bold font-plus-jakarta text-foreground mb-6">Need More Help?</h2>
           <div className="flex flex-wrap gap-3">
             <a href="https://wa.me/94773902230?text=Hello%20Chanuka%2C%20I%20need%20help%20with%20my%20order." target="_blank" rel="noopener noreferrer" className="rounded-[10px] bg-[#25D366] px-5 py-3 text-sm font-semibold text-white hover:bg-[#1fb85a] transition-colors">
               WhatsApp Support
             </a>
-            <Link href="/contact" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-5 py-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300 hover:border-brand-main hover:text-brand-main transition-colors">
+ <Link href="/contact" className="rounded-[10px] border border-zinc-300 bg-white px-5 py-3 text-sm font-semibold text-zinc-700 hover:border-brand-main hover:text-brand-main transition-colors">
               Contact Form
             </Link>
-            <Link href="/pricing" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-5 py-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300 hover:border-brand-main hover:text-brand-main transition-colors">
+ <Link href="/pricing" className="rounded-[10px] border border-zinc-300 bg-white px-5 py-3 text-sm font-semibold text-zinc-700 hover:border-brand-main hover:text-brand-main transition-colors">
               View Pricing
             </Link>
-            <Link href="/faq" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-5 py-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300 hover:border-brand-main hover:text-brand-main transition-colors">
+ <Link href="/faq" className="rounded-[10px] border border-zinc-300 bg-white px-5 py-3 text-sm font-semibold text-zinc-700 hover:border-brand-main hover:text-brand-main transition-colors">
               Frequently Asked Questions
             </Link>
           </div>

@@ -282,7 +282,7 @@ export default function CareerQuizClient() {
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_380px]">
       <div className="space-y-6">
         {questions.map((question, index) => (
-          <section key={question.key} className="rounded-[22px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-sm">
+ <section key={question.key} className="rounded-[22px] border border-zinc-200 bg-white p-6 shadow-sm">
             <div className="mb-5 flex items-center gap-3">
               <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-main/10 font-bold text-brand-dark">
                 {index + 1}
@@ -307,11 +307,11 @@ export default function CareerQuizClient() {
                     className={`rounded-[16px] border p-4 text-left transition-colors ${
                       selected
                         ? "border-brand-main bg-brand-main/5"
-                        : "border-zinc-200 dark:border-zinc-800 bg-zinc-50 hover:border-brand-main/40 hover:bg-white dark:bg-zinc-900"
+ : "border-zinc-200 bg-zinc-50 hover:border-brand-main/40 hover:bg-white"
                     }`}
                   >
                     <p className="text-base font-semibold text-foreground">{option.label}</p>
-                    <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{option.description}</p>
+ <p className="mt-2 text-sm leading-relaxed text-zinc-600">{option.description}</p>
                   </button>
                 );
               })}
@@ -321,10 +321,10 @@ export default function CareerQuizClient() {
       </div>
 
       <aside className="space-y-6 lg:sticky lg:top-24">
-        <div className="rounded-[22px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-sm">
+ <div className="rounded-[22px] border border-zinc-200 bg-white p-6 shadow-sm">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Your Best Next Step</p>
           <h2 className="mt-3 text-[28px] font-bold font-plus-jakarta text-foreground">{recommendations.primary.label}</h2>
-          <p className="mt-4 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">{recommendations.primary.reason}</p>
+ <p className="mt-4 text-sm leading-relaxed text-zinc-700">{recommendations.primary.reason}</p>
           <Link
             href={recommendations.primary.href}
             className="mt-5 inline-flex items-center gap-2 rounded-[12px] bg-brand-main px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
@@ -334,20 +334,20 @@ export default function CareerQuizClient() {
           </Link>
         </div>
 
-        <div className="rounded-[22px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6">
+ <div className="rounded-[22px] border border-zinc-200 bg-zinc-50 p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">Free Tool</p>
           <h3 className="mt-3 text-[22px] font-bold font-plus-jakarta text-foreground">{recommendations.tool.label}</h3>
-          <p className="mt-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">{recommendations.tool.reason}</p>
+ <p className="mt-3 text-sm leading-relaxed text-zinc-700">{recommendations.tool.reason}</p>
           <Link href={recommendations.tool.href} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
             Use Free Tool
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
           </Link>
         </div>
 
-        <div className="rounded-[22px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6">
+ <div className="rounded-[22px] border border-zinc-200 bg-white p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">Resource</p>
           <h3 className="mt-3 text-[22px] font-bold font-plus-jakarta text-foreground">{recommendations.resource.label}</h3>
-          <p className="mt-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">{recommendations.resource.reason}</p>
+ <p className="mt-3 text-sm leading-relaxed text-zinc-700">{recommendations.resource.reason}</p>
           <Link href={recommendations.resource.href} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
             Open Resource
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
@@ -355,10 +355,10 @@ export default function CareerQuizClient() {
         </div>
 
         {recommendations.industry ? (
-          <div className="rounded-[22px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6">
+ <div className="rounded-[22px] border border-zinc-200 bg-white p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">Relevant Career Page</p>
             <h3 className="mt-3 text-[22px] font-bold font-plus-jakarta text-foreground">{recommendations.industry.label}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">{recommendations.industry.reason}</p>
+ <p className="mt-3 text-sm leading-relaxed text-zinc-700">{recommendations.industry.reason}</p>
             <Link href={recommendations.industry.href} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
               View Industry Page
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
@@ -366,7 +366,7 @@ export default function CareerQuizClient() {
           </div>
         ) : null}
 
-        <div className="rounded-[22px] border border-zinc-200 dark:border-zinc-800 bg-foreground p-6 text-background">
+ <div className="rounded-[22px] border border-zinc-200 bg-foreground p-6 text-background">
           <h3 className="text-[22px] font-bold font-plus-jakarta !text-white">Use This Like a Decision Shortcut</h3>
           <p className="mt-3 text-sm leading-relaxed text-text-light">
             If you prefer {answers.support === "self-serve" ? "self-serve support" : answers.support === "hybrid" ? "a hybrid path" : "done-for-you execution"}, start with the free tool and resource above, then move into the primary recommendation when you want stronger results.

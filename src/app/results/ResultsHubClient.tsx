@@ -21,7 +21,7 @@ export default function ResultsHubClient({ items, focusAreas }: ResultsHubClient
 
   return (
     <div className="space-y-8">
-      <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-sm">
+ <div className="rounded-[20px] border border-zinc-200 bg-white p-6 shadow-sm">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Filters</p>
@@ -37,7 +37,7 @@ export default function ResultsHubClient({ items, focusAreas }: ResultsHubClient
                   className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
                     kindFilter === kind
                       ? "border-brand-main bg-brand-main text-white"
-                      : "border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 hover:border-brand-main hover:text-brand-main"
+ : "border-zinc-300 bg-white text-zinc-700 hover:border-brand-main hover:text-brand-main"
                   }`}
                 >
                   {kind}
@@ -51,7 +51,7 @@ export default function ResultsHubClient({ items, focusAreas }: ResultsHubClient
                 className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
                   focusFilter === "All"
                     ? "border-brand-main bg-brand-main text-white"
-                    : "border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 hover:border-brand-main hover:text-brand-main"
+ : "border-zinc-300 bg-white text-zinc-700 hover:border-brand-main hover:text-brand-main"
                 }`}
               >
                 All Focus Areas
@@ -64,7 +64,7 @@ export default function ResultsHubClient({ items, focusAreas }: ResultsHubClient
                   className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
                     focusFilter === focusArea
                       ? "border-brand-main bg-brand-main text-white"
-                      : "border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 hover:border-brand-main hover:text-brand-main"
+ : "border-zinc-300 bg-white text-zinc-700 hover:border-brand-main hover:text-brand-main"
                   }`}
                 >
                   {focusArea}
@@ -76,7 +76,7 @@ export default function ResultsHubClient({ items, focusAreas }: ResultsHubClient
       </div>
 
       {filteredItems.length === 0 ? (
-        <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-10 text-center shadow-sm">
+ <div className="rounded-[20px] border border-zinc-200 bg-white p-10 text-center shadow-sm">
           <h3 className="text-[26px] font-bold font-plus-jakarta text-foreground">No matching proof stories yet</h3>
           <p className="mt-3 text-text-body">
             Try a different filter or browse all results to see case studies and client feedback.
@@ -85,7 +85,7 @@ export default function ResultsHubClient({ items, focusAreas }: ResultsHubClient
       ) : (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {filteredItems.map((item) => (
-            <article key={item.id} className="rounded-[22px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.1)]">
+ <article key={item.id} className="rounded-[22px] border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.1)]">
               <div className="mb-4 flex items-center justify-between gap-3">
                 <span className="inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
                   {item.kind}
@@ -94,19 +94,19 @@ export default function ResultsHubClient({ items, focusAreas }: ResultsHubClient
               </div>
 
               <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">{item.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{item.summary}</p>
+ <p className="mt-3 text-sm leading-relaxed text-zinc-600">{item.summary}</p>
 
               <div className="mt-5 flex flex-wrap gap-2">
                 {item.focusAreas.map((focusArea) => (
-                  <span key={`${item.id}-${focusArea}`} className="rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 px-3 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300">
+ <span key={`${item.id}-${focusArea}`} className="rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs font-medium text-zinc-700">
                     {focusArea}
                   </span>
                 ))}
               </div>
 
-              <div className="mt-5 rounded-[14px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
+ <div className="mt-5 rounded-[14px] border border-zinc-200 bg-zinc-50 p-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">Proof Highlight</p>
-                <p className="mt-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100">{item.proofLabel}</p>
+ <p className="mt-2 text-sm font-semibold text-zinc-900">{item.proofLabel}</p>
                 <p className="mt-1 text-xs text-zinc-500">{item.audience}</p>
               </div>
 

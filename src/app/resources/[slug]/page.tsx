@@ -146,11 +146,11 @@ export default async function ResourceSinglePage({ params }: ResourcePageProps) 
         </div>
       </section>
 
-      <section className="w-full bg-zinc-50 dark:bg-zinc-900 py-[64px] sm:py-[80px] md:py-[96px]">
+ <section className="w-full bg-zinc-50 py-[64px] sm:py-[80px] md:py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-10 items-start">
-            <article className="rounded-[22px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-7 md:p-10">
-              <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900">
+ <article className="rounded-[22px] border border-zinc-200 bg-white p-7 md:p-10">
+ <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-[16px] border border-zinc-200 bg-zinc-50">
                 <Image src={resource.coverImage} alt={resource.title} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 70vw" />
               </div>
               <p className="text-text-body text-lg leading-relaxed mb-8">{resource.description}</p>
@@ -165,7 +165,7 @@ export default async function ResourceSinglePage({ params }: ResourcePageProps) 
               </ul>
 
               {resource.contentSections && resource.contentSections.length > 0 ? (
-                <div className="space-y-8 border-t border-zinc-200 dark:border-zinc-800 pt-8">
+ <div className="space-y-8 border-t border-zinc-200 pt-8">
                   {resource.contentSections.map((section) => (
                     <section key={section.heading}>
                       <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">{section.heading}</h2>
@@ -189,7 +189,7 @@ export default async function ResourceSinglePage({ params }: ResourcePageProps) 
                 </div>
               ) : null}
 
-              <div className="mt-8 rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6">
+ <div className="mt-8 rounded-[16px] border border-zinc-200 bg-zinc-50 p-6">
                 <p className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-zinc-500">
                   {isFreeResource ? "Access" : "Investment"}
                 </p>

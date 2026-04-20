@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
-import ThemeToggle from "@/components/ThemeToggle";
 import SearchModal from "@/components/SearchModal";
 
 type NavUser = {
@@ -173,14 +172,13 @@ export default function Header({ initialUser = null }: HeaderProps) {
               type="button"
               onClick={() => setIsSearchOpen(true)}
               aria-label="Search"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-zinc-300 dark:border-zinc-700 text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+ className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-zinc-300 text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
             </button>
-            <ThemeToggle />
             {user && (
               <Link href="/orders" className={desktopNavLinkClass}>
                 My Orders
@@ -190,7 +188,7 @@ export default function Header({ initialUser = null }: HeaderProps) {
               <Link
                 href="/notifications"
                 aria-label="Notifications"
-                className="relative inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-zinc-300 dark:border-zinc-700 text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+ className="relative inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-zinc-300 text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 0 0-5-5.91V4a1 1 0 0 0-2 0v1.09A6 6 0 0 0 6 11v3.2a2 2 0 0 1-.6 1.4L4 17h5" />
@@ -213,7 +211,7 @@ export default function Header({ initialUser = null }: HeaderProps) {
               <Link
                 href="/cart"
                 aria-label="Cart"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-zinc-300 dark:border-zinc-700 text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+ className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-zinc-300 text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <circle cx="8" cy="21" r="1" />
@@ -225,7 +223,7 @@ export default function Header({ initialUser = null }: HeaderProps) {
 
             {!user ? (
               <div className="flex items-center gap-3">
-                <Link href="/auth/signin" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-[15px] font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/auth/signin" className="rounded-[10px] border border-zinc-300 px-4 py-2 text-[15px] font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                   Sign In
                 </Link>
                 <Link href="/auth/signup" className="rounded-[10px] bg-brand-main px-4 py-2 text-[15px] font-semibold text-white transition-colors hover:bg-brand-dark">
@@ -244,8 +242,8 @@ export default function Header({ initialUser = null }: HeaderProps) {
                 </button>
 
                 {isProfileMenuOpen && (
-                  <div className="absolute right-0 top-full z-50 mt-2 w-64 rounded-[12px] border border-zinc-200 dark:border-zinc-800 bg-background p-2 shadow-xl">
-                    <div className="px-3 py-2 border-b border-zinc-200 dark:border-zinc-800">
+ <div className="absolute right-0 top-full z-50 mt-2 w-64 rounded-[12px] border border-zinc-200 bg-background p-2 shadow-xl">
+ <div className="px-3 py-2 border-b border-zinc-200">
                       <p className="text-sm font-semibold text-foreground line-clamp-1">{user.name}</p>
                       <p className="text-xs text-zinc-500 line-clamp-1">{user.email}</p>
                     </div>
@@ -254,21 +252,21 @@ export default function Header({ initialUser = null }: HeaderProps) {
                       <Link
                         href="/profile"
                         onClick={() => setIsProfileMenuOpen(false)}
-                        className="block rounded-[8px] px-3 py-2 text-sm text-zinc-700 dark:text-zinc-300 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800"
+ className="block rounded-[8px] px-3 py-2 text-sm text-zinc-700 transition-colors hover:bg-zinc-100"
                       >
                         Profile Settings
                       </Link>
                       <Link
                         href="/orders"
                         onClick={() => setIsProfileMenuOpen(false)}
-                        className="block rounded-[8px] px-3 py-2 text-sm text-zinc-700 dark:text-zinc-300 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800"
+ className="block rounded-[8px] px-3 py-2 text-sm text-zinc-700 transition-colors hover:bg-zinc-100"
                       >
                         My Orders
                       </Link>
                       <Link
                         href="/notifications"
                         onClick={() => setIsProfileMenuOpen(false)}
-                        className="block rounded-[8px] px-3 py-2 text-sm text-zinc-700 dark:text-zinc-300 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800"
+ className="block rounded-[8px] px-3 py-2 text-sm text-zinc-700 transition-colors hover:bg-zinc-100"
                       >
                         Notifications
                       </Link>
@@ -326,7 +324,7 @@ export default function Header({ initialUser = null }: HeaderProps) {
       <div
         id="mobile-navigation"
         className={`absolute top-full left-0 w-full bg-background shadow-xl transition-all duration-300 ease-in-out z-40 origin-top overflow-hidden md:hidden ${
-          isMobileMenuOpen ? "opacity-100 scale-y-100 max-h-screen py-6 border-t border-zinc-100 dark:border-zinc-800" : "opacity-0 scale-y-0 max-h-0 py-0"
+ isMobileMenuOpen ? "opacity-100 scale-y-100 max-h-screen py-6 border-t border-zinc-100" : "opacity-0 scale-y-0 max-h-0 py-0"
         }`}
       >
         <nav className="flex flex-col items-center gap-6 px-4">
@@ -346,7 +344,7 @@ export default function Header({ initialUser = null }: HeaderProps) {
             <Link
               href="/cart"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="inline-flex items-center gap-2 rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-[16px] font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+ className="inline-flex items-center gap-2 rounded-[10px] border border-zinc-300 px-4 py-2 text-[16px] font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <circle cx="8" cy="21" r="1" />
@@ -367,7 +365,7 @@ export default function Header({ initialUser = null }: HeaderProps) {
               href="/notifications"
               aria-label="Notifications"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="relative inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-zinc-300 dark:border-zinc-700 text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+ className="relative inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-zinc-300 text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 0 0-5-5.91V4a1 1 0 0 0-2 0v1.09A6 6 0 0 0 6 11v3.2a2 2 0 0 1-.6 1.4L4 17h5" />
@@ -393,7 +391,7 @@ export default function Header({ initialUser = null }: HeaderProps) {
           )}
           {!user ? (
             <div className="flex w-full max-w-xs flex-col gap-3">
-              <Link href="/auth/signin" onClick={() => setIsMobileMenuOpen(false)} className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3 text-center text-[16px] font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/auth/signin" onClick={() => setIsMobileMenuOpen(false)} className="rounded-[10px] border border-zinc-300 px-4 py-3 text-center text-[16px] font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Sign In
               </Link>
               <Link href="/auth/signup" onClick={() => setIsMobileMenuOpen(false)} className="rounded-[10px] bg-brand-main px-4 py-3 text-center text-[16px] font-semibold text-white transition-colors hover:bg-brand-dark">

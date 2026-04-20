@@ -196,15 +196,15 @@ export default function PackageActionButtons({ pkg }: PackageActionButtonsProps)
   return (
     <div className="space-y-3">
       {isConfigurableBundleSlug(pkg.slug) && (
-        <div className="rounded-[12px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4">
+ <div className="rounded-[12px] border border-zinc-200 bg-white p-4">
           <p className="text-xs font-semibold uppercase tracking-[0.1em] text-zinc-500">Build Package</p>
           <div className="mt-3 grid grid-cols-1 gap-3">
-            <label className="text-sm text-zinc-700 dark:text-zinc-300">
+ <label className="text-sm text-zinc-700">
               <span className="mb-1 block font-medium">Select CV Package</span>
               <select
                 value={selection.cvSlug}
                 onChange={(event) => setSelection((prev) => ({ ...prev, cvSlug: event.target.value }))}
-                className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2"
+ className="w-full rounded-[10px] border border-zinc-300 bg-white px-3 py-2"
               >
                 <option value="">Choose CV package</option>
                 {cvOptions.map((option) => (
@@ -215,12 +215,12 @@ export default function PackageActionButtons({ pkg }: PackageActionButtonsProps)
               </select>
             </label>
 
-            <label className="text-sm text-zinc-700 dark:text-zinc-300">
+ <label className="text-sm text-zinc-700">
               <span className="mb-1 block font-medium">Select Cover Letter</span>
               <select
                 value={selection.coverLetterSlug}
                 onChange={(event) => setSelection((prev) => ({ ...prev, coverLetterSlug: event.target.value }))}
-                className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2"
+ className="w-full rounded-[10px] border border-zinc-300 bg-white px-3 py-2"
               >
                 <option value="">Choose Cover Letter package</option>
                 {coverLetterOptions.map((option) => (
@@ -232,12 +232,12 @@ export default function PackageActionButtons({ pkg }: PackageActionButtonsProps)
             </label>
 
             {getConfigurableBundleRule(pkg.slug).requireLinkedin && (
-              <label className="text-sm text-zinc-700 dark:text-zinc-300">
+ <label className="text-sm text-zinc-700">
                 <span className="mb-1 block font-medium">Select LinkedIn Optimization</span>
                 <select
                   value={selection.linkedinSlug}
                   onChange={(event) => setSelection((prev) => ({ ...prev, linkedinSlug: event.target.value }))}
-                  className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2"
+ className="w-full rounded-[10px] border border-zinc-300 bg-white px-3 py-2"
                 >
                   <option value="">Choose LinkedIn package</option>
                   {linkedinOptions.map((option) => (
@@ -279,7 +279,7 @@ export default function PackageActionButtons({ pkg }: PackageActionButtonsProps)
         </button>
         <Link
           href={`/packages/${pkg.slug}`}
-          className="inline-flex items-center justify-center rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main"
+ className="inline-flex items-center justify-center rounded-[10px] border border-zinc-300 px-4 py-2.5 text-sm font-medium text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main"
         >
           See More
         </Link>

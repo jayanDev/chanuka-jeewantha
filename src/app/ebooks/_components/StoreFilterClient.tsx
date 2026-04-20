@@ -48,7 +48,7 @@ export default function StoreFilterClient({ products }: { products: DigitalProdu
             placeholder="Search ebooks and planners..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-white dark:bg-zinc-900 border-2 border-zinc-200 dark:border-zinc-800 rounded-[12px] py-4 pl-12 pr-4 outline-none focus:border-brand-main focus:ring-4 focus:ring-brand-main/10 transition-all font-medium text-foreground placeholder:text-zinc-400"
+ className="w-full bg-white border-2 border-zinc-200 rounded-[12px] py-4 pl-12 pr-4 outline-none focus:border-brand-main focus:ring-4 focus:ring-brand-main/10 transition-all font-medium text-foreground placeholder:text-zinc-400"
           />
         </div>
 
@@ -60,7 +60,7 @@ export default function StoreFilterClient({ products }: { products: DigitalProdu
               className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${
                 activeCategory === cat
                   ? "bg-foreground text-background shadow-md scale-105"
-                  : "bg-zinc-100 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200"
+ : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
               }`}
             >
               {cat === "All" ? "All Products" : cat + "s"}
@@ -75,10 +75,10 @@ export default function StoreFilterClient({ products }: { products: DigitalProdu
           {filteredProducts.map((product) => (
             <article 
               key={product.slug} 
-              className="rounded-[22px] border border-zinc-200 dark:border-zinc-800 p-6 bg-white dark:bg-zinc-900 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
+ className="rounded-[22px] border border-zinc-200 p-6 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
             >
               <div 
-                className={`relative mb-6 w-full flex-shrink-0 overflow-hidden rounded-[14px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 ${
+ className={`relative mb-6 w-full flex-shrink-0 overflow-hidden rounded-[14px] border border-zinc-200 bg-zinc-50 ${
                   product.productType === "Ebook" ? "aspect-[4/5]" : "aspect-video"
                 }`}
               >
@@ -97,7 +97,7 @@ export default function StoreFilterClient({ products }: { products: DigitalProdu
                   }`}>
                     {product.category === "paid" ? "Premium" : "Free"}
                   </span>
-                  <span className="bg-white dark:bg-zinc-900/90 backdrop-blur-sm text-foreground text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">
+ <span className="bg-white backdrop-blur-sm text-foreground text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">
                     {product.productType}
                   </span>
                 </div>
@@ -112,7 +112,7 @@ export default function StoreFilterClient({ products }: { products: DigitalProdu
                 </p>
                 
                 {/* Price and Action (Pushed to bottom) */}
-                <div className="mt-auto pt-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
+ <div className="mt-auto pt-4 border-t border-zinc-100 flex items-center justify-between">
                   <span className="text-[20px] font-bold font-plus-jakarta text-brand-dark">
                     {product.category === "paid" ? formatLkr(product.priceLkr ?? 0) : "Free"}
                   </span>
@@ -133,7 +133,7 @@ export default function StoreFilterClient({ products }: { products: DigitalProdu
           ))}
         </div>
       ) : (
-        <div className="text-center py-32 bg-zinc-50 dark:bg-zinc-900 rounded-[20px] border border-zinc-200 dark:border-zinc-800 border-dashed">
+ <div className="text-center py-32 bg-zinc-50 rounded-[20px] border border-zinc-200 border-dashed">
           <svg className="mx-auto mb-4 text-zinc-300" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           <h3 className="text-2xl font-bold font-plus-jakarta text-zinc-400 mb-2">No products found</h3>
           <p className="text-zinc-500">Try adjusting your search or filter criteria.</p>

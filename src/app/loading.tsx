@@ -27,7 +27,7 @@ export default function Loading() {
             <span className="loader-dot dot-delay-1 w-1.5 h-1.5 rounded-full bg-brand-light" />
             <span className="loader-dot dot-delay-2 w-1.5 h-1.5 rounded-full bg-brand-main" />
           </div>
-          <div className="mt-3 h-[3px] w-[220px] bg-white dark:bg-zinc-900/15 rounded-full overflow-hidden">
+ <div className="mt-3 h-[3px] w-[220px] bg-white rounded-full overflow-hidden">
             <span className="block h-full w-[45%] bg-brand-main rounded-full loader-sweep" />
           </div>
         </div>

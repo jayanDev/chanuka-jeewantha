@@ -126,7 +126,7 @@ export default async function AffiliatePage() {
       </section>
 
       {/* Main Dashboard Layout */}
-      <section className="w-full py-16 bg-zinc-50 dark:bg-zinc-900 relative border-t border-zinc-200 dark:border-zinc-800">
+ <section className="w-full py-16 bg-zinc-50 relative border-t border-zinc-200">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mx-auto max-w-[1000px]">
             {profile ? (
@@ -141,7 +141,7 @@ export default async function AffiliatePage() {
                 }))}
               />
             ) : (
-              <div className="rounded-[24px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 text-center shadow-sm">
+ <div className="rounded-[24px] border border-zinc-200 bg-white p-8 text-center shadow-sm">
                 <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">Sign in to activate your affiliate dashboard</h2>
                 <p className="mt-3 text-text-body">
                   Your unique referral code and live performance metrics are available after authentication.
@@ -155,7 +155,7 @@ export default async function AffiliatePage() {
                   </Link>
                   <Link
                     href="/auth/signup?returnTo=%2Faffiliate"
-                    className="inline-flex items-center justify-center rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+ className="inline-flex items-center justify-center rounded-[10px] border border-zinc-300 px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
                   >
                     Create Account
                   </Link>
@@ -167,7 +167,7 @@ export default async function AffiliatePage() {
       </section>
       
       {/* FAQ / Rules */}
-      <section id="how-it-works" className="w-full py-16 bg-white dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800">
+ <section id="how-it-works" className="w-full py-16 bg-white border-t border-zinc-200">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6 text-center">
           <div className="mx-auto max-w-[800px]">
           <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground mb-4">How it Works</h2>

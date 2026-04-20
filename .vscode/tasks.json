@@ -20,6 +20,18 @@
 			],
 			"isBackground": false,
 			"group": "build"
+		},
+		{
+			"label": "Clean Fastlane",
+			"type": "shell",
+			"command": "node scratch/fastlane_clean.js",
+			"isBackground": false
+		},
+		{
+			"label": "git commit and push",
+			"type": "shell",
+			"command": "git add . ; git commit -m \"feat: parse Deep Work ebook and clean Fastlane intro\" ; git push",
+			"isBackground": false
 		}
 	]
 }

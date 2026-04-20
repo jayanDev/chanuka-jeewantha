@@ -22,8 +22,8 @@ export default async function PortfolioPage(props: { params: Promise<{ username:
     notFound();
   }
 
-  // Determine theme base
-  const isDark = portfolio.theme === "dark";
+  // Dark mode disabled globally: keep portfolio pages on the unified light theme.
+  const isDark = false;
   const bgMain = isDark ? "bg-[#0a0a0a]" : "bg-white";
   const textMain = isDark ? "text-white" : "text-black";
   const textSub = isDark ? "text-zinc-400" : "text-zinc-600";
@@ -65,7 +65,7 @@ export default async function PortfolioPage(props: { params: Promise<{ username:
                 Email Me
               </a>
               {portfolio.whatsappNumber && (
-                <a href={`https://wa.me/${portfolio.whatsappNumber.replace(/[^0-9]/g, '')}`} target="_blank" rel="noreferrer" className={`w-full text-center px-6 py-4 border-2 font-bold rounded-[12px] transition-colors ${isDark ? 'border-zinc-800 hover:bg-zinc-800' : 'border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100'}`}>
+ <a href={`https://wa.me/${portfolio.whatsappNumber.replace(/[^0-9]/g, '')}`} target="_blank" rel="noreferrer" className={`w-full text-center px-6 py-4 border-2 font-bold rounded-[12px] transition-colors ${isDark ? 'border-zinc-800 hover:bg-zinc-800' : 'border-zinc-200 hover:bg-zinc-100'}`}>
                   WhatsApp
                 </a>
               )}
@@ -78,7 +78,7 @@ export default async function PortfolioPage(props: { params: Promise<{ username:
           <h2 className={`text-sm font-bold uppercase tracking-widest mb-6 border-l-4 border-brand-main pl-4 ${textSub}`}>
             About Profile
           </h2>
-          <p className={`text-[18px] md:text-[22px] leading-[1.8] font-medium ${isDark ? 'text-zinc-300' : 'text-zinc-800 dark:text-zinc-200'} max-w-4xl`}>
+ <p className={`text-[18px] md:text-[22px] leading-[1.8] font-medium ${isDark ? 'text-zinc-300' : 'text-zinc-800'} max-w-4xl`}>
             {portfolio.aboutSummary}
           </p>
         </section>
@@ -159,7 +159,7 @@ export default async function PortfolioPage(props: { params: Promise<{ username:
                 <div className="flex-grow">
                   <span className={`md:hidden block font-mono font-bold text-xs mb-2 ${textSub}`}>{edu.duration}</span>
                   <h3 className="text-[20px] font-bold mb-1 leading-tight">{edu.role}</h3>
-                  <p className={`text-[16px] font-semibold mb-3 ${isDark ? 'text-zinc-300' : 'text-zinc-800 dark:text-zinc-200'}`}>{edu.organization}</p>
+ <p className={`text-[16px] font-semibold mb-3 ${isDark ? 'text-zinc-300' : 'text-zinc-800'}`}>{edu.organization}</p>
                   <p className={`leading-relaxed ${textSub}`}>
                     {edu.description}
                   </p>

@@ -73,15 +73,15 @@ export default function LinkedinHeadlineGeneratorPage() {
         </div>
       </section>
 
-      <section className="w-full bg-zinc-50 dark:bg-zinc-900 py-[64px] sm:py-[80px] md:py-[96px]">
+ <section className="w-full bg-zinc-50 py-[64px] sm:py-[80px] md:py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <LinkedinHeadlineGeneratorClient />
         </div>
       </section>
 
-      <section className="w-full bg-white dark:bg-zinc-900 py-[40px] sm:py-[56px] border-t border-zinc-200 dark:border-zinc-800">
+ <section className="w-full bg-white py-[40px] sm:py-[56px] border-t border-zinc-200">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
-          <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6">
+ <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6">
             <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">Turn a better headline into a stronger profile</h2>
             <p className="mt-3 text-text-body">
               A headline works best when your About section, experience entries, and proof assets support the same positioning story. Use this as the first layer, not the whole brand.
@@ -90,10 +90,10 @@ export default function LinkedinHeadlineGeneratorPage() {
               <Link href="/services/packages/linkedin-optimization" className="rounded-[10px] bg-brand-main px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-dark">
                 LinkedIn Optimization
               </Link>
-              <Link href="/services/personal-website" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/services/personal-website" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Personal Website Service
               </Link>
-              <Link href="/results" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/results" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 See Results
               </Link>
             </div>

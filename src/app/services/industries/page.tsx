@@ -59,19 +59,19 @@ export default function ServiceIndustriesPage() {
         </div>
       </section>
 
-      <section className="w-full bg-white dark:bg-zinc-900 py-[64px] sm:py-[80px] md:py-[96px]">
+ <section className="w-full bg-white py-[64px] sm:py-[80px] md:py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
             {industryLandingPages.map((page) => (
-              <article key={page.slug} className="rounded-[22px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.1)]">
+ <article key={page.slug} className="rounded-[22px] border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.1)]">
                 <span className="inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
                   {page.name}
                 </span>
                 <h2 className="mt-4 text-[28px] font-bold font-plus-jakarta text-foreground">{page.name}</h2>
-                <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{page.description}</p>
+ <p className="mt-3 text-sm leading-relaxed text-zinc-600">{page.description}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {page.sampleRoles.slice(0, 3).map((role) => (
-                    <span key={role} className="rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 px-3 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300">
+ <span key={role} className="rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs font-medium text-zinc-700">
                       {role}
                     </span>
                   ))}

@@ -77,7 +77,7 @@ export default function BusinessesPage() {
         </div>
       </section>
 
-      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white dark:bg-zinc-900">
+ <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-14 max-w-4xl">
             <span className="text-brand-main font-semibold tracking-wider uppercase mb-2 block">Business Showcase</span>
@@ -93,9 +93,9 @@ export default function BusinessesPage() {
             {businesses.map((business, index) => (
               <article
                 key={business.name}
-                className="group relative overflow-hidden rounded-[22px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+ className="group relative overflow-hidden rounded-[22px] border border-zinc-200 bg-zinc-50 p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
-                <div className="mb-5 inline-flex items-center gap-2 rounded-[10px] border border-brand-main/35 bg-white dark:bg-zinc-900 px-3 py-1.5">
+ <div className="mb-5 inline-flex items-center gap-2 rounded-[10px] border border-brand-main/35 bg-white px-3 py-1.5">
                   <span className="inline-block h-2.5 w-2.5 rounded-full bg-brand-main" />
                   <span className="text-xs font-bold uppercase tracking-[0.16em] text-brand-dark">Venture {index + 1}</span>
                 </div>
@@ -121,25 +121,25 @@ export default function BusinessesPage() {
             ))}
           </div>
 
-          <aside className="mt-8 rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6">
+ <aside className="mt-8 rounded-[16px] border border-zinc-200 bg-zinc-50 p-6">
             <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Discover Connected Pages</h2>
             <p className="text-text-body mb-5">
               Explore the services and proof-based content behind each business initiative.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link href="/services" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/services" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Services
               </Link>
-              <Link href="/tools" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/tools" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Free Tools
               </Link>
-              <Link href="/workshops" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/workshops" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Workshops
               </Link>
-              <Link href="/case-studies" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/case-studies" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Case Studies
               </Link>
-              <Link href="/portfolio" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/portfolio" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Portfolio
               </Link>
             </div>

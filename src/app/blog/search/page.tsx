@@ -62,7 +62,7 @@ export default async function BlogSearchPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
 
-      <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white dark:bg-zinc-900 min-h-[70vh]">
+ <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white min-h-[70vh]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-8">
             <Link href="/blog" className="text-sm font-medium text-brand-main hover:text-brand-dark">
@@ -71,13 +71,13 @@ export default async function BlogSearchPage({
             <h1 className="mt-3 text-[34px] md:text-[48px] font-bold font-plus-jakarta text-foreground">
               Blog Search Results
             </h1>
-            <p className="mt-2 text-zinc-600 dark:text-zinc-400">
+ <p className="mt-2 text-zinc-600">
               Showing results for <span className="font-semibold text-foreground">"{query || "all posts"}"</span> ({visiblePosts.length})
             </p>
           </div>
 
           <form action="/blog/search" method="get" className="mb-10 max-w-xl">
-            <label htmlFor="q" className="mb-2 block text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+ <label htmlFor="q" className="mb-2 block text-sm font-semibold text-zinc-700">
               Search blog articles
             </label>
             <div className="flex flex-col gap-3 sm:flex-row">
@@ -86,7 +86,7 @@ export default async function BlogSearchPage({
                 name="q"
                 defaultValue={query}
                 placeholder="Search CV, LinkedIn, interview, ATS..."
-                className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3 text-sm focus:border-brand-main focus:outline-none"
+ className="w-full rounded-[10px] border border-zinc-300 px-4 py-3 text-sm focus:border-brand-main focus:outline-none"
               />
               <button
                 type="submit"
@@ -98,8 +98,8 @@ export default async function BlogSearchPage({
           </form>
 
           {visiblePosts.length === 0 ? (
-            <div className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6 text-center">
-              <p className="text-zinc-700 dark:text-zinc-300">No blog posts match your search yet. Try a different keyword.</p>
+ <div className="rounded-[16px] border border-zinc-200 bg-zinc-50 p-6 text-center">
+ <p className="text-zinc-700">No blog posts match your search yet. Try a different keyword.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -108,7 +108,7 @@ export default async function BlogSearchPage({
                 const packageSlug = post.packageSlug ?? contentPost?.packageSlug;
 
                 return (
-                <article key={post.slug} className="border border-zinc-200 dark:border-zinc-800 rounded-[24px] p-6 hover:shadow-lg transition-shadow group flex flex-col">
+ <article key={post.slug} className="border border-zinc-200 rounded-[24px] p-6 hover:shadow-lg transition-shadow group flex flex-col">
                   <div className="w-full h-[220px] bg-zinc-200 rounded-[16px] overflow-hidden mb-5 flex-shrink-0">
                     <div className="w-full h-full bg-zinc-300 flex flex-col items-center justify-center font-mono text-zinc-500 text-sm text-center group-hover:scale-105 transition-transform duration-500">
                       <span className="font-semibold tracking-wide">Placeholder</span>
@@ -135,7 +135,7 @@ export default async function BlogSearchPage({
                     {packageSlug && (
                       <Link
                         href={`/packages/${packageSlug}`}
-                        className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+ className="rounded-[10px] border border-zinc-300 bg-white px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
                       >
                         View Package
                       </Link>
@@ -146,19 +146,19 @@ export default async function BlogSearchPage({
             </div>
           )}
 
-          <aside className="mt-12 rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6">
+ <aside className="mt-12 rounded-[16px] border border-zinc-200 bg-zinc-50 p-6">
             <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Continue Exploring</h2>
             <p className="text-text-body mb-5">
               Keep building momentum with related pages across this site.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link href="/blog" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/blog" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Browse All Blog Posts
               </Link>
-              <Link href="/resources" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/resources" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Explore Digital Resources
               </Link>
-              <Link href="/services" className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/services" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 View Services
               </Link>
             </div>

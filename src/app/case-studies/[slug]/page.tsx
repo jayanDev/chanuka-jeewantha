@@ -107,11 +107,11 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         </div>
       </section>
 
-      <section className="w-full bg-white dark:bg-zinc-900 py-[64px] sm:py-[80px] md:py-[96px]">
+ <section className="w-full bg-white py-[64px] sm:py-[80px] md:py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_320px]">
-            <article className="rounded-[24px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 md:p-10 shadow-sm">
-              <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-[20px] border border-zinc-200 dark:border-zinc-800">
+ <article className="rounded-[24px] border border-zinc-200 bg-white p-6 md:p-10 shadow-sm">
+ <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-[20px] border border-zinc-200">
                 <Image
                   src={study.image}
                   alt={study.title}
@@ -122,17 +122,17 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
               </div>
 
               <div className="mb-10 grid grid-cols-1 gap-4 md:grid-cols-3">
-                <div className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-5">
+ <div className="rounded-[16px] border border-zinc-200 bg-zinc-50 p-5">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">Client Profile</p>
-                  <p className="mt-2 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">{study.clientProfile}</p>
+ <p className="mt-2 text-sm leading-relaxed text-zinc-700">{study.clientProfile}</p>
                 </div>
-                <div className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-5">
+ <div className="rounded-[16px] border border-zinc-200 bg-zinc-50 p-5">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">Category</p>
-                  <p className="mt-2 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">{study.category}</p>
+ <p className="mt-2 text-sm leading-relaxed text-zinc-700">{study.category}</p>
                 </div>
-                <div className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-5">
+ <div className="rounded-[16px] border border-zinc-200 bg-zinc-50 p-5">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">Year</p>
-                  <p className="mt-2 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">{study.year}</p>
+ <p className="mt-2 text-sm leading-relaxed text-zinc-700">{study.year}</p>
                 </div>
               </div>
 
@@ -141,7 +141,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                   <h2 className="text-[30px] font-bold font-plus-jakarta text-foreground">The Challenge</h2>
                   <ul className="mt-5 space-y-3">
                     {study.challenge.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-zinc-700 dark:text-zinc-300">
+ <li key={item} className="flex items-start gap-3 text-zinc-700">
                         <span className="mt-2 inline-block h-2.5 w-2.5 rounded-full bg-brand-main" />
                         <span>{item}</span>
                       </li>
@@ -153,7 +153,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                   <h2 className="text-[30px] font-bold font-plus-jakarta text-foreground">What Changed</h2>
                   <ul className="mt-5 space-y-3">
                     {study.strategy.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-zinc-700 dark:text-zinc-300">
+ <li key={item} className="flex items-start gap-3 text-zinc-700">
                         <span className="mt-2 inline-block h-2.5 w-2.5 rounded-full bg-brand-main" />
                         <span>{item}</span>
                       </li>
@@ -165,7 +165,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                   <h2 className="text-[30px] font-bold font-plus-jakarta text-foreground">Outcome</h2>
                   <ul className="mt-5 space-y-3">
                     {study.outcomes.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-zinc-700 dark:text-zinc-300">
+ <li key={item} className="flex items-start gap-3 text-zinc-700">
                         <span className="mt-2 inline-block h-2.5 w-2.5 rounded-full bg-brand-main" />
                         <span>{item}</span>
                       </li>
@@ -176,23 +176,23 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             </article>
 
             <aside className="space-y-6">
-              <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6">
+ <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6">
                 <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">Proof Points</h3>
                 <ul className="mt-5 space-y-3">
                   {study.proofPoints.map((point) => (
-                    <li key={point} className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{point}</li>
+ <li key={point} className="text-sm font-medium text-zinc-700">{point}</li>
                   ))}
                 </ul>
               </div>
 
-              <div className="rounded-[20px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6">
+ <div className="rounded-[20px] border border-zinc-200 bg-white p-6">
                 <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">Next Steps</h3>
                 <div className="mt-5 flex flex-col gap-3">
                   {study.relatedServices.map((item) => (
                     <Link
                       key={`${item.href}-${item.label}`}
                       href={item.href}
-                      className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main"
+ className="rounded-[10px] border border-zinc-300 px-4 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main"
                     >
                       {item.label}
                     </Link>

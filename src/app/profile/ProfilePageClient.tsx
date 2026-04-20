@@ -165,18 +165,18 @@ export default function ProfilePageClient() {
 
   if (isLoading) {
     return (
-      <section className="w-full min-h-[70vh] bg-zinc-50 dark:bg-zinc-900 py-16">
+ <section className="w-full min-h-[70vh] bg-zinc-50 py-16">
         <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">Loading profile settings...</p>
+ <p className="text-sm text-zinc-600">Loading profile settings...</p>
         </div>
       </section>
     );
   }
 
   return (
-    <section className="w-full min-h-[70vh] bg-zinc-50 dark:bg-zinc-900 py-16">
+ <section className="w-full min-h-[70vh] bg-zinc-50 py-16">
       <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 space-y-6">
-        <div className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 md:p-8">
+ <div className="rounded-[16px] border border-zinc-200 bg-white p-6 md:p-8">
           <h1 className="text-4xl font-bold font-plus-jakarta text-foreground">Profile Settings</h1>
           <p className="mt-2 text-text-body">
             Manage your account details, alert preferences, security, and quick account actions.
@@ -193,7 +193,7 @@ export default function ProfilePageClient() {
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
           <div className="space-y-6">
-            <form onSubmit={saveProfile} className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 space-y-4">
+ <form onSubmit={saveProfile} className="rounded-[16px] border border-zinc-200 bg-white p-6 space-y-4">
               <h2 className="text-2xl font-bold font-plus-jakarta text-foreground">Account</h2>
 
               <div>
@@ -203,7 +203,7 @@ export default function ProfilePageClient() {
                   type="text"
                   value={name}
                   onChange={(event) => setName(event.target.value)}
-                  className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3"
+ className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
                   required
                 />
               </div>
@@ -215,7 +215,7 @@ export default function ProfilePageClient() {
                   type="email"
                   value={profile?.email ?? ""}
                   readOnly
-                  className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 bg-zinc-100 px-4 py-3 text-zinc-600 dark:text-zinc-400"
+ className="w-full rounded-[10px] border border-zinc-300 bg-zinc-100 px-4 py-3 text-zinc-600"
                 />
               </div>
 
@@ -228,7 +228,7 @@ export default function ProfilePageClient() {
                   onChange={(event) => setWhatsappNumber(event.target.value)}
                   inputMode="numeric"
                   placeholder="e.g. 0773902230"
-                  className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3"
+ className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
                 />
               </div>
 
@@ -240,7 +240,7 @@ export default function ProfilePageClient() {
                   value={linkedinUrl}
                   onChange={(event) => setLinkedinUrl(event.target.value)}
                   placeholder="https://www.linkedin.com/in/your-profile"
-                  className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3"
+ className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
                 />
               </div>
 
@@ -251,7 +251,7 @@ export default function ProfilePageClient() {
                   type="text"
                   value={timezone}
                   onChange={(event) => setTimezone(event.target.value)}
-                  className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3"
+ className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
                 />
               </div>
 
@@ -285,7 +285,7 @@ export default function ProfilePageClient() {
               </button>
             </form>
 
-            <form onSubmit={changePassword} className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 space-y-4">
+ <form onSubmit={changePassword} className="rounded-[16px] border border-zinc-200 bg-white p-6 space-y-4">
               <h2 className="text-2xl font-bold font-plus-jakarta text-foreground">Security</h2>
 
               <div>
@@ -295,7 +295,7 @@ export default function ProfilePageClient() {
                   type="password"
                   value={currentPassword}
                   onChange={(event) => setCurrentPassword(event.target.value)}
-                  className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3"
+ className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
                   minLength={6}
                   required
                 />
@@ -308,7 +308,7 @@ export default function ProfilePageClient() {
                   type="password"
                   value={newPassword}
                   onChange={(event) => setNewPassword(event.target.value)}
-                  className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3"
+ className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
                   minLength={6}
                   required
                 />
@@ -321,7 +321,7 @@ export default function ProfilePageClient() {
                   type="password"
                   value={confirmPassword}
                   onChange={(event) => setConfirmPassword(event.target.value)}
-                  className="w-full rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-3"
+ className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
                   minLength={6}
                   required
                 />
@@ -336,7 +336,7 @@ export default function ProfilePageClient() {
               </button>
             </form>
 
-            <section className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 space-y-4">
+ <section className="rounded-[16px] border border-zinc-200 bg-white p-6 space-y-4">
               <h2 className="text-2xl font-bold font-plus-jakarta text-foreground">Affiliate Program</h2>
               <p className="text-text-body">
                 Invite friends with your referral link, track conversions, and unlock free package rewards as your
@@ -351,7 +351,7 @@ export default function ProfilePageClient() {
                 </Link>
                 <Link
                   href="/affiliate#how-it-works"
-                  className="rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-5 py-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main"
+ className="rounded-[10px] border border-zinc-300 px-5 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main"
                 >
                   View Program Rules
                 </Link>
@@ -359,18 +359,18 @@ export default function ProfilePageClient() {
             </section>
           </div>
 
-          <aside className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 h-fit space-y-4 lg:sticky lg:top-24">
+ <aside className="rounded-[16px] border border-zinc-200 bg-white p-6 h-fit space-y-4 lg:sticky lg:top-24">
             <h2 className="text-xl font-bold font-plus-jakarta text-foreground">Quick Actions</h2>
-            <Link href="/orders" className="block rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/orders" className="block rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
               My Orders
             </Link>
-            <Link href="/notifications" className="block rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/notifications" className="block rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
               Notifications
             </Link>
-            <Link href="/cart" className="block rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/cart" className="block rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
               Cart
             </Link>
-            <Link href="/affiliate" className="block rounded-[10px] border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-colors hover:border-brand-main hover:text-brand-main">
+ <Link href="/affiliate" className="block rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
               Affiliate Program
             </Link>
             <button

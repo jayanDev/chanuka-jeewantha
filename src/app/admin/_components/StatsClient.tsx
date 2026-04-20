@@ -79,11 +79,11 @@ export default function StatsClient() {
 
   return (
     <section className="space-y-5">
-      <div className="rounded-[16px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6">
+ <div className="rounded-[16px] border border-zinc-200 bg-white p-6">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <h2 className="text-2xl font-bold font-plus-jakarta">Stats</h2>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400">Live activity and current business performance.</p>
+ <p className="text-sm text-zinc-600">Live activity and current business performance.</p>
           </div>
           <button
             type="button"
@@ -99,7 +99,7 @@ export default function StatsClient() {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
         {cards.map((card) => (
-          <article key={card.label} className="rounded-[14px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
+ <article key={card.label} className="rounded-[14px] border border-zinc-200 bg-white p-5">
             <p className="text-sm text-zinc-500">{card.label}</p>
             <p className="text-3xl font-bold text-foreground">{card.value}</p>
           </article>
@@ -108,24 +108,24 @@ export default function StatsClient() {
 
       {stats && (
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          <article className="rounded-[14px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
+ <article className="rounded-[14px] border border-zinc-200 bg-white p-5">
             <p className="text-sm text-zinc-500">Orders</p>
             <p className="text-2xl font-bold text-foreground">{stats.current.totalOrders}</p>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">Completed: {stats.current.completedOrders}</p>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400">Payment Submitted: {stats.current.paymentSubmittedOrders}</p>
+ <p className="text-sm text-zinc-600 mt-1">Completed: {stats.current.completedOrders}</p>
+ <p className="text-sm text-zinc-600">Payment Submitted: {stats.current.paymentSubmittedOrders}</p>
           </article>
 
-          <article className="rounded-[14px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
+ <article className="rounded-[14px] border border-zinc-200 bg-white p-5">
             <p className="text-sm text-zinc-500">Engagement</p>
             <p className="text-2xl font-bold text-foreground">{stats.current.conversionRatePercent}%</p>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">Order Conversion Rate</p>
+ <p className="text-sm text-zinc-600 mt-1">Order Conversion Rate</p>
           </article>
 
-          <article className="rounded-[14px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
+ <article className="rounded-[14px] border border-zinc-200 bg-white p-5">
             <p className="text-sm text-zinc-500">Moderation & Campaigns</p>
-            <p className="text-sm text-zinc-700 dark:text-zinc-300 mt-2">Pending Reviews: {stats.current.pendingReviews}</p>
-            <p className="text-sm text-zinc-700 dark:text-zinc-300">Active Offers: {stats.current.activeOffers}</p>
-            <p className="text-sm text-zinc-700 dark:text-zinc-300">Active Coupons: {stats.current.activeCoupons}</p>
+ <p className="text-sm text-zinc-700 mt-2">Pending Reviews: {stats.current.pendingReviews}</p>
+ <p className="text-sm text-zinc-700">Active Offers: {stats.current.activeOffers}</p>
+ <p className="text-sm text-zinc-700">Active Coupons: {stats.current.activeCoupons}</p>
           </article>
         </div>
       )}

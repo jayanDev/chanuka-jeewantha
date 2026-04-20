@@ -41,7 +41,7 @@ export default function SubscribeForm() {
   return (
     <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-brand-main text-white relative overflow-hidden">
       {/* Decorative Elements */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-white dark:bg-zinc-900 opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+ <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-dark opacity-30 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
 
       <div className="max-w-[1512px] mx-auto px-4 sm:px-6 relative z-10 flex flex-col items-center text-center">
@@ -49,12 +49,12 @@ export default function SubscribeForm() {
         <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground mb-6 leading-[1.1] max-w-2xl">
           Get free career resources and new strategy guides.
         </h2>
-        <p className="text-text-body text-lg mb-10 max-w-xl text-zinc-800 dark:text-zinc-200">
+ <p className="text-text-body text-lg mb-10 max-w-xl text-zinc-800">
           Join the list for ATS CV tips, LinkedIn positioning ideas, interview-prep resources, and future digital toolkits.
         </p>
 
         {status === "success" && (
-          <div className="mb-6 p-4 w-full max-w-2xl bg-white dark:bg-zinc-900/20 border border-white/50 rounded-[10px] text-foreground font-medium text-center">
+ <div className="mb-6 p-4 w-full max-w-2xl bg-white border border-white/50 rounded-[10px] text-foreground font-medium text-center">
             Thanks for subscribing. You will receive future career resources and updates in your inbox.
           </div>
         )}
@@ -83,7 +83,7 @@ export default function SubscribeForm() {
               onChange={(e) => setEmail(e.target.value)}
               disabled={status === "loading"}
               placeholder="Your email address" 
-              className="w-full pl-14 pr-6 py-[20px] bg-white dark:bg-zinc-900 border border-transparent rounded-[10px] text-foreground focus:outline-none focus:ring-2 focus:ring-foreground focus:border-transparent transition-all placeholder:text-zinc-500 font-medium disabled:opacity-70"
+ className="w-full pl-14 pr-6 py-[20px] bg-white border border-transparent rounded-[10px] text-foreground focus:outline-none focus:ring-2 focus:ring-foreground focus:border-transparent transition-all placeholder:text-zinc-500 font-medium disabled:opacity-70"
               required
             />
           </div>
