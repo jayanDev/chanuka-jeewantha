@@ -419,17 +419,17 @@ export default async function Home() {
               <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Guides & Templates</span>
               <h3 className="text-[30px] font-bold font-plus-jakarta text-white">Resources</h3>
             </div>
-            <Link href="/resources" className="rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
+            <Link href="/resources" className="rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black">
               See More
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {resourceHighlights.map((item) => (
               <article key={item.title} className="group h-full flex flex-col rounded-[20px] border border-zinc-700 bg-zinc-800 p-8 transition-all hover:-translate-y-1 hover:border-brand-main/40 hover:bg-white hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)]">
-                <span className="mb-3 self-start inline-flex rounded-full border border-brand-main/30 bg-brand-main/10 px-3 py-1 text-xs font-semibold text-brand-light">{item.type}</span>
-                <h4 className="mb-2 text-[20px] font-bold font-plus-jakarta text-zinc-50 group-hover:text-black transition-colors">{item.title}</h4>
-                <p className="mb-5 text-sm leading-relaxed text-zinc-400 group-hover:text-zinc-700 transition-colors">{item.desc}</p>
-                <Link href={item.href} className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-brand-light transition-colors group-hover:text-brand-main">
+                <span className="mb-3 self-start inline-flex rounded-full border border-brand-main/30 bg-brand-main/10 px-3 py-1 text-xs font-semibold text-white group-hover:text-black">{item.type}</span>
+                <h4 className="mb-2 text-[20px] font-bold font-plus-jakarta text-white group-hover:text-black transition-colors">{item.title}</h4>
+                <p className="mb-5 text-sm leading-relaxed text-white group-hover:text-black transition-colors">{item.desc}</p>
+                <Link href={item.href} className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors group-hover:text-black">
                   Open Resource
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
                 </Link>
@@ -454,8 +454,8 @@ export default async function Home() {
             {industryHighlights.map((item) => (
               <article key={item.slug} className="group flex-1 flex flex-col justify-between rounded-[20px] border border-zinc-200 bg-white p-6 shadow-[0_8px_20px_rgba(0,0,0,0.05)] transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.1)] sm:min-w-[58%] md:min-w-0">
                 <div className="mb-4 flex items-start justify-between w-full">
-                  <span className="inline-flex rounded-full bg-brand-main px-3 py-1 text-xs font-semibold text-white">{item.name}</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-main"><path d="M3 21h18" /><path d="M5 21V7l8-4v18" /><path d="M19 21V11l-6-4" /></svg>
+                  <span className="inline-flex rounded-full bg-brand-main px-3 py-1 text-xs font-semibold text-white group-hover:text-black transition-colors">{item.name}</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-main group-hover:text-black transition-colors"><path d="M3 21h18" /><path d="M5 21V7l8-4v18" /><path d="M19 21V11l-6-4" /></svg>
                 </div>
                 <h4 className="mb-2 text-[20px] font-bold font-plus-jakarta text-zinc-900">{item.name}</h4>
                 <p className="mb-5 text-sm leading-relaxed text-zinc-600">{item.heroSummary}</p>
@@ -512,7 +512,7 @@ export default async function Home() {
               <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">High Demand</span>
               <h3 className="text-[30px] font-bold font-plus-jakarta text-white">Fast Moving Packages</h3>
             </div>
-            <Link href="/pricing" className="rounded-[10px] border bg-zinc-800 text-white border-zinc-700 hover:border-brand-main transition-colors hover:border-brand-main hover:text-brand-main">
+            <Link href="/pricing" className="rounded-[10px] border border-zinc-300 hover:bg-white px-4 py-2 text-sm font-semibold text-white transition-colors hover:text-black">
               See More
             </Link>
           </div>
@@ -520,12 +520,12 @@ export default async function Home() {
             {fastMovingPackages.map((item) => (
               <article key={item.title} className="group h-full flex flex-col items-start rounded-[20px] border border-zinc-700 bg-zinc-900 p-8 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl hover:bg-white w-full">
                 <div className="mb-4 flex items-start justify-between w-full">
-                  <span className="inline-flex rounded-full bg-brand-main px-3 py-1 text-xs font-semibold text-white">{item.tag}</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-main"><path d="M20 12v10H4V12" /><path d="M2 7h20v5H2z" /><path d="M12 22V7" /><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" /><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" /></svg>
+                  <span className="inline-flex rounded-full bg-brand-main px-3 py-1 text-xs font-semibold text-white group-hover:text-black transition-colors">{item.tag}</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-main group-hover:text-black transition-colors"><path d="M20 12v10H4V12" /><path d="M2 7h20v5H2z" /><path d="M12 22V7" /><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" /><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" /></svg>
                 </div>
                 <h4 className="mb-2 text-[20px] font-bold font-plus-jakarta text-white group-hover:text-black transition-colors">{item.title}</h4>
-                <p className="mb-5 text-sm leading-relaxed text-zinc-300 group-hover:text-zinc-700 transition-colors">{item.note}</p>
-                <Link href={item.href} className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-brand-light transition-colors group-hover:text-brand-main">
+                <p className="mb-5 text-sm leading-relaxed text-white group-hover:text-black transition-colors">{item.note}</p>
+                <Link href={item.href} className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors group-hover:text-black">
                   View Package
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
                 </Link>
