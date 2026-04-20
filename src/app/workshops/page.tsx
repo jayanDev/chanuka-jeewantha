@@ -56,6 +56,23 @@ export default function WorkshopsPage() {
   ]);
   const faqLd = buildFaqPageSchema(faqs);
 
+  const coursesLd = workshopTracks.map((track) => ({
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: track.title,
+    description: track.summary,
+    provider: {
+      "@type": "Person",
+      name: "Chanuka Jeewantha",
+      url: `${baseUrl}/about`,
+    },
+    url: `${baseUrl}/workshops`,
+    inLanguage: "en",
+    educationalLevel: "Beginner",
+    teaches: track.summary,
+    courseMode: ["online", "onsite"],
+  }));
+
   const serviceLd = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -80,6 +97,13 @@ export default function WorkshopsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
+      {coursesLd.map((courseLd, index) => (
+        <script
+          key={`course-${index}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(courseLd) }}
+        />
+      ))}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }}

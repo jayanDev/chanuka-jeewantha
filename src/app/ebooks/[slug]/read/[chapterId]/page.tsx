@@ -8,6 +8,7 @@ import { formatLkr } from "@/lib/packages-catalog";
 import { getEbookBySlug } from "@/lib/ebooks";
 import ChapterNavigator from "../_components/ChapterNavigator";
 import ReaderProtection from "../_components/ReaderProtection";
+import ReaderProgressTracker from "../_components/ReaderProgressTracker";
 
 type Props = {
   params: Promise<{ slug: string; chapterId: string }>;
@@ -157,8 +158,15 @@ export default async function ChapterPage({ params }: Props) {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12 md:py-20 lg:px-12 selection:bg-brand-main/20 selection:text-foreground">
+    <div className="max-w-3xl mx-auto px-5 py-24 md:py-28 lg:px-8 selection:bg-brand-main/20 selection:text-foreground">
       <ReaderProtection />
+      <ReaderProgressTracker 
+        currentIndex={currentIndex} 
+        totalChapters={totalChapters} 
+        chapterTitle={chapterData.title} 
+        ebookTitle={ebook.title} 
+        slug={slug} 
+      />
       <style dangerouslySetInnerHTML={{ __html: `
          @media print {
             body { display: none !important; }
@@ -168,43 +176,80 @@ export default async function ChapterPage({ params }: Props) {
             -ms-user-select: none;
             user-select: none;
          }
+         /* Make text beautifully readable for long content */
          .ebook-content p {
-            margin-bottom: 1.75rem;
-            line-height: 1.85;
-            font-size: 1.125rem;
-            color: #373e37;
-            text-align: justify;
+            margin-bottom: 2rem;
+            line-height: 2;
+            font-size: 1.15rem;
+            color: #3f3f46; /* zinc-700 */
          }
+         @media (max-width: 640px) {
+            .ebook-content p {
+               font-size: 1.05rem;
+               margin-bottom: 1.5rem;
+               line-height: 1.8;
+            }
+         }
+         /* Highlighted subtopics */
          .ebook-subtopic {
-            background-color: rgb(240 253 244);
+            background: linear-gradient(to right, rgb(240 253 244), transparent);
             border-left: 4px solid rgb(34 197 94);
-            padding: 1rem 1.25rem;
-            border-radius: 0 0.5rem 0.5rem 0;
-            margin: 3rem 0 1.5rem !important;
+            padding: 1.5rem 1.75rem;
+            border-radius: 0 0.75rem 0.75rem 0;
+            margin: 3.5rem 0 2rem !important;
             font-size: 1.35rem !important;
+            font-weight: 700;
+            color: #18181b; /* zinc-900 */
          }
          .ebook-content h1, .ebook-content h2, .ebook-content h3 {
-            margin-top: 3rem;
+            margin-top: 3.5rem;
             margin-bottom: 1.5rem;
-            font-weight: 700;
-            color: #171a17;
+            font-weight: 800;
+            color: #09090b; /* zinc-950 */
+            line-height: 1.3;
          }
-         .ebook-content h2 { font-size: 2rem; }
-         .ebook-content h3 { font-size: 1.5rem; }
+         .ebook-content h2 { font-size: 2.25rem; }
+         .ebook-content h3 { font-size: 1.75rem; }
          .ebook-content ul {
-            list-style-type: disc;
-            margin-left: 1.5rem;
-            margin-bottom: 2rem;
+            list-style-type: none;
+            margin-bottom: 2.5rem;
          }
          .ebook-content li {
-            margin-bottom: 0.75rem;
-            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            font-size: 1.15rem;
+            color: #3f3f46;
+            line-height: 1.8;
+            position: relative;
+            padding-left: 1.75rem;
+         }
+         /* Custom bullet points */
+         .ebook-content li::before {
+            content: "•";
+            color: rgb(34 197 94); /* brand-main */
+            font-weight: bold;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -0.25rem;
+         }
+         @media (max-width: 640px) {
+            .ebook-content li {
+               font-size: 1.05rem;
+            }
          }
          .ebook-content span {
             font-family: inherit !important;
             color: inherit !important;
             font-weight: inherit !important;
             font-style: inherit !important;
+         }
+         /* Highlighting important facts or strong text */
+         .ebook-content strong, .ebook-content b {
+            color: #18181b;
+            font-weight: 700;
+            background-color: rgb(240 253 244 / 0.5); /* subtle highlight */
+            padding: 0 0.1em;
+            border-radius: 0.125rem;
          }
       `}} />
 

@@ -133,3 +133,88 @@ export function buildOfferCatalogSchema(categories: OfferCatalogCategoryInput[])
     },
   };
 }
+
+type AggregateRatingInput = {
+  ratingValue: number;
+  reviewCount: number;
+  bestRating?: number;
+  worstRating?: number;
+};
+
+export function buildAggregateRatingSchema(
+  serviceName: string,
+  servicePath: string,
+  rating: AggregateRatingInput,
+) {
+  const baseUrl = getBaseUrl();
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: serviceName,
+    url: `${baseUrl}${normalizePath(servicePath)}`,
+    provider: {
+      "@type": "Organization",
+      name: "Chanuka Jeewantha",
+      url: baseUrl,
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: rating.ratingValue,
+      reviewCount: rating.reviewCount,
+      bestRating: rating.bestRating ?? 5,
+      worstRating: rating.worstRating ?? 1,
+    },
+  };
+}
+
+type ReviewSchemaInput = {
+  authorName: string;
+  rating: number;
+  reviewBody: string;
+  datePublished: string;
+};
+
+export function buildReviewListSchema(
+  serviceName: string,
+  servicePath: string,
+  reviews: ReviewSchemaInput[],
+  aggregate: AggregateRatingInput,
+) {
+  const baseUrl = getBaseUrl();
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: serviceName,
+    url: `${baseUrl}${normalizePath(servicePath)}`,
+    provider: {
+      "@type": "Organization",
+      name: "Chanuka Jeewantha",
+      url: baseUrl,
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: aggregate.ratingValue,
+      reviewCount: aggregate.reviewCount,
+      bestRating: aggregate.bestRating ?? 5,
+      worstRating: aggregate.worstRating ?? 1,
+    },
+    review: reviews.slice(0, 10).map((review) => ({
+      "@type": "Review",
+      author: {
+        "@type": "Person",
+        name: review.authorName,
+      },
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: review.rating,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      reviewBody: review.reviewBody,
+      datePublished: review.datePublished,
+    })),
+  };
+}
+

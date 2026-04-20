@@ -12,6 +12,7 @@ import { buildBreadcrumbList } from "@/lib/structured-data";
 import { getBaseUrl } from "@/lib/site-url";
 import { packageProducts } from "@/lib/packages-catalog";
 import { isIndexableFallbackBlogPost } from "@/lib/blog-discovery";
+import { getBlogPostLanguage, getSinhalaHreflangAlternates } from "@/lib/blog-i18n";
 
 export async function generateMetadata({
   params,
@@ -76,6 +77,7 @@ export async function generateMetadata({
     path: `/blog/${slug}`,
     type: "article",
     keywords: post.keywords,
+    alternateLanguages: getSinhalaHreflangAlternates(slug) ?? undefined,
   });
 
   const ogImagePath = `/blog/${slug}/opengraph-image`;
@@ -188,6 +190,8 @@ export default async function BlogPostPage({
   const publishedIso = post.publishedAt ? post.publishedAt.toISOString() : new Date().toISOString();
   const modifiedIso = post.updatedAt ? post.updatedAt.toISOString() : publishedIso;
   const wordCount = post.content.split(/\s+/).filter(Boolean).length;
+  const readingTimeMinutes = Math.max(1, Math.ceil(wordCount / 200));
+  const postLanguage = getBlogPostLanguage(post.slug);
   const packageInfo = contentPost?.packageSlug
     ? packageProducts.find((item) => item.slug === contentPost.packageSlug)
     : null;
@@ -214,9 +218,10 @@ export default async function BlogPostPage({
     url: articleUrl,
     mainEntityOfPage: articleUrl,
     image: [articleImageUrl],
-    inLanguage: "en-LK",
+    inLanguage: postLanguage === "si" ? "si" : "en-LK",
     articleSection: post.category,
     wordCount,
+    timeRequired: `PT${readingTimeMinutes}M`,
     keywords: tagKeywords,
     author: {
       "@type": "Person",
@@ -307,7 +312,7 @@ export default async function BlogPostPage({
       {/* 1. Hero Section */}
       <section className="w-full bg-foreground text-white pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
         {/* Background Marquee Text */}
-        <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
+        <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap" aria-hidden="true">
           <div className="animate-[marquee_30s_linear_infinite_reverse] flex gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
@@ -320,9 +325,9 @@ export default async function BlogPostPage({
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6 relative z-10 flex flex-col items-center text-center">
           <div className="flex items-center gap-2 text-text-light font-medium mb-6">
             <Link href="/" className="hover:text-brand-main transition-colors">Home</Link>
-            <span className="text-brand-main text-xs">/</span>
+            <span className="text-brand-main text-xs" aria-hidden="true">/</span>
             <Link href="/blog" className="hover:text-brand-main transition-colors">Blog</Link>
-            <span className="text-brand-main text-xs">/</span>
+            <span className="text-brand-main text-xs" aria-hidden="true">/</span>
             <span className="text-brand-main line-clamp-1 max-w-[200px] sm:max-w-none">{title}</span>
           </div>
           <h1 className="font-plus-jakarta text-[30px] sm:text-[40px] md:text-[56px] lg:text-[64px] font-bold leading-[1.1] max-w-4xl mb-8 !text-white">
@@ -332,17 +337,22 @@ export default async function BlogPostPage({
           {/* Post Metadata */}
           <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 text-text-light/80 font-medium text-sm md:text-base">
             <span className="flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-main"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-main" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
               {post.publishedAt ? post.publishedAt.toISOString().slice(0, 10) : "2025-10-24"}
             </span>
-            <span className="hidden sm:block text-brand-main/50">-</span>
+            <span className="hidden sm:block text-brand-main/50" aria-hidden="true">-</span>
             <span className="flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-main"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-main" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
               {post.category}
             </span>
-            <span className="hidden sm:block text-brand-main/50">-</span>
+            <span className="hidden sm:block text-brand-main/50" aria-hidden="true">-</span>
             <span className="flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-main"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-main" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              {readingTimeMinutes} min read
+            </span>
+            <span className="hidden sm:block text-brand-main/50" aria-hidden="true">-</span>
+            <span className="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-main" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
               {commentCount} Comments
             </span>
           </div>

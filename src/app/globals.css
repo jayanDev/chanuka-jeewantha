@@ -5,11 +5,34 @@
   --foreground: #171a17;
   --text-body: #373e37;
   --text-light: #dce0dc;
-  
+
   --brand-main: #8ac826;
   --brand-dark: #6d9e1e;
   --brand-light: #95d72c;
   --brand-subtle: #c6e98d;
+
+  /* Semantic surface tokens (used in dark mode overrides below) */
+  --surface-1: #ffffff;
+  --surface-2: #f4f4f5;
+  --border-color: #e4e4e7;
+}
+
+[data-theme="dark"] {
+  --background: #0e1110;
+  --foreground: #f1f5f1;
+  --text-body: #c1ccc1;
+  --text-light: #3a3f3a;
+
+  --brand-main: #8ac826;
+  --brand-dark: #a0d93e;
+  --brand-light: #b2e04a;
+  --brand-subtle: #3a5416;
+
+  --surface-1: #161b16;
+  --surface-2: #1e231e;
+  --border-color: #2a302a;
+
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -128,6 +151,8 @@ body {
   background: var(--background);
   color: var(--text-body);
   font-family: var(--font-poppins);
+  /* Smooth theme transitions — only when not doing initial page load */
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {

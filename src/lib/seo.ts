@@ -8,6 +8,8 @@ type BuildPageMetadataInput = {
   keywords?: string[];
   noIndex?: boolean;
   type?: "website" | "article" | "profile";
+  /** hreflang language alternates, e.g. { 'si': '/blog/some-sinhala-slug' } */
+  alternateLanguages?: Record<string, string>;
 };
 
 const SITE_NAME = "Chanuka Jeewantha";
@@ -23,6 +25,14 @@ export const TARGET_SEO_KEYWORDS = [
   "CV making",
   "CV maker",
   "CV Writing Services",
+  "resume writing Sri Lanka",
+  "LinkedIn profile optimization Sri Lanka",
+  "career coaching Sri Lanka",
+  "ATS resume checker",
+  "cover letter template",
+  "CV format Sri Lanka",
+  "career development specialist",
+  "personal branding services",
 ];
 
 function normalizePath(path: string): string {
@@ -51,6 +61,9 @@ export function buildPageMetadata(input: BuildPageMetadataInput): Metadata {
     keywords: mergedKeywords,
     alternates: {
       canonical: canonicalPath,
+      ...(input.alternateLanguages && Object.keys(input.alternateLanguages).length > 0
+        ? { languages: input.alternateLanguages }
+        : {}),
     },
     robots: noIndex
       ? {

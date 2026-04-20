@@ -10,6 +10,16 @@
 				"dev"
 			],
 			"isBackground": true
+		},
+		{
+			"label": "Parse Ebook",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"scripts/parseEbook.js"
+			],
+			"isBackground": false,
+			"group": "build"
 		}
 	]
 }

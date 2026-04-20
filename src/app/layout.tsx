@@ -5,6 +5,8 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppOrderButton from "@/components/WhatsAppOrderButton";
+import BackToTop from "@/components/BackToTop";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import AnalyticsHeartbeat from "@/components/AnalyticsHeartbeat";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import SeasonalOfferBanner from "@/components/SeasonalOfferBanner";
@@ -28,10 +30,18 @@ const organizationLd = {
   description:
     "Professional CV Writing Services, ATS Friendly CV maker, Cover Letter Writing, and LinkedIn Optimization by Career Specialist Chanuka Jeewantha.",
   areaServed: "Sri Lanka",
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+94-77-390-2230",
+    contactType: "customer service",
+    areaServed: "LK",
+    availableLanguage: ["English", "Sinhala"],
+  },
   sameAs: [
     "https://www.linkedin.com/in/chanuka-jeewantha/",
     "https://www.facebook.com/share/15vdmdB4oE/",
     "https://www.youtube.com/@chanukajeewantha",
+    "https://www.fiverr.com/s/kLBDGAb",
   ],
 };
 
@@ -66,7 +76,7 @@ const poppins = Poppins({
 });
 
 export const viewport = {
-  themeColor: "#ef4444",
+  themeColor: "#8ac826",
 };
 
 export const metadata: Metadata = {
@@ -92,6 +102,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "/",
+    types: {
+      "application/rss+xml": "/feed.xml",
+    },
   },
   keywords: TARGET_SEO_KEYWORDS,
   authors: [{ name: "Chanuka Jeewantha", url: siteUrl }],
@@ -131,6 +144,11 @@ export const metadata: Metadata = {
     description:
       "Career-focused CV, LinkedIn, coaching, and roadmap services designed for real hiring outcomes.",
     images: ["/images/hero-chanuka.jpg"],
+    creator: "@chanukajeewantha",
+    site: "@chanukajeewantha",
+  },
+  verification: {
+    google: "google-site-verification-code", // Will need real code
   },
 };
 
@@ -146,7 +164,22 @@ export default async function RootLayout({
       lang="en-LK"
       className={`${plusJakarta.variable} ${poppins.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="alternate" type="application/rss+xml" title="Chanuka Jeewantha Blog RSS Feed" href={`${siteUrl}/feed.xml`} />
+      </head>
       <body className="min-h-full flex flex-col font-poppins">
+        {/* Anti-FODT: apply stored theme before first paint to prevent white flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('cj-theme');var d=t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme:dark)').matches);document.documentElement.setAttribute('data-theme',d?'dark':'light');}catch(e){}})();`,
+          }}
+        />
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:z-[9999] focus:top-4 focus:left-4 focus:rounded-lg focus:bg-brand-main focus:px-4 focus:py-2 focus:text-white focus:font-semibold focus:shadow-lg"
+        >
+          Skip to content
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
@@ -163,11 +196,13 @@ export default async function RootLayout({
         <AnalyticsHeartbeat />
         <Header initialUser={currentUser} />
         <SeasonalOfferBanner />
-        <main className="flex-grow">
+        <Breadcrumbs />
+        <main id="main-content" className="flex-grow flex flex-col">
           {children}
         </main>
         <Footer />
         <WhatsAppOrderButton />
+        <BackToTop />
       </body>
     </html>
   );

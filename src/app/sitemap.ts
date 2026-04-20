@@ -11,6 +11,7 @@ import { careerTools } from "@/lib/tools";
 import { industryLandingPages } from "@/lib/industry-pages";
 
 const baseUrl = getBaseUrl();
+const siteLastUpdated = new Date("2026-04-20T00:00:00.000Z");
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = [
@@ -62,7 +63,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticEntries = staticRoutes.map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: new Date(),
+    lastModified: siteLastUpdated,
     changeFrequency: "weekly" as const,
     priority: route === "" ? 1 : 0.7,
   }));
@@ -108,7 +109,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const page = index + 1;
     return {
       url: page === 1 ? `${baseUrl}/blog` : `${baseUrl}/blog?page=${page}`,
-      lastModified: new Date(),
+      lastModified: siteLastUpdated,
       changeFrequency: "weekly" as const,
       priority: page === 1 ? 0.72 : 0.62,
     };
@@ -118,42 +119,42 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .sort()
     .map((category) => ({
       url: `${baseUrl}${getBlogCategoryPath(category)}`,
-      lastModified: new Date(),
+      lastModified: siteLastUpdated,
       changeFrequency: "weekly" as const,
       priority: 0.69,
     }));
 
   const packageEntries = packageProducts.map((item) => ({
     url: `${baseUrl}/packages/${item.slug}`,
-    lastModified: new Date(),
+    lastModified: siteLastUpdated,
     changeFrequency: "weekly" as const,
     priority: 0.72,
   }));
 
   const resourceEntries = digitalResources.map((item) => ({
     url: `${baseUrl}/resources/${item.slug}`,
-    lastModified: new Date(),
+    lastModified: siteLastUpdated,
     changeFrequency: "monthly" as const,
     priority: 0.68,
   }));
 
   const toolEntries = careerTools.map((item) => ({
     url: `${baseUrl}/tools/${item.slug}`,
-    lastModified: new Date(),
+    lastModified: siteLastUpdated,
     changeFrequency: "monthly" as const,
     priority: 0.69,
   }));
 
   const industryEntries = industryLandingPages.map((item) => ({
     url: `${baseUrl}/services/industries/${item.slug}`,
-    lastModified: new Date(),
+    lastModified: siteLastUpdated,
     changeFrequency: "monthly" as const,
     priority: 0.71,
   }));
 
   const ebookEntries = ebooks.map((item) => ({
     url: `${baseUrl}/ebooks/${item.slug}`,
-    lastModified: new Date(),
+    lastModified: siteLastUpdated,
     changeFrequency: "monthly" as const,
     priority: item.category === "free" ? 0.66 : 0.64,
   }));
