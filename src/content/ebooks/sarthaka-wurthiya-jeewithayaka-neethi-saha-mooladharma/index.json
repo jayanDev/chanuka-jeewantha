@@ -1,97 +1,65 @@
 [
   {
-    "kind": "chapter",
     "id": 0,
     "title": "හැඳින්වීම"
   },
   {
-    "kind": "section",
-    "title": "නියමය 1: ඔයාගේ 'Passion' එක (ආසාව) පස්සේ යන්න එපා"
-  },
-  {
-    "kind": "chapter",
     "id": 1,
     "title": "පළවෙනි පරිච්ඡේදය: ස්ටීව් ජොබ්ස්ගේ \"Passion\" එක ගැන ඇත්ත කතාව (The \"Passion\" of Steve Jobs)"
   },
   {
-    "kind": "chapter",
     "id": 2,
     "title": "දෙවෙනි පරිච්ඡේදය: ඇත්තටම 'Passion' එකක් කියන්නේ හරිම කලාතුරකින් කෙනෙකුට පිහිටන දෙයක් (Passion Is Rare)"
   },
   {
-    "kind": "chapter",
     "id": 3,
     "title": "තුන්වෙනි පරිච්ඡේදය: ඒ වගේම 'Passion' එක පස්සේ විතරක් යන එක භයානකයි (Passion Is Dangerous)"
   },
   {
-    "kind": "section",
-    "title": "නියමය 2: කාටවත් ඔයාව මඟහරින්න බැරි වෙන තරමටම ඔයාගේ වැඩේට දක්ෂ වෙන්න"
-  },
-  {
-    "kind": "chapter",
     "id": 4,
     "title": "හතරවෙනි පරිච්ඡේදය: තමන්ගේ වැඩේ උපරිමයෙන්ම කරන දක්ෂයෙකුගේ පැහැදිලි දැක්ම (The Clarity of the Craftsman)"
   },
   {
-    "kind": "chapter",
     "id": 5,
     "title": "පස්වෙනි පරිච්ඡේදය: Career Capital (ඒ කියන්නේ ඔයාගේ දුර්ලභ, වටිනා කුසලතා) වල තියෙන බලය (The Power of Career Capital)"
   },
   {
-    "kind": "chapter",
     "id": 6,
     "title": "හයවෙනි පරිච්ඡේදය: මේ විදිහට කුසලතා එකතු කරගත්තු අය (The Career Capitalists)"
   },
   {
-    "kind": "chapter",
     "id": 7,
     "title": "හත්වෙනි පරිච්ඡේදය: තමන්ගේ වැඩේට උපරිම දක්ෂයෙක් වෙන්නේ කොහොමද? (Becoming a Craftsman)"
   },
   {
-    "kind": "section",
-    "title": "නියමය 3: තමන්ගේ දේවල් තමන්ටම පාලනය කරන්න පුළුවන් වීමේ වැදගත්කම"
-  },
-  {
-    "kind": "chapter",
     "id": 8,
     "title": "අටවෙනි පරිච්ඡේදය: සිහින රැකියාවකට තියෙන එකම බෙහෙත (The Dream-Job Elixir)"
   },
   {
-    "kind": "chapter",
     "id": 9,
     "title": "නවවෙනි පරිච්ඡේදය: පාලනය සම්බන්ධව අපි අහුවෙන පළවෙනි උගුල (The First Control Trap)"
   },
   {
-    "kind": "chapter",
     "id": 10,
     "title": "දසවෙනි පරිච්ඡේදය: පාලනය සම්බන්ධව අපි අහුවෙන දෙවෙනි උගුල (The Second Control Trap)"
   },
   {
-    "kind": "chapter",
     "id": 11,
     "title": "එකොළොස්වෙනි පරිච්ඡේදය: මේ උගුල් වලින් බේරිලා සාර්ථක වෙන්නේ කොහොමද? (Avoiding the Control Traps)"
   },
   {
-    "kind": "section",
-    "title": "නියමය 4: පොඩියට හිතලා ලොකු වැඩක් කරන්න - Mission එකේ වැදගත්කම"
-  },
-  {
-    "kind": "chapter",
     "id": 12,
     "title": "දොළොස්වෙනි පරිච්ඡේදය: පාඩිස් සබේටිගේ අර්ථවත් ජීවිතය (The Meaningful Life of Pardis Sabeti)"
   },
   {
-    "kind": "chapter",
     "id": 13,
     "title": "දාතුන්වෙනි පරිච්ඡේදය: සාර්ථක Mission එකක් වෙනුවෙන් අනිවාර්යයෙන්ම කුසලතා (Capital) ඕනේ වෙනවා (Missions Require Capital)"
   },
   {
-    "kind": "chapter",
     "id": 14,
     "title": "දාහතරවෙනි පරිච්ඡේදය: Mission එකක් ජයගන්න නම් පොඩි පොඩි දේවල් වලින් අත්හදා බලන්න ඕනේ (Missions Require Little Bets)"
   },
   {
-    "kind": "chapter",
     "id": 15,
     "title": "පහළොස්වෙනි පරිච්ඡේදය: Mission එකක් ලෝකෙට ගෙනියන්න අනිවාර්යයෙන්ම මාකටින් (Marketing) ඕනේ වෙනවා (Missions Require Marketing)"
   }
