@@ -211,7 +211,7 @@ export default function ServicePackageShowcase({ title, description, packages }:
                   type="button"
                   onClick={() => void addToCart(pkg)}
                   disabled={Boolean(addedBySlug[pkg.slug])}
-                  className={`inline-flex items-center justify-center rounded-[10px] px-4 py-2.5 text-sm font-medium text-white transition-colors ${
+                  className={`inline-flex items-center justify-center rounded-[10px] px-4 py-2.5 text-sm font-medium text-background transition-colors ${
                     addedBySlug[pkg.slug]
                       ? "bg-green-600"
                       : "bg-foreground hover:bg-brand-dark"
@@ -244,7 +244,7 @@ export default function ServicePackageShowcase({ title, description, packages }:
         </div>
 
         <div className="mt-16 text-center flex flex-wrap items-center justify-center gap-3">
-          <Link href="/cart" className="inline-block px-[28px] py-[14px] border border-foreground hover:bg-foreground hover:text-white rounded-[10px] font-medium transition-colors">
+          <Link href="/cart" className="inline-block px-[28px] py-[14px] border border-foreground hover:bg-foreground hover:text-background rounded-[10px] font-medium transition-colors">
             Go to Cart
           </Link>
           <Link href="/checkout" className="inline-block px-[28px] py-[14px] bg-brand-main hover:bg-brand-dark text-white rounded-[10px] font-medium transition-colors">

@@ -297,7 +297,7 @@ export default function OffersCouponsClient() {
             <h2 className="text-2xl font-bold font-plus-jakarta">Manage Offers</h2>
             <p className="text-sm text-zinc-600">Priority rules, targeting, draft scheduling, analytics, and preview mode.</p>
           </div>
-          <button type="button" onClick={() => void refreshOffers()} className="rounded bg-foreground px-4 py-2 text-sm text-white">Refresh</button>
+          <button type="button" onClick={() => void refreshOffers()} className="rounded bg-foreground px-4 py-2 text-sm text-background">Refresh</button>
         </div>
 
         {offerError && <p className="text-sm text-red-700">{offerError}</p>}
@@ -423,7 +423,7 @@ export default function OffersCouponsClient() {
             <h2 className="text-2xl font-bold font-plus-jakarta">Manage Coupons</h2>
             <p className="text-sm text-zinc-600">Create coupons with usage limits and scope targeting.</p>
           </div>
-          <button type="button" onClick={() => void refreshCoupons()} className="rounded bg-foreground px-4 py-2 text-sm text-white">Refresh</button>
+          <button type="button" onClick={() => void refreshCoupons()} className="rounded bg-foreground px-4 py-2 text-sm text-background">Refresh</button>
         </div>
 
         {couponError && <p className="text-sm text-red-700">{couponError}</p>}

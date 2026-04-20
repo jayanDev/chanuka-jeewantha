@@ -66,7 +66,7 @@ export default function ServicesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
 
-      <section className="reveal-section w-full bg-foreground text-white pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
+      <section className="reveal-section w-full bg-foreground text-background pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -187,7 +187,7 @@ export default function ServicesPage() {
                   Explore tailored guidance for different industries and role groups instead of relying on one generic service path.
                 </p>
               </div>
-              <Link href="/services/industries" className="rounded-[10px] bg-foreground px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-main">
+              <Link href="/services/industries" className="rounded-[10px] bg-foreground px-4 py-2 text-sm font-semibold text-background transition-colors hover:bg-brand-main">
                 View All Industry Pages
               </Link>
             </div>

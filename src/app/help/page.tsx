@@ -81,7 +81,7 @@ export default function HelpPage() {
             <Link href="/pricing" className="px-[28px] py-[14px] bg-brand-main hover:bg-brand-dark text-white rounded-[10px] font-medium transition-colors">
               View All Packages
             </Link>
-            <Link href="/faq" className="px-[28px] py-[14px] border border-foreground text-foreground hover:bg-foreground hover:text-white rounded-[10px] font-medium transition-colors">
+            <Link href="/faq" className="px-[28px] py-[14px] border border-foreground text-foreground hover:bg-foreground hover:text-background rounded-[10px] font-medium transition-colors">
               Browse FAQ
             </Link>
             <Link href="/contact" className="px-[28px] py-[14px] border border-zinc-300 text-foreground hover:border-brand-main hover:text-brand-main rounded-[10px] font-medium transition-colors">

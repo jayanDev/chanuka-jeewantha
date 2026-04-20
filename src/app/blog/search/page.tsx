@@ -90,7 +90,7 @@ export default async function BlogSearchPage({
               />
               <button
                 type="submit"
-                className="rounded-[10px] bg-foreground px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-zinc-800"
+                className="rounded-[10px] bg-foreground px-5 py-3 text-sm font-semibold text-background transition-colors hover:bg-zinc-800"
               >
                 Search
               </button>

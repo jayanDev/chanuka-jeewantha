@@ -77,7 +77,7 @@ export default function ReviewsClient() {
           <div className="flex gap-2">
             <button type="button" onClick={() => void setAllPendingReviews(true)} className="rounded bg-green-600 px-4 py-2 text-sm text-white">Approve All</button>
             <button type="button" onClick={() => void setAllPendingReviews(false)} className="rounded bg-zinc-700 px-4 py-2 text-sm text-white">Hide All</button>
-            <button type="button" onClick={() => void loadReviews()} className="rounded bg-foreground px-4 py-2 text-sm text-white">Refresh</button>
+            <button type="button" onClick={() => void loadReviews()} className="rounded bg-foreground px-4 py-2 text-sm text-background">Refresh</button>
           </div>
         </div>
         {error && <p className="mt-3 text-sm text-red-700">{error}</p>}

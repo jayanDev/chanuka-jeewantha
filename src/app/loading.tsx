@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <div className="fixed inset-0 z-[999] bg-foreground text-white grid place-items-center overflow-hidden">
+    <div className="fixed inset-0 z-[999] bg-foreground text-background grid place-items-center overflow-hidden">
       <div className="absolute w-[40vw] h-[40vw] max-w-[360px] max-h-[360px] rounded-full bg-brand-main/20 blur-3xl animate-float" />
 
       <div className="relative z-10 flex flex-col items-center gap-6 px-6">

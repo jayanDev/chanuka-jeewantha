@@ -129,7 +129,7 @@ export default function ResourceFilterClient({ resources }: { resources: Digital
                 
                 <Link 
                   href={`/resources/${resource.slug}`} 
-                  className="rounded-xl bg-foreground px-6 py-3.5 font-bold text-white transition-colors hover:bg-brand-main flex items-center gap-2 group/btn"
+                  className="rounded-xl bg-foreground px-6 py-3.5 font-bold text-background transition-colors hover:bg-brand-main flex items-center gap-2 group/btn"
                 >
                   Get Access
                   <svg className="group-hover/btn:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>

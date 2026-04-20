@@ -3,7 +3,7 @@ import React from "react";
 
 export default function NotFound() {
   return (
-    <section className="w-full min-h-[70vh] bg-foreground text-white flex flex-col items-center justify-center relative overflow-hidden py-[150px]">
+    <section className="w-full min-h-[70vh] bg-foreground text-background flex flex-col items-center justify-center relative overflow-hidden py-[150px]">
       {/* Background Marquee Text */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap z-0">
         <div className="animate-[marquee_30s_linear_infinite] flex gap-8">

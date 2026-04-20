@@ -98,7 +98,7 @@ export default async function EbookSinglePage({ params }: EbookPageProps) {
         />
       )}
 
-      <section className="w-full bg-foreground text-white pt-[116px] md:pt-[170px] pb-[72px] md:pb-[90px]">
+      <section className="w-full bg-foreground text-background pt-[116px] md:pt-[170px] pb-[72px] md:pb-[90px]">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-2 text-text-light font-medium mb-8">
             <Link href="/" className="hover:text-brand-main transition-colors">Home</Link>

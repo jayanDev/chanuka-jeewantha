@@ -200,7 +200,7 @@ export default function OrdersClient() {
           <button
             type="button"
             onClick={() => void loadOrders()}
-            className="rounded bg-foreground px-4 py-2 text-sm text-white"
+            className="rounded bg-foreground px-4 py-2 text-sm text-background"
           >
             Refresh
           </button>
@@ -453,7 +453,7 @@ export default function OrdersClient() {
                   type="button"
                   onClick={() => void submitCustomUpdate(order.id)}
                   disabled={updateLoadingOrderId === order.id || !(updateTitleDrafts[order.id]?.trim())}
-                  className="rounded bg-foreground px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-60"
+                  className="rounded bg-foreground px-4 py-2 text-sm font-medium text-background hover:bg-zinc-800 disabled:opacity-60"
                 >
                   Post Update
                 </button>

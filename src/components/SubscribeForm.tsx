@@ -90,7 +90,7 @@ export default function SubscribeForm() {
           <button 
             type="submit" 
             disabled={status === "loading"}
-            className="w-full md:w-auto px-[40px] py-[20px] bg-foreground hover:bg-zinc-800 text-white rounded-[10px] font-bold transition-all shadow-lg hover:shadow-xl whitespace-nowrap disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="w-full md:w-auto px-[40px] py-[20px] bg-foreground hover:bg-zinc-800 text-background rounded-[10px] font-bold transition-all shadow-lg hover:shadow-xl whitespace-nowrap disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             {status === "loading" ? (
               <>

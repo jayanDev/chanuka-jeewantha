@@ -90,7 +90,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
       />
 
-      <section className="w-full bg-foreground text-white pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
+      <section className="w-full bg-foreground text-background pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6 relative z-10">
           <div className="mb-6 flex items-center gap-2 text-text-light font-medium">
             <Link href="/" className="hover:text-brand-main transition-colors">Home</Link>

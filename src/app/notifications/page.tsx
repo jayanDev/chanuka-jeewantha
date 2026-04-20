@@ -138,7 +138,7 @@ export default function NotificationsPage() {
               type="button"
               onClick={() => void markAllRead()}
               disabled={updatingId === "all" || unreadCount === 0}
-              className="rounded bg-foreground px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-60"
+              className="rounded bg-foreground px-4 py-2 text-sm font-medium text-background hover:bg-zinc-800 disabled:opacity-60"
             >
               {updatingId === "all" ? "Updating..." : "Mark All Read"}
             </button>

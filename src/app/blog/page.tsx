@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import type { Metadata } from "next";
@@ -118,7 +118,7 @@ export default async function BlogPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
-      <section className="w-full bg-foreground text-white pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
+      <section className="w-full bg-foreground text-background pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -171,7 +171,7 @@ export default async function BlogPage({
                     />
                     <button
                       type="submit"
-                      className="w-full rounded-[10px] bg-foreground px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-zinc-800"
+                      className="w-full rounded-[10px] bg-foreground px-5 py-3 text-sm font-semibold text-background transition-colors hover:bg-zinc-800"
                     >
                       Search
                     </button>

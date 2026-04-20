@@ -59,7 +59,7 @@ export default function StoreFilterClient({ products }: { products: DigitalProdu
               onClick={() => setActiveCategory(cat)}
               className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${
                 activeCategory === cat
-                  ? "bg-foreground text-white shadow-md scale-105"
+                  ? "bg-foreground text-background shadow-md scale-105"
                   : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
               }`}
             >
@@ -121,8 +121,8 @@ export default function StoreFilterClient({ products }: { products: DigitalProdu
                     href={product.productType === "Ebook" ? `/ebooks/${product.slug}` : '#'} 
                     className={`rounded-[8px] px-5 py-2 font-semibold text-sm transition-colors ${
                       product.category === "paid" 
-                        ? "bg-brand-main text-white hover:bg-brand-dark" 
-                        : "bg-foreground text-white hover:bg-brand-dark"
+                        ? "bg-brand-main text-background hover:bg-brand-dark" 
+                        : "bg-foreground text-background hover:bg-brand-dark"
                     }`}
                   >
                     {product.productType === "Ebook" ? "View Ebook" : "Get Template"}

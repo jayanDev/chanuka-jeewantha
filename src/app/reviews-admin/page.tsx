@@ -103,7 +103,7 @@ export default function ReviewsAdminPage() {
               type="button"
               onClick={loadReviews}
               disabled={!token || isLoading}
-              className="rounded-[10px] bg-foreground px-6 py-3 font-medium text-white transition-colors hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-60"
+              className="rounded-[10px] bg-foreground px-6 py-3 font-medium text-background transition-colors hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-60"
             >
               {isLoading ? "Loading..." : "Load Reviews"}
             </button>

@@ -130,7 +130,7 @@ export default async function Home() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/pricing"
-                className="px-[25px] py-[15px] bg-foreground hover:bg-brand-dark rounded-[10px] text-white font-medium transition-colors text-center"
+                className="px-[25px] py-[15px] bg-foreground hover:bg-brand-dark rounded-[10px] text-background hover:text-background font-medium transition-colors text-center"
               >
                 View CV Writing Packages
               </Link>
@@ -197,7 +197,7 @@ export default async function Home() {
                 Career Services <span className="text-brand-light">That Deliver Results</span>
               </h2>
             </div>
-            <Link href="/services" className="px-[25px] py-[15px] border border-foreground hover:bg-foreground hover:text-white rounded-[10px] text-foreground font-medium transition-colors">
+            <Link href="/services" className="px-[25px] py-[15px] border border-foreground hover:bg-foreground hover:text-background rounded-[10px] text-foreground font-medium transition-colors">
               View All Services
             </Link>
           </div>
@@ -333,7 +333,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="reveal-section w-full py-[64px] sm:py-[80px] md:py-[96px] bg-foreground text-white">
+      <section className="reveal-section w-full py-[64px] sm:py-[80px] md:py-[96px] bg-foreground text-background">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div className="max-w-3xl">

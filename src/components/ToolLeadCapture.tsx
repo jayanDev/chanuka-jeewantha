@@ -83,7 +83,7 @@ export default function ToolLeadCapture({
           <button
             type="submit"
             disabled={status === "loading"}
-            className="rounded-[12px] bg-foreground px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-main disabled:opacity-70"
+            className="rounded-[12px] bg-foreground px-4 py-3 text-sm font-semibold text-background transition-colors hover:bg-brand-main disabled:opacity-70"
           >
             {status === "loading" ? "Subscribing..." : buttonLabel}
           </button>

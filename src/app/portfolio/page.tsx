@@ -28,7 +28,7 @@ export default function PortfolioPage() {
       />
 
       {/* 1. Hero Section */}
-      <section className="w-full bg-foreground text-white pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
+      <section className="w-full bg-foreground text-background pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
         {/* Background Marquee Text */}
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
@@ -62,7 +62,7 @@ export default function PortfolioPage() {
                 Career Proof <span className="text-brand-light pl-2">Portfolio.</span>
               </h2>
             </div>
-            <Link href="/contact" className="px-[25px] py-[15px] border border-foreground hover:bg-foreground hover:text-white rounded-[10px] text-foreground font-medium transition-colors">
+            <Link href="/contact" className="px-[25px] py-[15px] border border-foreground hover:bg-foreground hover:text-background rounded-[10px] text-foreground font-medium transition-colors">
               Let's Talk
             </Link>
           </div>

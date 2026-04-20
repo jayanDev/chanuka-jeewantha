@@ -148,7 +148,7 @@ export default function Header({ initialUser = null }: HeaderProps) {
 
   return (
     <header suppressHydrationWarning className="w-full max-w-[1512px] mx-auto px-4 sm:px-6 py-[32px] md:py-8 relative z-50">
-      <div className="flex items-center justify-between relative bg-white z-50 py-2">
+      <div className="flex items-center justify-between relative bg-background z-50 py-2">
         {/* Logo Container */}
         <div className="flex-shrink-0 w-auto md:mr-8">
           <Link href="/" className="text-2xl font-bold font-plus-jakarta text-foreground">
@@ -238,14 +238,14 @@ export default function Header({ initialUser = null }: HeaderProps) {
                   type="button"
                   aria-label="Profile menu"
                   onClick={() => setIsProfileMenuOpen((previous) => !previous)}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-foreground text-sm font-bold text-white transition-opacity hover:opacity-90"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-foreground text-sm font-bold text-background transition-opacity hover:opacity-90"
                 >
                   {profileInitials}
                 </button>
 
                 {isProfileMenuOpen && (
-                  <div className="absolute right-0 top-full z-50 mt-2 w-64 rounded-[12px] border border-zinc-200 bg-white p-2 shadow-xl">
-                    <div className="px-3 py-2 border-b border-zinc-200">
+                  <div className="absolute right-0 top-full z-50 mt-2 w-64 rounded-[12px] border border-zinc-200 dark:border-zinc-800 bg-background p-2 shadow-xl">
+                    <div className="px-3 py-2 border-b border-zinc-200 dark:border-zinc-800">
                       <p className="text-sm font-semibold text-foreground line-clamp-1">{user.name}</p>
                       <p className="text-xs text-zinc-500 line-clamp-1">{user.email}</p>
                     </div>
@@ -254,21 +254,21 @@ export default function Header({ initialUser = null }: HeaderProps) {
                       <Link
                         href="/profile"
                         onClick={() => setIsProfileMenuOpen(false)}
-                        className="block rounded-[8px] px-3 py-2 text-sm text-zinc-700 transition-colors hover:bg-zinc-100"
+                        className="block rounded-[8px] px-3 py-2 text-sm text-zinc-700 dark:text-zinc-300 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800"
                       >
                         Profile Settings
                       </Link>
                       <Link
                         href="/orders"
                         onClick={() => setIsProfileMenuOpen(false)}
-                        className="block rounded-[8px] px-3 py-2 text-sm text-zinc-700 transition-colors hover:bg-zinc-100"
+                        className="block rounded-[8px] px-3 py-2 text-sm text-zinc-700 dark:text-zinc-300 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800"
                       >
                         My Orders
                       </Link>
                       <Link
                         href="/notifications"
                         onClick={() => setIsProfileMenuOpen(false)}
-                        className="block rounded-[8px] px-3 py-2 text-sm text-zinc-700 transition-colors hover:bg-zinc-100"
+                        className="block rounded-[8px] px-3 py-2 text-sm text-zinc-700 dark:text-zinc-300 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800"
                       >
                         Notifications
                       </Link>
@@ -323,10 +323,10 @@ export default function Header({ initialUser = null }: HeaderProps) {
       </div>
 
       {/* Mobile Navigation Dropdown */}
-      <div 
+      <div
         id="mobile-navigation"
-        className={`absolute top-full left-0 w-full bg-white shadow-xl transition-all duration-300 ease-in-out z-40 origin-top overflow-hidden md:hidden ${
-          isMobileMenuOpen ? "opacity-100 scale-y-100 max-h-screen py-6 border-t border-zinc-100" : "opacity-0 scale-y-0 max-h-0 py-0"
+        className={`absolute top-full left-0 w-full bg-background shadow-xl transition-all duration-300 ease-in-out z-40 origin-top overflow-hidden md:hidden ${
+          isMobileMenuOpen ? "opacity-100 scale-y-100 max-h-screen py-6 border-t border-zinc-100 dark:border-zinc-800" : "opacity-0 scale-y-0 max-h-0 py-0"
         }`}
       >
         <nav className="flex flex-col items-center gap-6 px-4">

@@ -121,7 +121,7 @@ export default function InterviewStoryBankClient() {
             <button
               type="button"
               onClick={addStory}
-              className="rounded-[10px] bg-foreground px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-brand-main"
+              className="rounded-[10px] bg-foreground px-4 py-2 text-xs font-semibold text-background transition-colors hover:bg-brand-main"
             >
               Add to Story Bank
             </button>

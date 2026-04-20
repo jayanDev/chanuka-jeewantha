@@ -405,7 +405,7 @@ export default function PricingClient() {
           type="button"
           onClick={() => void addToCart(pkg, bundleSelectionPayload)}
           disabled={Boolean(addedBySlug[pkg.slug]) || !selectionReady}
-          className={`inline-flex items-center justify-center rounded-[10px] px-4 py-2.5 text-sm font-medium text-white transition-colors ${
+          className={`inline-flex items-center justify-center rounded-[10px] px-4 py-2.5 text-sm font-medium text-background transition-colors ${
             addedBySlug[pkg.slug]
               ? "bg-green-600"
               : "bg-foreground hover:bg-brand-dark"
@@ -448,7 +448,7 @@ export default function PricingClient() {
 
   return (
     <>
-      <section className="w-full bg-foreground text-white pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
+      <section className="w-full bg-foreground text-background pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4, 5].map((i) => (
@@ -601,7 +601,7 @@ export default function PricingClient() {
           </div>
 
           <div className="mt-16 text-center flex flex-wrap items-center justify-center gap-3">
-            <Link href="/cart" className="inline-block px-[28px] py-[14px] border border-foreground hover:bg-foreground hover:text-white rounded-[10px] font-medium transition-colors">
+            <Link href="/cart" className="inline-block px-[28px] py-[14px] border border-foreground hover:bg-foreground hover:text-background rounded-[10px] font-medium transition-colors">
               Go to Cart
             </Link>
             <Link href="/checkout" className="inline-block px-[28px] py-[14px] bg-brand-main hover:bg-brand-dark text-white rounded-[10px] font-medium transition-colors">

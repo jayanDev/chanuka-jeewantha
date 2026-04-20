@@ -11,7 +11,7 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function Custom404Page() {
   return (
-    <section className="w-full min-h-[72vh] bg-foreground text-white flex items-center justify-center py-[120px] px-4">
+    <section className="w-full min-h-[72vh] bg-foreground text-background flex items-center justify-center py-[120px] px-4">
       <div className="w-full max-w-3xl text-center">
         <p className="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-brand-main">Error</p>
         <h1 className="font-plus-jakarta text-[72px] md:text-[110px] font-extrabold leading-none text-brand-main">404</h1>

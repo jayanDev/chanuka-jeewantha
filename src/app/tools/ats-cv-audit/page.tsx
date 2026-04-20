@@ -55,7 +55,7 @@ export default function AtsCvAuditPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(toolLd) }}
       />
 
-      <section className="w-full bg-foreground text-white pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px]">
+      <section className="w-full bg-foreground text-background pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-2 text-text-light font-medium mb-6">
             <Link href="/" className="hover:text-brand-main transition-colors">Home</Link>

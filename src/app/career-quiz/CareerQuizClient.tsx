@@ -366,7 +366,7 @@ export default function CareerQuizClient() {
           </div>
         ) : null}
 
-        <div className="rounded-[22px] border border-zinc-200 bg-foreground p-6 text-white">
+        <div className="rounded-[22px] border border-zinc-200 bg-foreground p-6 text-background">
           <h3 className="text-[22px] font-bold font-plus-jakarta !text-white">Use This Like a Decision Shortcut</h3>
           <p className="mt-3 text-sm leading-relaxed text-text-light">
             If you prefer {answers.support === "self-serve" ? "self-serve support" : answers.support === "hybrid" ? "a hybrid path" : "done-for-you execution"}, start with the free tool and resource above, then move into the primary recommendation when you want stronger results.

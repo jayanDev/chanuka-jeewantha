@@ -72,7 +72,7 @@ export default function ChapterNavigator({
           type="button"
           onClick={handleNext}
           disabled={isSaving || nextChapterId === null}
-          className="px-6 py-4 bg-foreground text-white rounded-[12px] hover:bg-brand-main transition-colors flex items-center gap-3 w-full sm:w-auto justify-center disabled:opacity-50"
+          className="px-6 py-4 bg-foreground text-background rounded-[12px] hover:bg-brand-main transition-colors flex items-center gap-3 w-full sm:w-auto justify-center disabled:opacity-50"
         >
           {isSaving ? "Saving..." : "Mark as Read & Continue \u2192"}
         </button>

@@ -330,7 +330,7 @@ export default function ProfilePageClient() {
               <button
                 type="submit"
                 disabled={isSavingPassword}
-                className="rounded-[10px] bg-foreground px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 disabled:opacity-60"
+                className="rounded-[10px] bg-foreground px-5 py-3 text-sm font-semibold text-background transition-colors hover:bg-zinc-800 disabled:opacity-60"
               >
                 {isSavingPassword ? "Updating..." : "Change Password"}
               </button>

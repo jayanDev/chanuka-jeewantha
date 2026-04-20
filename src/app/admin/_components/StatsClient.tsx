@@ -89,7 +89,7 @@ export default function StatsClient() {
             type="button"
             onClick={() => void loadStats()}
             disabled={isLoading}
-            className="rounded-[10px] bg-foreground px-5 py-2.5 text-sm text-white disabled:opacity-60"
+            className="rounded-[10px] bg-foreground px-5 py-2.5 text-sm text-background disabled:opacity-60"
           >
             {isLoading ? "Refreshing..." : "Refresh"}
           </button>

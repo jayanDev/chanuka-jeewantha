@@ -247,7 +247,7 @@ export default function OffersPageClient() {
                               type="button"
                               onClick={() => void addToCart(pkg.slug)}
                               disabled={addingKey === `cart:${pkg.slug}`}
-                              className="rounded-[10px] bg-foreground px-3 py-2 text-xs font-semibold text-white transition-colors hover:bg-zinc-800 disabled:opacity-60"
+                              className="rounded-[10px] bg-foreground px-3 py-2 text-xs font-semibold text-background transition-colors hover:bg-zinc-800 disabled:opacity-60"
                             >
                               {addingKey === `cart:${pkg.slug}` ? "Adding..." : "Add to Cart"}
                             </button>

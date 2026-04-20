@@ -109,7 +109,7 @@ export default function WorkshopsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }}
       />
 
-      <section className="w-full bg-foreground text-white pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
+      <section className="w-full bg-foreground text-background pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4].map((i) => (
@@ -184,7 +184,7 @@ export default function WorkshopsPage() {
             </div>
           </div>
 
-          <aside className="mt-10 rounded-[20px] border border-zinc-200 bg-foreground p-8 text-white">
+          <aside className="mt-10 rounded-[20px] border border-zinc-200 bg-foreground p-8 text-background">
             <h3 className="text-[30px] font-bold font-plus-jakarta !text-white">Book a Workshop</h3>
             <p className="mt-4 max-w-3xl text-text-light">
               If you want a workshop for your campus, institute, or community, the fastest next step is to reach out with audience size, session goals, and preferred format.
