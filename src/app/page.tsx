@@ -9,6 +9,7 @@ import { getCachedBlogListing } from "@/lib/blog-listing";
 import { digitalResources } from "@/lib/resources";
 import { careerTools } from "@/lib/tools";
 import { industryLandingPages } from "@/lib/industry-pages";
+import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Professional CV Writing Services & ATS Friendly CV Maker | Chanuka Jeewantha",
@@ -330,6 +331,33 @@ export default async function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Before / After CV Comparison */}
+      <section className="reveal-section w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50 border-y border-zinc-200">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12">
+            <span className="text-brand-main font-semibold tracking-wider uppercase mb-2 block">Real Transformation</span>
+            <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground leading-[1.1]">
+              See the <span className="text-brand-main">CV Difference</span>
+            </h2>
+            <p className="mt-4 text-text-body max-w-2xl mx-auto">
+              Drag the slider to compare a typical before CV against the ATS-optimised, recruiter-ready version produced with my process.
+            </p>
+          </div>
+          <div className="max-w-3xl mx-auto aspect-[3/4] sm:aspect-[4/3]">
+            <BeforeAfterSlider
+              beforeSrc="/images/cv-before.jpg"
+              beforeAlt="CV before professional rewrite — dense, unformatted, ATS-unfriendly"
+              afterSrc="/images/cv-after.jpg"
+              afterAlt="CV after professional rewrite — clean, ATS-friendly, achievement-focused"
+              className="w-full h-full"
+            />
+          </div>
+          <p className="text-center mt-6 text-sm text-zinc-500">
+            Sample only — real client CVs are kept strictly confidential.
+          </p>
         </div>
       </section>
 

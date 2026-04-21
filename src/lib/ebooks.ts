@@ -9,6 +9,8 @@ export type Ebook = {
   highlights: string[];
   sampleReadPath?: string;
   readPath?: string;
+  /** Optional direct download URL shown to buyers (e.g. Vercel Blob URL or CDN path) */
+  downloadUrl?: string;
 };
 
 export const ebooks: Ebook[] = [

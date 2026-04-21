@@ -215,7 +215,9 @@ export default async function ChapterPage({ params }: Props) {
         totalChapters={totalChapters} 
         chapterTitle={displayTitle} 
         ebookTitle={ebook.title} 
-        slug={slug} 
+        slug={slug}
+        chapterId={parsedChapterId}
+        isFinalChapter={isFinalChapter}
       />
       <style dangerouslySetInnerHTML={{ __html: `
          @media print {

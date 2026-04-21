@@ -168,11 +168,16 @@ export default async function BlogPostPage({
   }
 
   let commentCount = 0;
+  let approvedComments: Array<{ id: string; name: string; message: string; createdAt: Date }> = [];
   if (process.env.DATABASE_URL) {
     try {
-      commentCount = await prisma.comment.count({
+      const found = await prisma.comment.findMany({
         where: { postId: post.id, isApproved: true },
+        select: { id: true, name: true, message: true, createdAt: true },
+        orderBy: { createdAt: "asc" },
       });
+      approvedComments = found;
+      commentCount = found.length;
     } catch {
       commentCount = 0;
     }
@@ -541,6 +546,37 @@ export default async function BlogPostPage({
                   <Link href="/about" className="text-brand-main font-semibold hover:text-brand-dark transition-colors">View all posts →</Link>
                 </div>
               </div>
+
+              {/* Comments Section */}
+              {approvedComments.length > 0 && (
+                <div className="mt-12">
+                  <h3 className="text-[28px] font-bold font-plus-jakarta text-foreground mb-6">
+                    {approvedComments.length} Comment{approvedComments.length !== 1 ? "s" : ""}
+                  </h3>
+                  <div className="flex flex-col gap-6">
+                    {approvedComments.map((comment) => (
+                      <div key={comment.id} className="rounded-[16px] border border-zinc-200 bg-zinc-50 p-6">
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="w-9 h-9 rounded-full bg-brand-main/10 flex items-center justify-center text-brand-dark font-bold text-sm">
+                            {comment.name.charAt(0).toUpperCase()}
+                          </div>
+                          <div>
+                            <p className="font-semibold text-foreground text-sm">{comment.name}</p>
+                            <p className="text-xs text-zinc-400">
+                              {new Date(comment.createdAt).toLocaleDateString("en-GB", {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                              })}
+                            </p>
+                          </div>
+                        </div>
+                        <p className="text-text-body text-sm leading-relaxed">{comment.message}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Comments Form */}
               <div className="mt-12">

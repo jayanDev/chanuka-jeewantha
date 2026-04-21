@@ -157,6 +157,7 @@ model AppUser {
   reviews  ServiceReview[]
   ebookProgress EbookProgress[]
   affiliateProfile AffiliateProfile?
+  savedItems SavedItem[]
 }
 
 model AuthSession {
@@ -272,6 +273,18 @@ model AffiliateProfile {
 
   user             AppUser  @relation(fields: [userId], references: [id], onDelete: Cascade)
   transactions     ReferralTransaction[]
+}
+
+model SavedItem {
+  id        String   @id @default(cuid())
+  userId    String
+  productSlug String
+  createdAt DateTime @default(now())
+
+  user AppUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productSlug])
+  @@index([userId])
 }
 
 model ReferralTransaction {

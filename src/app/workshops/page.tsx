@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seo";
 import { getBaseUrl } from "@/lib/site-url";
 import { buildBreadcrumbList, buildFaqPageSchema } from "@/lib/structured-data";
+import WorkshopBookingForm from "@/components/WorkshopBookingForm";
 
 const baseUrl = getBaseUrl();
 
@@ -185,19 +186,24 @@ export default function WorkshopsPage() {
           </div>
 
  <aside className="mt-10 rounded-[20px] border border-zinc-200 bg-foreground p-8 text-background">
-            <h3 className="text-[30px] font-bold font-plus-jakarta !text-white">Book a Workshop</h3>
+            <h3 className="text-[30px] font-bold font-plus-jakarta !text-white">Contact for Workshop Booking</h3>
             <p className="mt-4 max-w-3xl text-text-light">
-              If you want a workshop for your campus, institute, or community, the fastest next step is to reach out with audience size, session goals, and preferred format.
+              For general enquiries or to discuss long-term arrangements, you can also reach out via the contact page.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link href="/contact" className="rounded-[10px] bg-brand-main px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-dark">
-                Contact for Workshop Booking
+                Contact Page
               </Link>
  <Link href="/businesses" className="rounded-[10px] border border-white/30 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-foreground">
                 Explore Business Lines
               </Link>
             </div>
           </aside>
+
+          {/* Workshop Booking Form */}
+          <div className="mt-10" id="book-workshop">
+            <WorkshopBookingForm />
+          </div>
         </div>
       </section>
     </>

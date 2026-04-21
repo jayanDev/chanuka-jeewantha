@@ -80,6 +80,37 @@ export default async function IndustryServicePage({ params }: IndustryPageProps)
     })),
   };
 
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `What CV writing services are available for ${page.name} professionals?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Chanuka Jeewantha provides ATS-friendly CV writing, cover letter writing, LinkedIn profile optimisation, and career coaching tailored for ${page.name} professionals. ${page.recommendedServices.map((s) => s.label).join(", ")}.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `What are the biggest career challenges for ${page.name} professionals in Sri Lanka?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: page.challenges.join(" "),
+        },
+      },
+      {
+        "@type": "Question",
+        name: `How can ${page.name} professionals improve their LinkedIn profile?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: page.positioningTips.join(" "),
+        },
+      },
+    ],
+  };
+
   return (
     <>
       <script
@@ -93,6 +124,10 @@ export default async function IndustryServicePage({ params }: IndustryPageProps)
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
 
       <section className="w-full bg-foreground text-background pt-[36px] sm:pt-[50px] pb-[72px] sm:pb-[96px] relative overflow-hidden">

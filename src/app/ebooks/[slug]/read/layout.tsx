@@ -96,6 +96,16 @@ export default async function EbookReaderLayout({ params, children }: Props) {
             {/* Show badge based on access */}
             {hasPremiumAccess ? "Full Access" : "Preview Mode"}
           </span>
+          {hasPremiumAccess && ebook.downloadUrl && (
+            <a
+              href={ebook.downloadUrl}
+              download
+              className="mt-3 inline-flex items-center gap-2 rounded-[8px] border border-brand-main/30 bg-brand-main/5 px-3 py-2 text-xs font-semibold text-brand-dark transition-colors hover:bg-brand-main/10"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download PDF
+            </a>
+          )}
         </div>
 
         <nav className="flex-1 overflow-y-auto p-4 space-y-1">

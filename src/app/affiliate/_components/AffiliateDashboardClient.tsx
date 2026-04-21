@@ -105,7 +105,7 @@ export default function AffiliateDashboardClient({ profile, baseUrl, activity }:
       </div>
 
       {/* 2. Top Level Metrics */}
-      <div className="grid grid-cols-2 gap-6 mb-16">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-16">
  <div className="bg-zinc-50 border border-zinc-200 rounded-[16px] p-6 text-center">
           <p className="text-zinc-500 font-bold uppercase tracking-wider text-xs mb-2">Total Link Clicks</p>
           <p className="text-[40px] font-bold font-plus-jakarta text-foreground leading-none">{profile.totalClicks}</p>
@@ -113,6 +113,13 @@ export default function AffiliateDashboardClient({ profile, baseUrl, activity }:
         <div className="bg-brand-main/5 border border-brand-main/20 rounded-[16px] p-6 text-center">
           <p className="text-brand-dark font-bold uppercase tracking-wider text-xs mb-2">Total Referrals (Sales)</p>
           <p className="text-[40px] font-bold font-plus-jakarta text-brand-main leading-none">{currentScore}</p>
+        </div>
+        <div className="col-span-2 md:col-span-1 bg-emerald-50 border border-emerald-200 rounded-[16px] p-6 text-center">
+          <p className="text-emerald-700 font-bold uppercase tracking-wider text-xs mb-2">Packages Earned</p>
+          <p className="text-[40px] font-bold font-plus-jakarta text-emerald-700 leading-none">
+            {currentScore >= 20 ? Math.floor(currentScore / 10) : currentScore >= 10 ? 1 : 0}
+          </p>
+          <p className="text-xs text-emerald-600 mt-1">Free packages unlocked</p>
         </div>
       </div>
 

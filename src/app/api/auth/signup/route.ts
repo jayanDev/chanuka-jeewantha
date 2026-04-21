@@ -9,6 +9,7 @@ import {
   hashPassword,
 } from "@/lib/auth";
 import { isTrustedOrigin } from "@/lib/security";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 function toSafeAuthErrorMessage(error: unknown): string {
   const message = error instanceof Error ? error.message : "";
@@ -37,6 +38,15 @@ export async function POST(request: Request) {
   try {
     if (!isTrustedOrigin(request)) {
       return NextResponse.json({ error: "Forbidden origin" }, { status: 403 });
+    }
+
+    const ip = getClientIp(request);
+    const rate = await checkRateLimit(`auth:signup:${ip}`, 3, 60_000);
+    if (!rate.ok) {
+      return NextResponse.json(
+        { error: "Too many sign-up attempts. Please wait a minute before trying again." },
+        { status: 429 }
+      );
     }
 
     const body = await request.json();

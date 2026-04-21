@@ -60,3 +60,35 @@ export async function POST(request: Request) {
     );
   }
 }
+
+export async function GET(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const slug = searchParams.get("slug");
+
+    if (!slug || typeof slug !== "string" || slug.length > 200) {
+      return NextResponse.json({ error: "Invalid slug" }, { status: 400 });
+    }
+
+    const comments = await prisma.comment.findMany({
+      where: {
+        isApproved: true,
+        post: { slug },
+      },
+      select: {
+        id: true,
+        name: true,
+        message: true,
+        createdAt: true,
+      },
+      orderBy: { createdAt: "asc" },
+    });
+
+    return NextResponse.json({ comments });
+  } catch {
+    return NextResponse.json(
+      { error: "Server error while fetching comments" },
+      { status: 500 }
+    );
+  }
+}

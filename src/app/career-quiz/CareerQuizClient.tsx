@@ -372,6 +372,29 @@ export default function CareerQuizClient() {
             If you prefer {answers.support === "self-serve" ? "self-serve support" : answers.support === "hybrid" ? "a hybrid path" : "done-for-you execution"}, start with the free tool and resource above, then move into the primary recommendation when you want stronger results.
           </p>
         </div>
+
+ <div className="rounded-[22px] border border-brand-main/30 bg-brand-main/5 p-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-dark">Ready to Get Started?</p>
+          <h3 className="mt-2 text-[20px] font-bold font-plus-jakarta text-foreground">Book a Free Consultation</h3>
+          <p className="mt-3 text-sm leading-relaxed text-zinc-700">
+            Not sure which package fits best? A quick call takes 15 minutes and gives you a clear path forward — no obligation.
+          </p>
+          <div className="mt-4 flex flex-col gap-3">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 rounded-[12px] bg-brand-main px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
+            >
+              Book a Consultation
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </Link>
+            <Link
+              href="/pricing"
+              className="inline-flex items-center justify-center gap-2 rounded-[12px] border border-zinc-200 bg-white px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+            >
+              View All Packages &amp; Pricing
+            </Link>
+          </div>
+        </div>
       </aside>
     </div>
   );

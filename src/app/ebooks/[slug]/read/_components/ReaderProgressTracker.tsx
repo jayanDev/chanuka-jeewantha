@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 type Props = {
@@ -9,6 +9,8 @@ type Props = {
   chapterTitle: string;
   ebookTitle: string;
   slug: string;
+  chapterId: number;
+  isFinalChapter: boolean;
 };
 
 export default function ReaderProgressTracker({
@@ -17,8 +19,13 @@ export default function ReaderProgressTracker({
   chapterTitle,
   ebookTitle,
   slug,
+  chapterId,
+  isFinalChapter,
 }: Props) {
   const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Save reading progress when user has read enough of the chapter (>= 80% scroll)
+  const savedRef = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +34,18 @@ export default function ReaderProgressTracker({
       if (documentHeight > 0) {
         const scrolled = (window.scrollY / documentHeight) * 100;
         setScrollProgress(scrolled);
+
+        // Mark chapter as read when 80% scrolled (only once per chapter load)
+        if (scrolled >= 80 && !savedRef.current) {
+          savedRef.current = true;
+          fetch("/api/ebooks/progress", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ebookSlug: slug, chapterId, isFinalChapter }),
+          }).catch(() => {
+            // Non-critical — ignore failures silently
+          });
+        }
       } else {
         setScrollProgress(100);
       }
@@ -36,7 +55,7 @@ export default function ReaderProgressTracker({
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [slug, chapterId, isFinalChapter]);
 
   const overallProgress = ((currentIndex) / totalChapters) * 100;
 

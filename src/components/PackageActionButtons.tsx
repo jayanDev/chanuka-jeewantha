@@ -9,6 +9,7 @@ import {
   isConfigurableBundleSlug,
   type BundleSelection,
 } from "@/lib/bundle-pricing";
+import SaveButton from "@/components/SaveButton";
 
 type ProductRecord = {
   id: string;
@@ -283,6 +284,7 @@ export default function PackageActionButtons({ pkg }: PackageActionButtonsProps)
         >
           See More
         </Link>
+        {activeUser && <SaveButton productSlug={pkg.slug} />}
       </div>
     </div>
   );
