@@ -107,7 +107,7 @@ export default async function EbookSinglePage({ params }: EbookPageProps) {
               <span className="mb-4 inline-flex rounded-full bg-brand-main/15 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-brand-main">
                 {ebook.category === "paid" ? "Paid Ebook" : "Free Ebook"}
               </span>
-              <h1 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta leading-[1.08] mb-3 text-white">{ebook.title}</h1>
+              <h1 className="text-[22px] sm:text-[28px] md:text-[36px] font-bold font-plus-jakarta leading-[1.15] mb-3 text-white">{ebook.title}</h1>
               <p className="text-[22px] font-semibold text-brand-light mb-5">{ebook.subtitle}</p>
               <p className="text-text-light text-lg leading-relaxed mb-8">{ebook.description}</p>
 
