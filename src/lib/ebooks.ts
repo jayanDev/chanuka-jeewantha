@@ -94,3 +94,77 @@ export const getEbookBySlug = (slug: string) => ebooks.find((ebook) => ebook.slu
 export function getEbookReadPath(slug: string): string {
   return `/ebooks/${slug}/read`;
 }
+
+// ── Bundles ──────────────────────────────────────────────────────────────────
+
+export type EbookBundle = {
+  slug: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  ebookSlugs: string[];
+  /** Discount percentage off total individual price */
+  discountPercent: number;
+  coverImage: string;
+  highlights: string[];
+};
+
+export const ebookBundles: EbookBundle[] = [
+  {
+    slug: "business-starter-bundle",
+    title: "Business Starter Bundle",
+    subtitle: "ව්‍යාපාරය පටන් ගන්නා කෙනාට අත්‍යාවශ්‍ය ebooks 3ක් — 25% off",
+    description:
+      "ව්‍යාපාරයක් ආරම්භ කිරීමට සිතන ඕනෑම කෙනෙකුට වටිනා book 3ක bundle: ධනවත් වීමේ වේගවත් මාර්ගය, ගැඹුරු ඵලදායිතා ක්‍රමය, සහ ලෝකය හඳුනාගන්නා කුසලතා ගොඩනැගීම — books 3 package deal.",
+    ebookSlugs: [
+      "kotipathiyek-vime-vegawath-maga",
+      "gaburu-karyaya",
+      "sarthaka-wurthiya-jeewithayaka-neethi-saha-mooladharma",
+    ],
+    discountPercent: 25,
+    coverImage: "/images/Business Starter Bundle Cover.png",
+    highlights: [
+      "ව්‍යාපාරික mindset, Deep Work productivity, සහ career capital — books 3ක",
+      "Individual මිළෙන් 25% discount",
+      "Books 3ම read + download access ලැබේ",
+    ],
+  },
+  {
+    slug: "complete-ebook-collection",
+    title: "Complete Ebook Collection",
+    subtitle: "ebooks 4ම — 50% off",
+    description:
+      "Chanuka Jeewantha ගේ ebooks 4ම එකවර ලබාගන්න. ධනය, productivity, career, සහ financial literacy — සම්පූර්ණ collection 50% discount.",
+    ebookSlugs: [
+      "kotipathiyek-vime-vegawath-maga",
+      "gaburu-karyaya",
+      "sarthaka-wurthiya-jeewithayaka-neethi-saha-mooladharma",
+      "dhanavath-thaththa-saha-duppoth-thaththa",
+    ],
+    discountPercent: 50,
+    coverImage: "/images/Complete Collection Bundle Cover.png",
+    highlights: [
+      "ebooks 4ම (Fastlane, Deep Work, So Good, Rich Dad Poor Dad)",
+      "Individual මිළෙන් 50% discount",
+      "සියලු books read + download access ලැබේ",
+    ],
+  },
+];
+
+export function getEbookBundleBySlug(slug: string): EbookBundle | undefined {
+  return ebookBundles.find((b) => b.slug === slug);
+}
+
+/** Calculate bundle price: sum of individual download prices minus discount */
+export function getBundlePrice(bundle: EbookBundle): {
+  originalLkr: number;
+  discountedLkr: number;
+  savingsLkr: number;
+} {
+  const originalLkr = bundle.ebookSlugs.reduce((sum, slug) => {
+    const ebook = ebooks.find((e) => e.slug === slug);
+    return sum + (ebook?.downloadPriceLkr ?? 1500);
+  }, 0);
+  const discountedLkr = Math.round(originalLkr * (1 - bundle.discountPercent / 100));
+  return { originalLkr, discountedLkr, savingsLkr: originalLkr - discountedLkr };
+}

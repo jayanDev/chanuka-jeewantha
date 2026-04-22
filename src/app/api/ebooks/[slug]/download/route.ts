@@ -62,21 +62,68 @@ export async function GET(
 
   const filePath = path.join(process.cwd(), "Paid Ebooks", fileName);
 
-  let fileBuffer: Buffer;
+  let rawHtml: string;
   try {
-    fileBuffer = await fs.readFile(filePath);
+    rawHtml = await fs.readFile(filePath, "utf-8");
   } catch {
     return NextResponse.json({ error: "Download file not found. Contact admin." }, { status: 404 });
   }
 
-  const downloadName = `${ebook.title}.html`;
+  // Inject print-ready CSS + Sinhala font + auto-print script for clean PDF export.
+  // User opens this in browser → print dialog fires → Save as PDF.
+  const printInjection = `
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --brand: #e8562a; }
+  html, body {
+    font-family: 'Noto Sans Sinhala', 'Iskoola Pota', sans-serif;
+    font-size: 15px;
+    line-height: 1.85;
+    color: #1a1a1a;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+  }
+  body { max-width: 820px; margin: 0 auto; padding: 48px 56px; }
+  h1 { font-size: 2rem; font-weight: 700; color: #111; border-bottom: 3px solid var(--brand); padding-bottom: 12px; margin-bottom: 8px; }
+  h2 { font-size: 1.45rem; font-weight: 700; color: #111; margin-top: 2.5em; margin-bottom: 0.5em; }
+  h3 { font-size: 1.2rem; font-weight: 600; color: #333; margin-top: 1.8em; margin-bottom: 0.4em; }
+  p  { margin: 0.7em 0; }
+  ul, ol { padding-left: 1.6em; margin: 0.7em 0; }
+  li { margin-bottom: 0.3em; }
+  blockquote { border-left: 4px solid var(--brand); margin: 1.2em 0; padding: 0.6em 1.2em; background: #fef6f3; color: #444; font-style: italic; }
+  strong, b { font-weight: 700; color: #111; }
+  /* Print styles */
+  @media print {
+    html, body { font-size: 13px; padding: 0; max-width: 100%; }
+    body { padding: 0; margin: 0; }
+    h1, h2, h3, h4 { page-break-after: avoid; }
+    p, li { orphans: 3; widows: 3; }
+    blockquote, pre, table { page-break-inside: avoid; }
+    a { color: #1a1a1a; text-decoration: none; }
+    @page { margin: 2cm 2.5cm; }
+  }
+</style>
+<script>
+  // Auto-open print dialog after fonts are loaded so the PDF includes Sinhala text correctly
+  document.fonts.ready.then(function() {
+    setTimeout(function() { window.print(); }, 600);
+  });
+</script>`;
 
-  return new NextResponse(new Uint8Array(fileBuffer), {
+  // Inject before </head>. Fall back to prepending if no <head>.
+  const printReadyHtml = rawHtml.includes("</head>")
+    ? rawHtml.replace("</head>", printInjection + "\n</head>")
+    : printInjection + rawHtml;
+
+  return new NextResponse(printReadyHtml, {
     status: 200,
     headers: {
       "Content-Type": "text/html; charset=utf-8",
-      "Content-Disposition": `attachment; filename*=UTF-8''${encodeURIComponent(downloadName)}`,
-      "Content-Length": String(fileBuffer.length),
+      // Open inline so the browser tab fires auto-print → user saves as PDF
+      "Content-Disposition": "inline",
       "Cache-Control": "no-store",
     },
   });

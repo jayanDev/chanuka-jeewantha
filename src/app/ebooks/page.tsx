@@ -49,6 +49,16 @@ export default function EbooksPage() {
           <p className="text-text-light text-[18px] md:text-[22px] max-w-2xl leading-relaxed mt-6">
             Download professional CV templates, cover letters, and career strategy ebooks to fast-track your job search.
           </p>
+          {/* Bundle deal CTA */}
+          <div className="mt-8 flex flex-wrap gap-3 justify-center">
+            <Link
+              href="/ebooks/bundles"
+              className="inline-flex items-center gap-2 rounded-[10px] bg-brand-main px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-dark"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              Bundle Deals — up to 50% off
+            </Link>
+          </div>
         </div>
       </section>
 

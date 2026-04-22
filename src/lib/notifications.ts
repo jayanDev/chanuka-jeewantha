@@ -212,3 +212,41 @@ export async function notifyOrderHandoverReady(payload: OrderHandoverPayload): P
     }
   }
 }
+
+export async function notifyEbookAccessGranted(payload: {
+  customerEmail: string;
+  ebookTitle: string;
+  tier: "read" | "download";
+  ebookUrl: string;
+}): Promise<void> {
+  const tierLabel = payload.tier === "download" ? "Read + Download" : "Read Online";
+
+  const tasks = [
+    sendCustomerEmail(
+      payload.customerEmail,
+      `Ebook Access Activated: ${payload.ebookTitle}`,
+      [
+        "Your ebook access has been activated!",
+        "",
+        `Book: ${payload.ebookTitle}`,
+        `Access Type: ${tierLabel}`,
+        "",
+        payload.tier === "download"
+          ? "You can now read all chapters online and download the full PDF."
+          : "You can now read all chapters online.",
+        "",
+        `Visit: ${payload.ebookUrl}`,
+        "",
+        "Thank you!",
+        "Chanuka Jeewantha",
+      ].join("\n")
+    ),
+  ];
+
+  const results = await Promise.allSettled(tasks);
+  for (const result of results) {
+    if (result.status === "rejected") {
+      console.error("Ebook access notification error:", result.reason);
+    }
+  }
+}

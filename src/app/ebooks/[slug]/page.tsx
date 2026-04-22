@@ -6,6 +6,11 @@ import { ebooks, getEbookBySlug } from "@/lib/ebooks";
 import { formatLkr } from "@/lib/packages-catalog";
 import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 import { getBaseUrl } from "@/lib/site-url";
+import { getServerUser } from "@/lib/auth-server";
+import { getEbookPurchase } from "@/lib/ebook-firestore";
+
+// Auth check means this page must be dynamic (user-specific content)
+export const dynamic = "force-dynamic";
 
 type EbookPageProps = {
   params: Promise<{ slug: string }>;
@@ -43,6 +48,22 @@ export default async function EbookSinglePage({ params }: EbookPageProps) {
 
   if (!ebook) {
     notFound();
+  }
+
+  // Check logged-in user's access tier
+  const user = await getServerUser();
+  let accessTier: "download" | "read" | "none" = "none";
+  if (user && ebook.category === "paid") {
+    if (user.role === "admin") {
+      accessTier = "download";
+    } else {
+      try {
+        const purchase = await getEbookPurchase(user.email, slug);
+        if (purchase) accessTier = purchase.tier;
+      } catch {
+        // access check failed, show purchase options
+      }
+    }
   }
 
   const baseUrl = getBaseUrl();
@@ -132,13 +153,52 @@ export default async function EbookSinglePage({ params }: EbookPageProps) {
                     Ask a Question
                   </Link>
                 </div>
+              ) : accessTier !== "none" ? (
+                /* User has purchased — show primary action buttons */
+                <div className="flex flex-col gap-4">
+                  <div className="flex flex-wrap gap-3">
+                    <Link
+                      href={`/ebooks/${ebook.slug}/read/1`}
+                      className="inline-flex items-center gap-2 rounded-[10px] bg-brand-main px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-dark"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                      Read Now
+                    </Link>
+                    {accessTier === "download" && (
+                      <a
+                        href={`/api/ebooks/${ebook.slug}/download`}
+                        className="inline-flex items-center gap-2 rounded-[10px] border border-brand-main px-6 py-3 font-semibold text-brand-main transition-colors hover:bg-brand-main hover:text-white"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Download PDF
+                      </a>
+                    )}
+                  </div>
+                  {accessTier === "read" && (
+                    /* Has read access — offer upgrade to download */
+                    <div className="rounded-[14px] border border-dashed border-brand-main/60 bg-brand-main/5 p-4">
+                      <p className="text-sm font-semibold text-white mb-1">PDF Download ලබාගන්නටද?</p>
+                      <p className="text-sm text-text-light mb-3">ඔබ Read access ලබාගෙන ඇත. Download access සඳහා remaining payment ගෙවා PDF ලබාගන්න.</p>
+                      <a
+                        href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hello Chanuka, I have Read access for "${ebook.title}" and I want to upgrade to Download access.\nRemaining payment: LKR ${(ebook.downloadPriceLkr ?? 1500) - (ebook.readPriceLkr ?? 500)}`)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-[10px] bg-[#25D366] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#1fb85a]"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        Upgrade via WhatsApp (LKR {((ebook.downloadPriceLkr ?? 1500) - (ebook.readPriceLkr ?? 500)).toLocaleString("en-LK")})
+                      </a>
+                    </div>
+                  )}
+                </div>
               ) : (
+                /* No access — show purchase options */
                 <div className="flex flex-wrap gap-3">
                   <Link
                     href={`/ebooks/${ebook.slug}/read/0`}
-                    className="rounded-[10px] bg-brand-main px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-dark"
+                    className="rounded-[10px] bg-white/10 px-6 py-3 font-semibold text-white transition-colors hover:bg-white/20"
                   >
-                    Start Reading (Free Preview)
+                    Free Preview
                   </Link>
                   <div className="w-full mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="rounded-[14px] border border-zinc-200 p-4">
@@ -159,7 +219,7 @@ export default async function EbookSinglePage({ params }: EbookPageProps) {
                       <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-main text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">Best Value</span>
                       <p className="text-xs font-bold uppercase tracking-wider text-brand-main mb-1">Download + Read</p>
                       <p className="text-2xl font-bold font-plus-jakarta text-white mb-3">{formatLkr(ebook.downloadPriceLkr ?? 1500)}</p>
-                      <p className="text-sm text-text-light mb-3">Read online + download full ebook file.</p>
+                      <p className="text-sm text-text-light mb-3">Read online + download full ebook PDF.</p>
                       <a
                         href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hello Chanuka, I want to purchase DOWNLOAD access for:\nEbook: ${ebook.title}\nPrice: LKR 1,500`)}`}
                         target="_blank"

@@ -3,6 +3,8 @@ import { getRequestUser } from "@/lib/auth-server";
 import { isTrustedOrigin } from "@/lib/security";
 import { ebooks } from "@/lib/ebooks";
 import { listEbookPurchases, upsertEbookPurchase, deleteEbookPurchase } from "@/lib/ebook-firestore";
+import { notifyEbookAccessGranted } from "@/lib/notifications";
+import { getBaseUrl } from "@/lib/site-url";
 import { z } from "zod";
 
 async function requireAdmin(request: Request) {
@@ -76,6 +78,18 @@ export async function POST(request: Request) {
       grantedBy: admin.id,
       note,
     });
+
+    // Notify customer by email (non-blocking)
+    const ebookMeta = ebooks.find((e) => e.slug === ebookSlug);
+    if (ebookMeta) {
+      const baseUrl = getBaseUrl();
+      notifyEbookAccessGranted({
+        customerEmail: email,
+        ebookTitle: ebookMeta.title,
+        tier,
+        ebookUrl: `${baseUrl}/ebooks/${ebookSlug}`,
+      }).catch((err) => console.error("[admin/ebooks] Failed to send access notification:", err));
+    }
 
     return NextResponse.json({ purchase }, { status: 201 });
   } catch (error) {
