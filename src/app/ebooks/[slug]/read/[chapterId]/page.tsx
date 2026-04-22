@@ -256,7 +256,7 @@ export default async function ChapterPage({ params }: Props) {
   });
 
   return (
-    <div className="max-w-3xl mx-auto px-5 py-24 md:py-28 lg:px-8 selection:bg-brand-main/20 selection:text-foreground">
+    <div className="max-w-3xl mx-auto px-5 pt-10 pb-24 sm:px-6 lg:px-8 selection:bg-brand-main/20 selection:text-foreground">
       <ReaderProtection />
       <ReaderProgressTracker 
         currentIndex={currentIndex} 
