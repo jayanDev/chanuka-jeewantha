@@ -98,7 +98,9 @@ export default async function EbookReaderLayout({ params, children }: Props) {
   const freeChapterIds = new Set(chapterItems.slice(0, 3).map((item) => item.id));
 
   return (
-    <div className="lg:flex lg:h-screen lg:overflow-hidden font-poppins selection:bg-transparent bg-zinc-50">
+    <>
+      <style>{`#site-nav { display: none !important; }`}</style>
+      <div className="lg:flex lg:h-screen lg:overflow-hidden font-poppins selection:bg-transparent bg-zinc-50">
 
       {/* Mobile-only slim back bar (replaces the old collapsible Contents dropdown) */}
       <div className="lg:hidden sticky top-0 z-30 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/90 border-b border-zinc-200">
@@ -212,5 +214,6 @@ export default async function EbookReaderLayout({ params, children }: Props) {
         </div>
       </main>
     </div>
+    </>
   );
 }

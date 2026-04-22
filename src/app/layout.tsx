@@ -188,9 +188,11 @@ export default async function RootLayout({
           </Suspense>
         ) : null}
         <AnalyticsHeartbeat />
-        <Header initialUser={currentUser} />
-        <SeasonalOfferBanner />
-        <Breadcrumbs />
+        <div id="site-nav">
+          <Header initialUser={currentUser} />
+          <SeasonalOfferBanner />
+          <Breadcrumbs />
+        </div>
         <main id="main-content" className="flex-grow flex flex-col">
           {children}
         </main>
