@@ -60,12 +60,14 @@ export async function saveUploadedFile(input: SaveUploadedFileInput): Promise<st
     const blob = await withRetry(
       async () =>
         put(objectPath, input.file, {
-          access: "public",
+          access: "private",
         }),
       2
     );
 
-    return blob.url;
+    // Private blobs require an Authorization header — browsers can't add that on
+    // plain <a href> clicks. Store a proxy URL so the file is still viewable.
+    return `/api/files/view?url=${encodeURIComponent(blob.url)}`;
   }
 
   const hasFirebaseAdminConfig = Boolean(
