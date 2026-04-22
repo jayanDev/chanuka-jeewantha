@@ -29,7 +29,7 @@ export const ebooks: Ebook[] = [
     priceLkr: 500,
     readPriceLkr: 500,
     downloadPriceLkr: 1500,
-    coverImage: "/images/millionaire-fastlane-cover.jpg",
+    coverImage: "/images/Millionaire Fastlane Cover Image.png",
     highlights: [
       "කාලය සහ ධනය අතර සම්බන්ධය",
       "සාර්ථක ව්‍යාපාරයක් සහ බ්‍රෑන්ඩ් එකක් ගොඩනැගීම",
@@ -46,7 +46,7 @@ export const ebooks: Ebook[] = [
     priceLkr: 500,
     readPriceLkr: 500,
     downloadPriceLkr: 1500,
-    coverImage: "/images/Deep Work.jpg",
+    coverImage: "/images/Deep Work Cover Image.png",
     highlights: [
       "Deep Work වටිනාකම, අඩුවීමේ හේතු, සහ ජීවිතමය අර්ථය",
       "Work Deeply, Embrace Boredom, Quit Social Media, Drain the Shallows යන නීති 4",
@@ -63,7 +63,7 @@ export const ebooks: Ebook[] = [
     priceLkr: 500,
     readPriceLkr: 500,
     downloadPriceLkr: 1500,
-    coverImage: "/images/So Good They Can't Ignore You.jpg",
+    coverImage: "/images/So Good They Can't Ignore You Cover Image.png",
     highlights: [
       "Don't Follow Your Passion සිට Think Small, Act Big දක්වා නීති 4",
       "Career Capital, Control Traps, සහ Mission execution playbook",
