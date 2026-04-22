@@ -23,43 +23,48 @@ type EbookAccessTier = "none" | "read" | "download";
 
 async function checkEbookAccess(userId: string | undefined, userEmail: string | undefined, slug: string): Promise<EbookAccessTier> {
   if (!userId) return "none";
-  
-  const userWithOrders = await prisma.appUser.findUnique({
-    where: { id: userId },
-    include: {
-      orders: {
-        where: {
-          status: "completed",
-          items: {
-            some: {
-              product: {
-                slug: slug
+
+  try {
+    const userWithOrders = await prisma.appUser.findUnique({
+      where: { id: userId },
+      include: {
+        orders: {
+          where: {
+            status: "completed",
+            items: {
+              some: {
+                product: {
+                  slug: slug
+                }
               }
             }
-          }
-        },
-        take: 1
+          },
+          take: 1
+        }
+      }
+    });
+
+    // Admin users have full download access
+    if (userWithOrders?.role === "admin") return "download";
+
+    // Check EbookPurchase table (admin-granted access by email)
+    if (userEmail) {
+      const purchase = await prisma.ebookPurchase.findUnique({
+        where: { email_ebookSlug: { email: userEmail, ebookSlug: slug } },
+      });
+      if (purchase) {
+        return purchase.tier === "download" ? "download" : "read";
       }
     }
-  });
 
-  // Admin users have full download access
-  if (userWithOrders?.role === "admin") return "download";
+    // Legacy: completed order via cart system grants download access
+    if (userWithOrders?.orders?.length) return "download";
 
-  // Check EbookPurchase table (admin-granted access by email)
-  if (userEmail) {
-    const purchase = await prisma.ebookPurchase.findUnique({
-      where: { email_ebookSlug: { email: userEmail, ebookSlug: slug } },
-    });
-    if (purchase) {
-      return purchase.tier === "download" ? "download" : "read";
-    }
+    return "none";
+  } catch {
+    // DB unavailable (e.g. Vercel cold start / missing migrations) — allow free preview
+    return "none";
   }
-
-  // Legacy: completed order via cart system grants download access
-  if (userWithOrders?.orders?.length) return "download";
-
-  return "none";
 }
 
 export default async function EbookReaderLayout({ params, children }: Props) {

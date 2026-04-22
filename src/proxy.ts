@@ -26,7 +26,9 @@ export function proxy(request: NextRequest) {
   }
 
   if ((pathname.startsWith("/auth/signin") || pathname.startsWith("/auth/signup")) && sessionToken) {
-    return NextResponse.redirect(new URL("/", request.url));
+    const returnTo = request.nextUrl.searchParams.get("returnTo") ?? "/";
+    const safePath = returnTo.startsWith("/") ? returnTo : "/";
+    return NextResponse.redirect(new URL(safePath, request.url));
   }
 
   return NextResponse.next();
