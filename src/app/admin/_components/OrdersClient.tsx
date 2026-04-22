@@ -336,7 +336,7 @@ export default function OrdersClient() {
         const packageSummary = order.items.map((i) => i.productName).join(", ") || "—";
         const openRevisions = order.revisions.filter((r) => r.status !== "resolved").length;
 
- <article key={order.id} className="rounded-[16px] border border-zinc-200 bg-white overflow-hidden">
+        return <article key={order.id} className="rounded-[16px] border border-zinc-200 bg-white overflow-hidden">
           {/* Collapsed header */}
           <button
             type="button"
