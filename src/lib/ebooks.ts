@@ -70,6 +70,23 @@ export const ebooks: Ebook[] = [
       "වෘත්තීය වර්ධනය measurable goals සහ practical decisions සමඟ align කිරීම",
     ],
   },
+  {
+    slug: "dhanavath-thaththa-saha-duppoth-thaththa",
+    title: "ධනවත් තාත්තා සහ දුප්පත් තාත්තා",
+    subtitle: "Rich Dad Poor Dad - සල්ලි ගැන පාසලෙන් නොකියූ දේ",
+    description:
+      "රොබට් කියෝසාකිගේ Rich Dad Poor Dad පොතේ සිංහල සාරාංශය. වත්කම් සහ බැරකම් අතර වෙනස, Rat Race එකෙන් එළියට යන හැටි, සහ ධනවතුන්ගේ සිතීමේ රටාව ගැන ප්‍රායෝගික මාර්ගෝපදේශයක්.",
+    category: "paid",
+    priceLkr: 500,
+    readPriceLkr: 500,
+    downloadPriceLkr: 1500,
+    coverImage: "/images/Rich Dad Poor Dad Cover Image.png",
+    highlights: [
+      "වත්කම් (Assets) සහ බැරකම් (Liabilities) අතර ඇති සැබෑ වෙනස",
+      "Rat Race එකෙන් නිදහස් වී මූල්‍ය නිදහස ලබාගන්නා ක්‍රමය",
+      "ධනවතුන් සල්ලි වලින් වැඩ ගන්නා විදිහ - Passive Income",
+    ],
+  },
 ];
 
 export const getEbookBySlug = (slug: string) => ebooks.find((ebook) => ebook.slug === slug);
