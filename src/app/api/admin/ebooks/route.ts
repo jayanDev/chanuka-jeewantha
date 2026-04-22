@@ -20,20 +20,25 @@ const grantSchema = z.object({
 
 // GET /api/admin/ebooks - list all ebook purchases
 export async function GET(request: Request) {
-  if (!isTrustedOrigin(request)) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  try {
+    if (!isTrustedOrigin(request)) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+
+    const admin = await requireAdmin(request);
+    if (!admin) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const purchases = await prisma.ebookPurchase.findMany({
+      orderBy: { grantedAt: "desc" },
+    });
+
+    return NextResponse.json({ purchases });
+  } catch (error) {
+    console.error("[admin/ebooks GET] Failed:", error);
+    return NextResponse.json({ error: "Failed to load ebook access records" }, { status: 500 });
   }
-
-  const admin = await requireAdmin(request);
-  if (!admin) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  const purchases = await prisma.ebookPurchase.findMany({
-    orderBy: { grantedAt: "desc" },
-  });
-
-  return NextResponse.json({ purchases });
 }
 
 // POST /api/admin/ebooks - grant ebook access to an email
@@ -67,13 +72,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Ebook not found" }, { status: 404 });
   }
 
-  const purchase = await prisma.ebookPurchase.upsert({
-    where: { email_ebookSlug: { email, ebookSlug } },
-    update: { tier, note: note ?? null, grantedBy: admin.id, grantedAt: new Date() },
-    create: { email, ebookSlug, tier, note: note ?? null, grantedBy: admin.id },
-  });
+  try {
+    const purchase = await prisma.ebookPurchase.upsert({
+      where: { email_ebookSlug: { email, ebookSlug } },
+      update: { tier, note: note ?? null, grantedBy: admin.id, grantedAt: new Date() },
+      create: { email, ebookSlug, tier, note: note ?? null, grantedBy: admin.id },
+    });
 
-  return NextResponse.json({ purchase }, { status: 201 });
+    return NextResponse.json({ purchase }, { status: 201 });
+  } catch (error) {
+    console.error("[admin/ebooks POST] Failed to grant access:", error);
+    return NextResponse.json({ error: "Failed to grant ebook access. Check server logs." }, { status: 500 });
+  }
 }
 
 // DELETE /api/admin/ebooks - revoke ebook access
@@ -93,7 +103,11 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ error: "Missing id" }, { status: 400 });
   }
 
-  await prisma.ebookPurchase.delete({ where: { id } });
-
-  return NextResponse.json({ ok: true });
+  try {
+    await prisma.ebookPurchase.delete({ where: { id } });
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    console.error("[admin/ebooks DELETE] Failed to revoke access:", error);
+    return NextResponse.json({ error: "Failed to revoke ebook access. Check server logs." }, { status: 500 });
+  }
 }

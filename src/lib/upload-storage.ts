@@ -106,14 +106,17 @@ export async function saveUploadedFile(input: SaveUploadedFileInput): Promise<st
           uploadedBucketName = bucket.name;
           break;
         } catch (error) {
+          console.error(`Firebase Storage upload failed for bucket "${bucketName}":`, error instanceof Error ? error.message : error);
           lastUploadError = error;
         }
       }
 
       if (!uploadedBucketName) {
+        const tried = bucketNames.join(", ");
+        console.error(`Firebase Storage: all buckets failed. Tried: [${tried}]`);
         throw lastUploadError instanceof Error
           ? lastUploadError
-          : new Error("No writable Firebase storage bucket was found");
+          : new Error(`No writable Firebase storage bucket was found. Tried: [${tried}]`);
       }
 
       return `https://firebasestorage.googleapis.com/v0/b/${uploadedBucketName}/o/${encodeURIComponent(

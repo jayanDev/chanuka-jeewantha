@@ -82,8 +82,10 @@ export function getFirebaseStorageBucketNames(): string[] {
 
   const candidates = [configuredBucket];
   if (projectId) {
-    candidates.push(`${projectId}.appspot.com`);
+    // Try the newer default bucket first (Firebase projects created 2022+)
     candidates.push(`${projectId}.firebasestorage.app`);
+    // Legacy bucket format (older projects)
+    candidates.push(`${projectId}.appspot.com`);
   }
 
   return candidates.filter((value, index, array) => Boolean(value) && array.indexOf(value) === index);
