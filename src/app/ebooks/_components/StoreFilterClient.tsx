@@ -71,7 +71,7 @@ export default function StoreFilterClient({ products }: { products: DigitalProdu
 
       {/* Grid */}
       {filteredProducts.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 xl:grid-cols-4 gap-6">
           {filteredProducts.map((product) => (
             <article 
               key={product.slug} 
@@ -87,7 +87,7 @@ export default function StoreFilterClient({ products }: { products: DigitalProdu
                   alt={product.title} 
                   fill 
                   className="object-cover hover:scale-105 transition-transform duration-500" 
-                  sizes="(max-width: 768px) 100vw, 33vw" 
+                  sizes="(max-width: 640px) 50vw, (max-width: 1280px) 50vw, 25vw" 
                 />
                 
                 {/* Badge Overlay */}

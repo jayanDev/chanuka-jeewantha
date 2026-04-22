@@ -71,7 +71,7 @@ export default async function Home() {
 
   const latestPosts = blogPosts.slice(0, 3);
   const testimonialHighlights = publicReviews.slice(0, 3);
-  const ebookHighlights = ebooks.slice(0, 3).map((ebook, index) => ({
+  const ebookHighlights = ebooks.map((ebook, index) => ({
     slug: ebook.slug,
     title: ebook.title,
     image: ebook.coverImage,
@@ -414,7 +414,7 @@ export default async function Home() {
               See More
             </Link>
           </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
               {ebookHighlights.map((item) => (
  <article key={item.slug} className="group flex flex-col justify-between overflow-hidden rounded-[20px] border border-zinc-200 bg-white shadow-[0_10px_24px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.12)] w-full">
                 <div className="relative aspect-[4/5] overflow-hidden">
@@ -422,7 +422,7 @@ export default async function Home() {
                     src={item.image}
                     alt={item.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <span className="absolute left-3 top-3 rounded-full bg-brand-main px-3 py-1 text-xs font-semibold text-white">{item.badge}</span>
