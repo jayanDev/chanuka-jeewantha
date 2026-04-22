@@ -169,13 +169,22 @@ export default function CheckoutPage() {
 
   const buildWhatsAppReminderUrl = (orderId: string) => {
     const orderRef = orderId || "pending";
-    return `https://wa.me/${whatsappSupportNumber}?text=${encodeURIComponent(
-      [
-        "Hello Chanuka, I placed an order through the website.",
-        `Order ID: ${orderRef}`,
-        "If my slip or CV upload is missing, I am sharing it here now.",
-      ].join("\n")
-    )}`;
+    const summary = quoteSummary ?? fallbackSummary;
+    const itemLines = selectedItems.map(
+      (item) => `• ${item.name}${item.quantity > 1 ? ` x${item.quantity}` : ""} — ${formatLkr(item.priceLkr * item.quantity)}`
+    );
+    const lines = [
+      "Hello Chanuka, I placed an order through the website.",
+      `Order ID: ${orderRef}`,
+      "",
+      "📋 Order Summary:",
+      ...itemLines,
+      "",
+      `💰 Total: ${formatLkr(summary.totalLkr)}`,
+      "",
+      "Please confirm my order and send payment details. Thank you!",
+    ];
+    return `https://wa.me/${whatsappSupportNumber}?text=${encodeURIComponent(lines.join("\n"))}`;
   };
 
   useEffect(() => {
@@ -860,12 +869,31 @@ export default function CheckoutPage() {
       {showReminderModal && (
         <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/50 px-4">
  <div className="w-full max-w-lg rounded-[16px] border border-zinc-200 bg-white p-6 shadow-2xl">
-            <h2 className="text-2xl font-bold font-plus-jakarta text-foreground mb-3">Order Submitted</h2>
- <p className="text-zinc-700 mb-3">
-              Your order has been submitted. Please keep your WhatsApp available for faster confirmation and delivery updates.
+            <div className="flex items-center gap-2 mb-3">
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#25D366] text-white flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <h2 className="text-xl font-bold font-plus-jakarta text-foreground">Order Submitted!</h2>
+            </div>
+ <p className="text-zinc-600 text-sm mb-3">
+              Your order has been submitted successfully. Send a WhatsApp message to confirm your order and get faster delivery updates.
             </p>
             {latestOrderId && (
- <p className="text-sm font-semibold text-zinc-800 mb-3">Order ID: {latestOrderId}</p>
+ <p className="text-sm font-mono font-semibold text-zinc-800 bg-zinc-50 border border-zinc-200 rounded-[8px] px-3 py-2 mb-3">Order ID: {latestOrderId}</p>
+            )}
+            {selectedItems.length > 0 && (
+              <div className="mb-3 rounded-[10px] border border-zinc-200 bg-zinc-50 px-3 py-2.5 space-y-1">
+                {selectedItems.map((item) => (
+                  <div key={item.id} className="flex justify-between text-sm text-zinc-700">
+                    <span>{item.name}{item.quantity > 1 ? ` ×${item.quantity}` : ""}</span>
+                    <span className="font-medium">{formatLkr(item.priceLkr * item.quantity)}</span>
+                  </div>
+                ))}
+                <div className="border-t border-zinc-200 pt-1 mt-1 flex justify-between text-sm font-bold text-foreground">
+                  <span>Total</span>
+                  <span>{formatLkr((quoteSummary ?? fallbackSummary).totalLkr)}</span>
+                </div>
+              </div>
             )}
             {orderWarning && (
               <p className="rounded-[10px] border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800 mb-4">
@@ -877,9 +905,10 @@ export default function CheckoutPage() {
                 href={buildWhatsAppReminderUrl(latestOrderId)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-[10px] bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1fb85a]"
+                className="inline-flex items-center justify-center gap-1.5 rounded-[10px] bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1fb85a]"
               >
-                Send Message on WhatsApp
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Confirm on WhatsApp
               </a>
               {latestOrderId && (
                 <Link
