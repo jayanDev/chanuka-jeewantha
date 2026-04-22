@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getServerUser } from "@/lib/auth-server";
-import { prisma } from "@/lib/prisma";
+import { getEbookPurchase } from "@/lib/ebook-firestore";
 import fs from "fs/promises";
 import path from "path";
 import Link from "next/link";
@@ -23,49 +23,30 @@ type TocItem = {
 // Check if user has access to premium chapters
 type EbookAccessTier = "none" | "read" | "download";
 
-async function checkEbookAccess(userId: string | undefined, userEmail: string | undefined, slug: string): Promise<EbookAccessTier> {
+async function checkEbookAccess(
+  userId: string | undefined,
+  userEmail: string | undefined,
+  userRole: string | undefined,
+  slug: string
+): Promise<EbookAccessTier> {
   if (!userId) return "none";
 
-  try {
-    const userWithOrders = await prisma.appUser.findUnique({
-      where: { id: userId },
-      include: {
-        orders: {
-          where: {
-            status: "completed",
-            items: {
-              some: {
-                product: {
-                  slug: slug,
-                },
-              },
-            },
-          },
-          take: 1,
-        },
-      },
-    });
+  // Admin always gets full access — no DB query needed
+  if (userRole === "admin") return "download";
 
-    if (userWithOrders?.role === "admin") return "download";
-
-    // Check EbookPurchase table (admin-granted access by email)
-    if (userEmail) {
-      const purchase = await prisma.ebookPurchase.findUnique({
-        where: { email_ebookSlug: { email: userEmail, ebookSlug: slug } },
-      });
+  // Check Firestore for admin-granted purchase access
+  if (userEmail) {
+    try {
+      const purchase = await getEbookPurchase(userEmail, slug);
       if (purchase) {
         return purchase.tier === "download" ? "download" : "read";
       }
+    } catch (error) {
+      console.error("[checkEbookAccess] Firestore lookup failed:", error);
     }
-
-    // Legacy: completed order via cart system grants download access
-    if (userWithOrders?.orders?.length) return "download";
-
-    return "none";
-  } catch {
-    // DB unavailable (e.g. Vercel cold start / missing migrations) — allow free preview
-    return "none";
   }
+
+  return "none";
 }
 
 export default async function ChapterPage({ params }: Props) {
@@ -82,7 +63,7 @@ export default async function ChapterPage({ params }: Props) {
   }
 
   const user = await getServerUser();
-  const accessTier = await checkEbookAccess(user?.id, user?.email, slug);
+  const accessTier = await checkEbookAccess(user?.id, user?.email, user?.role, slug);
   const hasPremiumAccess = accessTier !== "none";
 
   // Load the actual chapter content JSON

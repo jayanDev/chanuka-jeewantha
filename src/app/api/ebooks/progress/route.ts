@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getRequestUser } from "@/lib/auth-server";
-import { prisma } from "@/lib/prisma";
+import { getEbookProgress, upsertEbookProgress } from "@/lib/ebook-firestore";
 import { z } from "zod";
 
 const progressSchema = z.object({
@@ -10,99 +10,62 @@ const progressSchema = z.object({
 });
 
 export async function GET(request: Request) {
-  const user = await getRequestUser(request);
-  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  try {
+    const user = await getRequestUser(request);
+    if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const { searchParams } = new URL(request.url);
-  const slug = searchParams.get("slug");
+    const { searchParams } = new URL(request.url);
+    const slug = searchParams.get("slug");
+    if (!slug) {
+      return NextResponse.json({ error: "Missing slug parameter" }, { status: 400 });
+    }
 
-  if (!slug) {
-    return NextResponse.json({ error: "Missing slug parameter" }, { status: 400 });
-  }
+    const progress = await getEbookProgress(user.id, slug);
+    if (!progress) {
+      return NextResponse.json({ completedChapters: [], isCompleted: false });
+    }
 
-  const progress = await prisma.ebookProgress.findUnique({
-    where: {
-      userId_ebookSlug: {
-        userId: user.id,
-        ebookSlug: slug,
-      },
-    },
-  });
-
-  if (!progress) {
+    return NextResponse.json({
+      completedChapters: progress.completedChapters,
+      isCompleted: progress.isCompleted,
+    });
+  } catch (error) {
+    console.error("[ebooks/progress GET] Failed:", error);
     return NextResponse.json({ completedChapters: [], isCompleted: false });
   }
-
-  let completedChapters: number[] = [];
-  try {
-    completedChapters = JSON.parse(progress.completedChapters);
-  } catch {
-    completedChapters = [];
-  }
-
-  return NextResponse.json({
-    completedChapters,
-    isCompleted: progress.isCompleted,
-  });
 }
 
 export async function POST(request: Request) {
-  const user = await getRequestUser(request);
-  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  try {
+    const user = await getRequestUser(request);
+    if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const body = await request.json();
-  const parsed = progressSchema.safeParse(body);
-
-  if (!parsed.success) {
-    return NextResponse.json({ error: "Invalid data" }, { status: 400 });
-  }
-
-  const { ebookSlug, chapterId, isFinalChapter } = parsed.data;
-
-  const existing = await prisma.ebookProgress.findUnique({
-    where: {
-      userId_ebookSlug: {
-        userId: user.id,
-        ebookSlug,
-      },
-    },
-  });
-
-  let newCompletedChapters = [chapterId];
-  let isCurrentlyCompleted = false;
-
-  if (existing) {
-    try {
-      const currentArr: number[] = JSON.parse(existing.completedChapters);
-      const set = new Set(currentArr);
-      set.add(chapterId);
-      newCompletedChapters = Array.from(set);
-    } catch {
-      newCompletedChapters = [chapterId];
+    const body = await request.json();
+    const parsed = progressSchema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json({ error: "Invalid data" }, { status: 400 });
     }
-    isCurrentlyCompleted = existing.isCompleted;
-  }
 
-  const shouldMarkCompleted = isCurrentlyCompleted || isFinalChapter;
+    const { ebookSlug, chapterId, isFinalChapter } = parsed.data;
 
-  await prisma.ebookProgress.upsert({
-    where: {
-      userId_ebookSlug: {
-        userId: user.id,
-        ebookSlug,
-      },
-    },
-    update: {
-      completedChapters: JSON.stringify(newCompletedChapters),
-      isCompleted: shouldMarkCompleted,
-    },
-    create: {
+    const existing = await getEbookProgress(user.id, ebookSlug);
+
+    const currentSet = new Set(existing?.completedChapters ?? []);
+    currentSet.add(chapterId);
+    const newCompletedChapters = Array.from(currentSet);
+    const isCompleted = (existing?.isCompleted ?? false) || isFinalChapter;
+
+    await upsertEbookProgress({
       userId: user.id,
       ebookSlug,
-      completedChapters: JSON.stringify(newCompletedChapters),
-      isCompleted: shouldMarkCompleted,
-    },
-  });
+      completedChapters: newCompletedChapters,
+      isCompleted,
+    });
 
-  return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    console.error("[ebooks/progress POST] Failed:", error);
+    // Don't fail reader UX if progress tracking fails
+    return NextResponse.json({ ok: true });
+  }
 }

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getRequestUser } from "@/lib/auth-server";
-import { prisma } from "@/lib/prisma";
+import { getEbookPurchase } from "@/lib/ebook-firestore";
 import { getEbookBySlug } from "@/lib/ebooks";
 import fs from "fs/promises";
 import path from "path";
@@ -16,34 +16,23 @@ const slugToFile: Record<string, string> = {
 async function getDownloadTier(
   userId: string | undefined,
   userEmail: string | undefined,
+  userRole: string | undefined,
   slug: string
 ): Promise<"download" | null> {
   if (!userId) return null;
 
-  const user = await prisma.appUser.findUnique({
-    where: { id: userId },
-    include: {
-      orders: {
-        where: {
-          status: "completed",
-          items: { some: { product: { slug } } },
-        },
-        take: 1,
-      },
-    },
-  });
+  // Admin always has download access
+  if (userRole === "admin") return "download";
 
-  if (user?.role === "admin") return "download";
-
+  // Check Firestore for admin-granted download access
   if (userEmail) {
-    const purchase = await prisma.ebookPurchase.findUnique({
-      where: { email_ebookSlug: { email: userEmail, ebookSlug: slug } },
-    });
-    if (purchase?.tier === "download") return "download";
+    try {
+      const purchase = await getEbookPurchase(userEmail, slug);
+      if (purchase?.tier === "download") return "download";
+    } catch (error) {
+      console.error("[getDownloadTier] Firestore lookup failed:", error);
+    }
   }
-
-  // Legacy orders grant download access
-  if (user?.orders?.length) return "download";
 
   return null;
 }
@@ -60,7 +49,7 @@ export async function GET(
   }
 
   const user = await getRequestUser(request);
-  const tier = await getDownloadTier(user?.id, user?.email, slug);
+  const tier = await getDownloadTier(user?.id, user?.email, user?.role, slug);
 
   if (!tier) {
     return NextResponse.json({ error: "Access denied. Purchase download access to download this ebook." }, { status: 403 });
