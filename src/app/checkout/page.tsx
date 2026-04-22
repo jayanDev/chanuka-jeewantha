@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { paymentInstructions } from "@/lib/packages-catalog";
 import { buildOfferPreviewHeaders, withOfferPreviewUrl } from "@/lib/offer-preview-client";
@@ -136,6 +136,7 @@ function UploadDocumentField({
 
 export default function CheckoutPage() {
   const params = useSearchParams();
+  const router = useRouter();
 
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
@@ -539,17 +540,14 @@ export default function CheckoutPage() {
             <p>Loading checkout...</p>
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px] gap-6 items-start">
- <form onSubmit={onSubmit} className="space-y-6 rounded-[16px] border border-zinc-200 bg-white p-6">
- <div className="rounded-[16px] border border-zinc-200 bg-zinc-50 p-5">
-                  <h2 className="text-xl font-bold mb-3">Payment Instructions</h2>
-                  <p className="text-text-body mb-4 text-sm">{paymentInstructions.methodNote}</p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                    <p><strong>Bank:</strong> {paymentInstructions.bank}</p>
-                    <p><strong>Name:</strong> {paymentInstructions.accountName}</p>
-                    <p><strong>Account No:</strong> {paymentInstructions.accountNumber}</p>
-                    <p><strong>Branch:</strong> {paymentInstructions.branch}</p>
+ <form onSubmit={onSubmit} className="space-y-0 rounded-[16px] border border-zinc-200 bg-white overflow-hidden">
+
+                {/* ── Section 1: What You're Ordering ── */}
+                <div className="px-6 py-5 space-y-4">
+                  <div className="flex items-center gap-2 pb-2 border-b border-zinc-100">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-main text-white text-xs font-bold">1</span>
+                    <h2 className="font-semibold text-foreground">What you are ordering</h2>
                   </div>
-                </div>
 
                 <div>
                   <label className="mb-2 block text-sm font-medium">Purchase Mode</label>
@@ -612,6 +610,17 @@ export default function CheckoutPage() {
                   </div>
                 )}
 
+                </div>{/* end section 1 */}
+
+                <div className="h-px bg-zinc-100" />
+
+                {/* ── Section 2: Your Contact Info ── */}
+                <div className="px-6 py-5 space-y-4">
+                  <div className="flex items-center gap-2 pb-2 border-b border-zinc-100">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-main text-white text-xs font-bold">2</span>
+                    <h2 className="font-semibold text-foreground">Your contact information</h2>
+                  </div>
+
                 <div>
                   <label className="mb-2 block text-sm font-medium">Payment Person Name *</label>
                   <input
@@ -654,17 +663,26 @@ export default function CheckoutPage() {
                   </label>
                 </div>
 
-                <div>
-                  <label className="mb-2 block text-sm font-medium">LinkedIn Profile URL (optional)</label>
-                  <input
-                    type="url"
-                    aria-label="LinkedIn Profile URL"
-                    value={linkedinUrl}
-                    onChange={(event) => setLinkedinUrl(event.target.value)}
- className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
-                    placeholder="https://www.linkedin.com/in/your-profile"
-                  />
-                </div>
+                </div>{/* end section 2 */}
+
+                <div className="h-px bg-zinc-100" />
+
+                {/* ── Section 3: Complete Your Payment ── */}
+                <div className="px-6 py-5 space-y-4">
+                  <div className="flex items-center gap-2 pb-2 border-b border-zinc-100">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-main text-white text-xs font-bold">3</span>
+                    <h2 className="font-semibold text-foreground">Complete your payment</h2>
+                  </div>
+
+                  <div className="rounded-[12px] border border-zinc-200 bg-zinc-50 p-4">
+                    <p className="text-sm text-text-body mb-3">{paymentInstructions.methodNote}</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                      <p><strong>Bank:</strong> {paymentInstructions.bank}</p>
+                      <p><strong>Name:</strong> {paymentInstructions.accountName}</p>
+                      <p><strong>Account No:</strong> {paymentInstructions.accountNumber}</p>
+                      <p><strong>Branch:</strong> {paymentInstructions.branch}</p>
+                    </div>
+                  </div>
 
                 <div>
                   <label className="mb-2 block text-sm font-medium">Coupon Code (optional)</label>
@@ -692,16 +710,6 @@ export default function CheckoutPage() {
                 </div>
 
                 <UploadDocumentField
-                  id="current-cv-upload"
-                  label="Upload Current CV (optional)"
-                  accept=".pdf,.doc,.docx"
-                  file={currentCv}
-                  onChange={setCurrentCv}
-                  placeholder="Upload your current CV document"
-                  hint="Supported: PDF, DOC, DOCX"
-                />
-
-                <UploadDocumentField
                   id="payment-slip-upload"
                   label="Upload Payment Slip"
                   accept=".jpg,.jpeg,.png,.webp,.pdf"
@@ -712,8 +720,41 @@ export default function CheckoutPage() {
                   hint="Required. Supported: JPG, PNG, WEBP, PDF"
                 />
 
+                </div>{/* end section 3 */}
+
+                <div className="h-px bg-zinc-100" />
+
+                {/* ── Section 4: Extra Information ── */}
+                <div className="px-6 py-5 space-y-4">
+                  <div className="flex items-center gap-2 pb-2 border-b border-zinc-100">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-zinc-300 text-zinc-600 text-xs font-bold">4</span>
+                    <h2 className="font-semibold text-foreground">Extra information <span className="text-zinc-400 font-normal text-sm">(optional)</span></h2>
+                  </div>
+
+                <UploadDocumentField
+                  id="current-cv-upload"
+                  label="Upload Current CV"
+                  accept=".pdf,.doc,.docx"
+                  file={currentCv}
+                  onChange={setCurrentCv}
+                  placeholder="Upload your current CV document"
+                  hint="Optional. Supported: PDF, DOC, DOCX"
+                />
+
                 <div>
-                  <label className="mb-2 block text-sm font-medium">Extra details (optional)</label>
+                  <label className="mb-2 block text-sm font-medium">LinkedIn Profile URL</label>
+                  <input
+                    type="url"
+                    aria-label="LinkedIn Profile URL"
+                    value={linkedinUrl}
+                    onChange={(event) => setLinkedinUrl(event.target.value)}
+ className="w-full rounded-[10px] border border-zinc-300 px-4 py-3"
+                    placeholder="https://www.linkedin.com/in/your-profile"
+                  />
+                </div>
+
+                <div>
+                  <label className="mb-2 block text-sm font-medium">Extra details</label>
                   <textarea
                     aria-label="Extra details"
                     value={extraDetails}
@@ -724,7 +765,11 @@ export default function CheckoutPage() {
                   />
                 </div>
 
-                <div className="flex flex-wrap gap-3">
+                </div>{/* end section 4 */}
+
+                <div className="h-px bg-zinc-100" />
+
+                <div className="px-6 py-5 flex flex-wrap gap-3">
                   <button
                     type="submit"
                     disabled={isSubmitting || hasSubmittedOrder}
@@ -836,9 +881,25 @@ export default function CheckoutPage() {
               >
                 Send Message on WhatsApp
               </a>
+              {latestOrderId && (
+                <Link
+                  href={`/orders/${latestOrderId}`}
+                  onClick={() => setShowReminderModal(false)}
+                  className="inline-flex items-center justify-center rounded-[10px] bg-brand-main px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-dark"
+                >
+                  View My Order
+                </Link>
+              )}
               <button
                 type="button"
-                onClick={() => setShowReminderModal(false)}
+                onClick={() => {
+                  setShowReminderModal(false);
+                  if (latestOrderId) {
+                    router.push(`/orders/${latestOrderId}`);
+                  } else {
+                    router.push("/orders");
+                  }
+                }}
  className="rounded-[10px] border border-zinc-300 px-4 py-2.5 text-sm font-semibold text-zinc-700 hover:border-zinc-400"
               >
                 Close

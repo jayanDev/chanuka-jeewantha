@@ -71,6 +71,8 @@ export const orderStatusUpdateSchema = z.object({
     "completed",
     "cancelled",
   ]),
+  etaDate: z.string().max(20).nullable().optional(),
+  adminNotes: z.string().max(2000).nullable().optional(),
 });
 
 export const profileUpdateSchema = z.object({

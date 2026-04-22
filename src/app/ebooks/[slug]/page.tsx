@@ -13,16 +13,6 @@ type EbookPageProps = {
 
 const whatsappNumber = "94773902230";
 
-const getWhatsappOrderLink = (title: string, price?: number) => {
-  const lines = [
-    "Hello Chanuka, I want to order this paid ebook.",
-    `Ebook: ${title}`,
-    price ? `Price: ${formatLkr(price)}` : "",
-  ].filter(Boolean);
-
-  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(lines.join("\n"))}`;
-};
-
 export async function generateStaticParams() {
   return ebooks.map((ebook) => ({ slug: ebook.slug }));
 }
@@ -109,8 +99,8 @@ export default async function EbookSinglePage({ params }: EbookPageProps) {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-[420px_1fr] gap-10 items-start">
- <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] border border-white/15 bg-white">
-              <Image src={ebook.coverImage} alt={ebook.title} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 420px" />
+          <div className="relative aspect-[210/297] overflow-hidden rounded-[20px] border border-white/15 bg-white">
+              <Image src={ebook.coverImage} alt={ebook.title} fill className="object-contain" sizes="(max-width: 1024px) 100vw, 420px" />
             </div>
 
             <div>
@@ -150,16 +140,37 @@ export default async function EbookSinglePage({ params }: EbookPageProps) {
                   >
                     Start Reading (Free Preview)
                   </Link>
-                  <a
-                    href={getWhatsappOrderLink(ebook.title, ebook.priceLkr)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-[10px] bg-[#25D366] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#1fb85a]"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                    Order via WhatsApp
-                  </a>
-                  <p className="w-full text-brand-light font-semibold">Price: {formatLkr(ebook.priceLkr ?? 0)}</p>
+                  <div className="w-full mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="rounded-[14px] border border-zinc-200 p-4">
+                      <p className="text-xs font-bold uppercase tracking-wider text-zinc-400 mb-1">Read Online</p>
+                      <p className="text-2xl font-bold font-plus-jakarta text-white mb-3">{formatLkr(ebook.readPriceLkr ?? 500)}</p>
+                      <p className="text-sm text-text-light mb-3">Access all chapters on the website.</p>
+                      <a
+                        href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hello Chanuka, I want to purchase READ access for:\nEbook: ${ebook.title}\nPrice: LKR 500`)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-[10px] bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1fb85a] w-full justify-center"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        Order via WhatsApp
+                      </a>
+                    </div>
+                    <div className="rounded-[14px] border-2 border-brand-main p-4 relative">
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-main text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">Best Value</span>
+                      <p className="text-xs font-bold uppercase tracking-wider text-brand-main mb-1">Download + Read</p>
+                      <p className="text-2xl font-bold font-plus-jakarta text-white mb-3">{formatLkr(ebook.downloadPriceLkr ?? 1500)}</p>
+                      <p className="text-sm text-text-light mb-3">Read online + download full ebook file.</p>
+                      <a
+                        href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hello Chanuka, I want to purchase DOWNLOAD access for:\nEbook: ${ebook.title}\nPrice: LKR 1,500`)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-[10px] bg-brand-main px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-dark w-full justify-center"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        Order via WhatsApp
+                      </a>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>

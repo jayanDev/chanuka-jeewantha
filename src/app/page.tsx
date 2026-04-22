@@ -417,7 +417,7 @@ export default async function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {ebookHighlights.map((item) => (
  <article key={item.slug} className="group flex flex-col justify-between overflow-hidden rounded-[20px] border border-zinc-200 bg-white shadow-[0_10px_24px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.12)] w-full">
-                <div className="relative aspect-[5/4] overflow-hidden">
+                <div className="relative aspect-[4/5] overflow-hidden">
                   <Image
                     src={item.image}
                     alt={item.title}

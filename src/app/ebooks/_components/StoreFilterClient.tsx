@@ -112,14 +112,21 @@ export default function StoreFilterClient({ products }: { products: DigitalProdu
                 </p>
                 
                 {/* Price and Action (Pushed to bottom) */}
- <div className="mt-auto pt-4 border-t border-zinc-100 flex items-center justify-between">
-                  <span className="text-[20px] font-bold font-plus-jakarta text-brand-dark">
-                    {product.category === "paid" ? formatLkr(product.priceLkr ?? 0) : "Free"}
-                  </span>
-                  
+ <div className="mt-auto pt-4 border-t border-zinc-100">
+                  {product.category === "paid" && product.readPriceLkr && product.downloadPriceLkr ? (
+                    <div className="flex items-center gap-3 mb-3 text-sm">
+                      <span className="font-semibold text-foreground">Read {formatLkr(product.readPriceLkr)}</span>
+                      <span className="text-zinc-300">|</span>
+                      <span className="font-semibold text-brand-dark">Download {formatLkr(product.downloadPriceLkr)}</span>
+                    </div>
+                  ) : (
+                    <p className="text-[20px] font-bold font-plus-jakarta text-brand-dark mb-3">
+                      {product.category === "paid" ? formatLkr(product.priceLkr ?? 0) : "Free"}
+                    </p>
+                  )}
                   <Link 
                     href={product.productType === "Ebook" ? `/ebooks/${product.slug}` : '#'} 
-                    className={`rounded-[8px] px-5 py-2 font-semibold text-sm transition-colors ${
+                    className={`rounded-[8px] px-5 py-2 font-semibold text-sm transition-colors w-full block text-center ${
                       product.category === "paid" 
                         ? "bg-brand-main text-background hover:bg-brand-dark" 
                         : "bg-foreground text-background hover:bg-brand-dark"

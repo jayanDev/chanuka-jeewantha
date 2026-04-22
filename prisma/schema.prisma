@@ -298,3 +298,17 @@ model ReferralTransaction {
   
   @@index([affiliateProfileId])
 }
+
+model EbookPurchase {
+  id        String   @id @default(cuid())
+  email     String
+  ebookSlug String
+  tier      String   @default("read") // "read" or "download"
+  grantedAt DateTime @default(now())
+  grantedBy String   // admin user id
+  note      String?
+
+  @@unique([email, ebookSlug])
+  @@index([email])
+  @@index([ebookSlug])
+}

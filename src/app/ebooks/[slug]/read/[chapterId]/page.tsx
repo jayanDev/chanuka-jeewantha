@@ -21,8 +21,10 @@ type TocItem = {
 };
 
 // Check if user has access to premium chapters
-async function checkEbookAccess(userId: string | undefined, slug: string): Promise<boolean> {
-  if (!userId) return false;
+type EbookAccessTier = "none" | "read" | "download";
+
+async function checkEbookAccess(userId: string | undefined, userEmail: string | undefined, slug: string): Promise<EbookAccessTier> {
+  if (!userId) return "none";
 
   const userWithOrders = await prisma.appUser.findUnique({
     where: { id: userId },
@@ -43,8 +45,22 @@ async function checkEbookAccess(userId: string | undefined, slug: string): Promi
     },
   });
 
-  if (userWithOrders?.role === "admin") return true;
-  return !!userWithOrders?.orders?.length;
+  if (userWithOrders?.role === "admin") return "download";
+
+  // Check EbookPurchase table (admin-granted access by email)
+  if (userEmail) {
+    const purchase = await prisma.ebookPurchase.findUnique({
+      where: { email_ebookSlug: { email: userEmail, ebookSlug: slug } },
+    });
+    if (purchase) {
+      return purchase.tier === "download" ? "download" : "read";
+    }
+  }
+
+  // Legacy: completed order via cart system grants download access
+  if (userWithOrders?.orders?.length) return "download";
+
+  return "none";
 }
 
 export default async function ChapterPage({ params }: Props) {
@@ -61,7 +77,8 @@ export default async function ChapterPage({ params }: Props) {
   }
 
   const user = await getServerUser();
-  const hasPremiumAccess = await checkEbookAccess(user?.id, slug);
+  const accessTier = await checkEbookAccess(user?.id, user?.email, slug);
+  const hasPremiumAccess = accessTier !== "none";
 
   // Load the actual chapter content JSON
   let chapterData = null;
@@ -109,6 +126,10 @@ export default async function ChapterPage({ params }: Props) {
   const isFinalChapter = currentIndex === chapterIds.length - 1;
 
   if (isLocked) {
+    const whatsappNumber = "94773902230";
+    const readMsg = encodeURIComponent(`Hello Chanuka, I want to purchase READ access for:\nEbook: ${ebook.title}\nPrice: LKR 500`);
+    const downloadMsg = encodeURIComponent(`Hello Chanuka, I want to purchase DOWNLOAD access for:\nEbook: ${ebook.title}\nPrice: LKR 1,500`);
+
     return (
  <div className="flex min-h-screen flex-col items-center justify-center bg-zinc-50 px-6 py-24 text-center selection:bg-transparent">
  <div className="mx-auto max-w-xl rounded-3xl border border-zinc-200 bg-white p-10 md:p-14 shadow-xl text-center">
@@ -131,27 +152,49 @@ export default async function ChapterPage({ params }: Props) {
           <h1 className="font-plus-jakarta text-3xl font-bold text-foreground mb-4">
             Unlock Full Access to Keep Reading
           </h1>
- <p className="text-zinc-600 mb-10 text-lg leading-relaxed">
-            You've reached the end of the free preview for{" "}
-            <strong>{ebook.title}</strong>. Purchasing this ebook gives you instant access to all {totalChapters} chapters, lifetime updates, and actionable insights.
+ <p className="text-zinc-600 mb-8 text-lg leading-relaxed">
+            You&apos;ve reached the end of the free preview for{" "}
+            <strong>{ebook.title}</strong>. Choose your access plan below.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href={`/ebooks/${slug}`}
-              className="rounded-xl border-2 border-brand-main bg-brand-main px-8 py-4 font-bold text-white transition-colors hover:bg-brand-dark hover:border-brand-dark w-full sm:w-auto"
-            >
-              Purchase for {formatLkr(ebook.priceLkr ?? 0)}
-            </Link>
-            {!user && (
-              <Link
-                href={`/auth/signin?returnTo=/ebooks/${slug}/read/${chapterId}`}
- className="rounded-xl border-2 border-zinc-200 bg-white px-8 py-4 font-bold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main w-full sm:w-auto"
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+            <div className="rounded-2xl border-2 border-zinc-200 p-5 text-left">
+              <p className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1">Read Online</p>
+              <p className="text-2xl font-bold font-plus-jakarta text-foreground mb-3">{formatLkr(ebook.readPriceLkr ?? 500)}</p>
+              <p className="text-sm text-zinc-500 mb-4">Access all chapters on our website anytime.</p>
+              <a
+                href={`https://wa.me/${whatsappNumber}?text=${readMsg}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#25D366] px-5 py-2.5 text-sm font-bold text-white hover:bg-[#1fb85a] transition-colors w-full justify-center"
               >
-                I already bought this
-              </Link>
-            )}
+                Order via WhatsApp
+              </a>
+            </div>
+            <div className="rounded-2xl border-2 border-brand-main p-5 text-left relative">
+              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-main text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">Best Value</span>
+              <p className="text-xs font-bold uppercase tracking-wider text-brand-main mb-1">Download + Read</p>
+              <p className="text-2xl font-bold font-plus-jakarta text-foreground mb-3">{formatLkr(ebook.downloadPriceLkr ?? 1500)}</p>
+              <p className="text-sm text-zinc-500 mb-4">Read online + download the full ebook file.</p>
+              <a
+                href={`https://wa.me/${whatsappNumber}?text=${downloadMsg}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl bg-brand-main px-5 py-2.5 text-sm font-bold text-white hover:bg-brand-dark transition-colors w-full justify-center"
+              >
+                Order via WhatsApp
+              </a>
+            </div>
           </div>
+
+          {!user && (
+            <Link
+              href={`/auth/signin?returnTo=/ebooks/${slug}/read/${chapterId}`}
+ className="text-sm font-semibold text-brand-dark hover:text-brand-main underline-offset-2 hover:underline"
+            >
+              Already purchased? Sign in for access
+            </Link>
+          )}
         </div>
       </div>
     );

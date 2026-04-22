@@ -103,11 +103,11 @@ export default function CartPage() {
   };
 
   return (
- <section className="w-full bg-zinc-50 py-16 min-h-[70vh]">
+    <section className="w-full bg-zinc-50 py-16 min-h-[70vh]">
       <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
         <div className="mb-8 flex items-center justify-between">
           <h1 className="text-4xl font-bold font-plus-jakarta text-foreground">Your Cart</h1>
-          <Link href="/pricing" className="text-brand-main font-medium">Add More Packages</Link>
+          <Link href="/pricing" className="text-brand-main font-medium text-sm">+ Add More Packages</Link>
         </div>
 
         {error && (
@@ -117,49 +117,82 @@ export default function CartPage() {
         {isLoading ? (
           <p className="text-text-body">Loading cart...</p>
         ) : items.length === 0 ? (
- <div className="rounded-[16px] border border-zinc-200 bg-white p-8 text-center">
-            <p className="text-text-body mb-4">Your cart is empty.</p>
-            <Link href="/pricing" className="inline-block rounded-[10px] bg-brand-main px-5 py-3 text-white font-medium">Browse Packages</Link>
+          <div className="rounded-[16px] border border-zinc-200 bg-white p-10 text-center">
+            <p className="text-lg font-semibold text-foreground mb-2">Your cart is empty</p>
+            <p className="text-sm text-zinc-500 mb-5">Browse our packages to find the right one for you.</p>
+            <Link href="/pricing" className="inline-block rounded-[10px] bg-brand-main px-6 py-3 text-white font-medium hover:bg-brand-dark">Browse Packages</Link>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-3">
             {items.map((item) => (
- <article key={item.id} className="rounded-[16px] border border-zinc-200 bg-white p-6">
-                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                  <div>
-                    <h2 className="text-xl font-bold text-foreground">{item.product.name}</h2>
-                    <p className="text-sm text-zinc-500">{item.product.category} / {item.product.delivery}</p>
+              <article key={item.id} className="rounded-[16px] border border-zinc-200 bg-white p-5">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex-1 min-w-0">
+                    <h2 className="font-bold text-foreground">{item.product.name}</h2>
+                    <p className="text-sm text-zinc-500 mt-0.5">
+                      {item.product.category}
+                      {item.product.delivery ? ` · ${item.product.delivery}` : ""}
+                    </p>
+                    <p className="text-xs text-zinc-400 mt-0.5">
+                      {formatLkr(item.product.priceLkr)} each
+                    </p>
                   </div>
-                  <p className="text-lg font-semibold text-foreground">{formatLkr(item.product.priceLkr)}</p>
-                </div>
-
-                <div className="mt-4 flex flex-wrap items-center gap-3">
-                  <label className="text-sm">Qty</label>
-                  <input
-                    type="number"
-                    aria-label="Quantity"
-                    min={1}
-                    max={10}
-                    value={item.quantity}
-                    onChange={(event) => void updateQty(item.id, Number(event.target.value || 1))}
- className="w-20 rounded border border-zinc-300 px-2 py-1"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => void removeItem(item.id)}
-                    className="rounded bg-zinc-200 px-3 py-1 text-sm hover:bg-zinc-300"
-                  >
-                    Remove
-                  </button>
+                  <div className="flex items-center gap-3">
+                    {/* +/- quantity controls */}
+                    <div className="flex items-center gap-1 rounded-[10px] border border-zinc-200 bg-zinc-50 p-1">
+                      <button
+                        type="button"
+                        aria-label="Decrease quantity"
+                        disabled={item.quantity <= 1}
+                        onClick={() => void updateQty(item.id, item.quantity - 1)}
+                        className="flex h-7 w-7 items-center justify-center rounded-[8px] text-zinc-600 hover:bg-zinc-200 disabled:opacity-40"
+                      >
+                        −
+                      </button>
+                      <span className="min-w-[2rem] text-center text-sm font-semibold text-foreground">
+                        {item.quantity}
+                      </span>
+                      <button
+                        type="button"
+                        aria-label="Increase quantity"
+                        disabled={item.quantity >= 10}
+                        onClick={() => void updateQty(item.id, item.quantity + 1)}
+                        className="flex h-7 w-7 items-center justify-center rounded-[8px] text-zinc-600 hover:bg-zinc-200 disabled:opacity-40"
+                      >
+                        +
+                      </button>
+                    </div>
+                    <p className="w-28 text-right font-semibold text-foreground">
+                      {formatLkr(item.product.priceLkr * item.quantity)}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => void removeItem(item.id)}
+                      aria-label="Remove item"
+                      className="rounded-[8px] border border-zinc-200 px-2 py-1.5 text-xs text-zinc-500 hover:border-red-200 hover:bg-red-50 hover:text-red-600"
+                    >
+                      Remove
+                    </button>
+                  </div>
                 </div>
               </article>
             ))}
 
- <div className="rounded-[16px] border border-zinc-200 bg-white p-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <p className="text-xl font-bold text-foreground">Total: {formatLkr(total)}</p>
-              <Link href="/checkout" className="inline-block rounded-[10px] bg-brand-main px-6 py-3 text-white font-medium hover:bg-brand-dark">
-                Proceed to Checkout
-              </Link>
+            {/* Totals + Proceed */}
+            <div className="rounded-[16px] border border-zinc-200 bg-white p-5">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-sm text-zinc-500">{items.length} item{items.length > 1 ? "s" : ""}</p>
+                  <p className="text-2xl font-bold text-foreground mt-0.5">{formatLkr(total)}</p>
+                  <p className="text-xs text-zinc-400 mt-0.5">Final price calculated at checkout after coupons</p>
+                </div>
+                <Link
+                  href="/checkout"
+                  className="inline-flex items-center justify-center rounded-[12px] bg-brand-main px-8 py-3.5 text-base font-semibold text-white hover:bg-brand-dark"
+                >
+                  Proceed to Checkout →
+                </Link>
+              </div>
             </div>
           </div>
         )}

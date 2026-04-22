@@ -216,6 +216,8 @@ export async function GET(request: Request) {
         linkedinUrl?: unknown;
         extraDetails?: unknown;
         note?: unknown;
+        etaDate?: unknown;
+        adminNotes?: unknown;
         userId?: unknown;
         userName?: unknown;
         userEmail?: unknown;
@@ -280,6 +282,8 @@ export async function GET(request: Request) {
             : typeof data.note === "string"
               ? data.note
               : null,
+        etaDate: typeof data.etaDate === "string" ? data.etaDate : null,
+        adminNotes: typeof data.adminNotes === "string" ? data.adminNotes : null,
         createdAt: createdAtMs > 0 ? new Date(createdAtMs).toISOString() : null,
         createdAtMs,
         user: {
@@ -385,7 +389,11 @@ export async function PATCH(request: Request) {
     });
   }
 
-  await ref.set({ status: parsed.data.status, updatedAtMs: now, updates }, { merge: true });
+  const extraFields: Record<string, unknown> = {};
+  if (parsed.data.etaDate !== undefined) extraFields.etaDate = parsed.data.etaDate;
+  if (parsed.data.adminNotes !== undefined) extraFields.adminNotes = parsed.data.adminNotes;
+
+  await ref.set({ status: parsed.data.status, updatedAtMs: now, updates, ...extraFields }, { merge: true });
 
   const order = {
     id: parsed.data.orderId,

@@ -8,6 +8,8 @@ export type DigitalProduct = {
   productType: DigitalProductType;
   category: "free" | "paid";
   priceLkr?: number;
+  readPriceLkr?: number;
+  downloadPriceLkr?: number;
   coverImage: string;
   highlights: string[];
   readPath?: string;
@@ -22,7 +24,9 @@ export const digitalProducts: DigitalProduct[] = [
       "සාමාන්‍ය වේගයෙන් නොව, වේගවත් මාර්ගයක් ඔස්සේ ධනවත් වීම ගැන කියාදෙන ප්‍රායෝගික අදහස් සහ පරිච්ඡේද 60කට වඩා අඩංගු මාර්ගෝපදේශක ebook එකක්.",
     productType: "Ebook",
     category: "paid",
-    priceLkr: 2500,
+    priceLkr: 500,
+    readPriceLkr: 500,
+    downloadPriceLkr: 1500,
     coverImage: "/images/millionaire-fastlane-cover.jpg",
     highlights: [
       "කාලය සහ ධනය අතර සම්බන්ධය",
@@ -38,7 +42,9 @@ export const digitalProducts: DigitalProduct[] = [
       "අවධානය කැඩී යන ලෝකයේ ගැඹුරු වැඩ පුරුද්දක් ලෙස ගොඩනගාගෙන, ඉක්මනින් ඉගෙනගෙන, උසස් මට්ටමේ ප්‍රතිඵල ලබාගැනීමට උපකාරී වන ප්‍රායෝගික නීති සහ ක්‍රමවල මාර්ගෝපදේශය.",
     productType: "Ebook",
     category: "paid",
-    priceLkr: 2200,
+    priceLkr: 500,
+    readPriceLkr: 500,
+    downloadPriceLkr: 1500,
     coverImage: "/images/Deep Work.jpg",
     highlights: [
       "Deep Work වටිනාකම, අඩුවීමේ හේතු, සහ ජීවිතමය අර්ථය",
@@ -54,7 +60,9 @@ export const digitalProducts: DigitalProduct[] = [
       "Passion myth එක පසෙකලා, දුර්ලභ කුසලතා ගොඩනගා, control සහ mission මත පදනම් වූ දිගුකාලීන වෘත්තීය සාර්ථකත්වයකට යාමට උපකාරී වන ප්‍රායෝගික ebook එකක්.",
     productType: "Ebook",
     category: "paid",
-    priceLkr: 2200,
+    priceLkr: 500,
+    readPriceLkr: 500,
+    downloadPriceLkr: 1500,
     coverImage: "/images/So Good They Can't Ignore You.jpg",
     highlights: [
       "Don't Follow Your Passion සිට Think Small, Act Big දක්වා නීති 4",

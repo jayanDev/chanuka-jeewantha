@@ -25,6 +25,8 @@ export type AdminOrder = {
   linkedinUrl: string | null;
   extraDetails: string | null;
   createdAt: string | null;
+  etaDate: string | null;
+  adminNotes: string | null;
   user: {
     id: string;
     name: string;

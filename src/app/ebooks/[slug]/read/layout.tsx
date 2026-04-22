@@ -18,9 +18,11 @@ type TocItem = {
   title: string;
 };
 
-// Check if user has access to premium chapters (has completed order for this slug)
-async function checkEbookAccess(userId: string | undefined, slug: string): Promise<boolean> {
-  if (!userId) return false;
+// Check if user has access to premium chapters and what tier
+type EbookAccessTier = "none" | "read" | "download";
+
+async function checkEbookAccess(userId: string | undefined, userEmail: string | undefined, slug: string): Promise<EbookAccessTier> {
+  if (!userId) return "none";
   
   const userWithOrders = await prisma.appUser.findUnique({
     where: { id: userId },
@@ -41,11 +43,23 @@ async function checkEbookAccess(userId: string | undefined, slug: string): Promi
     }
   });
 
-  // Admin users have full access
-  if (userWithOrders?.role === "admin") return true;
+  // Admin users have full download access
+  if (userWithOrders?.role === "admin") return "download";
 
-  // Regular user stringently checks if there is any completed order with this item
-  return !!userWithOrders?.orders?.length;
+  // Check EbookPurchase table (admin-granted access by email)
+  if (userEmail) {
+    const purchase = await prisma.ebookPurchase.findUnique({
+      where: { email_ebookSlug: { email: userEmail, ebookSlug: slug } },
+    });
+    if (purchase) {
+      return purchase.tier === "download" ? "download" : "read";
+    }
+  }
+
+  // Legacy: completed order via cart system grants download access
+  if (userWithOrders?.orders?.length) return "download";
+
+  return "none";
 }
 
 export default async function EbookReaderLayout({ params, children }: Props) {
@@ -75,7 +89,9 @@ export default async function EbookReaderLayout({ params, children }: Props) {
   const freeChapterIds = new Set(chapterItems.slice(0, 3).map((item) => item.id));
 
   const user = await getServerUser();
-  const hasPremiumAccess = await checkEbookAccess(user?.id, slug);
+  const accessTier = await checkEbookAccess(user?.id, user?.email, slug);
+  const hasPremiumAccess = accessTier !== "none";
+  const hasDownloadAccess = accessTier === "download";
 
   return (
  <div className="flex h-screen w-full bg-zinc-50 overflow-hidden font-poppins selection:bg-transparent">
@@ -94,11 +110,11 @@ export default async function EbookReaderLayout({ params, children }: Props) {
           </h2>
           <span className="inline-block mt-2 text-xs font-semibold uppercase tracking-wider text-brand-main bg-brand-main/10 px-2 py-1 rounded">
             {/* Show badge based on access */}
-            {hasPremiumAccess ? "Full Access" : "Preview Mode"}
+            {accessTier === "download" ? "Full Access" : hasPremiumAccess ? "Read Access" : "Preview Mode"}
           </span>
-          {hasPremiumAccess && ebook.downloadUrl && (
+          {hasDownloadAccess && (
             <a
-              href={ebook.downloadUrl}
+              href={`/api/ebooks/${slug}/download`}
               download
               className="mt-3 inline-flex items-center gap-2 rounded-[8px] border border-brand-main/30 bg-brand-main/5 px-3 py-2 text-xs font-semibold text-brand-dark transition-colors hover:bg-brand-main/10"
             >
