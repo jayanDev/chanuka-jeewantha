@@ -77,7 +77,7 @@ async function sendAdminEmail(subject: string, text: string): Promise<void> {
     return;
   }
 
-  await fetch("https://api.resend.com/emails", {
+  const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${apiKey}`,
@@ -90,6 +90,10 @@ async function sendAdminEmail(subject: string, text: string): Promise<void> {
       text,
     }),
   });
+  if (!res.ok) {
+    const body = await res.text();
+    console.error(`[sendAdminEmail] Resend error ${res.status}:`, body);
+  }
 }
 
 async function sendCustomerEmail(toEmail: string, subject: string, text: string): Promise<void> {
@@ -100,7 +104,7 @@ async function sendCustomerEmail(toEmail: string, subject: string, text: string)
     return;
   }
 
-  await fetch("https://api.resend.com/emails", {
+  const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${apiKey}`,
@@ -113,6 +117,10 @@ async function sendCustomerEmail(toEmail: string, subject: string, text: string)
       text,
     }),
   });
+  if (!res.ok) {
+    const body = await res.text();
+    console.error(`[sendCustomerEmail] Resend error ${res.status}:`, body);
+  }
 }
 
 async function sendWhatsApp(message: string): Promise<void> {
