@@ -414,7 +414,7 @@ export default async function Home() {
               See More
             </Link>
           </div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {ebookHighlights.map((item) => (
  <article key={item.slug} className="group flex flex-col justify-between overflow-hidden rounded-[20px] border border-zinc-200 bg-white shadow-[0_10px_24px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.12)] w-full">
                 <div className="relative aspect-[4/5] overflow-hidden">
@@ -428,7 +428,7 @@ export default async function Home() {
                   <span className="absolute left-3 top-3 rounded-full bg-brand-main px-3 py-1 text-xs font-semibold text-white">{item.badge}</span>
                 </div>
                 <div className="p-5">
- <p className="line-clamp-2 text-[16px] font-bold leading-snug text-zinc-900">{item.title}</p>
+ <p className="line-clamp-2 text-[13px] font-bold leading-snug text-zinc-900">{item.title}</p>
                   <Link href={`/ebooks/${item.slug}`} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
                     Explore Ebook
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>

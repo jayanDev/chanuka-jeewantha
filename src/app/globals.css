@@ -137,9 +137,11 @@ body {
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-plus-jakarta);
-  color: var(--foreground);
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-plus-jakarta);
+    color: var(--foreground);
+  }
 }
 
 /* CSS-only reveal animation to avoid hydration-time DOM mutations */

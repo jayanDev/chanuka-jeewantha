@@ -71,7 +71,7 @@ export default function StoreFilterClient({ products }: { products: DigitalProdu
 
       {/* Grid */}
       {filteredProducts.length > 0 ? (
-        <div className="grid grid-cols-2 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
           {filteredProducts.map((product) => (
             <article 
               key={product.slug} 
@@ -104,7 +104,7 @@ export default function StoreFilterClient({ products }: { products: DigitalProdu
               </div>
               
               <div className="flex-grow flex flex-col">
-                <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-2 line-clamp-2 leading-tight">
+                <h3 className="text-[16px] font-bold font-plus-jakarta text-foreground mb-2 line-clamp-2 leading-tight">
                   {product.title}
                 </h3>
                 <p className="text-zinc-500 text-sm mb-4 line-clamp-3 leading-relaxed">

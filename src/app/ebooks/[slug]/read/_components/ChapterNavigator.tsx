@@ -40,9 +40,11 @@ export default function ChapterNavigator({
       console.error("Failed to save progress", e);
     } finally {
       setIsSaving(false);
-      // Proceed to next page even if save failed
       if (nextChapterId !== null) {
         router.push(`/ebooks/${slug}/read/${nextChapterId}`);
+      } else if (isFinalChapter) {
+        // Final chapter — go back to ebook overview page
+        router.push(`/ebooks/${slug}`);
       }
     }
   };
@@ -71,10 +73,14 @@ export default function ChapterNavigator({
         <button
           type="button"
           onClick={handleNext}
-          disabled={isSaving || nextChapterId === null}
+          disabled={isSaving}
           className="px-6 py-4 bg-foreground text-background rounded-[12px] hover:bg-brand-main transition-colors flex items-center gap-3 w-full sm:w-auto justify-center disabled:opacity-50"
         >
-          {isSaving ? "Saving..." : "Mark as Read & Continue \u2192"}
+          {isSaving
+            ? "Saving..."
+            : isFinalChapter
+            ? "✓ Mark Complete & Finish Reading"
+            : "Mark as Read & Continue →"}
         </button>
       </div>
     </div>

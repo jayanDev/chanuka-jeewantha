@@ -6,6 +6,7 @@ import { getServerUser } from "@/lib/auth-server";
 import { getEbookPurchase } from "@/lib/ebook-firestore";
 import fs from "fs/promises";
 import path from "path";
+import MobileChapterMenu from "./_components/MobileChapterMenu";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -82,21 +83,16 @@ export default async function EbookReaderLayout({ params, children }: Props) {
       <style>{`#site-nav { display: none !important; }`}</style>
       <div className="lg:flex lg:h-screen lg:overflow-hidden font-poppins selection:bg-transparent bg-zinc-50">
 
-      {/* Mobile-only slim back bar (replaces the old collapsible Contents dropdown) */}
+      {/* Mobile-only collapsible chapter nav */}
       <div className="lg:hidden sticky top-0 z-30 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/90 border-b border-zinc-200">
-        <div className="px-4 py-3 flex items-center gap-3">
-          <Link
-            href={`/ebooks/${slug}`}
-            className="inline-flex items-center gap-1.5 rounded-[8px] bg-zinc-100 hover:bg-zinc-200 px-3 py-1.5 text-sm font-semibold text-zinc-700 transition-colors shrink-0"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-            Back
-          </Link>
-          <p className="flex-1 min-w-0 text-sm font-semibold text-foreground truncate">{ebook.title}</p>
-          <span className="shrink-0 text-[11px] font-bold uppercase tracking-wider text-brand-main bg-brand-main/10 px-2 py-0.5 rounded">
-            {accessTier === "download" ? "Full Access" : hasPremiumAccess ? "Read Access" : "Preview"}
-          </span>
-        </div>
+        <MobileChapterMenu
+          slug={slug}
+          ebookTitle={ebook.title}
+          accessLabel={accessTier === "download" ? "Full Access" : hasPremiumAccess ? "Read Access" : "Preview"}
+          toc={toc}
+          hasPremiumAccess={hasPremiumAccess}
+          freeChapterIds={Array.from(freeChapterIds)}
+        />
       </div>
 
       {/* Desktop Sidebar */}
