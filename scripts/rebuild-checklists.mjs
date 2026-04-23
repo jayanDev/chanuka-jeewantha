@@ -278,7 +278,7 @@ const phases = [
 ];
 
 function escTs(s) {
-  return s.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\$\{/g, '\\${');
+  return s.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/`/g, '\\`').replace(/\$\{/g, '\\${');
 }
 
 // Build checklists.ts
