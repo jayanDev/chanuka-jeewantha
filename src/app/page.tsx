@@ -221,9 +221,9 @@ export default async function Home() {
                 )}
                 <h3 className="text-[28px] font-bold font-plus-jakarta mb-4">{service.title}</h3>
                 <p className="text-text-body mb-8 flex-grow">{service.desc}</p>
-                <Link href={service.href} className="text-brand-dark hover:text-brand-main font-semibold flex items-center gap-2 transition-transform hover:translate-x-2">
+                <Link href={service.href} aria-label={`Learn more about ${service.title}`} className="text-brand-dark hover:text-brand-main font-semibold flex items-center gap-2 transition-transform hover:translate-x-2">
                   Learn More
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                 </Link>
               </div>
             ))}
@@ -393,7 +393,7 @@ export default async function Home() {
                   </p>
                   <h3 className="text-[24px] font-bold font-plus-jakarta mb-3 !text-white">{post.title}</h3>
                   <p className="!text-white text-sm mb-6 line-clamp-3">{post.excerpt}</p>
-                  <Link href={`/blog/${post.slug}`} className="text-white font-semibold transition-colors">
+                  <Link href={`/blog/${post.slug}`} aria-label={`Read more: ${post.title}`} className="text-white font-semibold transition-colors">
                     Read More
                   </Link>
                 </div>
@@ -411,7 +411,7 @@ export default async function Home() {
               <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Ebooks</h3>
             </div>
  <Link href="/ebooks" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
-              See More
+              See All Ebooks
             </Link>
           </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -429,9 +429,9 @@ export default async function Home() {
                 </div>
                 <div className="p-5">
  <p className="line-clamp-2 text-[13px] font-bold leading-snug text-zinc-900">{item.title}</p>
-                  <Link href={`/ebooks/${item.slug}`} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
+                  <Link href={`/ebooks/${item.slug}`} aria-label={`Explore ebook: ${item.title}`} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
                     Explore Ebook
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
                   </Link>
                 </div>
               </article>
@@ -448,7 +448,7 @@ export default async function Home() {
               <h3 className="text-[30px] font-bold font-plus-jakarta text-white">Resources</h3>
             </div>
  <Link href="/resources" className="rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black">
-              See More
+              See All Resources
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -475,7 +475,7 @@ export default async function Home() {
               <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Industry-Focused Guidance</h3>
             </div>
  <Link href="/services/industries" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
-              See More
+              See All Industries
             </Link>
           </div>
           <div className="flex flex-col gap-6 sm:grid sm:grid-cols-2 lg:flex lg:flex-row">
@@ -505,7 +505,7 @@ export default async function Home() {
               <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Testimonials</h3>
             </div>
  <Link href="/testimonials" className="rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
-              See More
+              See All Testimonials
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -541,7 +541,7 @@ export default async function Home() {
               <h3 className="text-[30px] font-bold font-plus-jakarta text-white">Fast Moving Packages</h3>
             </div>
  <Link href="/pricing" className="rounded-[10px] border border-zinc-300 hover:bg-white px-4 py-2 text-sm font-semibold text-white transition-colors hover:text-black">
-              See More
+              See All Packages
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

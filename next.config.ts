@@ -57,6 +57,11 @@ const nextConfig: NextConfig = {
 				value: "max-age=63072000; includeSubDomains; preload",
 			},
 			{
+				// Allows popups (e.g. WhatsApp links) while isolating top-level context from cross-origin pages
+				key: "Cross-Origin-Opener-Policy",
+				value: "same-origin-allow-popups",
+			},
+			{
 				// Foundational CSP — unsafe-inline/unsafe-eval needed for Next.js + Tailwind 4 + GA
 				key: "Content-Security-Policy",
 				value: [
