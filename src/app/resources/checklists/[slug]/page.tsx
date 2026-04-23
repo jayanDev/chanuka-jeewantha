@@ -72,7 +72,7 @@ export default async function ChecklistDetailPage({ params }: ChecklistPageProps
 
             <div>
               <span className="mb-4 inline-flex rounded-full bg-brand-main/15 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-brand-main">
-                Free Checklist
+                නොමිලේ Checklist
               </span>
               <h1 className="text-[22px] sm:text-[28px] md:text-[36px] font-bold font-plus-jakarta leading-[1.15] mb-3 text-white">
                 {checklist.title}
@@ -94,16 +94,16 @@ export default async function ChecklistDetailPage({ params }: ChecklistPageProps
               <div className="mb-8 rounded-[14px] border border-white/10 bg-white/5 p-5">
                 <div className="flex flex-wrap gap-6">
                   <div>
-                    <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-zinc-400 mb-1">Total Steps</p>
+                    <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-zinc-400 mb-1">මුළු අදියර ගණන</p>
                     <p className="text-2xl font-bold font-plus-jakarta text-white">{checklist.steps.length}</p>
                   </div>
                   <div>
-                    <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-zinc-400 mb-1">Free Without Sign-in</p>
+                    <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-zinc-400 mb-1">Sign in නැතිව නොමිලේ</p>
                     <p className="text-2xl font-bold font-plus-jakarta text-brand-main">{checklist.freeSteps}</p>
                   </div>
                   <div>
-                    <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-zinc-400 mb-1">Price</p>
-                    <p className="text-2xl font-bold font-plus-jakarta text-white">100% Free</p>
+                    <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-zinc-400 mb-1">මිල</p>
+                    <p className="text-2xl font-bold font-plus-jakarta text-white">100% නොමිලේ</p>
                   </div>
                 </div>
               </div>
@@ -115,13 +115,13 @@ export default async function ChecklistDetailPage({ params }: ChecklistPageProps
                   className="inline-flex items-center gap-2 rounded-[10px] bg-brand-main px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-dark"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-                  Start Checklist
+                  Checklist පටන් ගන්න
                 </Link>
                 <Link
                   href="/auth/sign-in"
                   className="inline-flex items-center gap-2 rounded-[10px] border border-white/25 px-6 py-3 font-semibold text-white transition-colors hover:border-brand-main hover:text-brand-main"
                 >
-                  Sign In to Unlock All Steps
+                  සියලු අදියර Unlock කරන්න
                 </Link>
               </div>
             </div>
@@ -133,7 +133,7 @@ export default async function ChecklistDetailPage({ params }: ChecklistPageProps
       <section className="w-full py-[64px] sm:py-[80px] bg-zinc-50">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <h2 className="text-[26px] sm:text-[32px] font-bold font-plus-jakarta text-foreground mb-8">
-            What&apos;s Inside
+            ඇතුළේ තියෙන්නේ මෙයයි
           </h2>
           <ol className="space-y-3">
             {checklist.steps.map((step) => (
@@ -152,17 +152,17 @@ export default async function ChecklistDetailPage({ params }: ChecklistPageProps
                 </span>
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-foreground text-[15px]">{step.title}</p>
-                  <p className="text-sm text-text-body mt-0.5 line-clamp-1">{step.description}</p>
+                  <p className="text-sm text-text-body mt-0.5 line-clamp-1">{step.items.length} ප්‍රශ්න · {step.description}</p>
                 </div>
                 <div className="shrink-0">
                   {step.free ? (
                     <span className="rounded-full bg-brand-main/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-brand-dark">
-                      Free
+                      නොමිලේ
                     </span>
                   ) : (
                     <span className="inline-flex items-center gap-1 rounded-full bg-zinc-100 px-3 py-1 text-[11px] font-semibold text-zinc-500">
                       <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                      Sign in
+                      ලොගින්
                     </span>
                   )}
                 </div>
@@ -175,7 +175,7 @@ export default async function ChecklistDetailPage({ params }: ChecklistPageProps
               href={`/resources/checklists/${checklist.slug}/read`}
               className="inline-flex items-center gap-2 rounded-[10px] bg-foreground px-6 py-3 font-semibold text-background transition-colors hover:bg-brand-dark"
             >
-              Start Checklist
+              Checklist පටන් ගන්න
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </Link>
           </div>
