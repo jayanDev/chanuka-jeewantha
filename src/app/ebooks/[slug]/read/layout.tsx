@@ -168,23 +168,24 @@ export default async function EbookReaderLayout({ params, children }: Props) {
         </nav>
       </aside>
 
+      {/* Watermark overlay — intentionally placed OUTSIDE main so it sits below the z-30 sticky mobile nav
+          z-10 keeps it above ebook text but below the sticky chapter dropdown (z-30) */}
+      <div className="pointer-events-none fixed inset-0 z-10 flex items-center justify-center opacity-[0.03] rotate-[-25deg] select-none">
+        <div className="flex gap-20">
+          {Array.from({ length: 15 }).map((_, i) => (
+            <div key={i} className="flex flex-col gap-20">
+              {Array.from({ length: 15 }).map((_, j) => (
+                <span key={j} className="text-3xl font-black text-black whitespace-nowrap">
+                  {user?.email || "chanuka jeewantha"}
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Main Reading Area */}
       <main className="flex-1 lg:h-full lg:overflow-hidden relative disable-selection">
-        {/* Watermark overlay */}
-        <div className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center opacity-[0.03] rotate-[-25deg] select-none">
-          <div className="flex gap-20">
-            {Array.from({ length: 15 }).map((_, i) => (
-              <div key={i} className="flex flex-col gap-20">
-                {Array.from({ length: 15 }).map((_, j) => (
-                  <span key={j} className="text-3xl font-black text-black whitespace-nowrap">
-                    {user?.email || "chanuka jeewantha"}
-                  </span>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-
         <div className="lg:h-full lg:overflow-y-auto" id="reading-scroll-area">
           {children}
         </div>
