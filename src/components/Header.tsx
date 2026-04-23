@@ -229,7 +229,7 @@ export default function Header({ initialUser = null }: HeaderProps) {
  <Link href="/auth/signin" className="rounded-[10px] border border-zinc-300 px-4 py-2 text-[15px] font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                   Sign In
                 </Link>
-                <Link href="/auth/signup" className="rounded-[10px] bg-brand-main px-4 py-2 text-[15px] font-semibold text-white transition-colors hover:bg-brand-dark">
+                <Link href="/auth/signup" className="rounded-[10px] bg-brand-main px-4 py-2 text-[15px] font-semibold text-foreground transition-colors hover:bg-brand-dark hover:text-background">
                   Sign Up
                 </Link>
               </div>
@@ -297,7 +297,7 @@ export default function Header({ initialUser = null }: HeaderProps) {
         {/* Mobile menu toggle */}
         <div className="flex md:hidden">
           <button 
-            className="rounded bg-brand-main p-2 text-white"
+            className="rounded bg-brand-main p-2 text-foreground"
             onClick={() => {
               setIsMobileMenuOpen((previous) => {
                 const next = !previous;

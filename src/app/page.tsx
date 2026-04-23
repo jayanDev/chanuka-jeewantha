@@ -123,7 +123,7 @@ export default async function Home() {
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6 w-full flex flex-col md:flex-row items-center gap-12 z-10">
           <div className="flex-1 flex flex-col items-start px-[24px]">
             <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-extrabold leading-[0.95em] mb-6 text-foreground">
-              Hi, I am <br /> <span className="text-brand-main">Chanuka Jeewantha</span>
+              Hi, I am <br /> <span className="text-brand-dark">Chanuka Jeewantha</span>
             </h1>
             <p className="text-text-body text-[16px] md:text-[24px] font-medium max-w-2xl mb-8">
               Professional CV Writer and Career Development Specialist with 8+ years of experience helping job seekers build ATS-friendly, recruiter-ready career profiles.
@@ -137,7 +137,7 @@ export default async function Home() {
               </Link>
               <Link
                 href="/services"
-                className="px-[25px] py-[15px] bg-brand-main hover:bg-brand-dark rounded-[10px] text-white font-medium transition-colors text-center"
+                className="px-[25px] py-[15px] bg-brand-main hover:bg-brand-dark rounded-[10px] text-foreground hover:text-background font-medium transition-colors text-center"
               >
                 Explore Services
               </Link>
@@ -193,9 +193,9 @@ export default async function Home() {
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div>
-              <span className="text-brand-main font-semibold tracking-wider uppercase mb-2 block">What I Do</span>
+              <span className="text-brand-dark font-semibold tracking-wider uppercase mb-2 block">What I Do</span>
               <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground leading-[1.1]">
-                Career Services <span className="text-brand-light">That Deliver Results</span>
+                Career Services <span className="text-brand-dark">That Deliver Results</span>
               </h2>
             </div>
             <Link href="/services" className="px-[25px] py-[15px] border border-foreground hover:bg-foreground hover:text-background rounded-[10px] text-foreground font-medium transition-colors">
@@ -235,7 +235,7 @@ export default async function Home() {
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <div className="max-w-3xl">
-              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Decision Support</span>
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-dark">Decision Support</span>
               <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Choose the right next move</h3>
               <p className="mt-3 text-text-body">
                 Use the quiz, browse proof, or go straight to tailored industry pages if you want a faster and more relevant path.
@@ -303,7 +303,7 @@ export default async function Home() {
             </div>
 
             <div className="w-full lg:w-[51%] lg:pl-[72px] flex flex-col items-start">
-              <span className="text-brand-main font-semibold tracking-wider uppercase mb-4 block">About Me</span>
+              <span className="text-brand-dark font-semibold tracking-wider uppercase mb-4 block">About Me</span>
               <h2 className="text-[36px] md:text-[52px] font-bold font-plus-jakarta text-foreground leading-[1.2] mb-6">
                 Strategy, proof, and clear communication to help professionals win in modern hiring systems.
               </h2>
@@ -338,9 +338,9 @@ export default async function Home() {
       <section className="reveal-section w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50 border-y border-zinc-200">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <span className="text-brand-main font-semibold tracking-wider uppercase mb-2 block">Real Transformation</span>
+            <span className="text-brand-dark font-semibold tracking-wider uppercase mb-2 block">Real Transformation</span>
             <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground leading-[1.1]">
-              See the <span className="text-brand-main">CV Difference</span>
+              See the <span className="text-brand-dark">CV Difference</span>
             </h2>
             <p className="mt-4 text-text-body max-w-2xl mx-auto">
               Drag the slider to compare a typical before CV against the ATS-optimised, recruiter-ready version produced with my process.
@@ -407,7 +407,7 @@ export default async function Home() {
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <div>
-              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Digital Store</span>
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-dark">Digital Store</span>
               <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Ebooks</h3>
             </div>
  <Link href="/ebooks" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
@@ -425,7 +425,7 @@ export default async function Home() {
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <span className="absolute left-3 top-3 rounded-full bg-brand-main px-3 py-1 text-xs font-semibold text-white">{item.badge}</span>
+                  <span className="absolute left-3 top-3 rounded-full bg-brand-main px-3 py-1 text-xs font-semibold text-foreground">{item.badge}</span>
                 </div>
                 <div className="p-5">
  <p className="line-clamp-2 text-[13px] font-bold leading-snug text-zinc-900">{item.title}</p>
@@ -471,7 +471,7 @@ export default async function Home() {
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <div>
-              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Audience Pages</span>
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-dark">Audience Pages</span>
               <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Industry-Focused Guidance</h3>
             </div>
  <Link href="/services/industries" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
@@ -482,7 +482,7 @@ export default async function Home() {
             {industryHighlights.map((item) => (
  <article key={item.slug} className="group flex-1 flex flex-col justify-between rounded-[20px] border border-zinc-200 bg-white p-6 shadow-[0_8px_20px_rgba(0,0,0,0.05)] transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.1)] sm:min-w-[58%] md:min-w-0">
                 <div className="mb-4 flex items-start justify-between w-full">
- <span className="inline-flex rounded-full bg-brand-main px-3 py-1 text-xs font-semibold text-white group-hover:text-black transition-colors">{item.name}</span>
+ <span className="inline-flex rounded-full bg-brand-main px-3 py-1 text-xs font-semibold text-foreground transition-colors">{item.name}</span>
  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-main group-hover:text-black transition-colors"><path d="M3 21h18" /><path d="M5 21V7l8-4v18" /><path d="M19 21V11l-6-4" /></svg>
                 </div>
  <h4 className="mb-2 text-[20px] font-bold font-plus-jakarta text-zinc-900">{item.name}</h4>
@@ -501,7 +501,7 @@ export default async function Home() {
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <div>
-              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Client Voice</span>
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-dark">Client Voice</span>
               <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Testimonials</h3>
             </div>
  <Link href="/testimonials" className="rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
@@ -525,7 +525,7 @@ export default async function Home() {
                   <p className="text-xs text-zinc-500">
                     {item.role ?? new Date(item.createdAt).toLocaleDateString("en-LK")}
                   </p>
-                  {item.outcome ? <p className="mt-1 text-xs font-semibold text-brand-main">{item.outcome}</p> : null}
+                  {item.outcome ? <p className="mt-1 text-xs font-semibold text-brand-dark">{item.outcome}</p> : null}
                 </div>
               </article>
             ))}
@@ -548,7 +548,7 @@ export default async function Home() {
             {fastMovingPackages.map((item) => (
  <article key={item.title} className="group h-full flex flex-col items-start rounded-[20px] border border-zinc-700 bg-zinc-900 p-8 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl hover:bg-white w-full">
                 <div className="mb-4 flex items-start justify-between w-full">
- <span className="inline-flex rounded-full bg-brand-main px-3 py-1 text-xs font-semibold text-white group-hover:text-black transition-colors">{item.tag}</span>
+ <span className="inline-flex rounded-full bg-brand-main px-3 py-1 text-xs font-semibold text-foreground transition-colors">{item.tag}</span>
  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-main group-hover:text-black transition-colors"><path d="M20 12v10H4V12" /><path d="M2 7h20v5H2z" /><path d="M12 22V7" /><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" /><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" /></svg>
                 </div>
  <h4 className="mb-2 text-[20px] font-bold font-plus-jakarta text-white group-hover:text-black transition-colors">{item.title}</h4>
