@@ -1,4 +1,11 @@
-"use client";
+// rebuild-reader.mjs — overwrites ChecklistReader.tsx with correct UTF-8 Sinhala UI strings
+import { writeFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+const content = `"use client";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -10,13 +17,13 @@ type Props = {
 };
 
 function getChapterHref(ref: string, ebookSlug: string): string {
-  const match = ref.match(/(\d+)/);
-  if (!match) return `/ebooks/${ebookSlug}/read`;
-  return `/ebooks/${ebookSlug}/read/chapter-${match[1]}`;
+  const match = ref.match(/(\\d+)/);
+  if (!match) return \`/ebooks/\${ebookSlug}/read\`;
+  return \`/ebooks/\${ebookSlug}/read/chapter-\${match[1]}\`;
 }
 
 export default function ChecklistReader({ checklist, isSignedIn }: Props) {
-  const storageKey = `checklist-progress-${checklist.slug}`;
+  const storageKey = \`checklist-progress-\${checklist.slug}\`;
 
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   const [mounted, setMounted] = useState(false);
@@ -71,13 +78,13 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
       {mounted && (
         <div className="mb-8 rounded-[14px] border border-zinc-200 bg-white p-5 shadow-sm">
           <div className="flex items-center justify-between mb-3">
-            <p className="text-sm font-semibold text-foreground">ඔබේ ප්‍රගතිය</p>
+            <p className="text-sm font-semibold text-foreground">ඔබේ ප්\u200dරගතිය</p>
             <span className="text-sm font-bold text-brand-dark">{checkedCount}/{totalItems} සම්පූර්ණ</span>
           </div>
           <div className="h-2.5 w-full rounded-full bg-zinc-100 overflow-hidden">
             <div
               className="h-full rounded-full bg-brand-main transition-all duration-500"
-              style={{ width: `${progressPct}%` }}
+              style={{ width: \`\${progressPct}%\` }}
             />
           </div>
           {progressPct === 100 && (
@@ -105,8 +112,8 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
             අදියර {currentIdx + 1} / {checklist.steps.length}
           </p>
           <p className="text-xs text-zinc-400 mt-0.5">
-            {step.items.length} ප්‍රශ්න
-            {mounted && stepCheckedCount > 0 && ` · ${stepCheckedCount} සම්පූර්ණ`}
+            {step.items.length} ප්\u200dරශ්න
+            {mounted && stepCheckedCount > 0 && \` · \${stepCheckedCount} සම්පූර්ණ\`}
           </p>
         </div>
         <button
@@ -121,10 +128,10 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
       </div>
 
       {/* Step header */}
-      <div className={`flex items-start gap-4 mb-6 ${isLocked ? "opacity-50" : ""}`}>
-        <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold ${
+      <div className={\`flex items-start gap-4 mb-6 \${isLocked ? "opacity-50" : ""}\`}>
+        <span className={\`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold \${
           stepComplete ? "bg-brand-main text-white" : "bg-zinc-100 text-zinc-600"
-        }`}>
+        }\`}>
           {stepComplete
             ? <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
             : step.id
@@ -155,7 +162,7 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
               href="/auth/sign-in"
               className="inline-flex items-center gap-2 rounded-[10px] bg-foreground px-5 py-2.5 text-sm font-semibold text-background hover:bg-brand-dark transition-colors"
             >
-              ප්‍රවේශ වන්න
+              ප්\u200dරවේශ වන්න
             </Link>
             <Link
               href="/auth/sign-up"
@@ -172,30 +179,30 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
             const isChecked = mounted && !!checked[item.id];
             return (
               <li key={item.id}>
-                <div className={`flex items-start gap-3 rounded-[12px] border p-4 transition-all ${
+                <div className={\`flex items-start gap-3 rounded-[12px] border p-4 transition-all \${
                   isChecked
                     ? "border-brand-main/30 bg-brand-main/5"
                     : "border-zinc-200 bg-white hover:border-brand-main/40"
-                }`}>
+                }\`}>
                   <button
                     type="button"
                     role="checkbox"
                     aria-checked={isChecked}
                     onClick={() => toggle(item.id)}
-                    className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 transition-colors ${
+                    className={\`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 transition-colors \${
                       isChecked
                         ? "border-brand-main bg-brand-main"
                         : "border-zinc-300 bg-white hover:border-brand-main"
-                    }`}
+                    }\`}
                   >
                     {isChecked && (
                       <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
                     )}
                   </button>
                   <p
-                    className={`flex-1 min-w-0 text-[15px] font-medium leading-snug cursor-pointer ${
+                    className={\`flex-1 min-w-0 text-[15px] font-medium leading-snug cursor-pointer \${
                       isChecked ? "line-through text-zinc-400" : "text-foreground"
-                    }`}
+                    }\`}
                     onClick={() => toggle(item.id)}
                   >
                     {item.text}
@@ -206,7 +213,7 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="shrink-0 inline-flex items-center gap-1 rounded-full bg-zinc-100 px-2.5 py-1 text-[11px] font-semibold text-zinc-500 hover:bg-brand-main/10 hover:text-brand-dark transition-colors whitespace-nowrap"
-                      title={`${item.ref} කියවන්න`}
+                      title={\`\${item.ref} කියවන්න\`}
                     >
                       {item.ref}
                       <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -243,7 +250,7 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
           </button>
         ) : (
           <Link
-            href={`/resources/checklists/${checklist.slug}`}
+            href={\`/resources/checklists/\${checklist.slug}\`}
             className="flex-1 flex items-center justify-center gap-2 rounded-[10px] bg-brand-main px-4 py-3 text-sm font-semibold text-white hover:bg-brand-dark transition-colors"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
@@ -266,7 +273,7 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
               href="/auth/sign-in"
               className="inline-flex items-center gap-2 rounded-[10px] bg-foreground px-6 py-3 font-semibold text-background hover:bg-brand-dark transition-colors"
             >
-              ප්‍රවේශ වන්න
+              ප්\u200dරවේශ වන්න
             </Link>
             <Link
               href="/auth/sign-up"
@@ -280,3 +287,21 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
     </div>
   );
 }
+`;
+
+const readerPath = join(
+  __dirname,
+  '..',
+  'src',
+  'app',
+  'resources',
+  'checklists',
+  '[slug]',
+  'read',
+  '_components',
+  'ChecklistReader.tsx'
+);
+
+writeFileSync(readerPath, content, 'utf8');
+console.log(`Written: ${readerPath}`);
+console.log('OK');
