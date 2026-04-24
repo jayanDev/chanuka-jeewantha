@@ -19,7 +19,7 @@ type Props = {
 function getChapterHref(ref: string, ebookSlug: string): string {
   const match = ref.match(/(\\d+)/);
   if (!match) return \`/ebooks/\${ebookSlug}/read\`;
-  return \`/ebooks/\${ebookSlug}/read/chapter-\${match[1]}\`;
+  return \`/ebooks/\${ebookSlug}/read/\${match[1]}\`;
 }
 
 export default function ChecklistReader({ checklist, isSignedIn }: Props) {
@@ -212,7 +212,7 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
                       href={getChapterHref(item.ref, checklist.ebookSlug)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="shrink-0 inline-flex items-center gap-1 rounded-full bg-zinc-100 px-2.5 py-1 text-[11px] font-semibold text-zinc-500 hover:bg-brand-main/10 hover:text-brand-dark transition-colors whitespace-nowrap"
+                      className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-brand-main/15 px-3 py-1.5 text-[12px] font-bold text-brand-dark hover:bg-brand-main hover:text-white transition-colors whitespace-nowrap"
                       title={\`\${item.ref} කියවන්න\`}
                     >
                       {item.ref}
