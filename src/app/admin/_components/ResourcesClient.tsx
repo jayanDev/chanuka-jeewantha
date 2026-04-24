@@ -14,26 +14,29 @@ type EbookPurchase = {
   note: string | null;
 };
 
-// Ebooks only (exclude resources)
-const ebookOnlyList = ebooks.filter((e) => e.kind !== "resource");
-const resourceSlugs = new Set(ebooks.filter((e) => e.kind === "resource").map((e) => e.slug));
+// Only paid resources (kind === "resource")
+const resourceEbooks = ebooks.filter((e) => e.kind === "resource" && e.category === "paid");
+const resourceSlugs = new Set(resourceEbooks.map((e) => e.slug));
 
 const ebookTitles: Record<string, string> = Object.fromEntries(
   ebooks.map((e) => [e.slug, e.title])
 );
 
-export default function EbooksClient() {
+export default function ResourcesClient() {
   const [allPurchases, setAllPurchases] = useState<EbookPurchase[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const [formEmail, setFormEmail] = useState("");
-  const [formSlug, setFormSlug] = useState(ebookOnlyList.find((e) => e.category === "paid")?.slug ?? "");
+  const [formSlug, setFormSlug] = useState(resourceEbooks[0]?.slug ?? "");
   const [formTier, setFormTier] = useState<"read" | "download">("read");
   const [formNote, setFormNote] = useState("");
   const [formLoading, setFormLoading] = useState(false);
 
   const [search, setSearch] = useState("");
+
+  // Filter to only resource purchases
+  const purchases = allPurchases.filter((p) => resourceSlugs.has(p.ebookSlug));
 
   const loadPurchases = async () => {
     setLoading(true);
@@ -87,7 +90,7 @@ export default function EbooksClient() {
   };
 
   const revokeAccess = async (id: string) => {
-    if (!confirm("Revoke ebook access for this email?")) return;
+    if (!confirm("Revoke resource access for this email?")) return;
     setError("");
     try {
       const res = await fetch(`/api/admin/ebooks?id=${encodeURIComponent(id)}`, { method: "DELETE" });
@@ -101,9 +104,6 @@ export default function EbooksClient() {
       setError(err instanceof Error ? err.message : "Failed to revoke");
     }
   };
-
-  // Only show ebook purchases (exclude resources)
-  const purchases = allPurchases.filter((p) => !resourceSlugs.has(p.ebookSlug));
 
   const filtered = purchases.filter(
     (p) =>
@@ -138,68 +138,72 @@ export default function EbooksClient() {
         <div className="rounded-[16px] border border-brand-main/20 bg-brand-main/5 p-5">
           <p className="text-xs font-semibold uppercase tracking-wider text-brand-main mb-1">Est. Revenue</p>
           <p className="text-3xl font-bold font-plus-jakarta text-foreground">{formatLkr(totalRevenue)}</p>
-          <p className="text-xs text-zinc-400 mt-1">Total ebook sales</p>
+          <p className="text-xs text-zinc-400 mt-1">Total resource sales</p>
         </div>
       </div>
 
       {/* Grant Access Form */}
       <div className="rounded-[20px] border border-zinc-200 bg-white p-6 md:p-8">
-        <h2 className="text-xl font-bold font-plus-jakarta text-foreground mb-5">Grant Ebook Access</h2>
-        <form onSubmit={(e) => void grantAccess(e)} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-zinc-700 mb-1">Customer Email *</label>
-            <input
-              type="email"
-              required
-              value={formEmail}
-              onChange={(e) => setFormEmail(e.target.value)}
-              placeholder="customer@example.com"
-              className="w-full rounded-[10px] border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-brand-main focus:ring-2 focus:ring-brand-main/10"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-zinc-700 mb-1">Ebook</label>
-            <select
-              value={formSlug}
-              onChange={(e) => setFormSlug(e.target.value)}
-              className="w-full rounded-[10px] border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-brand-main focus:ring-2 focus:ring-brand-main/10 bg-white"
-            >
-              {ebooks.filter((e) => e.category === "paid" && e.kind !== "resource").map((e) => (
-                <option key={e.slug} value={e.slug}>{e.title}</option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-zinc-700 mb-1">Access Tier</label>
-            <select
-              value={formTier}
-              onChange={(e) => setFormTier(e.target.value as "read" | "download")}
-              className="w-full rounded-[10px] border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-brand-main focus:ring-2 focus:ring-brand-main/10 bg-white"
-            >
-              <option value="read">Read Online — LKR 500</option>
-              <option value="download">Download + Read — LKR 1,500</option>
-            </select>
-          </div>
-          <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-zinc-700 mb-1">Note (optional)</label>
-            <input
-              type="text"
-              value={formNote}
-              onChange={(e) => setFormNote(e.target.value)}
-              placeholder="e.g. Payment ref #12345"
-              className="w-full rounded-[10px] border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-brand-main focus:ring-2 focus:ring-brand-main/10"
-            />
-          </div>
-          <div className="md:col-span-2 flex justify-end">
-            <button
-              type="submit"
-              disabled={formLoading}
-              className="rounded-[10px] bg-brand-main px-6 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-dark disabled:opacity-60"
-            >
-              {formLoading ? "Granting..." : "Grant Access"}
-            </button>
-          </div>
-        </form>
+        <h2 className="text-xl font-bold font-plus-jakarta text-foreground mb-5">Grant Resource Access</h2>
+        {resourceEbooks.length === 0 ? (
+          <p className="text-sm text-zinc-400">No paid resources configured yet.</p>
+        ) : (
+          <form onSubmit={(e) => void grantAccess(e)} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-zinc-700 mb-1">Customer Email *</label>
+              <input
+                type="email"
+                required
+                value={formEmail}
+                onChange={(e) => setFormEmail(e.target.value)}
+                placeholder="customer@example.com"
+                className="w-full rounded-[10px] border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-brand-main focus:ring-2 focus:ring-brand-main/10"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-zinc-700 mb-1">Resource</label>
+              <select
+                value={formSlug}
+                onChange={(e) => setFormSlug(e.target.value)}
+                className="w-full rounded-[10px] border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-brand-main focus:ring-2 focus:ring-brand-main/10 bg-white"
+              >
+                {resourceEbooks.map((e) => (
+                  <option key={e.slug} value={e.slug}>{e.title}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-zinc-700 mb-1">Access Tier</label>
+              <select
+                value={formTier}
+                onChange={(e) => setFormTier(e.target.value as "read" | "download")}
+                className="w-full rounded-[10px] border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-brand-main focus:ring-2 focus:ring-brand-main/10 bg-white"
+              >
+                <option value="read">Read Online — LKR 500</option>
+                <option value="download">Download + Read — LKR 1,500</option>
+              </select>
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-zinc-700 mb-1">Note (optional)</label>
+              <input
+                type="text"
+                value={formNote}
+                onChange={(e) => setFormNote(e.target.value)}
+                placeholder="e.g. Payment ref #12345"
+                className="w-full rounded-[10px] border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-brand-main focus:ring-2 focus:ring-brand-main/10"
+              />
+            </div>
+            <div className="md:col-span-2 flex justify-end">
+              <button
+                type="submit"
+                disabled={formLoading}
+                className="rounded-[10px] bg-brand-main px-6 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-dark disabled:opacity-60"
+              >
+                {formLoading ? "Granting..." : "Grant Access"}
+              </button>
+            </div>
+          </form>
+        )}
       </div>
 
       {/* Access List */}
@@ -210,7 +214,7 @@ export default function EbooksClient() {
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search by email or ebook..."
+            placeholder="Search by email or resource..."
             className="rounded-[10px] border border-zinc-200 px-4 py-2 text-sm outline-none focus:border-brand-main w-full sm:w-64"
           />
         </div>
@@ -225,7 +229,7 @@ export default function EbooksClient() {
               <thead>
                 <tr className="border-b border-zinc-100">
                   <th className="text-left py-3 px-2 font-semibold text-zinc-500">Email</th>
-                  <th className="text-left py-3 px-2 font-semibold text-zinc-500">Ebook</th>
+                  <th className="text-left py-3 px-2 font-semibold text-zinc-500">Resource</th>
                   <th className="text-left py-3 px-2 font-semibold text-zinc-500">Tier</th>
                   <th className="text-left py-3 px-2 font-semibold text-zinc-500">Granted</th>
                   <th className="text-left py-3 px-2 font-semibold text-zinc-500">Note</th>

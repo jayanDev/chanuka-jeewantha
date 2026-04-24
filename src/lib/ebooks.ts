@@ -4,6 +4,8 @@ export type Ebook = {
   subtitle: string;
   description: string;
   category: "free" | "paid";
+  /** "ebook" = traditional ebook; "resource" = guide/checklist/system. Defaults to "ebook". */
+  kind?: "ebook" | "resource";
   /** Legacy: kept for backward compat. Use readPriceLkr/downloadPriceLkr for new UI. */
   priceLkr?: number;
   /** Price to read online */
@@ -85,6 +87,24 @@ export const ebooks: Ebook[] = [
       "වත්කම් (Assets) සහ බැරකම් (Liabilities) අතර ඇති සැබෑ වෙනස",
       "Rat Race එකෙන් නිදහස් වී මූල්‍ය නිදහස ලබාගන්නා ක්‍රමය",
       "ධනවතුන් සල්ලි වලින් වැඩ ගන්නා විදිහ - Passive Income",
+    ],
+  },
+  {
+    slug: "linkedin-profile-optimization",
+    title: "LinkedIn Profile Optimization System",
+    subtitle: "Professional Profile එක Recruiter Magnet එකක් බවට හරවාගන්නා System",
+    description:
+      "LinkedIn Profile Optimization System — ඔබේ LinkedIn profile එක recruiter-ready profile එකක් බවට convert කිරීමට step-by-step guide. Photo සිට Headline, About, Experience, Skills, Recommendations, Featured Section, සහ Network Strategy දක්වා ඔක්කොම cover කරනවා.",
+    category: "paid",
+    kind: "resource",
+    readPriceLkr: 500,
+    downloadPriceLkr: 1500,
+    coverImage: "/images/linkedin-profile-optimization-cover.jpg",
+    highlights: [
+      "Recruiter-ready Profile Photo & Banner",
+      "Keyword-optimised Headline & About Section",
+      "Experience, Skills, Recommendations Strategy",
+      "Featured Section & Content සමඟ visibility වැඩිකරගන්නේ කෙසේද",
     ],
   },
 ];

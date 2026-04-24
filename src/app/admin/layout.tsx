@@ -16,6 +16,7 @@ const adminLinks = [
   { href: "/admin/comments", label: "Comments" },
   { href: "/admin/orders", label: "Order Management" },
   { href: "/admin/ebooks", label: "Ebook Access" },
+  { href: "/admin/resources", label: "Resources" },
   { href: "/admin/settings", label: "Settings" },
 ];
 
@@ -31,7 +32,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         </header>
 
  <nav className="rounded-[16px] border border-zinc-200 bg-white p-3">
-          <ul className="grid grid-cols-1 gap-2 md:grid-cols-7">
+          <ul className="grid grid-cols-2 gap-2 md:grid-cols-4 lg:grid-cols-8">
             {adminLinks.map((item) => (
               <li key={item.href}>
                 <Link
