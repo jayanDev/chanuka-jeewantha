@@ -1324,6 +1324,1129 @@ export const tutorials: Tutorial[] = [
       cta: "හොඳම ආයතන වල පුහුණු අවස්ථා අනෙක් අයට කලින් ලබාගන්න! 'INTERN CV' ලෙස අපට මැසේජ් එකක් දමන්න."
     }
   }
+,
+{
+  "id": "101",
+  "categoryId": "b",
+  "coverImage": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&auto=format&fit=crop&q=80",
+  "en": {
+    "slug": "ats-friendly-resume-writing",
+    "title": "How to Write an ATS-Friendly Resume",
+    "seoTitle": "ATS-Friendly CV Guide for Jobs | Beat Applicant Tracking Systems",
+    "metaDescription": "Master ATS friendly resume formats to ensure your CV gets past automated software and into the hands of a recruiter. Learn keyword optimization and formatting.",
+    "intro": "Are you applying to dozens of jobs online but hearing nothing back? Your CV might be getting rejected by a robot before a human ever sees it.",
+    "problemExplanation": "Most modern companies use Applicant Tracking Systems (ATS) to scan, rank, and filter resumes. If your resume has complex formats, columns, graphics, or lacks specific keywords, the ATS cannot read it. As a result, highly qualified candidates often get automatically rejected.",
+    "whatIsIt": {
+      "heading": "What is an ATS-Friendly Resume?",
+      "content": "An ATS-friendly resume is a document specifically formatted and written to easily be parsed by recruitment software. It uses simple layouts, standard fonts, clear headings, and strategically placed keywords matching the job description."
+    },
+    "whyItMatters": {
+      "heading": "Why ATS Optimization is Crucial",
+      "content": "Over 70% of large companies and increasingly many medium-sized businesses use an ATS. If you do not optimize your CV for ATS, your job search efforts are essentially wasted because you are failing the very first checkpoint in the hiring process."
+    },
+    "stepByStep": [
+      {
+        "heading": "Step 1: Simplify Your Layout",
+        "content": "Remove all columns, sidebars, text boxes, tables, and images. The ATS reads top to bottom, left to right. A single-column layout is the safest and most effective format."
+      },
+      {
+        "heading": "Step 2: Use Standard Fonts and Headings",
+        "content": "Stick to accessible fonts like Arial, Calibri, or Times New Roman. Use conventional headings like 'Work Experience', 'Education', and 'Skills'—do not use creative titles like 'My Professional Journey' as the system won't recognize them."
+      },
+      {
+        "heading": "Step 3: Keyword Optimization",
+        "content": "Carefully read the job advertisement. Highlight the required skills and phrases, and seamlessly integrate those exact keywords into your Professional Summary, Skills list, and Experience bullet points."
+      },
+      {
+        "heading": "Step 4: Save as Standard Formats",
+        "content": "Always save and submit your CV as a PDF or .docx file. Unless the application portal specifies otherwise, PDF is usually preferred to preserve formatting without losing readability."
+      }
+    ],
+    "examples": {
+      "heading": "Keyword Examples",
+      "content": "**Bad:** Experienced in managing teams and software development.\n**Good:** 5+ years of experience in Agile Project Management, specializing in Software Development Life Cycle (SDLC) and leading cross-functional teams."
+    },
+    "commonMistakes": {
+      "heading": "Common ATS Mistakes",
+      "content": "Using logos of past companies, adding a headshot photo in corporate markets where it's discouraged, putting important details in the header/footer (ATS often ignores headers), and saving the file as an image format."
+    },
+    "finalChecklist": [
+      "Is my CV a single-column format without tables or graphics?",
+      "Have I used standard section headings?",
+      "Are the keywords from the job description naturally included?",
+      "Is the text highly readable without complex formatting?",
+      "Did I save it as a PDF or DOCX file?"
+    ],
+    "cta": "Want to know if your CV passes the ATS check? Use our professional ATS formatting service to guarantee results!"
+  },
+  "si": {
+    "slug": "ats-friendly-resume-writing-si",
+    "title": "ATS-Friendly CV එකක් සාදා ගන්නා ආකාරය",
+    "seoTitle": "ATS-Friendly CV එකක් සාදා ගන්නා ආකාරය | රැකියා ලබාගැනීමේ රහස්",
+    "metaDescription": "Applicant Tracking Systems (ATS) මෘදුකාංග මඟින් ප්‍රතික්ෂේප නොවන පරිදි නිවැරදිව CV එකක් සකසා ගන්නා ආකාරය මෙයින් ඉගෙන ගන්න.",
+    "intro": "ඔබ කොතරම් රැකියා සඳහා අයදුම් කළත් සම්මුඛ පරීක්ෂණ (Interviews) සඳහා කැඳවීමක් නොලැබෙන්නේ ඇයි දැයි ඔබ කල්පනා කර තිබෙනවාද? මීට ප්‍රධාන හේතුවක් විය හැක්කේ ATS මෘදුකාංගයයි.",
+    "problemExplanation": "අද කාලයේ බොහෝ ආයතන වලට ලැබෙන දහස් ගණන් CV පරීක්ෂා කිරීම සඳහා Applicant Tracking Systems (ATS) නම් මෘදුකාංග භාවිත කෙරේ. ඔබගේ CV එකේ සංකීර්ණ Design, වගු, සහ රූප ඇතුළත් නම් හෝ අදාළ Keywords නැති නම්, පරිගණකය විසින් එය ස්වයංක්‍රීයව ප්‍රතික්ෂේප කර දමයි.",
+    "whatIsIt": {
+      "heading": "ATS-Friendly CV එකක් කියන්නේ කුමක්ද?",
+      "content": "ATS-Friendly CV එකක් යනු පරිගණක මෘදුකාංගයකට පහසුවෙන් කියවා තේරුම් ගත හැකි ලෙස ඉතා සරලව හා පැහැදිළිව සකස් කරන ලද CV ආකෘතියකි. මෙහිදී අදාළ රැකියාවට ගැලපෙන Keywords (මූලික පද) නිවැරදිව භාවිත කරනු ලබයි."
+    },
+    "whyItMatters": {
+      "heading": "මෙය වැදගත් වන්නේ ඇයි?",
+      "content": "ලෝකයේ සහ ශ්‍රී ලංකාවේ ප්‍රමුඛ පෙළේ සමාගම් වලින් 70% කට වඩා සේවකයන් බඳවා ගැනීමේදී ATS මෘදුකාංග භාවිත කරයි. එබැවින් ඔබේ CV එක ATS මෘදුකාංග වලින් සමත් වීමට නොහැකි නම්, ඔබේ සුදුසුකම් කොතරම් ඉහළ වුවත් මනුෂ්‍යයෙකුගේ ඇස ගැටීමටවත් අවස්ථාවක් නොලැබේ."
+    },
+    "stepByStep": [
+      {
+        "heading": "පියවර 1: සරල Layout එකක් භාවිත කරන්න",
+        "content": "CV එකේ Columns, Tables, Graphics, සහ අකුරු වටා කොටු යෙදීමෙන් වළකින්න. මෘදුකාංගය කියවන්නේ ඉහළ සිට පහළට සහ වමේ සිට දකුණට බැවින්, Single-column ෆෝමැට් එකක් භාවිතා කිරීම වඩාත් සුදුසුය."
+      },
+      {
+        "heading": "පියවර 2: සාමාන්‍ය Fonts සහ පැහැදිලි Headings භාවිතා කරන්න",
+        "content": "Arial, Calibri වැනි පැහැදිලි අකුරු රටා භාවිතා කරන්න. 'Work Experience', 'Education' වැනි සම්මත Headings (මාතෘකා) පමනක් යොදන්න."
+      },
+      {
+        "heading": "පියවර 3: ජොබ් එකට ගැලපෙන Keywords ඇතුළත් කිරීම",
+        "content": "රැකියා දැන්වීමේ සඳහන් කර ඇති අවශ්‍යතා කියවා ඒ සඳහා ඇති Skills සහ පළපුරුද්ද යෙදෙන වචන ඔබගේ CV එකෙහිද අනිවාර්යයෙන් ඇතුළත් කරන්න."
+      },
+      {
+        "heading": "පියවර 4: නිවැරදි File Format එකෙන් Save කරන්න",
+        "content": "සෑම විටම CV එක PDF හෝ Word Document එකක් ලෙස යවන්න. පින්තූර (Images) ලෙස යැවීමෙන් වලකින්න."
+      }
+    ],
+    "examples": {
+      "heading": "උදාහරණයක්",
+      "content": "**වැරදි ක්‍රමය:** 'මම මෘදුකාංග නිර්මාණය පිළිබඳ පළපුරුද්දක් ඇති කෙනෙක්මි.'\n**නිවැරදි ක්‍රමය:** 'වසර 5ක පළපුරුද්දක් සහිත Agile Project Management සහ Software Development Life Cycle (SDLC) පිළිබඳ විශේෂඥතාවක් ඇති ඉංජිනේරුවරයෙකි.'"
+    },
+    "commonMistakes": {
+      "heading": "බහුලව සිදුවන වැරදි",
+      "content": "පාට පාට වර්ණ සහ විවිධ හැඩතල යොදා ගැනීම, Header සහ Footer හි Contact Details දැමීම (සමහර ATS මෘදුකාංග වලට ඒවා කියවිය නොහැක), සහ අනවශ්‍ය ලෙස පිංතූර CV එකට ඇතුලත් කිරීම."
+    },
+    "finalChecklist": [
+      "මගේ CV එක Single-column සරල ආකෘතියකින් නිර්මාණය වී තිබේද?",
+      "Standard මාතෘකා (Headings) භාවිතා කර තිබේද?",
+      "රැකියා දැන්වීමේ ඇති Keywords මෙයට ඇතුළත් කර තිබේද?",
+      "මෘදුකාංග වලට කියවිය නොහැකි Tables සහ Graphics ඉවත් කර තිබේද?",
+      "PDF එකක් ලෙස Save කර තිබේද?"
+    ],
+    "cta": "ඔබගේ CV එක ATS මෘදුකාංගයකින් පහසුවෙන් සමත් වේවිද? අපගේ වෘත්තීය CV සැකසීමේ සේවාව හරහා අදම එය තහවුරු කරගන්න!"
+  }
+},
+{
+  "id": "102",
+  "categoryId": "c",
+  "coverImage": "https://images.unsplash.com/photo-1588600878108-578307a3cc9d?w=1200&auto=format&fit=crop&q=80",
+  "en": {
+    "slug": "how-to-write-a-cover-letter",
+    "title": "How to Write a Compelling Cover Letter",
+    "seoTitle": "Cover Letter Writing Guide | Make Your Job Application Stand Out",
+    "metaDescription": "A comprehensive guide to writing a standout cover letter. Learn how to highlight your value, address the hiring manager, and clearly state your career goals.",
+    "intro": "Your CV states what you have done, but your cover letter tells the hiring manager who you are. A strong cover letter can be the deciding factor in securing an interview.",
+    "problemExplanation": "Many applicants either skip the cover letter entirely or use generic templates downloaded from the internet. When recruiters see a 'To Whom It May Concern' with a robotic, copy-pasted message, they immediately lose interest. A generic cover letter suggests you lack genuine passion for the role and the company.",
+    "whatIsIt": {
+      "heading": "What is a Cover Letter?",
+      "content": "A cover letter is a one-page document submitted alongside your CV. It provides context to your career history, showcases your communication skills, and specifically explains why you are deeply interested in the company and the role you are applying for."
+    },
+    "whyItMatters": {
+      "heading": "Why You Should Always Include a Cover Letter",
+      "content": "While the CV is heavily structured and ATS-optimised, a cover letter is your chance to tell a story. It lets you explain complex situations (like a career gap or career change), show cultural fit, and establish a personal connection with the hiring manager."
+    },
+    "stepByStep": [
+      {
+        "heading": "Step 1: Header and Salutation",
+        "content": "Use a professional header with your contact details. Try your best to find the name of the hiring manager (e.g., 'Dear Mr. Perera') rather than using generic greetings."
+      },
+      {
+        "heading": "Step 2: The Hook (Opening)",
+        "content": "Open with a strong sentence that states what role you are applying for and hooks the reader with a major relevant achievement or statement of deep interest in the company's specific recent work."
+      },
+      {
+        "heading": "Step 3: Sell Your Skills (Body)",
+        "content": "Do not repeat your CV. Instead, pick your top 2 or 3 accomplishments that perfectly match the job requirements and elaborate on the context and results."
+      },
+      {
+        "heading": "Step 4: Show Cultural Fit",
+        "content": "Explain why you want to work for *this specific company*. Mention their recent projects, corporate values, or mission, and align it with your own career trajectory."
+      },
+      {
+        "heading": "Step 5: Call to Action (Closing)",
+        "content": "End by enthusiastically reiterating your interest and providing a gentle call to action, offering to discuss how you can bring value over an interview. Sign off professionally."
+      }
+    ],
+    "examples": {
+      "heading": "A Great Opening Sentence",
+      "content": "**Bad:** I am writing to apply for the Marketing Manager role.\n**Good:** I was thrilled to see the Marketing Manager opening at [Company], as your recent 'Green Earth' campaign perfectly aligns with my 5-year background in sustainable brand management."
+    },
+    "commonMistakes": {
+      "heading": "What to Avoid",
+      "content": "Making it longer than one page, repeating everything on the resume, focusing solely on what the job can do for you rather than what you can do for the company, and failing to proofread for typos."
+    },
+    "finalChecklist": [
+      "Is the letter personalized to the specific company and role?",
+      "Did I address a specific person if possible?",
+      "Does the body add value instead of just repeating my CV?",
+      "Is it free from grammar and spelling errors?",
+      "Is it shorter than a full page?"
+    ],
+    "cta": "Need a cover letter that stands out? Get our experts to write a personalized and compelling cover letter tailored to your dream job."
+  },
+  "si": {
+    "slug": "how-to-write-cover-letter-si",
+    "title": "ආකර්ෂණීය Cover Letter එකක් ලියන්නේ කෙසේද?",
+    "seoTitle": "Cover Letter එකක් ලියන ආකාරය | ආකර්ෂණීය රැකියා අයදුම්පතක්",
+    "metaDescription": "රැකියා අවස්ථාවන් වැඩි කරගැනීම සඳහා ආකර්ෂණීය සහ නිවැරදි Cover Letter එකක් ලියන ආකාරය පිළිබඳ සම්පූර්ණ මාර්ගෝපදේශය.",
+    "intro": "CV එකෙන් ඔබ කර ඇති දේවල් ගැන කියවෙන අතර, Cover Letter එකෙන් කියවෙන්නේ 'ඔබ කවුද' යන්නයි. සම්මුඛ පරීක්ෂණයක් සඳහා තෝරාගැනීමට Cover Letter එක ප්‍රබල සාධකයක් විය හැක.",
+    "problemExplanation": "බොහෝ අයදුම්කරුවන් Cover Letter එකක් නොයවන අතර, යවන අයද අන්තර්ජාලයෙන් බාගත කළ සාමාන්‍ය (Generic) අච්චුම භාවිතා කරති. 'To Whom It May Concern' වැනි යෙදුම් සමඟ එකම දේ සියල්ලන්ටම යැවීමෙන්, සේවායෝජකයාට ඔබ පිළිබඳව ඇති උනන්දුව නැති වී යයි.",
+    "whatIsIt": {
+      "heading": "Cover Letter එකක් කියන්නේ කුමක්ද?",
+      "content": "Cover Letter යනු ඔබේ CV එක සමඟ යවන එක් පිටුවක ලියවිල්ලකි. ඉන් ඔබේ වෘත්තීය ඉතිහාසයට අමතර වටිනාකමක් එකතු කරන අතර, ඔබ මෙම ආයතනයට සහ තනතුරට කොතරම් ගැලපෙනවාද යන්න පැහැදිලි කරයි."
+    },
+    "whyItMatters": {
+      "heading": "Cover Letter එකක් අනිවාර්ය වන්නේ ඇයි?",
+      "content": "CV එකට වඩා Cover Letter තුළින් ඔබේ කතාව ප්‍රකාශ කළ හැක. වෘත්තීය ජීවිතයේ හිඩැසක් (Career Gap) පැහැදිලි කිරීමට, ආයතනයේ සංස්කෘතියට ඔබ ගැලපෙන බව පෙන්වීමට මෙන්ම, Human Resource (HR) කළමනාකරු සමඟ පෞද්ගලික සම්බන්ධතාවයක් ගොඩනඟා ගැනීමට මෙය කදිම අවස්ථාවකි."
+    },
+    "stepByStep": [
+      {
+        "heading": "පියවර 1: Header සහ ආමන්ත්‍රණය",
+        "content": "ඔබේ සම්බන්ධතා තොරතුරු ඉහළින් යොදන්න. හැකි සෑම විටම HR කළමනාකරුගේ හෝ අදාළ නිලධාරියාගේ නම (උදා: Dear Mr. Perera) සොයාගැනීමට උත්සහ කරන්න."
+      },
+      {
+        "heading": "පියවර 2: ආකර්ෂණීය ආරම්භයක්",
+        "content": "ඔබ අයදුම් කරන්නේ කුමන තනතුරකටද යන්න සඳහන් කර ඔබගේ ප්‍රධාන ජයග්‍රහණයක් හෝ ආයතනය පිළිබඳ ඔබේ ඇති උනන්දුව පෙන්වමින් ලිපිය ආරම්භ කරන්න."
+      },
+      {
+        "heading": "පියවර 3: ඔබගේ කුසලතා ඉස්මතු කිරීම (Body)",
+        "content": "CV එකම නැවත මෙහි ලියන්න එපා. ඒ වෙනුවට රැකියාවේ අවශ්‍යතා වලට වඩාත්ම ගැලපෙන ඔබගේ ප්‍රධාන ජයග්‍රහණ 2-3 ක් තෝරාගෙන ඒවා සවිස්තරාත්මකව දක්වන්න."
+      },
+      {
+        "heading": "පියවර 4: ආයතනයට ඇති කැමැත්ත",
+        "content": "ඔබ විශේෂයෙන් *මෙම ආයතනයේම* සේවය කිරීමට කැමති ඇයි දැයි පැහැදිලි කරන්න. ඔවුන්ගේ අරමුණු සහ මෑත වෙනස්කම් ඔබේ වෘත්තීය දැක්ම සමඟ ගැලපෙන ආකාරය පෙන්වා දෙන්න."
+      },
+      {
+        "heading": "පියවර 5: අවසානය (Closing)",
+        "content": "සම්මුඛ පරීක්ෂණයක් සඳහා කාලයක් යොදාගැනීමට ඇති කැමැත්ත පවසා ඉතා වෘත්තීය මට්ටමින් ලිපිය අවසන් කරන්න."
+      }
+    ],
+    "examples": {
+      "heading": "ආරම්භක වාක්‍යයක උදාහරණයක්",
+      "content": "**වැරදි:** Marketing Manager තනතුර සඳහා මම අයදුම් කරමි.\n**නිවැරදි:** මෑතකදී ඔබ ආයතනය දියත් කළ 'Green Earth' ව්‍යාපෘතිය මා ඉතාමත් ආකර්ෂණය කළ අතර, මගේ පස් වසරක තිරසාර සන්නාම කළමනාකරණ අත්දැකීම් සමග [Company] හි Marketing Manager තනතුරට අයදුම් කිරීමට ලැබීම සතුටකි."
+    },
+    "commonMistakes": {
+      "heading": "මග හැරිය යුතු වැරදි",
+      "content": "පිටුවකට වඩා දිගු වීම, CV එකේ ඇති දේවල්ම නැවත ලිවීම, ආයතනයට වඩා තමන්ගේ පුද්ගලික වාසි ගැන පමණක් ලිවීම සහ අක්ෂර වින්‍යාස දෝෂ තිබීම."
+    },
+    "finalChecklist": [
+      "ලිපිය අදාළ ආයතනයට සහ තනතුරට පමණක් සුවිශේෂී ලෙස ලියා තිබේද?",
+      "හැකි සෑම විටම නිශ්චිත පුද්ගලයෙකුට ආමන්ත්‍රණය කළාද?",
+      "CV එකේ නැති අමතර වටිනාකමක් මෙහි තිබේද?",
+      "ව්‍යාකරණ සහ අක්ෂර වින්‍යාස වැරදි සම්පූර්ණයෙන්ම සකසා තිබේද?",
+      "ලිපිය එක් පිටුවකට සීමා කර තිබේද?"
+    ],
+    "cta": "ඔබටත් සුවිශේෂී Cover Letter එකක් අවශ්‍යද? අදම අපගේ වෘත්තීය සේවාව හා සම්බන්ධ වන්න."
+  }
+},
+{
+  "id": "103",
+  "categoryId": "d",
+  "coverImage": "https://images.unsplash.com/photo-1616469829581-73993eb86b02?w=1200&auto=format&fit=crop&q=80",
+  "en": {
+    "slug": "linkedin-profile-optimization",
+    "title": "LinkedIn Profile Optimization: Get Discovered by Recruiters",
+    "seoTitle": "LinkedIn Profile Optimization | Strategies to Get Hired Faster",
+    "metaDescription": "Transform your LinkedIn profile into a powerful magnet for jobs. Discover actionable steps to optimize your headline, summary, and experience to attract top employers.",
+    "intro": "In today's corporate world, your LinkedIn profile is just as important—if not more important—than your CV. It functions as your digital reputation and 24/7 networking tool.",
+    "problemExplanation": "Many professionals treat LinkedIn like a static online CV, leaving fields blank and failing to use the platform's networking features. If your profile is incomplete and lacks proper keywords, recruiters who use LinkedIn Recruiter search tools will never find you.",
+    "whatIsIt": {
+      "heading": "What is LinkedIn Optimization?",
+      "content": "LinkedIn Optimization involves updating every section of your profile to rank higher in LinkedIn’s internal search algorithm. This makes you easily discoverable to hiring managers and recruiters looking for specific talents."
+    },
+    "whyItMatters": {
+      "heading": "Why LinkedIn is Gold for Your Career",
+      "content": "A large percentage of jobs are never publicly advertised; they are filled by headhunters sourcing candidates directly through LinkedIn. An optimized profile will bring job opportunities to your inbox passively."
+    },
+    "stepByStep": [
+      {
+        "heading": "Step 1: Professional Headshot and Banner",
+        "content": "Use a clear, high-quality headshot with good lighting and professional attire. Add a background banner image that reflects your industry or personal brand to stand out."
+      },
+      {
+        "heading": "Step 2: Write a Keyword-Rich Headline",
+        "content": "Don't just use your job title. Your headline should be a mini-pitch. Include your role, your specific expertise, and the value you provide. E.g., 'Senior Software Engineer | React & Node.js | Building Scalable FinTech Solutions'."
+      },
+      {
+        "heading": "Step 3: Tell Your Story in the 'About' Section",
+        "content": "Write a 3-4 paragraph summary sharing your professional journey, your passions, major achievements, and what drives you. Include a list of your core skills at the bottom for SEO."
+      },
+      {
+        "heading": "Step 4: Detail Your Experience and Add Multimedia",
+        "content": "For each role, list bullet points highlighting your accomplishments (like a CV). Under each role, attach links, PDFs, presentations, or portfolio websites to visually showcase your work."
+      },
+      {
+        "heading": "Step 5: Get Recommendations and Endorsements",
+        "content": "Reach out to former colleagues, managers, and clients. Ask them for a written recommendation. This serves as powerful social proof of your professional competence."
+      }
+    ],
+    "examples": {
+      "heading": "Headline Makeover",
+      "content": "**Average:** Sales Executive at XYZ Corp\n**Optimized:** B2B Sales Executive | Account Management | Driving Revenue Growth specializing in SaaS Solutions 🚀"
+    },
+    "commonMistakes": {
+      "heading": "LinkedIn Mistakes to Stop Making",
+      "content": "Leaving the profile URL as the default messy string of numbers, having typos in your current job title, only being active when you need a job, and treating connections like mere numbers rather than real networking opportunities."
+    },
+    "finalChecklist": [
+      "Is my profile picture professional and approachable?",
+      "Does my headline clearly state my value and keywords?",
+      "Is my 'About' section engaging to read?",
+      "Have I customized my public LinkedIn URL?",
+      "Are my job experiences updated with quantifiable achievements?"
+    ],
+    "cta": "Want recruiters to come directly to you? Let our LinkedIn experts revamp your profile for maximum visibility."
+  },
+  "si": {
+    "slug": "linkedin-profile-optimization-si",
+    "title": "Recruiters ලා ඔබව සොයා එන ලෙස LinkedIn Profile එකක් හදමු",
+    "seoTitle": "LinkedIn Profile Optimization | LinkedIn එක හරහා රැකියා සොයාගැනීම",
+    "metaDescription": "ප්‍රමුඛ පෙළේ ආයතන වල අවධානය දිනාගැනීමට ඔබේ LinkedIn Profile එක නිවැරදිව optimize කරන ආකාරය පිළිබඳ සම්පූර්ණ උපදෙස්.",
+    "intro": "අද කාලයේ ව්‍යාපාරික ලෝකය තුළ ඔබේ CV එකටත් වඩා LinkedIn Profile එක වැදගත් වීමට ඉඩ ඇත. එය ඔබේ ඩිජිටල් අනන්‍යතාවය මෙන්ම පැය 24 පුරා ක්‍රියාත්මක වන Networking මෙවලමකි.",
+    "problemExplanation": "බොහෝ අය LinkedIn එක භාවිතා කරන්නේ අන්තර්ජාල CV එකක් ලෙස පමණි. Profile එකෙහි විස්තර නිවැරදිව පුරවා නොමැති විට සහ අන්තර්ජාලය හරහා සම්බන්ධතා ගොඩනගා නොගන්නා විට, රැකියා සඳහා සුදුස්සන් සොයන HR කළමනාකරුවන්ගෙන් ඔබව මග හැරී යයි.",
+    "whatIsIt": {
+      "heading": "LinkedIn Optimization කියන්නේ කුමක්ද?",
+      "content": "මෙමගින් අදහස් කරන්නේ LinkedIn හි Search Algorithm එකට පහසුවෙන් හඳුනාගත හැකි පරිදි ඔබේ ගිණුමේ සෑම අංශයක්ම නිවැරදි Keywords සහිතව යාවත්කාලීන කිරීමයි. මෙහිදී Recruiters ලා තමන්ට අවශ්‍ය කෙනාව සෙවීමේදී ඔබේ නම මුලින්ම ඉදිරිපත් වීම බලාපොරොත්තු වේ."
+    },
+    "whyItMatters": {
+      "heading": "LinkedIn ඔබේ අනාගතයට වැදගත් ඇයි?",
+      "content": "බොහෝ ඉහළ රැකියා අවස්ථා කිසිදා ප්‍රසිද්ධියේ පුවත්පත් වල පළ නොවේ. ඒ වෙනුවට Headhunters ලා LinkedIn හරහා කෙළින්ම සුදුස්සන්ට කතා කරති. නිසි ලෙස සකසන ලද Profile එකක් මගින් ඔබට ඉතා වටිනා රැකියා අවස්ථා ඉබේම ලැබෙනු ඇත."
+    },
+    "stepByStep": [
+      {
+        "heading": "පියවර 1: වෘත්තීය ඡායාරූපයක් (Headshot) සහ Banner එකක් යෙදීම",
+        "content": "පැහැදිලි ආලෝකයක් සහිත ඉතා වෘත්තීය පෙනුමක් ඇති ඡායාරූපයක් භාවිතා කරන්න. ඔබේ ක්ෂේත්‍රයට අදාළ පසුබිම් රූපයක් (Banner cover picture) යෙදීමෙන් අමතර වටිනාකමක් ලබා දෙන්න."
+      },
+      {
+        "heading": "පියවර 2: Keywords සහිත ආකර්ෂණීය Headline එකක් ලිවීම",
+        "content": "රැකියාවේ නම පමණක් ලිවීම ප්‍රමාණවත් නොවේ. ඔබගේ විශේෂඥතාව සහ ඔබෙන් ලබාදෙන වටිනාකම කෙටි වාක්‍යයකින් ලියන්න. උදා: 'Senior Software Engineer | React & Node.js | Building Scalable FinTech Solutions'."
+      },
+      {
+        "heading": "පියවර 3: 'About' කොටසේ ඔබේ කතාව ලිවීම",
+        "content": "ඔබගේ වෘත්තීය ගමන, ඔබ කැමති දේවල් සහ ඔබගේ ජයග්‍රහණ ඡේද 3-4 කින් පමණ ලස්සන කතාවක් ආකාරයෙන් ලියන්න. පහලින්ම ඔබගේ ප්‍රධාන හැකියාවන් (Skills) ලැයිස්තුවක්ද එක් කරන්න."
+      },
+      {
+        "heading": "පියවර 4: පළපුරුද්ද (Experience) සහ Multimedia ඇතුළත් කිරීම",
+        "content": "එක් එක් රැකියාවේදී ඔබ කළ දෑ සහ ලබාගත් ජයග්‍රහණ CV එකක සේම පැහැදිලිව සඳහන් කරන්න. ඔබ නිර්මාණය කළ දේවල්, ලිපි, ලින්ක් හෝ PDF මෙයට අමුණන්න."
+      },
+      {
+        "heading": "පියවර 5: Recommendations ලබා ගැනීම",
+        "content": "ඔබ කලින් වැඩ කළ ආයතන වල ප්‍රධානීන්ගෙන් සහ මිතුරන්ගෙන් ඔබ ගැන නිර්දේශයක් (Recommendation) ලියාදෙන ලෙස ආචාරශීලීව ඉල්ලා සිටින්න. එය ඔබේ හැකියාව තහවුරු කිරීමට ඉතා වැදගත් සාධකයක් වේ."
+      }
+    ],
+    "examples": {
+      "heading": "Headline එකක් නිර්මාණය කිරීමේ උදාහරණයක්",
+      "content": "**සාමාන්‍ය ක්‍රමය:** Sales Executive at XYZ Corp\n**වඩාත් හොඳ ක්‍රමය:** B2B Sales Executive | Account Management | Driving Revenue Growth specializing in SaaS Solutions 🚀"
+    },
+    "commonMistakes": {
+      "heading": "නතර කළ යුතු වැරදි පුරුදු",
+      "content": "LinkedIn URL එකේ ඇති අංක වැල වෙනස් නොකර තබාගැනීම, Job title එකේ අක්ෂර වින්‍යාස වැරදි තිබීම, සහ රැකියාවක් අවශ්‍ය වූ විට පමණක් LinkedIn භාවිතා කිරීම."
+    },
+    "finalChecklist": [
+      "මගේ Profile Picture එක වෘත්තීය පෙනුමකින් යුක්තද?",
+      "Headline එකෙහි මගේ හැකියාව සහ Keywords පැහැදිලිව සඳහන් කර තිබේද?",
+      "About section එක කියවීමට ආකර්ෂණීයද?",
+      "Custom LinkedIn URL එකක් සාදාගෙන තිබේද?",
+      "මගේ රැකියා අත්දැකීම් පැහැදිලි ප්‍රතිඵල සහිතව යාවත්කාලීන කර තිබේද?"
+    ],
+    "cta": "ඔබට ගැලපෙනම රැකියා අවස්ථා සඳහා LinkedIn Profile එක ශක්තිමත් කරගැනීමට අවශ්‍යද? වෘත්තීය සහය ලබාගැනීමට අප හා සම්බන්ධ වන්න."
+  }
+},
+{
+  "id": "104",
+  "categoryId": "a",
+  "coverImage": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&auto=format&fit=crop&q=80",
+  "en": {
+    "slug": "preparing-for-job-interviews",
+    "title": "Mastering the Job Interview: Pre-Interview Prep",
+    "seoTitle": "Job Interview Preparation Guide | How to Ace Your Interview",
+    "metaDescription": "Learn exactly how to research the company, prepare your answers, and build confidence before walking into a job interview.",
+    "intro": "Getting an interview means your CV did its job. Now it’s up to you to prove that the person on paper is the right fit in real life.",
+    "problemExplanation": "Nervousness, blanking out on common questions, or simply not knowing enough about the company are the main reasons highly qualified candidates fail interviews. Going in without preparation is a guaranteed way to lose an opportunity.",
+    "whatIsIt": {
+      "heading": "What Constitutes Proper Interview Preparation?",
+      "content": "Proper preparation involves thoroughly researching the employer, practicing your core narratives through the STAR method, preparing intelligent questions to ask the interviewers, and preparing logistics mentally and physically."
+    },
+    "whyItMatters": {
+      "heading": "The Role of Confidence",
+      "content": "Interviewers look for capability and culture fit. If you're well-prepared, your anxiety drops significantly. This allows your true personality and confidence to shine through, making you highly memorable to the panel."
+    },
+    "stepByStep": [
+      {
+        "heading": "Step 1: Deep Corporate Research",
+        "content": "Don't just read the 'About Us' page. Search for the company in the news, read their latest annual report, check their LinkedIn updates, and understand their main competitors."
+      },
+      {
+        "heading": "Step 2: Master the STAR Method",
+        "content": "For behavioral questions ('Tell me about a time when...'), structure your answers using STAR: Situation, Task, Action, Result. Focus heavily on the exact Actions you took and quantify the Result."
+      },
+      {
+        "heading": "Step 3: Prepare the Basics",
+        "content": "Practise your 'Tell me about yourself' pitch. It should be a 90-second summary of who you are, what you've accomplished, and why you're perfect for the role."
+      },
+      {
+        "heading": "Step 4: Prepare Questions for Them",
+        "content": "Always have 2-3 questions ready when they ask, 'Do you have any questions for us?' Ask about team structure, current challenges, or their strategic goals for the next year."
+      },
+      {
+        "heading": "Step 5: Logistics & Mindset",
+        "content": "Plan your route, iron your clothes the night before, and pack copies of your CV. Visualize success to keep calm."
+      }
+    ],
+    "examples": {
+      "heading": "STAR Answer Example",
+      "content": "**Situation:** Project X was behind schedule.\n**Task:** I needed to deliver the MVP in 2 weeks.\n**Action:** I reorganized the development sprints, communicated directly with stakeholders, and removed daily bottlenecks.\n**Result:** We launched on time and user engagement increased by 15%."
+    },
+    "commonMistakes": {
+      "heading": "Warning Signs",
+      "content": "Speaking badly about former bosses or employers, failing to give concrete examples for soft skills, and turning up with an arrogant 'know-it-all' attitude."
+    },
+    "finalChecklist": [
+      "Have I researched the company's recent news/products?",
+      "Is my 'Tell me about yourself' answer polished?",
+      "Have I prepared at least three STAR stories?",
+      "Do I have questions ready to ask the interviewer?",
+      "Is my formal wear clean and ready?"
+    ],
+    "cta": "Want to ace your next big interview? Check out our Mock Interview Preparation sessions for personalized coaching."
+  },
+  "si": {
+    "slug": "preparing-for-job-interviews-si",
+    "title": "සම්මුඛ පරීක්ෂණයකට (Job Interview) සාර්ථකව මුහුණ දෙමු",
+    "seoTitle": "සම්මුඛ පරීක්ෂණය සඳහා සූදානම් වීමේ මාර්ගෝපදේශය",
+    "metaDescription": "පූර්ව සූදානම හරහා බියකින් තොරව සම්මුඛ පරීක්ෂණයකට මුහුණ දෙන අයුරු පියවරෙන් පියවර ඉගෙන ගන්න.",
+    "intro": "ඔබට සම්මුඛ පරීක්ෂණයක් සඳහා කැඳවීමක් ලැබුණා යනු ඔබේ CV එක සාර්ථකයි යන්නයි. දැන් ඔබේ වගකීම වන්නේ CV එකෙහි සඳහන් කර ඇති දේවල් සැබවින්ම ඔබට කළ හැකි බව ඔවුන්ට ඔප්පු කර පෙන්වීමයි.",
+    "problemExplanation": "ඉතා දක්ෂ අයදුම්කරුවන්ට පවා රැකියාව අහිමිවීමට ප්‍රධාන හේතු වන්නේ කලබල වීම, සාමාන්‍ය ප්‍රශ්න වලට පිළිතුරු සූදානම් කර නොමැති වීම සහ ආයතනය පිළිබඳව කිසිදු අවබෝධයක් නොමැති වීමයි.",
+    "whatIsIt": {
+      "heading": "Interview එකකට සූදානම් වීම යනු කුමක්ද?",
+      "content": "නිසි සූදානම යනු අදාළ ආයතනය පිළිබඳව හොඳින් අධ්‍යනය කිරීම, STAR ක්‍රමය මගින් පිළිතුරු සැපයීමට සූදානම් වීම, මෙන්ම පරීක්ෂක මණ්ඩලයෙන් ඇසීමට වැදගත් ප්‍රශ්න කිහිපයක් කල්තියා සූදානම් කර ගැනීමයි."
+    },
+    "whyItMatters": {
+      "heading": "ආත්ම විශ්වාසයේ වැදගත්කම",
+      "content": "ආයතන බලන්නේ හැකියාව සහ ඔබ ඔවුන්ගේ සංස්කෘතියට ගැලපෙනවාද යන්න පමණි. ඔබ කල්තියා හොඳින් සූදානම් වී ඇත්නම්, ඔබේ බිය සම්පූර්ණයෙන්ම පහව යන අතර, ඔබගේ සැබෑ පෞරුෂය මනාව කැපී පෙනෙනු ඇත."
+    },
+    "stepByStep": [
+      {
+        "heading": "පියවර 1: ආයතනය පිළිබඳව හොඳින් අධ්‍යනය කරන්න",
+        "content": "Website එකේ 'About Us' එක බැලීමෙන් පමණක් නොනැවතී, ඔවුන්ගේ මෑත කාලීන නිෂ්පාදන, තරඟකාරී ආයතන සහ LinkedIn හි ඔවුන් බෙදාගත් පුවත් පිළිබඳව සොයා බලන්න."
+      },
+      {
+        "heading": "පියවර 2: STAR method එක භාවිතා කිරීම",
+        "content": "ඔබ ලැබූ අභියෝග ගැන අසන ප්‍රශ්න වලට පිළිතුරු දීමේදී STAR (Situation - ගැටළුව, Task - ඔබේ වගකීම, Action - ඔබ ගත් ක්‍රියාමාර්ගය, Result - ලැබූ සාර්ථක ප්‍රතිඵලය) ක්‍රමය භාවිතා කරන්න."
+      },
+      {
+        "heading": "පියවර 3: මූලික ප්‍රශ්න සඳහා සූදානම් වන්න",
+        "content": "'Tell me about yourself' (ඔබ ගැන විස්තරයක් කරන්න) යන ප්‍රශ්නය සඳහා ඔබ ගැන කෙටි ඒත් ආකර්ෂණීය විස්තරයක් විනාඩි 1.5 කට වැනි කෙටි කාලසීමාවකට සූදානම් කරගන්න."
+      },
+      {
+        "heading": "පියවර 4: ඔබ අසන ප්‍රශ්න තීරණය කරන්න",
+        "content": "සම්මුඛ පරීක්ෂණය අවසානයේදී 'ඔබට අපෙන් අසන්නට යමක් තිබෙනවාද?' කියා අසන විට, කණ්ඩායමේ ව්‍යුහය හෝ ආයතනයේ ඉදිරි අරමුණු ගැන තර්කානුකූල ප්‍රශ්න 2-3ක් විමසන්න."
+      },
+      {
+        "heading": "පියවර 5: මානසික සූදානම",
+        "content": "පරීක්ෂණයට යන මාර්ගය, අඳින පළඳින ඇඳුම් සහ CV පිටපත් කල්තියා සූදානම් කර ගන්න. ධනාත්මක සිතුවිලි වලින් මනස සන්සුන් කරගන්න."
+      }
+    ],
+    "examples": {
+      "heading": "STAR පිළිතුරක උදාහරණයක්",
+      "content": "**Situation:** අදාළ ව්‍යාපෘතිය නියම වේලාවට අවසන් කිරීමට නොහැකි තත්ත්වයක් පැන නැගුනි.\n**Action:** මම කණ්ඩායම සමඟ පැය ගණනක් විමර්ශනය කර නව ක්‍රමවේදයක් හඳුන්වා දී ගැටළුව නිරාකරණය කළෙමි.\n**Result:** සියල්ල නියමිත කාලයට අවසන් කර, ගනුදෙනුකරුවාගේ පූර්ණ ප්‍රසාදය හිමිවිය."
+    },
+    "commonMistakes": {
+      "heading": "මග හැරිය යුතුම දේවල්",
+      "content": "පැරණි ආයතන නිලධාරීන්ට බැන වැදීම දෝෂාරෝපණය කිරීම, තමාට කළ හැකි දේවල් ගැන බොරු කීම සහ උඩඟු කමින් හැසිරීම."
+    },
+    "finalChecklist": [
+      "මම අදාළ ආයතනයේ මෑතകാലීන පුවත් ගැන දන්නවාද?",
+      "මාව හඳුන්වාදීමට නිවැරදි විස්තරයක් සාදාගෙන තිබේද?",
+      "STAR ක්‍රමය හරහා කීමට කතන්දර කිහිපයක් රෙඩි ද?",
+      "ඔවුන්ගෙන් ඇසීමට ප්‍රශ්න කල්තියා ලියාගත්තාද?",
+      "වැදගත් ලිපි ලේඛන සියල්ලම රැගෙන යාමට සූදානම් ද?"
+    ],
+    "cta": "ඔබගේ ඊළඟ Job Interview එක සාර්ථක කරගන්න අවශ්‍යද? අපගේ Mock Interview පුහුණු සැසියක් හරහා නිවැරදි මග පෙන්වීමක් ලබාගන්න."
+  }
+},
+{
+  "id": "105",
+  "categoryId": "a",
+  "coverImage": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&auto=format&fit=crop&q=80",
+  "en": {
+    "slug": "career-growth-and-personal-branding",
+    "title": "Career Growth and Personal Branding",
+    "seoTitle": "Personal Branding for Career Growth | Professional Development",
+    "metaDescription": "Advance your career by establishing a strong personal brand. Learn how to network, demonstrate thought leadership, and propel your professional growth.",
+    "intro": "Your personal brand is what people say about you when you are not in the room. In today's digital age, deliberately crafting that brand is the fastest way to accelerate your career.",
+    "problemExplanation": "Many hard-working professionals remain stagnant in their careers, waiting patiently to be noticed by management. The reality is that hard work alone isn't enough; visibility is key. Without a personal brand, you blend in with everyone else.",
+    "whatIsIt": {
+      "heading": "What is Personal Branding?",
+      "content": "Personal branding is the intentional process of establishing and promoting what you stand for. It combines your skills, experiences, and personality to demonstrate your unique value proposition to your industry."
+    },
+    "whyItMatters": {
+      "heading": "The Leverage of a Strong Brand",
+      "content": "A strong personal brand attracts mentors, clients, and promotions. It establishes you as an authority in your field. When highly coveted roles open up, people will naturally think of your name first."
+    },
+    "stepByStep": [
+      {
+        "heading": "Step 1: Define Your Niche",
+        "content": "You cannot be famous for everything. Pick a specific area of expertise (e.g., 'Agile Leadership', 'Cloud Cost Optimization') and focus on becoming the go-to person for that subject."
+      },
+      {
+        "heading": "Step 2: Share Your Knowledge Online",
+        "content": "Use platforms like LinkedIn or Medium to write articles, post industry insights, and share your experiences. Consistency is key here."
+      },
+      {
+        "heading": "Step 3: Network Purposefully",
+        "content": "Attend local meetups, conferences, and webinars. When networking, focus on how you can help others rather than just asking for favors."
+      },
+      {
+        "heading": "Step 4: Keep Upskilling",
+        "content": "A brand built on outdated knowledge will eventually crumble. Continuously take courses, earn certifications, and read industry books."
+      },
+      {
+        "heading": "Step 5: Seek Speaking Opportunities",
+        "content": "Volunteer to do a presentation for your current team, or apply to speak at industry conferences. Public speaking drastically enhances your perceived authority."
+      }
+    ],
+    "examples": {
+      "heading": "Brand Statement Example",
+      "content": "**Generic:** I am a project manager who handles software projects.\n**Branded:** I am a Project Manager specializing in rescuing at-risk enterprise software deployments and bringing them back on budget."
+    },
+    "commonMistakes": {
+      "heading": "Branding Pitfalls",
+      "content": "Trying to be controversial just for engagement, being overly promotional without offering value, and having an inconsistent online persona compared to how you act in real life."
+    },
+    "finalChecklist": [
+      "Have I clearly defined my professional niche?",
+      "Am I regularly sharing industry insights on LinkedIn?",
+      "Is my network steadily growing with relevant professionals?",
+      "Am I continually updating my skill set?",
+      "Do I have a consistent 'brand voice'?"
+    ],
+    "cta": "Ready to take your career to the management or executive level? Let's build your professional brand together starting today."
+  },
+  "si": {
+    "slug": "career-growth-personal-branding-si",
+    "title": "වෘත්තීය දියුණුව සහ Personal Branding",
+    "seoTitle": "Personal Branding හරහා ඔබගේ වෘත්තීය දියුණුව හදාගන්න",
+    "metaDescription": "පෞද්ගලික සන්නාමයක් (Personal brand) ගොඩනගා ගැනීම මගින් රැකියා ක්ෂේත්‍රයේ ඉහළටම යන ආකාරය පිළිබඳ වටිනා උපදෙස්.",
+    "intro": "ඔබ නොමැති ස්ථානයකදී මිනිසුන් ඔබ ගැන කියන්නේ කුමක්ද යන්න ඔබගේ 'Personal Brand' එකයි. සාර්ථක වෘත්තීය ගමනකට මෙය අතිශයින් වැදගත් වේ.",
+    "problemExplanation": "බොහෝ දක්ෂ සේවකයන් සිතන්නේ තමන් මහන්සි වී වැඩ කළොත් ස්වභාවිකවම උසස්වීම් ලැබෙනු ඇති කියාය. නමුත් එය සත්‍යයක් නොවේ. ඔබගේ හැකියාවන් අන් අයට පෙන්වීමට කටයුතු නොකළහොත්, ඔබ සදහටම එකම ස්ථානයක රැඳී සිටිනු ඇත.",
+    "whatIsIt": {
+      "heading": "Personal Branding කියන්නේ කුමක්ද?",
+      "content": "මෙය යනු ඔබගේ කුසලතා, අත්දැකීම් සහ පෞරුෂත්වයේ එකතුවක් හරහා ඔබව ක්ෂේත්‍රයේ විශේෂඥයෙකු ලෙස අන් අයට ස්වයංක්‍රීයව පෙන්වා දීමේ විධිමත් ක්‍රියාවලියකි."
+    },
+    "whyItMatters": {
+      "heading": "ශක්තිමත් Personal Brand එකක බලය",
+      "content": "මෙහිදී ඔබට රැකියා සහ අවස්ථා පසුපස යාමට අවශ්‍ය නොවේ. ඔබගේ සන්නාමය ශක්තිමත් වූ විට, උසස් වීම්, Mentors ලා සහ හොඳ රැකියා අවස්ථාවන් ස්වයංක්‍රීයව ඔබ වෙත ආකර්ෂණය වීමට පටන් ගනී."
+    },
+    "stepByStep": [
+      {
+        "heading": "පියවර 1: ඔබගේ විශේෂඥතාව හඳුනාගන්න (Niche)",
+        "content": "සියල්ල ගැන අඩුවෙන් දන්නවාට වඩා එක අංශයක් ගැන හොඳින්ම දැනගන්න. උදා: 'Digital Marketing' නම්, එහි 'SEO' සඳහා පමණක් ඔබ ප්‍රසිද්ධ වන පරිදි ඉලක්කයක් සකසන්න."
+      },
+      {
+        "heading": "පියවර 2: දැනුම බෙදාහරින්න",
+        "content": "LinkedIn, Medium හෝ බ්ලොග් අඩවි භාවිතා කරමින් ඔබ දන්නා කරුණු, ක්ෂේත්‍රයේ නවතම තොරතුරු සහ ඔබ ඉගෙනගත් පාඩම් ලියන්න. නොකඩවා මෙය කිරීම අනිවාර්යයි."
+      },
+      {
+        "heading": "පියවර 3: Networking",
+        "content": "වෙහෙස වී සම්මන්ත්‍රණ, Online Events සහ Meetups වලට සහභාගී වන්න. අන් අයගෙන් උදව් ඉල්ලීමට පෙර, ඔවුන්ට ඔබට උදව් කළ හැකි දැයි විමසන්න."
+      },
+      {
+        "heading": "පියවර 4: නිරන්තරයෙන් ඉගෙනගැනීම",
+        "content": "පැරණි දැනුමකින් Personal Brand එකක් ගොඩනැගිය නොහැක. අලුත් සහතිකපත්‍ර පාඨමාලා හැදෑරීම සහ පොත්පත් කියවීම මගින් ඔබව යාවත්කාලීන කරගන්න."
+      },
+      {
+        "heading": "පියවර 5: අදහස් දැක්වීමේ අවස්ථා සොයාගන්න",
+        "content": "ඔබේ අංශයේ Meeting වලදී, හෝ සම්මන්ත්‍රණ වල දේශන පැවැත්වීමට අවස්ථා ලබාගන්න. Public speaking මගින් ඔබව කඩිනමින් නායකත්වයට ගෙන එනු ඇත."
+      }
+    ],
+    "examples": {
+      "heading": "අනන්‍යතා ප්‍රකාශන (Brand Statement) උදාහරණ",
+      "content": "**සාමාන්‍ය:** මම Software පද්ධති හදන Project Manager කෙනෙක්.\n**වඩාත් හොඳ:** මම අයවැය ඉක්මවා යන ව්‍යාපෘති නැවත නිරවුල් කර සමාගමට ලාභ ගෙන දීමට විශේෂඥතාවක් ඇති Project Manager කෙනෙකි."
+    },
+    "commonMistakes": {
+      "heading": "මග හැරිය යුතු වැරදි",
+      "content": "වටිනාකමක් නොදෙන විහිළු හෝ මතභේදාත්මක දේවල් නිතර පෝස්ට් කිරීම, සහ අන්තර්ජාලයේ එක විදිහකට සහ සැබෑ ලෝකයේ තවත් තරහවෙන් හැසිරීම."
+    },
+    "finalChecklist": [
+      "මගේ විශේෂඥතාවය මා නිශ්චිතව හඳුනාගෙන තිබේද?",
+      "මම මාසිකව හෝ සතිපතා LinkedIn එකේ ලිපි පළ කරනවාද?",
+      "ක්ෂේත්‍රයේ වැදගත් පුද්ගලයින් සමග Networking කරනවාද?",
+      "අලුත් දේවල් දිනපතා ඉගෙනගන්නවාද?",
+      "සැබෑ ලෝකයේදීත් කාරුණික හා වෘත්තීයව හැසිරෙනවාද?"
+    ],
+    "cta": "Executive level එක දක්වා ඔබේ වෘත්තිය ගෙනයාමට සූදානම්ද? අපගේ උපදේශන සේවාවන් සමඟ අදම සම්බන්ධ වන්න."
+  }
+},
+{
+  "id": "106",
+  "categoryId": "a",
+  "coverImage": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&auto=format&fit=crop&q=80",
+  "en": {
+    "slug": "how-to-explain-employment-gaps",
+    "title": "How to Explain Employment Gaps in a CV",
+    "seoTitle": "How to Explain Gaps in Resume | CV Guide",
+    "metaDescription": "Employment gaps shouldn't ruin your career chances. Learn how to address timeline gaps in your resume confidently and professionally.",
+    "intro": "Having a gap in your employment history is common, but leaving it unexplained on your CV can raise red flags for recruiters.",
+    "problemExplanation": "When a hiring manager spots an unexplained gap of several months or years on your CV, human nature usually assumes the worst—perhaps you were fired, unmotivated, or lost your skills. Providing no context leaves the recruiter guessing.",
+    "whatIsIt": {
+      "heading": "What is an Employment Gap?",
+      "content": "An employment gap is a period in your professional timeline, typically 6 months or longer, where you were not formally employed. Gaps can happen due to higher studies, health issues, travel, caring for family, or economic downturns."
+    },
+    "whyItMatters": {
+      "heading": "Honesty vs. Professionalism",
+      "content": "Recruiters appreciate honesty but demand professionalism. Taking control of the narrative shows you are forthright and proactive. When properly explained, a gap can even demonstrate resilience and personal growth."
+    },
+    "stepByStep": [
+      {
+        "heading": "Step 1: Don’t Hide It",
+        "content": "Never lie about employment dates. Background checks will easily uncover deceit, destroying your credibility immediately. List years instead of exact months if the gap is small, but be ready to clarify."
+      },
+      {
+        "heading": "Step 2: Briefly List it on the CV",
+        "content": "You can create a brief line item in your Experience section. E.g., '2020 – 2021: Career Break / Sabbatical'. Add one bullet point explaining the focus (e.g., 'Focused on family care and completed AWS certification')."
+      },
+      {
+        "heading": "Step 3: Keep Explanations Brief",
+        "content": "When interviewed, don't over-explain or apologize. State the reason briefly, concisely, and confidently, then immediately pivot to why you are excited and ready to return to work."
+      },
+      {
+        "heading": "Step 4: Highlight Productive Activities",
+        "content": "Did you travel, volunteer, read extensively, freelance, or learn a new software tool during the gap? Mention it! It proves you remained active and dedicated to self-improvement."
+      },
+      {
+        "heading": "Step 5: Address it in the Cover Letter",
+        "content": "The cover letter is the perfect place to write a short paragraph explaining the gap gracefully, ensuring the recruiter understands the context before even opening your CV."
+      }
+    ],
+    "examples": {
+      "heading": "In-Interview Pivot Example",
+      "content": "“I took a year off to care for an ailing family member. Fortunately, their health has fully recovered, and during that time I also completed a rigorous online data analytics bootcamp. I am now fully ready and eager to bring these new skills to this role.”"
+    },
+    "commonMistakes": {
+      "heading": "What Not to Do",
+      "content": "Lying about start/end dates, bad-mouthing a former employer as the reason for leaving, or sharing 'too much information' (TMI) about deeply personal or medical struggles."
+    },
+    "finalChecklist": [
+      "Are my dates on the CV accurate and truthful?",
+      "Have I prepared a confident, 1-2 sentence explanation?",
+      "Did I highlight the skills/studies I gained during the gap?",
+      "Have I drafted a brief explanation in my cover letter?",
+      "Is my focus fully shifted onto the future and this new role?"
+    ],
+    "cta": "Struggling to format a CV that has career gaps? Let our CV writing professionals spin your journey into a compelling narrative."
+  },
+  "si": {
+    "slug": "how-to-explain-employment-gaps-si",
+    "title": "CV එකේ ඇති රැකියා හිඩැස් (Employment Gaps) පැහැදිලි කරන්නේ කෙසේද?",
+    "seoTitle": "CV එකේ ඇති (Employment Gaps) පැහැදිලි කරන ආකාරය",
+    "metaDescription": "රැකියා ඉතිහාසයේ ඇති හිඩැස් (Career gaps) වෘත්තීය ආකාරයෙන් පැහැදිලි කර, නව රැකියාවක් සාර්ථකව ලබාගන්නා ආකාරය ඉගෙන ගන්න.",
+    "intro": "රැකියා ඉතිහාසයේ මාස කිහිපයක හෝ වසරක හිඩැසක් තිබීම සාමාන්‍ය දෙයකි. නමුත් එයට හේතුව CV එකේ පැහැදිලිව නොදැක්වීම ගැටලු මතුකරවයි.",
+    "problemExplanation": "CV එක පරීක්ෂා කරන කළමනාකරුවෙකුට ඔබ රැකියාව නොකළ විශාල කාලසීමාවක් දුටු විට මුලින්ම සිතෙන්නේ, සමහර විට ඔබව සේවයෙන් පහකළා විය හැකි බවයි. නැත්නම් ඔබට රැකියාවක් කිරීමට උනන්දුවක් නැති බවයි.",
+    "whatIsIt": {
+      "heading": "Employment Gap යනු කුමක්ද?",
+      "content": "ඔබගේ රැකියා ඉතිහාසයේ මාස 6 කට හෝ ඊට වැඩි කාලයක් විධිමත් රැකියාවක නිරත නොවුණු කාලයයි. මෙය වැඩිදුර අධ්‍යාපනයට, සෞඛ්‍ය ගැටළුවකට, ගර්භනීභාවයට හෝ විදේශගත වීමකට විය හැක."
+    },
+    "whyItMatters": {
+      "heading": "සත්‍යවාදී බව සහ වෘත්තීයභාවය",
+      "content": "රැකියා ලබාදෙන පාර්ශවයන් ඔබේ අවංකකම මෙන්ම ඔබ ගැටළුවක් ඉදිරිපත් කරන වෘත්තීය (Professional) ආකාරය පිළිබඳව සැලකිලිමත් වෙයි. නිවැරදිව පැහැදිලි කළහොත්, එම හිඩැස ඔබේ පෞරුෂයේ වර්ධනයක් පෙන්වීමට අවස්ථාවක් කරගත හැක."
+    },
+    "stepByStep": [
+      {
+        "heading": "පියවර 1: කිසිවිටෙක එය සඟවන්න එපා",
+        "content": "රැකියා කළ කාල සීමාවන් ගැන බොරු කියන්න එපා. Background Check එකක් මගින් එය අසුවුනොත් විශාල හානියක් වේ. එය නිර්භීතව පිළිගන්න."
+      },
+      {
+        "heading": "පියවර 2: CV එකේම කෙටියෙන් සඳහන් කරන්න",
+        "content": "Experience කොටසේ '2020 – 2021: Career Break' යනුවෙන් සටහන් කර, එහි එක Bullet point එකකින් 'Personal health retreat and completed PMP certification' වැනි සරල හේතුවක් දක්වන්න."
+      },
+      {
+        "heading": "පියවර 3: සම්මුඛ පරීක්ෂණයේදී කෙටියෙන් පැහැදිලි කිරීම",
+        "content": "Interview එකකදී මේ ගැන ඇසුවහොත් දිගින් දිගටම දුක හිතෙන කතා කියන්න එපා. කෙටියෙන් හේතුව පවසා, 'දැන් මම සම්පූර්ණයෙන්ම සූදානම් මේ රැකියාව භාර ගන්න' යනුවෙන් කතාව නවත්වන්න."
+      },
+      {
+        "heading": "පියවර 4: ඉන් ලැබූ අමතර ප්‍රයෝජන පෙන්වීම",
+        "content": "එම කාලය තුළ ඔබ අලුත් මෘදුකාංගයක් ඉගෙන ගත්තාද? Freelance වැඩ කළාද? ඒ බව අනිවාර්යයෙන් සඳහන් කරන්න. එයින් පෙනී යන්නේ ඔබ කම්මැලියෙකු නොවන බවයි."
+      },
+      {
+        "heading": "පියවර 5: Cover Letter එක භාවිත කරන්න",
+        "content": "ඔබේ Cover Letter එකේ කෙටි ඡේදයකින් මේ හිඩැස ගැන මනාව පැහැදිලි කර ලිවීම ඉතාමත් ප්‍රායෝගික ක්‍රමයකි."
+      }
+    ],
+    "examples": {
+      "heading": "සම්මුඛ පරීක්ෂණයේදී භාවිතා කළ හැකි පිළිතුරක්",
+      "content": "'පසුගිය වසරේ මගේ පවුලේ අයෙකුගේ අසනීප තත්ත්වයක් නිසා මට රැකියාවෙන් ඉවත් වීමට සිදුවුණා. දැන් ඔවුන්ට සම්පූර්ණයෙන්ම සුවයි. ඒ කාලය තුළ මම අන්තර්ජාලය හරහා Data Analytics පාඨමාලාවත් සාර්ථකව අවසන් කළා. ඒ නිසා දැන් මම නව ජවයකින් වැඩ භාර ගැනීමට සූදානම්.'"
+    },
+    "commonMistakes": {
+      "heading": "නොකළ යුතු දෑ",
+      "content": "රැකියා දිනයන් බොරු කිරීම, පරණ රැකියා ස්ථානයට බැන වැදීමෙන් හිඩැස සාධාරණීකරණය කිරීම, සහ අතිශය පෞද්ගලික ලෙඩ රෝග ගැන දීර්ඝව පැහැදිලි කරමින් වෙලාව ගැනීම."
+    },
+    "finalChecklist": [
+      "CV එකේ සඳහන් රැකියා කාලසීමාවන් සහ දිනයන් සත්‍ය ඒවාද?",
+      "හිඩැස ගැන පැහැදිලි කිරීමට වාක්‍ය 1-2 ක කෙටි පිළිතුරක් සූදානම්ද?",
+      "එම කාලය තුළ ලබාගත් නව දැනුම/කුසලතා CV එකට ඇතුළත් කළාද?",
+      "Cover Letter එකේ මේ ගැන කෙටි සටහනක් දැම්මාද?",
+      "වැඩි අවධානය යොමු කරන්නේ අතීතයටද, නොඑසේනම් අනාගතයටද?"
+    ],
+    "cta": "ඔබගේ Career Gap එක අවාසියක් නොවන ලෙස වෘත්තීය CV එකක් නිර්මාණය කරගැනීමට අපගේ සේවාව අදම ලබාගන්න."
+  }
+},
+{
+  "id": "107",
+  "categoryId": "a",
+  "coverImage": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&auto=format&fit=crop&q=80",
+  "en": {
+    "slug": "salary-negotiation-tips",
+    "title": "Salary Negotiation Tips for Professionals",
+    "seoTitle": "Salary Negotiation Tips Sri Lanka | Receive the Pay You Deserve",
+    "metaDescription": "Don't leave money on the table. Discover effective strategies for negotiating salary offers confidently and successfully without damaging relationships.",
+    "intro": "Negotiating your salary is one of the most critical conversations in your career. However, the fear of losing the job offer keeps many professionals from ever trying.",
+    "problemExplanation": "Most people accept the very first salary number offered to them. Over a span of ten years, failing to negotiate can result in millions of rupees lost in unearned income and compound raises. Employers usually expect a counter-offer.",
+    "whatIsIt": {
+      "heading": "What is Salary Negotiation?",
+      "content": "It is a professional discussion between you and your potential employer to reach a mutually agreeable compensation package. It involves assessing market rates, stating your value, and respectfully asking for a higher number."
+    },
+    "whyItMatters": {
+      "heading": "The Cost of Silence",
+      "content": "Your initial salary sets the baseline for your future raises, bonuses, and even your salary at your *next* job. Negotiating successfully signals to employers that you value yourself and possess strong communication skills."
+    },
+    "stepByStep": [
+      {
+        "heading": "Step 1: Do Thorough Market Research",
+        "content": "Before the interview, use platforms like Glassdoor, Payscale, and local industry wisdom to find the standard pay bracket for your position, experience level, and location."
+      },
+      {
+        "heading": "Step 2: Don't Name Your Number First",
+        "content": "Try to let the employer state their budget first. If forced to provide an expected salary in a form, give a realistic, slightly flexible range rather than an exact flat figure."
+      },
+      {
+        "heading": "Step 3: Ask for Time to Consider",
+        "content": "When they make an offer, never say “yes” immediately on the phone. Show enthusiasm, then say, “Thank you so much! Could I have 24 hours to review the complete package?”"
+      },
+      {
+        "heading": "Step 4: Prepare the Counter-Offer",
+        "content": "Ask for 10% to 15% more than their initial offer, backing it up with facts (e.g., 'Given my 5 years in AWS and immediate ability to take on the cloud migration project...')."
+      },
+      {
+        "heading": "Step 5: Negotiate Perks if Money is Tight",
+        "content": "If the company genuinely cannot increase the basic pay, pivot to negotiating other perks: performance bonuses, extra leave, flexible working hours, or educational allowances."
+      }
+    ],
+    "examples": {
+      "heading": "How to Make the Counter-Offer",
+      "content": "“I am very excited about the offer to join the team. Based on my research on market rates and the extensive technical leadership experience I bring, I was hoping to see a base salary closer to Rs. 250,000. Is there flexibility to bridge this gap?”"
+    },
+    "commonMistakes": {
+      "heading": "Negotiation Killers",
+      "content": "Giving ultimatums ('Pay me X or I walk'), negotiating based on your personal financial problems or lifestyle needs rather than your professional value, and negotiating purely via rushed phone calls without preparation."
+    },
+    "finalChecklist": [
+      "Do I know the actual market rate for this job?",
+      "Am I basing my request on value, not personal needs?",
+      "Did I wait to hear their initial offer first?",
+      "Have I prepared alternatives (like remote work/bonuses) if they say no?",
+      "Did I express enthusiasm toward the company regardless?"
+    ],
+    "cta": "Want personalized coaching on how to negotiate your next big salary bump? Schedule a 1-on-1 career coaching session with us."
+  },
+  "si": {
+    "slug": "salary-negotiation-tips-si",
+    "title": "වැටුප ගැන කතා කරමු: Salary Negotiation ක්‍රම",
+    "seoTitle": "නිවැරදිව Salary Negotiation කිරීම සඳහා උපදෙස්",
+    "metaDescription": "පොදු වැරදි වලින් මිදී තමන්ට ලැබිය යුතු නිවැරදි වැටුප රැකියා ආයතනයෙන් ඉල්ලා ගන්නා ආකාරය ඉගෙනගන්න.",
+    "intro": "මුදල් ගැන කතා කිරීම බොහෝ දෙනෙකුට අසීරු කරුණකි. එබැවින් රැකියාවක් ලැබෙන විට පිරිනමන පළමු වැටුපටම අකමැත්තෙන් වුවත් එකඟ වීමට බොහෝ අය පුරුදු වී සිටිති.",
+    "problemExplanation": "අයදුම්කරුවන් මුලින් ලබාදෙන වැටුපට එකඟ වීම නිසා ඔවුන්ට ලක්ෂ ගණනක අනාගත ආදායම් අහිමි වී යයි. රැකියා ආයතන බොහෝ විට මුලින් ලබා දෙන්නේ ඔවුන්ට ලබා දිය හැකි අවම අගයයි. ඔවුන් ඔබෙන් Counter-offer එකක් (ඔබේ ඉල්ලීමක්) බලාපොරොත්තු වේ.",
+    "whatIsIt": {
+      "heading": "Salary Negotiation කියන්නේ කුමක්ද?",
+      "content": "මෙය පැහැදිලිවම වෘත්තීය සාකච්ඡාවකි. ආයතනයෙන් පිරිනමන සම්පූර්ණ දීමනාව පිළිබඳව ඔබගේ අත්දැකීම් සහ වටිනාකමට සරිලන පරිදි සාධාරණීකරණය කර, සාධාරණ වැටුපකට දෙපාර්ශවයම එකඟ වීම මෙයින් අදහස් වේ."
+    },
+    "whyItMatters": {
+      "heading": "මෙහි වැදගත්කම කුමක්ද?",
+      "content": "ඔබ එකඟ වන මූලික වැටුප මත ඔබගේ අනාගත දීමනා සහ බෝනස් ප්‍රමාණයත් තීරණය වේ. ඔබගේ රැකියාවේ වටිනාකම ඔබම තේරුම් ගෙන සිටින බව HR නිලධාරීන්ට පෙන්වීමට මෙය කදිම අවස්ථාවකි."
+    },
+    "stepByStep": [
+      {
+        "heading": "පියවර 1: වෙළෙඳපොළේ මිල ගණන් සොයාබලන්න",
+        "content": "අදාළ තනතුරට ශ්‍රී ලංකාවේ (හෝ අදාළ රටේ) සාමාන්‍ය වැටුප් තලය Payscale, Glassdoor වැනි වෙබ් අඩවි හරහා හෝ ක්ෂේත්‍රයේ මිතුරන්ගෙන් අසා දැනගන්න."
+      },
+      {
+        "heading": "පියවර 2: මුලින්ම ඔබේ ඉලක්කම් කියන්නට යන්න එපා",
+        "content": "හැකි සැමවිටම ආයතනයට ඔවුන්ගේ budget එක ප්‍රකාශ කිරීමට ඉඩ හරින්න. පුරවන ෆෝම් එකක අනිවාර්යයෙන්ම සඳහන් කළ යුතු නම් නිශ්චිත අගයක් වෙනුවට Expected Range (පරතරයක්) එකක් දක්වන්න."
+      },
+      {
+        "heading": "පියවර 3: සිතීමට කාලය ඉල්ලන්න",
+        "content": "ඔවුන් වැටුපක් පිරිනැමූ විට දුරකථනයෙන්ම වහාම 'ඔව්' කීමට ඉක්මන් නොවන්න. 'බොහොම ස්තූතියි! මට මේ පිළිබඳව සලකා බැලීමට පැය 24ක කාලයක් ලබාදිය හැකිද?' යන්නෙන් විමසන්න."
+      },
+      {
+        "heading": "පියවර 4: වටිනාකම් පෙන්වා Counter-offer කරන්න",
+        "content": "ඔවුන් පිරිනමන වැටුපෙන් 10% - 15% කින් පමණ වැඩි වැටුපක් ඉල්ලා සිටින්න. එයට හේතු ලෙස ඔබේ ඉහළ අත්දැකීම් සහ ඔබ ආයතනයට ගෙන එන සීඝ්‍ර දියුණුව මතක් කර දෙන්න."
+      },
+      {
+        "heading": "පියවර 5: වෙනත් දීමනා ඉල්ලීම",
+        "content": "කිසියම් හේතුවක් නිසා ඔවුන්ට මූලික වැටුප වැඩි කිරීමට නොහැකි නම්, අමතර නිවාඩු, Medical allowance, සහ Work-from-home දින වැනි අමතර ප්‍රතිලාභ පිළිබඳව කතාබහ කරන්න."
+      }
+    ],
+    "examples": {
+      "heading": "කතා කළ යුතු ආකාරයේ උදාහරණයක්",
+      "content": "'මෙම තනතුරට තෝරාගැනීම පිළිබඳව මම ඉතාමත් සතුටු වෙනවා. නමුත්, මාගේ වසර ගණනාවක තාක්ෂණික අත්දැකීම් සහ වෙළෙඳපොළේ පවතින සම්මත අගයන් සැලකීමේදී මා බලාපොරොත්තු වූයේ රු. 150,000 ක පමණ ආසන්න අගයකි. අපට මේ පිළිබඳව නැවත සලකා බැලිය හැකිද?'"
+    },
+    "commonMistakes": {
+      "heading": "මග හැරිය යුතුම දේවල්",
+      "content": "තරහා ගෙන තර්ජනය කිරීම, තමන්ගේ ණය බර හෝ ගෙදර වියදම් ගැන කියමින් ආයාචනා කිරීම, සහ පෙර සූදානමකින් තොරව සාකච්ඡාවට ඉදිරිපත් වීම."
+    },
+    "finalChecklist": [
+      "අදාළ තනතුරේ සැබෑ වෙළෙඳපොළ වැටුප මා දන්නවාද?",
+      "මාගේ ඉල්ලීම කෙරෙන්නේ හැකියාව මත පදනම්ව මිසක පෞද්ගලික ගැටළු මතද?",
+      "ඔවුන්ගේ Offter එකට එකවරම 'YES' කීමෙන් වැළකී සිටියාද?",
+      "මුදල් වැඩි කළ නොහැකි නම් ඉල්ලිය යුතු අමතර දීමනා ගැන හිතුවාද?",
+      "සාකච්ඡාව ඉතා මිත්‍රශීලීව හා වෘත්තීය මට්ටමින් කළාද?"
+    ],
+    "cta": "Job Offer එකක් ලැබිලා ද ඉන්නේ? නිවැරදිව පඩි සාකච්ඡා කිරීමට අපගේ වෘත්තීය සහය ලබාගන්න."
+  }
+},
+{
+  "id": "108",
+  "categoryId": "a",
+  "coverImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80",
+  "en": {
+    "slug": "building-an-online-portfolio",
+    "title": "How to Build a High-Converting Online Portfolio",
+    "seoTitle": "Build a Digital Portfolio | Showcase Your Work to Employers",
+    "metaDescription": "A resume tells, but a portfolio shows. Learn how to build an impressive online portfolio to showcase your exact skills to recruiters and clients.",
+    "intro": "In highly competitive industries like design, software development, or marketing, simply writing down your skills is no longer enough. You need to prove them. This is where an online portfolio outshines a traditional CV.",
+    "problemExplanation": "Many creatives embed heavy PDF files in emails or send disorganized Google Drive links to clients or employers. This creates friction. If a recruiter has to jump through hoops to see your actual work, they will move on to the next candidate.",
+    "whatIsIt": {
+      "heading": "What is an Online Portfolio?",
+      "content": "It is a curated, professional website or digital gallery that neatly displays your best work, case studies, and achievements. It acts as tangible proof of the abilities highlighted on your CV."
+    },
+    "whyItMatters": {
+      "heading": "Seeing is Believing",
+      "content": "A portfolio vividly demonstrates your problem-solving process, your aesthetic sense, and your communication skills. It shifts the conversation dynamically from 'Can you do this?' to 'How soon can you start doing this for us?'"
+    },
+    "stepByStep": [
+      {
+        "heading": "Step 1: Choose the Right Platform",
+        "content": "Use platforms like Notion, Wix, Webflow, or WordPress if you want a standalone site. If you are a designer, use Behance or Dribbble. If you are a developer, use GitHub Pages to showcase live code."
+      },
+      {
+        "heading": "Step 2: Curate Your Best Work",
+        "content": "Do not include everything you have ever made. Select 3 to 6 of your absolute best projects. Ensure a mix of projects that highlight different core skills required by your dream jobs."
+      },
+      {
+        "heading": "Step 3: Write Case Studies, Not Just Pictures",
+        "content": "A picture without context is confusing. Write a brief case study for each project: What was the problem? What was your role? What tools did you use? What was the final, quantifiable outcome?"
+      },
+      {
+        "heading": "Step 4: Keep the UX Simple",
+        "content": "Ensure the navigation is brain-dead simple. Include a clear 'About Me' page and a highly visible 'Contact Me' button. The site must be completely mobile-friendly."
+      },
+      {
+        "heading": "Step 5: Link it Everywhere",
+        "content": "Your portfolio is useless if nobody sees it. Add the link prominently at the top of your CV, in your LinkedIn featured section, and in your email signature."
+      }
+    ],
+    "examples": {
+      "heading": "Project Description Structure",
+      "content": "**Title:** E-commerce Website Redesign\n**The Problem:** High cart abandonment rate.\n**My Solution:** Redesigned the checkout flow and implemented a 1-click purchase system using React.\n**The Impact:** Reduced cart abandonment by 25% within 3 months."
+    },
+    "commonMistakes": {
+      "heading": "The Biggest Errors",
+      "content": "Requiring passwords for entry without providing them, having broken links or 'coming soon' pages, overwhelming the viewer with too much text, and poor mobile responsiveness."
+    },
+    "finalChecklist": [
+      "Is the portfolio easy to access via a simple link?",
+      "Does it showcase only my top 3-6 projects?",
+      "Did I include short case study text explaining the 'Why' behind my work?",
+      "Is my contact information extremely easy to find?",
+      "Does the site load fast and look good on a mobile phone?"
+    ],
+    "cta": "Do you need help compiling all your unstructured work into a brilliant portfolio? Contact us to review your digital presence."
+  },
+  "si": {
+    "slug": "building-an-online-portfolio-si",
+    "title": "සාර්ථක Online Portfolio එකක් හදන්නේ කොහොමද?",
+    "seoTitle": "Online Portfolio එකක් හදන ආකාරය",
+    "metaDescription": "CV එකට අමතරව ඔබේ දක්ෂතා සැබෑ ලෙස පෙන්විය හැකි Digital Portfolio එකක් ගොඩනගාගන්නා ආකාරය ඉගෙන ගන්න.",
+    "intro": "විශේෂයෙන්ම නිර්මාණකරණයේ (Graphic Design / Software / Marketing) යෙදෙන අයට, CV එකක කුසලතා ලිවීම පමණක් ප්‍රමාණවත් නොවේ. ඔබ කර ඇති දේවල් ඇස් ඉදිරිපිටම දැකගන්නට සේවායෝජකයන් තදින් අකමැත්තක් දක්වයි.",
+    "problemExplanation": "බොහෝ දෙනා තම නිර්මාණ විශාල PDF හෝ disorganized Google Drive ලින්ක් ලෙස යවති. Interview කරන මහත්වරුන්ට මෙය විවෘත කිරීමට අපහසු නම් ඔවුන් එය මග හැර දමා ඊළඟ අයදුම්කරු දෙසට හැරේ.",
+    "whatIsIt": {
+      "heading": "Online Portfolio කියන්නේ කුමක්ද?",
+      "content": "මෙය ඔබගේ විශිෂ්ටතම නිර්මාණ, ව්‍යාපෘති සහ අත්දැකීම් ඉතා අලංකාරව සහ පෙළගස්වා ඇති වෘත්තීය වෙබ් අඩවියක් හෝ ඩිජිටල් ෆෝල්ඩරයකි. CV එකේ ඇති දේවල් වලට සජීවී සාක්ෂියක් මෙයින් ලබාදේ."
+    },
+    "whyItMatters": {
+      "heading": "ඇසින් දැකීම වඩාත් විශ්වාසදායකයි",
+      "content": "Portfolio එකක් මගින් ඔබේ විසඳුම් ලබාදීමේ හැකියාව මෙන්ම නිර්මාණාත්මක බව හොඳින් පෙන්වයි. එය රැකියා අවස්ථාවකදී CV 100 කට වඩා ඔබව කැපී පෙනෙන තත්වයකට පත් කරයි."
+    },
+    "stepByStep": [
+      {
+        "heading": "පියවර 1: සුදුසු තැනක් (Platform) තෝරාගන්න",
+        "content": "වෙබ් අඩවියක් ලෙස Notion, Wix, හෝ WordPress භාවිතා කරන්න. නිර්මාණකරුවෙක් නම් Behance/Dribbble සුදුසුය. මෘදුකාංග ඉංජිනේරුවෙක් නම් ඔබේ GitHub Profile එක විශිෂ්ට Portfolio එකකි."
+      },
+      {
+        "heading": "පියවර 2: ගොඩක් දේවල් දාන්න එපා (Curate)",
+        "content": "ඔබ කළ සියලුම වැඩ මෙයට ඇතුළත් නොකරන්න. අතිශයින් සාර්ථක වූ ප්‍රධාන ව්‍යාපෘති 3 කින් හෝ 5 කින් පමණක් ඔබගේ හැකියාව මනාව ඔප්පු කරන්න."
+      },
+      {
+        "heading": "පියවර 3: පින්තූර පමණක් මදි, Case Study එකක් ලියන්න",
+        "content": "හුදු රූපයක් පමණක් තිබීමෙන් ඔවුන්ට එය තේරුම් ගත නොහැක. ගැටළුව කුමක්ද? ඔබේ කාර්යභාරය කුමක්ද? ඔබ භාවිතා කළේ මොනවාද? යන කරුණු අඩංගු කෙටි විස්තරයක් එයට අමුණන්න."
+      },
+      {
+        "heading": "පියවර 4: භාවිතයට පහසු ලෙස සකසන්න",
+        "content": "කෙනෙකුට පහසුවෙන් තේරුම් ගැනීමට හැකිවන සරල layout එකක් භාවිත කරන්න. ඔබේ 'Contact Me' සහ 'About' විස්තර හොඳින් පේන්න තබන්න. සාමාන්‍ය ජංගම දුරකථනයකටද එය පහසුවෙන් දිස්විය යුතුය."
+      },
+      {
+        "heading": "පියවර 5: හැමතැනම Link එක බෙදාගන්න",
+        "content": "ඔබේ CV එකේ මුලින්ම, LinkedIn ගිණුමෙහි සහ Email Signature එකෙහි මෙම Portfolio Link එක අනිවාර්යයෙන්ම සඳහන් කරන්න."
+      }
+    ],
+    "examples": {
+      "heading": "Project විස්තරයක් ලිවිය යුතු ආකාරය",
+      "content": "**ව්‍යාපෘතිය:** E-commerce වෙබ් අඩවිය අලුත්වැඩියා කිරීම.\n**ගැටළුව:** පාරිභෝගිකයින් භාණ්ඩ මිල දී ගැනීම අතරමග නැවැත්වීම.\n**මගේ විසඳුම:** React හරහා ඉතා ඉක්මන් '1-click checkout' පහසුකමක් සැකසීම.\n**ප්‍රතිඵලය:** මාස 3ක් ඇතුළත ආදායම 25% කින් ඉහළ යාම."
+    },
+    "commonMistakes": {
+      "heading": "සිදුවන විශාලතම වැරදි",
+      "content": "බැලීමට Passwords ඉල්ලන සේ නිර්මාණය කිරීම, කැඩුණු ලින්ක්ස් (Broken links) තිබීම, සහ ඕනෑවට වඩා දීර්ඝ විස්තර කියවීමට සැලැස්වීම."
+    },
+    "finalChecklist": [
+      "Portfolio එක එකම Link එකකින් පහසුවෙන් බැලිය හැකිද?",
+      "අඩංගු කර ඇත්තේ මාගේ හොඳම නිර්මාණ පමණක්ද?",
+      "සෑම නිර්මාණයක් සඳහාම එය සැකසූ හේතුව ලියා තිබේද?",
+      "මාව සම්බන්ධ කරගැනීමට අවශ්‍ය පහසුකම් පැහැදිලිද?",
+      "වෙබ් අඩවිය Mobile Phone එකට පහසුවෙන් පේනවාද?"
+    ],
+    "cta": "ඔබේ නිර්මාණ ලෝකයට එකතු කර ආකර්ෂණීය Portfolio එකක් නිමවා ගැනීමට අපගේ විශේෂඥ උපදෙස් ලබාගන්න."
+  }
+},
+{
+  "id": "109",
+  "categoryId": "a",
+  "coverImage": "https://images.unsplash.com/photo-1596526131083-e8c638c9c6c7?w=1200&auto=format&fit=crop&q=80",
+  "en": {
+    "slug": "writing-professional-emails-to-recruiters",
+    "title": "Writing Professional Emails to Recruiters",
+    "seoTitle": "How to Email a Recruiter | Professional Email Templates",
+    "metaDescription": "Master the art of emailing hiring managers. From cold outreach to following up after an interview, learn the etiquette of professional communication.",
+    "intro": "Knowing how to gracefully communicate over email is a dying art. When you interact with a recruiter via email, they are silently judging your professional communication skills.",
+    "problemExplanation": "Sending emails with no subject lines, using informal language ('Hi bro'), attaching unstructured CVs, or failing to follow up makes you appear unprofessional. In the corporate world, an unprofessional email is a one-way ticket to the rejection pile.",
+    "whatIsIt": {
+      "heading": "What Makes an Email 'Professional'?",
+      "content": "A professional email is concise, polite, structured with clear intentions, uses proper formatting and grammar, and respects the recipient's time by getting straight to the point without unnecessary fluff."
+    },
+    "whyItMatters": {
+      "heading": "First Impressions Matter",
+      "content": "If your email is well-crafted, the recruiter automatically assumes your work will be well-crafted too. It sets a positive, respectful tone that puts you ahead of 90% of sloppy applicants who just hit 'forward'."
+    },
+    "stepByStep": [
+      {
+        "heading": "Step 1: Write a Clear Subject Line",
+        "content": "The subject line must tell them exactly what is inside. Format it clearly. E.g., 'Application for Software Engineer - [Your Name] - [Job Reference ID]'."
+      },
+      {
+        "heading": "Step 2: Use the Right Salutation",
+        "content": "Never use 'Hey'. Use 'Dear Mr. / Ms. [Last Name]'. If you don’t know their name, 'Dear Hiring Manager' or 'Dear [Company Name] Talent Team' is perfectly acceptable."
+      },
+      {
+        "heading": "Step 3: Keep the Body Brief and Focused",
+        "content": "State your purpose in the first sentence. Mention any mutual connections or where you found the job. Include a 2-sentence summary of why you are a strong fit. Direct them to your attached CV."
+      },
+      {
+        "heading": "Step 4: Rename Your Attachments",
+        "content": "Never attach a file named 'asdasd_cv_final2.pdf'. Always rename your document professionally: 'Firstname_Lastname_CV.pdf'."
+      },
+      {
+        "heading": "Step 5: Include a Professional Signature",
+        "content": "End with 'Sincerely' or 'Best regards', followed by your full name, phone number, and a link to your polished LinkedIn profile."
+      }
+    ],
+    "examples": {
+      "heading": "Following-up After an Interview",
+      "content": "“Dear [Name],\n\nThank you for the opportunity to speak yesterday regarding the Marketing Analyst position. I greatly enjoyed learning about the upcoming Q3 strategy. I remain very enthusiastic about the role. Please let me know if you need any further information from my end.\n\nBest regards,\n[Your Name]\n[Phone Number]”"
+    },
+    "commonMistakes": {
+      "heading": "Emailing Blunders",
+      "content": "Pasting the cover letter in the email AND attaching it again, using funky colored fonts, forgetting the attachment entirely, and sending follow-ups every day demanding an answer."
+    },
+    "finalChecklist": [
+      "Is the subject line clear and informative?",
+      "Have I used a professional greeting?",
+      "Is the attachment correctly named and actually attached?",
+      "Is the body text completely free of slang and typos?",
+      "Is my contact information in the signature?"
+    ],
+    "cta": "Want to make sure you never send a poorly written corporate email again? Access our comprehensive library of Email Templates for Job Seekers."
+  },
+  "si": {
+    "slug": "emailing-recruiters-si",
+    "title": "Recruiters ලා හට වෘත්තීය මට්ටමින් Email එකක් යවමු",
+    "seoTitle": "HR එකට Email එකක් වෘත්තීයව යවන ආකාරය",
+    "metaDescription": "ප්‍රතික්ෂේප නොවන ලෙස ආයතන වලට ඊමේල් (Email) යවන ආකාරය සහ අනුකම්පා විරහිත ලෝකයේ වෘත්තීමය සන්නිවේදනය ඉගෙන ගන්න.",
+    "intro": "Email එකක් යැවීම අද කාලයේ ඉතා සරල දෙයක් වුවත්, ආයතනයකට එය වෘත්තීමය ආකාරයෙන් ලිවීම බොහෝ දෙනා නොදන්නා කලාවකි. HR නිලධාරියෙක් ඔබගේ CV එක විවෘත කිරීමටත් පෙර, ඔබගේ Email එකෙන් ඔබව විනිශ්චය කරයි.",
+    "problemExplanation": "Subject එකක් නොමැතිව, ඉතා කෙටි වචන වලින් ('See attached'), සහ වැරදි නම් සහිත ලිපිගොනු අමුණා යවන Emails වහාම ප්‍රතික්ෂේප ලැයිස්තුවට යයි. මන්ද එයින් හැඟෙන්නේ ඔබට වෘත්තීය සන්නිවේදන හැකියාවක් නොමැති බවයි.",
+    "whatIsIt": {
+      "heading": "වෘත්තීය (Professional) Email එකක් යනු කුමක්ද?",
+      "content": "ඉතා පැහැදිලි, තේරුම්ගැනීමට පහසු, නිවැරදි ව්‍යාකරණ භාවිත කරමින් සහ ලබන්නාට පහසුවෙන් අවශ්‍ය දේ ලබාගත හැකි පරිදි ඉතා ආචාරශීලීව සකසන ලද Email පණිවිඩයකි."
+    },
+    "whyItMatters": {
+      "heading": "පළමු හැඟීම වැදගත් ඇයි?",
+      "content": "ඔබේ Email ලිවීම පිළිවෙළට තිබේ නම්, ඔබ වැඩ කරන්නේද ඉතා පිළිවෙළට බව ඔවුන්ට හැඟේ. පෝලිමේ සිටින අනෙක් සාමාන්‍ය අයදුම්කරුවන් අතරින් මෙය ඔබව සුවිශේෂී පුද්ගලයෙකු බවට පත් කරයි."
+    },
+    "stepByStep": [
+      {
+        "heading": "පියවර 1: පැහැදිලි Subject Line එකක් යෙදීම",
+        "content": "ඊමේල් එකේ ඇතුළත තිබෙන්නේ කුමක්දැයි එය කියවීමෙන් එකවරම තේරුම් ගත යුතුය. උදා: 'Application for Software Engineer - [ඔබගේ නම] - [Job Reference]'"
+      },
+      {
+        "heading": "පියවර 2: නිවැරදි ආමන්ත්‍රණය",
+        "content": "කිසිවිටෙකත් 'Hi', 'Hey' භාවිතා නොකරන්න. 'Dear Mr/Ms. [අවසන් නම]' භාවිත කරන්න. නම නොදන්නේ නම් 'Dear Hiring Manager' භාවිතා කරන්න."
+      },
+      {
+        "heading": "පියවර 3: පණිවිඩය කෙටි සහ පැහැදිලි කිරීම",
+        "content": "ඔබ ලියන හේතුව පළමු වාක්‍යයෙන්ම සඳහන් කරන්න. ඔබ මෙම තනතුරට සුදුසු වීමට හේතු වාක්‍ය 2 කින් පවසා, වැඩි විස්තර සඳහා අමුණා ඇති CV පත්‍රිකාව බලන ලෙස ඉල්ලන්න."
+      },
+      {
+        "heading": "පියවර 4: Attachment එකේ නම වෙනස් කිරීම",
+        "content": "CV එක Attach කිරීමට පෙර එහි නම 'My_CV_new_23.pdf' වැනි දේකින් වෙනස් කර, 'Firstname_Lastname_CV.pdf' ආකාරයෙන් ඉතා වෘත්තීය ලෙස Rename කරන්න."
+      },
+      {
+        "heading": "පියවර 5: Professional Signature එක",
+        "content": "අවසානයේ 'Best regards' හෝ 'Sincerely' යොදා, ඔබගේ සම්පූර්ණ නම, දුරකථන අංකය සහ LinkedIn ගිණුමේ Link එක අනිවාර්යයෙන්ම පහතින් සටහන් කරන්න."
+      }
+    ],
+    "examples": {
+      "heading": "Interview එකකින් පසුව යවන ස්තුති කිරීමේ විද්‍යුත් ලිපිය (Follow-up)",
+      "content": "“Dear [Name],\n\nඊයේ දින මා සමඟ පැවැත්වූ සම්මුඛ සාකච්ඡාවට බොහෝ ස්තූතියි. එහිදී කතා කළ කරුණු අනුව ආයතනයේ ඉදිරි ගමනට සහාය වීමට මා ඉතා කැමැත්තෙන් පසු වෙමි. මේ පිළිබඳව වැඩිදුර තොරතුරු අවශ්‍ය නම් මා සම්බන්ධ කරගන්න.\n\nBest regards,\n[Your Name]\n[Phone Number]”"
+    },
+    "commonMistakes": {
+      "heading": "සිදුවන ලොකුම වැරදි",
+      "content": "Cover letter එක Email එකේද ලියා නැවත PDF එකක් ලෙසද යැවීම, වැදගැම්මකට නැති වර්ණ සහ ආකෘති භාවිත කිරීම, CV එක Attach කිරීමට අමතක වීම සහ තීරණය ගැන අසමින් දිනපතා කරදර කිරීම."
+    },
+    "finalChecklist": [
+      "Subject line එක පැහැදිලිද?",
+      "ආරම්භය ආචාරශීලීද?",
+      "ඇමිණුමේ (Attachment) නම නිවැරදිද සහ එය Attach කළාද?",
+      "අක්ෂර වින්‍යාස/ව්‍යාකරණ වැරදි පරීක්ෂා කළාද?",
+      "Signature එක පහළින් යොදා තිබේද?"
+    ],
+    "cta": "ආයතනවල නිලධාරීන්ට මින් පසුව කිසිදු දෝෂයකින් තොරව සුපිරි Business Email යැවීමට අපගේ සේවාවන් සමඟ එක්වන්න."
+  }
+},
+{
+  "id": "110",
+  "categoryId": "a",
+  "coverImage": "https://images.unsplash.com/photo-1579227114347-15d08129bdee?w=1200&auto=format&fit=crop&q=80",
+  "en": {
+    "slug": "video-resume-infographic-cv",
+    "title": "Creating a Video Resume or Infographic CV",
+    "seoTitle": "How to Make a Video Resume & Infographic CVs",
+    "metaDescription": "Learn when and how to use Video Resumes and Infographic CVs to creatively showcase your personality and skills in modern job markets.",
+    "intro": "Innovation in the hiring process has paved the way for creative formats like Video Resumes and Infographic CVs. While traditional CVs are essential, creative formats can help you stand out immensely.",
+    "problemExplanation": "A standard text-based CV is great for ATS, but it fails to communicate your charisma, presentation skills, or design prowess. In highly creative or client-facing roles, simply writing 'excellent communication skills' is not convincing enough.",
+    "whatIsIt": {
+      "heading": "What are Creative Resumes?",
+      "content": "A Video Resume is a 1-to-2 minute recorded pitch where you speak directly to the camera about your skills and value. An Infographic CV is a highly visual document using charts, icons, and typography to map out your career timeline."
+    },
+    "whyItMatters": {
+      "heading": "Breaking Through the Noise",
+      "content": "For roles in Sales, PR, Media, or Graphic Design, your personality and visual communication are part of the core product. A Video/Infographic resume acts as a real-time audition, catching an employer's attention immediately."
+    },
+    "stepByStep": [
+      {
+        "heading": "Step 1: Know Your Audience",
+        "content": "Never send a video resume to a traditional bank or a law firm unless specifically asked. Reserve these formats for startups, marketing agencies, tech firms, and creative industries."
+      },
+      {
+        "heading": "Step 2: Script It Out (For Video)",
+        "content": "Do not wing it. Write a crisp script. Hook the viewer in the first 10 seconds. State your name, your core expertise, outline a major achievement, and explain why you're passionate about their company."
+      },
+      {
+        "heading": "Step 3: Quality Matters",
+        "content": "For video: Use natural lighting, ensure the audio is noise-free, and dress professionally. For infographics: Maintain color balance, avoid cluttered charts, and ensure it remains highly readable."
+      },
+      {
+        "heading": "Step 4: Keep It Short",
+        "content": "A video resume should be strictly under 2 minutes. An infographic CV still needs to fit comfortably onto one, easily digestible page."
+      },
+      {
+        "heading": "Step 5: Always Provide a Standard CV As Well",
+        "content": "Creative formats are supplements, not replacements. The ATS software cannot scan a video or a heavily graphical PDF. Always submit your standard ATS-friendly CV alongside them."
+      }
+    ],
+    "examples": {
+      "heading": "Video Script Concept",
+      "content": "“Hi, my name is [Name] and I specialize in turning complex digital marketing data into high-converting campaigns. Over the last 3 years, I've scaled client revenues by an average of 40%. Unlike a piece of paper, I wanted you to see the actual energy I'll bring to your marketing team. Here is a brief look at my portfolio...”"
+    },
+    "commonMistakes": {
+      "heading": "Creative Traps",
+      "content": "Using overly dramatic background music, poor audio quality, treating the video like an informal vlog, and making infographics so complicated that the actual text is difficult to read."
+    },
+    "finalChecklist": [
+      "Is the company culture suitable for a creative resume?",
+      "Is my video under 2 minutes with high-quality audio?",
+      "Does the infographic perfectly align with standard design principles?",
+      "Does my personality look professional, yet engaging?",
+      "Did I also attach my standard, text-based ATS resume?"
+    ],
+    "cta": "Want to create a compelling script for your video resume or need an infographic designed? Explore our premium creative CV services."
+  },
+  "si": {
+    "slug": "video-resume-infographic-cv-si",
+    "title": "Video Resume එකක් හෝ Infographic CV එකක් නිර්මාණය කරමු",
+    "seoTitle": "Video Resume එකක් සහ Infographic CV එකක් සාදන ආකාරය",
+    "metaDescription": "අඩු කාලයකදී වැඩි වටිනාකමක් පෙන්වන Video Resume හෝ පැහැදිලි Infographic CV එකක් නිවැරදිව භාවිත කරන ආකාරය ඉගෙන ගන්න.",
+    "intro": "සාම්ප්‍රදායික CV වලට අමතරව, අද කාලයේ ඔබේ ප්‍රතිරූපය වඩා හොඳින් ගොඩනංවන Video Resume සහ Infographic CV ලෝකයේ ජනප්‍රිය වෙමින් පවතී.",
+    "problemExplanation": "සාමාන්‍ය CV එකකට කිසිසේත්ම ඔබේ කටහඬ, කතා කිරීමේ විලාසය, සහ ඔබේ ඉදිරිපත් කිරීමේ හැකියාව විදහා දැක්විය නොහැක. Sales වැනි තනතුරු වලදී 'හොඳින් කතා කිරීමට හැකිය' යැයි කොළයක ලිවීම පමණක් කිසිසේත් ප්‍රමාණවත් නොවේ.",
+    "whatIsIt": {
+      "heading": "මේවා මොනවාද?",
+      "content": "Video Resume යනු ඔබ කෙලින්ම කැමරාවට කතා කරමින් විනාඩි 1 - 2 කින් පමණ ඔබේ හැකියාවන් හා පළපුරුද්ද විස්තර කරන වීඩියෝවකි. Infographic CV එකක් යනු සාමාන්‍ය වචන වෙනුවට වර්ණ, Icons, සහ ප්‍රස්ථාර භාවිතයෙන් නිර්මාණාත්මකව සාදන ලද CV එකකි."
+    },
+    "whyItMatters": {
+      "heading": "අනෙක් අයගෙන් කැපී පෙනෙන්නට",
+      "content": "මාධ්‍ය, අලෙවිකරණය (Marketing), සහ නිර්මාණාත්මක ක්‍ෂේත්‍ර වලදී මෙය ඔබගේ සැබෑ දක්ෂතාව පරීක්ෂා කරන සජීවී Audition එකක් වැනිය. සේවායෝජකයෙකුට කොළ සියයක් කියවනවාට වඩා මෙය පෞද්ගලිකව දැනෙන අත්දැකීමක් වේ."
+    },
+    "stepByStep": [
+      {
+        "heading": "පියවර 1: සුදුසු තැන් පමණක් තෝරාගන්න",
+        "content": "සෑම රැකියාවකටම මෙය ගැලපෙන්නේ නැත. බැංකු හෝ නීති ආයතන වැනි සම්ප්‍රදායික තැන්වලට මෙය යවන්න එපා. මෙය වඩාත් ගැලපෙන්නේ Startups, Advertising සහ Tech සමාගම් වලටයි."
+      },
+      {
+        "heading": "පියවර 2: කියන දේ කල්තියා ලියාගන්න (Script)",
+        "content": "කැමරාව ඉදිරියේ අහඹු ලෙස කතා කරන්නට යන්න එපා. පළමු තත්ත්පර 10 තුළ ඔබගේ නම සහ කුසලතා කියමින් ආකර්ෂණීය ආරම්භයක් ගන්න. පැහැදිලි Script එකක් කල්තියා ලියාගන්න."
+      },
+      {
+        "heading": "පියවර 3: ගුණාත්මක බව (Quality)",
+        "content": "වීඩියෝ එකේ අනිවාර්යයෙන්ම හොඳ ආලෝකයක් සහ පැහැදිලි ශබ්දයක් (Audio) තිබිය යුතුය. Infographic එකක වුවද, වැඩිපුර වර්ණ සහ කොටු භාවිතා නොකර සරල බව රැකගන්න."
+      },
+      {
+        "heading": "පියවර 4: කෙටියෙන් අදහස දක්වන්න",
+        "content": "Video එකක් විනාඩි 2 කට වඩා දිගු නොවිය යුතුය. Infographic CV එකද එක් පිටුවක පැහැදිලිව පහසුවෙන් කියවිය හැකි ලෙස නිර්මාණය කළ යුතුය."
+      },
+      {
+        "heading": "පියවර 5: අමතරව සාමාන්‍ය CV එකකුත් යවන්න",
+        "content": "ATS මෘදුකාංග වලට Video හෝ Graphics ඇති දේවල් කියවීමට නොහැකි බැවින්, අනිවාර්යයෙන්ම අප පෙර සඳහන් කළ ATS-Friendly ලියවිල්ල අමතරව යැවිය යුතුය."
+      }
+    ],
+    "examples": {
+      "heading": "කතා කිරීමට උදාහරණයක්",
+      "content": "“ආයුබෝවන්, මම [නම]. ආයතනයක අලෙවිකරණ දත්ත උපයෝගී කරගෙන විකුණුම් වැඩි කරන Digital Campaigns නිර්මාණය කිරීමට මට වසර 3 ක පළපුරුද්දක් තිබෙනවා. කඩදාසියකට වඩා, මගේ උකටලී නොවන ශක්තිමත් කතා විලාසය ඔබට පෙන්වීමටයි මම මේ වීඩියෝ එක යොමු කළේ.”"
+    },
+    "commonMistakes": {
+      "heading": "ලොකුම වැරදි",
+      "content": "කන් අගුළු වැටෙන පසුබිම් සංගීතය යෙදීම, නිවසේ ඇති සාමාන්‍ය ඇඳුම් වලින් සහ අඳුරු කාමරයක රූගත කිරීම, සහ Infographic එකේ ඇති අකුරු කියවිය නොහැකි තරම් කුඩා වීම."
+    },
+    "finalChecklist": [
+      "අදාළ ආයතනයේ සංස්කෘතියට මෙම ක්‍රමය ගැලපෙනවාද?",
+      "වීඩියෝව විනාඩි 2 කට අඩුවෙන් හා පැහැදිලි Audio එකකින් යුක්තද?",
+      "Infographic එක හැඩ වුවත් පහසුවෙන් කියවීමට හැකිද?",
+      "සැබෑ වෘත්තීය හැසිරීමක් මා රඳවාගෙන සිටිනවාද?",
+      "සාමාන්‍ය ලිඛිත (ATS) CV එකද අමුණා තිබේද?"
+    ],
+    "cta": "ඔබගේ හැකියාවන් සජීවීව පෙන්වන Video Script එකක් හෝ Infographic නිර්මාණයක් අපෙන් සාදාගැනීමට අදම එකතු වන්න."
+  }
+}
 ];
 
 export function getTutorialBySlug(slug: string): { tutorial: Tutorial, language: 'en' | 'si' } | null {
