@@ -66,6 +66,7 @@ export default function Footer() {
               <li><Link href="/faq" className="hover:text-brand-main transition-colors text-text-light/80">FAQs</Link></li>
               <li><Link href="/privacy-policy" className="hover:text-brand-main transition-colors text-text-light/80">Privacy Policy</Link></li>
               <li><Link href="/terms-and-conditions" className="hover:text-brand-main transition-colors text-text-light/80">Terms & Conditions</Link></li>
+              <li><Link href="/refund-policy" className="hover:text-brand-main transition-colors text-text-light/80">Refund Policy</Link></li>
             </ul>
           </div>
 
