@@ -37,6 +37,8 @@ export default async function TutorialPage({ params }: TutorialPageProps) {
   const content = isEn ? tutorial.en : tutorial.si;
   const oppositeContent = isEn ? tutorial.si : tutorial.en;
   const oppositeLanguageLabel = isEn ? "සිංහලෙන් කියවන්න (Read in Sinhala)" : "Read in English";
+  const exampleLines = String(content.examples.content ?? "").split("\n");
+  const commonMistakeLines = String(content.commonMistakes.content ?? "").split("\n");
 
   return (
     <main className="min-h-screen bg-gray-50 pb-20">
@@ -117,7 +119,7 @@ export default async function TutorialPage({ params }: TutorialPageProps) {
             <div className="bg-green-50 border-l-4 border-green-500 p-6 md:p-8 rounded-r-2xl mb-10">
               <h2 className="text-green-900 mt-0">{content.examples.heading}</h2>
               <div className="whitespace-pre-line text-green-800">
-                {content.examples.content.toString().split('\n').map((line, i) => {
+                {exampleLines.map((line, i) => {
                   if(line.startsWith('**') && line.endsWith('**')) {
                     return <strong key={i} className="block mt-4 mb-2">{line.replace(/\*\*/g, '')}</strong>
                   }
@@ -135,7 +137,7 @@ export default async function TutorialPage({ params }: TutorialPageProps) {
                 {content.commonMistakes.heading}
               </h2>
               <ul className="text-red-900 space-y-2 mt-4 marker:text-red-500">
-                {content.commonMistakes.content.toString().split('\n').map((item, i) => (
+                {commonMistakeLines.map((item, i) => (
                   <li key={i}>{item.replace('- ', '')}</li>
                 ))}
               </ul>
