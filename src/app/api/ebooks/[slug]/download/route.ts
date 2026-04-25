@@ -91,13 +91,13 @@ export async function GET(
       
       // Apply the same heuristic cleanup as read page
       if (slug === "gaburu-karyaya") {
-        displayContent = displayContent.replace(/<p[^>]*>.*?<span[^>]*>(?:<b>.*?<\\/b>|<strong>.*?<\\/strong>|[^<]*?)\\d+\\.\\s+(.*?)<\\/span>.*?<\\/p>/gi, '<h3 class="ebook-subtopic">$1</h3>');
-        displayContent = displayContent.replace(/<p[^>]*>\\s*<span[^>]*>\\s*\\d+\\.\\s+(.*?)\\s*<\\/span>\\s*<\\/p>/gi, '<h3 class="ebook-subtopic">$1</h3>');
+        displayContent = displayContent.replace(/<p[^>]*>.*?<span[^>]*>(?:<b>.*?<\/b>|<strong>.*?<\/strong>|[^<]*?)\d+\.\s+(.*?)<\/span>.*?<\/p>/gi, '<h3 class="ebook-subtopic">$1</h3>');
+        displayContent = displayContent.replace(/<p[^>]*>\s*<span[^>]*>\s*\d+\.\s+(.*?)\s*<\/span>\s*<\/p>/gi, '<h3 class="ebook-subtopic">$1</h3>');
       }
       
-      displayContent = displayContent.replace(/<p[^>]*>\\s*<b>(.*?)<\\/b>\\s*<\\/p>/gi, function(match: string, p1: string) {
+      displayContent = displayContent.replace(/<p[^>]*>\s*<b>(.*?)<\/b>\s*<\/p>/gi, function(match: string, p1: string) {
         if (p1.length < 150 && !p1.includes('? ') && p1.length > 5) {
-            return \`<h3 class="ebook-subtopic">\${p1.replace(/^\\d+\\.\\s*/, '')}</h3>\`;
+            return `<h3 class="ebook-subtopic">${p1.replace(/^\d+\.\s*/, '')}</h3>`;
         }
         return match;
       });
