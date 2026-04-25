@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import InterviewStoryBankClient from "./InterviewStoryBankClient";
 import ToolLeadCapture from "@/components/ToolLeadCapture";
+import ExternalToolLaunch from "@/components/ExternalToolLaunch";
 import { buildPageMetadata } from "@/lib/seo";
 import { getBaseUrl } from "@/lib/site-url";
 import { buildBreadcrumbList } from "@/lib/structured-data";
@@ -70,6 +71,11 @@ export default function InterviewStoryBankPage() {
           <p className="mt-6 max-w-3xl text-lg text-text-light">
             Turn raw work examples into stronger STAR answers for behavioral interviews, panel questions, and leadership conversations.
           </p>
+          <ExternalToolLaunch
+            href="https://www.careerstudio.app/resources/interview-prep/"
+            label="Open Interview Prep"
+            note="Use the Career Studio interview prep experience if you want the external version of this tool."
+          />
         </div>
       </section>
 

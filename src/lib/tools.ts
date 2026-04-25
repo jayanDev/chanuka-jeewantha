@@ -6,6 +6,7 @@ export type CareerTool = {
   category: "ATS" | "LinkedIn" | "Interview";
   image: string;
   highlights: string[];
+  externalUrl: string;
 };
 
 export const careerTools: CareerTool[] = [
@@ -23,6 +24,7 @@ export const careerTools: CareerTool[] = [
       "Keyword overlap and missing term review",
       "Practical improvement checklist before applying",
     ],
+    externalUrl: "https://www.careerstudio.app/tools/ats-checker/",
   },
   {
     slug: "linkedin-headline-generator",
@@ -38,6 +40,7 @@ export const careerTools: CareerTool[] = [
       "Better role and niche positioning",
       "Cleaner wording for profile visibility",
     ],
+    externalUrl: "https://www.careerstudio.app/linkedin/optimizer/",
   },
   {
     slug: "interview-story-bank",
@@ -53,6 +56,23 @@ export const careerTools: CareerTool[] = [
       "Reusable proof-based stories",
       "Copy-ready interview answer drafts",
     ],
+    externalUrl: "https://www.careerstudio.app/resources/interview-prep/",
+  },
+  {
+    slug: "cover-letter-writer",
+    title: "Cover Letter Writer",
+    summary:
+      "Generate a cleaner, more targeted cover letter from a job description and your background.",
+    description:
+      "A free browser-based cover letter writing tool that helps you structure a clearer introduction, align with the role, and produce a stronger first draft faster.",
+    category: "ATS",
+    image: "/images/chanuka-jeewantha-career-development-specialist.jpg",
+    highlights: [
+      "Job-specific cover letter drafts",
+      "Stronger opening and closing paragraphs",
+      "Better tone and role alignment",
+    ],
+    externalUrl: "https://www.careerstudio.app/tools/cover-letter/",
   },
 ];
 

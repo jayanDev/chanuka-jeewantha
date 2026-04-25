@@ -9,14 +9,15 @@ import { buildBreadcrumbList } from "@/lib/structured-data";
 const baseUrl = getBaseUrl();
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Free Career Tools | ATS Audit, LinkedIn Headline Generator, Interview Prep",
+  title: "Free Career Tools | ATS Audit, LinkedIn, Cover Letters, Interview Prep",
   description:
-    "Use free career tools from Chanuka Jeewantha including an ATS CV audit, LinkedIn headline generator, and interview story bank builder.",
+    "Use free career tools from Chanuka Jeewantha including ATS audit, LinkedIn headline generation, cover letter writing, and interview story building.",
   path: "/tools",
   keywords: [
     "free career tools",
     "ats cv audit tool",
     "linkedin headline generator",
+    "cover letter writer",
     "interview story bank",
   ],
 });
@@ -71,14 +72,14 @@ export default function ToolsPage() {
             Free tools for <span className="text-brand-main">ATS, LinkedIn, and interviews</span>.
           </h1>
           <p className="mt-6 max-w-3xl text-lg text-text-light">
-            Use these browser-based tools to improve your CV, strengthen your LinkedIn positioning, and prepare stronger interview stories before you apply.
+            Use these browser-based tools to improve your CV, write stronger cover letters, strengthen your LinkedIn positioning, and prepare better interview stories before you apply.
           </p>
         </div>
       </section>
 
  <section className="w-full bg-white py-[64px] sm:py-[80px] md:py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-2">
             {careerTools.map((tool) => (
               <article
                 key={tool.slug}

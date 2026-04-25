@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import AtsCvAuditClient from "./AtsCvAuditClient";
 import ToolLeadCapture from "@/components/ToolLeadCapture";
+import ExternalToolLaunch from "@/components/ExternalToolLaunch";
 import { buildPageMetadata } from "@/lib/seo";
 import { getBaseUrl } from "@/lib/site-url";
 import { buildBreadcrumbList } from "@/lib/structured-data";
@@ -70,6 +71,11 @@ export default function AtsCvAuditPage() {
           <p className="mt-6 max-w-3xl text-lg text-text-light">
             Compare your CV against a target job description, review missing keywords, and spot the highest-impact fixes before sending applications.
           </p>
+          <ExternalToolLaunch
+            href="https://www.careerstudio.app/tools/ats-checker/"
+            label="Open ATS Checker"
+            note="Use the Career Studio version of this tool if you want the matching external experience."
+          />
         </div>
       </section>
 

@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import LinkedinHeadlineGeneratorClient from "./LinkedinHeadlineGeneratorClient";
 import ToolLeadCapture from "@/components/ToolLeadCapture";
+import ExternalToolLaunch from "@/components/ExternalToolLaunch";
 import { buildPageMetadata } from "@/lib/seo";
 import { getBaseUrl } from "@/lib/site-url";
 import { buildBreadcrumbList } from "@/lib/structured-data";
@@ -70,6 +71,11 @@ export default function LinkedinHeadlineGeneratorPage() {
           <p className="mt-6 max-w-3xl text-lg text-text-light">
             Build stronger headline options for recruiter visibility, clearer positioning, and a more credible first impression.
           </p>
+          <ExternalToolLaunch
+            href="https://www.careerstudio.app/linkedin/optimizer/"
+            label="Open LinkedIn Optimizer"
+            note="This button opens the matching Career Studio LinkedIn tool in a new tab."
+          />
         </div>
       </section>
 
