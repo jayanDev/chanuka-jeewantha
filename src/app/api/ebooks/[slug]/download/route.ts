@@ -111,13 +111,13 @@ export async function GET(
     }
 
     // Inject print-ready CSS matching website styling
-    const printInjection = \`
+    const printInjection = `
     <!DOCTYPE html>
     <html lang="en-LK">
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>\${ebook.title}</title>
+      <title>${ebook.title}</title>
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Poppins:wght@400;500;600&family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -192,9 +192,9 @@ export async function GET(
       </script>
     </head>
     <body>
-      \${combinedHtml}
+      ${combinedHtml}
     </body>
-    </html>\`;
+    </html>`;
 
     return new NextResponse(printInjection, {
       status: 200,
@@ -220,7 +220,7 @@ export async function GET(
         return NextResponse.json({ error: "Download file not found. Contact admin." }, { status: 404 });
     }
     
-    const legacyPrintInjection = \`
+    const legacyPrintInjection = `
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -230,10 +230,10 @@ export async function GET(
       body { max-width: 820px; margin: 0 auto; padding: 48px 56px; }
       @media print { html, body { font-size: 13px; padding: 0; max-width: 100%; } @page { margin: 2cm 2.5cm; } }
     </style>
-    <script>document.fonts.ready.then(function() { setTimeout(function() { window.print(); }, 600); });</script>\`;
+    <script>document.fonts.ready.then(function() { setTimeout(function() { window.print(); }, 600); });</script>`;
     
     const printReadyHtml = rawHtml.includes("</head>")
-        ? rawHtml.replace("</head>", legacyPrintInjection + "\\n</head>")
+        ? rawHtml.replace("</head>", legacyPrintInjection + "\n</head>")
         : legacyPrintInjection + rawHtml;
         
     return new NextResponse(printReadyHtml, {
