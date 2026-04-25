@@ -1260,6 +1260,137 @@ const packageFocusedPosts: BlogPost[] = packageGuideDrafts.map((draft) => {
 
 const editorialPosts: BlogPost[] = [
   {
+    slug: "professional-ats-cv-writing-service-sri-lanka-why-your-cv-matters",
+    title: "Professional ATS CV Writing Service in Sri Lanka: Why Your CV Matters More Than You Think",
+    excerpt:
+      "Learn why ATS-friendly CV writing matters in Sri Lanka, the most common CV mistakes, and how fresh graduates, professionals, and executives can improve interview chances.",
+    content:
+      "In Sri Lanka's competitive job market, your CV is often the first and only chance to make a strong impression. A professional ATS-friendly CV helps recruiters and hiring systems quickly understand your value.",
+    category: "ATS CV Writing",
+    publishedAt: "2026-04-25",
+    author: "Chanuka Jeewantha",
+    keywords: [
+      "professional ats cv writing service sri lanka",
+      "ats friendly cv sri lanka",
+      "cv writing service sri lanka",
+      "linkedin profile optimization sri lanka",
+      "cover letter writing service",
+      "foreign job cv sri lanka",
+    ],
+    sections: [
+      {
+        heading: "What Is an ATS-Friendly CV and Why It Matters",
+        paragraphs: [
+          "ATS means Applicant Tracking System. Many employers use ATS software to filter applications before a recruiter reads them manually.",
+          "If your CV lacks relevant keywords, proper structure, and clear role alignment, it can underperform in early screening even when you are qualified.",
+        ],
+        bullets: [
+          "Role-targeted professional summary",
+          "Keyword-rich experience aligned with job descriptions",
+          "Achievement-focused bullet points",
+          "Clean ATS-safe formatting with clear headings",
+          "Relevant education and certification details",
+        ],
+      },
+      {
+        heading: "Why Many Job Seekers Do Not Get Interview Calls",
+        paragraphs: [
+          "A common issue in Sri Lanka is applying to many roles with low response. In many cases, the problem is not qualifications, but CV presentation and positioning.",
+          "Generic, outdated, or weakly written CVs reduce recruiter trust and fail to communicate measurable value quickly.",
+        ],
+        bullets: [
+          "Using one generic CV for every role",
+          "Listing duties instead of achievements",
+          "Missing role keywords from job ads",
+          "ATS-unfriendly design and formatting",
+          "Weak summary, grammar, and sentence clarity",
+          "Not matching CV content to target roles",
+        ],
+      },
+      {
+        heading: "Professional CV Writing for Fresh Graduates",
+        paragraphs: [
+          "Fresh graduates may have limited experience, but a strong CV can still show readiness through projects, internships, academic work, and transferable skills.",
+          "The goal is to present potential and professionalism clearly, not to exaggerate experience.",
+        ],
+        bullets: [
+          "Academic achievements and final-year projects",
+          "Internships, volunteering, and leadership roles",
+          "Certifications and technical skills",
+          "Career objective aligned with the target role",
+        ],
+      },
+      {
+        heading: "CV Strategy for Experienced Professionals and Executives",
+        paragraphs: [
+          "Experienced professionals need more than a list of responsibilities. Recruiters look for growth, impact, leadership signals, and measurable outcomes.",
+          "Executive CVs require a higher-level narrative focused on strategy, transformation, stakeholder leadership, and business results.",
+        ],
+        bullets: [
+          "Strong career summary with clear direction",
+          "Industry-specific keyword alignment",
+          "Leadership and project impact",
+          "Revenue, cost, efficiency, or operational outcomes",
+          "Strategic communication for senior roles",
+        ],
+      },
+      {
+        heading: "Cover Letters, LinkedIn, and Foreign Job Applications",
+        paragraphs: [
+          "A strong application strategy includes more than a CV. A role-specific cover letter and optimized LinkedIn profile improve credibility and consistency.",
+          "For foreign applications (UAE, Qatar, Saudi Arabia, Australia, Canada, UK, and Europe), CV standards vary by country and role, so localization matters.",
+        ],
+        bullets: [
+          "Cover letters should add value, not repeat the CV",
+          "LinkedIn profile should support the same career story",
+          "Foreign market CVs often require different detail levels",
+          "Country-specific formatting and content expectations matter",
+        ],
+      },
+      {
+        heading: "Final Thoughts: Invest in Better Positioning",
+        paragraphs: [
+          "A professional ATS-friendly CV does not guarantee a job, but it significantly improves your application quality, recruiter readability, and first impression.",
+          "For job seekers in Sri Lanka and overseas, better CV writing, cover letter support, and LinkedIn optimization can create a stronger and more complete application package.",
+        ],
+      },
+    ],
+    internalLinks: [
+      { label: "Professional CV Writing Service", href: "/services/packages/cv-writing" },
+      { label: "CV Review Service", href: "/services/packages/cv-review" },
+      { label: "Cover Letter Writing Service", href: "/services/packages/cover-letter-writing" },
+      { label: "LinkedIn Optimization Service", href: "/services/packages/linkedin-optimization" },
+      { label: "Browse All Blog Articles", href: "/blog" },
+    ],
+    ctaButtons: [
+      { label: "Request CV Review", href: "/services/packages/cv-review" },
+      { label: "View CV Writing Packages", href: "/pricing" },
+      { label: "Contact for Guidance", href: "/contact" },
+    ],
+    faqs: [
+      {
+        question: "Can an ATS-friendly CV guarantee interview calls?",
+        answer:
+          "No CV can guarantee interviews, but ATS-friendly structure and role-aligned writing can improve screening performance and recruiter readability.",
+      },
+      {
+        question: "Is professional CV writing useful for fresh graduates in Sri Lanka?",
+        answer:
+          "Yes. Fresh graduates can present projects, internships, and transferable skills more effectively with a structured and role-targeted CV.",
+      },
+      {
+        question: "Do I need a different CV for foreign job applications?",
+        answer:
+          "Usually yes. Different countries and industries follow different resume conventions, so localization improves relevance and professionalism.",
+      },
+      {
+        question: "Should I optimize LinkedIn along with my CV?",
+        answer:
+          "Yes. Recruiters often check LinkedIn before shortlisting, so profile consistency with your CV improves trust and visibility.",
+      },
+    ],
+  },
+  {
     slug: "about-chanuka-jeewantha",
     title: "About Chanuka Jeewantha: Career Development Specialist",
     excerpt:
