@@ -1,46 +1,41 @@
-import { prisma } from "@/lib/prisma";
+import { getFirebaseDb } from "@/lib/firebase-admin";
+import { FieldValue } from "firebase-admin/firestore";
+
+const RATE_LIMIT_COLLECTION = "rate_limit_buckets";
 
 export async function checkRateLimit(
   key: string,
   limit: number,
   windowMs: number
 ): Promise<{ ok: boolean; remaining: number; resetAt: number }> {
-  const now = new Date();
-  const nowMs = now.getTime();
+  const db = getFirebaseDb();
+  const nowMs = Date.now();
   const resetAtMs = nowMs + windowMs;
+  const ref = db.collection(RATE_LIMIT_COLLECTION).doc(key);
 
-  // Opportunistically clear stale buckets to keep table bounded.
-  await prisma.rateLimitBucket.deleteMany({
-    where: { resetAt: { lt: now } },
+  const result = await db.runTransaction(async (tx) => {
+    const snap = await tx.get(ref);
+    const data = snap.data() as { count?: number; resetAtMs?: number } | undefined;
+
+    if (!data || !data.resetAtMs || data.resetAtMs < nowMs) {
+      tx.set(ref, { count: 1, resetAtMs });
+      return { ok: true, remaining: limit - 1, resetAt: resetAtMs };
+    }
+
+    if ((data.count ?? 0) >= limit) {
+      return { ok: false, remaining: 0, resetAt: data.resetAtMs };
+    }
+
+    tx.update(ref, { count: FieldValue.increment(1) });
+    const newCount = (data.count ?? 0) + 1;
+    return {
+      ok: true,
+      remaining: Math.max(0, limit - newCount),
+      resetAt: data.resetAtMs,
+    };
   });
 
-  const existing = await prisma.rateLimitBucket.findUnique({ where: { key } });
-
-  if (!existing || existing.resetAt.getTime() < nowMs) {
-    await prisma.rateLimitBucket.upsert({
-      where: { key },
-      update: { count: 1, resetAt: new Date(resetAtMs) },
-      create: { key, count: 1, resetAt: new Date(resetAtMs) },
-    });
-
-    return { ok: true, remaining: limit - 1, resetAt: resetAtMs };
-  }
-
-  if (existing.count >= limit) {
-    return { ok: false, remaining: 0, resetAt: existing.resetAt.getTime() };
-  }
-
-  const updated = await prisma.rateLimitBucket.update({
-    where: { key },
-    data: { count: { increment: 1 } },
-    select: { count: true, resetAt: true },
-  });
-
-  return {
-    ok: true,
-    remaining: Math.max(0, limit - updated.count),
-    resetAt: updated.resetAt.getTime(),
-  };
+  return result;
 }
 
 export function getClientIp(request: Request): string {
