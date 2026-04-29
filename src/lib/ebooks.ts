@@ -90,6 +90,23 @@ export const ebooks: Ebook[] = [
     ],
   },
   {
+    slug: "mudale-manowithyawa-psychology-of-money",
+    title: "මුදලේ මනෝවිද්‍යාව",
+    subtitle: "The Psychology of Money - සල්ලි ගැන අපි හිතන විදිහ",
+    description:
+      "Morgan Housel ගේ The Psychology of Money පොතේ සිංහල සාරාංශය. ධනය, අත්‍යාශය, සහ සතුට ගැන — සල්ලි ගැන අපේ හිතීමේ රටා සහ ඒවා ජීවිතයට බලපාන හැටි ගැන ප්‍රායෝගික මාර්ගෝපදේශයක්.",
+    category: "paid",
+    priceLkr: 500,
+    readPriceLkr: 500,
+    downloadPriceLkr: 1500,
+    coverImage: "/images/The Psychology of Money.png",
+    highlights: [
+      "වාසනාව, අවදානම, සහ compounding — ධනය ගොඩනගන මූල තතු",
+      "සැබෑ ධනය කියන්නේ අපිට නොපෙනෙන දේ — Saving, Freedom, සහ Contentment",
+      "මිනිස් හැසිරීම, Tail Events, සහ Long-term ආයෝජන ක්‍රමය",
+    ],
+  },
+  {
     slug: "linkedin-profile-optimization",
     title: "LinkedIn Profile Optimization System",
     subtitle: "Professional Profile එක Recruiter Magnet එකක් බවට හරවාගන්නා System",
