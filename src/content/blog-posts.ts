@@ -1,5 +1,6 @@
 import { packageProducts, type PackageProduct } from "@/lib/packages-catalog";
 import { careerGrowthBlogPosts } from "./blog-career-library";
+import { enrichBlogPostContent } from "./blog-content-enrichment";
 import { cvSeriesEn } from "./blog-cv-series-en";
 import { cvSeriesSi } from "./blog-cv-series-si";
 
@@ -1437,7 +1438,7 @@ const editorialPosts: BlogPost[] = [
   },
 ];
 
-export const blogPosts: BlogPost[] = [...careerGrowthBlogPosts, ...packageFocusedPosts, ...editorialPosts, ...cvSeriesEn, ...cvSeriesSi].sort(
+export const blogPosts: BlogPost[] = [...careerGrowthBlogPosts, ...packageFocusedPosts, ...editorialPosts, ...cvSeriesEn, ...cvSeriesSi].map(enrichBlogPostContent).sort(
   (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
 );
 

@@ -7,7 +7,6 @@ import { ebooks } from "@/lib/ebooks";
 import { getCachedPublicReviews } from "@/lib/reviews";
 import { getCachedBlogListing } from "@/lib/blog-listing";
 import { digitalResources } from "@/lib/resources";
-import { industryLandingPages } from "@/lib/industry-pages";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -87,29 +86,6 @@ export default async function Home() {
       type: resource.resourceType,
     }));
 
-  const industryHighlights = industryLandingPages.slice(0, 3);
-
-  const fastMovingPackages = [
-    {
-      title: "Professional CV Package",
-      note: "ATS-friendly with role-focused achievement writing",
-      href: "/pricing",
-      tag: "Popular",
-    },
-    {
-      title: "Career Brand Trinity Bundle",
-      note: "CV + Cover Letter + LinkedIn complete bundle",
-      href: "/offers/career-brand-trinity-bundle",
-      tag: "Bundle",
-    },
-    {
-      title: "Bulk CV 5-Pack",
-      note: "Best value for teams, agencies, and frequent applicants",
-      href: "/offers/bulk-cv-5-pack",
-      tag: "Bulk",
-    },
-  ];
-
   return (
     <>
       <script
@@ -164,28 +140,30 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="reveal-section w-full bg-foreground py-6 overflow-hidden transform -rotate-2 scale-105 my-12">
-        <div className="flex whitespace-nowrap">
-          <div className="flex gap-[50px] md:gap-[90px] px-[25px] md:px-[45px] animate-[marquee_20s_linear_infinite]">
-            {[
-              "ATS-Friendly CV Writing",
-              "LinkedIn Optimization",
-              "Cover Letter Writing",
-              "Career Coaching",
-              "Career Roadmap",
-              "Portfolio Design",
-              "Personal Website Design",
-              "LinkedIn Management",
-              "30K+ Follower Growth Proof",
-              "ATS-Friendly CV Writing",
-            ].map((skill, index) => (
-              <span key={index} className="text-text-light text-[22px] md:text-[30px] font-plus-jakarta font-bold uppercase whitespace-nowrap">
-                {skill} <span className="text-brand-main ml-[50px] md:ml-[90px]">*</span>
-              </span>
-            ))}
+      <div className="reveal-section w-full overflow-x-clip my-12">
+        <section className="w-full bg-foreground py-6 overflow-hidden transform -rotate-2 scale-105">
+          <div className="flex whitespace-nowrap">
+            <div className="flex gap-[50px] md:gap-[90px] px-[25px] md:px-[45px] animate-[marquee_20s_linear_infinite]">
+              {[
+                "ATS-Friendly CV Writing",
+                "LinkedIn Optimization",
+                "Cover Letter Writing",
+                "Career Coaching",
+                "Career Roadmap",
+                "Portfolio Design",
+                "Personal Website Design",
+                "LinkedIn Management",
+                "30K+ Follower Growth Proof",
+                "ATS-Friendly CV Writing",
+              ].map((skill, index) => (
+                <span key={index} className="text-text-light text-[22px] md:text-[30px] font-plus-jakarta font-bold uppercase whitespace-nowrap">
+                  {skill} <span className="text-brand-main ml-[50px] md:ml-[90px]">*</span>
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       <section className="reveal-section w-full py-[64px] sm:py-[80px] md:py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
@@ -224,178 +202,6 @@ export default async function Home() {
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                 </Link>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
- <section className="reveal-section w-full border-y border-zinc-200 bg-zinc-50 py-[64px] sm:py-[80px] md:py-[96px]">
-        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
-          <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
-            <div className="max-w-3xl">
-              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-dark">Decision Support</span>
-              <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Choose the right next move</h3>
-              <p className="mt-3 text-text-body">
-                Use the quiz, browse proof, or go straight to tailored industry pages if you want a faster and more relevant path.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
- <article className="rounded-[20px] border border-zinc-200 bg-white p-6 shadow-sm">
-              <span className="inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
-                Start Here
-              </span>
-              <h4 className="mt-4 text-[24px] font-bold font-plus-jakarta text-foreground">Take the career quiz</h4>
- <p className="mt-3 text-sm leading-relaxed text-zinc-600">
-                Answer a few quick questions and get a practical recommendation across CV writing, LinkedIn, interviews, and digital presence.
-              </p>
-              <Link href="/career-quiz" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
-                Open Quiz
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
-              </Link>
-            </article>
-
- <article className="rounded-[20px] border border-zinc-200 bg-white p-6 shadow-sm">
-              <span className="inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
-                Proof
-              </span>
-              <h4 className="mt-4 text-[24px] font-bold font-plus-jakarta text-foreground">See real results</h4>
- <p className="mt-3 text-sm leading-relaxed text-zinc-600">
-                Browse case studies and testimonials to understand how CV, LinkedIn, and digital-presence work turns into clearer outcomes.
-              </p>
-              <Link href="/results" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
-                Browse Results
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
-              </Link>
-            </article>
-
- <article className="rounded-[20px] border border-zinc-200 bg-white p-6 shadow-sm">
-              <span className="inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
-                Relevance
-              </span>
-              <h4 className="mt-4 text-[24px] font-bold font-plus-jakarta text-foreground">Go to your audience page</h4>
- <p className="mt-3 text-sm leading-relaxed text-zinc-600">
-                Explore tailored service guidance for software, finance, marketing, HR, engineering, and fresh-graduate audiences.
-              </p>
-              <Link href="/services/industries" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
-                View Industry Pages
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
-              </Link>
-            </article>
-          </div>
-        </div>
-      </section>
-
- <section className="reveal-section w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
-        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-0">
- <div className="w-full lg:w-[49%] aspect-[4/5] rounded-[20px] relative overflow-hidden border border-zinc-200">
-              <Image
-                src="/images/about-chanuka.jpg"
-                alt="Chanuka Jeewantha coaching a career client"
-                fill
-                sizes="(max-width: 1024px) 100vw, 49vw"
-                className="object-cover"
-              />
-            </div>
-
-            <div className="w-full lg:w-[51%] lg:pl-[72px] flex flex-col items-start">
-              <span className="text-brand-dark font-semibold tracking-wider uppercase mb-4 block">About Me</span>
-              <h2 className="text-[36px] md:text-[52px] font-bold font-plus-jakarta text-foreground leading-[1.2] mb-6">
-                Strategy, proof, and clear communication to help professionals win in modern hiring systems.
-              </h2>
-              <p className="text-text-body text-[18px] mb-10 leading-relaxed">
-                I support fresh graduates, mid-level professionals, career switchers, and international applicants with practical, market-aligned career development services.
-              </p>
-
-              <div className="grid grid-cols-2 gap-6 w-full">
- <div className="border border-zinc-200 rounded-[15px] p-6 flex flex-col hover:border-brand-main transition-colors text-center md:text-left">
-                  <span className="text-[40px] font-bold font-plus-jakarta text-brand-dark mb-2">8+</span>
-                  <span className="text-text-body font-medium">Years Experience</span>
-                </div>
- <div className="border border-zinc-200 rounded-[15px] p-6 flex flex-col hover:border-brand-main transition-colors text-center md:text-left">
-                  <span className="text-[40px] font-bold font-plus-jakarta text-brand-dark mb-2">30K+</span>
-                  <span className="text-text-body font-medium">LinkedIn Growth Proof</span>
-                </div>
- <div className="border border-zinc-200 rounded-[15px] p-6 flex flex-col hover:border-brand-main transition-colors text-center md:text-left">
-                  <span className="text-[40px] font-bold font-plus-jakarta text-brand-dark mb-2">5000+</span>
-                  <span className="text-text-body font-medium">CVs Completed Across Industries</span>
-                </div>
- <div className="border border-zinc-200 rounded-[15px] p-6 flex flex-col hover:border-brand-main transition-colors text-center md:text-left">
-                  <span className="text-[40px] font-bold font-plus-jakarta text-brand-dark mb-2">8</span>
-                  <span className="text-text-body font-medium">Core Career Services</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Before / After CV Comparison */}
-      <section className="reveal-section w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50 border-y border-zinc-200">
-        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <span className="text-brand-dark font-semibold tracking-wider uppercase mb-2 block">Real Transformation</span>
-            <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground leading-[1.1]">
-              See the <span className="text-brand-dark">CV Difference</span>
-            </h2>
-            <p className="mt-4 text-text-body max-w-2xl mx-auto">
-              Drag the slider to compare a typical before CV against the ATS-optimised, recruiter-ready version produced with my process.
-            </p>
-          </div>
-          <div className="max-w-[680px] mx-auto aspect-[3/4]">
-            <BeforeAfterSlider
-              beforeSrc="/images/cv-before-graphic.svg"
-              beforeAlt="Before CV sample: colorful graphical CV with decorative layout"
-              afterSrc="/images/cv-after-ats-template.svg"
-              afterAlt="After CV sample: clean ATS-friendly CV template"
-              className="w-full h-full"
-            />
-          </div>
-          <p className="text-center mt-6 text-sm text-zinc-500">
-            Sample only — real client CVs are kept strictly confidential.
-          </p>
-        </div>
-      </section>
-
-      <section className="reveal-section w-full py-[64px] sm:py-[80px] md:py-[96px] bg-foreground text-background">
-        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
-            <div className="max-w-3xl">
-              <span className="text-brand-main font-semibold tracking-wider uppercase mb-2 block">Latest Insights</span>
-              <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta leading-[1.1] !text-white">
-                Career guidance for ATS-ready applications, LinkedIn visibility, and strategic growth.
-              </h2>
-            </div>
- <Link href="/blog" className="px-[25px] py-[15px] border border-white/80 hover:bg-white hover:text-foreground rounded-[10px] text-white font-semibold transition-colors whitespace-nowrap">
-              Read Blog
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {latestPosts.map((post) => (
-              <article key={post.slug} className="overflow-hidden rounded-[20px] border border-white/20 bg-zinc-900/40 transition-colors hover:bg-zinc-800/60">
-                <div className="relative aspect-[5/3] overflow-hidden">
-                  <Image
-                    src={getBlogCoverImage(post.category)}
-                    alt={post.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-8">
-                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-brand-subtle">
-                    {post.category}
-                  </p>
-                  <h3 className="text-[24px] font-bold font-plus-jakarta mb-3 !text-white">{post.title}</h3>
-                  <p className="!text-white text-sm mb-6 line-clamp-3">{post.excerpt}</p>
-                  <Link href={`/blog/${post.slug}`} aria-label={`Read more: ${post.title}`} className="text-white font-semibold transition-colors">
-                    Read More
-                  </Link>
-                </div>
-              </article>
             ))}
           </div>
         </div>
@@ -465,32 +271,47 @@ export default async function Home() {
         </div>
       </section>
 
- <section className="reveal-section w-full border-y border-zinc-200 bg-white py-[96px]">
+ <section className="reveal-section w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
-          <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-dark">Audience Pages</span>
-              <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Industry-Focused Guidance</h3>
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-0">
+ <div className="w-full lg:w-[49%] aspect-[4/5] rounded-[20px] relative overflow-hidden border border-zinc-200">
+              <Image
+                src="/images/about-chanuka.jpg"
+                alt="Chanuka Jeewantha coaching a career client"
+                fill
+                sizes="(max-width: 1024px) 100vw, 49vw"
+                className="object-cover"
+              />
             </div>
- <Link href="/services/industries" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
-              See All Industries
-            </Link>
-          </div>
-          <div className="flex flex-col gap-6 sm:grid sm:grid-cols-2 lg:flex lg:flex-row">
-            {industryHighlights.map((item) => (
- <article key={item.slug} className="group flex-1 flex flex-col justify-between rounded-[20px] border border-zinc-200 bg-white p-6 shadow-[0_8px_20px_rgba(0,0,0,0.05)] transition-all hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.1)] sm:min-w-[58%] md:min-w-0">
-                <div className="mb-4 flex items-start justify-between w-full">
- <span className="inline-flex rounded-full bg-brand-main px-3 py-1 text-xs font-semibold text-foreground transition-colors">{item.name}</span>
- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-main group-hover:text-black transition-colors"><path d="M3 21h18" /><path d="M5 21V7l8-4v18" /><path d="M19 21V11l-6-4" /></svg>
+
+            <div className="w-full lg:w-[51%] lg:pl-[72px] flex flex-col items-start">
+              <span className="text-brand-dark font-semibold tracking-wider uppercase mb-4 block">About Me</span>
+              <h2 className="text-[36px] md:text-[52px] font-bold font-plus-jakarta text-foreground leading-[1.2] mb-6">
+                Strategy, proof, and clear communication to help professionals win in modern hiring systems.
+              </h2>
+              <p className="text-text-body text-[18px] mb-10 leading-relaxed">
+                I support fresh graduates, mid-level professionals, career switchers, and international applicants with practical, market-aligned career development services.
+              </p>
+
+              <div className="grid grid-cols-2 gap-6 w-full">
+ <div className="border border-zinc-200 rounded-[15px] p-6 flex flex-col hover:border-brand-main transition-colors text-center md:text-left">
+                  <span className="text-[40px] font-bold font-plus-jakarta text-brand-dark mb-2">8+</span>
+                  <span className="text-text-body font-medium">Years Experience</span>
                 </div>
- <h4 className="mb-2 text-[20px] font-bold font-plus-jakarta text-zinc-900">{item.name}</h4>
- <p className="mb-5 text-sm leading-relaxed text-zinc-600">{item.heroSummary}</p>
-                <Link href={`/services/industries/${item.slug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
-                  View Career Page
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
-                </Link>
-              </article>
-            ))}
+ <div className="border border-zinc-200 rounded-[15px] p-6 flex flex-col hover:border-brand-main transition-colors text-center md:text-left">
+                  <span className="text-[40px] font-bold font-plus-jakarta text-brand-dark mb-2">30K+</span>
+                  <span className="text-text-body font-medium">LinkedIn Growth Proof</span>
+                </div>
+ <div className="border border-zinc-200 rounded-[15px] p-6 flex flex-col hover:border-brand-main transition-colors text-center md:text-left">
+                  <span className="text-[40px] font-bold font-plus-jakarta text-brand-dark mb-2">5000+</span>
+                  <span className="text-text-body font-medium">CVs Completed Across Industries</span>
+                </div>
+ <div className="border border-zinc-200 rounded-[15px] p-6 flex flex-col hover:border-brand-main transition-colors text-center md:text-left">
+                  <span className="text-[40px] font-bold font-plus-jakarta text-brand-dark mb-2">8</span>
+                  <span className="text-text-body font-medium">Core Career Services</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -531,35 +352,75 @@ export default async function Home() {
         </div>
       </section>
 
- <section className="reveal-section w-full border-t border-zinc-200 bg-zinc-950 text-white py-[120px]">
+      {/* Before / After CV Comparison */}
+      <section className="reveal-section w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50 border-y border-zinc-200">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
-          <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">High Demand</span>
-              <h3 className="text-[30px] font-bold font-plus-jakarta text-white">Fast Moving Packages</h3>
+          <div className="text-center mb-12">
+            <span className="text-brand-dark font-semibold tracking-wider uppercase mb-2 block">Real Transformation</span>
+            <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground leading-[1.1]">
+              See the <span className="text-brand-dark">CV Difference</span>
+            </h2>
+            <p className="mt-4 text-text-body max-w-2xl mx-auto">
+              Drag the slider to compare a typical before CV against the ATS-optimised, recruiter-ready version produced with my process.
+            </p>
+          </div>
+          <div className="max-w-[680px] mx-auto aspect-[3/4]">
+            <BeforeAfterSlider
+              beforeSrc="/images/cv-before-graphic.svg"
+              beforeAlt="Before CV sample: colorful graphical CV with decorative layout"
+              afterSrc="/images/cv-after-ats-template.svg"
+              afterAlt="After CV sample: clean ATS-friendly CV template"
+              className="w-full h-full"
+            />
+          </div>
+          <p className="text-center mt-6 text-sm text-zinc-500">
+            Sample only - real client CVs are kept strictly confidential.
+          </p>
+        </div>
+      </section>
+
+      <section className="reveal-section w-full py-[64px] sm:py-[80px] md:py-[96px] bg-foreground text-background">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+            <div className="max-w-3xl">
+              <span className="text-brand-main font-semibold tracking-wider uppercase mb-2 block">Latest Insights</span>
+              <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta leading-[1.1] !text-white">
+                Career guidance for ATS-ready applications, LinkedIn visibility, and strategic growth.
+              </h2>
             </div>
- <Link href="/pricing" className="rounded-[10px] border border-zinc-300 hover:bg-white px-4 py-2 text-sm font-semibold text-white transition-colors hover:text-black">
-              See All Packages
+ <Link href="/blog" className="px-[25px] py-[15px] border border-white/80 hover:bg-white hover:text-foreground rounded-[10px] text-white font-semibold transition-colors whitespace-nowrap">
+              Read Blog
             </Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {fastMovingPackages.map((item) => (
- <article key={item.title} className="group h-full flex flex-col items-start rounded-[20px] border border-zinc-700 bg-zinc-900 p-8 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl hover:bg-white w-full">
-                <div className="mb-4 flex items-start justify-between w-full">
- <span className="inline-flex rounded-full bg-brand-main px-3 py-1 text-xs font-semibold text-foreground transition-colors">{item.tag}</span>
- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-main group-hover:text-black transition-colors"><path d="M20 12v10H4V12" /><path d="M2 7h20v5H2z" /><path d="M12 22V7" /><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" /><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" /></svg>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {latestPosts.map((post) => (
+              <article key={post.slug} className="overflow-hidden rounded-[20px] border border-white/20 bg-zinc-900/40 transition-colors hover:bg-zinc-800/60">
+                <div className="relative aspect-[5/3] overflow-hidden">
+                  <Image
+                    src={getBlogCoverImage(post.category)}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover"
+                  />
                 </div>
- <h4 className="mb-2 text-[20px] font-bold font-plus-jakarta text-white group-hover:text-black transition-colors">{item.title}</h4>
- <p className="mb-5 text-sm leading-relaxed text-white group-hover:text-black transition-colors">{item.note}</p>
- <Link href={item.href} className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors group-hover:text-black">
-                  View Package
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
-                </Link>
+                <div className="p-8">
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-brand-subtle">
+                    {post.category}
+                  </p>
+                  <h3 className="text-[24px] font-bold font-plus-jakarta mb-3 !text-white">{post.title}</h3>
+                  <p className="!text-white text-sm mb-6 line-clamp-3">{post.excerpt}</p>
+                  <Link href={`/blog/${post.slug}`} aria-label={`Read more: ${post.title}`} className="text-white font-semibold transition-colors">
+                    Read More
+                  </Link>
+                </div>
               </article>
             ))}
           </div>
         </div>
       </section>
+
     </>
   );
 }

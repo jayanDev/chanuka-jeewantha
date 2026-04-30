@@ -116,7 +116,7 @@ export const ebooks: Ebook[] = [
     kind: "resource",
     readPriceLkr: 500,
     downloadPriceLkr: 1500,
-    coverImage: "/images/linkedin-profile-optimization-cover.jpg",
+    coverImage: "/images/linkedin-optimization-30k-followers-proof.jpg",
     highlights: [
       "Recruiter-ready Profile Photo & Banner",
       "Keyword-optimised Headline & About Section",
