@@ -8,6 +8,7 @@ type DownloadStage = "closed" | "service-ad" | "ebook-ad" | "ready";
 type Props = {
   slug: string;
   title: string;
+  fileName: string;
   isSignedIn: boolean;
   signupHref: string;
   signinHref: string;
@@ -33,10 +34,11 @@ function formatSeconds(seconds: number) {
   return `${seconds}s`;
 }
 
-export default function ResourceDownloadGate({ slug, title, isSignedIn, signupHref, signinHref }: Props) {
+export default function ResourceDownloadGate({ slug, title, fileName, isSignedIn, signupHref, signinHref }: Props) {
   const [stage, setStage] = useState<DownloadStage>("closed");
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadError, setDownloadError] = useState("");
 
   const downloadHref = `/api/resources/templates/${slug}/download`;
   const activeAd = stage === "ebook-ad" || stage === "ready" ? ebookAd : serviceAd;
@@ -78,23 +80,47 @@ export default function ResourceDownloadGate({ slug, title, isSignedIn, signupHr
     }
 
     setIsDownloading(false);
+    setDownloadError("");
     setElapsedSeconds(0);
     setStage("service-ad");
   };
 
-  const startDownload = () => {
+  const startDownload = async () => {
     setIsDownloading(true);
-    const anchor = document.createElement("a");
-    anchor.href = downloadHref;
-    anchor.download = title;
-    document.body.appendChild(anchor);
-    anchor.click();
-    anchor.remove();
+    setDownloadError("");
 
-    window.setTimeout(() => {
+    try {
+      const response = await fetch(downloadHref, {
+        credentials: "include",
+        cache: "no-store",
+      });
+
+      if (response.status === 401) {
+        window.location.assign(signinHref);
+        return;
+      }
+
+      const contentType = response.headers.get("content-type") ?? "";
+      if (!response.ok || !contentType.includes("officedocument.wordprocessingml.document")) {
+        throw new Error("The Word template could not be downloaded. Please refresh the page and try again.");
+      }
+
+      const blob = await response.blob();
+      const objectUrl = window.URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      anchor.href = objectUrl;
+      anchor.download = fileName;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      window.URL.revokeObjectURL(objectUrl);
+
       setIsDownloading(false);
       setStage("closed");
-    }, 800);
+    } catch (error) {
+      setDownloadError(error instanceof Error ? error.message : "The Word template could not be downloaded.");
+      setIsDownloading(false);
+    }
   };
 
   return (
@@ -197,6 +223,12 @@ export default function ResourceDownloadGate({ slug, title, isSignedIn, signupHr
                   {isDownloading ? "Starting..." : "Download Template"}
                 </button>
               </div>
+
+              {downloadError ? (
+                <p className="mt-4 rounded-[10px] border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                  {downloadError}
+                </p>
+              ) : null}
             </div>
           </div>
         </div>

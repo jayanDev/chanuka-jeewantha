@@ -3,6 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
 	poweredByHeader: false,
 	compress: true,
+	outputFileTracingIncludes: {
+		"/api/resources/templates/[slug]/download": ["./Resources/Templates/Free/**/*.docx"],
+	},
 	async redirects() {
 		return [
 			{

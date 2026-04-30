@@ -216,6 +216,7 @@ export default async function ResourceSinglePage({ params }: ResourcePageProps) 
                   <ResourceDownloadGate
                     slug={resource.slug}
                     title={resource.title}
+                    fileName={resourceDownload.fileName}
                     isSignedIn={Boolean(user)}
                     signupHref={signupHref}
                     signinHref={signinHref}

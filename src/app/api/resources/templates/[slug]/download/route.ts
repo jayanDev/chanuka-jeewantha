@@ -15,6 +15,14 @@ function buildContentDisposition(fileName: string) {
   return `attachment; filename="${safeFileName}"; filename*=UTF-8''${encodeURIComponent(fileName)}`;
 }
 
+function resolveDownloadPath(slug: string, relativePath: string[]) {
+  if (slug === "ats-friendly-cv-template-free") {
+    return path.join(process.cwd(), "Resources", "Templates", "Free", "ATS Friendly CV Template Free.docx");
+  }
+
+  return path.join(process.cwd(), ...relativePath);
+}
+
 export async function GET(request: Request, { params }: RouteContext) {
   const { slug } = await params;
   const resource = getResourceBySlug(slug);
@@ -29,7 +37,7 @@ export async function GET(request: Request, { params }: RouteContext) {
     return NextResponse.json({ error: "Create a free account or sign in to download this template." }, { status: 401 });
   }
 
-  const filePath = path.join(process.cwd(), ...download.relativePath);
+  const filePath = resolveDownloadPath(slug, download.relativePath);
 
   try {
     const file = await fs.readFile(filePath);
