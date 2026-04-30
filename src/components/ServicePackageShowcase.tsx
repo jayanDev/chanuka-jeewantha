@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import AnimatedServiceTextVisual from "@/components/AnimatedServiceTextVisual";
 import { formatLkr, type PackageProduct } from "@/lib/packages-catalog";
 import { buildOfferPreviewHeaders, withOfferPreviewUrl } from "@/lib/offer-preview-client";
 
@@ -75,9 +76,9 @@ export default function ServicePackageShowcase({ title, description, packages }:
     };
 
     void load();
+    const timers = addedTimersRef.current;
 
     return () => {
-      const timers = addedTimersRef.current;
       for (const timerId of Object.values(timers)) {
         window.clearTimeout(timerId);
       }
@@ -167,6 +168,8 @@ export default function ServicePackageShowcase({ title, description, packages }:
  pkg.isMostPopular ? "border-brand-main" : "border-zinc-200"
               }`}
             >
+              <AnimatedServiceTextVisual label={pkg.name} className="mb-6 min-h-[180px]" />
+
               {pkg.isMostPopular && (
  <div className="mb-5 inline-flex items-center gap-2 rounded-[10px] border border-brand-main/40 bg-white px-3 py-1.5 shadow-sm">
                   <span className="text-xs font-bold uppercase tracking-[0.14em] text-brand-dark">Client Favorite</span>

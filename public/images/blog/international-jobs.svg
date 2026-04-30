@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">International jobs article cover</title>
+  <desc id="desc">A passport, route line, and global job application markers.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eff6ff"/>
+      <stop offset="0.5" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#dcfce7"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#0f172a" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="820" cy="320" r="180" fill="#dbeafe" stroke="#2563eb" stroke-width="6"/>
+  <path d="M650 320h340M820 140c58 72 86 132 86 180s-28 108-86 180M820 140c-58 72-86 132-86 180s28 108 86 180" fill="none" stroke="#2563eb" stroke-width="5" opacity="0.6"/>
+  <path d="M665 245h310M665 395h310" stroke="#2563eb" stroke-width="5" opacity="0.6"/>
+  <rect x="170" y="145" width="340" height="410" rx="8" fill="#0f172a" filter="url(#shadow)"/>
+  <circle cx="340" cy="280" r="62" fill="#f59e0b"/>
+  <path d="M280 405h120M280 448h170" stroke="#64748b" stroke-width="18" stroke-linecap="round"/>
+  <path d="M585 418c84-78 145-94 245-98" fill="none" stroke="#10b981" stroke-width="12" stroke-linecap="round" stroke-dasharray="24 24"/>
+  <path d="M820 300l38 22-40 18z" fill="#10b981"/>
+  <text x="610" y="570" fill="#0f172a" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="800">GLOBAL JOBS</text>
+</svg>

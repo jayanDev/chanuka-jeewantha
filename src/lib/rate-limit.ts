@@ -1,13 +1,40 @@
-import { getFirebaseDb } from "@/lib/firebase-admin";
+import { getFirebaseDb, hasFirebaseAdminConfig } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
 
 const RATE_LIMIT_COLLECTION = "rate_limit_buckets";
+const memoryBuckets = new Map<string, { count: number; resetAtMs: number }>();
+
+function checkMemoryRateLimit(key: string, limit: number, windowMs: number) {
+  const nowMs = Date.now();
+  const resetAtMs = nowMs + windowMs;
+  const current = memoryBuckets.get(key);
+
+  if (!current || current.resetAtMs < nowMs) {
+    memoryBuckets.set(key, { count: 1, resetAtMs });
+    return { ok: true, remaining: limit - 1, resetAt: resetAtMs };
+  }
+
+  if (current.count >= limit) {
+    return { ok: false, remaining: 0, resetAt: current.resetAtMs };
+  }
+
+  current.count += 1;
+  return {
+    ok: true,
+    remaining: Math.max(0, limit - current.count),
+    resetAt: current.resetAtMs,
+  };
+}
 
 export async function checkRateLimit(
   key: string,
   limit: number,
   windowMs: number
 ): Promise<{ ok: boolean; remaining: number; resetAt: number }> {
+  if (!hasFirebaseAdminConfig()) {
+    return checkMemoryRateLimit(key, limit, windowMs);
+  }
+
   const db = getFirebaseDb();
   const nowMs = Date.now();
   const resetAtMs = nowMs + windowMs;

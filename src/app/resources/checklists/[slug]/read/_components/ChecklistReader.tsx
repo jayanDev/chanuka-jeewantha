@@ -23,13 +23,18 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
   const [currentIdx, setCurrentIdx] = useState(0);
 
   useEffect(() => {
-    setMounted(true);
-    try {
-      const saved = localStorage.getItem(storageKey);
-      if (saved) setChecked(JSON.parse(saved) as Record<string, boolean>);
-    } catch {
-      // ignore
-    }
+    const timer = window.setTimeout(() => {
+      try {
+        const saved = localStorage.getItem(storageKey);
+        if (saved) setChecked(JSON.parse(saved) as Record<string, boolean>);
+      } catch {
+        // ignore
+      } finally {
+        setMounted(true);
+      }
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, [storageKey]);
 
   function toggle(itemId: string) {

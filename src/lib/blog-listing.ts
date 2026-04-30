@@ -9,7 +9,9 @@ export type BlogListingPost = {
   excerpt: string;
   category: string;
   publishedAt: Date | null;
+  coverImage?: string | null;
   packageSlug?: string;
+  keywords?: string[];
 };
 
 function sortPostsByDate<T extends { publishedAt: Date | null }>(items: T[]): T[] {
@@ -26,7 +28,9 @@ const fallbackPosts: BlogListingPost[] = getIndexableFallbackBlogPosts(blogPosts
   excerpt: post.excerpt,
   category: post.category,
   publishedAt: post.publishedAt ? new Date(post.publishedAt) : null,
+  coverImage: post.coverImage,
   packageSlug: post.packageSlug,
+  keywords: post.keywords,
 }));
 
 async function loadMergedBlogListing(): Promise<BlogListingPost[]> {
@@ -46,14 +50,21 @@ async function loadMergedBlogListing(): Promise<BlogListingPost[]> {
         excerpt: true,
         category: true,
         publishedAt: true,
+        coverImage: true,
       },
       take: 300,
     });
 
-    const dbPosts: BlogListingPost[] = dbPostsRaw.map((item) => ({
-      ...item,
-      packageSlug: getPostBySlug(item.slug)?.packageSlug,
-    }));
+    const dbPosts: BlogListingPost[] = dbPostsRaw.map((item) => {
+      const contentPost = getPostBySlug(item.slug);
+
+      return {
+        ...item,
+        coverImage: item.coverImage ?? contentPost?.coverImage,
+        packageSlug: contentPost?.packageSlug,
+        keywords: contentPost?.keywords,
+      };
+    });
 
     const dbSlugs = new Set(dbPosts.map((item) => item.slug));
     const merged = [...dbPosts, ...fallbackPosts.filter((item) => !dbSlugs.has(item.slug))];

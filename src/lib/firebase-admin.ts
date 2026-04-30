@@ -11,6 +11,14 @@ function requireEnv(name: string): string {
   return value;
 }
 
+export function hasFirebaseAdminConfig(): boolean {
+  return Boolean(
+    process.env.FIREBASE_PROJECT_ID &&
+      process.env.FIREBASE_CLIENT_EMAIL &&
+      process.env.FIREBASE_PRIVATE_KEY
+  );
+}
+
 function normalizeBucketName(value: string | undefined): string {
   if (!value) return "";
   return value

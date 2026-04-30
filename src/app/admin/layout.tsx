@@ -11,12 +11,16 @@ export const metadata: Metadata = buildNoIndexMetadata({
 
 const adminLinks = [
   { href: "/admin/stats", label: "Stats" },
-  { href: "/admin/offers", label: "Offers & Coupons" },
-  { href: "/admin/reviews", label: "Review Approval" },
+  { href: "/admin/reports", label: "Reports" },
+  { href: "/admin/orders", label: "Orders" },
+  { href: "/admin/contacts", label: "Contact Inbox" },
+  { href: "/admin/reviews", label: "Reviews" },
   { href: "/admin/comments", label: "Comments" },
-  { href: "/admin/orders", label: "Order Management" },
-  { href: "/admin/ebooks", label: "Ebook Access" },
+  { href: "/admin/blog", label: "Blog" },
+  { href: "/admin/offers", label: "Offers & Coupons" },
+  { href: "/admin/ebooks", label: "Ebooks" },
   { href: "/admin/resources", label: "Resources" },
+  { href: "/admin/subscribers", label: "Subscribers" },
   { href: "/admin/settings", label: "Settings" },
 ];
 
@@ -32,7 +36,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         </header>
 
  <nav className="rounded-[16px] border border-zinc-200 bg-white p-3">
-          <ul className="grid grid-cols-2 gap-2 md:grid-cols-4 lg:grid-cols-8">
+          <ul className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-10">
             {adminLinks.map((item) => (
               <li key={item.href}>
                 <Link

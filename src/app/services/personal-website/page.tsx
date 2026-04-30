@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import type { Metadata } from "next";
+import AnimatedServiceTextVisual from "@/components/AnimatedServiceTextVisual";
 import SubscribeForm from "@/components/SubscribeForm";
 import { buildPageMetadata } from "@/lib/seo";
 import { getBaseUrl } from "@/lib/site-url";
@@ -92,13 +92,7 @@ export default function PersonalWebsiteServicePage() {
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_360px]">
  <article className="rounded-[22px] border border-zinc-200 bg-white p-7 md:p-10 shadow-sm">
  <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-[18px] border border-zinc-200">
-                <Image
-                  src="/images/hero-chanuka.jpg"
-                  alt="Personal website and portfolio service"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 70vw"
-                  className="object-cover"
-                />
+                <AnimatedServiceTextVisual label="Personal Website & Career Portfolio" variant="dark" className="h-full min-h-full rounded-[18px]" />
               </div>
 
               <div className="prose prose-lg max-w-none prose-headings:font-plus-jakarta prose-headings:text-foreground prose-p:text-text-body">

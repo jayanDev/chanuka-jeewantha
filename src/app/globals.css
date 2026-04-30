@@ -117,6 +117,37 @@
   }
 }
 
+@keyframes serviceTextTrack {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes serviceTextTrackReverse {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes serviceTextFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
 /* Respect user accessibility preferences */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -207,4 +238,16 @@ body {
 
 .dot-delay-2 {
   animation-delay: 360ms;
+}
+
+.service-text-track {
+  animation: serviceTextTrack 22s linear infinite;
+}
+
+.service-text-track-reverse {
+  animation: serviceTextTrackReverse 24s linear infinite;
+}
+
+.service-text-float {
+  animation: serviceTextFloat 5.5s ease-in-out infinite;
 }

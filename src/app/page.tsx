@@ -7,7 +7,6 @@ import { ebooks } from "@/lib/ebooks";
 import { getCachedPublicReviews } from "@/lib/reviews";
 import { getCachedBlogListing } from "@/lib/blog-listing";
 import { digitalResources } from "@/lib/resources";
-import { careerTools } from "@/lib/tools";
 import { industryLandingPages } from "@/lib/industry-pages";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 
@@ -88,7 +87,6 @@ export default async function Home() {
       type: resource.resourceType,
     }));
 
-  const toolHighlights = careerTools.slice(0, 3);
   const industryHighlights = industryLandingPages.slice(0, 3);
 
   const fastMovingPackages = [
@@ -346,12 +344,12 @@ export default async function Home() {
               Drag the slider to compare a typical before CV against the ATS-optimised, recruiter-ready version produced with my process.
             </p>
           </div>
-          <div className="max-w-3xl mx-auto aspect-[3/4] sm:aspect-[4/3]">
+          <div className="max-w-[680px] mx-auto aspect-[3/4]">
             <BeforeAfterSlider
-              beforeSrc="/images/cv-before.jpg"
-              beforeAlt="CV before professional rewrite — dense, unformatted, ATS-unfriendly"
-              afterSrc="/images/cv-after.jpg"
-              afterAlt="CV after professional rewrite — clean, ATS-friendly, achievement-focused"
+              beforeSrc="/images/cv-before-graphic.svg"
+              beforeAlt="Before CV sample: colorful graphical CV with decorative layout"
+              afterSrc="/images/cv-after-ats-template.svg"
+              afterAlt="After CV sample: clean ATS-friendly CV template"
               className="w-full h-full"
             />
           </div>
@@ -565,4 +563,3 @@ export default async function Home() {
     </>
   );
 }
-

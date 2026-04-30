@@ -19,7 +19,6 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
       setTimeout(() => inputRef.current?.focus(), 100);
     } else {
       document.body.style.overflow = "";
-      setQuery("");
     }
     
     return () => {
@@ -29,17 +28,22 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
   if (!isOpen) return null;
 
+  const closeSearch = () => {
+    setQuery("");
+    onClose();
+  };
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (!query.trim()) return;
     router.push(`/blog/search?q=${encodeURIComponent(query.trim())}`);
-    onClose();
+    closeSearch();
   };
 
   return (
     <div className="fixed inset-0 z-[9999] flex items-start justify-center pt-[15vh] px-4 backdrop-blur-sm bg-black/40 animate-in fade-in duration-200">
       {/* Overlay to close */}
-      <div className="absolute inset-0" onClick={onClose} aria-hidden="true" />
+      <div className="absolute inset-0" onClick={closeSearch} aria-hidden="true" />
       
  <div className="relative w-full max-w-2xl bg-white rounded-[20px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] border border-zinc-200 overflow-hidden transform transition-all">
         <form onSubmit={handleSearch} className="flex flex-col">
@@ -56,12 +60,12 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key === "Escape") onClose();
+                if (e.key === "Escape") closeSearch();
               }}
             />
             <button
               type="button"
-              onClick={onClose}
+              onClick={closeSearch}
  className="absolute right-4 p-2 text-zinc-400 hover:text-foreground transition-colors rounded-full hover:bg-zinc-100"
               aria-label="Close search"
             >

@@ -27,6 +27,7 @@ export type BlogPost = {
   category: string;
   publishedAt: string;
   author: string;
+  coverImage?: string;
   packageSlug?: string;
   keywords?: string[];
   sections?: BlogSection[];

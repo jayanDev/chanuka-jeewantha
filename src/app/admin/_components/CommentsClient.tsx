@@ -21,7 +21,6 @@ export default function CommentsClient() {
   const [working, setWorking] = useState<string | null>(null);
 
   useEffect(() => {
-    setLoading(true);
     fetch("/api/admin/comments")
       .then((r) => r.json())
       .then((data) => setComments(Array.isArray(data.comments) ? data.comments : []))

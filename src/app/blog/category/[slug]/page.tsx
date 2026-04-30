@@ -13,18 +13,11 @@ import {
 } from "@/lib/blog-discovery";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
+import { getBlogCoverImage, isGeneratedBlogCoverImage } from "@/lib/blog-images";
 
 type BlogCategoryPageProps = {
   params: Promise<{ slug: string }>;
 };
-
-function getCoverImage(category: string) {
-  const normalized = category.toLowerCase();
-  if (normalized.includes("linkedin")) return "/images/linkedin-optimization-30k-followers-proof.jpg";
-  if (normalized.includes("coach") || normalized.includes("roadmap") || normalized.includes("career")) return "/images/about-page-chanuka.jpg";
-  if (normalized.includes("cv") || normalized.includes("ats")) return "/images/chanuka-jeewantha-career-development-specialist.jpg";
-  return "/images/hero-chanuka.jpg";
-}
 
 const fallbackCategories = Array.from(
   new Set(getIndexableFallbackBlogPosts(blogPosts).map((post) => post.category))
@@ -142,13 +135,17 @@ export default async function BlogCategoryPage({ params }: BlogCategoryPageProps
           </div>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {posts.map((post) => (
+            {posts.map((post) => {
+              const coverImage = getBlogCoverImage(post);
+
+              return (
  <article key={post.slug} className="overflow-hidden rounded-[20px] border border-zinc-200 bg-white transition-all hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)]">
                 <div className="relative aspect-[5/3] overflow-hidden">
                   <Image
-                    src={getCoverImage(post.category)}
+                    src={coverImage}
                     alt={post.title}
                     fill
+                    unoptimized={isGeneratedBlogCoverImage(coverImage)}
                     sizes="(max-width: 1024px) 100vw, 33vw"
                     className="object-cover"
                   />
@@ -168,7 +165,8 @@ export default async function BlogCategoryPage({ params }: BlogCategoryPageProps
                   </Link>
                 </div>
               </article>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

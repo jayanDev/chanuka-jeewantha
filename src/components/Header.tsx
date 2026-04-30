@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import SearchModal from "@/components/SearchModal";
 
@@ -32,8 +31,6 @@ const primaryNavLinks: PrimaryNavLink[] = [
 ];
 
 export default function Header({ initialUser = null }: HeaderProps) {
-  const pathname = usePathname();
-  const isReaderView = pathname?.includes("/read");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [user, setUser] = useState<NavUser | null>(initialUser);

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import AnimatedServiceTextVisual from "@/components/AnimatedServiceTextVisual";
 import {
   formatLkr,
   packageCategories,
@@ -169,9 +170,9 @@ export default function PricingClient() {
     };
 
     void load();
+    const timers = addedTimersRef.current;
 
     return () => {
-      const timers = addedTimersRef.current;
       for (const timerId of Object.values(timers)) {
         window.clearTimeout(timerId);
       }
@@ -306,6 +307,7 @@ export default function PricingClient() {
           <span className="text-xs font-bold uppercase tracking-[0.14em] text-brand-dark">Client Favorite</span>
         </div>
       )}
+      <AnimatedServiceTextVisual label={pkg.name} className="mb-6 min-h-[180px]" />
       <h4 className="text-[26px] font-bold font-plus-jakarta text-foreground mb-2">{pkg.name}</h4>
       <p className="text-text-body mb-6">{pkg.audience}</p>
 

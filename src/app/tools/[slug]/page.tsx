@@ -5,9 +5,6 @@ import ExternalToolLaunch from "@/components/ExternalToolLaunch";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
 import { careerTools, getCareerToolBySlug } from "@/lib/tools";
-import { getBaseUrl } from "@/lib/site-url";
-
-const baseUrl = getBaseUrl();
 
 type ToolPageProps = {
   params: Promise<{ slug: string }>;

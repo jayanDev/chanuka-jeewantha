@@ -14,6 +14,18 @@ const slugToFile: Record<string, string> = {
   "linkedin-profile-optimization": "LinkedIn Profile Optimization System.pdf",
 };
 
+type EbookIndexItem = {
+  kind?: string;
+  id?: unknown;
+  title?: unknown;
+};
+
+type EbookChapterIndexItem = {
+  kind?: string;
+  id: number;
+  title: string;
+};
+
 async function getDownloadTier(
   userId: string | undefined,
   userEmail: string | undefined,
@@ -60,9 +72,14 @@ export async function GET(
   try {
     const contentDir = path.join(process.cwd(), `src/content/ebooks/${slug}`);
     const indexRaw = await fs.readFile(path.join(contentDir, "index.json"), "utf-8");
-    const indexData = JSON.parse(indexRaw);
+    const indexData = JSON.parse(indexRaw) as EbookIndexItem[];
     
-    const chapters = indexData.filter((item: any) => (item.kind ?? "chapter") === "chapter" && typeof item.id === "number");
+    const chapters = indexData.filter(
+      (item): item is EbookChapterIndexItem =>
+        (item.kind ?? "chapter") === "chapter" &&
+        typeof item.id === "number" &&
+        typeof item.title === "string"
+    );
     
     let combinedHtml = `
       <div class="book-cover">

@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
 import React from "react";
 import type { Metadata } from "next";
+import AnimatedServiceTextVisual from "@/components/AnimatedServiceTextVisual";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
 import { industryLandingPages } from "@/lib/industry-pages";
@@ -26,36 +26,26 @@ export default function ServicesPage() {
       desc: "Role-targeted CVs with clean structure, proper keywords, and achievement-based writing to pass ATS and impress recruiters.",
       isMostPopular: true,
       href: "/services/packages/cv-writing",
-      image: "/images/chanuka-jeewantha-career-development-specialist.jpg",
-      alt: "ATS-friendly CV writing service",
     },
     {
       title: "Cover Letter Writing",
       desc: "Cover letters that communicate relevance, confidence, and proof-based value for competitive and international applications.",
       href: "/services/packages/cover-letter-writing",
-      image: "/images/about-page-chanuka.jpg",
-      alt: "Cover letter writing service",
     },
     {
       title: "LinkedIn Account Optimization",
       desc: "Headline, About, and experience positioning for stronger recruiter discovery and profile conversion.",
       href: "/services/packages/linkedin-optimization",
-      image: "/images/linkedin-optimization-30k-followers-proof.jpg",
-      alt: "LinkedIn optimization service",
     },
     {
       title: "CV Review Service",
       desc: "Detailed expert feedback on your existing CV with ATS recommendations, stronger content direction, and clear structure fixes.",
       href: "/services/packages/cv-review",
-      image: "/images/testimonial-chanuka.jpg",
-      alt: "CV review service",
     },
     {
       title: "Personal Website & Career Portfolio",
       desc: "A portfolio-style personal website that gives your career brand a public proof layer beyond the CV, LinkedIn profile, and application documents.",
       href: "/services/personal-website",
-      image: "/images/hero-chanuka.jpg",
-      alt: "Personal website and career portfolio service",
     },
   ];
 
@@ -120,13 +110,7 @@ export default function ServicesPage() {
                   </div>
                 )}
  <div className="relative mb-8 h-[250px] w-full overflow-hidden rounded-[15px] border border-zinc-200 bg-zinc-100">
-                  <Image
-                    src={service.image}
-                    alt={service.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                  <AnimatedServiceTextVisual label={service.title} className="h-full min-h-full transition-transform duration-500 group-hover:scale-[1.02]" />
                 </div>
                 <h3 className="text-[28px] font-bold font-plus-jakarta mb-4 text-foreground">{service.title}</h3>
                 <p className="text-text-body mb-8 flex-grow text-lg leading-relaxed">

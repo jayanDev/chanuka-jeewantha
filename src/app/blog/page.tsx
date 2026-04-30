@@ -7,6 +7,7 @@ import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
 import { getCachedBlogListing } from "@/lib/blog-listing";
 import { getBlogCategoryPath } from "@/lib/blog-discovery";
+import { getBlogCoverImage, isGeneratedBlogCoverImage } from "@/lib/blog-images";
 
 export const revalidate = 3600;
 
@@ -85,7 +86,7 @@ export default async function BlogPage({
   
   const maxPageLinks = 5;
   let startPage = Math.max(1, currentPage - Math.floor(maxPageLinks / 2));
-  let endPage = Math.min(totalPages, startPage + maxPageLinks - 1);
+  const endPage = Math.min(totalPages, startPage + maxPageLinks - 1);
   if (endPage - startPage + 1 < maxPageLinks) {
     startPage = Math.max(1, endPage - maxPageLinks + 1);
   }
@@ -102,14 +103,6 @@ export default async function BlogPage({
   const buildCategoryHref = (category: string | null) => {
     if (!category) return "/blog";
     return getBlogCategoryPath(category);
-  };
-
-  const getCoverImage = (category: string) => {
-    const normalized = category.toLowerCase();
-    if (normalized.includes("linkedin")) return "/images/linkedin-optimization-30k-followers-proof.jpg";
-    if (normalized.includes("coach") || normalized.includes("roadmap") || normalized.includes("career")) return "/images/about-page-chanuka.jpg";
-    if (normalized.includes("cv") || normalized.includes("ats")) return "/images/chanuka-jeewantha-career-development-specialist.jpg";
-    return "/images/hero-chanuka.jpg";
   };
 
   return (
@@ -210,14 +203,20 @@ export default async function BlogPage({
                 {visiblePosts.map((post) => {
                   const contentPost = getPostBySlug(post.slug);
                   const packageSlug = post.packageSlug ?? contentPost?.packageSlug;
+                  const coverImage = getBlogCoverImage({
+                    ...post,
+                    coverImage: post.coverImage ?? contentPost?.coverImage,
+                    keywords: post.keywords ?? contentPost?.keywords,
+                  });
 
                   return (
  <div key={post.slug} className="bg-white border border-zinc-200 rounded-[24px] p-5 hover:shadow-xl hover:border-brand-main/30 transition-all group flex flex-col">
                       <div className="relative w-full h-[200px] bg-zinc-100 rounded-[16px] overflow-hidden mb-5 flex-shrink-0">
                         <Image
-                          src={getCoverImage(post.category)}
+                          src={coverImage}
                           alt={post.title}
                           fill
+                          unoptimized={isGeneratedBlogCoverImage(coverImage)}
                           sizes="(max-width: 1024px) 100vw, 33vw"
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />

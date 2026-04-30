@@ -26,12 +26,6 @@ function getItemPrice(item: SelectableItem): number {
   return getBundlePrice(item.data).discountedLkr;
 }
 
-function getItemCategory(item: SelectableItem): string {
-  if (item.kind === "package") return item.data.category;
-  if (item.kind === "ebook") return "Ebook";
-  return "Ebook Bundle";
-}
-
 function buildWhatsAppMessage(selected: SelectableItem[]): string {
   if (selected.length === 0) return "";
 
@@ -84,12 +78,17 @@ export default function WhatsAppOrderModal({ isOpen, onClose, preSelectedKey }: 
 
   // Pre-select item when modal opens
   useEffect(() => {
-    if (isOpen && preSelectedKey) {
-      setSelected(new Set([preSelectedKey]));
-    }
-    if (!isOpen) {
-      setSelected(new Set());
-    }
+    const timer = window.setTimeout(() => {
+      if (isOpen && preSelectedKey) {
+        setSelected(new Set([preSelectedKey]));
+        return;
+      }
+      if (!isOpen) {
+        setSelected(new Set());
+      }
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, [isOpen, preSelectedKey]);
 
   // Close on Escape

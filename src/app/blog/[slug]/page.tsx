@@ -13,6 +13,7 @@ import { getBaseUrl } from "@/lib/site-url";
 import { packageProducts } from "@/lib/packages-catalog";
 import { isIndexableFallbackBlogPost } from "@/lib/blog-discovery";
 import { getBlogPostLanguage, getSinhalaHreflangAlternates } from "@/lib/blog-i18n";
+import { getBlogCoverImage, isGeneratedBlogCoverImage } from "@/lib/blog-images";
 
 export async function generateMetadata({
   params,
@@ -27,13 +28,14 @@ export async function generateMetadata({
     publishedAt?: string | Date | null;
     updatedAt?: string | Date | null;
     category?: string | null;
+    coverImage?: string | null;
     keywords?: string[];
   } | null = null;
   if (process.env.DATABASE_URL) {
     try {
       post = await prisma.post.findUnique({
         where: { slug },
-        select: { title: true, excerpt: true, publishedAt: true, updatedAt: true, category: true },
+        select: { title: true, excerpt: true, publishedAt: true, updatedAt: true, category: true, coverImage: true },
       });
     } catch {
       post = null;
@@ -49,6 +51,7 @@ export async function generateMetadata({
           publishedAt: fallback.publishedAt ?? null,
           updatedAt: fallback.publishedAt ?? null,
           category: fallback.category,
+          coverImage: fallback.coverImage,
           keywords: fallback.keywords,
         }
       : null;
@@ -125,6 +128,7 @@ export default async function BlogPostPage({
         category: string;
         publishedAt: Date | null;
         updatedAt: Date | null;
+        coverImage: string | null;
       }
     | null = null;
 
@@ -141,6 +145,7 @@ export default async function BlogPostPage({
           category: true,
           publishedAt: true,
           updatedAt: true,
+          coverImage: true,
         },
       });
     } catch {
@@ -159,6 +164,7 @@ export default async function BlogPostPage({
         category: fallbackPost.category,
         publishedAt: fallbackPost.publishedAt ? new Date(fallbackPost.publishedAt) : null,
         updatedAt: fallbackPost.publishedAt ? new Date(fallbackPost.publishedAt) : null,
+        coverImage: fallbackPost.coverImage ?? null,
       };
     }
   }
@@ -185,13 +191,21 @@ export default async function BlogPostPage({
 
   const title = post.title;
   const contentPost = getPostBySlug(post.slug) ?? fallbackPost;
+  const featuredImage = getBlogCoverImage({
+    slug: post.slug,
+    title,
+    excerpt: post.excerpt,
+    category: post.category,
+    coverImage: post.coverImage ?? contentPost?.coverImage,
+    keywords: contentPost?.keywords,
+  });
   const isAboutChanukaArticle = post.slug === "about-chanuka-jeewantha";
   const recentPosts = blogPosts
     .filter((item) => item.slug !== post.slug && isIndexableFallbackBlogPost(item))
     .slice(0, 3);
   const baseUrl = getBaseUrl();
   const articleUrl = `${baseUrl}/blog/${post.slug}`;
-  const articleImageUrl = `${baseUrl}/blog/${post.slug}/opengraph-image`;
+  const articleImageUrl = featuredImage.startsWith("http") ? featuredImage : `${baseUrl}${featuredImage}`;
   const publishedIso = post.publishedAt ? post.publishedAt.toISOString() : new Date().toISOString();
   const modifiedIso = post.updatedAt ? post.updatedAt.toISOString() : publishedIso;
   const wordCount = post.content.split(/\s+/).filter(Boolean).length;
@@ -374,10 +388,11 @@ export default async function BlogPostPage({
               {/* Featured Image */}
  <div className="relative w-full h-[420px] md:h-[520px] rounded-[20px] overflow-hidden mb-4 border border-zinc-200">
                 <Image
-                  src="/images/about-page-chanuka.jpg"
-                  alt="About Chanuka Jeewantha"
+                  src={featuredImage}
+                  alt={`${title} article cover`}
                   fill
                   priority
+                  unoptimized={isGeneratedBlogCoverImage(featuredImage)}
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 65vw"
                 />
@@ -408,10 +423,10 @@ export default async function BlogPostPage({
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
  <div className="relative h-[320px] rounded-[20px] overflow-hidden border border-zinc-200">
-                        <Image src="/images/about-chanuka.jpg" alt="Chanuka Jeewantha career consultation" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+                        <Image src="/images/blog/career-planning.svg" alt="Career planning roadmap" fill unoptimized className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
                       </div>
  <div className="relative h-[320px] rounded-[20px] overflow-hidden border border-zinc-200">
-                        <Image src="/images/chanuka-jeewantha-career-development-specialist.jpg" alt="Chanuka Jeewantha career development specialist" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+                        <Image src="/images/blog/cv-writing.svg" alt="Professional CV writing structure" fill unoptimized className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
                       </div>
                     </div>
 
@@ -425,7 +440,7 @@ export default async function BlogPostPage({
                     </ul>
 
  <div className="relative w-full h-[360px] rounded-[20px] overflow-hidden border border-zinc-200 my-10">
-                      <Image src="/images/linkedin-optimization-30k-followers-proof.jpg" alt="LinkedIn optimization and follower growth proof" fill className="object-cover" sizes="100vw" />
+                      <Image src="/images/blog/linkedin.svg" alt="LinkedIn profile optimization system" fill unoptimized className="object-cover" sizes="100vw" />
                     </div>
 
                     <h3 className="text-[28px] font-bold font-plus-jakarta text-foreground mt-10 mb-4">Who this is ideal for</h3>
@@ -595,13 +610,17 @@ export default async function BlogPostPage({
  <div className="bg-zinc-50 rounded-[20px] p-8">
                 <h4 className="text-[20px] font-bold font-plus-jakarta text-foreground mb-6">Recent Posts</h4>
                 <div className="flex flex-col gap-6">
-                  {recentPosts.map((recentPost, index) => (
+                  {recentPosts.map((recentPost) => {
+                    const recentCoverImage = getBlogCoverImage(recentPost);
+
+                    return (
                     <Link href={`/blog/${recentPost.slug}`} key={recentPost.slug} className="flex gap-4 group">
  <div className="relative w-[80px] h-[80px] rounded-[10px] flex-shrink-0 overflow-hidden border border-zinc-200">
                         <Image
-                          src={index % 2 === 0 ? "/images/about-chanuka.jpg" : "/images/testimonial-chanuka.jpg"}
+                          src={recentCoverImage}
                           alt={recentPost.title}
                           fill
+                          unoptimized={isGeneratedBlogCoverImage(recentCoverImage)}
                           className="object-cover"
                           sizes="80px"
                         />
@@ -611,7 +630,8 @@ export default async function BlogPostPage({
                         <span className="text-xs text-text-light">{recentPost.publishedAt}</span>
                       </div>
                     </Link>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 

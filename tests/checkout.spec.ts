@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test.describe("Checkout flow", () => {
   test("pricing page loads and shows packages with Add to Cart buttons", async ({ page }) => {
-    await page.goto("/pricing");
+    await page.goto("/pricing", { waitUntil: "domcontentloaded" });
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
 
     // At least one "Add to Cart" button should be present
@@ -12,14 +12,14 @@ test.describe("Checkout flow", () => {
 
   test("cart page redirects unauthenticated user to sign-in when proceeding to checkout", async ({ page }) => {
     // Visit checkout directly without auth — should redirect to sign-in
-    await page.goto("/checkout");
+    await page.goto("/checkout", { waitUntil: "domcontentloaded" });
 
     // Should be redirected to sign-in or show a sign-in prompt
     await expect(page).toHaveURL(/\/(auth\/signin|signin|sign-in|login)|checkout/, { timeout: 5000 });
   });
 
   test("cart page is accessible and shows empty state for unauthenticated user", async ({ page }) => {
-    await page.goto("/cart");
+    await page.goto("/cart", { waitUntil: "domcontentloaded" });
 
     // Page should load without server error
     await expect(page).not.toHaveURL(/error/);
@@ -30,7 +30,7 @@ test.describe("Checkout flow", () => {
   });
 
   test("buy now link from pricing navigates to checkout with product param", async ({ page }) => {
-    await page.goto("/pricing");
+    await page.goto("/pricing", { waitUntil: "domcontentloaded" });
 
     // Find a "Buy Now" link (WhatsApp or direct checkout)
     const buyNowLink = page.getByRole("link", { name: /buy now|order now|checkout/i }).first();
@@ -42,7 +42,7 @@ test.describe("Checkout flow", () => {
 
   test("checkout page renders order form elements", async ({ page }) => {
     // Go to checkout with buy_now mode for a known product slug
-    await page.goto("/checkout?mode=buy_now&productId=cv-starter");
+    await page.goto("/checkout?mode=buy_now&productId=cv-starter", { waitUntil: "domcontentloaded" });
 
     // The page should render some form fields or a redirect
     const nameInput = page.getByLabel(/your name|full name/i);

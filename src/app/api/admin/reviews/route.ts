@@ -62,3 +62,16 @@ export async function PATCH(request: Request) {
 
   return NextResponse.json({ ok: true, review });
 }
+
+export async function DELETE(request: Request) {
+  const admin = await requireAdmin(request);
+  if (!admin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  const body = await request.json() as { id?: string };
+  if (!body.id) return NextResponse.json({ error: "id is required" }, { status: 400 });
+
+  await prisma.serviceReview.delete({ where: { id: body.id } });
+  revalidateTag("public-reviews", "global");
+
+  return NextResponse.json({ ok: true });
+}

@@ -28,8 +28,8 @@ export default function BeforeAfterSlider({
   className = "",
 }: BeforeAfterSliderProps) {
   const [position, setPosition] = useState(initialPosition);
+  const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const isDragging = useRef(false);
 
   const updatePosition = useCallback((clientX: number) => {
     const container = containerRef.current;
@@ -40,19 +40,19 @@ export default function BeforeAfterSlider({
   }, []);
 
   const onMouseDown = useCallback(() => {
-    isDragging.current = true;
+    setIsDragging(true);
   }, []);
 
   const onMouseMove = useCallback(
     (e: React.MouseEvent) => {
-      if (!isDragging.current) return;
+      if (!isDragging) return;
       updatePosition(e.clientX);
     },
-    [updatePosition]
+    [isDragging, updatePosition]
   );
 
   const onMouseUp = useCallback(() => {
-    isDragging.current = false;
+    setIsDragging(false);
   }, []);
 
   const onTouchMove = useCallback(
@@ -74,7 +74,7 @@ export default function BeforeAfterSlider({
       onMouseMove={onMouseMove}
       onMouseUp={onMouseUp}
       onMouseLeave={onMouseUp}
-      style={{ cursor: isDragging.current ? "col-resize" : "default" }}
+      style={{ cursor: isDragging ? "col-resize" : "default" }}
       role="img"
       aria-label={`Before and after comparison: ${beforeAlt} vs ${afterAlt}`}
     >
@@ -88,16 +88,13 @@ export default function BeforeAfterSlider({
       />
 
       {/* BEFORE image (clipped to left of divider) */}
-      <div
-        className="absolute inset-0 overflow-hidden"
-        style={{ width: `${position}%` }}
-      >
+      <div className="absolute inset-0 overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={beforeSrc}
           alt={beforeAlt}
           className="absolute top-0 left-0 w-full h-full object-cover"
-          style={{ width: containerRef.current?.offsetWidth ?? "100%" }}
+          style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
           draggable={false}
         />
       </div>
@@ -123,9 +120,9 @@ export default function BeforeAfterSlider({
  className="absolute top-1/2 z-20 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-xl ring-2 ring-brand-main focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-main transition-transform hover:scale-110 active:scale-95"
         style={{ left: `${position}%` }}
         onMouseDown={onMouseDown}
-        onTouchStart={() => { isDragging.current = true; }}
+        onTouchStart={() => { setIsDragging(true); }}
         onTouchMove={onTouchMove}
-        onTouchEnd={() => { isDragging.current = false; }}
+        onTouchEnd={() => { setIsDragging(false); }}
         onKeyDown={onKeyDown}
         aria-label={`Slide to compare before and after. Current position: ${Math.round(position)}%`}
         aria-valuemin={0}

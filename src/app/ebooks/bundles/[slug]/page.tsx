@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ebookBundles, ebooks, getEbookBundleBySlug, getBundlePrice } from "@/lib/ebooks";
 import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
-import { getBaseUrl } from "@/lib/site-url";
 
 const whatsappNumber = "94773902230";
 
@@ -28,8 +27,6 @@ export async function generateMetadata({ params }: BundlePageProps): Promise<Met
     });
   }
 
-  const { discountedLkr } = getBundlePrice(bundle);
-
   return buildPageMetadata({
     title: `${bundle.title} | ${bundle.discountPercent}% Off | Chanuka Ebooks`,
     description: bundle.description,
@@ -47,7 +44,6 @@ export default async function BundlePage({ params }: BundlePageProps) {
   const { originalLkr, discountedLkr, savingsLkr } = getBundlePrice(bundle);
   const bundleEbooks = bundle.ebookSlugs.map((s) => ebooks.find((e) => e.slug === s)).filter(Boolean);
 
-  const baseUrl = getBaseUrl();
   const bookListText = bundleEbooks.map((e) => e!.title).join(", ");
   const waText = `Hello Chanuka, I want to purchase the "${bundle.title}" bundle.\nBooks: ${bookListText}\nBundle Price: LKR ${discountedLkr.toLocaleString("en-LK")} (${bundle.discountPercent}% off)`;
 

@@ -49,11 +49,6 @@ function extractKeywords(text: string) {
     .map(([word]) => word);
 }
 
-function countMatches(text: string, terms: string[]) {
-  const haystack = text.toLowerCase();
-  return terms.filter((term) => haystack.includes(term.toLowerCase())).length;
-}
-
 function getAnalysis(cvText: string, jobDescription: string) {
   const cvWords = cvText.trim().split(/\s+/).filter(Boolean).length;
   const jobKeywords = extractKeywords(jobDescription);

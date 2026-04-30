@@ -6,7 +6,7 @@ const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
   {
-    files: ["**/*.cjs", "scripts/**/*.js", "scratch/**/*.js"],
+    files: ["**/*.cjs"],
     rules: {
       "@typescript-eslint/no-require-imports": "off",
     },
@@ -23,6 +23,13 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "append.js",
+    "fix*.js",
+    "Paid Ebooks/**",
+    "Portfolio/**",
+    "Resources/**",
+    "scratch/**",
+    "scripts/**",
   ]),
 ]);
 

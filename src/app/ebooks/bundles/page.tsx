@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ebookBundles, ebooks, getBundlePrice } from "@/lib/ebooks";
+import { ebookBundles, getBundlePrice } from "@/lib/ebooks";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -38,10 +38,6 @@ export default function BundlesPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {ebookBundles.map((bundle) => {
             const { originalLkr, discountedLkr, savingsLkr } = getBundlePrice(bundle);
-            const bundleEbookCovers = bundle.ebookSlugs
-              .map((s) => ebooks.find((e) => e.slug === s))
-              .filter(Boolean)
-              .slice(0, 3);
 
             return (
               <Link

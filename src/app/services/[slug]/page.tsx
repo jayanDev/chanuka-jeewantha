@@ -1,44 +1,36 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import AnimatedServiceTextVisual from "@/components/AnimatedServiceTextVisual";
 import SubscribeForm from "@/components/SubscribeForm";
 import { packageProducts } from "@/lib/packages-catalog";
 import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 
-const serviceMetadataMap: Record<string, { label: string; title: string; description: string; image: string; imageAlt: string }> = {
+const serviceMetadataMap: Record<string, { label: string; title: string; description: string }> = {
   "cv-writing": {
     label: "CV Writing",
     title: "CV Writing Service | ATS-Friendly CV Strategy",
     description:
       "Get ATS-friendly CV writing support with role-aligned positioning, measurable achievement language, and recruiter-ready structure.",
-    image: "/images/chanuka-jeewantha-career-development-specialist.jpg",
-    imageAlt: "CV writing service overview",
   },
   "cover-letter-writing": {
     label: "Cover Letter Writing",
     title: "Cover Letter Writing Service",
     description:
       "Professional cover letter writing tailored to your target role, highlighting your value with concise and persuasive messaging.",
-    image: "/images/about-page-chanuka.jpg",
-    imageAlt: "Cover letter writing service overview",
   },
   "linkedin-optimization": {
     label: "LinkedIn Optimization",
     title: "LinkedIn Optimization Service",
     description:
       "Improve your LinkedIn visibility with optimized headline, about section, keyword strategy, and profile positioning.",
-    image: "/images/linkedin-optimization-30k-followers-proof.jpg",
-    imageAlt: "LinkedIn optimization service overview",
   },
   "cv-review": {
     label: "CV Review",
     title: "CV Review Service",
     description:
       "Get expert feedback on your current CV with practical recommendations for ATS compatibility and stronger interview conversion.",
-    image: "/images/testimonial-chanuka.jpg",
-    imageAlt: "CV review service overview",
   },
 };
 
@@ -104,13 +96,7 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
  <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mx-auto max-w-4xl relative w-full aspect-[21/9] bg-zinc-200 rounded-[24px] mb-12 overflow-hidden">
-            <Image
-              src={entry.image}
-              alt={entry.imageAlt}
-              fill
-              sizes="(max-width: 1024px) 100vw, 1024px"
-              className="object-cover"
-            />
+            <AnimatedServiceTextVisual label={entry.label} variant="dark" className="h-full min-h-full rounded-[24px]" />
           </div>
 
           <article className="prose prose-lg mx-auto max-w-4xl prose-headings:font-plus-jakarta prose-headings:text-foreground prose-p:text-text-body prose-a:text-brand-main">
@@ -142,6 +128,7 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
                 <div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                   {relatedPackages.map((pkg) => (
  <div key={pkg.slug} className="rounded-[14px] border border-zinc-200 p-4 bg-zinc-50">
+                      <AnimatedServiceTextVisual label={pkg.name} className="mb-4 min-h-[120px] rounded-[12px]" />
                       <p className="font-semibold text-foreground mb-2">{pkg.name}</p>
                       <p className="text-sm text-text-body mb-3">{pkg.audience}</p>
                       <Link

@@ -2446,6 +2446,1137 @@ export const tutorials: Tutorial[] = [
     ],
     "cta": "ඔබගේ හැකියාවන් සජීවීව පෙන්වන Video Script එකක් හෝ Infographic නිර්මාණයක් අපෙන් සාදාගැනීමට අදම එකතු වන්න."
   }
+},
+{
+  "id": "111",
+  "categoryId": "a",
+  "coverImage": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&auto=format&fit=crop&q=80",
+  "en": {
+    "slug": "how-to-describe-achievements-in-a-cv",
+    "title": "How to Describe Achievements in a CV",
+    "seoTitle": "How to Write Achievements in a CV | Better Resume Results",
+    "metaDescription": "Learn how to convert daily job duties into measurable achievements that impress recruiters and increase interview calls.",
+    "intro": "Recruiters are not impressed by long lists of routine duties. They are impressed by outcomes.",
+    "problemExplanation": "Most CVs say things like 'Responsible for sales' or 'Handled operations.' Those lines sound generic and do not prove impact. Without quantifiable achievements, your profile blends into hundreds of similar applications.",
+    "whatIsIt": {
+      "heading": "What Is an Achievement Statement?",
+      "content": "An achievement statement is a result-focused bullet point that explains what you changed, improved, or delivered. It includes action, context, and measurable impact."
+    },
+    "whyItMatters": {
+      "heading": "Why Achievement-Based CVs Win",
+      "content": "Hiring managers decide quickly. Strong achievement bullets show business value in seconds and make your interview selection easier."
+    },
+    "stepByStep": [
+      {
+        "heading": "Step 1: Start with a strong action verb",
+        "content": "Use verbs like Led, Increased, Reduced, Designed, Implemented, and Optimized to show ownership."
+      },
+      {
+        "heading": "Step 2: Add context",
+        "content": "Briefly explain the project, team, or challenge so the result has meaning."
+      },
+      {
+        "heading": "Step 3: Quantify impact",
+        "content": "Use percentages, revenue, time saved, cost reduced, customer growth, or process speed."
+      },
+      {
+        "heading": "Step 4: Keep each bullet concise",
+        "content": "Aim for one to two lines per bullet, with direct language and no filler words."
+      },
+      {
+        "heading": "Step 5: Match achievements to the target role",
+        "content": "Select achievements aligned with the role's KPIs instead of listing everything you have done."
+      }
+    ],
+    "examples": {
+      "heading": "Duty vs Achievement Example",
+      "content": "**Weak:** Responsible for social media campaigns.\n**Strong:** Led paid social campaigns that increased qualified leads by 38% in 4 months while reducing cost per lead by 21%."
+    },
+    "commonMistakes": {
+      "heading": "Common Mistakes",
+      "content": "Using only duties, writing vague claims without numbers, exaggerating results, and adding irrelevant achievements that do not fit the target role."
+    },
+    "finalChecklist": [
+      "Does each bullet begin with an action verb?",
+      "Have I included measurable impact wherever possible?",
+      "Are my most relevant achievements at the top?",
+      "Is each achievement short and clear?",
+      "Can I explain each claim confidently in an interview?"
+    ],
+    "cta": "Need help transforming your job duties into high-impact achievement bullets? We can rewrite your CV for stronger interview results."
+  },
+  "si": {
+    "slug": "cv-eka-jayagrahana-liyana-hati",
+    "title": "CV එකේ ජයග්‍රහණ (Achievements) ලියන හොඳම ක්‍රමය",
+    "seoTitle": "CV Achievements ලියන ආකාරය | වැඩි Interview Calls",
+    "metaDescription": "සාමාන්‍ය duties වෙනුවට measurable achievements ලියන ආකාරය ඉගෙනගෙන ඔබගේ CV එක ප්‍රබල කරන්න.",
+    "intro": "Recruiter කෙනෙකුට ඔබ කළ දෛනික වැඩ ලැයිස්තුමත් කිරීම පමණක් ප්‍රමාණවත් නොවේ. ඔවුන්ට අවශ්‍ය වන්නේ ප්‍රතිඵලයයි.",
+    "problemExplanation": "බොහෝ CV වල 'Handled sales' වැනි පොදු වාක්‍ය පමණක් තිබේ. එයින් ඔබගේ සැබෑ වටිනාකම පෙන්වෙන්නේ නැත. අංක සහ ප්‍රතිඵල නොමැති CV එකක් පහසුවෙන් අමතක වේ.",
+    "whatIsIt": {
+      "heading": "Achievement statement එකක් කියන්නේ කුමක්ද?",
+      "content": "ඔබ කළ ක්‍රියාව, අදාළ පසුබිම සහ ලැබූ measurable ප්‍රතිඵලය කෙටිව දක්වන bullet point එකකි."
+    },
+    "whyItMatters": {
+      "heading": "මේ ක්‍රමය වැදගත් ඇයි?",
+      "content": "ආයතන බලන්නේ ඔබ ව්‍යාපාරයට ගෙන එන වටිනාකමයි. Achievement-based CV එකකින් ඒ බව තත්පර කිහිපයෙන් පෙන්විය හැක."
+    },
+    "stepByStep": [
+      {
+        "heading": "පියවර 1: බලවත් ක්‍රියා පදයකින් ආරම්භ කරන්න",
+        "content": "Led, Improved, Increased, Reduced වැනි action verbs භාවිත කර ownership එක පෙන්වන්න."
+      },
+      {
+        "heading": "පියවර 2: කෙටි context එකක් දෙන්න",
+        "content": "ව්‍යාපෘතිය හෝ ගැටළුව කෙටියෙන් සඳහන් කළාම ප්‍රතිඵලය තේරුම් ගැනීම පහසු වේ."
+      },
+      {
+        "heading": "පියවර 3: අංක භාවිත කරන්න",
+        "content": "ප්‍රතිශතය, මුදල් අගය, කාලය ඉතිරිවීම, කාර්යක්ෂමතාව වැඩිවීම වැනි දේ එකතු කරන්න."
+      },
+      {
+        "heading": "පියවර 4: දිග නොකරන්න",
+        "content": "Bullet එකක් lines 1-2 කට සීමා කර කියවීමට පහසු ලෙස ලියන්න."
+      },
+      {
+        "heading": "පියවර 5: Target job එකට ගැලපෙන achievements තෝරන්න",
+        "content": "හැම දෙයක්ම නොදමා, අදාළ තනතුරට වටිනා achievements පමණක් තෝරන්න."
+      }
+    ],
+    "examples": {
+      "heading": "දුර්වල vs ප්‍රබල උදාහරණයක්",
+      "content": "**Weak:** Social media manage කළා.\n**Strong:** මාස 4කදී paid campaigns optimize කර qualified leads 38% කින් වැඩි කර CPL 21% කින් අඩු කළා."
+    },
+    "commonMistakes": {
+      "heading": "සිදුවන වැරදි",
+      "content": "Duties පමණක් ලිවීම, numbers නොදැමීම, අතිශයෝක්තියෙන් ලිවීම, සහ target role එකට අදාළ නොවන කරුණු දමීම."
+    },
+    "finalChecklist": [
+      "සෑම bullet එකක්ම action verb එකකින් ආරම්භ වෙනවාද?",
+      "මැනිය හැකි ප්‍රතිඵලය ඇතුළත් කළාද?",
+      "අදාළ achievements මුලින්ම දාලා තියේද?",
+      "bullet points කෙටි සහ පැහැදිලිද?",
+      "Interview එකේදී මේ claims prove කළ හැකිද?"
+    ],
+    "cta": "ඔබගේ duties statements, result-driven achievements බවට අපි පරිවර්තනය කර දෙන්නම්. අදම ඔබේ CV එක optimize කරගන්න."
+  }
+},
+{
+  "id": "112",
+  "categoryId": "a",
+  "coverImage": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&auto=format&fit=crop&q=80",
+  "en": {
+    "slug": "how-to-write-a-job-winning-cv-profile",
+    "title": "How to Write a Job-Winning CV Profile",
+    "seoTitle": "CV Profile Writing Guide | Professional Summary That Gets Interviews",
+    "metaDescription": "Write a concise CV profile that positions your value in the first 5 seconds and improves shortlist rates.",
+    "intro": "Your CV profile is the first section recruiters read. If it is weak, they may never reach the rest of your CV.",
+    "problemExplanation": "Many candidates still write generic objectives like 'Seeking a challenging position.' That tells recruiters nothing about your actual value, achievements, or role fit.",
+    "whatIsIt": {
+      "heading": "What Is a CV Profile?",
+      "content": "A CV profile (professional summary) is a 3-5 line snapshot of your experience, strengths, and measurable impact relevant to the target job."
+    },
+    "whyItMatters": {
+      "heading": "Why This Section Is Critical",
+      "content": "A strong profile gives immediate clarity. It helps recruiters understand who you are, what level you operate at, and why they should continue reading."
+    },
+    "stepByStep": [
+      {
+        "heading": "Step 1: Identify your professional identity",
+        "content": "Start with your current role and years of experience in one clear sentence."
+      },
+      {
+        "heading": "Step 2: Add 2-3 core strengths",
+        "content": "Choose strengths that directly match the role, such as stakeholder management, data analysis, or process improvement."
+      },
+      {
+        "heading": "Step 3: Include one measurable result",
+        "content": "Add a proof point like revenue growth, productivity increase, or cost reduction."
+      },
+      {
+        "heading": "Step 4: Use role keywords",
+        "content": "Mirror the job description language so ATS and recruiters quickly see alignment."
+      },
+      {
+        "heading": "Step 5: Keep it concise and specific",
+        "content": "Avoid buzzwords and cliches. Focus on concrete value in under 80 words."
+      }
+    ],
+    "examples": {
+      "heading": "Strong CV Profile Example",
+      "content": "Results-driven Operations Executive with 6+ years of experience in FMCG distribution, inventory optimization, and vendor management. Improved order fulfilment accuracy from 89% to 97% and reduced logistics costs by 14% through route redesign and KPI-based tracking."
+    },
+    "commonMistakes": {
+      "heading": "Common Mistakes",
+      "content": "Writing an objective instead of a profile, using vague adjectives only, copying from online templates, and making the paragraph too long."
+    },
+    "finalChecklist": [
+      "Does my profile mention role + years of experience?",
+      "Did I include strengths relevant to this role?",
+      "Is there at least one measurable result?",
+      "Are role keywords naturally included?",
+      "Is the profile clear within 3-5 lines?"
+    ],
+    "cta": "Want a recruiter-ready profile that creates a strong first impression? Let us craft your CV summary professionally."
+  },
+  "si": {
+    "slug": "job-winning-cv-profile-liyana-hati",
+    "title": "Job-Winning CV Profile එකක් ලියන්නේ කෙසේද?",
+    "seoTitle": "Professional CV Summary ලියන මාර්ගෝපදේශය",
+    "metaDescription": "CV එකේ මුලින්ම කියවන Profile section එක ප්‍රබලව ලියා shortlist chance වැඩි කරගන්න.",
+    "intro": "Recruiter කෙනෙක් CV එක බැලූ විගස කියවන්නේ Profile section එකයි. ඒක දුර්වල නම් ඉතිරි කොටස් කියවීමටත් ඉඩ නැති වෙයි.",
+    "problemExplanation": "'Seeking a challenging position' වැනි objective වාක්‍ය අද කාලයට ගැලපෙන්නේ නැත. ඒවා ඔබගේ value එක හෝ results කිසිවක් පෙන්වන්නේ නැහැ.",
+    "whatIsIt": {
+      "heading": "CV Profile එක කියන්නේ කුමක්ද?",
+      "content": "ඔබගේ පළපුරුද්ද, ශක්තිමත් හැකියාවන් සහ measurable achievements 3-5 lines තුළ කෙටියෙන් දක්වන professional summary එකයි."
+    },
+    "whyItMatters": {
+      "heading": "මේ කොටස තීරණාත්මක ඇයි?",
+      "content": "Recruiter කෙනාට ඔබ කවුද, කුමන මට්ටමේද, සහ මේ role එකට ගැලපෙන්නේ ඇයි කියලා ඉක්මනින්ම තේරුම් ගන්න මෙය උදව් කරයි."
+    },
+    "stepByStep": [
+      {
+        "heading": "පියවර 1: ඔබගේ professional identity එක සඳහන් කරන්න",
+        "content": "වත්මන් role එක සහ years of experience එක පළමු වාක්‍යයෙන් දක්වන්න."
+      },
+      {
+        "heading": "පියවර 2: Role එකට ගැලපෙන strengths 2-3ක් දාන්න",
+        "content": "Leadership, analysis, communication වගේ target job එකට වැදගත් strengths තෝරන්න."
+      },
+      {
+        "heading": "පියවර 3: අංක සහිත ප්‍රතිඵලයක් එකතු කරන්න",
+        "content": "Revenue, cost, productivity වගේ measurable impact එකක් දෙන්න."
+      },
+      {
+        "heading": "පියවර 4: Job description keywords ඇතුළත් කරන්න",
+        "content": "ATS match වීමට job ad එකේ keywords natural ලෙස යොදාගන්න."
+      },
+      {
+        "heading": "පියවර 5: 80 words වලට සීමා කරන්න",
+        "content": "දිගු paragraph නොලියා concise, value-focused summary එකක් ලියන්න."
+      }
+    ],
+    "examples": {
+      "heading": "හොඳ Profile උදාහරණයක්",
+      "content": "FMCG operations අංශයේ වසර 6+ අත්දැකීම් ඇති results-focused Operations Executive කෙනෙකි. Inventory planning සහ vendor coordination හරහා order accuracy 89% සිට 97% දක්වා ඉහළ නංවා logistics cost 14% කින් අඩු කළා."
+    },
+    "commonMistakes": {
+      "heading": "සුලභ වැරදි",
+      "content": "Objective statement දමීම, buzzwords පමණක් භාවිතා කිරීම, template copy-paste කිරීම, සහ profile එක අතිශය දිගු කිරීම."
+    },
+    "finalChecklist": [
+      "මගේ role + experience years දාලා තියේද?",
+      "target role එකට අදාළ strengths ඇතුළත්ද?",
+      "measurable result එකක් තියේද?",
+      "ATS keywords natural ලෙස ඇතුළත්ද?",
+      "3-5 lines තුළ පැහැදිලි summary එකක්ද?"
+    ],
+    "cta": "ඔබට වෙනස්ම first impression එකක් දෙන CV profile එකක් අපි professional ලෙස ලියා දෙන්නම්."
+  }
+},
+{
+  "id": "113",
+  "categoryId": "a",
+  "coverImage": "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&auto=format&fit=crop&q=80",
+  "en": {
+    "slug": "how-to-make-your-cv-more-attractive-to-employers",
+    "title": "How to Make Your CV More Attractive to Employers",
+    "seoTitle": "Make Your CV Attractive to Employers | Practical Resume Tips",
+    "metaDescription": "Improve your CV visual clarity and content strategy so employers quickly notice your value.",
+    "intro": "Attractive CVs are not about fancy graphics. They are about clarity, relevance, and proof of value.",
+    "problemExplanation": "Candidates often overdesign their resume while under-explaining impact. The result is a pretty document with weak hiring signals.",
+    "whatIsIt": {
+      "heading": "What Makes a CV Attractive to Employers?",
+      "content": "A CV is attractive when it is easy to scan, role-relevant, and supported by measurable achievements and clear structure."
+    },
+    "whyItMatters": {
+      "heading": "Why Presentation + Relevance Both Matter",
+      "content": "Recruiters skim fast. Strong structure helps readability, while targeted content helps decision-making. You need both to increase callbacks."
+    },
+    "stepByStep": [
+      {
+        "heading": "Step 1: Start with a clean layout",
+        "content": "Use clear headings, consistent spacing, and one readable font. Avoid visual clutter."
+      },
+      {
+        "heading": "Step 2: Tailor for each role",
+        "content": "Adjust profile, skills, and top achievements according to each job ad."
+      },
+      {
+        "heading": "Step 3: Use strategic keywords",
+        "content": "Include role-specific terms from the job description to improve ATS and recruiter match."
+      },
+      {
+        "heading": "Step 4: Prioritize results",
+        "content": "Show what changed because of your work using numbers and outcomes."
+      },
+      {
+        "heading": "Step 5: Remove low-value details",
+        "content": "Delete outdated, repetitive, or irrelevant points that dilute your strongest sections."
+      }
+    ],
+    "examples": {
+      "heading": "Attractive Bullet Example",
+      "content": "Designed and implemented a customer onboarding workflow that reduced drop-offs by 29% and improved first-month activation by 17%."
+    },
+    "commonMistakes": {
+      "heading": "Common Mistakes",
+      "content": "Using multiple colors/fonts, listing every task done, adding irrelevant personal details, and sending one generic CV everywhere."
+    },
+    "finalChecklist": [
+      "Is the CV easy to scan in 10 seconds?",
+      "Is content tailored to this job?",
+      "Did I show measurable impact?",
+      "Did I remove outdated information?",
+      "Is the final document ATS-friendly?"
+    ],
+    "cta": "Want your CV to stand out for the right reasons? We can professionally optimize both structure and content."
+  },
+  "si": {
+    "slug": "employers-la-ata-attractive-cv-ekak",
+    "title": "Employers ලාට ආකර්ෂණීය CV එකක් හදන්නේ කොහොමද?",
+    "seoTitle": "CV එක ආකර්ෂණීය කරගැනීම සඳහා Practical Tips",
+    "metaDescription": "ලස්සන design එකකට වඩා වැදගත් clarity, relevance සහ results. CV එක employer-friendly කරගන්නා ආකාරය ඉගෙනගන්න.",
+    "intro": "හොඳ CV එකක් කියන්නේ colors වැඩිපුර තියෙන design එකක් නොවෙයි. Recruiter කෙනාට තත්පර කිහිපයකින් value එක තේරුම් යන document එකකි.",
+    "problemExplanation": "බොහෝ අය design එකට වැඩි අවධානය දී content එක දුර්වලව තබනවා. එතකොට CV එක පේන්නේ ලස්සනට, නමුත් shortlist වීමට අවශ්‍ය evidence නැහැ.",
+    "whatIsIt": {
+      "heading": "Employer-friendly CV එක කියන්නේ මොකක්ද?",
+      "content": "කියවීමට පහසු structure එකක්, role එකට අදාළ content එකක්, සහ measurable achievements සහිත CV එකක්."
+    },
+    "whyItMatters": {
+      "heading": "මේ දෙකම (presentation + relevance) අවශ්‍ය ඇයි?",
+      "content": "Recruiters CV එක ඉක්මනින් scan කරනවා. කියවීමට පහසු format එකක් සහ role-fit content එකක් එකට තිබ්බොත් callback chance එක වැඩිවේ."
+    },
+    "stepByStep": [
+      {
+        "heading": "පියවර 1: Clean layout එකක් භාවිතා කරන්න",
+        "content": "එකම font එක, clear headings, සහ consistent spacing භාවිතා කරන්න."
+      },
+      {
+        "heading": "පියවර 2: Role එකකට role එකට tailor කරන්න",
+        "content": "Profile, skills, top achievements එකක් එකක් job description එකට අනුව වෙනස් කරන්න."
+      },
+      {
+        "heading": "පියවර 3: Strategic keywords දාන්න",
+        "content": "ATS pass වීමට role-specific terms natural ලෙස ඇතුළත් කරන්න."
+      },
+      {
+        "heading": "පියවර 4: Results ඉස්මතු කරන්න",
+        "content": "ඔබ කළ වැඩේ අවසාන ප්‍රතිඵලය අංක සමඟ පෙන්වන්න."
+      },
+      {
+        "heading": "පියවර 5: Low-value details ඉවත් කරන්න",
+        "content": "අදාළ නොවන, පරණ, repeat වන දේ ඉවත් කර strongest points ඉස්මතු කරන්න."
+      }
+    ],
+    "examples": {
+      "heading": "හොඳ bullet එකක්",
+      "content": "Customer onboarding process එක redesign කර drop-off rate 29% කින් අඩු කර first-month activation 17% කින් වැඩි කළා."
+    },
+    "commonMistakes": {
+      "heading": "සිදුවන වැරදි",
+      "content": "Fonts/colors වැඩියෙන් භාවිතා කිරීම, generic CV එකක් හැම job එකකටම යැවීම, සහ measurable results නොදැමීම."
+    },
+    "finalChecklist": [
+      "CV එක තත්පර 10කින් scan කරගත හැකිද?",
+      "content role එකට tailor කරලාද?",
+      "results numbers එක්ක දැම්මාද?",
+      "පරණ/අදාළ නොවන දේ ඉවත් කළාද?",
+      "ATS-friendly document එකක්ද?"
+    ],
+    "cta": "ඔබේ CV එක employer-friendly, shortlist-ready document එකක් බවට පත් කිරීමට අපි සහය දෙන්නම්."
+  }
+},
+{
+  "id": "114",
+  "categoryId": "a",
+  "coverImage": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&auto=format&fit=crop&q=80",
+  "en": {
+    "slug": "common-cv-problems-and-how-to-fix-them",
+    "title": "Common CV Problems and How to Fix Them",
+    "seoTitle": "Most Common CV Mistakes and Fixes | Resume Troubleshooting",
+    "metaDescription": "Identify the most common reasons CVs fail and apply practical fixes to improve your interview conversion rate.",
+    "intro": "If your CV is not getting responses, it is usually not one huge mistake. It is a series of small issues.",
+    "problemExplanation": "Weak summaries, poor formatting, irrelevant details, and missing achievements quietly reduce your chances. Many candidates never diagnose these issues objectively.",
+    "whatIsIt": {
+      "heading": "What Is CV Troubleshooting?",
+      "content": "CV troubleshooting is a structured process of finding and fixing content, formatting, and strategy issues that block interview calls."
+    },
+    "whyItMatters": {
+      "heading": "Why a Diagnostic Approach Works",
+      "content": "When you systematically fix each weakness, the CV becomes clearer, stronger, and more aligned with hiring expectations."
+    },
+    "stepByStep": [
+      {
+        "heading": "Step 1: Audit your summary",
+        "content": "Replace generic objective lines with a targeted professional profile."
+      },
+      {
+        "heading": "Step 2: Check structure and readability",
+        "content": "Ensure headings, spacing, and bullet consistency. Remove visual confusion."
+      },
+      {
+        "heading": "Step 3: Improve achievement quality",
+        "content": "Convert weak duty bullets into measurable impact statements."
+      },
+      {
+        "heading": "Step 4: Align with job keywords",
+        "content": "Add relevant terms from the target role so ATS and recruiters can match quickly."
+      },
+      {
+        "heading": "Step 5: Remove unnecessary content",
+        "content": "Delete outdated software, irrelevant school details, and long personal descriptions."
+      }
+    ],
+    "examples": {
+      "heading": "Simple Fix Example",
+      "content": "**Before:** Responsible for reporting.\n**After:** Automated weekly reporting workflow, reducing report preparation time by 6 hours per week."
+    },
+    "commonMistakes": {
+      "heading": "Problems to Watch",
+      "content": "Too many pages without value, inconsistent tense, weak verbs, keyword stuffing, and grammar mistakes."
+    },
+    "finalChecklist": [
+      "Is my profile targeted and clear?",
+      "Is the structure clean and consistent?",
+      "Did I replace duties with achievements?",
+      "Is ATS keyword alignment in place?",
+      "Did I proofread grammar and spelling?"
+    ],
+    "cta": "Need a complete CV audit with practical fixes? We can diagnose and rewrite your document professionally."
+  },
+  "si": {
+    "slug": "common-cv-problems-fix-karana-hati",
+    "title": "CV වල සුලභ ගැටලු සහ ඒවා විසඳන ක්‍රම",
+    "seoTitle": "Common CV Mistakes හඳුනාගෙන Fix කරන ආකාරය",
+    "metaDescription": "Interview calls අඩුවීමට හේතු වන CV ගැටලු හඳුනාගෙන ප්‍රායෝගිකව සකස් කරගන්නා ආකාරය.",
+    "intro": "CV එකට responses අඩු නම් ඒක බොහෝවිට එක ලොකු වැරද්දක් නොවෙයි. කුඩා වැරදි කීපයක් එකට එකතු වීමේ ප්‍රතිඵලයක්.",
+    "problemExplanation": "Weak profile, poor formatting, irrelevant details, measurable results නොමැතිවීම වැනි දේ shortlist chance එක අඩු කරනවා. බොහෝ දෙනා ඒවා diagnose කරන්නේ නැහැ.",
+    "whatIsIt": {
+      "heading": "CV troubleshooting කියන්නේ කුමක්ද?",
+      "content": "CV එකේ content, formatting සහ strategy ගැටලු හඳුනාගෙන එකින් එක නිවැරදි කිරීමේ විධිමත් ක්‍රියාවලිය."
+    },
+    "whyItMatters": {
+      "heading": "මෙය ප්‍රයෝජනවත් ඇයි?",
+      "content": "Systematic විදිහට fix කළාම CV එක පැහැදිලි, ප්‍රබල, සහ hiring expectations වලට ගැලපෙන තත්ත්වයට පත්වේ."
+    },
+    "stepByStep": [
+      {
+        "heading": "පියවර 1: Summary එක audit කරන්න",
+        "content": "Generic objective ඉවත් කර targeted professional profile එකක් දාන්න."
+      },
+      {
+        "heading": "පියවර 2: Structure/readability පරීක්ෂා කරන්න",
+        "content": "Headings, spacing, bullets consistency තහවුරු කර visual clutter ඉවත් කරන්න."
+      },
+      {
+        "heading": "පියවර 3: Duty bullets improve කරන්න",
+        "content": "Routine task lines measurable achievement statements බවට පරිවර්තනය කරන්න."
+      },
+      {
+        "heading": "පියවර 4: Job keywords align කරන්න",
+        "content": "Target role එකේ keywords natural ලෙස එක්කර ATS match වැඩි කරන්න."
+      },
+      {
+        "heading": "පියවර 5: අදාළ නොවන content ඉවත් කරන්න",
+        "content": "පරණ software lists, irrelevant personal details, unnecessary paragraphs ඉවත් කරන්න."
+      }
+    ],
+    "examples": {
+      "heading": "Fix උදාහරණයක්",
+      "content": "**Before:** Reporting handled.\n**After:** Weekly reporting process automate කර preparation time සතියකට පැය 6කින් අඩු කළා."
+    },
+    "commonMistakes": {
+      "heading": "මග හැරිය යුතු දේ",
+      "content": "Value නොමැති දිගු pages, inconsistent tense, weak verbs, keyword stuffing, grammar mistakes."
+    },
+    "finalChecklist": [
+      "Profile එක targeted සහ පැහැදිලිද?",
+      "Layout එක clean සහ consistentද?",
+      "Duties -> achievements ලෙස convert කළාද?",
+      "ATS keywords alignment තිබේද?",
+      "Final proofreading කළාද?"
+    ],
+    "cta": "ඔබේ CV එක troubleshoot කර shortlist-ready document එකක් බවට පත් කිරීමට අපගේ professional audit සේවාව ලබාගන්න."
+  }
+},
+{
+  "id": "115",
+  "categoryId": "a",
+  "coverImage": "https://images.unsplash.com/photo-1521790945508-bf2a36314e85?w=1200&auto=format&fit=crop&q=80",
+  "en": {
+    "slug": "how-long-should-a-cv-be",
+    "title": "How Long Should a CV Be?",
+    "seoTitle": "Ideal CV Length Guide | One Page vs Two Pages",
+    "metaDescription": "Understand the best CV length by career stage and role type so your resume stays concise but complete.",
+    "intro": "One page or two pages? This question confuses almost every job seeker.",
+    "problemExplanation": "Some candidates overload their CV with everything they have ever done, while others remove too much and lose important value signals. Both hurt hiring decisions.",
+    "whatIsIt": {
+      "heading": "What Is the Ideal CV Length?",
+      "content": "The ideal length depends on relevance and experience level, not strict page rules. Most candidates perform best with 1-2 focused pages."
+    },
+    "whyItMatters": {
+      "heading": "Why Length Affects Results",
+      "content": "If the CV is too long, key points get buried. If too short, credibility drops. Balanced length keeps attention and trust."
+    },
+    "stepByStep": [
+      {
+        "heading": "Step 1: Freshers should target one page",
+        "content": "For internships and entry roles, one page is usually enough when structured properly."
+      },
+      {
+        "heading": "Step 2: Mid-career can use two pages",
+        "content": "With 5+ years of relevant experience, two pages are acceptable if every section adds value."
+      },
+      {
+        "heading": "Step 3: Prioritize relevance over chronology",
+        "content": "Do not list everything. Highlight only experience and achievements relevant to the target role."
+      },
+      {
+        "heading": "Step 4: Reduce low-value sections",
+        "content": "Remove outdated trainings, old school details, and repetitive responsibilities."
+      },
+      {
+        "heading": "Step 5: Review with a 10-second scan test",
+        "content": "If a recruiter cannot identify role fit quickly, tighten and reorganize content."
+      }
+    ],
+    "examples": {
+      "heading": "Practical Rule",
+      "content": "If a section does not help you win the target role, it should be shortened or removed regardless of page count."
+    },
+    "commonMistakes": {
+      "heading": "Length Mistakes",
+      "content": "Using tiny fonts to force content into one page, expanding to three pages without senior-level relevance, and repeating the same information across sections."
+    },
+    "finalChecklist": [
+      "Is the length right for my experience level?",
+      "Is every section relevant to this role?",
+      "Can key value points be seen quickly?",
+      "Did I remove repetitive content?",
+      "Is the document still comfortable to read?"
+    ],
+    "cta": "Not sure if your CV is too long or too short? We can optimize length and structure for your target role."
+  },
+  "si": {
+    "slug": "cv-ekata-kochchara-digak-ona-da",
+    "title": "CV එක කොච්චර දිගක් වෙන්න ඕනෙද?",
+    "seoTitle": "One Page ද Two Pages ද? CV Length Guide",
+    "metaDescription": "ඔබේ career stage එකට ගැලපෙන CV length එක තෝරාගෙන concise සහ complete document එකක් හදාගන්න.",
+    "intro": "One page ද? Two pages ද? බොහෝ job seekers ලාට තියෙන ප්‍රධානම CV ප්‍රශ්නය මේකයි.",
+    "problemExplanation": "සමහර අය හැමදේම CV එකට දාලා දිග වැඩි කරනවා. තවත් සමහර අය වැඩිපුර remove කරලා key evidence නැති කරනවා. දෙකම අවාසියක්.",
+    "whatIsIt": {
+      "heading": "Ideal CV length එක කියන්නේ කුමක්ද?",
+      "content": "Strict page rule එකක් වඩා relevance සහ experience level එක වැදගත්. බොහෝ අයට 1-2 focused pages හොඳම option එක."
+    },
+    "whyItMatters": {
+      "heading": "දිග interview chance එකට බලපාන්නේ ඇයි?",
+      "content": "දිග වැඩි නම් key points නැතිවෙලා යයි. අඩු වැඩිත් වටිනාකම පෙන්වෙන්නේ නැත. Balanced length එක recruiter attention එක තබාගනී."
+    },
+    "stepByStep": [
+      {
+        "heading": "පියවර 1: Freshers ලා one page target කරන්න",
+        "content": "Entry-level/Internship roles සඳහා හොඳ structure එකක් එක්ක one page සාමාන්‍යයෙන් ප්‍රමාණවත්."
+      },
+      {
+        "heading": "පියවර 2: Mid-career සඳහා two pages accept කළ හැක",
+        "content": "5+ years relevant experience තියේ නම් value-add content එකක් සහිත pages දෙකක් සාධාරණයි."
+      },
+      {
+        "heading": "පියවර 3: Relevance priority දෙන්න",
+        "content": "හැම අත්දැකීමක්ම දාන්න එපා. target role එකට අදාළ ඒවා පමණක් ඉස්මතු කරන්න."
+      },
+      {
+        "heading": "පියවර 4: Low-value sections කපාහරින්න",
+        "content": "පරණ trainings, irrelevant school details, repeated tasks ඉවත් කරන්න."
+      },
+      {
+        "heading": "පියවර 5: 10-second scan test කරන්න",
+        "content": "Recruiter කෙනාට තත්පර 10කින් role-fit එක තේරෙන්නේ නැත්නම් content තව tighten කරන්න."
+      }
+    ],
+    "examples": {
+      "heading": "ප්‍රායෝගික නීතිය",
+      "content": "Target job එක දිනාගැනීමට උදව් නොකරන කොටසක් නම් pages ගණන බැලුවත් නැතත් reduce/ remove කරන්න."
+    },
+    "commonMistakes": {
+      "heading": "දිග සම්බන්ධ වැරදි",
+      "content": "Tiny fonts භාවිත කර one page බලෙන් හදීම, senior relevance නැතුව pages 3කට දිගු කිරීම, සහ එකම කරුණු නැවත නැවත ලිවීම."
+    },
+    "finalChecklist": [
+      "මගේ experience level එකට length ගැලපෙනවාද?",
+      "සෑම section එකක්ම role එකට අදාළද?",
+      "key value points ඉක්මනින්ම පේනවාද?",
+      "repeat content ඉවත් කළාද?",
+      "කියවීමට පහසු layout එකක්ද?"
+    ],
+    "cta": "ඔබගේ CV length එක strategy එකකට ගැලපෙන ලෙස optimize කර shortlist chance වැඩි කරගන්න."
+  }
+},
+{
+  "id": "116",
+  "categoryId": "a",
+  "coverImage": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&auto=format&fit=crop&q=80",
+  "en": {
+    "slug": "what-is-the-best-layout-for-a-professional-cv",
+    "title": "What Is the Best Layout for a Professional CV?",
+    "seoTitle": "Best Professional CV Layout | Modern Resume Structure",
+    "metaDescription": "Learn the most effective CV layout for readability, ATS compatibility, and recruiter attention.",
+    "intro": "A strong layout helps recruiters find your value quickly. A poor layout hides even great experience.",
+    "problemExplanation": "Many candidates use overdesigned templates with columns, icons, and text boxes that hurt ATS parsing and readability.",
+    "whatIsIt": {
+      "heading": "What Is a Professional CV Layout?",
+      "content": "A professional layout is a clean single-column structure with clear hierarchy, predictable section order, and easy scanning."
+    },
+    "whyItMatters": {
+      "heading": "Why Layout Decides Readability",
+      "content": "Recruiters spend limited time per CV. Good structure reduces cognitive load and improves your chances of being shortlisted."
+    },
+    "stepByStep": [
+      {
+        "heading": "Step 1: Use single-column format",
+        "content": "Single-column layouts are safest for ATS and easiest for humans to read."
+      },
+      {
+        "heading": "Step 2: Follow logical section order",
+        "content": "Header, profile, skills, experience, education, and optional certifications is a proven structure."
+      },
+      {
+        "heading": "Step 3: Maintain visual consistency",
+        "content": "Use one font family, clear heading sizes, and consistent spacing/margins."
+      },
+      {
+        "heading": "Step 4: Use bullet points effectively",
+        "content": "Keep bullets concise and impact-focused. Avoid long paragraph blocks."
+      },
+      {
+        "heading": "Step 5: Leave enough white space",
+        "content": "Balanced spacing increases readability and gives your key points room to stand out."
+      }
+    ],
+    "examples": {
+      "heading": "Section Order Example",
+      "content": "Name & Contact -> Professional Summary -> Core Skills -> Work Experience -> Education -> Certifications"
+    },
+    "commonMistakes": {
+      "heading": "Layout Mistakes",
+      "content": "Multi-column design for ATS roles, inconsistent margins, too many decorative elements, and dense text blocks without spacing."
+    },
+    "finalChecklist": [
+      "Is my layout ATS-safe and readable?",
+      "Are sections in logical order?",
+      "Is visual style consistent throughout?",
+      "Are bullets concise and impact-focused?",
+      "Does white space make reading easier?"
+    ],
+    "cta": "Need a recruiter-tested CV layout that is both modern and ATS-safe? We can redesign your CV structure professionally."
+  },
+  "si": {
+    "slug": "professional-cv-layout-hondama-kramaya",
+    "title": "Professional CV එකකට හොඳම Layout එක මොකක්ද?",
+    "seoTitle": "Best CV Layout Guide | ATS-friendly Structure",
+    "metaDescription": "ATS-compatible සහ recruiter-friendly CV layout එකක් සකස් කිරීමේ නිවැරදි ක්‍රමය.",
+    "intro": "ඔබේ අත්දැකීම් හොඳ වුනත් layout එක වැරදි නම් ඒවා recruiter කෙනාට පැහැදිලිව පේන්නේ නැහැ.",
+    "problemExplanation": "අතිශය design templates, columns, icons, text boxes වගේ දේ ATS parsing වලට හා readability එකට බාධා කරයි.",
+    "whatIsIt": {
+      "heading": "Professional CV layout එක කියන්නේ කුමක්ද?",
+      "content": "Single-column, clear hierarchy, සහ predictable section order එකක් සහිත clean format එකකි."
+    },
+    "whyItMatters": {
+      "heading": "Layout එක වැදගත් ඇයි?",
+      "content": "Recruiters ලාට CV එක ඉක්මනින් scan කරන්න වෙනවා. හොඳ layout එකකින් key information ඉක්මනින්ම පෙනේ."
+    },
+    "stepByStep": [
+      {
+        "heading": "පියවර 1: Single-column format භාවිත කරන්න",
+        "content": "ATS සහ human readability දෙකටම safest option එක single-column layout එකයි."
+      },
+      {
+        "heading": "පියවර 2: Logical section order පවත්වාගන්න",
+        "content": "Header -> Summary -> Skills -> Experience -> Education -> Certifications වගේ order එකක් යොදාගන්න."
+      },
+      {
+        "heading": "පියවර 3: Visual consistency තබාගන්න",
+        "content": "එකම font family, consistent heading sizes, spacing සහ margins භාවිතා කරන්න."
+      },
+      {
+        "heading": "පියවර 4: Bullet points නිවැරදිව භාවිත කරන්න",
+        "content": "Long paragraphs වෙනුවට concise impact bullets භාවිතා කරන්න."
+      },
+      {
+        "heading": "පියවර 5: White space තබාගන්න",
+        "content": "අවශ්‍ය අතර ඉඩ තැබීමෙන් document එක කියවීමට පහසු වෙලා key points කැපී පෙනේ."
+      }
+    ],
+    "examples": {
+      "heading": "Recommended order එක",
+      "content": "Name/Contact -> Profile -> Core Skills -> Work Experience -> Education -> Certifications"
+    },
+    "commonMistakes": {
+      "heading": "Layout වැරදි",
+      "content": "ATS roles සඳහා multi-column design භාවිතා කිරීම, inconsistent margins, decorative elements වැඩිපුර යොදාගැනීම, dense text blocks."
+    },
+    "finalChecklist": [
+      "Layout එක ATS-safe ද?",
+      "Sections logical order එකට තියෙනවද?",
+      "Visual style consistent ද?",
+      "Bullets concise සහ impact-focused ද?",
+      "White space නිවැරදිව තියෙනවද?"
+    ],
+    "cta": "ඔබේ CV layout එක modern සහ ATS-friendly දෙකම වන ලෙස redesign කරගැනීමට අපෙන් සහය ලබාගන්න."
+  }
+},
+{
+  "id": "117",
+  "categoryId": "a",
+  "coverImage": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&auto=format&fit=crop&q=80",
+  "en": {
+    "slug": "how-to-format-a-cv-for-maximum-readability",
+    "title": "How to Format a CV for Maximum Readability",
+    "seoTitle": "CV Formatting for Readability | Practical Resume Formatting Tips",
+    "metaDescription": "Use formatting techniques that help recruiters scan your CV faster and understand your value instantly.",
+    "intro": "Formatting is not cosmetic. It directly affects whether your CV gets understood quickly.",
+    "problemExplanation": "Even strong candidates lose opportunities because their CV is hard to read: crowded lines, poor spacing, and inconsistent formatting.",
+    "whatIsIt": {
+      "heading": "What Is Readability-First Formatting?",
+      "content": "It is a formatting approach that prioritizes visual clarity, consistent structure, and fast information retrieval."
+    },
+    "whyItMatters": {
+      "heading": "Why Readability Influences Decisions",
+      "content": "Recruiters skim quickly. Better readability means your strongest points are seen, remembered, and trusted."
+    },
+    "stepByStep": [
+      {
+        "heading": "Step 1: Choose readable typography",
+        "content": "Use professional fonts like Calibri, Arial, or Helvetica with body size around 10.5-12."
+      },
+      {
+        "heading": "Step 2: Use consistent spacing",
+        "content": "Set uniform line spacing and section spacing so content feels organized."
+      },
+      {
+        "heading": "Step 3: Apply hierarchy clearly",
+        "content": "Use heading size, bold weight, and spacing to separate sections and priorities."
+      },
+      {
+        "heading": "Step 4: Keep bullets short",
+        "content": "Use one-line or two-line bullets focused on outcome and relevance."
+      },
+      {
+        "heading": "Step 5: Validate with print/PDF preview",
+        "content": "Always check final output on desktop and PDF to ensure clean alignment and no broken lines."
+      }
+    ],
+    "examples": {
+      "heading": "Formatting Win",
+      "content": "A well-spaced one-page CV with clear section headers often beats a denser two-page CV in first-round screening."
+    },
+    "commonMistakes": {
+      "heading": "Formatting Mistakes",
+      "content": "Random font sizes, inconsistent indentation, too much bold/italics, narrow margins, and heavy paragraph text."
+    },
+    "finalChecklist": [
+      "Is typography readable at first glance?",
+      "Are spacing rules consistent?",
+      "Do headings create clear hierarchy?",
+      "Are bullets concise and scannable?",
+      "Does the final PDF look clean?"
+    ],
+    "cta": "Want your CV formatted to maximize readability and recruiter response? We can professionally polish your final document."
+  },
+  "si": {
+    "slug": "cv-format-karana-honda-kramaya-readability",
+    "title": "CV එක කියවීමට පහසු ලෙස Format කරන්නේ කෙසේද?",
+    "seoTitle": "Maximum Readability සඳහා CV Formatting Tips",
+    "metaDescription": "Recruiter කෙනාට තත්පර කිහිපයකින් value එක තේරුම් යාමට CV formatting නිවැරදිව සකස් කරගන්න.",
+    "intro": "Formatting කියන්නේ design දෙයක් විතරක් නෙවෙයි. CV එක තේරුම් ගන්නා වේගය ඒකෙන් තීරණය වෙනවා.",
+    "problemExplanation": "හොඳ content තිබුණත් crowded lines, poor spacing, inconsistent formatting නිසා බොහෝ CV reject වෙනවා.",
+    "whatIsIt": {
+      "heading": "Readability-first formatting කියන්නේ කුමක්ද?",
+      "content": "Visual clarity, consistent structure සහ quick scanning පහසු කරන formatting ක්‍රමයකි."
+    },
+    "whyItMatters": {
+      "heading": "මෙය hiring decisions වලට බලපාන්නේ ඇයි?",
+      "content": "Recruiters ලා ඉක්මනින් skim කරනවා. කියවීමට පහසු CV එකක key points ඉක්මනින් පෙනෙන නිසා shortlist chance වැඩිවේ."
+    },
+    "stepByStep": [
+      {
+        "heading": "පියවර 1: Readable fonts භාවිත කරන්න",
+        "content": "Calibri/Arial වැනි professional fonts සහ body size 10.5-12 range එක භාවිතා කරන්න."
+      },
+      {
+        "heading": "පියවර 2: Spacing consistency තබාගන්න",
+        "content": "Line spacing සහ section spacing එකම pattern එකෙන් පවත්වාගන්න."
+      },
+      {
+        "heading": "පියවර 3: Clear hierarchy එකක් ගොඩනගන්න",
+        "content": "Heading sizes සහ bold weight මඟින් section priorities පැහැදිලි කරන්න."
+      },
+      {
+        "heading": "පියවර 4: Bullet points කෙටි කරන්න",
+        "content": "Outcome-focused concise bullets භාවිතා කර long paragraphs අඩු කරන්න."
+      },
+      {
+        "heading": "පියවර 5: PDF preview එක පරීක්ෂා කරන්න",
+        "content": "Final document එක PDF/desktop view වලට check කර alignment issues, line breaks පරීක්ෂා කරන්න."
+      }
+    ],
+    "examples": {
+      "heading": "Formatting advantage උදාහරණයක්",
+      "content": "Clean headings සහ good spacing තියෙන one-page CV එකක්, dense text තියෙන two-page CV එකකට වඩා first screening එකේ හොඳ performance දෙනවා."
+    },
+    "commonMistakes": {
+      "heading": "Formatting වැරදි",
+      "content": "Random font sizes, inconsistent indentation, bold/italics වැඩිපුර යෙදීම, margins ඉතා කුඩා කිරීම, dense paragraphs."
+    },
+    "finalChecklist": [
+      "Font සහ size එක කියවීමට පහසුද?",
+      "Spacing rules consistent ද?",
+      "Headings clear hierarchy දෙන්නවාද?",
+      "Bullets concise/scannable ද?",
+      "Final PDF clean සහ professional ද?"
+    ],
+    "cta": "ඔබගේ CV formatting එක recruiter-ready quality එකකට ගෙන එන්න අපගේ professional editing සේවාව භාවිතා කරන්න."
+  }
+},
+{
+  "id": "118",
+  "categoryId": "a",
+  "coverImage": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&auto=format&fit=crop&q=80",
+  "en": {
+    "slug": "why-your-cv-is-not-getting-interview-calls",
+    "title": "Why Your CV Is Not Getting Interview Calls",
+    "seoTitle": "No Interview Calls? CV Diagnosis and Fix Strategy",
+    "metaDescription": "Discover the top reasons your CV is being ignored and the practical changes that increase callback rates.",
+    "intro": "If you are applying to many jobs with little response, your CV strategy needs diagnosis, not guesswork.",
+    "problemExplanation": "Low callbacks usually come from poor targeting, weak value messaging, missing keywords, and lack of measurable impact rather than lack of talent.",
+    "whatIsIt": {
+      "heading": "What Causes Low Interview Conversion?",
+      "content": "A mismatch between what recruiters need and what your CV communicates. Good candidates fail when the document does not tell the right story quickly."
+    },
+    "whyItMatters": {
+      "heading": "Why Diagnosis Beats Random Edits",
+      "content": "Without identifying root causes, random edits waste time. A structured fix process improves results faster."
+    },
+    "stepByStep": [
+      {
+        "heading": "Step 1: Check role targeting",
+        "content": "Ensure each application uses a CV version tailored to that specific role and industry."
+      },
+      {
+        "heading": "Step 2: Strengthen your value proposition",
+        "content": "Rewrite profile and top bullets to show why you are a strong fit immediately."
+      },
+      {
+        "heading": "Step 3: Improve keyword alignment",
+        "content": "Add critical role terms from job descriptions into profile, skills, and achievements."
+      },
+      {
+        "heading": "Step 4: Add measurable proof",
+        "content": "Replace generic tasks with outcomes and numbers recruiters can trust."
+      },
+      {
+        "heading": "Step 5: Audit application quality",
+        "content": "Track applications, response rate, and role fit weekly so you can improve with data."
+      }
+    ],
+    "examples": {
+      "heading": "High-Impact Rewrite",
+      "content": "**Before:** Experienced team player with communication skills.\n**After:** Sales Coordinator with 4+ years in B2B account support, improved renewal rate by 18% through structured customer follow-up workflows."
+    },
+    "commonMistakes": {
+      "heading": "Common Reasons for No Calls",
+      "content": "Sending one generic CV, no metrics, ATS-unfriendly format, weak profile section, and applying to misaligned roles."
+    },
+    "finalChecklist": [
+      "Do I tailor CVs for each role type?",
+      "Is my value clear in the first section?",
+      "Do I include role-critical keywords?",
+      "Have I shown measurable outcomes?",
+      "Am I tracking conversion rate and improving?"
+    ],
+    "cta": "If your callback rate is low, we can audit your CV and build a conversion-focused version for your target jobs."
+  },
+  "si": {
+    "slug": "ai-cv-ekata-interview-calls-ne-nam",
+    "title": "ඔබේ CV එකට Interview Calls නොඑන්නේ ඇයි?",
+    "seoTitle": "No Interview Calls? CV Diagnose සහ Fix Guide",
+    "metaDescription": "CV එක නොසලකා හැරීමට ප්‍රධාන හේතු හඳුනාගෙන callback rate වැඩි කරන practical fixes ඉගෙනගන්න.",
+    "intro": "බොහෝ jobs apply කළත් calls අඩු නම්, ඔබට තවත් applications නොව CV strategy diagnosis එකක් අවශ්‍යයි.",
+    "problemExplanation": "බොහෝවිට ගැටළුව talent එක නොවෙයි. Document එකෙන් role-fit value එක ඉක්මනින්ම communicate නොවීමයි.",
+    "whatIsIt": {
+      "heading": "Low conversion එකේ මුලික හේතුව",
+      "content": "Recruiterට අවශ්‍ය දේ සහ ඔබේ CV එක කියන කතාව අතර mismatch එකක්."
+    },
+    "whyItMatters": {
+      "heading": "Random edits නොව diagnosis එක වැදගත් ඇයි?",
+      "content": "Root cause හඳුනාගන්නෙ නැතිව කරන edits වලින් ප්‍රතිඵල අඩුයි. Structured fixes වලින් වේගයෙන් improvement ලැබේ."
+    },
+    "stepByStep": [
+      {
+        "heading": "පියවර 1: Role targeting පරීක්ෂා කරන්න",
+        "content": "එක් එක් role type එකට CV version එක tailor කරනවාද කියලා බලන්න."
+      },
+      {
+        "heading": "පියවර 2: Value proposition ශක්තිමත් කරන්න",
+        "content": "Profile සහ top bullets rewrite කර fit එක මුලින්ම පෙන්වන්න."
+      },
+      {
+        "heading": "පියවර 3: Keywords alignment වැඩි කරන්න",
+        "content": "Job descriptions වල critical terms profile/skills/experience වලට natural ලෙස එක්කරන්න."
+      },
+      {
+        "heading": "පියවර 4: Measurable proof එක්කරන්න",
+        "content": "Generic task lines වෙනුවට numbers සහ outcomes දාන්න."
+      },
+      {
+        "heading": "පියවර 5: Application data track කරන්න",
+        "content": "Response rate weekly track කර role-fit සහ CV quality එක data මත improve කරන්න."
+      }
+    ],
+    "examples": {
+      "heading": "Rewrite උදාහරණයක්",
+      "content": "**Before:** Good communication skills with team work.\n**After:** B2B Sales Coordinator වශයෙන් customer renewal rate 18% කින් වැඩි කළා structured follow-up workflow හරහා."
+    },
+    "commonMistakes": {
+      "heading": "calls අඩුවීමට හේතු",
+      "content": "Generic CV එකක් හැම job එකට යැවීම, metrics නොදැමීම, ATS-unfriendly format, weak profile, misaligned roles apply කිරීම."
+    },
+    "finalChecklist": [
+      "Role type එකකට tailor කළ CV version තියෙනවද?",
+      "මුල් section එකෙන් value එක පේනවද?",
+      "Role-critical keywords ඇතුළත්ද?",
+      "Measurable outcomes දැම්මාද?",
+      "Response rate track කර improvements කරනවද?"
+    ],
+    "cta": "Interview calls වැඩි කරන conversion-focused CV එකක් සඳහා අපගේ professional CV audit සේවාව ලබාගන්න."
+  }
+},
+{
+  "id": "119",
+  "categoryId": "a",
+  "coverImage": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&auto=format&fit=crop&q=80",
+  "en": {
+    "slug": "how-to-write-a-cv-for-competitive-jobs",
+    "title": "How to Write a CV for Competitive Jobs",
+    "seoTitle": "CV for Competitive Jobs | Stand Out in High-Competition Roles",
+    "metaDescription": "Build a CV strategy for highly competitive roles by differentiating your value and proving impact clearly.",
+    "intro": "In high-competition roles, a decent CV is not enough. You need strategic differentiation.",
+    "problemExplanation": "When hundreds of qualified applicants apply, recruiters shortlist only profiles with clear fit, proof, and positioning. Generic CVs disappear quickly.",
+    "whatIsIt": {
+      "heading": "What Is a Competitive-Role CV?",
+      "content": "A competitive-role CV is a highly targeted document designed to highlight role-specific value, measurable outcomes, and strategic fit faster than average resumes."
+    },
+    "whyItMatters": {
+      "heading": "Why Differentiation Is Essential",
+      "content": "In crowded applicant pools, relevance and evidence decide outcomes. Your CV must answer: why you over other strong candidates?"
+    },
+    "stepByStep": [
+      {
+        "heading": "Step 1: Define your positioning",
+        "content": "Identify your strongest niche and align profile messaging around it."
+      },
+      {
+        "heading": "Step 2: Prioritize role-critical achievements",
+        "content": "Show 4-6 top outcomes directly tied to the role's biggest priorities."
+      },
+      {
+        "heading": "Step 3: Include advanced skills proof",
+        "content": "Support technical or domain claims with certifications, projects, or measurable delivery."
+      },
+      {
+        "heading": "Step 4: Show progression and leadership",
+        "content": "Demonstrate growth in scope, ownership, and complexity over time."
+      },
+      {
+        "heading": "Step 5: Tailor each application deeply",
+        "content": "Customize profile, keywords, and top bullets for each target company."
+      }
+    ],
+    "examples": {
+      "heading": "Competitive Positioning Example",
+      "content": "Product Analyst specializing in retention strategy, delivered a 12-point increase in 90-day retention through cohort-based funnel redesign and lifecycle experimentation."
+    },
+    "commonMistakes": {
+      "heading": "Common Mistakes",
+      "content": "Using one generic CV for premium roles, leading with responsibilities instead of outcomes, and failing to show depth in one specialization."
+    },
+    "finalChecklist": [
+      "Is my professional positioning clear?",
+      "Are top achievements role-critical?",
+      "Do I show progression and ownership?",
+      "Is technical/domain proof included?",
+      "Is this CV customized for this company?"
+    ],
+    "cta": "Applying to highly competitive roles? Let us build a premium, differentiation-driven CV strategy for you."
+  },
+  "si": {
+    "slug": "competitive-jobs-sandaha-cv-liyana-hati",
+    "title": "Competitive Jobs සඳහා CV එකක් ලියන්නේ කෙසේද?",
+    "seoTitle": "High-Competition Roles සඳහා Standout CV Guide",
+    "metaDescription": "තරඟකාරී රැකියා සඳහා role-specific, evidence-based CV එකක් සකස් කර shortlist chance වැඩි කරගන්න.",
+    "intro": "තරඟකාරී රැකියා සඳහා සාමාන්‍ය CV එකක් ප්‍රමාණවත් නැහැ. ඔබ වෙනස් බව data සමඟ පෙන්විය යුතුයි.",
+    "problemExplanation": "Applicants ගණන වැඩි වූ විට recruiters ලා shortlist කරන්නේ clear fit සහ measurable proof තියෙන profiles පමණයි.",
+    "whatIsIt": {
+      "heading": "Competitive-role CV එක කියන්නේ කුමක්ද?",
+      "content": "Role එකට අදාළ value, measurable outcomes, සහ strategic fit ඉක්මනින් පෙන්වන highly-targeted CV එකකි."
+    },
+    "whyItMatters": {
+      "heading": "Differentiation අවශ්‍ය ඇයි?",
+      "content": "Strong applicants ගොඩක් අතරින් ඔබව තෝරාගන්න recruiter කෙනාට 'Why you?' කියන උත්තරය CV එකෙන්ම පේන්න ඕනේ."
+    },
+    "stepByStep": [
+      {
+        "heading": "පියවර 1: ඔබේ positioning එක පැහැදිලි කරන්න",
+        "content": "ඔබේ niche strength එක හඳුනාගෙන profile messaging ඒ වටා ගොඩනගන්න."
+      },
+      {
+        "heading": "පියවර 2: Role-critical achievements ඉස්මතු කරන්න",
+        "content": "Target role priorities වලට සම්බන්ධ top outcomes 4-6ක් මුලින්ම දාන්න."
+      },
+      {
+        "heading": "පියවර 3: Advanced skill proof දක්වන්න",
+        "content": "Certifications, projects, measurable delivery මඟින් technical claims prove කරන්න."
+      },
+      {
+        "heading": "පියවර 4: Growth/leadership trajectory පෙන්වන්න",
+        "content": "කාලයත් සමඟ ownership, scope, complexity වැඩි වීම පැහැදිලිව පෙන්වන්න."
+      },
+      {
+        "heading": "පියවර 5: Company එකකට company එකකට tailor කරන්න",
+        "content": "Profile, keywords, achievements එක එක company context එකට deep customize කරන්න."
+      }
+    ],
+    "examples": {
+      "heading": "Positioning උදාහරණයක්",
+      "content": "Retention strategy පිළිබඳ විශේෂඥ Product Analyst කෙනෙකු ලෙස cohort-funnel redesign හරහා 90-day retention 12 points කින් වැඩි කළා."
+    },
+    "commonMistakes": {
+      "heading": "සුලභ වැරදි",
+      "content": "Premium roles වලට generic CV එකක් යැවීම, results වෙනුවට duties පමණක් ලිවීම, සහ specialization depth නොපෙන්වීම."
+    },
+    "finalChecklist": [
+      "මගේ positioning එක පැහැදිලිද?",
+      "Top achievements role-critical ද?",
+      "Growth සහ ownership පේනවද?",
+      "Technical/domain proof තියෙනවද?",
+      "මේ company එකට customize කළ CV එකක්ද?"
+    ],
+    "cta": "තරඟකාරී තනතුරු සඳහා premium-level CV positioning එකක් අපි ඔබට සකසා දෙන්නම්."
+  }
+},
+{
+  "id": "120",
+  "categoryId": "a",
+  "coverImage": "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1200&auto=format&fit=crop&q=80",
+  "en": {
+    "slug": "the-best-way-to-organize-work-experience-in-a-cv",
+    "title": "The Best Way to Organize Work Experience in a CV",
+    "seoTitle": "Organize Work Experience in CV | Resume Experience Section Guide",
+    "metaDescription": "Structure your work experience section for clarity, impact, and role relevance so recruiters can evaluate you quickly.",
+    "intro": "The work experience section is the heart of your CV. How you organize it can make or break your shortlist chance.",
+    "problemExplanation": "Candidates often list responsibilities in random order, bury achievements, and fail to show progression. Recruiters then struggle to assess fit."
+    ,
+    "whatIsIt": {
+      "heading": "What Is a Well-Organized Experience Section?",
+      "content": "A reverse-chronological structure where each role clearly presents scope, key responsibilities, and measurable achievements in a consistent format."
+    },
+    "whyItMatters": {
+      "heading": "Why Organization Improves Shortlisting",
+      "content": "A clear structure helps recruiters quickly understand your trajectory, impact, and suitability for the target role."
+    },
+    "stepByStep": [
+      {
+        "heading": "Step 1: Use reverse-chronological order",
+        "content": "List your most recent role first, then move backward in time."
+      },
+      {
+        "heading": "Step 2: Keep role headers consistent",
+        "content": "Use a consistent format: Job Title | Company | Dates | Location."
+      },
+      {
+        "heading": "Step 3: Start with one-line role scope",
+        "content": "Briefly describe team size, domain, or operational scope before bullets."
+      },
+      {
+        "heading": "Step 4: Add 4-6 impact bullets per role",
+        "content": "Focus on outcomes, ownership, and metrics, not routine task repetition."
+      },
+      {
+        "heading": "Step 5: Highlight progression",
+        "content": "If promoted, show progression clearly to signal growth and trust."
+      }
+    ],
+    "examples": {
+      "heading": "Experience Entry Example",
+      "content": "Senior Operations Executive | ABC Logistics | 2022-Present | Colombo\nLed regional fulfilment operations across 3 hubs.\n- Improved on-time delivery from 86% to 95% through route optimization.\n- Reduced return-processing time by 32% by redesigning QA checkpoints."
+    },
+    "commonMistakes": {
+      "heading": "Common Mistakes",
+      "content": "Listing tasks without outcomes, inconsistent date formats, too many bullets for older roles, and no evidence of progression."
+    },
+    "finalChecklist": [
+      "Is experience listed in reverse chronology?",
+      "Are headers consistent across roles?",
+      "Does each role include measurable outcomes?",
+      "Is progression visible?",
+      "Is content relevant to target jobs?"
+    ],
+    "cta": "Need a high-impact experience section that recruiters can trust instantly? We can rewrite and structure it for better outcomes."
+  },
+  "si": {
+    "slug": "work-experience-section-organize-karana-honda-kramaya",
+    "title": "CV එකේ Work Experience කොටස හොඳින් සංවිධානය කරන ක්‍රමය",
+    "seoTitle": "Work Experience Section Guide | CV Structure Tips",
+    "metaDescription": "Experience section එක clear, impact-focused, සහ recruiter-friendly ලෙස සකස් කර shortlist chance වැඩි කරගන්න.",
+    "intro": "CV එකේ වැදගත්ම කොටස work experience section එකයි. ඒක සංවිධානය කරන ආකාරය shortlist එක තීරණය කරයි.",
+    "problemExplanation": "බොහෝ CV වල duties random order එකකින් ලියලා achievements පසුපසට දාලා තියෙනවා. ඒ නිසා recruiter කෙනාට fit එක තේරුම් ගන්න අමාරුයි.",
+    "whatIsIt": {
+      "heading": "Well-organized experience section එක කියන්නේ කුමක්ද?",
+      "content": "Reverse-chronological order එකකින් role එක role එකට scope, key responsibilities, measurable achievements consistent format එකකින් දක්වන ව්‍යුහයකි."
+    },
+    "whyItMatters": {
+      "heading": "මෙය shortlist එකට උදව් කරන්නේ කොහොමද?",
+      "content": "Clear organization එකකින් recruiter කෙනාට ඔබේ growth, impact, role-fit එක ඉක්මනින්ම තේරුම් ගත හැක."
+    },
+    "stepByStep": [
+      {
+        "heading": "පියවර 1: Reverse-chronological order භාවිතා කරන්න",
+        "content": "අලුත්ම role එක මුලින් දාලා පසුගිය අත්දැකීම් පසුව දක්වන්න."
+      },
+      {
+        "heading": "පියවර 2: Role headers එකම format එකෙන් දාන්න",
+        "content": "Job Title | Company | Dates | Location pattern එක සෑම entry එකකටම භාවිතා කරන්න."
+      },
+      {
+        "heading": "පියවර 3: Role scope එක one line එකකින් දාන්න",
+        "content": "Team size, domain, operational scope වැනි context එක කෙටියෙන් දෙන්න."
+      },
+      {
+        "heading": "පියවර 4: 4-6 impact bullets එක්කරන්න",
+        "content": "Routine duties repeat නොකර outcomes, ownership, metrics ඉස්මතු කරන්න."
+      },
+      {
+        "heading": "පියවර 5: Progression පෙන්වන්න",
+        "content": "Promotions හෝ scope growth පෙන්වා career trajectory එක පැහැදිලි කරන්න."
+      }
+    ],
+    "examples": {
+      "heading": "Experience entry උදාහරණයක්",
+      "content": "Senior Operations Executive | ABC Logistics | 2022-Present | Colombo\nRegional fulfilment operations hubs 3ක් පාලනය කළා.\n- Route optimization හරහා on-time delivery 86% සිට 95% දක්වා වැඩි කළා.\n- QA checkpoints redesign කර return-processing time 32% කින් අඩු කළා."
+    },
+    "commonMistakes": {
+      "heading": "සුලභ වැරදි",
+      "content": "Outcomes නැති duty lists, inconsistent date formats, පරණ roles වලට අධික bullets, progression evidence නොදැමීම."
+    },
+    "finalChecklist": [
+      "Experience reverse chronology එකෙන් දා තිබේද?",
+      "Role headers consistent format එකකින්ද?",
+      "Each role එකේ measurable outcomes තිබේද?",
+      "Career progression පේනවද?",
+      "Target jobs වලට අදාළ content එකක්ද?"
+    ],
+    "cta": "ඔබේ work experience section එක recruiter-friendly, high-impact format එකකට නැවත ගොඩනගාගැනීමට අපගේ සේවාව ලබාගන්න."
+  }
 }
 ];
 
