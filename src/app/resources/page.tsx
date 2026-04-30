@@ -1,15 +1,17 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { checklists } from "@/lib/checklists";
+import { digitalResources } from "@/lib/resources";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
+import ResourceFilterClient from "./_components/ResourceFilterClient";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Free Resources | Business & Career Checklists",
+  title: "Career Resources, Templates & Checklists | Chanuka Jeewantha",
   description:
-    "Free step-by-step checklists to help you start a business, grow your career, and take practical action. No payment needed — sign in to unlock all steps.",
+    "Download ATS-friendly CV templates, career resources, and free checklists to improve job applications, LinkedIn visibility, and career planning.",
   path: "/resources",
-  keywords: ["free resources", "business checklist", "career resources", "fastlane method", "startup checklist"],
+  keywords: ["ATS CV template", "free CV template", "career resources", "free resources", "business checklist"],
 });
 
 export default function ResourcesPage() {
@@ -43,11 +45,27 @@ export default function ResourcesPage() {
             <span className="text-brand-main">Resources</span>
           </div>
           <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-5xl !text-white">
-            Free <span className="text-brand-main">checklists</span> to help you start, build, and grow.
+            Career <span className="text-brand-main">resources</span> for cleaner applications and smarter growth.
           </h1>
           <p className="text-text-light text-[18px] md:text-[22px] max-w-2xl leading-relaxed mt-6">
-            Practical step-by-step guides — completely free. Sign in to unlock all steps.
+            Download templates, browse practical checklists, and use focused tools to improve your next career move.
           </p>
+        </div>
+      </section>
+
+      {/* Templates and digital resources */}
+      <section className="w-full py-[64px] sm:py-[80px] bg-zinc-50 border-b border-zinc-200">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
+          <div className="mb-10 flex flex-col gap-3 text-center">
+            <span className="text-brand-dark font-semibold tracking-wider uppercase">Templates</span>
+            <h2 className="text-[30px] sm:text-[40px] font-bold font-plus-jakarta text-foreground leading-[1.12]">
+              Downloadable Templates and Career Resources
+            </h2>
+            <p className="mx-auto max-w-2xl text-text-body">
+              Filter by resource type and access level. Free items require a website account before download.
+            </p>
+          </div>
+          <ResourceFilterClient resources={digitalResources} />
         </div>
       </section>
 
@@ -62,7 +80,7 @@ export default function ResourcesPage() {
             </div>
             <div>
               <h2 className="text-[22px] font-bold font-plus-jakarta text-foreground leading-tight">Checklists</h2>
-              <p className="text-sm text-text-body mt-0.5">Step-by-step action guides — free for everyone</p>
+              <p className="text-sm text-text-body mt-0.5">Step-by-step action guides - free for everyone</p>
             </div>
           </div>
 

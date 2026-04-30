@@ -26,6 +26,9 @@ export default async function OpenGraphImage({
 
   const title = resource?.title ?? (slugToTitle(slug) || "Career Resource");
   const subtitle = resource?.subtitle ?? "Digital Toolkit";
+  const badge = resource
+    ? `${resource.category === "free" ? "Free" : "Premium"} ${resource.resourceType}`
+    : "Digital Resource";
 
   return new ImageResponse(
     (
@@ -55,7 +58,7 @@ export default async function OpenGraphImage({
             color: "#bae6fd",
           }}
         >
-          Paid Digital Resource
+          {badge}
         </div>
 
         <div

@@ -3,11 +3,15 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ServiceSidebarAds from "@/components/ServiceSidebarAds";
-import { getResourceBySlug, digitalResources } from "@/lib/resources";
+import ResourceDownloadGate from "./_components/ResourceDownloadGate";
+import { getResourceBySlug, digitalResources, getResourceDownloadBySlug } from "@/lib/resources";
+import { getServerUser } from "@/lib/auth-server";
 import { formatLkr } from "@/lib/packages-catalog";
 import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
 import { getBaseUrl } from "@/lib/site-url";
+
+export const dynamic = "force-dynamic";
 
 type ResourcePageProps = {
   params: Promise<{ slug: string }>;
@@ -80,6 +84,11 @@ export default async function ResourceSinglePage({ params }: ResourcePageProps) 
 
   const priceLkr = resource.priceLkr ?? 0;
   const isFreeResource = resource.category === "free";
+  const resourceDownload = getResourceDownloadBySlug(resource.slug);
+  const user = await getServerUser();
+  const returnTo = `/resources/${resource.slug}`;
+  const signupHref = `/auth/signup?returnTo=${encodeURIComponent(returnTo)}`;
+  const signinHref = `/auth/signin?returnTo=${encodeURIComponent(returnTo)}`;
 
   const baseUrl = getBaseUrl();
   const resourceUrl = `${baseUrl}/resources/${resource.slug}`;
@@ -151,7 +160,14 @@ export default async function ResourceSinglePage({ params }: ResourcePageProps) 
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-10 items-start">
  <article className="rounded-[22px] border border-zinc-200 bg-white p-7 md:p-10">
  <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-[16px] border border-zinc-200 bg-zinc-50">
-                <Image src={resource.coverImage} alt={resource.title} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 70vw" />
+                <Image
+                  src={resource.coverImage}
+                  alt={resource.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 70vw"
+                  unoptimized={resource.coverImage.endsWith(".svg")}
+                />
               </div>
               <p className="text-text-body text-lg leading-relaxed mb-8">{resource.description}</p>
 
@@ -196,7 +212,15 @@ export default async function ResourceSinglePage({ params }: ResourcePageProps) 
                 <p className="mb-6 text-[24px] font-bold font-plus-jakarta text-foreground">
                   {isFreeResource ? "Free Resource" : formatLkr(priceLkr)}
                 </p>
-                {isFreeResource ? (
+                {isFreeResource && resourceDownload ? (
+                  <ResourceDownloadGate
+                    slug={resource.slug}
+                    title={resource.title}
+                    isSignedIn={Boolean(user)}
+                    signupHref={signupHref}
+                    signinHref={signinHref}
+                  />
+                ) : isFreeResource ? (
                   <Link
                     href={resource.primaryActionHref ?? "/blog"}
                     className="inline-flex items-center gap-2 rounded-[10px] bg-foreground px-6 py-3 font-semibold text-background transition-colors hover:bg-brand-main"

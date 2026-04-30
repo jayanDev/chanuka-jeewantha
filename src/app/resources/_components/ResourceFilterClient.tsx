@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { DigitalResource, DigitalResourceType } from "@/lib/resources";
@@ -17,25 +17,38 @@ const formatLkr = (amount: number) => {
 export default function ResourceFilterClient({ resources }: { resources: DigitalResource[] }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<"All" | DigitalResourceType>("All");
+  const [activeAccess, setActiveAccess] = useState<"All" | "free" | "paid">("All");
 
   const categories: ("All" | DigitalResourceType)[] = [
     "All",
     "Toolkit",
     "Template"
   ];
+  const accessOptions: Array<{ label: string; value: "All" | "free" | "paid" }> = [
+    { label: "All", value: "All" },
+    { label: "Free", value: "free" },
+    { label: "Premium", value: "paid" },
+  ];
 
-  const filteredResources = useMemo(() => {
-    return resources.filter((resource) => {
-      const matchesSearch =
-        resource.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        resource.subtitle.toLowerCase().includes(searchQuery.toLowerCase());
-      
-      const matchesCategory =
-        activeCategory === "All" || resource.resourceType === activeCategory;
+  const getCategoryLabel = (category: "All" | DigitalResourceType) => {
+    if (category === "Template") return "Templates";
+    return category;
+  };
 
-      return matchesSearch && matchesCategory;
-    });
-  }, [resources, searchQuery, activeCategory]);
+  const normalizedSearchQuery = searchQuery.toLowerCase();
+  const filteredResources = resources.filter((resource) => {
+    const matchesSearch =
+      resource.title.toLowerCase().includes(normalizedSearchQuery) ||
+      resource.subtitle.toLowerCase().includes(normalizedSearchQuery);
+
+    const matchesCategory =
+      activeCategory === "All" || resource.resourceType === activeCategory;
+
+    const matchesAccess =
+      activeAccess === "All" || resource.category === activeAccess;
+
+    return matchesSearch && matchesCategory && matchesAccess;
+  });
 
   return (
     <div className="w-full">
@@ -63,7 +76,23 @@ export default function ResourceFilterClient({ resources }: { resources: Digital
  : "bg-white text-zinc-600 border border-zinc-200 hover:border-brand-main hover:text-brand-main"
               }`}
             >
-              {category}
+              {getCategoryLabel(category)}
+            </button>
+          ))}
+        </div>
+
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          {accessOptions.map((option) => (
+            <button
+              key={option.value}
+              onClick={() => setActiveAccess(option.value)}
+              className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
+                activeAccess === option.value
+                  ? "bg-brand-main text-white shadow-md"
+ : "bg-white text-zinc-600 border border-zinc-200 hover:border-brand-main hover:text-brand-main"
+              }`}
+            >
+              {option.label}
             </button>
           ))}
         </div>
@@ -81,6 +110,7 @@ export default function ResourceFilterClient({ resources }: { resources: Digital
                   fill 
                   className="object-cover group-hover:scale-105 transition-transform duration-500" 
                   sizes="(max-width: 768px) 100vw, 50vw" 
+                  unoptimized={resource.coverImage.endsWith(".svg")}
                 />
               </div>
               
