@@ -6,6 +6,7 @@ import path from "path";
 import Link from "next/link";
 import { formatLkr } from "@/lib/packages-catalog";
 import { getEbookBySlug } from "@/lib/ebooks";
+import { isSignedInPreviewChapter, requiresPreviewSignIn } from "@/lib/ebook-preview-access";
 import ChapterNavigator from "../_components/ChapterNavigator";
 import ReaderProtection from "../_components/ReaderProtection";
 import ReaderProgressTracker from "../_components/ReaderProgressTracker";
@@ -100,8 +101,13 @@ export default async function ChapterPage({ params }: Props) {
     notFound();
   }
 
-  const isFree = currentIndex <= 2;
-  const isLocked = !isFree && !hasPremiumAccess;
+  const isFreePreview = isSignedInPreviewChapter(currentIndex);
+  const shouldRequireSignIn = requiresPreviewSignIn({
+    chapterIndex: currentIndex,
+    hasPremiumAccess,
+    isSignedIn: Boolean(user),
+  });
+  const isLocked = !isFreePreview && !hasPremiumAccess;
   const totalChapters = chapterItems.length;
 
   const prevChapterId = currentIndex > 0 ? chapterIds[currentIndex - 1] : null;
@@ -110,6 +116,66 @@ export default async function ChapterPage({ params }: Props) {
     ? chapterItems.find((item) => item.id === nextChapterId)?.title ?? null
     : null;
   const isFinalChapter = currentIndex === chapterIds.length - 1;
+  const returnTo = `/ebooks/${slug}/read/${chapterId}`;
+  const signinHref = `/auth/signin?returnTo=${encodeURIComponent(returnTo)}`;
+  const signupHref = `/auth/signup?returnTo=${encodeURIComponent(returnTo)}`;
+
+  if (shouldRequireSignIn) {
+    return (
+      <div className="fixed inset-0 z-50 flex min-h-screen items-center justify-center bg-zinc-950/65 px-5 py-12 backdrop-blur-sm selection:bg-transparent">
+        <div className="w-full max-w-lg rounded-3xl border border-zinc-200 bg-white p-7 text-center shadow-2xl sm:p-10">
+          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-brand-main/10 text-brand-dark">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+              <polyline points="10 17 15 12 10 7" />
+              <line x1="15" y1="12" x2="3" y2="12" />
+            </svg>
+          </div>
+          <p className="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-brand-main">
+            Sign in required
+          </p>
+          <h1 className="mb-4 font-plus-jakarta text-3xl font-extrabold leading-tight text-foreground">
+            Create a free account to continue reading
+          </h1>
+          <p className="mx-auto mb-8 max-w-md text-base leading-relaxed text-zinc-600">
+            Chapter 1 is open without signing in. Chapter 2 is also free, but you need to sign in or register first to continue the preview for{" "}
+            <strong>{ebook.title}</strong>.
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Link
+              href={signinHref}
+              className="inline-flex items-center justify-center rounded-xl bg-foreground px-5 py-3.5 text-sm font-bold text-background transition-colors hover:bg-brand-dark"
+            >
+              Sign in
+            </Link>
+            <Link
+              href={signupHref}
+              className="inline-flex items-center justify-center rounded-xl border border-brand-main bg-brand-main px-5 py-3.5 text-sm font-bold text-white transition-colors hover:bg-brand-dark"
+            >
+              Register
+            </Link>
+          </div>
+          <Link
+            href={`/ebooks/${slug}/read/${chapterIds[0] ?? parsedChapterId}`}
+            className="mt-6 inline-flex text-sm font-semibold text-zinc-500 underline-offset-2 transition-colors hover:text-brand-main hover:underline"
+          >
+            Back to chapter 1
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   if (isLocked) {
     const whatsappNumber = "94773902230";
@@ -175,7 +241,7 @@ export default async function ChapterPage({ params }: Props) {
 
           {!user && (
             <Link
-              href={`/auth/signin?returnTo=/ebooks/${slug}/read/${chapterId}`}
+              href={signinHref}
  className="text-sm font-semibold text-brand-dark hover:text-brand-main underline-offset-2 hover:underline"
             >
               Already purchased? Sign in for access

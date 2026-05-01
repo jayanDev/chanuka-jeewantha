@@ -17,6 +17,8 @@ interface Props {
   toc: TocItem[];
   hasPremiumAccess: boolean;
   freeChapterIds: number[];
+  anonymousFreeChapterIds: number[];
+  isSignedIn: boolean;
 }
 
 export default function MobileChapterMenu({
@@ -26,6 +28,8 @@ export default function MobileChapterMenu({
   toc,
   hasPremiumAccess,
   freeChapterIds,
+  anonymousFreeChapterIds,
+  isSignedIn,
 }: Props) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -93,6 +97,11 @@ export default function MobileChapterMenu({
             if (typeof item.id !== "number") return null;
 
             const isFree = freeChapterIds.includes(item.id);
+            const requiresSignIn =
+              !isSignedIn &&
+              !hasPremiumAccess &&
+              isFree &&
+              !anonymousFreeChapterIds.includes(item.id);
             const isLocked = !isFree && !hasPremiumAccess;
             const isActive = currentChapterId === item.id;
 
@@ -114,14 +123,18 @@ export default function MobileChapterMenu({
                     <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand-dark mt-px" />
                   ) : isLocked ? (
                     <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-zinc-400"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  ) : requiresSignIn ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-amber-600" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
                   ) : (
                     <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand-main mt-px" />
                   )}
                 </span>
                 <span className="text-[14px] font-medium flex-1">{item.title}</span>
-                {isFree && !hasPremiumAccess && (
+                {requiresSignIn ? (
+                  <span className="text-[9px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded shrink-0">SIGN IN</span>
+                ) : isFree && !hasPremiumAccess ? (
                   <span className="text-[9px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded shrink-0">FREE</span>
-                )}
+                ) : null}
               </Link>
             );
           })}

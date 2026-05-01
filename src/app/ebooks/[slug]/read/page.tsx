@@ -6,6 +6,10 @@ import { getEbookPurchase } from "@/lib/ebook-firestore";
 import fs from "fs/promises";
 import path from "path";
 import type { Metadata } from "next";
+import {
+  EBOOK_ANONYMOUS_FREE_CHAPTER_COUNT,
+  EBOOK_SIGNED_IN_FREE_CHAPTER_COUNT,
+} from "@/lib/ebook-preview-access";
 import { buildNoIndexMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -72,7 +76,12 @@ export default async function EbookReadIndexPage({
       (item.kind ?? "chapter") === "chapter" && typeof item.id === "number"
   );
 
-  const freeChapterIds = new Set(chapterItems.slice(0, 3).map((c) => c.id));
+  const freeChapterIds = new Set(
+    chapterItems.slice(0, EBOOK_SIGNED_IN_FREE_CHAPTER_COUNT).map((c) => c.id)
+  );
+  const anonymousFreeChapterIds = new Set(
+    chapterItems.slice(0, EBOOK_ANONYMOUS_FREE_CHAPTER_COUNT).map((c) => c.id)
+  );
   const firstChapterId = chapterItems[0]?.id ?? 0;
   const totalChapters = chapterItems.length;
 
@@ -99,7 +108,13 @@ export default async function EbookReadIndexPage({
                 {!hasPremiumAccess && (
                   <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full">
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
-                    First 3 chapters free
+                    First 2 chapters free
+                  </span>
+                )}
+                {!user && !hasPremiumAccess && (
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+                    Sign in from chapter 2
                   </span>
                 )}
                 {hasPremiumAccess && (
@@ -144,6 +159,7 @@ export default async function EbookReadIndexPage({
             if (typeof item.id !== "number") return null;
 
             const isFree = freeChapterIds.has(item.id);
+            const requiresSignIn = !user && !hasPremiumAccess && isFree && !anonymousFreeChapterIds.has(item.id);
             const isLocked = !isFree && !hasPremiumAccess;
             const chapterIdx = chapterItems.findIndex((c) => c.id === item.id);
             const chapterNum = chapterIdx === 0 ? null : chapterIdx;
@@ -163,11 +179,15 @@ export default async function EbookReadIndexPage({
                   className={`shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
                     isLocked
                       ? "bg-zinc-100 text-zinc-400"
+                      : requiresSignIn
+                      ? "bg-amber-50 text-amber-700 group-hover:bg-amber-100"
                       : "bg-brand-main/10 text-brand-dark group-hover:bg-brand-main group-hover:text-white"
                   }`}
                 >
                   {isLocked ? (
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  ) : requiresSignIn ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
                   ) : chapterNum === null ? (
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                   ) : (
@@ -186,11 +206,15 @@ export default async function EbookReadIndexPage({
                 </div>
 
                 {/* Badge */}
-                {isFree && !hasPremiumAccess && (
+                {requiresSignIn ? (
+                  <span className="shrink-0 rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 text-[10px] font-bold text-amber-700">
+                    SIGN IN
+                  </span>
+                ) : isFree && !hasPremiumAccess ? (
                   <span className="shrink-0 text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
                     FREE
                   </span>
-                )}
+                ) : null}
                 {!isLocked && (
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-zinc-300 group-hover:text-brand-main transition-colors" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 )}
@@ -209,7 +233,7 @@ export default async function EbookReadIndexPage({
               Unlock Full Access
             </h3>
             <p className="text-zinc-500 text-sm mb-6">
-              Read all {totalChapters} chapters. Choose your plan below.
+              Read all chapters after the 2-chapter free preview. Choose your plan below.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a

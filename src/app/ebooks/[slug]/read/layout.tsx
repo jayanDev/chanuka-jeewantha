@@ -7,6 +7,10 @@ import { getEbookPurchase } from "@/lib/ebook-firestore";
 import fs from "fs/promises";
 import path from "path";
 import MobileChapterMenu from "./_components/MobileChapterMenu";
+import {
+  EBOOK_ANONYMOUS_FREE_CHAPTER_COUNT,
+  EBOOK_SIGNED_IN_FREE_CHAPTER_COUNT,
+} from "@/lib/ebook-preview-access";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -71,7 +75,12 @@ export default async function EbookReaderLayout({ params, children }: Props) {
       (item.kind ?? "chapter") === "chapter" && typeof item.id === "number"
   );
 
-  const freeChapterIds = new Set(chapterItems.slice(0, 3).map((item) => item.id));
+  const freeChapterIds = new Set(
+    chapterItems.slice(0, EBOOK_SIGNED_IN_FREE_CHAPTER_COUNT).map((item) => item.id)
+  );
+  const anonymousFreeChapterIds = new Set(
+    chapterItems.slice(0, EBOOK_ANONYMOUS_FREE_CHAPTER_COUNT).map((item) => item.id)
+  );
 
   const accessLabel =
     accessTier === "download" ? "Full Access" :
@@ -90,6 +99,8 @@ export default async function EbookReaderLayout({ params, children }: Props) {
           toc={toc}
           hasPremiumAccess={hasPremiumAccess}
           freeChapterIds={Array.from(freeChapterIds)}
+          anonymousFreeChapterIds={Array.from(anonymousFreeChapterIds)}
+          isSignedIn={Boolean(user)}
         />
       </div>
 
@@ -161,6 +172,7 @@ export default async function EbookReaderLayout({ params, children }: Props) {
               if (typeof item.id !== "number") return null;
 
               const isFree = freeChapterIds.has(item.id);
+              const requiresSignIn = !user && !hasPremiumAccess && isFree && !anonymousFreeChapterIds.has(item.id);
               const isLocked = !isFree && !hasPremiumAccess;
 
               return (
@@ -174,6 +186,8 @@ export default async function EbookReaderLayout({ params, children }: Props) {
                   <div className="mt-1 shrink-0">
                     {isLocked ? (
                       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-zinc-400"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    ) : requiresSignIn ? (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-amber-600" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
                     ) : (
                       <div className="w-1.5 h-1.5 rounded-full bg-brand-main mt-[5px]" />
                     )}
@@ -181,9 +195,11 @@ export default async function EbookReaderLayout({ params, children }: Props) {
                   <span className="text-[15px] font-medium leading-snug block flex-1">
                     {item.title}
                   </span>
-                  {isFree && !hasPremiumAccess && (
+                  {requiresSignIn ? (
+                    <span className="text-[10px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded ml-1 shrink-0">SIGN IN</span>
+                  ) : isFree && !hasPremiumAccess ? (
                     <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded ml-1 shrink-0">FREE</span>
-                  )}
+                  ) : null}
                 </Link>
               );
             })}
@@ -200,4 +216,3 @@ export default async function EbookReaderLayout({ params, children }: Props) {
     </>
   );
 }
-
