@@ -89,156 +89,101 @@ function buildDefaultCtas(pkg: PackageProduct): BlogLink[] {
 const packageGuideDrafts: PackageGuideDraft[] = [
   {
     packageSlug: "student-cv-package",
-    title: "Student CV Package Sri Lanka: How to Build a First CV That Gets Internship Calls",
+    title: "Student Package - CV Writing Services: CV Writing for Students, Interns, and Fresh Graduates",
     excerpt:
-      "A practical student CV guide for Sri Lanka covering internship-focused writing, ATS format, and exactly how to turn school or campus work into interview-ready proof.",
+      "A complete guide to the Student Package for students, undergraduates, interns, fresh graduates, and entry-level job seekers who need an ATS-friendly first CV.",
     content:
-      "Most students are not rejected because they have no experience. They are rejected because their CV does not translate potential into recruiter-friendly evidence. This guide explains how the Student CV Package helps you create a first CV that reads clearly in ATS systems and still looks professional to hiring managers.",
-    category: "Student CV Guide",
+      "The Student Package - CV Writing Services is designed for candidates with limited work experience who still need to look clear, professional, and recruiter-friendly. It helps turn education, skills, projects, internships, and achievements into a focused CV for internships, trainee roles, graduate programs, and first job opportunities.",
+    category: "Student CV Writing",
     publishedAt: "2026-02-10",
     keywords: [
-      "student cv package sri lanka",
+      "student package cv writing services",
       "internship cv sri lanka",
-      "first cv writing",
+      "fresh graduate cv writing",
+      "entry level cv service",
       "ats friendly student cv",
       "chanuka jeewantha cv service",
     ],
     sections: [
       {
-        heading: "Why Student CVs Usually Fail",
+        heading: "Who This Student Package Is Built For",
         paragraphs: [
-          "Student CVs often include generic objectives, long personal details, and weak bullet points like 'hardworking team player' without context. Recruiters scan quickly and need tangible indicators of responsibility, progress, and initiative.",
-          "Even if you do not have full-time experience, you can still prove employability with project outcomes, volunteer work, club roles, coursework impact, and technical skill usage in real scenarios.",
+          "This package is specially designed for students, undergraduates, interns, fresh graduates, and entry-level job seekers who need a professional CV before they have a long employment history.",
+          "The goal is not to exaggerate experience. The goal is to present your real education, projects, skills, internships, volunteer work, and achievements in a format that recruiters can understand quickly.",
         ],
         bullets: [
-          "Replace generic objectives with role-targeted value statements",
-          "Show evidence from projects, assignments, and internships",
-          "Use ATS-safe structure with clean headings and formatting",
+          "Students applying for internships and trainee roles",
+          "Fresh graduates applying for graduate programs",
+          "Entry-level job seekers with limited work experience",
+          "Candidates who need a clean editable Word CV",
         ],
       },
       {
-        heading: "What the Student CV Package Improves",
+        heading: "Package Includes",
         paragraphs: [
-          "The package turns scattered student information into a focused, role-aligned CV that is easier for employers to evaluate. It also improves keyword coverage for internship and entry-level job searches.",
-          "You receive a format that can be updated quickly as you gain new projects or certifications, so your profile keeps improving without rebuilding from zero each time.",
+          "The Student Package focuses on professional presentation, ATS readability, and student profile positioning. It gives your CV a stronger base for first-stage screening and human recruiter review.",
+          "Price: LKR 5,000. Delivery Time: 3-7 Days. The package is built around ATS Optimization 75%+ and a Word format you can edit as your career grows.",
         ],
         bullets: [
-          "Professional CV writing and formatting for students",
-          "Basic ATS optimization for internship applications",
-          "Editable files so you can update with new achievements",
+          "Professional CV Design & Formatting",
+          "ATS Optimization 75%+",
+          "Student Profile Positioning",
+          "Education, Skills & Project Section Optimization",
+          "Editable Word File",
         ],
       },
       {
-        heading: "After Delivery: 14-Day Application Plan",
+        heading: "How This Helps When You Have Limited Experience",
         paragraphs: [
-          "Use your upgraded CV with a shortlist of roles that match your specialization. Apply consistently and track which versions perform best by industry and role title.",
-          "Pair your CV with a matching cover letter and beginner LinkedIn optimization to improve response quality across both local and international opportunities.",
+          "A strong student CV makes education and project evidence easier to scan. Recruiters do not expect a senior career history, but they do expect role relevance, clean structure, and proof that you can learn and contribute.",
+          "This package positions your academic background, certifications, technical skills, coursework, final-year projects, internships, and extracurricular achievements in a professional way.",
         ],
         bullets: [
-          "Apply to 5-10 relevant roles each week",
-          "Track response rates by title and company type",
-          "Update one bullet weekly with new proof or metrics",
+          "Turn projects into evidence of practical ability",
+          "Present internships and volunteer work clearly",
+          "Replace weak objectives with a stronger student profile",
+          "Keep the document recruiter-friendly and easy to update",
+        ],
+      },
+      {
+        heading: "Best Way to Use the Delivered CV",
+        paragraphs: [
+          "After delivery, use the CV as your main base document for internship, trainee, graduate, and first-job applications. For each job, adjust a few keywords in the profile and skills sections to match the target role.",
+          "Pair the CV with a focused cover letter and a consistent LinkedIn profile when applying to competitive roles, because recruiters often compare all application touchpoints before shortlisting.",
+        ],
+        bullets: [
+          "Apply to focused role groups instead of random job titles",
+          "Update the CV with every new certification or project",
+          "Use the same positioning on LinkedIn and job portals",
         ],
       },
     ],
     faqs: [
       {
-        question: "Can I use this package if I have no job experience?",
+        question: "Who should choose the Student Package?",
         answer:
-          "Yes. The package is specifically designed to convert coursework, projects, volunteer work, and internships into strong professional evidence for recruiters.",
+          "Students, undergraduates, interns, fresh graduates, and entry-level job seekers who need a professional first CV should choose this package.",
       },
       {
-        question: "Is this useful for internship and trainee applications?",
+        question: "What is the price and delivery time?",
         answer:
-          "Yes. The writing style and structure are aligned with internship and trainee hiring expectations, including ATS readability and fast recruiter scanning.",
+          "The Student Package is LKR 5,000 and the delivery time is 3-7 Days.",
       },
       {
-        question: "Can I update the CV later by myself?",
+        question: "Can I update the CV later?",
         answer:
-          "Yes. You receive editable formats, so you can add projects, certifications, and achievements as your profile grows.",
-      },
-    ],
-  },
-  {
-    packageSlug: "starter-cv-package",
-    title: "Starter CV Package for Fresh Graduates: Convert Education into Interview Results",
-    excerpt:
-      "Learn how fresh graduates can use the Starter CV Package to move from generic graduate CVs to ATS-aligned, role-targeted profiles that attract recruiter attention.",
-    content:
-      "Fresh graduate CVs usually fail because they describe responsibilities instead of outcomes. The Starter CV Package is built to bridge that gap by turning education, projects, internships, and early work exposure into value statements recruiters can trust.",
-    category: "Starter CV Guide",
-    publishedAt: "2026-02-11",
-    keywords: [
-      "starter cv package",
-      "fresh graduate cv sri lanka",
-      "entry level cv writing",
-      "ats cv for freshers",
-      "career cv service",
-    ],
-    sections: [
-      {
-        heading: "What Recruiters Look for in Fresh Graduate CVs",
-        paragraphs: [
-          "Recruiters do not expect senior experience. They expect clarity, discipline, and role fit. A strong graduate CV highlights learning speed, practical exposure, and relevant technical or communication skills.",
-          "When your CV mirrors the wording of the target role and includes measurable evidence, your profile stands out even against candidates with similar academic backgrounds.",
-        ],
-        bullets: [
-          "Role-matching keywords from real job descriptions",
-          "Achievement-based bullets instead of task-only bullets",
-          "Clean sections that improve ATS extraction accuracy",
-        ],
-      },
-      {
-        heading: "How This Package Positions You Better",
-        paragraphs: [
-          "The Starter CV Package is designed for early-career competition. It creates a sharp profile narrative: who you are, what you can do now, and why you are relevant to the role.",
-          "This is especially useful when applying to many positions quickly because your CV remains structured, professional, and easy to customize for each role.",
-        ],
-        bullets: [
-          "ATS optimization with graduate-role keyword coverage",
-          "Professional formatting and readability upgrades",
-          "Role-targeted presentation guidance",
-        ],
-      },
-      {
-        heading: "How to Improve Response Rate After Getting the CV",
-        paragraphs: [
-          "Use a shortlist of priority role titles and tailor your summary line for each batch of applications. Consistency beats random mass applying.",
-          "Add one project proof line to LinkedIn and keep your CV + LinkedIn message aligned. That consistency improves trust with recruiters.",
-        ],
-        bullets: [
-          "Apply in focused role batches, not mixed job titles",
-          "Sync your LinkedIn headline with your CV positioning",
-          "Refresh keyword alignment every 2-3 weeks",
-        ],
-      },
-    ],
-    faqs: [
-      {
-        question: "Is this package only for graduates with work experience?",
-        answer:
-          "No. It is suitable for graduates with internships, projects, part-time roles, or even strong academic portfolios.",
-      },
-      {
-        question: "Will this package help with ATS screening?",
-        answer:
-          "Yes. The package structure and writing are optimized to increase ATS compatibility while keeping strong human readability.",
-      },
-      {
-        question: "Can I use the same CV for all jobs?",
-        answer:
-          "Use one strong base CV from this package, then make small role-specific keyword and summary edits for each target role.",
+          "Yes. You receive an editable Word file, so you can add new projects, internships, skills, certifications, and achievements later.",
       },
     ],
   },
   {
     packageSlug: "professional-cv-package",
-    title: "Professional CV Package: Strategic CV Writing for Mid-Level Career Growth",
+    title: "Professional Package - CV Writing Services: Strategic CV Writing for Career Growth",
     excerpt:
-      "A complete guide for mid-level professionals who need a stronger CV narrative, ATS performance, and achievement-focused positioning to secure better opportunities.",
+      "A complete guide to the Professional Package for working professionals, experienced job seekers, executives, and career changers who need a polished ATS-friendly CV.",
     content:
-      "At mid-level, competition is not about who has worked longer. It is about who communicates impact faster. The Professional CV Package is built to help experienced candidates present measurable outcomes, leadership signals, and role-specific value clearly.",
-    category: "Professional CV Guide",
+      "The Professional Package - CV Writing Services is designed for working professionals, experienced job seekers, executives, and career changers who need a strong, polished, ATS-friendly CV for better career opportunities. It focuses on professional profile positioning, achievement-based rewriting, and keyword optimization for target roles.",
+    category: "Professional CV Writing",
     publishedAt: "2026-02-12",
     keywords: [
       "professional cv package",
@@ -251,7 +196,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
       {
         heading: "Mid-Level CV Problems That Reduce Interview Calls",
         paragraphs: [
-          "Many mid-level CVs are full of responsibilities but short on outcomes. Recruiters need to see business impact: improvements, savings, growth, risk reduction, and delivery quality.",
+          "Many professional CVs are full of responsibilities but short on outcomes. Recruiters need to see business impact: improvements, savings, growth, risk reduction, delivery quality, and contribution to team or company goals.",
           "Another common issue is weak role direction. A CV that tries to fit every possible role often performs worse than one built around a clear target path.",
         ],
         bullets: [
@@ -261,15 +206,19 @@ const packageGuideDrafts: PackageGuideDraft[] = [
         ],
       },
       {
-        heading: "What This Package Delivers for Experienced Candidates",
+        heading: "Package Includes",
         paragraphs: [
-          "The Professional CV Package reframes your experience around strategic outcomes and decision-making value, while preserving ATS-friendly structure and readability.",
-          "It is ideal for promotions, role transitions, and international applications where stronger storytelling and evidence quality matter.",
+          "The Professional Package reframes your experience around career value, achievements, and target-role relevance while preserving ATS-friendly structure and readability.",
+          "Price: LKR 10,000. Delivery Time: 3-7 Days. The package is built for an ATS Score 80-90% and includes 3 revisions within 3 days after delivery.",
         ],
         bullets: [
-          "Premium CV writing and design",
-          "ATS target range for stronger system visibility",
-          "Achievement-first narrative structure",
+          "Premium CV Writing & Design",
+          "ATS Score 80-90%",
+          "Professional Profile Positioning",
+          "Achievement-Based Experience Rewriting",
+          "Keyword Optimization for Target Roles",
+          "Editable Word File",
+          "3 Revisions within 3 Days after Delivery",
         ],
       },
       {
@@ -287,30 +236,30 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
     faqs: [
       {
-        question: "Who should choose the Professional CV Package?",
+        question: "Who should choose the Professional Package?",
         answer:
-          "It is best for mid-level professionals and managers who want stronger interview conversion for better-paying or more strategic roles.",
+          "Working professionals, experienced job seekers, executives, and career changers who need a stronger, polished, ATS-friendly CV should choose this package.",
       },
       {
-        question: "Can I add a cover letter with this package?",
+        question: "What is included in the revision support?",
         answer:
-          "Yes. You can add a separate cover letter package or choose a discount bundle that combines CV and cover letter services.",
+          "The package includes 3 revisions within 3 days after delivery, so you can request focused refinements after reviewing the completed CV.",
       },
       {
-        question: "Can this help with international job applications?",
+        question: "What is the price and delivery time?",
         answer:
-          "Yes. The structure and writing style are suitable for global recruiter expectations and ATS-based hiring processes.",
+          "The Professional Package is LKR 10,000 and the delivery time is 3-7 Days.",
       },
     ],
   },
   {
     packageSlug: "executive-cv-package",
-    title: "Executive CV Package: Leadership Positioning for Directors and C-Level Candidates",
+    title: "Executive Package - CV Writing Services: Leadership CV Writing for Senior Candidates",
     excerpt:
-      "Understand how senior leaders can use the Executive CV Package to present strategic impact, governance value, and board-level credibility in a concise ATS-ready format.",
+      "Understand how senior professionals, managers, executives, department heads, consultants, and leadership-level candidates can use an executive CV to communicate authority and impact.",
     content:
-      "Executive hiring is outcome-driven and reputation-sensitive. The Executive CV Package is crafted to present leadership outcomes, transformation history, and commercial impact in a high-trust format that works for both executive search and direct applications.",
-    category: "Executive CV Guide",
+      "The Executive Package - CV Writing Services is designed for senior professionals, managers, executives, department heads, consultants, and leadership-level candidates who need a powerful executive CV. It positions experience with authority, clarity, and impact while keeping the structure recruiter-friendly and ATS-ready.",
+    category: "Executive CV Writing",
     publishedAt: "2026-02-13",
     keywords: [
       "executive cv package",
@@ -333,15 +282,21 @@ const packageGuideDrafts: PackageGuideDraft[] = [
         ],
       },
       {
-        heading: "How the Executive Package Strengthens Positioning",
+        heading: "Package Includes",
         paragraphs: [
-          "This package structures your experience around strategic impact rather than operational detail. It highlights leadership narrative, governance discipline, and value delivery.",
-          "You can optionally pair this with a LinkedIn optimization package to keep your executive profile aligned with the same leadership story.",
+          "This package structures your experience around strategic impact rather than operational detail. It highlights leadership narrative, governance discipline, business value, and senior-level career direction.",
+          "Price: LKR 15,000. Delivery Time: 3-7 Days. The package includes an editable Word file and 3 revisions within 3 days after delivery.",
         ],
         bullets: [
-          "Tailored executive CV and resume writing",
-          "High-impact ATS compliant structure",
-          "LinkedIn optimization support for executive branding",
+          "Tailored Executive CV & Resume",
+          "High-Impact Executive Design",
+          "ATS-Optimized Structure",
+          "Executive Profile Positioning",
+          "Leadership & Achievement-Based Rewriting",
+          "Strategic Career Summary",
+          "Core Competencies Optimization",
+          "Editable Word File",
+          "3 Revisions within 3 Days after Delivery",
         ],
       },
       {
@@ -359,32 +314,33 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
     faqs: [
       {
-        question: "Is this package suitable for director and C-level roles?",
+        question: "Who should choose the Executive Package?",
         answer:
-          "Yes. It is specifically designed for senior leaders, directors, and executive-level candidates seeking strategic or board-facing roles.",
+          "Senior professionals, managers, executives, department heads, consultants, and leadership-level candidates should choose this package.",
       },
       {
-        question: "Does the package support leadership branding?",
+        question: "What type of leadership value does this package highlight?",
         answer:
-          "Yes. The writing emphasizes leadership value, strategic impact, and decision quality while also supporting LinkedIn consistency.",
+          "It highlights leadership experience, business impact, strategic decision-making, team management, operational achievements, and senior-level career value.",
       },
       {
-        question: "Can I use this for confidential executive transitions?",
+        question: "What is the price and delivery time?",
         answer:
-          "Yes. The profile is designed to communicate authority clearly while allowing strategic discretion around sensitive initiatives.",
+          "The Executive Package is LKR 15,000 and the delivery time is 3-7 Days.",
       },
     ],
   },
   {
     packageSlug: "student-cover-letter",
-    title: "Student Cover Letter Guide: Write Internship Letters That Sound Professional",
+    title: "Student Package - Cover Letter Writing Services: Internship and First Job Letter Guide",
     excerpt:
-      "A step-by-step guide to using the Student Cover Letter package for internship and trainee applications with clear structure, motivation, and skill relevance.",
+      "A complete guide to the Student Package for school leavers, interns, university students, fresh graduates, and entry-level job seekers who need a simple professional cover letter.",
     content:
-      "A good student cover letter does one thing clearly: it connects your potential to the employer's need. This guide explains how the Student Cover Letter package helps you avoid generic language and build focused, role-relevant application letters.",
-    category: "Student Cover Letter Guide",
+      "The Student Package - Cover Letter Writing Services is designed for candidates who need a simple, professional introduction for internships, trainee roles, graduate programs, part-time jobs, and first job opportunities. It helps students and freshers explain motivation, strengths, education, and career interest clearly.",
+    category: "Student Cover Letter Writing",
     publishedAt: "2026-02-14",
     keywords: [
+      "student package cover letter writing services",
       "student cover letter sri lanka",
       "internship cover letter",
       "cover letter writing for students",
@@ -393,140 +349,72 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
     sections: [
       {
-        heading: "Why Student Cover Letters Get Ignored",
+        heading: "Who This Student Package Is Built For",
         paragraphs: [
-          "Most letters repeat CV content without demonstrating why the role matters to the candidate and why the candidate is relevant to the role.",
-          "Recruiters need concise motivation, role fit, and evidence of initiative. A short letter can still be powerful when it is clear and specific.",
+          "This package is specially designed for school leavers, interns, university students, fresh graduates, and entry-level job seekers who need a simple, professional cover letter.",
+          "It is useful when applying for internships, trainee roles, graduate programs, part-time jobs, and first job opportunities where motivation, fit, and presentation quality matter.",
         ],
         bullets: [
-          "Avoid copy-paste templates",
-          "Connect skills to job requirements directly",
-          "Use a clear and respectful professional tone",
+          "School leavers and university students",
+          "Interns and trainee-role applicants",
+          "Fresh graduates and entry-level job seekers",
+          "Candidates who need a clear editable Word letter",
         ],
       },
       {
-        heading: "What This Package Solves",
+        heading: "Package Includes",
         paragraphs: [
-          "The Student Cover Letter package creates a professional foundation for internship and trainee applications by improving structure, clarity, and relevance.",
-          "It helps students communicate strengths and motivation confidently without sounding exaggerated or generic.",
+          "The package focuses on a simple, professional structure that connects your education, strengths, motivation, and career interest to the target opportunity.",
+          "Price: LKR 3,000. Delivery Time: 2-5 Days. The package includes one revision and is delivered as an editable Word file.",
         ],
         bullets: [
-          "Simple professional letter aligned to student roles",
-          "Skills and strengths highlighted with context",
-          "Delivery in editable formats for future applications",
+          "Simple, Professional Cover Letter",
+          "Student / Internship Role Alignment",
+          "Focus on Skills, Strengths & Motivation",
+          "Education & Career Interest Positioning",
+          "Delivered as Editable Word File",
+          "1 Revision Included",
         ],
       },
       {
-        heading: "How to Use One Letter Across Multiple Applications",
+        heading: "How This Improves Applications",
         paragraphs: [
-          "Start with a strong base letter, then customize two parts for each application: role title and company-specific motivation. This keeps quality high and effort manageable.",
-          "Keep your letter aligned with your CV summary so recruiters receive a consistent message across both documents.",
+          "A strong student cover letter shows genuine interest without sounding generic. It gives employers a quick reason to understand why you are applying and how your skills or education connect to the role.",
+          "When paired with a strong student CV, the letter improves your application quality and helps recruiters see a more complete picture of your readiness.",
         ],
         bullets: [
-          "Customize first and final paragraph per employer",
-          "Keep body focused on 2-3 relevant strengths",
-          "Use matching keywords from job advertisements",
+          "Introduce yourself professionally",
+          "Show genuine interest in the role",
+          "Connect education and strengths to the opportunity",
         ],
       },
     ],
     faqs: [
       {
-        question: "Is this only for internships?",
+        question: "Who should choose the Student Package - Cover Letter Writing Services?",
         answer:
-          "No. It can also be used for trainee and entry-level applications where students need a professional and concise letter.",
+          "School leavers, interns, university students, fresh graduates, and entry-level job seekers should choose this package.",
       },
       {
-        question: "Can I edit and reuse the letter?",
+        question: "What is the price and delivery time?",
         answer:
-          "Yes. The letter is provided in editable format so you can tailor it for different roles and companies.",
+          "The Student Package is LKR 3,000 and the delivery time is 2-5 Days.",
       },
       {
-        question: "Should I send a cover letter if not requested?",
+        question: "Can I edit the cover letter later?",
         answer:
-          "In competitive roles, a strong cover letter can still improve your chances by showing motivation and fit clearly.",
-      },
-    ],
-  },
-  {
-    packageSlug: "starter-cover-letter",
-    title: "Starter Cover Letter for Freshers: Improve Application Quality in 3 Steps",
-    excerpt:
-      "How freshers can use the Starter Cover Letter package to create role-specific applications that sound confident, relevant, and recruiter-friendly.",
-    content:
-      "Freshers often underestimate the value of a clear cover letter. When your experience is limited, your clarity becomes your advantage. This package helps you write letters that explain fit, motivation, and readiness without unnecessary filler.",
-    category: "Starter Cover Letter Guide",
-    publishedAt: "2026-02-15",
-    keywords: [
-      "starter cover letter",
-      "fresher cover letter sri lanka",
-      "entry level job application letter",
-      "professional cover letter writing",
-      "cover letter for graduates",
-    ],
-    sections: [
-      {
-        heading: "How Freshers Lose Attention in Cover Letters",
-        paragraphs: [
-          "Common fresher letters are either too emotional or too generic. Recruiters prefer concise communication that quickly proves relevance.",
-          "A strong letter should show understanding of the role, transferable strengths, and a clear willingness to contribute from day one.",
-        ],
-        bullets: [
-          "Avoid long life-story introductions",
-          "Use direct role relevance language",
-          "Connect your strengths to practical value",
-        ],
-      },
-      {
-        heading: "What You Receive in the Starter Cover Letter Package",
-        paragraphs: [
-          "This package gives you a professionally written letter with clear structure that aligns with your CV and target role profile.",
-          "It is optimized for fast recruiter reading and easy customization when applying to multiple opportunities.",
-        ],
-        bullets: [
-          "Professional letter structure and wording",
-          "Alignment with your CV narrative",
-          "Editable delivery for fast role-by-role customization",
-        ],
-      },
-      {
-        heading: "Weekly Routine to Improve Cover Letter Results",
-        paragraphs: [
-          "Use one strong base letter and update role title, skill emphasis, and final paragraph for each target company.",
-          "Track positive replies and identify the strongest language patterns so you can improve your template over time.",
-        ],
-        bullets: [
-          "Customize before every submission",
-          "Track which wording improves response quality",
-          "Keep tone concise, confident, and practical",
-        ],
-      },
-    ],
-    faqs: [
-      {
-        question: "Is this package good for entry-level jobs?",
-        answer:
-          "Yes. It is designed for freshers and early-career applicants who need clearer and more professional application letters.",
-      },
-      {
-        question: "Do I need a different cover letter for each role?",
-        answer:
-          "You should keep one strong core version and customize key lines for each role to maintain relevance.",
-      },
-      {
-        question: "Can this be used for international applications?",
-        answer:
-          "Yes. The structure is professional and suitable for international recruiter expectations when combined with role-specific tailoring.",
+          "Yes. It is delivered as an editable Word file, so you can adjust it for different internships, jobs, or companies.",
       },
     ],
   },
   {
     packageSlug: "professional-cover-letter",
-    title: "Professional Cover Letter Package: How Mid-Level Candidates Prove Value Quickly",
+    title: "Professional Package - Cover Letter Writing Services: Tailored Letters for Better Applications",
     excerpt:
-      "A practical guide for professionals who need achievement-focused cover letters that support promotion, role changes, and competitive applications.",
+      "A practical guide to the Professional Package for experienced job seekers, career changers, and skilled professionals who need a tailored cover letter.",
     content:
-      "At mid-level, your cover letter should not restate your CV. It should frame your value for the specific role and create urgency for interview consideration. This package is built to do exactly that with concise, strategic writing.",
-    category: "Professional Cover Letter Guide",
+      "The Professional Package - Cover Letter Writing Services is designed for mid-level professionals, experienced job seekers, career changers, and skilled professionals who need a fully tailored cover letter. It helps connect experience, skills, achievements, and career value to the target role.",
+    category: "Professional Cover Letter Writing",
     publishedAt: "2026-02-16",
     keywords: [
       "professional cover letter package",
@@ -549,15 +437,19 @@ const packageGuideDrafts: PackageGuideDraft[] = [
         ],
       },
       {
-        heading: "Why This Package Helps Promotion and Career Moves",
+        heading: "Package Includes",
         paragraphs: [
-          "The Professional Cover Letter package uses industry-aware language and measurable achievement framing, making your application stronger in competitive pools.",
-          "It is especially useful when moving to a new company or industry, where narrative clarity is critical to reduce hiring risk.",
+          "The Professional Package uses achievement-focused content, industry-specific wording, and ATS-friendly writing structure to support competitive job applications.",
+          "Price: LKR 4,000. Delivery Time: 2-5 Days. The package includes 2 revisions and is delivered as an editable Word file.",
         ],
         bullets: [
-          "Tailored writing with achievement focus",
-          "Industry-specific tone and clarity",
-          "Revision support for role-fit refinement",
+          "Fully Tailored Professional Cover Letter",
+          "Achievement-Focused Content",
+          "Industry-Specific Tone & Wording",
+          "ATS-Friendly Writing Structure",
+          "Skills, Experience & Career Value Highlighting",
+          "Delivered as Editable Word File",
+          "2 Revisions Included",
         ],
       },
       {
@@ -575,30 +467,30 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
     faqs: [
       {
-        question: "Who should use this cover letter package?",
+        question: "Who should choose the Professional Package - Cover Letter Writing Services?",
         answer:
-          "It is ideal for mid-level professionals seeking promotions, better offers, or transitions into stronger roles.",
+          "Mid-level professionals, experienced job seekers, career changers, and skilled professionals should choose this package.",
       },
       {
-        question: "Can it be tailored for specific industries?",
+        question: "What is the price and delivery time?",
         answer:
-          "Yes. The tone and evidence can be adjusted to suit the language and expectations of your target industry.",
+          "The Professional Package is LKR 4,000 and the delivery time is 2-5 Days.",
       },
       {
-        question: "How long should a professional cover letter be?",
+        question: "How many revisions are included?",
         answer:
-          "Usually one page with concise high-impact points is best for recruiter readability and response speed.",
+          "The package includes 2 revisions.",
       },
     ],
   },
   {
     packageSlug: "executive-cover-letter",
-    title: "Executive Cover Letter Strategy: Position Leadership Value for Senior Hiring",
+    title: "Executive Package - Cover Letter Writing Services: Senior-Level Application Positioning",
     excerpt:
-      "A leadership-focused guide to executive cover letters that communicate strategic value, governance confidence, and measurable outcomes.",
+      "A leadership-focused guide to the Executive Package for managers, senior professionals, executives, consultants, and leadership-level candidates.",
     content:
-      "For executive candidates, a cover letter is a positioning document. It should show strategic impact, leadership maturity, and role-specific relevance in a concise narrative. This package is built to present that value clearly and credibly.",
-    category: "Executive Cover Letter Guide",
+      "The Executive Package - Cover Letter Writing Services is designed for managers, senior professionals, executives, department heads, consultants, and leadership-level candidates who need a powerful customized cover letter for senior-level job applications.",
+    category: "Executive Cover Letter Writing",
     publishedAt: "2026-02-17",
     keywords: [
       "executive cover letter",
@@ -621,15 +513,19 @@ const packageGuideDrafts: PackageGuideDraft[] = [
         ],
       },
       {
-        heading: "How This Package Builds Executive Credibility",
+        heading: "Package Includes",
         paragraphs: [
-          "The Executive Cover Letter package is written to match senior hiring expectations, including board-facing tone, strategic framing, and concise impact storytelling.",
-          "It supports confidential transitions and high-trust applications where first impression quality has significant influence.",
+          "The Executive Package focuses on leadership value, strategic contribution, business impact, and suitability for senior-level opportunities.",
+          "Price: LKR 5,000. Delivery Time: 2-5 Days. The package includes unlimited revisions within 24 hours of delivery and is delivered as an editable Word file.",
         ],
         bullets: [
-          "Leadership-focused writing and value positioning",
-          "Company and role customization support",
-          "Rapid revision flow for time-sensitive applications",
+          "Leadership-Focused High-Impact Writing",
+          "Strategic Value Proposition",
+          "Company & Job Description Customization",
+          "Executive-Level Tone & Career Positioning",
+          "Achievement, Leadership & Business Impact Highlighting",
+          "Delivered as Editable Word File",
+          "Unlimited Revisions within 24 Hours of Delivery",
         ],
       },
       {
@@ -647,30 +543,30 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
     faqs: [
       {
-        question: "Is this package suitable for C-level applications?",
+        question: "Who should choose the Executive Package - Cover Letter Writing Services?",
         answer:
-          "Yes. It is tailored for senior and executive-level candidates requiring strategic narrative quality.",
+          "Managers, senior professionals, executives, department heads, consultants, and leadership-level candidates should choose this package.",
       },
       {
-        question: "Can the letter be customized to a specific company?",
+        question: "What is the price and delivery time?",
         answer:
-          "Yes. The package supports company-specific and role-specific tailoring to maximize relevance.",
+          "The Executive Package is LKR 5,000 and the delivery time is 2-5 Days.",
       },
       {
-        question: "Do executive cover letters still matter today?",
+        question: "What revision support is included?",
         answer:
-          "Yes. In high-level hiring, a strong letter can shape first impression quality and strengthen strategic fit perception.",
+          "The package includes unlimited revisions within 24 hours of delivery.",
       },
     ],
   },
   {
     packageSlug: "student-linkedin-package",
-    title: "Student LinkedIn Package: Build a Recruiter-Visible Profile Before Graduation",
+    title: "Student Package - LinkedIn Optimisation Package: Build a Professional Student Profile",
     excerpt:
-      "A complete student LinkedIn optimization guide for building profile visibility, keyword relevance, and early professional credibility.",
+      "A complete guide to the Student LinkedIn Optimisation Package for students, undergraduates, interns, fresh graduates, and entry-level job seekers.",
     content:
-      "LinkedIn is often the first profile recruiters check after scanning your CV. For students, a well-optimized profile can create internship opportunities before graduation. This package is designed to build that visibility from the ground up.",
-    category: "Student LinkedIn Guide",
+      "The Student Package - LinkedIn Optimisation Package is designed for students, undergraduates, interns, fresh graduates, and entry-level job seekers who want to build a professional LinkedIn profile for internships, trainee roles, graduate programs, and first job opportunities.",
+    category: "Student LinkedIn Optimisation",
     publishedAt: "2026-02-18",
     keywords: [
       "student linkedin package",
@@ -681,27 +577,32 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
     sections: [
       {
-        heading: "Why Students Need LinkedIn Early",
+        heading: "Who This Student Package Is Built For",
         paragraphs: [
-          "Recruiters search LinkedIn by skills, role keywords, and location. Students who optimize early often appear in more internship and trainee searches.",
-          "A complete profile also increases trust when employers verify your application after receiving your CV.",
+          "Recruiters search LinkedIn by skills, role keywords, education, location, and interests. Students who optimize early can create a stronger digital first impression before they have long work experience.",
+          "This package helps present education, skills, projects, internships, achievements, and career interests professionally on LinkedIn.",
         ],
         bullets: [
-          "Visibility in recruiter search",
-          "Stronger digital first impression",
-          "Better networking opportunities",
+          "Students and undergraduates",
+          "Interns and fresh graduates",
+          "Entry-level job seekers",
+          "Candidates preparing for internships and graduate programs",
         ],
       },
       {
-        heading: "How the Student LinkedIn Package Helps",
+        heading: "Package Includes",
         paragraphs: [
-          "This package improves your headline, About summary, skill direction, and profile structure so your strengths become clearer and easier to discover.",
-          "It is especially useful for students who have projects but do not know how to present them professionally.",
+          "The Student Package improves profile clarity through practical review, headline suggestions, About section guidance, skill keywords, and profile visibility tips.",
+          "Price: LKR 5,000. Delivery Time: 3-7 Days. The package gives a personalized improvement direction for a stronger student LinkedIn presence.",
         ],
         bullets: [
-          "Profile review with practical recommendations",
-          "Headline and About guidance",
-          "Keyword and skills placement support",
+          "LinkedIn Profile Review",
+          "Personalized Profile Improvement List",
+          "Professional Headline Suggestions",
+          "\"About\" Section Improvement Points",
+          "Skills & Keyword Recommendations",
+          "Education, Projects & Internship Positioning Tips",
+          "Basic Layout & Profile Visibility Tips",
         ],
       },
       {
@@ -719,102 +620,30 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
     faqs: [
       {
-        question: "Can students get opportunities through LinkedIn?",
+        question: "Who should choose the Student Package - LinkedIn Optimisation Package?",
         answer:
-          "Yes. Many internships and entry-level opportunities are discovered or validated through LinkedIn searches.",
+          "Students, undergraduates, interns, fresh graduates, and entry-level job seekers should choose this package.",
+      },
+      {
+        question: "What is the price and delivery time?",
+        answer:
+          "The Student Package is LKR 5,000 and the delivery time is 3-7 Days.",
       },
       {
         question: "What if I have limited experience?",
         answer:
-          "The package helps you present projects, coursework, volunteer activity, and skills in a professional and discoverable format.",
-      },
-      {
-        question: "How often should I update my student LinkedIn profile?",
-        answer:
-          "Review and update monthly, or whenever you complete projects, courses, certifications, or internships.",
-      },
-    ],
-  },
-  {
-    packageSlug: "starter-linkedin-package",
-    title: "Starter LinkedIn Package: Entry-Level Profile Optimization That Attracts Recruiters",
-    excerpt:
-      "How freshers can optimize LinkedIn for job search visibility, clear positioning, and stronger recruiter conversion.",
-    content:
-      "A LinkedIn profile without strategy becomes a digital CV copy. The Starter LinkedIn Package is built to create a profile that ranks better in searches and communicates value faster for entry-level hiring.",
-    category: "Starter LinkedIn Guide",
-    publishedAt: "2026-02-19",
-    keywords: [
-      "starter linkedin package",
-      "linkedin for freshers",
-      "entry level linkedin optimization",
-      "linkedin headline rewrite",
-      "recruiter visibility linkedin",
-    ],
-    sections: [
-      {
-        heading: "What Makes Entry-Level LinkedIn Profiles Weak",
-        paragraphs: [
-          "Most fresher profiles use vague headlines, generic About summaries, and incomplete experience sections. This reduces discoverability and profile trust.",
-          "When the profile lacks keyword strategy, recruiters searching for specific skills are less likely to find or short-list you.",
-        ],
-        bullets: [
-          "Weak headline positioning",
-          "Low keyword relevance",
-          "Incomplete experience and skills storytelling",
-        ],
-      },
-      {
-        heading: "What This Package Improves",
-        paragraphs: [
-          "The package provides structured profile analysis and rewrite direction for headline, About section, and experience blocks.",
-          "It creates a clearer message so recruiters instantly understand your target role and current value.",
-        ],
-        bullets: [
-          "Full profile analysis",
-          "Headline and About enhancement",
-          "Experience section structure improvement",
-        ],
-      },
-      {
-        heading: "Post-Optimization Growth Plan",
-        paragraphs: [
-          "Start a simple 30-day activity plan: optimize profile, add skills proof, then engage with role-specific content daily.",
-          "Consistent activity helps your profile stay visible and improves inbound recruiter messages.",
-        ],
-        bullets: [
-          "Connect with relevant recruiters weekly",
-          "Share progress posts and project highlights",
-          "Update keywords as target roles evolve",
-        ],
-      },
-    ],
-    faqs: [
-      {
-        question: "Will this package help me get noticed by recruiters?",
-        answer:
-          "Yes. The package improves profile keyword relevance and message clarity, both critical for recruiter discovery.",
-      },
-      {
-        question: "Do I need paid LinkedIn features for this to work?",
-        answer:
-          "No. Strong profile structure and content quality can produce meaningful visibility even without premium tools.",
-      },
-      {
-        question: "Can I use this with my existing CV strategy?",
-        answer:
-          "Yes. It is most effective when LinkedIn and CV positioning are aligned around the same target roles.",
+          "The package helps position education, projects, internships, skills, achievements, and career interests professionally.",
       },
     ],
   },
   {
     packageSlug: "professional-linkedin-package",
-    title: "Professional LinkedIn Package: Turn Experience into Inbound Career Opportunities",
+    title: "Professional Package - LinkedIn Optimisation Package: Improve Recruiter Visibility",
     excerpt:
-      "A growth-focused LinkedIn guide for mid-level professionals who want stronger visibility, better network quality, and recruiter-ready profile messaging.",
+      "A guide to the Professional LinkedIn Optimisation Package for mid-level professionals, experienced job seekers, career changers, and skilled professionals.",
     content:
-      "Mid-level professionals often have strong experience but weak online positioning. The Professional LinkedIn Package aligns your profile with role-specific keyword demand and value communication so opportunities come more consistently.",
-    category: "Professional LinkedIn Guide",
+      "The Professional Package - LinkedIn Optimisation Package is designed for professionals who want to strengthen LinkedIn presence, improve recruiter visibility, and present career value more professionally.",
+    category: "Professional LinkedIn Optimisation",
     publishedAt: "2026-02-20",
     keywords: [
       "professional linkedin package",
@@ -837,15 +666,20 @@ const packageGuideDrafts: PackageGuideDraft[] = [
         ],
       },
       {
-        heading: "How the Professional LinkedIn Package Helps",
+        heading: "Package Includes",
         paragraphs: [
-          "This package provides a deeper audit and practical rewrite direction for your core profile sections, including industry-aligned keyword placement.",
-          "It also improves featured section direction so your most valuable work is visible in the first profile scroll.",
+          "The Professional Package provides a deep profile audit, headline improvement, About guidance, experience section recommendations, keyword strategy, and personal branding direction.",
+          "Price: LKR 10,000. Delivery Time: 3-7 Days. It is ideal for professionals who want to showcase achievements, skills, and career direction while improving recruiter discovery.",
         ],
         bullets: [
-          "Deep profile audit",
-          "Headline/About/Experience optimization",
-          "Industry keyword strategy and featured section guidance",
+          "Deep LinkedIn Profile Audit",
+          "Professional Headline Improvement",
+          "About Section Rewrite / Improvement Guidance",
+          "Experience Section Improvement Recommendations",
+          "Industry-Relevant Keyword Strategy",
+          "Featured Section Suggestions",
+          "Layout, Content & Personal Branding Recommendations",
+          "Recruiter Visibility Improvement Guidance",
         ],
       },
       {
@@ -863,30 +697,30 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
     faqs: [
       {
-        question: "Is this package suitable for professionals planning a job switch?",
+        question: "Who should choose the Professional Package - LinkedIn Optimisation Package?",
         answer:
-          "Yes. It is ideal for professionals aiming for stronger opportunities, promotions, or industry transitions.",
+          "Mid-level professionals, experienced job seekers, career changers, and skilled professionals should choose this package.",
       },
       {
-        question: "How important is keyword strategy on LinkedIn?",
+        question: "What is the price and delivery time?",
         answer:
-          "Very important. LinkedIn behaves like a search engine, and keyword relevance affects visibility significantly.",
+          "The Professional Package is LKR 10,000 and the delivery time is 3-7 Days.",
       },
       {
-        question: "Do I need to post content after optimization?",
+        question: "Does this help recruiter visibility?",
         answer:
-          "Yes, consistent activity helps maintain profile visibility and improves inbound opportunity flow.",
+          "Yes. The package includes industry-relevant keyword strategy and recruiter visibility improvement guidance.",
       },
     ],
   },
   {
     packageSlug: "executive-linkedin-package",
-    title: "Executive LinkedIn Package: Build a Leadership Brand That Signals Authority",
+    title: "Executive Package - LinkedIn Optimisation Package: Strengthen Executive Presence",
     excerpt:
-      "A high-level LinkedIn strategy guide for executives who need strong personal branding, board-ready messaging, and leadership discoverability.",
+      "A high-level guide to the Executive LinkedIn Optimisation Package for senior professionals, managers, executives, consultants, department heads, and business leaders.",
     content:
-      "For senior leaders, LinkedIn is not just networking. It is public executive positioning. The Executive LinkedIn Package helps shape authority, strategic credibility, and leadership relevance for high-value opportunities.",
-    category: "Executive LinkedIn Guide",
+      "The Executive Package - LinkedIn Optimisation Package is designed for leadership-level candidates who want to strengthen executive presence, improve industry visibility, and position themselves for senior-level career opportunities.",
+    category: "Executive LinkedIn Optimisation",
     publishedAt: "2026-02-21",
     keywords: [
       "executive linkedin package",
@@ -909,15 +743,20 @@ const packageGuideDrafts: PackageGuideDraft[] = [
         ],
       },
       {
-        heading: "How This Package Strengthens Leadership Presence",
+        heading: "Package Includes",
         paragraphs: [
-          "The package provides executive-level profile structuring with leadership-focused headline and About messaging that reflects strategic authority.",
-          "It supports alignment between your profile and executive CV so your brand remains consistent in all high-stakes conversations.",
+          "The Executive Package strengthens leadership brand through executive profile audit, personal branding strategy, high-impact keyword direction, and authority-building recommendations.",
+          "Price: LKR 15,000. Delivery Time: 3-7 Days. It is ideal for leaders who want to present experience, achievements, strategic value, industry credibility, and leadership brand clearly.",
         ],
         bullets: [
-          "Executive profile audit and positioning",
-          "Leadership-centric messaging enhancements",
-          "High-impact keyword strategy for senior visibility",
+          "Executive-Level LinkedIn Profile Audit",
+          "Personal Branding Strategy",
+          "Leadership-Focused Headline & About Suggestions",
+          "High-Impact Keyword Strategy",
+          "Executive Profile Positioning Recommendations",
+          "Guidance to Improve Authority & Industry Visibility",
+          "Leadership Experience Presentation Tips",
+          "Featured Section & Thought Leadership Suggestions",
         ],
       },
       {
@@ -935,19 +774,19 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
     faqs: [
       {
-        question: "Is LinkedIn important for senior leaders?",
+        question: "Who should choose the Executive Package - LinkedIn Optimisation Package?",
         answer:
-          "Yes. It is often used to validate executive credibility and leadership brand before formal hiring discussions.",
+          "Senior professionals, managers, executives, consultants, department heads, business leaders, and leadership-level candidates should choose this package.",
       },
       {
-        question: "Can this package support confidential leadership transitions?",
+        question: "What is the price and delivery time?",
         answer:
-          "Yes. Messaging can be positioned carefully to maintain strategic discretion while improving executive visibility.",
+          "The Executive Package is LKR 15,000 and the delivery time is 3-7 Days.",
       },
       {
-        question: "Should executives post frequently?",
+        question: "What leadership value does this package improve?",
         answer:
-          "Quality and consistency matter more than volume. Strategic periodic posts are usually enough for leadership positioning.",
+          "It improves executive presence, industry visibility, strategic value presentation, credibility, and leadership brand clarity.",
       },
     ],
   },

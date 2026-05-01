@@ -76,7 +76,7 @@ export default function AffiliateDashboardClient({ profile, baseUrl, activity }:
   };
 
   const studentTarget = 10;
-  const starterTarget = 20;
+  const professionalTarget = 20;
 
   const currentScore = profile.successfulReferrals;
   return (
@@ -166,7 +166,7 @@ export default function AffiliateDashboardClient({ profile, baseUrl, activity }:
         <div className="relative">
           <div className="flex justify-between items-end mb-2">
             <div>
-              <span className="font-bold text-lg text-foreground block">Free Student CV Package</span>
+              <span className="font-bold text-lg text-foreground block">Free Student Package - CV Writing Services</span>
               <span className="text-sm text-zinc-500 font-medium">Earn 10 point{currentScore !== 1 ? 's' : ''} to unlock</span>
             </div>
             <div className="text-right">
@@ -196,35 +196,35 @@ export default function AffiliateDashboardClient({ profile, baseUrl, activity }:
           </div>
         </div>
 
-        {/* Starter Package Tracker */}
+        {/* Professional Package Tracker */}
         <div className="relative">
           <div className="flex justify-between items-end mb-2">
             <div>
-              <span className="font-bold text-lg text-foreground block">Free Starter CV Package</span>
+              <span className="font-bold text-lg text-foreground block">Free Professional Package - CV Writing Services</span>
               <span className="text-sm text-zinc-500 font-medium">Earn 20 point{currentScore !== 1 ? 's' : ''} to unlock</span>
             </div>
             <div className="text-right">
               <span className="text-2xl font-bold font-plus-jakarta text-brand-dark">{currentScore}</span>
-              <span className="text-zinc-400 font-bold">/{starterTarget}</span>
+              <span className="text-zinc-400 font-bold">/{professionalTarget}</span>
             </div>
           </div>
           
           <div className="mb-4">
             <progress
-              max={starterTarget}
-              value={Math.min(currentScore, starterTarget)}
+              max={professionalTarget}
+              value={Math.min(currentScore, professionalTarget)}
  className="h-8 w-full overflow-hidden rounded-full border border-zinc-200 bg-zinc-100 [&::-webkit-progress-bar]:bg-zinc-100 [&::-webkit-progress-value]:bg-gradient-to-r [&::-webkit-progress-value]:from-yellow-400 [&::-webkit-progress-value]:to-amber-500 [&::-moz-progress-bar]:bg-amber-500"
             />
           </div>
 
           <div className="flex justify-end">
-             {currentScore >= starterTarget ? (
+             {currentScore >= professionalTarget ? (
                <button className="px-6 py-2.5 bg-green-500 hover:bg-green-600 text-white font-bold rounded-full text-sm shadow-md transition-transform hover:scale-105">
                  Claim Reward Now
                </button>
              ) : (
                <button disabled className="px-6 py-2.5 bg-zinc-200 text-zinc-400 font-bold rounded-full text-sm cursor-not-allowed">
-                 {starterTarget - currentScore} more to go
+                 {professionalTarget - currentScore} more to go
                </button>
              )}
           </div>

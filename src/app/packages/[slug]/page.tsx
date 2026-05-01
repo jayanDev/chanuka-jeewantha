@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { packageProducts, formatLkr } from "@/lib/packages-catalog";
 import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList, buildProductSchema } from "@/lib/structured-data";
@@ -9,12 +9,26 @@ type PackagePageProps = {
   params: Promise<{ slug: string }>;
 };
 
+const retiredPackageRedirects: Record<string, string> = {
+  "starter-cv-package": "/packages/student-cv-package",
+  "starter-cover-letter": "/packages/student-cover-letter",
+  "starter-linkedin-package": "/packages/student-linkedin-package",
+};
+
 export async function generateStaticParams() {
   return packageProducts.map((pkg) => ({ slug: pkg.slug }));
 }
 
 export async function generateMetadata({ params }: PackagePageProps): Promise<Metadata> {
   const { slug } = await params;
+  if (retiredPackageRedirects[slug]) {
+    return buildNoIndexMetadata({
+      title: "Package Moved",
+      description: "This package has moved to the current Student package page.",
+      path: `/packages/${slug}`,
+    });
+  }
+
   const pkg = packageProducts.find((item) => item.slug === slug);
 
   if (!pkg) {
@@ -27,7 +41,7 @@ export async function generateMetadata({ params }: PackagePageProps): Promise<Me
 
   return buildPageMetadata({
     title: `${pkg.name} | Chanuka Packages`,
-    description: `${pkg.name} - ${pkg.audience}. Delivery: ${pkg.delivery}. Price: ${formatLkr(pkg.priceLkr)}.`,
+    description: `${pkg.name} - ${pkg.description ?? pkg.audience}. Delivery: ${pkg.delivery}. Price: ${formatLkr(pkg.priceLkr)}.`,
     path: `/packages/${slug}`,
     keywords: [pkg.name, pkg.category, "career services", "ATS CV writing"],
   });
@@ -35,14 +49,19 @@ export async function generateMetadata({ params }: PackagePageProps): Promise<Me
 
 export default async function PackageSinglePage({ params }: PackagePageProps) {
   const { slug } = await params;
+  const retiredRedirect = retiredPackageRedirects[slug];
+  if (retiredRedirect) {
+    permanentRedirect(retiredRedirect);
+  }
+
   const pkg = packageProducts.find((item) => item.slug === slug);
 
   if (!pkg) {
     notFound();
   }
 
-  const hasPackageWord = /\bpackage\b/i.test(pkg.name);
-  const packageTitleMain = hasPackageWord ? pkg.name.replace(/\s*package\b/i, "") : pkg.name;
+  const hasSimplePackageWord = /\bpackage\b/i.test(pkg.name) && !pkg.name.includes(" - ");
+  const packageTitleMain = hasSimplePackageWord ? pkg.name.replace(/\s*package\b/i, "") : pkg.name;
   const breadcrumbLd = buildBreadcrumbList([
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
@@ -50,7 +69,7 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
   ]);
   const productLd = buildProductSchema({
     name: pkg.name,
-    description: `${pkg.audience}. Delivery: ${pkg.delivery}. Includes: ${pkg.features.slice(0, 3).join(", ")}.`,
+    description: `${pkg.description ?? pkg.audience}. Delivery: ${pkg.delivery}. Includes: ${pkg.features.slice(0, 3).join(", ")}.`,
     path: `/packages/${pkg.slug}`,
     category: pkg.category,
     priceLkr: pkg.priceLkr,
@@ -79,15 +98,22 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
 
           <h1 className="text-[32px] sm:text-[44px] md:text-[62px] font-bold font-plus-jakarta leading-[1.08] mb-4 !text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]">
             {packageTitleMain}{" "}
-            {hasPackageWord && <span className="text-brand-main">Package</span>}
+            {hasSimplePackageWord && <span className="text-brand-main">Package</span>}
           </h1>
-          <p className="text-xl text-white/90 max-w-3xl">{pkg.audience}</p>
+          <p className="text-xl text-white/90 max-w-3xl">{pkg.description ?? pkg.audience}</p>
         </div>
       </section>
 
  <section className="w-full py-[90px] bg-white">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10">
  <article className="rounded-[22px] border border-zinc-200 p-8">
+            {pkg.description && (
+              <>
+                <p className="text-sm uppercase tracking-wide text-zinc-500 mb-2">Designed For</p>
+                <p className="text-lg leading-relaxed text-text-body mb-8">{pkg.description}</p>
+              </>
+            )}
+
             <p className="text-sm uppercase tracking-wide text-zinc-500 mb-2">Category</p>
             <p className="text-lg font-semibold text-foreground mb-5">{pkg.category}</p>
 
@@ -97,7 +123,7 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
             <p className="text-sm uppercase tracking-wide text-zinc-500 mb-2">Delivery Time</p>
             <p className="text-lg font-semibold text-foreground mb-8">{pkg.delivery}</p>
 
-            <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground mb-5">What You Get</h2>
+            <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground mb-5">Package Includes</h2>
             <ul className="space-y-3 mb-10">
               {pkg.features.map((feature) => (
                 <li key={feature} className="flex items-start gap-3 text-text-body">
@@ -106,6 +132,13 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
                 </li>
               ))}
             </ul>
+
+            {pkg.idealFor && (
+              <div className="mb-10 rounded-[16px] border border-brand-main/15 bg-brand-main/5 p-5">
+                <h2 className="text-[22px] font-bold font-plus-jakarta text-foreground mb-3">Ideal For</h2>
+                <p className="leading-relaxed text-text-body">{pkg.idealFor}</p>
+              </div>
+            )}
 
             <div className="flex flex-wrap gap-3">
               <Link href="/checkout" className="rounded-[10px] bg-brand-main px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-dark">

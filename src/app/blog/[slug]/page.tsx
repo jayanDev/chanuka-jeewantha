@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import BlogCommentForm from "@/components/BlogCommentForm";
 import ServiceSidebarAds from "@/components/ServiceSidebarAds";
@@ -15,12 +15,26 @@ import { isIndexableFallbackBlogPost } from "@/lib/blog-discovery";
 import { getBlogPostLanguage, getSinhalaHreflangAlternates } from "@/lib/blog-i18n";
 import { getBlogCoverImage, isGeneratedBlogCoverImage } from "@/lib/blog-images";
 
+const retiredBlogRedirects: Record<string, string> = {
+  "package-guide-starter-cv-package": "/blog/package-guide-student-cv-package",
+  "package-guide-starter-cover-letter": "/blog/package-guide-student-cover-letter",
+  "package-guide-starter-linkedin-package": "/blog/package-guide-student-linkedin-package",
+};
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  if (retiredBlogRedirects[slug]) {
+    return buildNoIndexMetadata({
+      title: "Article Moved | Chanuka Jeewantha Blog",
+      description: "This article has moved to the current Student package guide.",
+      path: `/blog/${slug}`,
+    });
+  }
+
   const baseUrl = getBaseUrl();
   let post: {
     title: string;
@@ -117,6 +131,11 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const resolvedParams = await params;
+  const retiredRedirect = retiredBlogRedirects[resolvedParams.slug];
+  if (retiredRedirect) {
+    permanentRedirect(retiredRedirect);
+  }
+
   const fallbackPost = getPostBySlug(resolvedParams.slug);
   let post:
     | {
@@ -282,7 +301,7 @@ export default async function BlogPostPage({
         "@type": "Product",
         name: packageInfo.name,
         category: packageInfo.category,
-        description: `${packageInfo.name} for ${packageInfo.audience}. Delivery: ${packageInfo.delivery}.`,
+        description: `${packageInfo.description ?? packageInfo.audience}. Delivery: ${packageInfo.delivery}.`,
         url: `${baseUrl}/packages/${packageInfo.slug}`,
         brand: {
           "@type": "Brand",

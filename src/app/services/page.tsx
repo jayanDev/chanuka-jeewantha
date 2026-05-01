@@ -22,19 +22,19 @@ export default function ServicesPage() {
 
   const services = [
     {
-      title: "Professional CV Writing (100% ATS-Friendly)",
-      desc: "Role-targeted CVs with clean structure, proper keywords, and achievement-based writing to pass ATS and impress recruiters.",
+      title: "CV Writing Services",
+      desc: "Student, Professional, and Executive CV packages with ATS-friendly structure, role-targeted keywords, and recruiter-ready achievement writing.",
       isMostPopular: true,
       href: "/services/packages/cv-writing",
     },
     {
       title: "Cover Letter Writing",
-      desc: "Cover letters that communicate relevance, confidence, and proof-based value for competitive and international applications.",
+      desc: "Student, Professional, and Executive cover letters that communicate relevance, confidence, and proof-based value.",
       href: "/services/packages/cover-letter-writing",
     },
     {
       title: "LinkedIn Account Optimization",
-      desc: "Headline, About, and experience positioning for stronger recruiter discovery and profile conversion.",
+      desc: "Student, Professional, and Executive LinkedIn optimisation packages for stronger recruiter discovery and profile conversion.",
       href: "/services/packages/linkedin-optimization",
     },
     {

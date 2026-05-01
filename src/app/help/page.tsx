@@ -27,7 +27,7 @@ export default function HelpPage() {
     {
       title: "Delivery timeline",
       answer:
-        "Each package has its own delivery window. Most individual services are delivered within 2-5 days, while bulk packages may take longer.",
+        "Each package has its own delivery window. CV writing packages are delivered within 3-7 days, while other individual services and bulk packages show their own timelines on the pricing page.",
     },
     {
       title: "Revisions and edits",

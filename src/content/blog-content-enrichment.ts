@@ -328,7 +328,7 @@ function buildInternalLinks(profile: TopicProfile): BlogLink[] {
 
   if (profile.kind === "linkedin") {
     return [
-      { label: "Explore LinkedIn Optimization Packages", href: "/services/packages/linkedin-optimization" },
+      { label: "Explore LinkedIn Account Optimization Packages", href: "/services/packages/linkedin-optimization" },
       { label: "Try the LinkedIn Headline Generator", href: "/tools/linkedin-headline-generator" },
       { label: "Compare Career Service Pricing", href: "/pricing" },
     ];

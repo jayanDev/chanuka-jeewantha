@@ -309,7 +309,7 @@ export default function PricingClient() {
       )}
       <AnimatedServiceTextVisual label={pkg.name} className="mb-6 min-h-[180px]" />
       <h4 className="text-[26px] font-bold font-plus-jakarta text-foreground mb-2">{pkg.name}</h4>
-      <p className="text-text-body mb-6">{pkg.audience}</p>
+      <p className="text-text-body mb-6">{pkg.description ?? pkg.audience}</p>
 
       {configurableSlug && (
  <div className="mb-6 rounded-[12px] border border-zinc-200 bg-zinc-50 p-4">
@@ -401,6 +401,13 @@ export default function PricingClient() {
           </li>
         ))}
       </ul>
+
+      {pkg.idealFor && (
+        <div className="mb-8 rounded-[12px] border border-brand-main/15 bg-brand-main/5 p-4">
+          <p className="text-xs font-bold uppercase tracking-[0.12em] text-brand-dark">Ideal For</p>
+          <p className="mt-2 text-sm leading-relaxed text-text-body">{pkg.idealFor}</p>
+        </div>
+      )}
 
       <div className="flex flex-wrap gap-2">
         <button
@@ -579,7 +586,14 @@ export default function PricingClient() {
           </div>
 
           <div className="hidden md:block space-y-16">
-            {packageCategories.map((category) => (
+            {packageCategories.map((category) => {
+              const threeColumnCategoryKeys: PackageCategoryKey[] = ["cv-writing", "cover-letter", "linkedin"];
+              const packageGridClass =
+                threeColumnCategoryKeys.includes(category.key) && category.packages.length === 3
+                  ? "grid grid-cols-1 gap-8 lg:grid-cols-3"
+                  : "grid grid-cols-1 md:grid-cols-2 gap-8";
+
+              return (
               <section key={category.title} data-category-anchor-desktop={category.key}>
                 <div className="mb-8">
                   <div className="mb-3 flex items-center gap-3">
@@ -595,11 +609,12 @@ export default function PricingClient() {
                   <p className="text-text-body text-lg max-w-4xl">{category.description}</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className={packageGridClass}>
                   {category.packages.map((pkg) => renderCard(category.title, pkg))}
                 </div>
               </section>
-            ))}
+              );
+            })}
           </div>
 
           <div className="mt-16 text-center flex flex-wrap items-center justify-center gap-3">

@@ -8,7 +8,7 @@ import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 const slugToCategoryTitle: Record<string, string> = {
   "cv-writing": "CV Writing Packages",
   "cover-letter-writing": "Cover Letter Writing Packages",
-  "linkedin-optimization": "LinkedIn Optimization Packages",
+  "linkedin-optimization": "LinkedIn Account Optimization Packages",
   "cv-review": "CV Review Packages",
 };
 

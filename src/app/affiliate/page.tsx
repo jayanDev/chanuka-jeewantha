@@ -185,7 +185,7 @@ export default async function AffiliatePage() {
             <div>
               <div className="w-12 h-12 rounded-full bg-brand-main/10 text-brand-dark flex items-center justify-center font-bold text-xl mb-4">3</div>
               <h3 className="font-bold text-lg mb-2">Unlock Rewards</h3>
-              <p className="text-zinc-500 text-sm">Hit 10 points for a Free Student CV, or 20 points for a Starter Package.</p>
+              <p className="text-zinc-500 text-sm">Hit 10 points for a Free Student CV package, or 20 points for a Free Professional CV package.</p>
             </div>
           </div>
           </div>

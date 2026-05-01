@@ -50,6 +50,9 @@ export default function ServicePackageShowcase({ title, description, packages }:
   const [feedback, setFeedback] = useState("");
   const [addedBySlug, setAddedBySlug] = useState<Record<string, boolean>>({});
   const addedTimersRef = useRef<Record<string, number>>({});
+  const oneRowCategories = ["CV Writing", "Cover Letter Writing", "LinkedIn Optimization"];
+  const shouldUseThreeColumnRow =
+    packages.length === 3 && packages.every((pkg) => oneRowCategories.includes(pkg.category));
 
   useEffect(() => {
     const load = async () => {
@@ -153,7 +156,7 @@ export default function ServicePackageShowcase({ title, description, packages }:
           {feedback && <p className="mt-4 text-sm font-medium text-brand-dark">{feedback}</p>}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className={`grid grid-cols-1 gap-8 ${shouldUseThreeColumnRow ? "lg:grid-cols-3" : "md:grid-cols-2"}`}>
           {packages.map((pkg) => (
             (() => {
               const liveProduct = productsBySlug[pkg.slug];
@@ -177,7 +180,7 @@ export default function ServicePackageShowcase({ title, description, packages }:
               )}
 
               <h3 className="text-[26px] font-bold font-plus-jakarta text-foreground mb-2">{pkg.name}</h3>
-              <p className="text-text-body mb-6">{pkg.audience}</p>
+              <p className="text-text-body mb-6">{pkg.description ?? pkg.audience}</p>
 
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="rounded-[12px] bg-zinc-100 p-4">
@@ -202,6 +205,13 @@ export default function ServicePackageShowcase({ title, description, packages }:
                   </li>
                 ))}
               </ul>
+
+              {pkg.idealFor && (
+                <div className="mb-8 rounded-[12px] border border-brand-main/15 bg-brand-main/5 p-4">
+                  <p className="text-xs font-bold uppercase tracking-[0.12em] text-brand-dark">Ideal For</p>
+                  <p className="mt-2 text-sm leading-relaxed text-text-body">{pkg.idealFor}</p>
+                </div>
+              )}
 
               <div className="flex flex-wrap gap-2">
                 <Link

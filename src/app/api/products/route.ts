@@ -14,6 +14,8 @@ export async function GET(request: Request) {
           name: item.name,
           category: item.category,
           audience: item.audience,
+          description: item.description ?? item.audience,
+          idealFor: item.idealFor ?? null,
           priceLkr: pricing.priceLkr,
           originalPriceLkr: pricing.originalPriceLkr,
           discountPercent: pricing.discountPercent,

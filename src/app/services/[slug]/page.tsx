@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AnimatedServiceTextVisual from "@/components/AnimatedServiceTextVisual";
 import SubscribeForm from "@/components/SubscribeForm";
-import { packageProducts } from "@/lib/packages-catalog";
+import { formatLkr, packageProducts } from "@/lib/packages-catalog";
 import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 
 const serviceMetadataMap: Record<string, { label: string; title: string; description: string }> = {
@@ -12,19 +12,19 @@ const serviceMetadataMap: Record<string, { label: string; title: string; descrip
     label: "CV Writing",
     title: "CV Writing Service | ATS-Friendly CV Strategy",
     description:
-      "Get ATS-friendly CV writing support with role-aligned positioning, measurable achievement language, and recruiter-ready structure.",
+      "Compare Student, Professional, and Executive ATS-friendly CV writing packages with role-aligned positioning, achievement language, and recruiter-ready structure.",
   },
   "cover-letter-writing": {
     label: "Cover Letter Writing",
     title: "Cover Letter Writing Service",
     description:
-      "Professional cover letter writing tailored to your target role, highlighting your value with concise and persuasive messaging.",
+      "Compare Student, Professional, and Executive cover letter writing packages tailored to your career stage, target role, and application goals.",
   },
   "linkedin-optimization": {
-    label: "LinkedIn Optimization",
-    title: "LinkedIn Optimization Service",
+    label: "LinkedIn Account Optimization",
+    title: "LinkedIn Account Optimization Service",
     description:
-      "Improve your LinkedIn visibility with optimized headline, about section, keyword strategy, and profile positioning.",
+      "Compare Student, Professional, and Executive LinkedIn account optimization packages for stronger profile positioning, recruiter visibility, and personal branding.",
   },
   "cv-review": {
     label: "CV Review",
@@ -75,6 +75,11 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
 
   const categoryMatch = serviceCategoryMap[slug] ?? [];
   const relatedPackages = packageProducts.filter((pkg) => categoryMatch.includes(pkg.category));
+  const oneRowServiceSlugs = ["cv-writing", "cover-letter-writing", "linkedin-optimization"];
+  const relatedPackagesGridClass =
+    oneRowServiceSlugs.includes(slug) && relatedPackages.length === 3
+      ? "not-prose grid grid-cols-1 gap-4 mt-4 lg:grid-cols-3"
+      : "not-prose grid grid-cols-1 md:grid-cols-2 gap-4 mt-4";
 
   return (
     <>
@@ -104,6 +109,21 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
             <p>
               In today&#39;s hiring environment, your professional profile must be clear, role-aligned, and results-focused. This {entry.label.toLowerCase()} service is designed to improve how recruiters and hiring managers understand your value.
             </p>
+            {slug === "cv-writing" && (
+              <p>
+                CV writing is now organized into three clear package levels: Student, Professional, and Executive. Each package has its own positioning depth, ATS target, delivery window, and content strategy so candidates can choose the right level for their current career stage.
+              </p>
+            )}
+            {slug === "cover-letter-writing" && (
+              <p>
+                Cover letter writing is now organized into three clear package levels: Student, Professional, and Executive. Each package is written around your career stage, target role, and the kind of first impression you need to create.
+              </p>
+            )}
+            {slug === "linkedin-optimization" && (
+              <p>
+                LinkedIn account optimization is now organized into three clear package levels: Student, Professional, and Executive. Each package improves profile clarity, keyword direction, visibility, and personal branding for a different career stage.
+              </p>
+            )}
 
             <h3>My Approach</h3>
             <p>
@@ -125,12 +145,16 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
             {relatedPackages.length > 0 && (
               <>
                 <h3>Explore Related Packages</h3>
-                <div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div className={relatedPackagesGridClass}>
                   {relatedPackages.map((pkg) => (
  <div key={pkg.slug} className="rounded-[14px] border border-zinc-200 p-4 bg-zinc-50">
                       <AnimatedServiceTextVisual label={pkg.name} className="mb-4 min-h-[120px] rounded-[12px]" />
                       <p className="font-semibold text-foreground mb-2">{pkg.name}</p>
-                      <p className="text-sm text-text-body mb-3">{pkg.audience}</p>
+                      <p className="text-sm text-text-body mb-3">{pkg.description ?? pkg.audience}</p>
+                      <div className="mb-4 grid grid-cols-2 gap-2 text-xs">
+                        <span className="rounded-[10px] bg-white px-3 py-2 font-semibold text-foreground">{formatLkr(pkg.priceLkr)}</span>
+                        <span className="rounded-[10px] bg-white px-3 py-2 font-semibold text-foreground">{pkg.delivery}</span>
+                      </div>
                       <Link
                         href={`/packages/${pkg.slug}`}
                         className="inline-flex items-center gap-2 rounded-[10px] bg-brand-main px-3 py-2 text-xs font-semibold text-white transition-colors hover:bg-brand-dark"

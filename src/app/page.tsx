@@ -32,19 +32,19 @@ export default async function Home() {
 
   const services = [
     {
-      title: "Professional CV Writing (100% ATS-Friendly)",
-      desc: "Role-targeted CVs built for ATS parsing and recruiter readability, focused on results and measurable achievements.",
+      title: "CV Writing Services",
+      desc: "Student, Professional, and Executive CV packages built for ATS parsing, recruiter readability, and clear career-stage positioning.",
       href: "/services/packages/cv-writing",
       isMostPopular: true,
     },
     {
       title: "Cover Letter Writing",
-      desc: "Customized cover letters that communicate your value clearly, match your target role, and strengthen each application.",
+      desc: "Student, Professional, and Executive cover letters tailored to the role, your career stage, and the first impression you need.",
       href: "/services/packages/cover-letter-writing",
     },
     {
       title: "LinkedIn Account Optimization",
-      desc: "Search-optimized LinkedIn profiles with clear positioning, keyword strategy, and profile branding improvements.",
+      desc: "Student, Professional, and Executive LinkedIn optimisation packages for stronger profile clarity, keywords, and recruiter visibility.",
       href: "/services/packages/linkedin-optimization",
     },
     {

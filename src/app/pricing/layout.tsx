@@ -4,9 +4,9 @@ import { buildBreadcrumbList, buildOfferCatalogSchema } from "@/lib/structured-d
 import { packageCategories } from "@/lib/packages-catalog";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Pricing | CV Writing Services, CV Maker & Linkedin Optimization",
+  title: "Pricing | CV Writing, Cover Letter & LinkedIn Account Optimization",
   description:
-    "Compare Professional CV Writing Services, ATS Friendly CV creation packages, and LinkedIn Optimization pricing by career expert Chanuka Jeewantha.",
+    "Compare Student, Professional, and Executive CV writing, cover letter writing, and LinkedIn account optimization packages by career expert Chanuka Jeewantha.",
   path: "/pricing",
 });
 
@@ -23,7 +23,7 @@ export default function PricingLayout({ children }: { children: React.ReactNode 
         name: item.name,
         path: `/packages/${item.slug}`,
         priceLkr: item.priceLkr,
-        description: item.audience,
+        description: item.description ?? item.audience,
       })),
     }))
   );
