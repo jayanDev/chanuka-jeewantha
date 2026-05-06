@@ -17,56 +17,69 @@ export default function RefundPolicyPage() {
         <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Legal</p>
         <h1 className="text-[34px] font-bold font-plus-jakarta text-foreground md:text-[48px]">Refund Policy</h1>
         <p className="mt-4 leading-relaxed text-text-body">
-          This Refund Policy explains how refund requests are handled for services, ebooks, and paid digital resources purchased through this website.
+          Thank you for shopping at Chanuka Jeewantha. We value your satisfaction and strive to provide you with the best online shopping experience possible. If, for any reason, you are not completely satisfied with your purchase, we are here to help.
         </p>
 
         <div className="mt-8 space-y-6 rounded-[18px] border border-zinc-200 bg-white p-6 md:p-8">
           <article>
-            <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">1. Service Refunds</h2>
+            <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">Returns</h2>
             <p className="mt-2 text-sm leading-relaxed text-zinc-600">
-              Refunds for services such as CV writing, LinkedIn optimization, cover letters, and coaching support are reviewed case by case based on work completed, delivery stage, and communication history.
+              We accept returns within 7 days from the date of purchase. To be eligible for a return, your item must be unused and in the same condition that you received it. It must also be in the original packaging.
             </p>
           </article>
 
           <article>
-            <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">2. Digital Product Refunds</h2>
+            <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">Refunds</h2>
             <p className="mt-2 text-sm leading-relaxed text-zinc-600">
-              Paid ebooks, downloadable files, and digital resources are generally non-refundable once access has been granted or the file has been delivered, unless a clear technical issue prevents access and cannot be resolved.
+              Once we receive your return and inspect the item, we will notify you of the status of your refund. If your return is approved, we will initiate a refund to your original method of payment. Please note that the refund amount will exclude any shipping charges incurred during the initial purchase.
             </p>
           </article>
 
           <article>
-            <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">3. Duplicate or Wrong Payments</h2>
+            <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">Exchanges</h2>
             <p className="mt-2 text-sm leading-relaxed text-zinc-600">
-              If you accidentally pay twice or purchase the wrong item, contact support with your payment evidence as soon as possible so the issue can be reviewed.
+              If you would like to exchange your item for a different size, color, or style, please contact our customer support team within 7 days of receiving your order. We will provide you with further instructions on how to proceed with the exchange.
             </p>
           </article>
 
           <article>
-            <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">4. Incomplete Orders</h2>
+            <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">Non-Returnable Items</h2>
             <p className="mt-2 text-sm leading-relaxed text-zinc-600">
-              If a paid service cannot be delivered due to missing information, long inactivity, or failure to provide the required details, refund eligibility may be reduced or denied depending on the amount of work already completed.
+              Certain items are non-returnable and non-refundable. These include:
+            </p>
+            <ul className="mt-2 list-disc pl-5 text-sm leading-relaxed text-zinc-600 space-y-1">
+              <li>Gift cards</li>
+              <li>Downloadable software products</li>
+              <li>Personalized or custom-made items</li>
+              <li>Perishable goods</li>
+            </ul>
+          </article>
+
+          <article>
+            <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">Damaged or Defective Items</h2>
+            <p className="mt-2 text-sm leading-relaxed text-zinc-600">
+              In the unfortunate event that your item arrives damaged or defective, please contact us immediately. We will arrange for a replacement or issue a refund, depending on your preference and product availability.
             </p>
           </article>
 
           <article>
-            <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">5. Refund Timing</h2>
+            <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">Return Shipping</h2>
             <p className="mt-2 text-sm leading-relaxed text-zinc-600">
-              When a refund is approved, the timing depends on the original payment method and the steps required to confirm the reversal.
+              You will be responsible for paying the shipping costs for returning your item unless the return is due to our error (e.g., wrong item shipped, defective product). In such cases, we will provide you with a prepaid shipping label.
             </p>
           </article>
 
           <article>
-            <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">6. How to Request a Review</h2>
+            <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">Processing Time</h2>
             <p className="mt-2 text-sm leading-relaxed text-zinc-600">
-              Send your name, order details, and payment reference through the contact page or WhatsApp support so the request can be reviewed quickly.
+              Refunds and exchanges will be processed within 3–5 business days after we receive your returned item. Please note that it may take additional time for the refund to appear in your account, depending on your payment provider.
             </p>
           </article>
 
           <article>
-            <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">7. Final Decision</h2>
+            <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">Contact Us</h2>
             <p className="mt-2 text-sm leading-relaxed text-zinc-600">
-              All refund decisions are made fairly and based on the service status, delivered work, and the evidence available at the time of review.
+              If you have any questions or concerns regarding our refund policy, please contact our customer support team. We are here to assist you and ensure your shopping experience with us is enjoyable and hassle-free.
             </p>
           </article>
         </div>
