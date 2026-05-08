@@ -101,6 +101,8 @@ async function readJsonSafely(response: Response): Promise<Record<string, unknow
   }
 }
 
+const whatsappNumber = "94773902230";
+
 export default function CatalogueClient() {
   const params = useSearchParams();
   const [step, setStep] = useState(1);
@@ -145,6 +147,27 @@ export default function CatalogueClient() {
   }, [experience, selectedServices, serviceOption]);
 
   const totals = useMemo(() => calculateCatalogueTotal(matchedPackages), [matchedPackages]);
+  const selectedExperience = experience ? experienceOptions.find((item) => item.key === experience) : null;
+  const selectedOption = serviceOption ? getServiceOptionByKey(serviceOption) : null;
+  const whatsappOrderUrl = useMemo(() => {
+    const lines = [
+      "Hello Chanuka, I want to order from the catalogue.",
+      "",
+      "Selected packages:",
+      ...matchedPackages.map((pkg) => `- ${pkg.name}: ${getPackageDisplayPrice(pkg)}`),
+      "",
+      `Services: ${selectedServices.map((key) => getServiceByKey(key)?.title).filter(Boolean).join(", ")}`,
+      `Experience: ${selectedExperience?.title ?? ""}`,
+      `Service option: ${selectedOption?.title ?? ""}`,
+      `Subtotal: ${formatLkr(totals.subtotalLkr)}`,
+      totals.discountLkr > 0 ? `Discount: ${formatLkr(totals.discountLkr)} (${totals.discountPercent}%)` : "",
+      `Total: ${formatLkr(totals.totalLkr)}`,
+      "",
+      "Please confirm availability and payment details.",
+    ].filter(Boolean);
+
+    return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(lines.join("\n"))}`;
+  }, [matchedPackages, selectedExperience?.title, selectedOption?.title, selectedServices, totals]);
 
   const toggleService = (key: ServiceKey) => {
     setSelectedServices((previous) =>
@@ -225,18 +248,15 @@ export default function CatalogueClient() {
       }
 
       const orderId = typeof payload.orderId === "string" ? payload.orderId : "";
-      setMessage(`Order submitted successfully${orderId ? `: ${orderId}` : ""}. We will verify your payment and contact you on WhatsApp.`);
       setPaymentSlip(null);
       setCurrentCv(null);
+      window.location.assign(`/catalogue/thank-you${orderId ? `?orderId=${encodeURIComponent(orderId)}` : ""}`);
     } catch {
       setError("Failed to submit order.");
     } finally {
       setIsSubmitting(false);
     }
   };
-
-  const selectedExperience = experience ? experienceOptions.find((item) => item.key === experience) : null;
-  const selectedOption = serviceOption ? getServiceOptionByKey(serviceOption) : null;
 
   return (
     <main className="min-h-screen bg-zinc-50">
@@ -434,7 +454,7 @@ export default function CatalogueClient() {
               </div>
 
               <div className="mt-6 rounded-[14px] border border-zinc-200 bg-white p-5">
-                <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
                   <div>
                     <p className="text-sm text-zinc-500">Order total</p>
                     <p className="font-plus-jakarta text-[28px] font-bold text-foreground">{formatLkr(totals.totalLkr)}</p>
@@ -444,31 +464,34 @@ export default function CatalogueClient() {
                       </p>
                     )}
                   </div>
-                  <p className="text-sm text-zinc-500">Subtotal: {formatLkr(totals.subtotalLkr)}</p>
+                  <div className="flex flex-col gap-2 sm:flex-row">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setOrderStep(1);
+                        window.requestAnimationFrame(() => {
+                          document.getElementById("catalogue-order-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                        });
+                      }}
+                      className="rounded-[10px] bg-brand-main px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
+                    >
+                      Order Now
+                    </button>
+                    <a
+                      href={whatsappOrderUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-[10px] bg-[#25D366] px-6 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-[#1fb85a]"
+                    >
+                      Order via WhatsApp
+                    </a>
+                  </div>
                 </div>
+                <p className="mt-3 text-sm text-zinc-500">Subtotal: {formatLkr(totals.subtotalLkr)}</p>
               </div>
             </div>
 
-            {orderStep === 0 ? (
-              <div className="rounded-[18px] border border-brand-main/20 bg-white p-6 text-center shadow-sm md:p-8">
-                <h2 className="font-plus-jakarta text-[30px] font-bold text-foreground">Ready to order this package?</h2>
-                <p className="mx-auto mt-2 max-w-2xl text-zinc-600">
-                  The order details are split into 5 short pages, so you can complete one small section at a time.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setOrderStep(1);
-                    window.requestAnimationFrame(() => {
-                      document.getElementById("catalogue-order-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
-                    });
-                  }}
-                  className="mt-6 rounded-[10px] bg-brand-main px-7 py-3 font-semibold text-white transition-colors hover:bg-brand-dark"
-                >
-                  Order Now
-                </button>
-              </div>
-            ) : (
+            {orderStep > 0 && (
               <form id="catalogue-order-form" onSubmit={submitOrder} className="rounded-[18px] border border-zinc-200 bg-white p-6 shadow-sm md:p-8">
                 <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                   <div>

@@ -23,6 +23,8 @@ const statusBadgeColors: Record<AdminOrder["status"], string> = {
   cancelled: "bg-red-100 text-red-700",
 };
 
+const pageSize = 10;
+
 function normalizeWhatsApp(raw: string): string {
   const digits = raw.replace(/\D/g, "");
   if (digits.startsWith("0") && digits.length === 10) return "94" + digits.slice(1);
@@ -74,6 +76,9 @@ export default function OrdersClient() {
   const [etaDrafts, setEtaDrafts] = useState<Record<string, string>>({});
   const [notesDrafts, setNotesDrafts] = useState<Record<string, string>>({});
   const [savingMetaOrderId, setSavingMetaOrderId] = useState("");
+  const [selectedOrderIds, setSelectedOrderIds] = useState<Set<string>>(new Set());
+  const [page, setPage] = useState(1);
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
   const toggleExpand = (orderId: string) => {
     setExpandedOrders((prev) => {
@@ -144,6 +149,39 @@ export default function OrdersClient() {
 
     setError("");
     await loadOrders();
+  };
+
+  const deleteOrders = async (orderIds: string[]) => {
+    const uniqueIds = Array.from(new Set(orderIds)).filter(Boolean);
+    if (uniqueIds.length === 0) {
+      setError("Select at least one order to delete.");
+      return;
+    }
+
+    const confirmed = window.confirm(`Delete ${uniqueIds.length} order${uniqueIds.length > 1 ? "s" : ""}? This cannot be undone.`);
+    if (!confirmed) return;
+
+    setDeleteLoading(true);
+    setError("");
+    try {
+      const response = await fetch("/api/admin/orders", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderIds: uniqueIds }),
+      });
+      const payload = await readJsonSafely(response);
+      if (!response.ok) {
+        setError(typeof payload.error === "string" ? payload.error : "Failed to delete selected orders.");
+        return;
+      }
+
+      setSelectedOrderIds(new Set());
+      await loadOrders();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to delete selected orders.");
+    } finally {
+      setDeleteLoading(false);
+    }
   };
 
   const uploadHandover = async (orderId: string) => {
@@ -280,6 +318,15 @@ export default function OrdersClient() {
       );
     });
   }, [orders, search, statusFilter, activeTab]);
+
+  useEffect(() => {
+    setPage(1);
+    setSelectedOrderIds(new Set());
+  }, [activeTab, search, statusFilter]);
+
+  const pageCount = Math.max(1, Math.ceil(filteredOrders.length / pageSize));
+  const visibleOrders = filteredOrders.slice((page - 1) * pageSize, page * pageSize);
+  const allVisibleSelected = visibleOrders.length > 0 && visibleOrders.every((order) => selectedOrderIds.has(order.id));
 
   const premiumSchedule = useMemo(() => {
     const counts = new Map<string, number>();
@@ -455,8 +502,12 @@ export default function OrdersClient() {
                       <button
                         type="button"
                         onClick={() => {
+                          setActiveTab("all");
+                          setStatusFilter("all");
+                          setSearch("");
+                          setPage(1);
                           setExpandedOrders(new Set([order.id]));
-                          window.requestAnimationFrame(() => document.getElementById(`order-${order.id}`)?.scrollIntoView({ behavior: "smooth", block: "start" }));
+                          window.setTimeout(() => document.getElementById(`order-${order.id}`)?.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
                         }}
                         className="rounded-[8px] bg-foreground px-3 py-1.5 text-xs font-semibold text-background"
                       >
@@ -540,10 +591,42 @@ export default function OrdersClient() {
           </select>
         </div>
 
+        <div className="mt-4 flex flex-wrap items-center gap-3 rounded-[12px] border border-zinc-200 bg-zinc-50 p-3">
+          <label className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-700">
+            <input
+              type="checkbox"
+              checked={allVisibleSelected}
+              onChange={(event) => {
+                setSelectedOrderIds((previous) => {
+                  const next = new Set(previous);
+                  for (const order of visibleOrders) {
+                    if (event.target.checked) next.add(order.id);
+                    else next.delete(order.id);
+                  }
+                  return next;
+                });
+              }}
+              className="accent-brand-main"
+            />
+            Select visible orders
+          </label>
+          <button
+            type="button"
+            disabled={selectedOrderIds.size === 0 || deleteLoading}
+            onClick={() => void deleteOrders(Array.from(selectedOrderIds))}
+            className="rounded-[10px] border border-red-300 bg-red-50 px-4 py-2 text-sm font-semibold text-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {deleteLoading ? "Deleting..." : `Delete Selected (${selectedOrderIds.size})`}
+          </button>
+          <span className="text-sm text-zinc-500">
+            Showing {visibleOrders.length} of {filteredOrders.length} orders
+          </span>
+        </div>
+
         {error && <p className="mt-3 text-sm text-red-700">{error}</p>}
       </div>
 
-      {filteredOrders.map((order) => {
+      {visibleOrders.map((order) => {
         const isExpanded = expandedOrders.has(order.id);
         const wa = normalizeWhatsApp(order.paymentWhatsApp);
         const daysSince = order.createdAt
@@ -554,6 +637,32 @@ export default function OrdersClient() {
 
         return (
           <article id={`order-${order.id}`} key={order.id} className="rounded-[18px] border border-zinc-200 bg-white overflow-hidden shadow-sm">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-zinc-100 bg-zinc-50 px-5 py-2">
+            <label className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-600">
+              <input
+                type="checkbox"
+                checked={selectedOrderIds.has(order.id)}
+                onChange={(event) => {
+                  setSelectedOrderIds((previous) => {
+                    const next = new Set(previous);
+                    if (event.target.checked) next.add(order.id);
+                    else next.delete(order.id);
+                    return next;
+                  });
+                }}
+                className="accent-brand-main"
+              />
+              Select order
+            </label>
+            <button
+              type="button"
+              disabled={deleteLoading}
+              onClick={() => void deleteOrders([order.id])}
+              className="rounded-[8px] border border-red-200 bg-white px-3 py-1.5 text-xs font-semibold text-red-700 hover:bg-red-50 disabled:opacity-50"
+            >
+              Delete
+            </button>
+          </div>
           {/* Collapsed header */}
           <button
             type="button"
@@ -678,6 +787,36 @@ export default function OrdersClient() {
                 )}
               </div>
 
+              <div className="flex flex-wrap items-center gap-2 rounded-[12px] border border-zinc-200 bg-zinc-50 p-3">
+                <span className="text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500">More pages</span>
+                <Link
+                  href={`/admin/orders/${order.id}`}
+                  className="rounded-[8px] border border-zinc-300 bg-white px-3 py-2 text-xs font-semibold text-foreground hover:border-brand-main hover:text-brand-main"
+                >
+                  Full Details
+                </Link>
+                <Link
+                  href={`/admin/orders/${order.id}#intake`}
+                  className="rounded-[8px] border border-zinc-300 bg-white px-3 py-2 text-xs font-semibold text-foreground hover:border-brand-main hover:text-brand-main"
+                >
+                  Intake Details
+                </Link>
+                <Link
+                  href={`/admin/orders/${order.id}#timeline`}
+                  className="rounded-[8px] border border-zinc-300 bg-white px-3 py-2 text-xs font-semibold text-foreground hover:border-brand-main hover:text-brand-main"
+                >
+                  Tracking
+                </Link>
+                <Link
+                  href={`/admin/orders/${order.id}#revisions`}
+                  className="rounded-[8px] border border-zinc-300 bg-white px-3 py-2 text-xs font-semibold text-foreground hover:border-brand-main hover:text-brand-main"
+                >
+                  Revisions
+                </Link>
+              </div>
+
+              {false && (
+                <>
               {/* Order info */}
               <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm text-zinc-600">
                 <span className="text-zinc-400">Paid by</span>
@@ -685,7 +824,7 @@ export default function OrdersClient() {
                 <span className="text-zinc-400">Ref</span>
                 <span>{order.paymentRef || "—"}</span>
                 <span className="text-zinc-400">Placed</span>
-                <span>{order.createdAt ? new Date(order.createdAt).toLocaleDateString("en-LK") : "—"}</span>
+                <span>{order.createdAt ? new Date(order.createdAt ?? 0).toLocaleDateString("en-LK") : "—"}</span>
                 <span className="text-zinc-400">Subtotal</span>
                 <span>{formatLkr(order.subtotalLkr || order.totalLkr)}</span>
                 {order.couponDiscountLkr > 0 && (
@@ -719,7 +858,7 @@ export default function OrdersClient() {
                     </span>
                   </div>
                   <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    {Object.entries(order.intake)
+                    {Object.entries(order.intake ?? {})
                       .filter(([, value]) => value)
                       .map(([key, value]) => (
                         <p key={key}>
@@ -729,6 +868,8 @@ export default function OrdersClient() {
                       ))}
                   </div>
                 </div>
+              )}
+                </>
               )}
 
               {/* ETA + Admin Notes */}
@@ -834,6 +975,8 @@ export default function OrdersClient() {
                 </button>
               </div>
 
+              {false && (
+                <>
               {/* Progress Timeline */}
               <div className="rounded-[10px] border border-zinc-200 p-4">
                 <h4 className="font-semibold text-foreground mb-3 text-sm">Progress Timeline & Live Tracking</h4>
@@ -973,11 +1116,39 @@ export default function OrdersClient() {
                   </ul>
                 )}
               </div>
+                </>
+              )}
             </div>
           )}
         </article>
       );
       })}
+
+      {filteredOrders.length > 0 && (
+        <div className="flex flex-col gap-3 rounded-[14px] border border-zinc-200 bg-white px-4 py-3 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-zinc-500">
+            Page {page} of {pageCount} | Showing {(page - 1) * pageSize + 1}-{Math.min(page * pageSize, filteredOrders.length)} of {filteredOrders.length}
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              disabled={page <= 1}
+              onClick={() => setPage((current) => Math.max(1, current - 1))}
+              className="rounded-[8px] border border-zinc-300 px-3 py-2 text-sm font-semibold text-foreground disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              Previous
+            </button>
+            <button
+              type="button"
+              disabled={page >= pageCount}
+              onClick={() => setPage((current) => Math.min(pageCount, current + 1))}
+              className="rounded-[8px] border border-zinc-300 px-3 py-2 text-sm font-semibold text-foreground disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      )}
 
       {filteredOrders.length === 0 && <p className="text-sm text-zinc-500">No orders found for this filter.</p>}
     </section>

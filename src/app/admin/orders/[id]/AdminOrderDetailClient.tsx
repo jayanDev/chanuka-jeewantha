@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { formatLkr, readJsonSafely } from "@/app/admin/_components/admin-utils";
 import { statuses, type AdminOrder } from "@/app/admin/_components/admin-types";
@@ -22,12 +23,14 @@ function normalizeWhatsApp(raw: string): string {
 }
 
 export default function AdminOrderDetailClient({ orderId }: { orderId: string }) {
+  const router = useRouter();
   const [order, setOrder] = useState<AdminOrder | null>(null);
   const [status, setStatus] = useState<AdminOrder["status"]>("payment_submitted");
   const [etaDate, setEtaDate] = useState("");
   const [adminNotes, setAdminNotes] = useState("");
   const [error, setError] = useState("");
   const [isSaving, setIsSaving] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const loadOrder = useCallback(async () => {
     const response = await fetch("/api/admin/orders", { cache: "no-store" });
@@ -81,6 +84,31 @@ export default function AdminOrderDetailClient({ orderId }: { orderId: string })
     }
   };
 
+  const deleteOrder = async () => {
+    if (!order) return;
+    const confirmed = window.confirm(`Delete order for ${order.user.name}? This cannot be undone.`);
+    if (!confirmed) return;
+
+    setIsDeleting(true);
+    setError("");
+    try {
+      const response = await fetch("/api/admin/orders", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderId: order.id }),
+      });
+      const payload = await readJsonSafely(response);
+      if (!response.ok) {
+        setError(typeof payload.error === "string" ? payload.error : "Failed to delete order");
+        return;
+      }
+      router.push("/admin/orders");
+      router.refresh();
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   if (!order) {
     return (
       <section className="rounded-[18px] border border-zinc-200 bg-white p-6">
@@ -111,6 +139,20 @@ export default function AdminOrderDetailClient({ orderId }: { orderId: string })
         {error && <p className="mt-4 rounded-[10px] border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>}
 
         <div className="mt-6 flex flex-wrap gap-2">
+          <a href="#packages" className="rounded-[10px] border border-zinc-300 px-4 py-2.5 text-sm font-semibold text-foreground">
+            Packages
+          </a>
+          {order.intake && (
+            <a href="#intake" className="rounded-[10px] border border-zinc-300 px-4 py-2.5 text-sm font-semibold text-foreground">
+              Intake
+            </a>
+          )}
+          <a href="#timeline" className="rounded-[10px] border border-zinc-300 px-4 py-2.5 text-sm font-semibold text-foreground">
+            Timeline
+          </a>
+          <a href="#revisions" className="rounded-[10px] border border-zinc-300 px-4 py-2.5 text-sm font-semibold text-foreground">
+            Revisions
+          </a>
           {wa && (
             <a href={`https://wa.me/${wa}`} target="_blank" rel="noreferrer" className="rounded-[10px] bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-white">
               WhatsApp Client
@@ -169,12 +211,20 @@ export default function AdminOrderDetailClient({ orderId }: { orderId: string })
               <button type="button" onClick={() => { setStatus("completed"); void save("completed"); }} className="rounded-[10px] border border-emerald-300 bg-emerald-50 px-4 py-2.5 text-sm font-semibold text-emerald-800">
                 Mark Complete
               </button>
+              <button
+                type="button"
+                disabled={isDeleting}
+                onClick={() => void deleteOrder()}
+                className="rounded-[10px] border border-red-300 bg-red-50 px-4 py-2.5 text-sm font-semibold text-red-700 disabled:opacity-60"
+              >
+                {isDeleting ? "Deleting..." : "Delete Order"}
+              </button>
             </div>
           </div>
         </aside>
 
         <div className="space-y-5">
-          <div className="rounded-[18px] border border-zinc-200 bg-white p-5 shadow-sm">
+          <div id="packages" className="rounded-[18px] border border-zinc-200 bg-white p-5 shadow-sm">
             <h3 className="font-plus-jakarta text-xl font-bold text-foreground">Packages</h3>
             <div className="mt-4 space-y-3">
               {order.items.map((item) => (
@@ -187,7 +237,7 @@ export default function AdminOrderDetailClient({ orderId }: { orderId: string })
           </div>
 
           {order.intake && (
-            <div className="rounded-[18px] border border-zinc-200 bg-white p-5 shadow-sm">
+            <div id="intake" className="rounded-[18px] border border-zinc-200 bg-white p-5 shadow-sm">
               <h3 className="font-plus-jakarta text-xl font-bold text-foreground">Client Intake Details</h3>
               <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
                 {Object.entries(order.intake).filter(([, value]) => value).map(([key, value]) => (
@@ -200,7 +250,7 @@ export default function AdminOrderDetailClient({ orderId }: { orderId: string })
             </div>
           )}
 
-          <div className="rounded-[18px] border border-zinc-200 bg-white p-5 shadow-sm">
+          <div id="timeline" className="rounded-[18px] border border-zinc-200 bg-white p-5 shadow-sm">
             <h3 className="font-plus-jakarta text-xl font-bold text-foreground">Progress Timeline</h3>
             <div className="mt-4 space-y-3">
               {order.updates.length === 0 ? (
@@ -211,6 +261,24 @@ export default function AdminOrderDetailClient({ orderId }: { orderId: string })
                     <p className="font-semibold text-foreground">{update.title}</p>
                     <p className="mt-1 text-xs text-zinc-500">{new Date(update.atMs).toLocaleString("en-LK")} by {update.actorRole}</p>
                     {update.details && <p className="mt-2 text-sm text-zinc-700">{update.details}</p>}
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+
+          <div id="revisions" className="rounded-[18px] border border-zinc-200 bg-white p-5 shadow-sm">
+            <h3 className="font-plus-jakarta text-xl font-bold text-foreground">Revision Requests</h3>
+            <div className="mt-4 space-y-3">
+              {order.revisions.length === 0 ? (
+                <p className="text-sm text-zinc-500">No revision requests from customer yet.</p>
+              ) : (
+                order.revisions.map((revision) => (
+                  <div key={revision.id} className="rounded-[12px] border border-zinc-200 bg-zinc-50 p-4">
+                    <p className="text-xs font-bold uppercase tracking-[0.12em] text-zinc-500">Status: {revision.status}</p>
+                    <p className="mt-2 text-sm text-zinc-800">{revision.message}</p>
+                    <p className="mt-2 text-xs text-zinc-500">Requested: {new Date(revision.requestedAtMs).toLocaleString("en-LK")}</p>
+                    {revision.adminResponse && <p className="mt-2 text-xs text-zinc-600">Last admin note: {revision.adminResponse}</p>}
                   </div>
                 ))
               )}

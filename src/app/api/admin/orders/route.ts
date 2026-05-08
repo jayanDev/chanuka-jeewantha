@@ -457,3 +457,29 @@ export async function PATCH(request: Request) {
 
   return NextResponse.json({ ok: true, order });
 }
+
+export async function DELETE(request: Request) {
+  if (!isTrustedOrigin(request)) {
+    return NextResponse.json({ error: "Forbidden origin" }, { status: 403 });
+  }
+
+  const admin = await requireAdmin(request);
+  if (!admin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  const body = (await request.json().catch(() => ({}))) as { orderId?: unknown; orderIds?: unknown };
+  const ids = Array.isArray(body.orderIds)
+    ? body.orderIds.filter((item): item is string => typeof item === "string" && item.trim().length > 0)
+    : typeof body.orderId === "string" && body.orderId.trim()
+      ? [body.orderId.trim()]
+      : [];
+
+  const uniqueIds = Array.from(new Set(ids)).slice(0, 50);
+  if (uniqueIds.length === 0) {
+    return NextResponse.json({ error: "Select at least one order to delete." }, { status: 400 });
+  }
+
+  const db = getFirebaseDb();
+  await Promise.all(uniqueIds.map((id) => db.collection(ORDERS_COLLECTION).doc(id).delete()));
+
+  return NextResponse.json({ ok: true, deletedCount: uniqueIds.length });
+}
