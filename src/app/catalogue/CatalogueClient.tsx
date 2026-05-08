@@ -413,8 +413,10 @@ export default function CatalogueClient() {
                 {matchedPackages.map((pkg) => (
                   <article key={pkg.slug} className="rounded-[16px] border border-zinc-200 bg-zinc-50 p-5">
                     <div className="mb-3 flex flex-wrap gap-2">
-                      <span className="rounded-full bg-brand-main/10 px-3 py-1 text-xs font-bold text-brand-dark">{pkg.code}</span>
                       <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-zinc-700">{pkg.audience}</span>
+                      <span className="rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold text-brand-dark">
+                        {pkg.optionKey === "founder-led" ? "Founder-Led Premium" : "Supervised Professional"}
+                      </span>
                     </div>
                     <h3 className="font-plus-jakarta text-[23px] font-bold leading-tight text-foreground">{pkg.name}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-zinc-600">{pkg.description}</p>

@@ -4,15 +4,11 @@ import Link from "next/link";
 import {
   formatLkr,
   packageCategories,
-  serviceOptionChoices,
-  type ServiceOptionKey,
 } from "@/lib/packages-catalog";
 
-function getStartingPrice(categoryKey: string, optionKey: ServiceOptionKey): number | null {
+function getLowestStartingPrice(categoryKey: string): number | null {
   const category = packageCategories.find((item) => item.key === categoryKey);
-  const prices = category?.packages
-    .filter((pkg) => pkg.optionKey === optionKey)
-    .map((pkg) => pkg.priceLkr) ?? [];
+  const prices = category?.packages.map((pkg) => pkg.priceLkr) ?? [];
 
   if (prices.length === 0) return null;
   return Math.min(...prices);
@@ -42,7 +38,7 @@ export default function PricingClient() {
             Career Service Starting <span className="text-brand-main">Prices.</span>
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-relaxed text-white/80">
-            Final package price depends on service type, experience level, and whether you choose founder-led premium or supervised professional delivery.
+            Starting prices show the lowest available price for each service. Use the catalogue to find the exact package for your experience level.
           </p>
         </div>
       </section>
@@ -75,23 +71,17 @@ export default function PricingClient() {
                 </h3>
                 <p className="mt-3 min-h-[72px] text-sm leading-relaxed text-zinc-600">{category.description}</p>
 
-                <div className="mt-6 space-y-3">
-                  {serviceOptionChoices.map((option) => {
-                    const price = getStartingPrice(category.key, option.key);
-                    return (
-                      <div key={option.key} className="rounded-[12px] border border-zinc-200 bg-zinc-50 p-4">
-                        <div className="flex items-start justify-between gap-3">
-                          <div>
-                            <p className="text-sm font-semibold text-foreground">{option.shortTitle}</p>
-                            <p className="mt-1 text-xs leading-relaxed text-zinc-500">{option.description}</p>
-                          </div>
-                          <p className="whitespace-nowrap text-right text-lg font-bold text-foreground">
-                            {price === null ? "N/A" : `From ${formatLkr(price)}`}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })}
+                <div className="mt-6 rounded-[14px] border border-brand-main/20 bg-brand-main/5 p-5">
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand-dark">Starting From</p>
+                  <p className="mt-2 font-plus-jakarta text-[32px] font-bold text-foreground">
+                    {(() => {
+                      const price = getLowestStartingPrice(category.key);
+                      return price === null ? "N/A" : formatLkr(price);
+                    })()}
+                  </p>
+                  <p className="mt-2 text-sm text-zinc-600">
+                    Exact price changes after service, experience level, and service option are selected.
+                  </p>
                 </div>
 
                 <div className="mt-6 flex flex-wrap gap-2">

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { formatLkr, readJsonSafely } from "@/app/admin/_components/admin-utils";
 import { statuses, type AdminOrder } from "@/app/admin/_components/admin-types";
@@ -271,6 +272,7 @@ export default function OrdersClient() {
         order.user.name.toLowerCase().includes(query) ||
         order.user.email.toLowerCase().includes(query) ||
         order.paymentRef.toLowerCase().includes(query) ||
+        (order.source ?? "").toLowerCase().includes(query) ||
         order.paymentPersonName.toLowerCase().includes(query) ||
         order.paymentWhatsApp.toLowerCase().includes(query) ||
         order.items.some((item) => item.productName.toLowerCase().includes(query)) ||
@@ -293,6 +295,18 @@ export default function OrdersClient() {
       .slice(0, 14);
   }, [orders]);
 
+  const orderStats = useMemo(() => {
+    const pending = orders.filter((order) => order.status === "pending_payment" || order.status === "payment_submitted").length;
+    const active = orders.filter((order) => order.status === "confirmed" || order.status === "in_progress").length;
+    const completed = orders.filter((order) => order.status === "completed").length;
+    const catalogue = orders.filter((order) => order.source === "catalogue").length;
+    const revenue = orders
+      .filter((order) => order.status !== "cancelled")
+      .reduce((sum, order) => sum + order.totalLkr, 0);
+
+    return { pending, active, completed, catalogue, revenue };
+  }, [orders]);
+
   const exportOrders = (source: "all" | "catalogue") => {
     const selected = source === "catalogue" ? orders.filter((order) => order.source === "catalogue") : orders;
     const rows = [
@@ -306,7 +320,6 @@ export default function OrdersClient() {
         "WhatsApp",
         "Location",
         "Packages",
-        "Codes",
         "Services",
         "Experience",
         "Service Option",
@@ -331,7 +344,6 @@ export default function OrdersClient() {
         order.paymentWhatsApp,
         order.intake?.location ?? "",
         order.items.map((item) => item.productName).join(" + "),
-        order.items.map((item) => item.code ?? "").filter(Boolean).join(" + "),
         order.catalogueAnswers?.services?.join(" + ") ?? order.items.map((item) => item.serviceKey ?? "").filter(Boolean).join(" + "),
         order.catalogueAnswers?.experience ?? order.items.map((item) => item.experienceKey ?? "").filter(Boolean).join(" + "),
         order.catalogueAnswers?.serviceOption ?? order.items.map((item) => item.optionKey ?? "").filter(Boolean).join(" + "),
@@ -352,39 +364,68 @@ export default function OrdersClient() {
   };
 
   return (
-    <section className="space-y-4">
- <div className="rounded-[16px] border border-zinc-200 bg-white p-6">
-        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+    <section className="space-y-5">
+ <div className="rounded-[18px] border border-zinc-200 bg-white p-5 shadow-sm md:p-6">
+        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <h2 className="text-2xl font-bold font-plus-jakarta">Order Management</h2>
- <p className="text-sm text-zinc-600">Search, filter, track progress, and hand over final documents.</p>
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-main">Main Workflow</p>
+            <h2 className="mt-1 text-3xl font-bold font-plus-jakarta text-foreground">Order Management</h2>
+ <p className="mt-1 text-sm text-zinc-600">Verify payment, set delivery dates, contact clients, upload final files, and export order data.</p>
           </div>
           <div className="flex flex-wrap gap-2">
             <button
               type="button"
               onClick={() => exportOrders("catalogue")}
-              className="rounded bg-emerald-600 px-4 py-2 text-sm font-semibold text-white"
+              className="rounded-[10px] bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-emerald-700"
             >
               Download Catalogue Excel
             </button>
             <button
               type="button"
               onClick={() => exportOrders("all")}
-              className="rounded border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground"
+              className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
             >
               Download All Excel
             </button>
             <button
               type="button"
               onClick={() => void loadOrders()}
-              className="rounded bg-foreground px-4 py-2 text-sm text-background"
+              className="rounded-[10px] bg-foreground px-4 py-2.5 text-sm font-semibold text-background transition-colors hover:bg-brand-dark"
             >
               Refresh
             </button>
           </div>
         </div>
 
-        <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1fr)_360px]">
+        <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-5">
+          {[
+            { label: "Pending", value: orderStats.pending, tone: "text-amber-700 bg-amber-50 border-amber-200" },
+            { label: "Active", value: orderStats.active, tone: "text-blue-700 bg-blue-50 border-blue-200" },
+            { label: "Completed", value: orderStats.completed, tone: "text-emerald-700 bg-emerald-50 border-emerald-200" },
+            { label: "Catalogue", value: orderStats.catalogue, tone: "text-brand-dark bg-brand-main/10 border-brand-main/25" },
+            { label: "Revenue", value: formatLkr(orderStats.revenue), tone: "text-zinc-900 bg-zinc-50 border-zinc-200" },
+          ].map((item) => (
+            <button
+              key={item.label}
+              type="button"
+              onClick={() => {
+                if (item.label === "Pending") setActiveTab("pending");
+                if (item.label === "Active") setActiveTab("active");
+                if (item.label === "Completed") setActiveTab("completed");
+                if (item.label === "Catalogue") {
+                  setActiveTab("all");
+                  setSearch("catalogue");
+                }
+              }}
+              className={`rounded-[14px] border p-4 text-left ${item.tone}`}
+            >
+              <p className="text-xs font-bold uppercase tracking-[0.14em] opacity-75">{item.label}</p>
+              <p className="mt-2 text-2xl font-bold font-plus-jakarta">{item.value}</p>
+            </button>
+          ))}
+        </div>
+
+        <div className="mt-6 grid grid-cols-1 gap-4 xl:grid-cols-[minmax(0,1fr)_380px]">
           <div className="overflow-x-auto rounded-[12px] border border-zinc-200">
             <table className="min-w-full divide-y divide-zinc-200 text-sm">
               <thead className="bg-zinc-50 text-left text-xs uppercase tracking-wide text-zinc-500">
@@ -394,12 +435,12 @@ export default function OrdersClient() {
                   <th className="px-3 py-2">Service Option</th>
                   <th className="px-3 py-2">Total</th>
                   <th className="px-3 py-2">Status</th>
-                  <th className="px-3 py-2">ETA</th>
+                  <th className="px-3 py-2">Action</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-100 bg-white">
                 {orders.slice(0, 10).map((order) => (
-                  <tr key={order.id}>
+                  <tr key={order.id} className="hover:bg-zinc-50">
                     <td className="px-3 py-2">
                       <p className="font-semibold text-foreground">{order.user.name}</p>
                       <p className="text-xs text-zinc-500">{order.paymentWhatsApp}</p>
@@ -410,7 +451,18 @@ export default function OrdersClient() {
                     </td>
                     <td className="px-3 py-2 font-semibold">{formatLkr(order.totalLkr)}</td>
                     <td className="px-3 py-2">{statusDisplayLabels[order.status]}</td>
-                    <td className="px-3 py-2">{order.etaDate ?? "Not set"}</td>
+                    <td className="px-3 py-2">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setExpandedOrders(new Set([order.id]));
+                          window.requestAnimationFrame(() => document.getElementById(`order-${order.id}`)?.scrollIntoView({ behavior: "smooth", block: "start" }));
+                        }}
+                        className="rounded-[8px] bg-foreground px-3 py-1.5 text-xs font-semibold text-background"
+                      >
+                        Open
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -501,7 +553,7 @@ export default function OrdersClient() {
         const openRevisions = order.revisions.filter((r) => r.status !== "resolved").length;
 
         return (
-          <article key={order.id} className="rounded-[16px] border border-zinc-200 bg-white overflow-hidden">
+          <article id={`order-${order.id}`} key={order.id} className="rounded-[18px] border border-zinc-200 bg-white overflow-hidden shadow-sm">
           {/* Collapsed header */}
           <button
             type="button"
@@ -530,8 +582,11 @@ export default function OrdersClient() {
                 </p>
                 <p className="text-xs text-zinc-500">{order.user.email}</p>
               </div>
-              <div className="flex items-center gap-4 sm:flex-col sm:items-end sm:gap-1">
-                <p className="font-bold text-foreground">{formatLkr(order.totalLkr)}</p>
+              <div className="flex flex-wrap items-center gap-2 sm:justify-end">
+                <p className="mr-1 font-bold text-foreground">{formatLkr(order.totalLkr)}</p>
+                {order.status === "payment_submitted" && (
+                  <span className="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-bold text-amber-800">Needs verification</span>
+                )}
                 <span className="text-xs text-zinc-400">{isExpanded ? "▲ Collapse" : "▼ Expand"}</span>
               </div>
             </div>
@@ -553,6 +608,39 @@ export default function OrdersClient() {
                     <option key={status} value={status}>{statusDisplayLabels[status]}</option>
                   ))}
                 </select>
+                <Link
+                  href={`/admin/orders/${order.id}`}
+                  className="rounded-[8px] bg-foreground px-3 py-2 text-xs font-semibold text-background hover:bg-brand-dark"
+                >
+                  Full Details
+                </Link>
+                {order.status === "payment_submitted" && (
+                  <button
+                    type="button"
+                    onClick={() => void updateOrderStatus(order.id, "confirmed")}
+                    className="rounded-[8px] bg-brand-main px-3 py-2 text-xs font-semibold text-white hover:bg-brand-dark"
+                  >
+                    Confirm Payment
+                  </button>
+                )}
+                {(order.status === "confirmed" || order.status === "payment_submitted") && (
+                  <button
+                    type="button"
+                    onClick={() => void updateOrderStatus(order.id, "in_progress")}
+                    className="rounded-[8px] border border-blue-300 bg-blue-50 px-3 py-2 text-xs font-semibold text-blue-800 hover:bg-blue-100"
+                  >
+                    Start Work
+                  </button>
+                )}
+                {order.status === "in_progress" && (
+                  <button
+                    type="button"
+                    onClick={() => void updateOrderStatus(order.id, "completed")}
+                    className="rounded-[8px] border border-emerald-300 bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-800 hover:bg-emerald-100"
+                  >
+                    Mark Complete
+                  </button>
+                )}
                 {wa && (
                   <a
                     href={`https://wa.me/${wa}`}
