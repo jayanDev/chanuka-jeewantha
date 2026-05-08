@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { Checklist } from "@/lib/checklists";
 
@@ -28,7 +28,7 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
         const saved = localStorage.getItem(storageKey);
         if (saved) setChecked(JSON.parse(saved) as Record<string, boolean>);
       } catch {
-        // ignore
+        // Ignore local progress read errors.
       } finally {
         setMounted(true);
       }
@@ -43,15 +43,20 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
       try {
         localStorage.setItem(storageKey, JSON.stringify(next));
       } catch {
-        // ignore
+        // Ignore local progress write errors.
       }
       return next;
     });
   }
 
-  const totalItems = checklist.steps.reduce((sum, s) => sum + s.items.length, 0);
+  function goTo(idx: number) {
+    setCurrentIdx(Math.max(0, Math.min(checklist.steps.length - 1, idx)));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  const totalItems = checklist.steps.reduce((sum, step) => sum + step.items.length, 0);
   const checkedCount = checklist.steps.reduce(
-    (sum, s) => sum + s.items.filter((item) => checked[item.id]).length,
+    (sum, step) => sum + step.items.filter((item) => checked[item.id]).length,
     0
   );
   const progressPct = totalItems > 0 ? Math.round((checkedCount / totalItems) * 100) : 0;
@@ -60,24 +65,18 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
   const isLocked = !step.free && !isSignedIn;
   const stepCheckedCount = step.items.filter((item) => checked[item.id]).length;
   const stepComplete = mounted && stepCheckedCount === step.items.length;
-
   const canGoPrev = currentIdx > 0;
   const canGoNext = currentIdx < checklist.steps.length - 1;
 
-  function goTo(idx: number) {
-    setCurrentIdx(Math.max(0, Math.min(checklist.steps.length - 1, idx)));
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
   return (
     <div className="max-w-[800px] mx-auto px-4 sm:px-6 py-10">
-
-      {/* Overall progress bar */}
       {mounted && (
         <div className="mb-8 rounded-[14px] border border-zinc-200 bg-white p-5 shadow-sm">
           <div className="flex items-center justify-between mb-3">
-            <p className="text-sm font-semibold text-foreground">ඔබේ ප්‍රගතිය</p>
-            <span className="text-sm font-bold text-brand-dark">{checkedCount}/{totalItems} සම්පූර්ණ</span>
+            <p className="text-sm font-semibold text-foreground">Your Progress</p>
+            <span className="text-sm font-bold text-brand-dark">
+              {checkedCount}/{totalItems} complete
+            </span>
           </div>
           <div className="h-2.5 w-full rounded-full bg-zinc-100 overflow-hidden">
             <div
@@ -88,30 +87,29 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
           {progressPct === 100 && (
             <p className="mt-3 text-sm font-semibold text-brand-dark flex items-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              සියලු පියවර සම්පූර්ණ කළා — නියමයි!
+              Checklist complete.
             </p>
           )}
         </div>
       )}
 
-      {/* Step navigation bar */}
       <div className="flex items-center gap-3 mb-8 rounded-[14px] border border-zinc-200 bg-white p-4 shadow-sm">
         <button
           type="button"
           onClick={() => goTo(currentIdx - 1)}
           disabled={!canGoPrev}
           className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[8px] border border-zinc-200 text-zinc-500 transition-colors hover:border-brand-main hover:text-brand-dark disabled:opacity-30 disabled:cursor-not-allowed"
-          aria-label="කලින් අදියර"
+          aria-label="Previous section"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
         <div className="flex-1 text-center">
           <p className="text-sm font-bold text-foreground">
-            අදියර {currentIdx + 1} / {checklist.steps.length}
+            Section {currentIdx + 1} / {checklist.steps.length}
           </p>
           <p className="text-xs text-zinc-400 mt-0.5">
-            {step.items.length} ප්‍රශ්න
-            {mounted && stepCheckedCount > 0 && ` · ${stepCheckedCount} සම්පූර්ණ`}
+            {step.items.length} items
+            {mounted && stepCheckedCount > 0 && ` · ${stepCheckedCount} complete`}
           </p>
         </div>
         <button
@@ -119,21 +117,21 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
           onClick={() => goTo(currentIdx + 1)}
           disabled={!canGoNext}
           className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[8px] border border-zinc-200 text-zinc-500 transition-colors hover:border-brand-main hover:text-brand-dark disabled:opacity-30 disabled:cursor-not-allowed"
-          aria-label="ඊළඟ අදියර"
+          aria-label="Next section"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
         </button>
       </div>
 
-      {/* Step header */}
       <div className={`flex items-start gap-4 mb-6 ${isLocked ? "opacity-50" : ""}`}>
         <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold ${
           stepComplete ? "bg-brand-main text-white" : "bg-zinc-100 text-zinc-600"
         }`}>
-          {stepComplete
-            ? <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-            : step.id
-          }
+          {stepComplete ? (
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          ) : (
+            step.id
+          )}
         </span>
         <div>
           <h2 className="text-[20px] font-bold font-plus-jakarta text-foreground leading-tight">
@@ -143,7 +141,6 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
         </div>
       </div>
 
-      {/* Locked overlay */}
       {isLocked ? (
         <div className="rounded-[16px] border-2 border-dashed border-zinc-200 bg-zinc-50 p-8 text-center">
           <div className="flex justify-center mb-3">
@@ -151,27 +148,26 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-zinc-400" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
             </span>
           </div>
-          <p className="font-semibold text-foreground mb-1">මෙම අදියර unlock කරන්න sign in කරන්න</p>
+          <p className="font-semibold text-foreground mb-1">Sign in to unlock this section</p>
           <p className="text-sm text-text-body mb-5">
-            නොමිලේ account එකක් හදාගන්න — මෙම checklist සම්පූර්ණයෙන්ම නොමිලේ.
+            Create a free account or sign in to continue the full checklist.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Link
-              href="/auth/sign-in"
+              href="/auth/signin"
               className="inline-flex items-center gap-2 rounded-[10px] bg-foreground px-5 py-2.5 text-sm font-semibold text-background hover:bg-brand-dark transition-colors"
             >
-              ප්‍රවේශ වන්න
+              Sign in
             </Link>
             <Link
-              href="/auth/sign-up"
+              href="/auth/signup"
               className="inline-flex items-center gap-2 rounded-[10px] border border-zinc-300 px-5 py-2.5 text-sm font-semibold text-foreground hover:border-brand-main hover:text-brand-main transition-colors"
             >
-              නොමිලේ Account හදන්න
+              Register
             </Link>
           </div>
         </div>
       ) : (
-        /* Checklist items */
         <ul className="space-y-3">
           {step.items.map((item) => {
             const isChecked = mounted && !!checked[item.id];
@@ -197,21 +193,66 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
                       <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
                     )}
                   </button>
-                  <p
-                    className={`flex-1 min-w-0 text-[15px] font-medium leading-snug cursor-pointer ${
-                      isChecked ? "line-through text-zinc-400" : "text-foreground"
-                    }`}
-                    onClick={() => toggle(item.id)}
-                  >
-                    {item.text}
-                  </p>
+
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-start gap-2">
+                      <p
+                        className={`min-w-0 flex-1 text-[15px] font-semibold leading-snug cursor-pointer ${
+                          isChecked ? "line-through text-zinc-400" : "text-foreground"
+                        }`}
+                        onClick={() => toggle(item.id)}
+                      >
+                        {item.text}
+                      </p>
+                      {item.priority && (
+                        <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em] ${
+                          item.priority === "High"
+                            ? "bg-brand-main/15 text-brand-dark"
+                            : item.priority === "Medium"
+                              ? "bg-amber-50 text-amber-700"
+                              : "bg-zinc-100 text-zinc-500"
+                        }`}>
+                          {item.priority}
+                        </span>
+                      )}
+                    </div>
+
+                    {item.details && item.details.length > 0 && (
+                      <ul className="mt-3 space-y-1.5">
+                        {item.details.map((detail) => (
+                          <li key={detail} className="flex gap-2 text-[13px] leading-relaxed text-text-body">
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-main/70" />
+                            <span>{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {item.tip && (
+                      <p className="mt-3 rounded-[10px] bg-zinc-50 px-3 py-2 text-[13px] leading-relaxed text-zinc-600">
+                        <span className="font-semibold text-foreground">Tip:</span> {item.tip}
+                      </p>
+                    )}
+
+                    {item.prompt && (
+                      <div className="mt-3 rounded-[10px] border border-brand-main/20 bg-brand-main/5 p-3">
+                        <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.1em] text-brand-dark">
+                          AI Prompt
+                        </p>
+                        <p className="whitespace-pre-wrap text-[13px] leading-relaxed text-zinc-700">
+                          {item.prompt}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
                   {item.ref && checklist.ebookSlug && (
                     <Link
                       href={getChapterHref(item.ref, checklist.ebookSlug)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-brand-main/15 px-3 py-1.5 text-[12px] font-bold text-brand-dark hover:bg-brand-main hover:text-white transition-colors whitespace-nowrap"
-                      title={`${item.ref} කියවන්න`}
+                      title={`Read ${item.ref}`}
                     >
                       {item.ref}
                       <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -224,7 +265,6 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
         </ul>
       )}
 
-      {/* Bottom navigation */}
       <div className="mt-10 flex items-center gap-3">
         {canGoPrev ? (
           <button
@@ -233,9 +273,11 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
             className="flex-1 flex items-center justify-center gap-2 rounded-[10px] border border-zinc-200 px-4 py-3 text-sm font-semibold text-zinc-600 hover:border-brand-main hover:text-brand-dark transition-colors"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-            කලින් අදියර
+            Previous
           </button>
-        ) : <div className="flex-1" />}
+        ) : (
+          <div className="flex-1" />
+        )}
 
         {canGoNext ? (
           <button
@@ -243,7 +285,7 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
             onClick={() => goTo(currentIdx + 1)}
             className="flex-1 flex items-center justify-center gap-2 rounded-[10px] bg-foreground px-4 py-3 text-sm font-semibold text-background hover:bg-brand-dark transition-colors"
           >
-            ඊළඟ අදියර
+            Next
             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
           </button>
         ) : (
@@ -251,33 +293,31 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
             href={`/resources/checklists/${checklist.slug}`}
             className="flex-1 flex items-center justify-center gap-2 rounded-[10px] bg-brand-main px-4 py-3 text-sm font-semibold text-white hover:bg-brand-dark transition-colors"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-            සම්පූර්ණ කළා!
+            Finish
           </Link>
         )}
       </div>
 
-      {/* Unlock CTA for non-signed-in users */}
       {!isSignedIn && (
         <div className="mt-16 rounded-[20px] border border-zinc-200 bg-zinc-50 p-8 text-center">
           <h3 className="text-[20px] font-bold font-plus-jakarta text-foreground mb-2">
-            සියලු {checklist.steps.length} අදියර නොමිලේ unlock කරන්න
+            Unlock all {checklist.steps.length} sections
           </h3>
           <p className="text-text-body mb-6">
-            ඔබේ account එකෙන් sign in කරන්න, නැත්නම් නොමිලේ account හදාගන්න — checklist සම්පූර්ණයෙන්ම නොමිලේ.
+            Sign in or create a free account to continue the full checklist.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Link
-              href="/auth/sign-in"
+              href="/auth/signin"
               className="inline-flex items-center gap-2 rounded-[10px] bg-foreground px-6 py-3 font-semibold text-background hover:bg-brand-dark transition-colors"
             >
-              ප්‍රවේශ වන්න
+              Sign in
             </Link>
             <Link
-              href="/auth/sign-up"
+              href="/auth/signup"
               className="inline-flex items-center gap-2 rounded-[10px] border border-zinc-300 px-6 py-3 font-semibold text-foreground hover:border-brand-main hover:text-brand-main transition-colors"
             >
-              නොමිලේ Account හදන්න
+              Register
             </Link>
           </div>
         </div>

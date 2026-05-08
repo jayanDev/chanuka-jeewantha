@@ -1,3 +1,5 @@
+import { EBOOK_DOWNLOAD_PRICE_LKR, EBOOK_READ_PRICE_LKR } from "./ebook-pricing";
+
 export type DigitalProductType = "Ebook" | "Planner";
 
 export type DigitalProduct = {
@@ -24,9 +26,9 @@ export const digitalProducts: DigitalProduct[] = [
       "සාමාන්‍ය වේගයෙන් නොව, වේගවත් මාර්ගයක් ඔස්සේ ධනවත් වීම ගැන කියාදෙන ප්‍රායෝගික අදහස් සහ පරිච්ඡේද 60කට වඩා අඩංගු මාර්ගෝපදේශක ebook එකක්.",
     productType: "Ebook",
     category: "paid",
-    priceLkr: 500,
-    readPriceLkr: 500,
-    downloadPriceLkr: 1500,
+    priceLkr: EBOOK_READ_PRICE_LKR,
+    readPriceLkr: EBOOK_READ_PRICE_LKR,
+    downloadPriceLkr: EBOOK_DOWNLOAD_PRICE_LKR,
     coverImage: "/images/Millionaire Fastlane Cover Image.png",
     highlights: [
       "කාලය සහ ධනය අතර සම්බන්ධය",
@@ -42,9 +44,9 @@ export const digitalProducts: DigitalProduct[] = [
       "අවධානය කැඩී යන ලෝකයේ ගැඹුරු වැඩ පුරුද්දක් ලෙස ගොඩනගාගෙන, ඉක්මනින් ඉගෙනගෙන, උසස් මට්ටමේ ප්‍රතිඵල ලබාගැනීමට උපකාරී වන ප්‍රායෝගික නීති සහ ක්‍රමවල මාර්ගෝපදේශය.",
     productType: "Ebook",
     category: "paid",
-    priceLkr: 500,
-    readPriceLkr: 500,
-    downloadPriceLkr: 1500,
+    priceLkr: EBOOK_READ_PRICE_LKR,
+    readPriceLkr: EBOOK_READ_PRICE_LKR,
+    downloadPriceLkr: EBOOK_DOWNLOAD_PRICE_LKR,
     coverImage: "/images/Deep Work Cover Image.png",
     highlights: [
       "Deep Work වටිනාකම, අඩුවීමේ හේතු, සහ ජීවිතමය අර්ථය",
@@ -60,9 +62,9 @@ export const digitalProducts: DigitalProduct[] = [
       "Passion myth එක පසෙකලා, දුර්ලභ කුසලතා ගොඩනගා, control සහ mission මත පදනම් වූ දිගුකාලීන වෘත්තීය සාර්ථකත්වයකට යාමට උපකාරී වන ප්‍රායෝගික ebook එකක්.",
     productType: "Ebook",
     category: "paid",
-    priceLkr: 500,
-    readPriceLkr: 500,
-    downloadPriceLkr: 1500,
+    priceLkr: EBOOK_READ_PRICE_LKR,
+    readPriceLkr: EBOOK_READ_PRICE_LKR,
+    downloadPriceLkr: EBOOK_DOWNLOAD_PRICE_LKR,
     coverImage: "/images/So Good They Can't Ignore You Cover Image.png",
     highlights: [
       "Don't Follow Your Passion සිට Think Small, Act Big දක්වා නීති 4",
@@ -78,9 +80,9 @@ export const digitalProducts: DigitalProduct[] = [
       "රොබට් කියෝසාකිගේ Rich Dad Poor Dad පොතේ සිංහල සාරාංශය. වත්කම් සහ බැරකම් අතර වෙනස, Rat Race එකෙන් එළියට යන හැටි, සහ ධනවතුන්ගේ සිතීමේ රටාව ගැන ප්‍රායෝගික මාර්ගෝපදේශයක්.",
     productType: "Ebook",
     category: "paid",
-    priceLkr: 500,
-    readPriceLkr: 500,
-    downloadPriceLkr: 1500,
+    priceLkr: EBOOK_READ_PRICE_LKR,
+    readPriceLkr: EBOOK_READ_PRICE_LKR,
+    downloadPriceLkr: EBOOK_DOWNLOAD_PRICE_LKR,
     coverImage: "/images/Rich Dad Poor Dad Cover Image.png",
     highlights: [
       "වත්කම් (Assets) සහ බැරකම් (Liabilities) අතර ඇති සැබෑ වෙනස",
@@ -96,9 +98,9 @@ export const digitalProducts: DigitalProduct[] = [
       "Morgan Housel ගේ The Psychology of Money පොතේ සිංහල සාරාංශය. ධනය, අත්‍යාශය, සහ සතුට ගැන — සල්ලි ගැන අපේ හිතීමේ රටා සහ ඒවා ජීවිතයට බලපාන හැටි ගැන ප්‍රායෝගික මාර්ගෝපදේශයක්.",
     productType: "Ebook",
     category: "paid",
-    priceLkr: 500,
-    readPriceLkr: 500,
-    downloadPriceLkr: 1500,
+    priceLkr: EBOOK_READ_PRICE_LKR,
+    readPriceLkr: EBOOK_READ_PRICE_LKR,
+    downloadPriceLkr: EBOOK_DOWNLOAD_PRICE_LKR,
     coverImage: "/images/The Psychology of Money.png",
     highlights: [
       "වාසනාව, අවදානම, සහ compounding — ධනය ගොඩනගන මූල තතු",

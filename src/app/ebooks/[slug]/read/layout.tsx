@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import Link from "next/link";
 import { getEbookBySlug } from "@/lib/ebooks";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getServerUser } from "@/lib/auth-server";
 import { getEbookPurchase } from "@/lib/ebook-firestore";
 import fs from "fs/promises";
@@ -48,6 +48,11 @@ async function checkEbookAccess(
 
 export default async function EbookReaderLayout({ params, children }: Props) {
   const { slug } = await params;
+
+  if (slug === "linkedin-profile-optimization") {
+    redirect("/resources/checklists/linkedin-profile-optimization/read");
+  }
+
   const ebook = getEbookBySlug(slug);
 
   if (!ebook) {

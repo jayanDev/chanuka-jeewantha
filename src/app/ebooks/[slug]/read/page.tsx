@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import { getEbookBySlug } from "@/lib/ebooks";
 import { getServerUser } from "@/lib/auth-server";
@@ -10,6 +10,7 @@ import {
   EBOOK_ANONYMOUS_FREE_CHAPTER_COUNT,
   EBOOK_SIGNED_IN_FREE_CHAPTER_COUNT,
 } from "@/lib/ebook-preview-access";
+import { EBOOK_DOWNLOAD_PRICE_LKR, EBOOK_READ_PRICE_LKR } from "@/lib/ebook-pricing";
 import { buildNoIndexMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -18,6 +19,11 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+
+  if (slug === "linkedin-profile-optimization") {
+    redirect("/resources/checklists/linkedin-profile-optimization/read");
+  }
+
   const ebook = getEbookBySlug(slug);
   if (!ebook) return buildNoIndexMetadata({ title: "Not Found", description: "", path: "/" });
   return buildNoIndexMetadata({
@@ -237,20 +243,20 @@ export default async function EbookReadIndexPage({
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a
-                href={`https://wa.me/94773902230?text=${encodeURIComponent(`Hello Chanuka, I want to purchase READ access for:\n${ebook.title}\nPrice: LKR ${ebook.readPriceLkr ?? 500}`)}`}
+                href={`https://wa.me/94773902230?text=${encodeURIComponent(`Hello Chanuka, I want to purchase READ access for:\n${ebook.title}\nPrice: LKR ${(ebook.readPriceLkr ?? EBOOK_READ_PRICE_LKR).toLocaleString("en-LK")}`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-6 py-3 text-sm font-bold text-white hover:bg-[#1fb85a] transition-colors"
               >
-                Read Only — LKR {(ebook.readPriceLkr ?? 500).toLocaleString()}
+                Read Only — LKR {(ebook.readPriceLkr ?? EBOOK_READ_PRICE_LKR).toLocaleString("en-LK")}
               </a>
               <a
-                href={`https://wa.me/94773902230?text=${encodeURIComponent(`Hello Chanuka, I want to purchase DOWNLOAD access for:\n${ebook.title}\nPrice: LKR ${ebook.downloadPriceLkr ?? 1500}`)}`}
+                href={`https://wa.me/94773902230?text=${encodeURIComponent(`Hello Chanuka, I want to purchase DOWNLOAD access for:\n${ebook.title}\nPrice: LKR ${(ebook.downloadPriceLkr ?? EBOOK_DOWNLOAD_PRICE_LKR).toLocaleString("en-LK")}`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-main px-6 py-3 text-sm font-bold text-white hover:bg-brand-dark transition-colors"
               >
-                Download + Read — LKR {(ebook.downloadPriceLkr ?? 1500).toLocaleString()}
+                Download + Read — LKR {(ebook.downloadPriceLkr ?? EBOOK_DOWNLOAD_PRICE_LKR).toLocaleString("en-LK")}
               </a>
             </div>
             {!user && (

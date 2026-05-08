@@ -1,0 +1,3 @@
+export const EBOOK_READ_PRICE_LKR = 990;
+export const EBOOK_DOWNLOAD_PRICE_LKR = 1990;
+

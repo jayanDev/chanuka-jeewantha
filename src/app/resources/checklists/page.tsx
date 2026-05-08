@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { checklists } from "@/lib/checklists";
 import { buildPageMetadata } from "@/lib/seo";
@@ -63,9 +64,13 @@ export default function ChecklistsIndexPage() {
                 className="group flex flex-col rounded-[20px] border border-zinc-200 bg-white overflow-hidden hover:border-brand-main hover:shadow-lg transition-all duration-200"
               >
                 <div className="relative aspect-[16/9] bg-zinc-100 overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-zinc-300" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-                  </div>
+                  <Image
+                    src={checklist.coverImage}
+                    alt={checklist.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
                   <span className="absolute top-3 left-3 rounded-full bg-brand-main px-3 py-1 text-[11px] font-bold uppercase tracking-[0.1em] text-white">
                     Free
                   </span>

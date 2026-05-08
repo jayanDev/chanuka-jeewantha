@@ -11,7 +11,6 @@ const slugToFile: Record<string, string> = {
   "gaburu-karyaya": "ගැඹුරු කාර්යය.html",
   "sarthaka-wurthiya-jeewithayaka-neethi-saha-mooladharma":
     "සාර්ථක වෘත්තීය ජීවිතයක නීති සහ මූලධර්ම.html",
-  "linkedin-profile-optimization": "LinkedIn Profile Optimization System.pdf",
 };
 
 type EbookIndexItem = {

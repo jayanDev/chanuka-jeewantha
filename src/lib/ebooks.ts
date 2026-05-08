@@ -1,3 +1,5 @@
+import { EBOOK_DOWNLOAD_PRICE_LKR, EBOOK_READ_PRICE_LKR } from "./ebook-pricing";
+
 export type Ebook = {
   slug: string;
   title: string;
@@ -20,7 +22,7 @@ export type Ebook = {
   downloadUrl?: string;
 };
 
-export const ebooks: Ebook[] = [
+const ebookCatalog: Ebook[] = [
   {
     slug: "kotipathiyek-vime-vegawath-maga",
     title: "කෝටිපතියෙක් වීමේ වේගවත් මග",
@@ -28,9 +30,9 @@ export const ebooks: Ebook[] = [
     description:
       "සාමාන්‍ය වේගයෙන් නොව, වේගවත් මාර්ගයක් ඔස්සේ ධනවත් වීම ගැන කියාදෙන ප්‍රායෝගික අදහස් සහ පරිච්ඡේද 60කට වඩා අඩංගු මාර්ගෝපදේශක ebook එකක්.",
     category: "paid",
-    priceLkr: 500,
-    readPriceLkr: 500,
-    downloadPriceLkr: 1500,
+    priceLkr: EBOOK_READ_PRICE_LKR,
+    readPriceLkr: EBOOK_READ_PRICE_LKR,
+    downloadPriceLkr: EBOOK_DOWNLOAD_PRICE_LKR,
     coverImage: "/images/Millionaire Fastlane Cover Image.png",
     highlights: [
       "කාලය සහ ධනය අතර සම්බන්ධය",
@@ -45,9 +47,9 @@ export const ebooks: Ebook[] = [
     description:
       "අවධානය කැඩී යන ලෝකයේ ගැඹුරු වැඩ පුරුද්දක් ලෙස ගොඩනගාගෙන, ඉක්මනින් ඉගෙනගෙන, උසස් මට්ටමේ ප්‍රතිඵල ලබාගැනීමට උපකාරී වන ප්‍රායෝගික නීති සහ ක්‍රමවල මාර්ගෝපදේශය.",
     category: "paid",
-    priceLkr: 500,
-    readPriceLkr: 500,
-    downloadPriceLkr: 1500,
+    priceLkr: EBOOK_READ_PRICE_LKR,
+    readPriceLkr: EBOOK_READ_PRICE_LKR,
+    downloadPriceLkr: EBOOK_DOWNLOAD_PRICE_LKR,
     coverImage: "/images/Deep Work Cover Image.png",
     highlights: [
       "Deep Work වටිනාකම, අඩුවීමේ හේතු, සහ ජීවිතමය අර්ථය",
@@ -62,9 +64,9 @@ export const ebooks: Ebook[] = [
     description:
       "Passion myth එක පසෙකලා, දුර්ලභ කුසලතා ගොඩනගා, control සහ mission මත පදනම් වූ දිගුකාලීන වෘත්තීය සාර්ථකත්වයකට යාමට උපකාරී වන ප්‍රායෝගික ebook එකක්.",
     category: "paid",
-    priceLkr: 500,
-    readPriceLkr: 500,
-    downloadPriceLkr: 1500,
+    priceLkr: EBOOK_READ_PRICE_LKR,
+    readPriceLkr: EBOOK_READ_PRICE_LKR,
+    downloadPriceLkr: EBOOK_DOWNLOAD_PRICE_LKR,
     coverImage: "/images/So Good They Can't Ignore You Cover Image.png",
     highlights: [
       "Don't Follow Your Passion සිට Think Small, Act Big දක්වා නීති 4",
@@ -79,9 +81,9 @@ export const ebooks: Ebook[] = [
     description:
       "රොබට් කියෝසාකිගේ Rich Dad Poor Dad පොතේ සිංහල සාරාංශය. වත්කම් සහ බැරකම් අතර වෙනස, Rat Race එකෙන් එළියට යන හැටි, සහ ධනවතුන්ගේ සිතීමේ රටාව ගැන ප්‍රායෝගික මාර්ගෝපදේශයක්.",
     category: "paid",
-    priceLkr: 500,
-    readPriceLkr: 500,
-    downloadPriceLkr: 1500,
+    priceLkr: EBOOK_READ_PRICE_LKR,
+    readPriceLkr: EBOOK_READ_PRICE_LKR,
+    downloadPriceLkr: EBOOK_DOWNLOAD_PRICE_LKR,
     coverImage: "/images/Rich Dad Poor Dad Cover Image.png",
     highlights: [
       "වත්කම් (Assets) සහ බැරකම් (Liabilities) අතර ඇති සැබෑ වෙනස",
@@ -96,9 +98,9 @@ export const ebooks: Ebook[] = [
     description:
       "Morgan Housel ගේ The Psychology of Money පොතේ සිංහල සාරාංශය. ධනය, අත්‍යාශය, සහ සතුට ගැන — සල්ලි ගැන අපේ හිතීමේ රටා සහ ඒවා ජීවිතයට බලපාන හැටි ගැන ප්‍රායෝගික මාර්ගෝපදේශයක්.",
     category: "paid",
-    priceLkr: 500,
-    readPriceLkr: 500,
-    downloadPriceLkr: 1500,
+    priceLkr: EBOOK_READ_PRICE_LKR,
+    readPriceLkr: EBOOK_READ_PRICE_LKR,
+    downloadPriceLkr: EBOOK_DOWNLOAD_PRICE_LKR,
     coverImage: "/images/The Psychology of Money.png",
     highlights: [
       "වාසනාව, අවදානම, සහ compounding — ධනය ගොඩනගන මූල තතු",
@@ -114,8 +116,8 @@ export const ebooks: Ebook[] = [
       "LinkedIn Profile Optimization System — ඔබේ LinkedIn profile එක recruiter-ready profile එකක් බවට convert කිරීමට step-by-step guide. Photo සිට Headline, About, Experience, Skills, Recommendations, Featured Section, සහ Network Strategy දක්වා ඔක්කොම cover කරනවා.",
     category: "paid",
     kind: "resource",
-    readPriceLkr: 500,
-    downloadPriceLkr: 1500,
+    readPriceLkr: EBOOK_READ_PRICE_LKR,
+    downloadPriceLkr: EBOOK_DOWNLOAD_PRICE_LKR,
     coverImage: "/images/linkedin-optimization-30k-followers-proof.jpg",
     highlights: [
       "Recruiter-ready Profile Photo & Banner",
@@ -126,7 +128,14 @@ export const ebooks: Ebook[] = [
   },
 ];
 
-export const getEbookBySlug = (slug: string) => ebooks.find((ebook) => ebook.slug === slug);
+export const ebooks = ebookCatalog.filter(
+  (ebook) => ebook.slug !== "linkedin-profile-optimization"
+);
+
+export const getEbookBySlug = (slug: string) =>
+  slug === "linkedin-profile-optimization"
+    ? undefined
+    : ebooks.find((ebook) => ebook.slug === slug);
 
 export function getEbookReadPath(slug: string): string {
   return `/ebooks/${slug}/read`;
@@ -200,7 +209,7 @@ export function getBundlePrice(bundle: EbookBundle): {
 } {
   const originalLkr = bundle.ebookSlugs.reduce((sum, slug) => {
     const ebook = ebooks.find((e) => e.slug === slug);
-    return sum + (ebook?.downloadPriceLkr ?? 1500);
+    return sum + (ebook?.downloadPriceLkr ?? EBOOK_DOWNLOAD_PRICE_LKR);
   }, 0);
   const discountedLkr = Math.round(originalLkr * (1 - bundle.discountPercent / 100));
   return { originalLkr, discountedLkr, savingsLkr: originalLkr - discountedLkr };

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ebookBundles, ebooks, getEbookBundleBySlug, getBundlePrice } from "@/lib/ebooks";
+import { EBOOK_DOWNLOAD_PRICE_LKR } from "@/lib/ebook-pricing";
 import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 
 const whatsappNumber = "94773902230";
@@ -153,7 +154,7 @@ export default async function BundlePage({ params }: BundlePageProps) {
                     <p className="font-semibold text-white text-sm leading-snug mb-1 group-hover:text-brand-main transition-colors">
                       {ebook.title}
                     </p>
-                    <p className="text-xs text-text-light">LKR {(ebook.downloadPriceLkr ?? 1500).toLocaleString("en-LK")}</p>
+                    <p className="text-xs text-text-light">LKR {(ebook.downloadPriceLkr ?? EBOOK_DOWNLOAD_PRICE_LKR).toLocaleString("en-LK")}</p>
                   </div>
                 </Link>
               );

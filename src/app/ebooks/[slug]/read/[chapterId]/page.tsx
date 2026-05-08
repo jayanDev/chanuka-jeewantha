@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getServerUser } from "@/lib/auth-server";
 import { getEbookPurchase } from "@/lib/ebook-firestore";
 import fs from "fs/promises";
@@ -6,6 +6,7 @@ import path from "path";
 import Link from "next/link";
 import { formatLkr } from "@/lib/packages-catalog";
 import { getEbookBySlug } from "@/lib/ebooks";
+import { EBOOK_DOWNLOAD_PRICE_LKR, EBOOK_READ_PRICE_LKR } from "@/lib/ebook-pricing";
 import { isSignedInPreviewChapter, requiresPreviewSignIn } from "@/lib/ebook-preview-access";
 import ChapterNavigator from "../_components/ChapterNavigator";
 import ReaderProtection from "../_components/ReaderProtection";
@@ -52,6 +53,11 @@ async function checkEbookAccess(
 
 export default async function ChapterPage({ params }: Props) {
   const { slug, chapterId } = await params;
+
+  if (slug === "linkedin-profile-optimization") {
+    redirect("/resources/checklists/linkedin-profile-optimization/read");
+  }
+
   const parsedChapterId = parseInt(chapterId, 10);
 
   if (isNaN(parsedChapterId)) {
@@ -179,8 +185,8 @@ export default async function ChapterPage({ params }: Props) {
 
   if (isLocked) {
     const whatsappNumber = "94773902230";
-    const readMsg = encodeURIComponent(`Hello Chanuka, I want to purchase READ access for:\nEbook: ${ebook.title}\nPrice: LKR 500`);
-    const downloadMsg = encodeURIComponent(`Hello Chanuka, I want to purchase DOWNLOAD access for:\nEbook: ${ebook.title}\nPrice: LKR 1,500`);
+    const readMsg = encodeURIComponent(`Hello Chanuka, I want to purchase READ access for:\nEbook: ${ebook.title}\nPrice: LKR ${(ebook.readPriceLkr ?? EBOOK_READ_PRICE_LKR).toLocaleString("en-LK")}`);
+    const downloadMsg = encodeURIComponent(`Hello Chanuka, I want to purchase DOWNLOAD access for:\nEbook: ${ebook.title}\nPrice: LKR ${(ebook.downloadPriceLkr ?? EBOOK_DOWNLOAD_PRICE_LKR).toLocaleString("en-LK")}`);
 
     return (
  <div className="flex min-h-screen flex-col items-center justify-center bg-zinc-50 px-6 py-24 text-center selection:bg-transparent">
@@ -212,7 +218,7 @@ export default async function ChapterPage({ params }: Props) {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
             <div className="rounded-2xl border-2 border-zinc-200 p-5 text-left">
               <p className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1">Read Online</p>
-              <p className="text-2xl font-bold font-plus-jakarta text-foreground mb-3">{formatLkr(ebook.readPriceLkr ?? 500)}</p>
+              <p className="text-2xl font-bold font-plus-jakarta text-foreground mb-3">{formatLkr(ebook.readPriceLkr ?? EBOOK_READ_PRICE_LKR)}</p>
               <p className="text-sm text-zinc-500 mb-4">Access all chapters on our website anytime.</p>
               <a
                 href={`https://wa.me/${whatsappNumber}?text=${readMsg}`}
@@ -226,7 +232,7 @@ export default async function ChapterPage({ params }: Props) {
             <div className="rounded-2xl border-2 border-brand-main p-5 text-left relative">
               <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-main text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">Best Value</span>
               <p className="text-xs font-bold uppercase tracking-wider text-brand-main mb-1">Download + Read</p>
-              <p className="text-2xl font-bold font-plus-jakarta text-foreground mb-3">{formatLkr(ebook.downloadPriceLkr ?? 1500)}</p>
+              <p className="text-2xl font-bold font-plus-jakarta text-foreground mb-3">{formatLkr(ebook.downloadPriceLkr ?? EBOOK_DOWNLOAD_PRICE_LKR)}</p>
               <p className="text-sm text-zinc-500 mb-4">Read online + download the full ebook file.</p>
               <a
                 href={`https://wa.me/${whatsappNumber}?text=${downloadMsg}`}

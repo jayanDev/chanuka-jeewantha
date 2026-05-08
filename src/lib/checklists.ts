@@ -1,7 +1,13 @@
+import { linkedinProfileOptimizationChecklist } from "./linkedin-profile-optimization-checklist";
+
 export type ChecklistItem = {
   id: string;
   text: string;
   ref?: string;
+  priority?: "High" | "Medium" | "Low";
+  details?: string[];
+  prompt?: string;
+  tip?: string;
 };
 
 export type ChecklistStep = {
@@ -25,13 +31,14 @@ export type Checklist = {
 };
 
 export const checklists: Checklist[] = [
+  linkedinProfileOptimizationChecklist,
   {
     slug: "business-startup-fastlane",
     title: "The Fastlane Blueprint: කෝටිපතියෙක් වීමේ 205 Checklist",
     subtitle: "Millionaire Fastlane ඇසුරෙන් ව්‍යාපාරයක් ගොඩනගන 205-ශ්‍රේණිගත ක්‍රියාමාර්ග",
     description:
       "MJ DeMarco ගේ 'The Millionaire Fastlane' පොතේ සාරාංශය ක්‍රියාමාර්ග 205ක් ලෙස සකස් කළ interactive checklist. 17 අදියර හරහා, Sidewalk සිට Fastlane දක්වා ඔබේ ගමන ලකුණු කරගන්න. Fastlane ebook ලිපි links ද ඇතුළත් — කෙලින්ම chapter කියවන්නත් පුළුවන්. පළමු අදියර 2 නොමිලේ — ඉතිරිය unlock කරන්න login කරන්න.",
-    coverImage: "/images/checklist-business-startup-fastlane.jpg",
+    coverImage: "/images/millionaire-fastlane-cover.jpg",
     freeSteps: 2,
     ebookSlug: "kotipathiyek-vime-vegawath-maga",
     highlights: [

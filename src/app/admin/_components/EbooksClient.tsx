@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { readJsonSafely, formatLkr } from "@/app/admin/_components/admin-utils";
 import { ebooks } from "@/lib/ebooks";
+import { EBOOK_DOWNLOAD_PRICE_LKR, EBOOK_READ_PRICE_LKR } from "@/lib/ebook-pricing";
 
 type EbookPurchase = {
   id: string;
@@ -113,7 +114,7 @@ export default function EbooksClient() {
 
   const readCount = purchases.filter((p) => p.tier === "read").length;
   const downloadCount = purchases.filter((p) => p.tier === "download").length;
-  const totalRevenue = readCount * 500 + downloadCount * 1500;
+  const totalRevenue = readCount * EBOOK_READ_PRICE_LKR + downloadCount * EBOOK_DOWNLOAD_PRICE_LKR;
 
   return (
     <div className="space-y-6">
@@ -128,12 +129,12 @@ export default function EbooksClient() {
         <div className="rounded-[16px] border border-zinc-200 bg-white p-5">
           <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-1">Read Access</p>
           <p className="text-3xl font-bold font-plus-jakarta text-foreground">{readCount}</p>
-          <p className="text-xs text-zinc-400 mt-1">@ LKR 500 each</p>
+          <p className="text-xs text-zinc-400 mt-1">@ {formatLkr(EBOOK_READ_PRICE_LKR)} each</p>
         </div>
         <div className="rounded-[16px] border border-zinc-200 bg-white p-5">
           <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-1">Download Access</p>
           <p className="text-3xl font-bold font-plus-jakarta text-foreground">{downloadCount}</p>
-          <p className="text-xs text-zinc-400 mt-1">@ LKR 1,500 each</p>
+          <p className="text-xs text-zinc-400 mt-1">@ {formatLkr(EBOOK_DOWNLOAD_PRICE_LKR)} each</p>
         </div>
         <div className="rounded-[16px] border border-brand-main/20 bg-brand-main/5 p-5">
           <p className="text-xs font-semibold uppercase tracking-wider text-brand-main mb-1">Est. Revenue</p>
@@ -176,8 +177,8 @@ export default function EbooksClient() {
               onChange={(e) => setFormTier(e.target.value as "read" | "download")}
               className="w-full rounded-[10px] border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-brand-main focus:ring-2 focus:ring-brand-main/10 bg-white"
             >
-              <option value="read">Read Online — LKR 500</option>
-              <option value="download">Download + Read — LKR 1,500</option>
+              <option value="read">Read Online — {formatLkr(EBOOK_READ_PRICE_LKR)}</option>
+              <option value="download">Download + Read — {formatLkr(EBOOK_DOWNLOAD_PRICE_LKR)}</option>
             </select>
           </div>
           <div className="md:col-span-2">

@@ -26,8 +26,8 @@ const ebookAd = {
   eyebrow: "Recommended Next",
   title: "Improve your LinkedIn profile too",
   body: "Pair your ATS CV with the LinkedIn Profile Optimization System so recruiters see a stronger, search-friendly career brand.",
-  href: "/ebooks/linkedin-profile-optimization",
-  cta: "Explore Ebook",
+  href: "/resources/checklists/linkedin-profile-optimization",
+  cta: "View Checklist",
 };
 
 function formatSeconds(seconds: number) {

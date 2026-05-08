@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import type { Metadata } from "next";
 import { ebooks, getEbookBySlug } from "@/lib/ebooks";
 import { formatLkr } from "@/lib/packages-catalog";
@@ -8,6 +8,7 @@ import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 import { getBaseUrl } from "@/lib/site-url";
 import { getServerUser } from "@/lib/auth-server";
 import { getEbookPurchase } from "@/lib/ebook-firestore";
+import { EBOOK_DOWNLOAD_PRICE_LKR, EBOOK_READ_PRICE_LKR } from "@/lib/ebook-pricing";
 
 // Auth check means this page must be dynamic (user-specific content)
 export const dynamic = "force-dynamic";
@@ -44,6 +45,11 @@ export async function generateMetadata({ params }: EbookPageProps): Promise<Meta
 
 export default async function EbookSinglePage({ params }: EbookPageProps) {
   const { slug } = await params;
+
+  if (slug === "linkedin-profile-optimization") {
+    redirect("/resources/checklists/linkedin-profile-optimization");
+  }
+
   const ebook = getEbookBySlug(slug);
 
   if (!ebook) {
@@ -180,13 +186,13 @@ export default async function EbookSinglePage({ params }: EbookPageProps) {
                       <p className="text-sm font-semibold text-white mb-1">PDF Download ලබාගන්නටද?</p>
                       <p className="text-sm text-text-light mb-3">ඔබ Read access ලබාගෙන ඇත. Download access සඳහා remaining payment ගෙවා PDF ලබාගන්න.</p>
                       <a
-                        href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hello Chanuka, I have Read access for "${ebook.title}" and I want to upgrade to Download access.\nRemaining payment: LKR ${(ebook.downloadPriceLkr ?? 1500) - (ebook.readPriceLkr ?? 500)}`)}`}
+                        href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hello Chanuka, I have Read access for "${ebook.title}" and I want to upgrade to Download access.\nRemaining payment: LKR ${(ebook.downloadPriceLkr ?? EBOOK_DOWNLOAD_PRICE_LKR) - (ebook.readPriceLkr ?? EBOOK_READ_PRICE_LKR)}`)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 rounded-[10px] bg-[#25D366] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#1fb85a]"
                       >
                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                        Upgrade via WhatsApp (LKR {((ebook.downloadPriceLkr ?? 1500) - (ebook.readPriceLkr ?? 500)).toLocaleString("en-LK")})
+                        Upgrade via WhatsApp (LKR {((ebook.downloadPriceLkr ?? EBOOK_DOWNLOAD_PRICE_LKR) - (ebook.readPriceLkr ?? EBOOK_READ_PRICE_LKR)).toLocaleString("en-LK")})
                       </a>
                     </div>
                   )}
@@ -203,10 +209,10 @@ export default async function EbookSinglePage({ params }: EbookPageProps) {
                   <div className="w-full mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="rounded-[14px] border border-zinc-200 p-4">
                       <p className="text-xs font-bold uppercase tracking-wider text-zinc-400 mb-1">Read Online</p>
-                      <p className="text-2xl font-bold font-plus-jakarta text-white mb-3">{formatLkr(ebook.readPriceLkr ?? 500)}</p>
+                      <p className="text-2xl font-bold font-plus-jakarta text-white mb-3">{formatLkr(ebook.readPriceLkr ?? EBOOK_READ_PRICE_LKR)}</p>
                       <p className="text-sm text-text-light mb-3">Access all chapters on the website.</p>
                       <a
-                        href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hello Chanuka, I want to purchase READ access for:\nEbook: ${ebook.title}\nPrice: LKR 500`)}`}
+                        href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hello Chanuka, I want to purchase READ access for:\nEbook: ${ebook.title}\nPrice: LKR ${(ebook.readPriceLkr ?? EBOOK_READ_PRICE_LKR).toLocaleString("en-LK")}`)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 rounded-[10px] bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1fb85a] w-full justify-center"
@@ -218,10 +224,10 @@ export default async function EbookSinglePage({ params }: EbookPageProps) {
                     <div className="rounded-[14px] border-2 border-brand-main p-4 relative">
                       <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-main text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">Best Value</span>
                       <p className="text-xs font-bold uppercase tracking-wider text-brand-main mb-1">Download + Read</p>
-                      <p className="text-2xl font-bold font-plus-jakarta text-white mb-3">{formatLkr(ebook.downloadPriceLkr ?? 1500)}</p>
+                      <p className="text-2xl font-bold font-plus-jakarta text-white mb-3">{formatLkr(ebook.downloadPriceLkr ?? EBOOK_DOWNLOAD_PRICE_LKR)}</p>
                       <p className="text-sm text-text-light mb-3">Read online + download full ebook PDF.</p>
                       <a
-                        href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hello Chanuka, I want to purchase DOWNLOAD access for:\nEbook: ${ebook.title}\nPrice: LKR 1,500`)}`}
+                        href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hello Chanuka, I want to purchase DOWNLOAD access for:\nEbook: ${ebook.title}\nPrice: LKR ${(ebook.downloadPriceLkr ?? EBOOK_DOWNLOAD_PRICE_LKR).toLocaleString("en-LK")}`)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 rounded-[10px] bg-brand-main px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-dark w-full justify-center"

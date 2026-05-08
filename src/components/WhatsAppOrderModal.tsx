@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { packageCategories, formatLkr, type PackageProduct } from "@/lib/packages-catalog";
 import { ebooks, ebookBundles, getBundlePrice, type Ebook, type EbookBundle } from "@/lib/ebooks";
+import { EBOOK_READ_PRICE_LKR } from "@/lib/ebook-pricing";
 
 const WA_NUMBER = "94773902230";
 
@@ -22,7 +23,7 @@ function getItemName(item: SelectableItem): string {
 
 function getItemPrice(item: SelectableItem): number {
   if (item.kind === "package") return item.data.priceLkr;
-  if (item.kind === "ebook") return item.data.readPriceLkr ?? item.data.priceLkr ?? 500;
+  if (item.kind === "ebook") return item.data.readPriceLkr ?? item.data.priceLkr ?? EBOOK_READ_PRICE_LKR;
   return getBundlePrice(item.data).discountedLkr;
 }
 
