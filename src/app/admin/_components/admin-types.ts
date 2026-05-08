@@ -15,6 +15,7 @@ export type AdminOrder = {
   couponDiscountLkr: number;
   couponCode: string | null;
   paymentRef: string;
+  source?: string | null;
   paymentSlipUrl: string;
   paymentSlipUploadFailed: boolean;
   paymentPersonName: string;
@@ -24,6 +25,12 @@ export type AdminOrder = {
   currentCvUploadFailed: boolean;
   linkedinUrl: string | null;
   extraDetails: string | null;
+  catalogueAnswers?: {
+    services?: string[];
+    experience?: string;
+    serviceOption?: string;
+  } | null;
+  intake?: Record<string, string> | null;
   createdAt: string | null;
   etaDate: string | null;
   adminNotes: string | null;
@@ -64,6 +71,10 @@ export type AdminOrder = {
     productName: string;
     quantity: number;
     priceLkr: number;
+    code?: string;
+    serviceKey?: string;
+    experienceKey?: string;
+    optionKey?: string;
   }>;
 };
 

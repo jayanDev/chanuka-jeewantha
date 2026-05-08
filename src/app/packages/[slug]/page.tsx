@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
-import { packageProducts, formatLkr } from "@/lib/packages-catalog";
+import { packageProducts, formatLkr, getPackageDisplayPrice } from "@/lib/packages-catalog";
 import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList, buildProductSchema } from "@/lib/structured-data";
 
@@ -118,7 +118,7 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
             <p className="text-lg font-semibold text-foreground mb-5">{pkg.category}</p>
 
             <p className="text-sm uppercase tracking-wide text-zinc-500 mb-2">Price</p>
-            <p className="text-2xl font-bold font-plus-jakarta text-foreground mb-5">{formatLkr(pkg.priceLkr)}</p>
+            <p className="text-2xl font-bold font-plus-jakarta text-foreground mb-5">{getPackageDisplayPrice(pkg)}</p>
 
             <p className="text-sm uppercase tracking-wide text-zinc-500 mb-2">Delivery Time</p>
             <p className="text-lg font-semibold text-foreground mb-8">{pkg.delivery}</p>
@@ -141,7 +141,7 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
             )}
 
             <div className="flex flex-wrap gap-3">
-              <Link href="/checkout" className="rounded-[10px] bg-brand-main px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-dark">
+              <Link href={`/catalogue?service=${pkg.serviceKey}`} className="rounded-[10px] bg-brand-main px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-dark">
                 Buy This Package
               </Link>
  <Link href="/contact" className="rounded-[10px] border border-zinc-300 px-6 py-3 font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">

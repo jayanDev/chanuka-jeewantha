@@ -6,10 +6,12 @@ import { packageCategories } from "@/lib/packages-catalog";
 import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 
 const slugToCategoryTitle: Record<string, string> = {
-  "cv-writing": "CV Writing Packages",
-  "cover-letter-writing": "Cover Letter Writing Packages",
-  "linkedin-optimization": "LinkedIn Account Optimization Packages",
-  "cv-review": "CV Review Packages",
+  "ats-cv": "ATS Friendly Professional CV Writing Packages",
+  linkedin: "LinkedIn Account Optimization Packages",
+  "cover-letter": "Professional Cover Letter Writing Packages",
+  "foreign-cv": "Foreign Job CV Writing Packages",
+  "graphical-cv": "Graphical CV Writing / Resume Writing Packages",
+  consultation: "Career Consultation Packages",
 };
 
 export function generateStaticParams() {

@@ -88,7 +88,7 @@ function buildDefaultCtas(pkg: PackageProduct): BlogLink[] {
 
 const packageGuideDrafts: PackageGuideDraft[] = [
   {
-    packageSlug: "student-cv-package",
+    packageSlug: "ats-cv-student-founder-led",
     title: "Student Package - CV Writing Services: CV Writing for Students, Interns, and Fresh Graduates",
     excerpt:
       "A complete guide to the Student Package for students, undergraduates, interns, fresh graduates, and entry-level job seekers who need an ATS-friendly first CV.",
@@ -177,7 +177,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
   },
   {
-    packageSlug: "professional-cv-package",
+    packageSlug: "ats-cv-professional-founder-led",
     title: "Professional Package - CV Writing Services: Strategic CV Writing for Career Growth",
     excerpt:
       "A complete guide to the Professional Package for working professionals, experienced job seekers, executives, and career changers who need a polished ATS-friendly CV.",
@@ -253,7 +253,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
   },
   {
-    packageSlug: "executive-cv-package",
+    packageSlug: "ats-cv-executive-founder-led",
     title: "Executive Package - CV Writing Services: Leadership CV Writing for Senior Candidates",
     excerpt:
       "Understand how senior professionals, managers, executives, department heads, consultants, and leadership-level candidates can use an executive CV to communicate authority and impact.",
@@ -331,7 +331,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
   },
   {
-    packageSlug: "student-cover-letter",
+    packageSlug: "cover-letter-student-founder-led",
     title: "Student Package - Cover Letter Writing Services: Internship and First Job Letter Guide",
     excerpt:
       "A complete guide to the Student Package for school leavers, interns, university students, fresh graduates, and entry-level job seekers who need a simple professional cover letter.",
@@ -408,7 +408,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
   },
   {
-    packageSlug: "professional-cover-letter",
+    packageSlug: "cover-letter-professional-founder-led",
     title: "Professional Package - Cover Letter Writing Services: Tailored Letters for Better Applications",
     excerpt:
       "A practical guide to the Professional Package for experienced job seekers, career changers, and skilled professionals who need a tailored cover letter.",
@@ -484,7 +484,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
   },
   {
-    packageSlug: "executive-cover-letter",
+    packageSlug: "cover-letter-executive-founder-led",
     title: "Executive Package - Cover Letter Writing Services: Senior-Level Application Positioning",
     excerpt:
       "A leadership-focused guide to the Executive Package for managers, senior professionals, executives, consultants, and leadership-level candidates.",
@@ -560,7 +560,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
   },
   {
-    packageSlug: "student-linkedin-package",
+    packageSlug: "linkedin-student-founder-led",
     title: "Student Package - LinkedIn Optimisation Package: Build a Professional Student Profile",
     excerpt:
       "A complete guide to the Student LinkedIn Optimisation Package for students, undergraduates, interns, fresh graduates, and entry-level job seekers.",
@@ -637,7 +637,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
   },
   {
-    packageSlug: "professional-linkedin-package",
+    packageSlug: "linkedin-professional-founder-led",
     title: "Professional Package - LinkedIn Optimisation Package: Improve Recruiter Visibility",
     excerpt:
       "A guide to the Professional LinkedIn Optimisation Package for mid-level professionals, experienced job seekers, career changers, and skilled professionals.",
@@ -714,7 +714,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
   },
   {
-    packageSlug: "executive-linkedin-package",
+    packageSlug: "linkedin-executive-founder-led",
     title: "Executive Package - LinkedIn Optimisation Package: Strengthen Executive Presence",
     excerpt:
       "A high-level guide to the Executive LinkedIn Optimisation Package for senior professionals, managers, executives, consultants, department heads, and business leaders.",
@@ -791,7 +791,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
   },
   {
-    packageSlug: "student-cv-review-package",
+    packageSlug: "ats-cv-student-supervised",
     title: "Student CV Review Package: Expert Feedback Before You Apply",
     excerpt:
       "A student-focused CV review guide that explains how feedback-driven improvements can boost internship and trainee application quality quickly.",
@@ -863,7 +863,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
   },
   {
-    packageSlug: "starter-cv-review-package",
+    packageSlug: "ats-cv-fresh-graduate-supervised",
     title: "Starter CV Review Package: Fix Entry-Level CV Mistakes Before Recruiters See Them",
     excerpt:
       "A practical CV review roadmap for freshers and early-career job seekers to improve ATS alignment, clarity, and interview readiness.",
@@ -935,7 +935,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
   },
   {
-    packageSlug: "professional-cv-review-package",
+    packageSlug: "ats-cv-professional-supervised",
     title: "Professional CV Review Package: Audit Your CV Before High-Stakes Applications",
     excerpt:
       "A mid-level CV audit guide showing how expert review can strengthen positioning, outcomes language, and ATS performance before applying to competitive roles.",
@@ -1007,7 +1007,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
   },
   {
-    packageSlug: "executive-cv-review-package",
+    packageSlug: "ats-cv-executive-supervised",
     title: "Executive CV Review Package: Senior-Level CV Audit for Leadership Opportunities",
     excerpt:
       "An executive CV review framework for directors and senior leaders who need stronger strategic positioning, leadership narrative, and premium presentation.",

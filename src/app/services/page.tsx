@@ -5,6 +5,7 @@ import AnimatedServiceTextVisual from "@/components/AnimatedServiceTextVisual";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
 import { industryLandingPages } from "@/lib/industry-pages";
+import ServicesPackageFilter from "@/app/services/ServicesPackageFilter";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "CV Writing Services & Linkedin Optimization Sri Lanka | Services",
@@ -22,25 +23,35 @@ export default function ServicesPage() {
 
   const services = [
     {
-      title: "CV Writing Services",
-      desc: "Student, Professional, and Executive CV packages with ATS-friendly structure, role-targeted keywords, and recruiter-ready achievement writing.",
+      title: "ATS Friendly Professional CV Writing",
+      desc: "Founder-led and supervised CV packages across student, fresh graduate, professional, senior professional, and executive levels.",
       isMostPopular: true,
-      href: "/services/packages/cv-writing",
-    },
-    {
-      title: "Cover Letter Writing",
-      desc: "Student, Professional, and Executive cover letters that communicate relevance, confidence, and proof-based value.",
-      href: "/services/packages/cover-letter-writing",
+      href: "/services/packages/ats-cv",
     },
     {
       title: "LinkedIn Account Optimization",
-      desc: "Student, Professional, and Executive LinkedIn optimisation packages for stronger recruiter discovery and profile conversion.",
-      href: "/services/packages/linkedin-optimization",
+      desc: "Profile positioning packages for stronger recruiter discovery, keywords, and personal branding.",
+      href: "/services/packages/linkedin",
     },
     {
-      title: "CV Review Service",
-      desc: "Detailed expert feedback on your existing CV with ATS recommendations, stronger content direction, and clear structure fixes.",
-      href: "/services/packages/cv-review",
+      title: "Professional Cover Letter Writing",
+      desc: "Role-aligned cover letters for local and overseas job applications.",
+      href: "/services/packages/cover-letter",
+    },
+    {
+      title: "Foreign Job CV Writing",
+      desc: "International-market CV packages for Middle East, UK/Europe, Australia/New Zealand, Canada, and other target markets.",
+      href: "/services/packages/foreign-cv",
+    },
+    {
+      title: "Graphical CV Writing / Resume Writing",
+      desc: "Modern visual CV and resume writing packages when presentation and personal brand need stronger impact.",
+      href: "/services/packages/graphical-cv",
+    },
+    {
+      title: "Consultation",
+      desc: "Founder-led career consultation packages for direction, strategy, and application positioning.",
+      href: "/services/packages/consultation",
     },
     {
       title: "Personal Website & Career Portfolio",
@@ -126,9 +137,11 @@ export default function ServicesPage() {
 
           <div className="mt-10 rounded-[16px] border border-[#e1f5fe] bg-[#f0f9ff]/60 p-6 text-center">
             <p className="text-text-body text-lg">
-              Build a stronger career stack by combining ATS-ready documents, LinkedIn positioning, and a portfolio-style personal website for better digital presence.
+              Use the filters below to compare every package by service type, experience level, and founder-led or supervised delivery.
             </p>
           </div>
+
+          <ServicesPackageFilter />
 
           <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
  <article className="rounded-[18px] border border-zinc-200 bg-zinc-50 p-6">

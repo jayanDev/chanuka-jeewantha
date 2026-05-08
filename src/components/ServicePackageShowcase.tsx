@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import AnimatedServiceTextVisual from "@/components/AnimatedServiceTextVisual";
-import { formatLkr, type PackageProduct } from "@/lib/packages-catalog";
+import { formatLkr, getPackageDisplayPrice, type PackageProduct } from "@/lib/packages-catalog";
 import { buildOfferPreviewHeaders, withOfferPreviewUrl } from "@/lib/offer-preview-client";
 
 type ProductRecord = {
@@ -13,6 +13,7 @@ type ProductRecord = {
   category: string;
   audience: string;
   priceLkr: number;
+  priceNote?: string | null;
   originalPriceLkr?: number;
   discountPercent?: number;
   delivery: string;
@@ -161,6 +162,7 @@ export default function ServicePackageShowcase({ title, description, packages }:
             (() => {
               const liveProduct = productsBySlug[pkg.slug];
               const livePrice = liveProduct?.priceLkr ?? pkg.priceLkr;
+              const displayPrice = liveProduct?.priceNote ?? getPackageDisplayPrice(pkg);
               const originalPrice = liveProduct?.originalPriceLkr ?? pkg.priceLkr;
               const discountPercent = liveProduct?.discountPercent ?? 0;
 
@@ -185,7 +187,7 @@ export default function ServicePackageShowcase({ title, description, packages }:
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="rounded-[12px] bg-zinc-100 p-4">
                   <p className="text-xs uppercase tracking-wide text-zinc-500 mb-1">Price</p>
-                  <p className="text-lg font-semibold text-foreground">{formatLkr(livePrice)}</p>
+                  <p className="text-lg font-semibold text-foreground">{displayPrice}</p>
                   {discountPercent > 0 && originalPrice > livePrice && (
                     <p className="text-xs text-zinc-500 line-through">{formatLkr(originalPrice)}</p>
                   )}

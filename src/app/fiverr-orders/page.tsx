@@ -10,7 +10,7 @@ export const metadata = buildPageMetadata({
 });
 
 const fiverrGigUrl = "https://www.fiverr.com/s/kLBDGAb";
-const cvWritingCategory = packageCategories.find((category) => category.key === "cv-writing");
+const cvWritingCategory = packageCategories.find((category) => category.key === "ats-cv");
 
 function discountedPrice(priceLkr: number): number {
   return Math.max(1, Math.round(priceLkr * 0.5));

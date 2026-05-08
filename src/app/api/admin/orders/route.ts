@@ -101,6 +101,7 @@ function parseOrderUpdates(value: unknown): OrderUpdate[] {
         details?: unknown;
         actorRole?: unknown;
         status?: unknown;
+        source?: unknown;
       };
 
       if (
@@ -201,6 +202,7 @@ export async function GET(request: Request) {
     .map((doc) => {
       const data = doc.data() as {
         status?: unknown;
+        source?: unknown;
         totalLkr?: unknown;
         subtotalLkr?: unknown;
         couponDiscountLkr?: unknown;
@@ -215,6 +217,8 @@ export async function GET(request: Request) {
         currentCvUploadFailed?: unknown;
         linkedinUrl?: unknown;
         extraDetails?: unknown;
+        catalogueAnswers?: unknown;
+        intake?: unknown;
         note?: unknown;
         etaDate?: unknown;
         adminNotes?: unknown;
@@ -237,6 +241,10 @@ export async function GET(request: Request) {
             productName?: unknown;
             quantity?: unknown;
             priceLkr?: unknown;
+            code?: unknown;
+            serviceKey?: unknown;
+            experienceKey?: unknown;
+            optionKey?: unknown;
           };
 
           if (
@@ -253,6 +261,10 @@ export async function GET(request: Request) {
             productName: entry.productName,
             quantity: entry.quantity,
             priceLkr: entry.priceLkr,
+            code: typeof entry.code === "string" ? entry.code : undefined,
+            serviceKey: typeof entry.serviceKey === "string" ? entry.serviceKey : undefined,
+            experienceKey: typeof entry.experienceKey === "string" ? entry.experienceKey : undefined,
+            optionKey: typeof entry.optionKey === "string" ? entry.optionKey : undefined,
           };
         })
         .filter((item): item is NonNullable<typeof item> => Boolean(item));
@@ -261,6 +273,7 @@ export async function GET(request: Request) {
 
       return {
         id: doc.id,
+        source: typeof data.source === "string" ? data.source : null,
         userId: typeof data.userId === "string" ? data.userId : "",
         status: typeof data.status === "string" ? data.status : "payment_submitted",
         totalLkr: typeof data.totalLkr === "number" ? data.totalLkr : 0,
@@ -282,6 +295,14 @@ export async function GET(request: Request) {
             : typeof data.note === "string"
               ? data.note
               : null,
+        catalogueAnswers:
+          data.catalogueAnswers && typeof data.catalogueAnswers === "object" && !Array.isArray(data.catalogueAnswers)
+            ? data.catalogueAnswers
+            : null,
+        intake:
+          data.intake && typeof data.intake === "object" && !Array.isArray(data.intake)
+            ? data.intake
+            : null,
         etaDate: typeof data.etaDate === "string" ? data.etaDate : null,
         adminNotes: typeof data.adminNotes === "string" ? data.adminNotes : null,
         createdAt: createdAtMs > 0 ? new Date(createdAtMs).toISOString() : null,

@@ -29,6 +29,31 @@ function normalizeWhatsApp(raw: string): string {
   return digits;
 }
 
+function csvEscape(value: unknown): string {
+  const text = value === null || value === undefined ? "" : String(value);
+  return `"${text.replaceAll('"', '""')}"`;
+}
+
+function downloadCsv(filename: string, rows: string[][]) {
+  const csv = rows.map((row) => row.map(csvEscape).join(",")).join("\r\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+function formatIntake(order: AdminOrder): string {
+  const intake = order.intake ?? {};
+  const entries = Object.entries(intake).filter(([, value]) => value);
+  if (entries.length === 0) return order.extraDetails ?? "";
+  return entries.map(([key, value]) => `${key}: ${value}`).join(" | ");
+}
+
 export default function OrdersClient() {
   const [orders, setOrders] = useState<AdminOrder[]>([]);
   const [search, setSearch] = useState("");
@@ -254,6 +279,78 @@ export default function OrdersClient() {
     });
   }, [orders, search, statusFilter, activeTab]);
 
+  const premiumSchedule = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const order of orders) {
+      const hasFounderLed = order.items.some((item) => item.optionKey === "founder-led" || item.productName.toLowerCase().includes("founder-led"));
+      if (!hasFounderLed) continue;
+      const dateKey = order.etaDate || (order.createdAt ? new Date(order.createdAt).toISOString().slice(0, 10) : "Unscheduled");
+      counts.set(dateKey, (counts.get(dateKey) ?? 0) + 1);
+    }
+    return Array.from(counts.entries())
+      .map(([date, count]) => ({ date, count, shownCapacity: 2, shownRemaining: Math.max(0, 2 - count) }))
+      .sort((a, b) => a.date.localeCompare(b.date))
+      .slice(0, 14);
+  }, [orders]);
+
+  const exportOrders = (source: "all" | "catalogue") => {
+    const selected = source === "catalogue" ? orders.filter((order) => order.source === "catalogue") : orders;
+    const rows = [
+      [
+        "Order ID",
+        "Source",
+        "Created",
+        "Status",
+        "Customer Name",
+        "Email",
+        "WhatsApp",
+        "Location",
+        "Packages",
+        "Codes",
+        "Services",
+        "Experience",
+        "Service Option",
+        "Subtotal LKR",
+        "Discount LKR",
+        "Total LKR",
+        "Payment Ref",
+        "LinkedIn",
+        "Current CV URL",
+        "Payment Slip URL",
+        "ETA",
+        "Admin Notes",
+        "Full Intake",
+      ],
+      ...selected.map((order) => [
+        order.id,
+        order.source ?? "website",
+        order.createdAt ?? "",
+        order.status,
+        order.user.name,
+        order.user.email,
+        order.paymentWhatsApp,
+        order.intake?.location ?? "",
+        order.items.map((item) => item.productName).join(" + "),
+        order.items.map((item) => item.code ?? "").filter(Boolean).join(" + "),
+        order.catalogueAnswers?.services?.join(" + ") ?? order.items.map((item) => item.serviceKey ?? "").filter(Boolean).join(" + "),
+        order.catalogueAnswers?.experience ?? order.items.map((item) => item.experienceKey ?? "").filter(Boolean).join(" + "),
+        order.catalogueAnswers?.serviceOption ?? order.items.map((item) => item.optionKey ?? "").filter(Boolean).join(" + "),
+        String(order.subtotalLkr || order.totalLkr),
+        String(order.couponDiscountLkr),
+        String(order.totalLkr),
+        order.paymentRef,
+        order.linkedinUrl ?? order.intake?.linkedinUrl ?? "",
+        order.currentCvUrl ?? "",
+        order.paymentSlipUrl,
+        order.etaDate ?? "",
+        order.adminNotes ?? "",
+        formatIntake(order),
+      ]),
+    ];
+
+    downloadCsv(`${source}-orders-${new Date().toISOString().slice(0, 10)}.csv`, rows);
+  };
+
   return (
     <section className="space-y-4">
  <div className="rounded-[16px] border border-zinc-200 bg-white p-6">
@@ -262,13 +359,80 @@ export default function OrdersClient() {
             <h2 className="text-2xl font-bold font-plus-jakarta">Order Management</h2>
  <p className="text-sm text-zinc-600">Search, filter, track progress, and hand over final documents.</p>
           </div>
-          <button
-            type="button"
-            onClick={() => void loadOrders()}
-            className="rounded bg-foreground px-4 py-2 text-sm text-background"
-          >
-            Refresh
-          </button>
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => exportOrders("catalogue")}
+              className="rounded bg-emerald-600 px-4 py-2 text-sm font-semibold text-white"
+            >
+              Download Catalogue Excel
+            </button>
+            <button
+              type="button"
+              onClick={() => exportOrders("all")}
+              className="rounded border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground"
+            >
+              Download All Excel
+            </button>
+            <button
+              type="button"
+              onClick={() => void loadOrders()}
+              className="rounded bg-foreground px-4 py-2 text-sm text-background"
+            >
+              Refresh
+            </button>
+          </div>
+        </div>
+
+        <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1fr)_360px]">
+          <div className="overflow-x-auto rounded-[12px] border border-zinc-200">
+            <table className="min-w-full divide-y divide-zinc-200 text-sm">
+              <thead className="bg-zinc-50 text-left text-xs uppercase tracking-wide text-zinc-500">
+                <tr>
+                  <th className="px-3 py-2">Customer</th>
+                  <th className="px-3 py-2">Package</th>
+                  <th className="px-3 py-2">Service Option</th>
+                  <th className="px-3 py-2">Total</th>
+                  <th className="px-3 py-2">Status</th>
+                  <th className="px-3 py-2">ETA</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-zinc-100 bg-white">
+                {orders.slice(0, 10).map((order) => (
+                  <tr key={order.id}>
+                    <td className="px-3 py-2">
+                      <p className="font-semibold text-foreground">{order.user.name}</p>
+                      <p className="text-xs text-zinc-500">{order.paymentWhatsApp}</p>
+                    </td>
+                    <td className="px-3 py-2 text-zinc-700">{order.items.map((item) => item.productName).join(", ")}</td>
+                    <td className="px-3 py-2 text-zinc-700">
+                      {order.catalogueAnswers?.serviceOption || order.items.map((item) => item.optionKey).filter(Boolean).join(", ") || "website"}
+                    </td>
+                    <td className="px-3 py-2 font-semibold">{formatLkr(order.totalLkr)}</td>
+                    <td className="px-3 py-2">{statusDisplayLabels[order.status]}</td>
+                    <td className="px-3 py-2">{order.etaDate ?? "Not set"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="rounded-[12px] border border-amber-200 bg-amber-50 p-4">
+            <h3 className="font-plus-jakarta text-lg font-bold text-foreground">Founder-Led Premium Schedule</h3>
+            <p className="mt-1 text-xs text-amber-800">Client-facing availability is shown as 2 premium slots per day.</p>
+            <div className="mt-3 space-y-2">
+              {premiumSchedule.length === 0 ? (
+                <p className="text-sm text-zinc-500">No founder-led orders scheduled yet.</p>
+              ) : (
+                premiumSchedule.map((row) => (
+                  <div key={row.date} className="flex items-center justify-between rounded-[8px] bg-white px-3 py-2 text-sm">
+                    <span className="font-medium text-zinc-800">{row.date}</span>
+                    <span className="text-zinc-600">{row.count}/{row.shownCapacity} booked, {row.shownRemaining} shown remaining</span>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
         </div>
 
  <div className="mt-6 flex border-b border-zinc-200">
@@ -455,6 +619,27 @@ export default function OrdersClient() {
                 <div className="rounded-[8px] border border-zinc-200 bg-zinc-50 p-3 text-sm text-zinc-700">
                   <p className="font-medium text-zinc-900 mb-1">Extra details from customer</p>
                   <p>{order.extraDetails}</p>
+                </div>
+              )}
+
+              {order.intake && (
+                <div className="rounded-[10px] border border-zinc-200 bg-white p-4 text-sm text-zinc-700">
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                    <p className="font-semibold text-zinc-900">Catalogue intake details</p>
+                    <span className="rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold text-brand-dark">
+                      {order.catalogueAnswers?.experience ?? "catalogue"}
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                    {Object.entries(order.intake)
+                      .filter(([, value]) => value)
+                      .map(([key, value]) => (
+                        <p key={key}>
+                          <span className="font-medium text-zinc-500">{key}: </span>
+                          <span>{value}</span>
+                        </p>
+                      ))}
+                  </div>
                 </div>
               )}
 
