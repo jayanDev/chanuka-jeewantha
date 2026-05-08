@@ -1,8 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import ServicePackageShowcase from "@/components/ServicePackageShowcase";
-import { packageCategories } from "@/lib/packages-catalog";
+import ServicesPackageFilter from "@/app/services/ServicesPackageFilter";
+import { packageCategories, type ServiceKey } from "@/lib/packages-catalog";
 import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 
 const slugToCategoryTitle: Record<string, string> = {
@@ -90,11 +90,15 @@ export default async function ServicePackagesBySlugPage({
         </div>
       </section>
 
-      <ServicePackageShowcase
-        title={category.title}
-        description={category.description}
-        packages={category.packages}
-      />
+      <section className="w-full bg-zinc-50 py-[64px] sm:py-[80px] md:py-[96px]">
+        <div className="mx-auto max-w-[1512px] px-4 sm:px-6">
+          <div className="mx-auto mb-8 max-w-5xl rounded-[24px] border border-zinc-200 bg-white p-8 text-center md:p-10">
+            <h2 className="font-plus-jakarta text-[34px] font-bold text-foreground md:text-[42px]">{category.title}</h2>
+            <p className="mt-4 text-lg leading-relaxed text-text-body">{category.description}</p>
+          </div>
+          <ServicesPackageFilter lockedServiceKey={category.key as ServiceKey} />
+        </div>
+      </section>
     </>
   );
 }

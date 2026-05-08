@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import {
   experienceOptions,
@@ -13,21 +13,30 @@ import {
   type ServiceOptionKey,
 } from "@/lib/packages-catalog";
 
-export default function ServicesPackageFilter() {
-  const [selectedServices, setSelectedServices] = useState<Set<ServiceKey>>(new Set());
+type ServicesPackageFilterProps = {
+  lockedServiceKey?: ServiceKey;
+};
+
+export default function ServicesPackageFilter({ lockedServiceKey }: ServicesPackageFilterProps) {
+  const [selectedServices, setSelectedServices] = useState<Set<ServiceKey>>(
+    lockedServiceKey ? new Set([lockedServiceKey]) : new Set()
+  );
   const [experience, setExperience] = useState<ExperienceKey | "all">("all");
   const [serviceOption, setServiceOption] = useState<ServiceOptionKey | "all">("all");
+  const visibleServices = lockedServiceKey
+    ? serviceOptions.filter((service) => service.key === lockedServiceKey)
+    : serviceOptions;
 
-  const filteredPackages = useMemo(() => {
-    return packageProducts.filter((pkg) => {
-      if (selectedServices.size > 0 && !selectedServices.has(pkg.serviceKey)) return false;
-      if (experience !== "all" && pkg.experienceKey !== experience) return false;
-      if (serviceOption !== "all" && pkg.optionKey !== serviceOption) return false;
-      return true;
-    });
-  }, [experience, selectedServices, serviceOption]);
+  const filteredPackages = packageProducts.filter((pkg) => {
+    if (lockedServiceKey && pkg.serviceKey !== lockedServiceKey) return false;
+    if (selectedServices.size > 0 && !selectedServices.has(pkg.serviceKey)) return false;
+    if (experience !== "all" && pkg.experienceKey !== experience) return false;
+    if (serviceOption !== "all" && pkg.optionKey !== serviceOption) return false;
+    return true;
+  });
 
   const toggleService = (key: ServiceKey) => {
+    if (lockedServiceKey) return;
     setSelectedServices((previous) => {
       const next = new Set(previous);
       if (next.has(key)) next.delete(key);
@@ -45,14 +54,19 @@ export default function ServicesPackageFilter() {
               What kind of services do you need?
             </p>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {serviceOptions.map((service) => (
+              {visibleServices.map((service) => (
                 <label
                   key={service.key}
-                  className="flex cursor-pointer items-start gap-2 rounded-[10px] border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-700"
+                  className={`flex items-start gap-2 rounded-[10px] border px-3 py-2 text-sm ${
+                    lockedServiceKey
+                      ? "cursor-default border-brand-main bg-brand-main/10 text-brand-dark"
+                      : "cursor-pointer border-zinc-200 bg-white text-zinc-700"
+                  }`}
                 >
                   <input
                     type="checkbox"
-                    checked={selectedServices.has(service.key)}
+                    checked={lockedServiceKey ? true : selectedServices.has(service.key)}
+                    disabled={Boolean(lockedServiceKey)}
                     onChange={() => toggleService(service.key)}
                     className="mt-1 accent-brand-main"
                   />
@@ -100,7 +114,7 @@ export default function ServicesPackageFilter() {
           <button
             type="button"
             onClick={() => {
-              setSelectedServices(new Set());
+              setSelectedServices(lockedServiceKey ? new Set([lockedServiceKey]) : new Set());
               setExperience("all");
               setServiceOption("all");
             }}
