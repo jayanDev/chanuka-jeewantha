@@ -112,6 +112,7 @@ export default function CatalogueClient() {
   const [experience, setExperience] = useState<ExperienceKey | "">("");
   const [serviceOption, setServiceOption] = useState<ServiceOptionKey | "">("");
   const [availabilityLabel, setAvailabilityLabel] = useState("");
+  const [tierInfoOpen, setTierInfoOpen] = useState(false);
   const [intake, setIntake] = useState<IntakeState>({
     english: "Fluent",
     sinhala: "Native",
@@ -127,9 +128,57 @@ export default function CatalogueClient() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const requestedService = params.get("service") as ServiceKey | null;
-    if (requestedService && serviceOptions.some((item) => item.key === requestedService)) {
-      setSelectedServices([requestedService]);
+    const serviceParam = params.get("service") as ServiceKey | null;
+    const expParam = params.get("experience") as ExperienceKey | null;
+    const optParam = params.get("option") as ServiceOptionKey | null;
+    const bundleParam = params.get("bundle");
+
+    // --- Bundle shortcuts: pre-fill all 3 answers ---
+    if (bundleParam === "starter") {
+      setSelectedServices(["ats-cv", "cover-letter", "linkedin"]);
+      setExperience("student");
+      setServiceOption("supervised");
+      setStep(4);
+      return;
+    }
+    if (bundleParam === "career") {
+      setSelectedServices(["ats-cv", "cover-letter", "linkedin", "foreign-cv"]);
+      setExperience("professional");
+      setServiceOption("founder-led");
+      setStep(4);
+      return;
+    }
+    if (bundleParam === "executive") {
+      setSelectedServices(["ats-cv", "cover-letter", "linkedin", "foreign-cv"]);
+      setExperience("executive");
+      setServiceOption("founder-led");
+      setStep(4);
+      return;
+    }
+
+    // --- Individual param pre-filling ---
+    let servicesSet = false;
+    if (serviceParam && serviceOptions.some((item) => item.key === serviceParam)) {
+      setSelectedServices([serviceParam]);
+      servicesSet = true;
+    }
+    let expSet = false;
+    if (expParam && experienceOptions.some((item) => item.key === expParam)) {
+      setExperience(expParam);
+      expSet = true;
+    }
+    let optSet = false;
+    if (optParam && serviceOptionChoices.some((item) => item.key === optParam)) {
+      setServiceOption(optParam);
+      optSet = true;
+    }
+
+    // Auto-advance to the furthest step possible
+    if (servicesSet && expSet && optSet) {
+      setStep(4);
+    } else if (servicesSet && expSet) {
+      setStep(3);
+    } else if (servicesSet) {
       setStep(2);
     }
   }, [params]);
@@ -261,67 +310,16 @@ export default function CatalogueClient() {
 
   return (
     <main className="min-h-screen bg-zinc-50">
-      <section className="w-full bg-foreground px-4 py-12 text-background sm:px-6 md:py-16">
+      {/* Compact hero — keeps quiz above fold on mobile */}
+      <section className="w-full bg-foreground px-4 pt-8 pb-6 text-background sm:px-6 sm:pt-10 sm:pb-8">
         <div className="mx-auto max-w-5xl text-center">
-          <p className="font-semibold uppercase tracking-[0.18em] text-brand-main">Career Studio Catalogue</p>
-          <h1 className="mt-4 font-heading text-[34px] font-bold leading-[1.08] !text-white sm:text-[46px] md:text-[64px]">
-            Find the right package in three questions.
+          <p className="font-semibold uppercase tracking-[0.18em] text-brand-main text-xs sm:text-sm">Career Studio Catalogue</p>
+          <h1 className="mt-2 font-heading text-[26px] font-bold leading-[1.1] !text-white sm:text-[36px] md:text-[46px]">
+            Find the right package in <span className="text-brand-main">3 questions.</span>
           </h1>
-          <p className="mx-auto mt-5 max-w-3xl text-lg leading-relaxed text-white/80">
-            Answer the questions first. Packages appear only after the catalogue understands your service need, experience level, and preferred delivery option.
+          <p className="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-white/75 sm:text-base">
+            Answer below — your exact package appears instantly.
           </p>
-        </div>
-      </section>
-
-      <section className="tier-comparison w-full bg-white px-4 py-12 sm:px-6 md:py-16">
-        <div className="mx-auto max-w-5xl">
-          <div className="text-center mb-12">
-            <h2 className="font-heading text-[30px] sm:text-[40px] font-bold text-foreground mb-3">Choose Your Service Level</h2>
-            <p className="text-text-body max-w-2xl mx-auto">Two ways to work with us — same quality framework, different experience.</p>
-          </div>
-          
-          <div className="tiers-grid grid grid-cols-1 md:grid-cols-2 gap-8">
-            
-            <div className="tier-card signature rounded-[12px] border-2 border-[#C9A961] bg-gradient-to-br from-[#C9A961]/5 to-white p-8 shadow-md hover:shadow-lg transition-shadow flex flex-col">
-              <span className="tier-badge inline-block rounded-full bg-[#C9A961] text-white px-4 py-1.5 text-xs font-bold uppercase tracking-wider mb-4 w-fit">Premium</span>
-              <h3 className="font-heading text-[24px] font-bold text-foreground mb-2">✨ Signature Series</h3>
-              <p className="tier-tagline text-sm font-semibold text-[#6B7280] mb-1">Personally crafted by Chanuka Jeewantha</p>
-              <p className="certifications text-xs font-semibold text-[#0A2540] mb-4">CPRW & CPCC Certified</p>
-              <ul className="tier-features space-y-2 text-sm text-zinc-700 mb-4 flex-grow">
-                <li>✓ Industry-specific strategic positioning</li>
-                <li>✓ Country-specific format optimization</li>
-                <li>✓ 30-day post-delivery support</li>
-                <li>✓ Premium delivery within 5 days</li>
-                <li>✓ Direct WhatsApp access to Chanuka</li>
-                <li>✓ Limited to 2 new clients per day</li>
-              </ul>
-              <p className="tier-best-for text-sm text-zinc-600 mb-4">
-                <strong>Best for:</strong> Career-focused professionals investing in long-term success
-              </p>
-              <p className="price-from text-sm text-zinc-700">Individual services from <strong className="text-foreground">LKR 4,000</strong></p>
-              <p className="price-from text-sm text-zinc-700 mt-1">Signature CV packages from <strong className="text-foreground text-base">LKR 6,500</strong></p>
-            </div>
-            
-            <div className="tier-card essentials rounded-[12px] border border-zinc-200 bg-white p-8 shadow-md hover:shadow-lg transition-shadow flex flex-col">
-              <span className="tier-badge inline-block rounded-full bg-[#6B7280] text-white px-4 py-1.5 text-xs font-bold uppercase tracking-wider mb-4 w-fit">Accessible</span>
-              <h3 className="font-heading text-[24px] font-bold text-foreground mb-2">📋 Essentials</h3>
-              <p className="tier-tagline text-sm font-semibold text-[#6B7280] mb-1">Team-crafted, Chanuka supervised</p>
-              <p className="certifications text-xs font-semibold text-[#0A2540] mb-4">Same Quality Standards</p>
-              <ul className="tier-features space-y-2 text-sm text-zinc-700 mb-4 flex-grow">
-                <li>✓ ATS-friendly format</li>
-                <li>✓ Professional optimization</li>
-                <li>✓ 7-day delivery</li>
-                <li>✓ Email-based support</li>
-                <li>✓ Quality reviewed by Chanuka</li>
-                <li>✓ Bundle discounts available</li>
-              </ul>
-              <p className="tier-best-for text-sm text-zinc-600 mb-4">
-                <strong>Best for:</strong> Students, fresh graduates, and budget-conscious professionals
-              </p>
-              <p className="price-from text-sm text-zinc-700">Starting from <strong className="text-foreground">LKR 1,950</strong></p>
-            </div>
-            
-          </div>
         </div>
       </section>
 
@@ -345,8 +343,8 @@ export default function CatalogueClient() {
                 Skip the quiz — browse all packages →
               </Link>
             </div>
-            <p className="text-sm font-bold uppercase tracking-[0.14em] text-brand-main">Question 1</p>
-            <h2 className="mt-2 font-heading text-[30px] font-bold text-foreground">What kind of services do you need?</h2>
+            <p className="text-sm font-bold uppercase tracking-[0.14em] text-brand-main">Question 1 of 3</p>
+            <h2 className="mt-2 font-heading text-[28px] font-bold text-foreground">What kind of services do you need?</h2>
             <p className="mt-2 text-zinc-600">You can select multiple services.</p>
             <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2">
               {serviceOptions.map((service) => (
@@ -377,8 +375,8 @@ export default function CatalogueClient() {
 
         {step === 2 && (
           <div className="rounded-[18px] border border-zinc-200 bg-white p-6 shadow-sm md:p-8">
-            <p className="text-sm font-bold uppercase tracking-[0.14em] text-brand-main">Question 2</p>
-            <h2 className="mt-2 font-heading text-[30px] font-bold text-foreground">How many experience do you have?</h2>
+            <p className="text-sm font-bold uppercase tracking-[0.14em] text-brand-main">Question 2 of 3</p>
+            <h2 className="mt-2 font-heading text-[28px] font-bold text-foreground">How much experience do you have?</h2>
             <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2">
               {experienceOptions.map((item) => (
                 <label key={item.key} className="flex cursor-pointer gap-3 rounded-[12px] border border-zinc-200 p-4 hover:border-brand-main">
@@ -411,8 +409,44 @@ export default function CatalogueClient() {
 
         {step === 3 && (
           <div className="rounded-[18px] border border-zinc-200 bg-white p-6 shadow-sm md:p-8">
-            <p className="text-sm font-bold uppercase tracking-[0.14em] text-brand-main">Question 3</p>
-            <h2 className="mt-2 font-heading text-[30px] font-bold text-foreground">Which service option you prefer?</h2>
+            <p className="text-sm font-bold uppercase tracking-[0.14em] text-brand-main">Question 3 of 3</p>
+            <h2 className="mt-2 font-heading text-[28px] font-bold text-foreground">Which service option do you prefer?</h2>
+            {/* Collapsible tier explainer */}
+            <button
+              type="button"
+              onClick={() => setTierInfoOpen((prev) => !prev)}
+              className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-brand-main hover:text-brand-dark transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              What&apos;s the difference between Signature and Essentials?
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={`transition-transform duration-200 ${tierInfoOpen ? "rotate-180" : ""}`}><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            {tierInfoOpen && (
+              <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-[14px] border border-zinc-200 bg-zinc-50 p-4 text-sm">
+                <div className="rounded-[10px] border border-[#C9A961]/40 bg-white p-4">
+                  <p className="font-bold text-foreground mb-1">✨ Signature Series</p>
+                  <p className="text-xs text-zinc-500 mb-2">Personally crafted by Chanuka Jeewantha · CPRW &amp; CPCC</p>
+                  <ul className="space-y-1 text-zinc-700">
+                    <li>✓ Strategic industry positioning</li>
+                    <li>✓ 30-day post-delivery support</li>
+                    <li>✓ Direct WhatsApp access</li>
+                    <li>✓ Limited to 2 clients/day</li>
+                    <li className="text-[#C9A961] font-semibold">From LKR 4,000</li>
+                  </ul>
+                </div>
+                <div className="rounded-[10px] border border-zinc-200 bg-white p-4">
+                  <p className="font-bold text-foreground mb-1">📋 Essentials</p>
+                  <p className="text-xs text-zinc-500 mb-2">Team-crafted, quality reviewed by Chanuka</p>
+                  <ul className="space-y-1 text-zinc-700">
+                    <li>✓ ATS-friendly professional format</li>
+                    <li>✓ 7-day delivery</li>
+                    <li>✓ Email-based support</li>
+                    <li>✓ Bundle discounts up to 20%</li>
+                    <li className="font-semibold">From LKR 1,950</li>
+                  </ul>
+                </div>
+              </div>
+            )}
             <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
               {serviceOptionChoices.map((item) => (
                 <label
