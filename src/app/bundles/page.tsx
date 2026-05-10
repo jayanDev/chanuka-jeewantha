@@ -78,6 +78,10 @@ export default function BundlesPage() {
                     <span className="text-[#C9A961] font-bold">✓</span>
                     <span>Email support</span>
                   </li>
+                  <li className="flex gap-3">
+                    <span className="text-[#C9A961] font-bold">✓</span>
+                    <span>WhatsApp access (via team member)</span>
+                  </li>
                 </ul>
               </div>
 
