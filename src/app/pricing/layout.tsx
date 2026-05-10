@@ -4,9 +4,9 @@ import { buildBreadcrumbList, buildOfferCatalogSchema } from "@/lib/structured-d
 import { packageCategories } from "@/lib/packages-catalog";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Pricing | CV Writing, Cover Letter & LinkedIn Account Optimization",
+  title: "Pricing & Packages | ATS CV Writing, LinkedIn Optimization & Career Services Sri Lanka",
   description:
-    "Compare Student, Professional, and Executive CV writing, cover letter writing, and LinkedIn account optimization packages by career expert Chanuka Jeewantha.",
+    "View Chanuka Jeewantha's career service packages including ATS CV writing, LinkedIn optimization, cover letters, foreign job CVs, and consultation packages for Sri Lankan professionals.",
   path: "/pricing",
 });
 

@@ -5,9 +5,9 @@ import { getBaseUrl } from "@/lib/site-url";
 import { packageProducts } from "@/lib/packages-catalog";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Pricing & Packages - ATS Friendly CV Maker",
+  title: "Pricing & Packages | ATS CV Writing, LinkedIn Optimization & Career Services Sri Lanka",
   description:
-    "Explore pricing for our ATS-friendly CV writing, cover letters, and LinkedIn optimization bundles. Secure your career documents starting at affordable rates.",
+    "View Chanuka Jeewantha's career service packages including ATS CV writing, LinkedIn optimization, cover letters, foreign job CVs, and consultation packages for Sri Lankan professionals.",
   path: "/pricing",
 });
 

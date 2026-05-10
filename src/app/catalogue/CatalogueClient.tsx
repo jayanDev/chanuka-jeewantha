@@ -298,7 +298,8 @@ export default function CatalogueClient() {
               <p className="tier-best-for text-sm text-zinc-600 mb-4">
                 <strong>Best for:</strong> Career-focused professionals investing in long-term success
               </p>
-              <p className="price-from text-sm text-zinc-700">Starting from <strong className="text-foreground">LKR 4,000</strong></p>
+              <p className="price-from text-sm text-zinc-700">Individual services from <strong className="text-foreground">LKR 4,000</strong></p>
+              <p className="price-from text-sm text-zinc-700 mt-1">Signature CV packages from <strong className="text-foreground text-base">LKR 6,500</strong></p>
             </div>
             
             <div className="tier-card essentials rounded-[12px] border border-zinc-200 bg-white p-8 shadow-md hover:shadow-lg transition-shadow flex flex-col">
@@ -523,7 +524,7 @@ export default function CatalogueClient() {
                     <p className="font-heading text-[28px] font-bold text-foreground">{formatLkr(totals.totalLkr)}</p>
                     {totals.discountPercent > 0 && (
                       <p className="text-sm font-semibold text-emerald-700">
-                        {totals.discountPercent}% supervised bundle discount applied. You save {formatLkr(totals.discountLkr)}.
+                        {totals.discountPercent}% Essentials bundle discount applied. You save {formatLkr(totals.discountLkr)}.
                       </p>
                     )}
                   </div>
