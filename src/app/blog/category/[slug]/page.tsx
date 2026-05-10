@@ -93,7 +93,7 @@ export default async function BlogCategoryPage({ params }: BlogCategoryPageProps
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4].map((i) => (
-              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none">
                 {category}
               </span>
             ))}
@@ -108,7 +108,7 @@ export default async function BlogCategoryPage({ params }: BlogCategoryPageProps
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">{category}</span>
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
             {category} <span className="text-brand-main">Articles</span>
           </h1>
           <p className="mt-6 max-w-3xl text-lg text-text-light">
@@ -122,7 +122,7 @@ export default async function BlogCategoryPage({ params }: BlogCategoryPageProps
           <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.14em] text-brand-main">Topic Hub</p>
-              <h2 className="mt-2 text-[30px] font-bold font-plus-jakarta text-foreground">
+              <h2 className="mt-2 text-[30px] font-bold font-heading text-foreground">
                 {posts.length} articles in this category
               </h2>
             </div>
@@ -154,7 +154,7 @@ export default async function BlogCategoryPage({ params }: BlogCategoryPageProps
                   <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">
                     {post.category}
                   </p>
-                  <h3 className="mb-3 text-[24px] font-bold font-plus-jakarta text-foreground">
+                  <h3 className="mb-3 text-[24px] font-bold font-heading text-foreground">
                     <Link href={`/blog/${post.slug}`} className="transition-colors hover:text-brand-main">
                       {post.title}
                     </Link>

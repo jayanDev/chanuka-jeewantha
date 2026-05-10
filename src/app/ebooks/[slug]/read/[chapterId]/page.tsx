@@ -151,7 +151,7 @@ export default async function ChapterPage({ params }: Props) {
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-brand-main">
             Sign in required
           </p>
-          <h1 className="mb-4 font-plus-jakarta text-3xl font-extrabold leading-tight text-foreground">
+          <h1 className="mb-4 font-heading text-3xl font-extrabold leading-tight text-foreground">
             Create a free account to continue reading
           </h1>
           <p className="mx-auto mb-8 max-w-md text-base leading-relaxed text-zinc-600">
@@ -207,7 +207,7 @@ export default async function ChapterPage({ params }: Props) {
               <path d="M7 11V7a5 5 0 0 1 10 0v4" />
             </svg>
           </div>
-          <h1 className="font-plus-jakarta text-3xl font-bold text-foreground mb-4">
+          <h1 className="font-heading text-3xl font-bold text-foreground mb-4">
             Unlock Full Access to Keep Reading
           </h1>
  <p className="text-zinc-600 mb-8 text-lg leading-relaxed">
@@ -218,7 +218,7 @@ export default async function ChapterPage({ params }: Props) {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
             <div className="rounded-2xl border-2 border-zinc-200 p-5 text-left">
               <p className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1">Read Online</p>
-              <p className="text-2xl font-bold font-plus-jakarta text-foreground mb-3">{formatLkr(ebook.readPriceLkr ?? EBOOK_READ_PRICE_LKR)}</p>
+              <p className="text-2xl font-bold font-heading text-foreground mb-3">{formatLkr(ebook.readPriceLkr ?? EBOOK_READ_PRICE_LKR)}</p>
               <p className="text-sm text-zinc-500 mb-4">Access all chapters on our website anytime.</p>
               <a
                 href={`https://wa.me/${whatsappNumber}?text=${readMsg}`}
@@ -232,7 +232,7 @@ export default async function ChapterPage({ params }: Props) {
             <div className="rounded-2xl border-2 border-brand-main p-5 text-left relative">
               <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-main text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">Best Value</span>
               <p className="text-xs font-bold uppercase tracking-wider text-brand-main mb-1">Download + Read</p>
-              <p className="text-2xl font-bold font-plus-jakarta text-foreground mb-3">{formatLkr(ebook.downloadPriceLkr ?? EBOOK_DOWNLOAD_PRICE_LKR)}</p>
+              <p className="text-2xl font-bold font-heading text-foreground mb-3">{formatLkr(ebook.downloadPriceLkr ?? EBOOK_DOWNLOAD_PRICE_LKR)}</p>
               <p className="text-sm text-zinc-500 mb-4">Read online + download the full ebook file.</p>
               <a
                 href={`https://wa.me/${whatsappNumber}?text=${downloadMsg}`}
@@ -411,14 +411,14 @@ export default async function ChapterPage({ params }: Props) {
         <span className="text-brand-dark font-medium tracking-widest uppercase text-sm mb-3 block">
           {currentIndex === 0 ? "Introduction" : `Chapter ${currentIndex}`}
         </span>
-        <h1 className="text-4xl md:text-5xl font-extrabold font-plus-jakarta text-foreground leading-[1.2]">
+        <h1 className="text-4xl md:text-5xl font-extrabold font-heading text-foreground leading-[1.2]">
           {displayTitle}
         </h1>
       </header>
 
       <article 
-         className="ebook-content text-lg md:text-xl font-poppins 
-                    prose-p:leading-relaxed prose-headings:font-plus-jakarta
+         className="ebook-content text-lg md:text-xl font-body 
+                    prose-p:leading-relaxed prose-headings:font-heading
                     tracking-[0.01em]"
          dangerouslySetInnerHTML={{ __html: displayContent }}
       />
@@ -434,7 +434,7 @@ export default async function ChapterPage({ params }: Props) {
                 🏆
               </div>
             </div>
-            <h2 className="text-3xl md:text-4xl font-extrabold font-plus-jakarta mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-400">
+            <h2 className="text-3xl md:text-4xl font-extrabold font-heading mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-400">
               You Did It!
             </h2>
             <p className="text-zinc-400 text-lg md:text-xl mb-10 leading-relaxed max-w-lg mx-auto">

@@ -84,7 +84,7 @@ export default function AffiliateDashboardClient({ profile, baseUrl, activity }:
       
       {/* 1. Share Link Section */}
       <div className="mb-16">
-        <h2 className="text-xl font-bold font-plus-jakarta mb-4">Your Unique Tracking Link</h2>
+        <h2 className="text-xl font-bold font-heading mb-4">Your Unique Tracking Link</h2>
         <div className="flex flex-col sm:flex-row items-stretch gap-4">
  <div className="flex-grow bg-zinc-50 border-2 border-zinc-200 rounded-[12px] px-6 py-4 flex items-center overflow-x-auto custom-scrollbar">
  <span className="font-mono text-zinc-600 font-semibold whitespace-nowrap">{referralLink}</span>
@@ -108,15 +108,15 @@ export default function AffiliateDashboardClient({ profile, baseUrl, activity }:
       <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-16">
  <div className="bg-zinc-50 border border-zinc-200 rounded-[16px] p-6 text-center">
           <p className="text-zinc-500 font-bold uppercase tracking-wider text-xs mb-2">Total Link Clicks</p>
-          <p className="text-[40px] font-bold font-plus-jakarta text-foreground leading-none">{profile.totalClicks}</p>
+          <p className="text-[40px] font-bold font-heading text-foreground leading-none">{profile.totalClicks}</p>
         </div>
         <div className="bg-brand-main/5 border border-brand-main/20 rounded-[16px] p-6 text-center">
           <p className="text-brand-dark font-bold uppercase tracking-wider text-xs mb-2">Total Referrals (Sales)</p>
-          <p className="text-[40px] font-bold font-plus-jakarta text-brand-main leading-none">{currentScore}</p>
+          <p className="text-[40px] font-bold font-heading text-brand-main leading-none">{currentScore}</p>
         </div>
         <div className="col-span-2 md:col-span-1 bg-emerald-50 border border-emerald-200 rounded-[16px] p-6 text-center">
           <p className="text-emerald-700 font-bold uppercase tracking-wider text-xs mb-2">Packages Earned</p>
-          <p className="text-[40px] font-bold font-plus-jakarta text-emerald-700 leading-none">
+          <p className="text-[40px] font-bold font-heading text-emerald-700 leading-none">
             {currentScore >= 20 ? Math.floor(currentScore / 10) : currentScore >= 10 ? 1 : 0}
           </p>
           <p className="text-xs text-emerald-600 mt-1">Free packages unlocked</p>
@@ -125,7 +125,7 @@ export default function AffiliateDashboardClient({ profile, baseUrl, activity }:
 
       {/* 3. The Gamified Progress Engine */}
       <div className="mb-16">
- <h2 className="text-xl font-bold font-plus-jakarta mb-6 border-b border-zinc-100 pb-4">Affiliate Activity</h2>
+ <h2 className="text-xl font-bold font-heading mb-6 border-b border-zinc-100 pb-4">Affiliate Activity</h2>
         {activity.length === 0 ? (
  <div className="rounded-[14px] border border-zinc-200 bg-zinc-50 p-4 text-sm text-zinc-600">
             No referral conversions yet. Share your tracking link to start earning rewards.
@@ -160,7 +160,7 @@ export default function AffiliateDashboardClient({ profile, baseUrl, activity }:
       </div>
 
       <div className="space-y-12">
- <h2 className="text-xl font-bold font-plus-jakarta mb-6 border-b border-zinc-100 pb-4">Milestone Rewards Tracker</h2>
+ <h2 className="text-xl font-bold font-heading mb-6 border-b border-zinc-100 pb-4">Milestone Rewards Tracker</h2>
         
         {/* Student Package Tracker */}
         <div className="relative">
@@ -170,7 +170,7 @@ export default function AffiliateDashboardClient({ profile, baseUrl, activity }:
               <span className="text-sm text-zinc-500 font-medium">Earn 10 point{currentScore !== 1 ? 's' : ''} to unlock</span>
             </div>
             <div className="text-right">
-              <span className="text-2xl font-bold font-plus-jakarta text-brand-dark">{currentScore}</span>
+              <span className="text-2xl font-bold font-heading text-brand-dark">{currentScore}</span>
               <span className="text-zinc-400 font-bold">/{studentTarget}</span>
             </div>
           </div>
@@ -204,7 +204,7 @@ export default function AffiliateDashboardClient({ profile, baseUrl, activity }:
               <span className="text-sm text-zinc-500 font-medium">Earn 20 point{currentScore !== 1 ? 's' : ''} to unlock</span>
             </div>
             <div className="text-right">
-              <span className="text-2xl font-bold font-plus-jakarta text-brand-dark">{currentScore}</span>
+              <span className="text-2xl font-bold font-heading text-brand-dark">{currentScore}</span>
               <span className="text-zinc-400 font-bold">/{professionalTarget}</span>
             </div>
           </div>

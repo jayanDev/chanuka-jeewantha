@@ -125,7 +125,7 @@ export default function StatsClient() {
       <div className="rounded-[16px] border border-zinc-200 bg-white p-6">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
-            <h2 className="text-2xl font-bold font-plus-jakarta">Dashboard Overview</h2>
+            <h2 className="text-2xl font-bold font-heading">Dashboard Overview</h2>
             <p className="text-sm text-zinc-500 mt-1">
               {stats
                 ? `Last refreshed: ${new Date(stats.generatedAtMs).toLocaleTimeString("en-LK")}`
@@ -185,7 +185,7 @@ export default function StatsClient() {
             className={`rounded-[14px] border p-5 ${card.color ?? "border-zinc-200 bg-white"}`}
           >
             <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">{card.label}</p>
-            <p className="text-3xl font-bold font-plus-jakarta text-foreground mt-1">{card.value}</p>
+            <p className="text-3xl font-bold font-heading text-foreground mt-1">{card.value}</p>
             <p className="text-xs text-zinc-400 mt-1">{card.sublabel}</p>
           </article>
         ))}
@@ -196,7 +196,7 @@ export default function StatsClient() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <article className="rounded-[14px] border border-zinc-200 bg-white p-5">
             <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-3">Orders</p>
-            <p className="text-2xl font-bold font-plus-jakarta text-foreground">{stats.current.totalOrders}</p>
+            <p className="text-2xl font-bold font-heading text-foreground">{stats.current.totalOrders}</p>
             <div className="mt-3 space-y-1.5">
               <div className="flex justify-between text-sm">
                 <span className="text-zinc-500">Completed</span>

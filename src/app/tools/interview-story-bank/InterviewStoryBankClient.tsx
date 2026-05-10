@@ -131,7 +131,7 @@ export default function InterviewStoryBankClient() {
 
       <aside className="space-y-6">
  <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6">
-          <h3 className="text-[22px] font-bold font-plus-jakarta text-foreground">STAR Reminders</h3>
+          <h3 className="text-[22px] font-bold font-heading text-foreground">STAR Reminders</h3>
  <ul className="mt-4 space-y-3 text-sm text-zinc-700">
             <li>Keep the story specific enough to sound real and memorable.</li>
             <li>Spend most of your time on the action you personally took.</li>
@@ -141,7 +141,7 @@ export default function InterviewStoryBankClient() {
         </div>
 
  <div className="rounded-[20px] border border-zinc-200 bg-white p-6">
-          <h3 className="text-[22px] font-bold font-plus-jakarta text-foreground">Your Story Bank</h3>
+          <h3 className="text-[22px] font-bold font-heading text-foreground">Your Story Bank</h3>
           <div className="mt-4 space-y-4">
             {stories.length > 0 ? stories.map((story) => (
  <div key={story.id} className="rounded-[14px] border border-zinc-200 bg-zinc-50 p-4">

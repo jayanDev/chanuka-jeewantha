@@ -134,7 +134,7 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
           )}
         </span>
         <div>
-          <h2 className="text-[20px] font-bold font-plus-jakarta text-foreground leading-tight">
+          <h2 className="text-[20px] font-bold font-heading text-foreground leading-tight">
             {step.title}
           </h2>
           <p className="text-sm text-text-body mt-1">{step.description}</p>
@@ -300,7 +300,7 @@ export default function ChecklistReader({ checklist, isSignedIn }: Props) {
 
       {!isSignedIn && (
         <div className="mt-16 rounded-[20px] border border-zinc-200 bg-zinc-50 p-8 text-center">
-          <h3 className="text-[20px] font-bold font-plus-jakarta text-foreground mb-2">
+          <h3 className="text-[20px] font-bold font-heading text-foreground mb-2">
             Unlock all {checklist.steps.length} sections
           </h3>
           <p className="text-text-body mb-6">

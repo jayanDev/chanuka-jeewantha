@@ -50,7 +50,7 @@ export default function CommentsClient() {
 
   return (
     <div className="rounded-[20px] border border-zinc-200 bg-white p-6 md:p-8">
-      <h2 className="text-2xl font-bold font-plus-jakarta text-foreground mb-6">Blog Comments</h2>
+      <h2 className="text-2xl font-bold font-heading text-foreground mb-6">Blog Comments</h2>
 
       <div className="mb-6 flex gap-2">
         {(["pending", "approved"] as Tab[]).map((t) => (

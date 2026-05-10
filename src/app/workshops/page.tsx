@@ -114,7 +114,7 @@ export default function WorkshopsPage() {
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4].map((i) => (
-              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none">
                 WORKSHOPS
               </span>
             ))}
@@ -127,7 +127,7 @@ export default function WorkshopsPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Workshops</span>
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.08] max-w-5xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.08] max-w-5xl !text-white">
             Career workshops for <span className="text-brand-main">universities, institutes, and communities</span>.
           </h1>
           <p className="mt-6 max-w-3xl text-lg text-text-light">
@@ -140,7 +140,7 @@ export default function WorkshopsPage() {
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-14 max-w-4xl">
             <span className="text-brand-main font-semibold tracking-wider uppercase mb-2 block">Workshop Tracks</span>
-            <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground leading-[1.1] mb-4">
+            <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-heading text-foreground leading-[1.1] mb-4">
               Built for real student and professional outcomes.
             </h2>
             <p className="text-text-body text-lg">
@@ -151,14 +151,14 @@ export default function WorkshopsPage() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {workshopTracks.map((track) => (
  <article key={track.title} className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-8">
-                <h3 className="text-[26px] font-bold font-plus-jakarta text-foreground">{track.title}</h3>
+                <h3 className="text-[26px] font-bold font-heading text-foreground">{track.title}</h3>
                 <p className="mt-4 text-base leading-relaxed text-text-body">{track.summary}</p>
               </article>
             ))}
           </div>
 
  <div className="mt-10 rounded-[20px] border border-zinc-200 bg-white p-8 shadow-sm">
-            <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Ideal For</h3>
+            <h3 className="text-[30px] font-bold font-heading text-foreground">Ideal For</h3>
             <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
               {[
                 "Universities and campus career units",
@@ -174,7 +174,7 @@ export default function WorkshopsPage() {
           </div>
 
  <div className="mt-10 rounded-[20px] border border-zinc-200 bg-zinc-50 p-8">
-            <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Frequently Asked Questions</h3>
+            <h3 className="text-[30px] font-bold font-heading text-foreground">Frequently Asked Questions</h3>
             <div className="mt-6 space-y-5">
               {faqs.map((faq) => (
  <div key={faq.question} className="rounded-[16px] border border-zinc-200 bg-white p-5">
@@ -186,7 +186,7 @@ export default function WorkshopsPage() {
           </div>
 
  <aside className="mt-10 rounded-[20px] border border-zinc-200 bg-foreground p-8 text-background">
-            <h3 className="text-[30px] font-bold font-plus-jakarta !text-white">Contact for Workshop Booking</h3>
+            <h3 className="text-[30px] font-bold font-heading !text-white">Contact for Workshop Booking</h3>
             <p className="mt-4 max-w-3xl text-text-light">
               For general enquiries or to discuss long-term arrangements, you can also reach out via the contact page.
             </p>

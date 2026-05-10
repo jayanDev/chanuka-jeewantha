@@ -294,7 +294,7 @@ export default function OffersCouponsClient() {
  <div className="rounded-[16px] border border-zinc-200 bg-white p-6 space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h2 className="text-2xl font-bold font-plus-jakarta">Manage Offers</h2>
+            <h2 className="text-2xl font-bold font-heading">Manage Offers</h2>
  <p className="text-sm text-zinc-600">Priority rules, targeting, draft scheduling, analytics, and preview mode.</p>
           </div>
           <button type="button" onClick={() => void refreshOffers()} className="rounded bg-foreground px-4 py-2 text-sm text-background">Refresh</button>
@@ -420,7 +420,7 @@ export default function OffersCouponsClient() {
  <div className="rounded-[16px] border border-zinc-200 bg-white p-6 space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h2 className="text-2xl font-bold font-plus-jakarta">Manage Coupons</h2>
+            <h2 className="text-2xl font-bold font-heading">Manage Coupons</h2>
  <p className="text-sm text-zinc-600">Create coupons with usage limits and scope targeting.</p>
           </div>
           <button type="button" onClick={() => void refreshCoupons()} className="rounded bg-foreground px-4 py-2 text-sm text-background">Refresh</button>

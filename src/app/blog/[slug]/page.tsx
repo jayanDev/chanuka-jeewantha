@@ -353,7 +353,7 @@ export default async function BlogPostPage({
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap" aria-hidden="true">
           <div className="animate-[marquee_30s_linear_infinite_reverse] flex gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none">
                 SINGLE POST
               </span>
             ))}
@@ -368,7 +368,7 @@ export default async function BlogPostPage({
             <span className="text-brand-main text-xs" aria-hidden="true">/</span>
             <span className="text-brand-main line-clamp-1 max-w-[200px] sm:max-w-none">{title}</span>
           </div>
-          <h1 className="font-plus-jakarta text-[30px] sm:text-[40px] md:text-[56px] lg:text-[64px] font-bold leading-[1.1] max-w-4xl mb-8 !text-white">
+          <h1 className="font-heading text-[30px] sm:text-[40px] md:text-[56px] lg:text-[64px] font-bold leading-[1.1] max-w-4xl mb-8 !text-white">
             {title || "Career profile strategy that improves interview chances"}
           </h1>
 
@@ -418,7 +418,7 @@ export default async function BlogPostPage({
               </div>
 
               {/* Article Content */}
- <div className="prose prose-lg prose-zinc max-w-none text-zinc-700 font-poppins leading-loose prose-a:text-brand-main prose-a:font-semibold prose-a:no-underline hover:prose-a:underline prose-headings:font-plus-jakarta prose-headings:text-foreground prose-headings:font-bold prose-blockquote:border-l-4 prose-blockquote:border-brand-main prose-blockquote:bg-zinc-50 prose-blockquote:px-8 prose-blockquote:py-6 prose-blockquote:not-italic prose-blockquote:text-xl prose-blockquote:font-medium prose-blockquote:text-foreground prose-blockquote:rounded-r-[20px] prose-li:marker:text-brand-main prose-li:leading-relaxed">
+ <div className="prose prose-lg prose-zinc max-w-none text-zinc-700 font-body leading-loose prose-a:text-brand-main prose-a:font-semibold prose-a:no-underline hover:prose-a:underline prose-headings:font-heading prose-headings:text-foreground prose-headings:font-bold prose-blockquote:border-l-4 prose-blockquote:border-brand-main prose-blockquote:bg-zinc-50 prose-blockquote:px-8 prose-blockquote:py-6 prose-blockquote:not-italic prose-blockquote:text-xl prose-blockquote:font-medium prose-blockquote:text-foreground prose-blockquote:rounded-r-[20px] prose-li:marker:text-brand-main prose-li:leading-relaxed">
                 {isAboutChanukaArticle ? (
                   <>
                     <p className="leading-relaxed mb-6">
@@ -432,7 +432,7 @@ export default async function BlogPostPage({
                       "A strong career is not built by guesswork. It is built by clarity, positioning, and proof."
                     </blockquote>
 
-                    <h3 className="text-[28px] font-bold font-plus-jakarta text-foreground mt-10 mb-4">Why career development changed</h3>
+                    <h3 className="text-[28px] font-bold font-heading text-foreground mt-10 mb-4">Why career development changed</h3>
                     <ul>
                       <li>Most companies use ATS systems for early shortlisting.</li>
                       <li>Recruiters often scan CVs in 6-10 seconds on first review.</li>
@@ -449,7 +449,7 @@ export default async function BlogPostPage({
                       </div>
                     </div>
 
-                    <h3 className="text-[28px] font-bold font-plus-jakarta text-foreground mt-10 mb-4">Core services Chanuka provides</h3>
+                    <h3 className="text-[28px] font-bold font-heading text-foreground mt-10 mb-4">Core services Chanuka provides</h3>
                     <ul>
                       <li><strong>Professional CV Writing:</strong> 100% ATS-friendly structure, keyword alignment, and achievement-focused storytelling.</li>
                       <li><strong>Cover Letter Writing:</strong> role-specific letters that communicate relevance, confidence, and value.</li>
@@ -462,7 +462,7 @@ export default async function BlogPostPage({
                       <Image src="/images/blog/linkedin.svg" alt="LinkedIn profile optimization system" fill unoptimized className="object-cover" sizes="100vw" />
                     </div>
 
-                    <h3 className="text-[28px] font-bold font-plus-jakarta text-foreground mt-10 mb-4">Who this is ideal for</h3>
+                    <h3 className="text-[28px] font-bold font-heading text-foreground mt-10 mb-4">Who this is ideal for</h3>
                     <ul>
                       <li>Graduates building their first professional profile.</li>
                       <li>Mid-level professionals targeting better-paying opportunities.</li>
@@ -481,7 +481,7 @@ export default async function BlogPostPage({
                     {contentPost?.sections && contentPost.sections.length > 0 ? (
                       contentPost.sections.map((section) => (
                         <div key={section.heading}>
-                          <h3 className="text-[28px] font-bold font-plus-jakarta text-foreground mt-10 mb-4">
+                          <h3 className="text-[28px] font-bold font-heading text-foreground mt-10 mb-4">
                             {section.heading}
                           </h3>
                           {section.paragraphs.map((paragraph, index) => (
@@ -500,7 +500,7 @@ export default async function BlogPostPage({
                       ))
                     ) : (
                       <>
-                        <h3 className="text-[28px] font-bold font-plus-jakarta text-foreground mt-10 mb-4">The core principles of career positioning</h3>
+                        <h3 className="text-[28px] font-bold font-heading text-foreground mt-10 mb-4">The core principles of career positioning</h3>
                         <p className="leading-relaxed mb-6">
                           Career materials must match real hiring behavior. Recruiters scan quickly, ATS systems filter based on structure and keywords, and employers prioritize clear results over generic responsibilities.
                         </p>
@@ -514,7 +514,7 @@ export default async function BlogPostPage({
               </div>
 
  <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6 md:p-8">
-                <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Take Action</h3>
+                <h3 className="text-[24px] font-bold font-heading text-foreground mb-3">Take Action</h3>
                 <p className="text-text-body mb-5">
                   Move from reading to results with a clear next step.
                 </p>
@@ -533,7 +533,7 @@ export default async function BlogPostPage({
 
               {contentPost?.internalLinks && contentPost.internalLinks.length > 0 && (
  <div className="rounded-[20px] border border-zinc-200 bg-white p-6 md:p-8">
-                  <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-4">Related Backlinks</h3>
+                  <h3 className="text-[24px] font-bold font-heading text-foreground mb-4">Related Backlinks</h3>
                   <ul className="space-y-2">
                     {contentPost.internalLinks.map((linkItem) => (
                       <li key={`${linkItem.href}-${linkItem.label}`}>
@@ -575,7 +575,7 @@ export default async function BlogPostPage({
                   <Image src="/images/hero-chanuka.jpg" alt="Chanuka Jeewantha" fill className="object-cover" sizes="100px" />
                 </div>
                 <div className="flex flex-col text-center sm:text-left">
-                  <h4 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-2">Chanuka Jeewantha</h4>
+                  <h4 className="text-[24px] font-bold font-heading text-foreground mb-2">Chanuka Jeewantha</h4>
                   <p className="text-text-body mb-4">Professional CV Writer and Career Development Specialist with 8+ years of experience in ATS-friendly positioning and career strategy.</p>
                   <Link href="/about" className="text-brand-main font-semibold hover:text-brand-dark transition-colors">View all posts →</Link>
                 </div>
@@ -584,7 +584,7 @@ export default async function BlogPostPage({
               {/* Comments Section */}
               {approvedComments.length > 0 && (
                 <div className="mt-12">
-                  <h3 className="text-[28px] font-bold font-plus-jakarta text-foreground mb-6">
+                  <h3 className="text-[28px] font-bold font-heading text-foreground mb-6">
                     {approvedComments.length} Comment{approvedComments.length !== 1 ? "s" : ""}
                   </h3>
                   <div className="flex flex-col gap-6">
@@ -614,7 +614,7 @@ export default async function BlogPostPage({
 
               {/* Comments Form */}
               <div className="mt-12">
-                <h3 className="text-[32px] font-bold font-plus-jakarta text-foreground mb-8">Leave a Reply</h3>
+                <h3 className="text-[32px] font-bold font-heading text-foreground mb-8">Leave a Reply</h3>
                 <p className="text-text-body mb-8">Your email address will not be published. Required fields are marked *</p>
                 <BlogCommentForm postSlug={resolvedParams.slug} />
               </div>
@@ -627,7 +627,7 @@ export default async function BlogPostPage({
 
               {/* Recent Posts Widget */}
  <div className="bg-zinc-50 rounded-[20px] p-8">
-                <h4 className="text-[20px] font-bold font-plus-jakarta text-foreground mb-6">Recent Posts</h4>
+                <h4 className="text-[20px] font-bold font-heading text-foreground mb-6">Recent Posts</h4>
                 <div className="flex flex-col gap-6">
                   {recentPosts.map((recentPost) => {
                     const recentCoverImage = getBlogCoverImage(recentPost);

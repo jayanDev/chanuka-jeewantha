@@ -46,7 +46,7 @@ export default function SubscribeForm() {
 
       <div className="max-w-[1512px] mx-auto px-4 sm:px-6 relative z-10 flex flex-col items-center text-center">
         <span className="text-foreground font-bold tracking-wider uppercase mb-4 block">Career Updates</span>
-        <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground mb-6 leading-[1.1] max-w-2xl">
+        <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-heading text-foreground mb-6 leading-[1.1] max-w-2xl">
           Get free career resources and new strategy guides.
         </h2>
  <p className="text-text-body text-lg mb-10 max-w-xl text-zinc-800">

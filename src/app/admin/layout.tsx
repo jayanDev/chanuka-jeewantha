@@ -32,7 +32,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       <div className="mx-auto w-full max-w-[1512px] px-4 sm:px-6 space-y-6">
  <header className="rounded-[18px] border border-zinc-200 bg-foreground p-6 text-background md:p-8">
           <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-main">Chanuka Admin</p>
-          <h1 className="text-3xl md:text-4xl font-bold font-plus-jakarta !text-white mb-2">Order Command Center</h1>
+          <h1 className="text-3xl md:text-4xl font-bold font-heading !text-white mb-2">Order Command Center</h1>
           <p className="max-w-3xl text-white/75">Orders open first because fulfilment is the main workflow. Use the navigation for content, offers, reports, and settings.</p>
         </header>
 

@@ -101,7 +101,7 @@ export default async function AffiliatePage() {
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4].map((i) => (
-              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none">
                 AFFILIATE NETWORK
               </span>
             ))}
@@ -115,7 +115,7 @@ export default async function AffiliatePage() {
             <span className="text-brand-main">Affiliate Network</span>
           </div>
 
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
             Help friends succeed. <span className="text-brand-main">Earn Free Packages.</span>
           </h1>
           <p className="mt-6 text-text-light text-[16px] sm:text-[18px] max-w-2xl leading-relaxed">
@@ -142,7 +142,7 @@ export default async function AffiliatePage() {
               />
             ) : (
  <div className="rounded-[24px] border border-zinc-200 bg-white p-8 text-center shadow-sm">
-                <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">Sign in to activate your affiliate dashboard</h2>
+                <h2 className="text-[28px] font-bold font-heading text-foreground">Sign in to activate your affiliate dashboard</h2>
                 <p className="mt-3 text-text-body">
                   Your unique referral code and live performance metrics are available after authentication.
                 </p>
@@ -170,7 +170,7 @@ export default async function AffiliatePage() {
  <section id="how-it-works" className="w-full py-16 bg-white border-t border-zinc-200">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6 text-center">
           <div className="mx-auto max-w-[800px]">
-          <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground mb-4">How it Works</h2>
+          <h2 className="text-[28px] font-bold font-heading text-foreground mb-4">How it Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 text-left">
             <div>
               <div className="w-12 h-12 rounded-full bg-brand-main/10 text-brand-dark flex items-center justify-center font-bold text-xl mb-4">1</div>

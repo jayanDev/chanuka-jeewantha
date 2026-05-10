@@ -106,7 +106,7 @@ export default function CartPage() {
     <section className="w-full bg-zinc-50 py-16 min-h-[70vh]">
       <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
         <div className="mb-8 flex items-center justify-between">
-          <h1 className="text-4xl font-bold font-plus-jakarta text-foreground">Your Cart</h1>
+          <h1 className="text-4xl font-bold font-heading text-foreground">Your Cart</h1>
           <Link href="/pricing" className="text-brand-main font-medium text-sm">+ Add More Packages</Link>
         </div>
 

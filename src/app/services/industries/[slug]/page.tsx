@@ -142,7 +142,7 @@ export default async function IndustryServicePage({ params }: IndustryPageProps)
             <span className="text-brand-main">{page.name}</span>
           </div>
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-brand-main">{page.name}</p>
-          <h1 className="max-w-5xl text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold font-plus-jakarta leading-[1.08] !text-white">
+          <h1 className="max-w-5xl text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold font-heading leading-[1.08] !text-white">
             {page.title}
           </h1>
           <p className="mt-6 max-w-3xl text-lg text-text-light">{page.heroSummary}</p>
@@ -154,7 +154,7 @@ export default async function IndustryServicePage({ params }: IndustryPageProps)
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_360px]">
             <article className="space-y-8">
  <div className="rounded-[22px] border border-zinc-200 bg-white p-6 shadow-sm">
-                <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">Who this page is for</h2>
+                <h2 className="text-[28px] font-bold font-heading text-foreground">Who this page is for</h2>
                 <p className="mt-4 text-text-body">{page.description}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {page.sampleRoles.map((role) => (
@@ -167,7 +167,7 @@ export default async function IndustryServicePage({ params }: IndustryPageProps)
 
               <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
  <section className="rounded-[22px] border border-zinc-200 bg-zinc-50 p-6">
-                  <h2 className="text-[26px] font-bold font-plus-jakarta text-foreground">Common Positioning Gaps</h2>
+                  <h2 className="text-[26px] font-bold font-heading text-foreground">Common Positioning Gaps</h2>
                   <ul className="mt-5 space-y-3">
                     {page.challenges.map((item) => (
  <li key={item} className="flex items-start gap-3 text-zinc-700">
@@ -179,7 +179,7 @@ export default async function IndustryServicePage({ params }: IndustryPageProps)
                 </section>
 
  <section className="rounded-[22px] border border-zinc-200 bg-zinc-50 p-6">
-                  <h2 className="text-[26px] font-bold font-plus-jakarta text-foreground">Better Direction</h2>
+                  <h2 className="text-[26px] font-bold font-heading text-foreground">Better Direction</h2>
                   <ul className="mt-5 space-y-3">
                     {page.positioningTips.map((item) => (
  <li key={item} className="flex items-start gap-3 text-zinc-700">
@@ -195,7 +195,7 @@ export default async function IndustryServicePage({ params }: IndustryPageProps)
  <section className="rounded-[22px] border border-zinc-200 bg-white p-6 shadow-sm">
                   <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                     <div>
-                      <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">Relevant Proof</h2>
+                      <h2 className="text-[28px] font-bold font-heading text-foreground">Relevant Proof</h2>
                       <p className="mt-2 text-text-body">See related transformation stories and proof-based results.</p>
                     </div>
                     <Link href="/results" className="text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
@@ -206,7 +206,7 @@ export default async function IndustryServicePage({ params }: IndustryPageProps)
                     {relatedCaseStudies.map((study) => (
  <article key={study.slug} className="rounded-[18px] border border-zinc-200 bg-zinc-50 p-5">
                         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-main">{study.category}</p>
-                        <h3 className="mt-2 text-[22px] font-bold font-plus-jakarta text-foreground">{study.title}</h3>
+                        <h3 className="mt-2 text-[22px] font-bold font-heading text-foreground">{study.title}</h3>
  <p className="mt-3 text-sm leading-relaxed text-zinc-600">{study.summary}</p>
                         <Link href={`/case-studies/${study.slug}`} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
                           Read Case Study
@@ -221,7 +221,7 @@ export default async function IndustryServicePage({ params }: IndustryPageProps)
 
             <aside className="space-y-6">
  <div className="rounded-[20px] border border-zinc-200 bg-white p-6 shadow-sm">
-                <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">Recommended Services</h3>
+                <h3 className="text-[24px] font-bold font-heading text-foreground">Recommended Services</h3>
                 <div className="mt-5 flex flex-col gap-3">
                   {page.recommendedServices.map((item) => (
                     <Link
@@ -236,7 +236,7 @@ export default async function IndustryServicePage({ params }: IndustryPageProps)
               </div>
 
  <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6">
-                <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">Recommended Free Tools</h3>
+                <h3 className="text-[24px] font-bold font-heading text-foreground">Recommended Free Tools</h3>
                 <div className="mt-5 flex flex-col gap-3">
                   {page.recommendedTools.map((item) => (
                     <Link
@@ -251,7 +251,7 @@ export default async function IndustryServicePage({ params }: IndustryPageProps)
               </div>
 
  <div className="rounded-[20px] border border-zinc-200 bg-white p-6">
-                <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">Related Resources</h3>
+                <h3 className="text-[24px] font-bold font-heading text-foreground">Related Resources</h3>
                 <div className="mt-5 flex flex-col gap-3">
                   {page.relatedResources.map((item) => (
                     <Link

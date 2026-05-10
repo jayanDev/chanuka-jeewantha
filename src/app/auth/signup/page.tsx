@@ -47,7 +47,7 @@ export default function SignUpPage() {
  <section className="w-full py-20 bg-zinc-50 min-h-[70vh]">
       <div className="max-w-lg mx-auto px-4">
  <div className="rounded-[20px] border border-zinc-200 bg-white p-8 md:p-10">
-          <h1 className="text-3xl font-bold font-plus-jakarta text-foreground mb-2">Create Account</h1>
+          <h1 className="text-3xl font-bold font-heading text-foreground mb-2">Create Account</h1>
           <p className="text-text-body mb-8">Sign up to place orders through the website.</p>
 
           {displayError && (

@@ -18,7 +18,7 @@ export default function GlobalError({
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-white text-center">
       <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-main mb-4">500</p>
-      <h1 className="font-plus-jakarta text-[40px] sm:text-[56px] md:text-[72px] font-extrabold text-foreground leading-[1.05] mb-4">
+      <h1 className="font-heading text-[40px] sm:text-[56px] md:text-[72px] font-extrabold text-foreground leading-[1.05] mb-4">
         Something went wrong
       </h1>
       <p className="text-text-body text-[16px] sm:text-[18px] max-w-xl mb-8">

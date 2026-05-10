@@ -106,7 +106,7 @@ export default function OrdersPage() {
         {/* Header */}
         <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
           <div>
-            <h1 className="text-4xl font-bold font-plus-jakarta text-foreground">My Orders</h1>
+            <h1 className="text-4xl font-bold font-heading text-foreground">My Orders</h1>
             <p className="text-sm text-zinc-500 mt-1">Track your order progress and download final documents.</p>
           </div>
           <div className="flex items-center gap-3">

@@ -55,7 +55,7 @@ export default function ToolsPage() {
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4].map((i) => (
-              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none">
                 FREE TOOLS
               </span>
             ))}
@@ -68,7 +68,7 @@ export default function ToolsPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Tools</span>
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-5xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-5xl !text-white">
             Free tools for <span className="text-brand-main">ATS, LinkedIn, and interviews</span>.
           </h1>
           <p className="mt-6 max-w-3xl text-lg text-text-light">
@@ -98,7 +98,7 @@ export default function ToolsPage() {
                   <span className="mb-3 inline-flex rounded-full bg-brand-main/12 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
                     {tool.category}
                   </span>
-                  <h2 className="mb-3 text-[28px] font-bold font-plus-jakarta text-foreground">{tool.title}</h2>
+                  <h2 className="mb-3 text-[28px] font-bold font-heading text-foreground">{tool.title}</h2>
                   <p className="mb-6 text-base leading-relaxed text-text-body">{tool.summary}</p>
                   <ul className="mb-6 space-y-2">
                     {tool.highlights.map((highlight) => (
@@ -121,7 +121,7 @@ export default function ToolsPage() {
           </div>
 
  <aside className="mt-10 rounded-[16px] border border-zinc-200 bg-zinc-50 p-6">
-            <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Build Beyond Free Tools</h2>
+            <h2 className="text-[24px] font-bold font-heading text-foreground mb-3">Build Beyond Free Tools</h2>
             <p className="text-text-body mb-5">
               Use the free tools for fast clarity, then move to practical services, premium resources, or direct support when you want stronger execution.
             </p>

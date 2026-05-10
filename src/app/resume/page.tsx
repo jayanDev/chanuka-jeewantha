@@ -15,7 +15,7 @@ export default function ResumePage() {
  <section className="w-full py-[120px] bg-white">
       <div className="max-w-[960px] mx-auto px-4 sm:px-6 text-center">
         <span className="text-brand-main font-semibold tracking-wider uppercase mb-3 block">Resume</span>
-        <h1 className="font-plus-jakarta text-[30px] sm:text-[40px] md:text-[56px] font-bold text-foreground leading-[1.1] mb-6">
+        <h1 className="font-heading text-[30px] sm:text-[40px] md:text-[56px] font-bold text-foreground leading-[1.1] mb-6">
           Chanuka Jeewantha Profile
         </h1>
         <p className="text-text-body text-lg leading-relaxed mb-8">

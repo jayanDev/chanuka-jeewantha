@@ -15,14 +15,14 @@ export default function PrivacyPolicyPage() {
  <section className="w-full bg-zinc-50 py-[90px]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Legal</p>
-        <h1 className="text-[34px] md:text-[48px] font-bold font-plus-jakarta text-foreground">Privacy Policy</h1>
+        <h1 className="text-[34px] md:text-[48px] font-bold font-heading text-foreground">Privacy Policy</h1>
         <p className="mt-4 text-text-body leading-relaxed">
           At Chanuka Jeewantha, we are committed to protecting the privacy and security of our customers&apos; personal information. This Privacy Policy outlines how we collect, use, and safeguard your information when you visit or make a purchase on our website. By using our website, you consent to the practices described in this policy.
         </p>
 
  <div className="mt-8 space-y-6 rounded-[18px] border border-zinc-200 bg-white p-6 md:p-8">
           <article>
- <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">Information We Collect</h2>
+ <h2 className="text-[22px] font-bold font-heading text-zinc-900">Information We Collect</h2>
  <p className="mt-2 text-sm leading-relaxed text-zinc-600">
               When you visit our website, we may collect certain information about you, including:
             </p>
@@ -34,7 +34,7 @@ export default function PrivacyPolicyPage() {
           </article>
 
           <article>
- <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">Use of Information</h2>
+ <h2 className="text-[22px] font-bold font-heading text-zinc-900">Use of Information</h2>
  <p className="mt-2 text-sm leading-relaxed text-zinc-600">
               We may use the collected information for the following purposes:
             </p>
@@ -48,7 +48,7 @@ export default function PrivacyPolicyPage() {
           </article>
 
           <article>
- <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">Information Sharing</h2>
+ <h2 className="text-[22px] font-bold font-heading text-zinc-900">Information Sharing</h2>
  <p className="mt-2 text-sm leading-relaxed text-zinc-600">
               We respect your privacy and do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except in the following circumstances:
             </p>
@@ -59,28 +59,28 @@ export default function PrivacyPolicyPage() {
           </article>
 
           <article>
- <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">Data Security</h2>
+ <h2 className="text-[22px] font-bold font-heading text-zinc-900">Data Security</h2>
  <p className="mt-2 text-sm leading-relaxed text-zinc-600">
               We implement industry-standard security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. However, please be aware that no method of transmission over the internet or electronic storage is 100% secure, and we cannot guarantee absolute security.
             </p>
           </article>
 
           <article>
- <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">Cookies and Tracking Technologies</h2>
+ <h2 className="text-[22px] font-bold font-heading text-zinc-900">Cookies and Tracking Technologies</h2>
  <p className="mt-2 text-sm leading-relaxed text-zinc-600">
               We use cookies and similar technologies to enhance your browsing experience, analyze website traffic, and gather information about your preferences and interactions with our website. You have the option to disable cookies through your browser settings, but this may limit certain features and functionality of our website.
             </p>
           </article>
 
           <article>
- <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">Changes to the Privacy Policy</h2>
+ <h2 className="text-[22px] font-bold font-heading text-zinc-900">Changes to the Privacy Policy</h2>
  <p className="mt-2 text-sm leading-relaxed text-zinc-600">
               We reserve the right to update or modify this Privacy Policy at any time. Any changes will be posted on this page with a revised &quot;last updated&quot; date. We encourage you to review this Privacy Policy periodically to stay informed about how we collect, use, and protect your information.
             </p>
           </article>
 
           <article>
- <h2 className="text-[22px] font-bold font-plus-jakarta text-zinc-900">Contact Us</h2>
+ <h2 className="text-[22px] font-bold font-heading text-zinc-900">Contact Us</h2>
  <p className="mt-2 text-sm leading-relaxed text-zinc-600">
               If you have any questions, concerns, or requests regarding our Privacy Policy or the handling of your personal information, please contact us using the information provided on our website.
             </p>

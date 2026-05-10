@@ -68,7 +68,7 @@ export default async function BlogSearchPage({
             <Link href="/blog" className="text-sm font-medium text-brand-main hover:text-brand-dark">
               Back to Blog
             </Link>
-            <h1 className="mt-3 text-[34px] md:text-[48px] font-bold font-plus-jakarta text-foreground">
+            <h1 className="mt-3 text-[34px] md:text-[48px] font-bold font-heading text-foreground">
               Blog Search Results
             </h1>
  <p className="mt-2 text-zinc-600">
@@ -121,7 +121,7 @@ export default async function BlogSearchPage({
                       {post.publishedAt ? new Date(post.publishedAt).toISOString().slice(0, 10) : "-"}
                     </span>
                   </div>
-                  <h2 className="text-[22px] font-bold font-plus-jakarta mb-3 group-hover:text-brand-main transition-colors text-foreground">
+                  <h2 className="text-[22px] font-bold font-heading mb-3 group-hover:text-brand-main transition-colors text-foreground">
                     {post.title}
                   </h2>
                   <p className="text-text-body text-sm mb-6 line-clamp-3">{post.excerpt}</p>
@@ -147,7 +147,7 @@ export default async function BlogSearchPage({
           )}
 
  <aside className="mt-12 rounded-[16px] border border-zinc-200 bg-zinc-50 p-6">
-            <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Continue Exploring</h2>
+            <h2 className="text-[24px] font-bold font-heading text-foreground mb-3">Continue Exploring</h2>
             <p className="text-text-body mb-5">
               Keep building momentum with related pages across this site.
             </p>

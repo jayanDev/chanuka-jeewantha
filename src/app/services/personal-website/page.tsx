@@ -78,7 +78,7 @@ export default function PersonalWebsiteServicePage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Personal Website</span>
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.08] max-w-5xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.08] max-w-5xl !text-white">
             Turn your career claims into <span className="text-brand-main">visible proof online</span>.
           </h1>
           <p className="mt-6 max-w-3xl text-lg text-text-light">
@@ -95,7 +95,7 @@ export default function PersonalWebsiteServicePage() {
                 <AnimatedServiceTextVisual label="Personal Website & Career Portfolio" variant="dark" className="h-full min-h-full rounded-[18px]" />
               </div>
 
-              <div className="prose prose-lg max-w-none prose-headings:font-plus-jakarta prose-headings:text-foreground prose-p:text-text-body">
+              <div className="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-foreground prose-p:text-text-body">
                 <h2>Why this service matters</h2>
                 <p>
                   A good CV helps you get shortlisted. A personal website helps people verify your story, understand your direction, and remember you more easily. It creates stronger digital presence and better proof for modern hiring behavior.
@@ -130,11 +130,11 @@ export default function PersonalWebsiteServicePage() {
               </div>
 
  <div className="mt-10 rounded-[18px] border border-zinc-200 bg-zinc-50 p-6">
-                <h3 className="text-[26px] font-bold font-plus-jakarta text-foreground">Template Directions</h3>
+                <h3 className="text-[26px] font-bold font-heading text-foreground">Template Directions</h3>
                 <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3">
                   {websiteDirections.map((item) => (
  <div key={item.title} className="rounded-[16px] border border-zinc-200 bg-white p-5">
-                      <p className="text-[20px] font-bold font-plus-jakarta text-foreground">{item.title}</p>
+                      <p className="text-[20px] font-bold font-heading text-foreground">{item.title}</p>
  <p className="mt-3 text-sm leading-relaxed text-zinc-600">{item.summary}</p>
                     </div>
                   ))}
@@ -142,7 +142,7 @@ export default function PersonalWebsiteServicePage() {
               </div>
 
  <div className="mt-8 rounded-[18px] border border-zinc-200 bg-white p-6">
-                <h3 className="text-[26px] font-bold font-plus-jakarta text-foreground">Proof Example</h3>
+                <h3 className="text-[26px] font-bold font-heading text-foreground">Proof Example</h3>
                 <p className="mt-3 text-text-body">
                   See how a personal website can support public proof, stronger digital presence, and a cleaner professional story across CV, LinkedIn, and outreach.
                 </p>
@@ -159,7 +159,7 @@ export default function PersonalWebsiteServicePage() {
 
             <aside className="space-y-6">
  <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6">
-                <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">Explore Examples</h3>
+                <h3 className="text-[24px] font-bold font-heading text-foreground">Explore Examples</h3>
                 <div className="mt-5 flex flex-col gap-3">
  <Link href="/p/nimal-perera" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
                     View Sample Career Website
@@ -174,7 +174,7 @@ export default function PersonalWebsiteServicePage() {
               </div>
 
  <div className="rounded-[20px] border border-zinc-200 bg-white p-6">
-                <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">Plan Your Stack</h3>
+                <h3 className="text-[24px] font-bold font-heading text-foreground">Plan Your Stack</h3>
                 <div className="mt-5 flex flex-col gap-3">
  <Link href="/services/packages/linkedin-optimization" className="rounded-[10px] border border-zinc-300 px-4 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
                     Add LinkedIn Optimization
@@ -189,7 +189,7 @@ export default function PersonalWebsiteServicePage() {
               </div>
 
  <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6">
-                <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">Need direction first?</h3>
+                <h3 className="text-[24px] font-bold font-heading text-foreground">Need direction first?</h3>
                 <div className="mt-5 flex flex-col gap-3">
  <Link href="/career-quiz" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
                     Take Career Quiz

@@ -21,7 +21,7 @@ export default function BulkDiscountPackagesPage() {
       <div className="mx-auto w-full max-w-[1512px] px-4 sm:px-6 space-y-8">
  <div className="rounded-[20px] border border-zinc-200 bg-white p-6 md:p-8">
           <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand-main">Bulk Offers</p>
-          <h1 className="mt-3 text-[34px] md:text-[48px] font-bold font-plus-jakarta text-foreground leading-[1.1]">
+          <h1 className="mt-3 text-[34px] md:text-[48px] font-bold font-heading text-foreground leading-[1.1]">
             Bulk Discount Packages
           </h1>
           <p className="mt-3 text-text-body text-lg max-w-3xl">
@@ -48,7 +48,7 @@ export default function BulkDiscountPackagesPage() {
           {packages.map((pkg) => (
  <article key={pkg.slug} className="rounded-[20px] border border-zinc-200 bg-white p-6 md:p-8 space-y-4">
               <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500">{pkg.category}</p>
-              <h2 className="text-[26px] font-bold font-plus-jakarta text-foreground">{pkg.name}</h2>
+              <h2 className="text-[26px] font-bold font-heading text-foreground">{pkg.name}</h2>
               <p className="text-text-body">{pkg.audience}</p>
               <p className="text-xl font-bold text-foreground">From {formatLkr(pkg.priceLkr)}</p>
  <ul className="space-y-1 text-sm text-zinc-600">

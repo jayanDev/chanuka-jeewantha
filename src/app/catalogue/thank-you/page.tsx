@@ -23,7 +23,7 @@ export default async function CatalogueThankYouPage({
             <path d="M20 6 9 17l-5-5" />
           </svg>
         </div>
-        <h1 className="mt-6 font-plus-jakarta text-[34px] font-bold text-foreground">Order Submitted Successfully</h1>
+        <h1 className="mt-6 font-heading text-[34px] font-bold text-foreground">Order Submitted Successfully</h1>
         <p className="mt-3 text-zinc-600">
           Your order has been received. We will verify your payment and contact you through WhatsApp.
         </p>

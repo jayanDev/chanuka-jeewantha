@@ -25,7 +25,7 @@ export default function ResultsHubClient({ items, focusAreas }: ResultsHubClient
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Filters</p>
-            <h2 className="mt-2 text-[28px] font-bold font-plus-jakarta text-foreground">Browse proof by type and focus area</h2>
+            <h2 className="mt-2 text-[28px] font-bold font-heading text-foreground">Browse proof by type and focus area</h2>
           </div>
           <div className="flex flex-col gap-4">
             <div className="flex flex-wrap gap-2">
@@ -77,7 +77,7 @@ export default function ResultsHubClient({ items, focusAreas }: ResultsHubClient
 
       {filteredItems.length === 0 ? (
  <div className="rounded-[20px] border border-zinc-200 bg-white p-10 text-center shadow-sm">
-          <h3 className="text-[26px] font-bold font-plus-jakarta text-foreground">No matching proof stories yet</h3>
+          <h3 className="text-[26px] font-bold font-heading text-foreground">No matching proof stories yet</h3>
           <p className="mt-3 text-text-body">
             Try a different filter or browse all results to see case studies and client feedback.
           </p>
@@ -93,7 +93,7 @@ export default function ResultsHubClient({ items, focusAreas }: ResultsHubClient
                 <span className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">{item.yearLabel}</span>
               </div>
 
-              <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">{item.title}</h3>
+              <h3 className="text-[24px] font-bold font-heading text-foreground">{item.title}</h3>
  <p className="mt-3 text-sm leading-relaxed text-zinc-600">{item.summary}</p>
 
               <div className="mt-5 flex flex-wrap gap-2">

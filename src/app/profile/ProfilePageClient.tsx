@@ -177,7 +177,7 @@ export default function ProfilePageClient() {
  <section className="w-full min-h-[70vh] bg-zinc-50 py-16">
       <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 space-y-6">
  <div className="rounded-[16px] border border-zinc-200 bg-white p-6 md:p-8">
-          <h1 className="text-4xl font-bold font-plus-jakarta text-foreground">Profile Settings</h1>
+          <h1 className="text-4xl font-bold font-heading text-foreground">Profile Settings</h1>
           <p className="mt-2 text-text-body">
             Manage your account details, alert preferences, security, and quick account actions.
           </p>
@@ -194,7 +194,7 @@ export default function ProfilePageClient() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
           <div className="space-y-6">
  <form onSubmit={saveProfile} className="rounded-[16px] border border-zinc-200 bg-white p-6 space-y-4">
-              <h2 className="text-2xl font-bold font-plus-jakarta text-foreground">Account</h2>
+              <h2 className="text-2xl font-bold font-heading text-foreground">Account</h2>
 
               <div>
                 <label htmlFor="profile-full-name" className="mb-2 block text-sm font-medium">Full Name</label>
@@ -286,7 +286,7 @@ export default function ProfilePageClient() {
             </form>
 
  <form onSubmit={changePassword} className="rounded-[16px] border border-zinc-200 bg-white p-6 space-y-4">
-              <h2 className="text-2xl font-bold font-plus-jakarta text-foreground">Security</h2>
+              <h2 className="text-2xl font-bold font-heading text-foreground">Security</h2>
 
               <div>
                 <label htmlFor="profile-current-password" className="mb-2 block text-sm font-medium">Current Password</label>
@@ -337,7 +337,7 @@ export default function ProfilePageClient() {
             </form>
 
  <section className="rounded-[16px] border border-zinc-200 bg-white p-6 space-y-4">
-              <h2 className="text-2xl font-bold font-plus-jakarta text-foreground">Affiliate Program</h2>
+              <h2 className="text-2xl font-bold font-heading text-foreground">Affiliate Program</h2>
               <p className="text-text-body">
                 Invite friends with your referral link, track conversions, and unlock free package rewards as your
                 affiliate points increase.
@@ -360,7 +360,7 @@ export default function ProfilePageClient() {
           </div>
 
  <aside className="rounded-[16px] border border-zinc-200 bg-white p-6 h-fit space-y-4 lg:sticky lg:top-24">
-            <h2 className="text-xl font-bold font-plus-jakarta text-foreground">Quick Actions</h2>
+            <h2 className="text-xl font-bold font-heading text-foreground">Quick Actions</h2>
  <Link href="/orders" className="block rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
               My Orders
             </Link>

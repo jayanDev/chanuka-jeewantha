@@ -92,7 +92,7 @@ export default async function LandingPage({ params }: LandingPageProps) {
         <div className="absolute top-[140px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap" aria-hidden="true">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4].map((i) => (
-              <span key={i} className="text-[72px] sm:text-[120px] md:text-[180px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[180px] font-heading font-extrabold uppercase leading-none">
                 {page.primaryKeyword}
               </span>
             ))}
@@ -105,7 +105,7 @@ export default async function LandingPage({ params }: LandingPageProps) {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">{page.title}</span>
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.08] max-w-5xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.08] max-w-5xl !text-white">
             {page.title}
           </h1>
           <p className="mt-6 max-w-4xl text-lg text-text-light">{page.subtitle}</p>
@@ -124,7 +124,7 @@ export default async function LandingPage({ params }: LandingPageProps) {
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6 grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_360px]">
           <article className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6 md:p-8 space-y-7">
             <div>
-              <h2 className="text-[30px] font-bold font-plus-jakarta text-foreground">Why this service matters</h2>
+              <h2 className="text-[30px] font-bold font-heading text-foreground">Why this service matters</h2>
               <p className="mt-3 text-text-body leading-relaxed">
                 In today&apos;s competitive hiring market, strong experience alone is not enough. Recruiters and ATS systems need clear role alignment, relevant keywords,
                 and achievement-led writing to understand your value quickly.
@@ -133,7 +133,7 @@ export default async function LandingPage({ params }: LandingPageProps) {
             </div>
 
             <div>
-              <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">Who this is for</h3>
+              <h3 className="text-[24px] font-bold font-heading text-foreground">Who this is for</h3>
               <ul className="mt-4 space-y-2">
                 {page.audience.map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm text-zinc-700">
@@ -145,7 +145,7 @@ export default async function LandingPage({ params }: LandingPageProps) {
             </div>
 
             <div>
-              <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">What we improve</h3>
+              <h3 className="text-[24px] font-bold font-heading text-foreground">What we improve</h3>
               <ul className="mt-4 space-y-2">
                 {page.outcomes.map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm text-zinc-700">
@@ -157,7 +157,7 @@ export default async function LandingPage({ params }: LandingPageProps) {
             </div>
 
             <div>
-              <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">Process in 5 steps</h3>
+              <h3 className="text-[24px] font-bold font-heading text-foreground">Process in 5 steps</h3>
               <ol className="mt-4 space-y-3 text-sm text-zinc-700">
                 <li><strong>1. Review:</strong> We audit your current profile, target role, and market direction.</li>
                 <li><strong>2. Information collection:</strong> We gather achievements, skills, certifications, and role-specific proof.</li>
@@ -168,7 +168,7 @@ export default async function LandingPage({ params }: LandingPageProps) {
             </div>
 
             <div>
-              <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">Backlinks and related landing pages</h3>
+              <h3 className="text-[24px] font-bold font-heading text-foreground">Backlinks and related landing pages</h3>
               <p className="mt-3 text-text-body leading-relaxed">
                 For deeper support, you can also review
                 {" "}
@@ -192,7 +192,7 @@ export default async function LandingPage({ params }: LandingPageProps) {
           <aside className="space-y-6">
             <div className="rounded-[20px] border border-zinc-200 bg-white p-6 shadow-sm">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-main">Related Packages</p>
-              <h3 className="mt-3 text-[24px] font-bold font-plus-jakarta text-foreground">Recommended options</h3>
+              <h3 className="mt-3 text-[24px] font-bold font-heading text-foreground">Recommended options</h3>
               {relatedPackages.length === 0 ? (
                 <p className="mt-3 text-sm text-zinc-600">Check pricing and service pages to choose the best plan for your current career stage.</p>
               ) : (
@@ -214,7 +214,7 @@ export default async function LandingPage({ params }: LandingPageProps) {
             </div>
 
             <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6">
-              <h3 className="text-[22px] font-bold font-plus-jakarta text-foreground">FAQ</h3>
+              <h3 className="text-[22px] font-bold font-heading text-foreground">FAQ</h3>
               <div className="mt-4 space-y-4">
                 {faqItems.map((faq) => (
                   <div key={faq.q} className="rounded-[12px] border border-zinc-200 bg-white p-4">
@@ -226,7 +226,7 @@ export default async function LandingPage({ params }: LandingPageProps) {
             </div>
 
             <div className="rounded-[20px] border border-zinc-200 bg-white p-6 shadow-sm">
-              <h3 className="text-[22px] font-bold font-plus-jakarta text-foreground">Need help now?</h3>
+              <h3 className="text-[22px] font-bold font-heading text-foreground">Need help now?</h3>
               <p className="mt-3 text-sm leading-relaxed text-zinc-600">
                 Start with a quick consultation, compare pricing, or send your current CV for a practical quality review.
               </p>

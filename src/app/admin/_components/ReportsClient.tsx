@@ -127,7 +127,7 @@ function KpiCard({
   return (
     <div className={`rounded-[14px] border p-5 ${accent ? "border-emerald-200 bg-emerald-50" : "border-zinc-200 bg-white"}`}>
       <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">{label}</p>
-      <p className={`text-2xl font-bold font-plus-jakarta mt-1 ${accent ? "text-emerald-700" : "text-foreground"}`}>
+      <p className={`text-2xl font-bold font-heading mt-1 ${accent ? "text-emerald-700" : "text-foreground"}`}>
         {value}
       </p>
       {sub && <p className="text-xs text-zinc-400 mt-1">{sub}</p>}
@@ -189,7 +189,7 @@ export default function ReportsClient() {
       <div className="rounded-[16px] border border-zinc-200 bg-white p-6">
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
-            <h2 className="text-2xl font-bold font-plus-jakarta">Business Reports</h2>
+            <h2 className="text-2xl font-bold font-heading">Business Reports</h2>
             <p className="text-sm text-zinc-500 mt-1">Revenue trends, top packages, offer performance, and coupon stats.</p>
           </div>
           <button

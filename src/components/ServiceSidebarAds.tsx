@@ -8,7 +8,7 @@ type Props = {
 export default function ServiceSidebarAds({ title = "Our Services" }: Props) {
   return (
  <section className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6 md:p-8">
-      <h3 className="text-[22px] font-bold font-plus-jakarta text-foreground mb-5">{title}</h3>
+      <h3 className="text-[22px] font-bold font-heading text-foreground mb-5">{title}</h3>
       <div className="space-y-4">
         {serviceAds.map((service) => (
  <article key={service.href} className="rounded-[14px] border border-zinc-200 bg-white p-4">
