@@ -64,7 +64,7 @@ export default async function ToolLandingPage({ params }: ToolPageProps) {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">{tool.title}</span>
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.08] max-w-5xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.08] max-w-5xl !text-white">
             {tool.title}
           </h1>
           <p className="mt-6 max-w-3xl text-lg text-text-light">
@@ -81,7 +81,7 @@ export default async function ToolLandingPage({ params }: ToolPageProps) {
       <section className="w-full bg-white py-[64px] sm:py-[80px] md:py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
           <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6">
-            <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">Why this tool matters</h2>
+            <h2 className="text-[28px] font-bold font-heading text-foreground">Why this tool matters</h2>
             <p className="mt-3 text-text-body">
               {tool.summary}
             </p>
@@ -97,7 +97,7 @@ export default async function ToolLandingPage({ params }: ToolPageProps) {
 
           <aside className="rounded-[20px] border border-zinc-200 bg-white p-6 shadow-sm">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Direct Access</p>
-            <h3 className="mt-3 text-[24px] font-bold font-plus-jakarta text-foreground">Open the matching tool</h3>
+            <h3 className="mt-3 text-[24px] font-bold font-heading text-foreground">Open the matching tool</h3>
             <p className="mt-3 text-sm leading-relaxed text-zinc-600">
               If you want the external version, use the launch button above. It opens Career Studio in a new tab.
             </p>

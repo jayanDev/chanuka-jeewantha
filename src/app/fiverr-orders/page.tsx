@@ -24,7 +24,7 @@ export default function FiverrOrdersPage() {
       <div className="mx-auto w-full max-w-[1512px] px-4 sm:px-6 space-y-8">
  <div className="rounded-[20px] border border-zinc-200 bg-white p-6 md:p-8">
           <p className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-700">Fiverr Special</p>
-          <h1 className="mt-3 text-[34px] md:text-[48px] font-bold font-plus-jakarta text-foreground leading-[1.1]">
+          <h1 className="mt-3 text-[34px] md:text-[48px] font-bold font-heading text-foreground leading-[1.1]">
             Fiverr Orders - 50% OFF on All CV Writing Packages
           </h1>
           <p className="mt-3 max-w-3xl text-lg text-text-body">
@@ -46,7 +46,7 @@ export default function FiverrOrdersPage() {
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
           {packages.map((pkg) => (
  <article key={pkg.slug} className="rounded-[16px] border border-zinc-200 bg-white p-5">
-              <h2 className="text-xl font-bold font-plus-jakarta text-foreground">{pkg.name}</h2>
+              <h2 className="text-xl font-bold font-heading text-foreground">{pkg.name}</h2>
  <p className="mt-2 text-sm text-zinc-600">{pkg.audience}</p>
 
  <div className="mt-4 rounded-[12px] bg-zinc-50 p-4">

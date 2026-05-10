@@ -104,7 +104,7 @@ export default function StoreFilterClient({ products }: { products: DigitalProdu
               </div>
               
               <div className="flex-grow flex flex-col">
-                <h3 className="text-[16px] font-bold font-plus-jakarta text-foreground mb-2 line-clamp-2 leading-tight">
+                <h3 className="text-[16px] font-bold font-heading text-foreground mb-2 line-clamp-2 leading-tight">
                   {product.title}
                 </h3>
                 <p className="text-zinc-500 text-sm mb-4 line-clamp-3 leading-relaxed">
@@ -120,7 +120,7 @@ export default function StoreFilterClient({ products }: { products: DigitalProdu
                       <span className="font-semibold text-brand-dark">Download {formatLkr(product.downloadPriceLkr)}</span>
                     </div>
                   ) : (
-                    <p className="text-[20px] font-bold font-plus-jakarta text-brand-dark mb-3">
+                    <p className="text-[20px] font-bold font-heading text-brand-dark mb-3">
                       {product.category === "paid" ? formatLkr(product.priceLkr ?? 0) : "Free"}
                     </p>
                   )}
@@ -142,7 +142,7 @@ export default function StoreFilterClient({ products }: { products: DigitalProdu
       ) : (
  <div className="text-center py-32 bg-zinc-50 rounded-[20px] border border-zinc-200 border-dashed">
           <svg className="mx-auto mb-4 text-zinc-300" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          <h3 className="text-2xl font-bold font-plus-jakarta text-zinc-400 mb-2">No products found</h3>
+          <h3 className="text-2xl font-bold font-heading text-zinc-400 mb-2">No products found</h3>
           <p className="text-zinc-500">Try adjusting your search or filter criteria.</p>
           <button 
             onClick={() => { setSearchQuery(""); setActiveCategory("All"); }}

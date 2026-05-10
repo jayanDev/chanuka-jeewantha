@@ -22,7 +22,7 @@ export default function BundleOffersPage() {
       <div className="mx-auto w-full max-w-[1512px] px-4 sm:px-6 space-y-8">
  <div className="rounded-[20px] border border-zinc-200 bg-white p-6 md:p-8">
           <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand-main">Offer Hub</p>
-          <h1 className="mt-3 text-[34px] md:text-[48px] font-bold font-plus-jakarta text-foreground leading-[1.1]">
+          <h1 className="mt-3 text-[34px] md:text-[48px] font-bold font-heading text-foreground leading-[1.1]">
             Bundle Offer Packages
           </h1>
           <p className="mt-3 text-text-body text-lg max-w-3xl">
@@ -51,7 +51,7 @@ export default function BundleOffersPage() {
           return (
  <article key={category.key} className="rounded-[20px] border border-zinc-200 bg-white p-6 md:p-8">
               <div className="mb-6">
-                <h2 className="text-[26px] md:text-[32px] font-bold font-plus-jakarta text-foreground">{category.title}</h2>
+                <h2 className="text-[26px] md:text-[32px] font-bold font-heading text-foreground">{category.title}</h2>
                 <p className="mt-2 text-text-body">{category.description}</p>
               </div>
 

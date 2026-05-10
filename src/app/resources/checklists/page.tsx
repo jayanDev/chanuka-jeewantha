@@ -31,7 +31,7 @@ export default function ChecklistsIndexPage() {
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4].map((i) => (
-              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none">
                 CHECKLISTS
               </span>
             ))}
@@ -45,7 +45,7 @@ export default function ChecklistsIndexPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Checklists</span>
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-5xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-5xl !text-white">
             Free <span className="text-brand-main">checklists</span> for business and career growth.
           </h1>
           <p className="text-text-light text-[18px] md:text-[22px] max-w-2xl leading-relaxed mt-6">
@@ -79,7 +79,7 @@ export default function ChecklistsIndexPage() {
                   </span>
                 </div>
                 <div className="flex flex-col flex-1 p-5">
-                  <h2 className="text-[16px] font-bold font-plus-jakarta text-foreground leading-snug mb-2 group-hover:text-brand-dark transition-colors">
+                  <h2 className="text-[16px] font-bold font-heading text-foreground leading-snug mb-2 group-hover:text-brand-dark transition-colors">
                     {checklist.title}
                   </h2>
                   <p className="text-sm text-text-body leading-relaxed mb-4 flex-1">

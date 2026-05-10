@@ -112,7 +112,7 @@ export default function LinkedinHeadlineGeneratorClient() {
 
       <aside className="space-y-6">
  <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6">
-          <h3 className="text-[22px] font-bold font-plus-jakarta text-foreground">Good Headline Rules</h3>
+          <h3 className="text-[22px] font-bold font-heading text-foreground">Good Headline Rules</h3>
  <ul className="mt-4 space-y-3 text-sm text-zinc-700">
             <li>State your role clearly before trying to sound clever.</li>
             <li>Use one strong specialization instead of listing everything.</li>
@@ -122,7 +122,7 @@ export default function LinkedinHeadlineGeneratorClient() {
         </div>
 
  <div className="rounded-[20px] border border-zinc-200 bg-white p-6">
-          <h3 className="text-[22px] font-bold font-plus-jakarta text-foreground">Next Step</h3>
+          <h3 className="text-[22px] font-bold font-heading text-foreground">Next Step</h3>
  <p className="mt-4 text-sm leading-relaxed text-zinc-700">
             A better headline works best when your About section, experience entries, and featured content support the same positioning story.
           </p>

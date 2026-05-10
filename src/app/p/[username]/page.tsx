@@ -24,7 +24,7 @@ export default async function PortfolioPage(props: { params: Promise<{ username:
 
   // Dark mode disabled globally: keep portfolio pages on the unified light theme.
   const isDark = false;
-  const bgMain = isDark ? "bg-[#0a0a0a]" : "bg-white";
+  const bgMain = isDark ? "bg-[#0A2540]" : "bg-white";
   const textMain = isDark ? "text-white" : "text-black";
   const textSub = isDark ? "text-zinc-400" : "text-zinc-600";
   const cardBg = isDark ? "bg-[#141414] border-zinc-800" : "bg-zinc-50 border-zinc-200";
@@ -51,7 +51,7 @@ export default async function PortfolioPage(props: { params: Promise<{ username:
                   {portfolio.availabilityStatus}
                 </span>
               </div>
-              <h1 className="text-[48px] md:text-[80px] font-extrabold font-plus-jakarta leading-[1] mb-6 tracking-tight">
+              <h1 className="text-[48px] md:text-[80px] font-extrabold font-heading leading-[1] mb-6 tracking-tight">
                 {portfolio.fullName}.
               </h1>
               <p className="text-[20px] md:text-[28px] font-semibold text-brand-main max-w-2xl">
@@ -113,7 +113,7 @@ export default async function PortfolioPage(props: { params: Promise<{ username:
                 </div>
                 
                 {/* Timeline Dot */}
-                <div className="absolute -left-[35px] md:left-[192px] top-1.5 w-4 h-4 rounded-full border-4 border-brand-main bg-[#0a0a0a] group-hover:bg-brand-main transition-colors z-10"></div>
+                <div className="absolute -left-[35px] md:left-[192px] top-1.5 w-4 h-4 rounded-full border-4 border-brand-main bg-[#0A2540] group-hover:bg-brand-main transition-colors z-10"></div>
                 {/* Timeline Line */}
                 <div className="absolute -left-[28px] md:left-[199px] top-6 bottom-[-3rem] w-[2px] bg-zinc-800 last-of-type:hidden"></div>
 
@@ -153,7 +153,7 @@ export default async function PortfolioPage(props: { params: Promise<{ username:
                   <span className={`font-mono font-bold text-sm ${textSub}`}>{edu.duration}</span>
                 </div>
                 
-                <div className="absolute -left-[35px] md:left-[192px] top-1.5 w-4 h-4 rounded-full border-4 border-zinc-600 bg-[#0a0a0a] group-hover:border-white transition-colors z-10"></div>
+                <div className="absolute -left-[35px] md:left-[192px] top-1.5 w-4 h-4 rounded-full border-4 border-zinc-600 bg-[#0A2540] group-hover:border-white transition-colors z-10"></div>
                 <div className="absolute -left-[28px] md:left-[199px] top-6 bottom-[-3rem] w-[2px] bg-zinc-800 last-of-type:hidden"></div>
 
                 <div className="flex-grow">

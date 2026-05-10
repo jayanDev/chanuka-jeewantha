@@ -52,7 +52,7 @@ export default async function ResultsPage() {
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4].map((i) => (
-              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none">
                 RESULTS
               </span>
             ))}
@@ -65,7 +65,7 @@ export default async function ResultsPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Results</span>
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.08] max-w-5xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.08] max-w-5xl !text-white">
             Proof, not promises. <span className="text-brand-main">See the results.</span>
           </h1>
           <p className="mt-6 max-w-3xl text-lg text-text-light">
@@ -79,7 +79,7 @@ export default async function ResultsPage() {
           <ResultsHubClient items={items} focusAreas={focusAreas} />
 
  <aside className="mt-10 rounded-[20px] border border-zinc-200 bg-white p-6 shadow-sm">
-            <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground">What to do after reviewing proof</h2>
+            <h2 className="text-[24px] font-bold font-heading text-foreground">What to do after reviewing proof</h2>
             <p className="mt-3 text-text-body">
               If you have seen enough to know the direction, take the quiz for a tailored recommendation or go straight to services and pricing.
             </p>

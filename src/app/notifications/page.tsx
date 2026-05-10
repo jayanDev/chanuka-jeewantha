@@ -127,7 +127,7 @@ export default function NotificationsPage() {
       <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 space-y-6">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
-            <h1 className="text-4xl font-bold font-plus-jakarta text-foreground">Notifications</h1>
+            <h1 className="text-4xl font-bold font-heading text-foreground">Notifications</h1>
  <p className="text-sm text-zinc-600">Updates about order progress, handover files, and revisions.</p>
           </div>
           <div className="flex items-center gap-3">

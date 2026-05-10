@@ -35,7 +35,7 @@ export default function ServiceIndustriesPage() {
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4].map((i) => (
-              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none">
                 INDUSTRY PAGES
               </span>
             ))}
@@ -50,7 +50,7 @@ export default function ServiceIndustriesPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Industry Pages</span>
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.08] max-w-5xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.08] max-w-5xl !text-white">
             Career pages built for <span className="text-brand-main">specific audiences</span>.
           </h1>
           <p className="mt-6 max-w-3xl text-lg text-text-light">
@@ -67,7 +67,7 @@ export default function ServiceIndustriesPage() {
                 <span className="inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
                   {page.name}
                 </span>
-                <h2 className="mt-4 text-[28px] font-bold font-plus-jakarta text-foreground">{page.name}</h2>
+                <h2 className="mt-4 text-[28px] font-bold font-heading text-foreground">{page.name}</h2>
  <p className="mt-3 text-sm leading-relaxed text-zinc-600">{page.description}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {page.sampleRoles.slice(0, 3).map((role) => (

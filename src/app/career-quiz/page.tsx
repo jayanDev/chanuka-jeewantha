@@ -50,7 +50,7 @@ export default function CareerQuizPage() {
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4].map((i) => (
-              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none">
                 CAREER QUIZ
               </span>
             ))}
@@ -63,7 +63,7 @@ export default function CareerQuizPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Career Quiz</span>
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.08] max-w-5xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.08] max-w-5xl !text-white">
             Not sure what you need? <span className="text-brand-main">Use the quiz.</span>
           </h1>
           <p className="mt-6 max-w-3xl text-lg text-text-light">

@@ -33,7 +33,7 @@ export default function PortfolioPage() {
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none">
                 PORTFOLIO
               </span>
             ))}
@@ -46,7 +46,7 @@ export default function PortfolioPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Portfolio</span>
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
             Turning your career claims into <span className="text-brand-main">visible proof</span>
           </h1>
         </div>
@@ -58,7 +58,7 @@ export default function PortfolioPage() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div>
               <span className="text-brand-main font-semibold tracking-wider uppercase mb-2 block">Works</span>
-              <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground leading-[1.1]">
+              <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-heading text-foreground leading-[1.1]">
                 Career Proof <span className="text-brand-light pl-2">Portfolio.</span>
               </h2>
             </div>
@@ -84,7 +84,7 @@ export default function PortfolioPage() {
                 </div>
                 <div className="p-6">
                   <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">{study.year}</p>
-                  <h3 className="mb-3 text-[28px] font-bold font-plus-jakarta text-foreground transition-colors group-hover:text-brand-main">
+                  <h3 className="mb-3 text-[28px] font-bold font-heading text-foreground transition-colors group-hover:text-brand-main">
                     {study.title}
                   </h3>
                   <p className="mb-5 text-base leading-relaxed text-text-body">{study.summary}</p>
@@ -101,7 +101,7 @@ export default function PortfolioPage() {
           </div>
 
  <aside className="mt-10 rounded-[16px] border border-zinc-200 bg-white p-6">
-            <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Build From Examples to Execution</h2>
+            <h2 className="text-[24px] font-bold font-heading text-foreground mb-3">Build From Examples to Execution</h2>
             <p className="text-text-body mb-5">
               Use these samples as inspiration, then move to practical packages and direct support.
             </p>

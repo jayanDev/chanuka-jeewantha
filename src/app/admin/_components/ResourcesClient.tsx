@@ -128,24 +128,24 @@ export default function ResourcesClient() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="rounded-[16px] border border-zinc-200 bg-white p-5">
           <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-1">Read Access</p>
-          <p className="text-3xl font-bold font-plus-jakarta text-foreground">{readCount}</p>
+          <p className="text-3xl font-bold font-heading text-foreground">{readCount}</p>
           <p className="text-xs text-zinc-400 mt-1">@ {formatLkr(EBOOK_READ_PRICE_LKR)} each</p>
         </div>
         <div className="rounded-[16px] border border-zinc-200 bg-white p-5">
           <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-1">Download Access</p>
-          <p className="text-3xl font-bold font-plus-jakarta text-foreground">{downloadCount}</p>
+          <p className="text-3xl font-bold font-heading text-foreground">{downloadCount}</p>
           <p className="text-xs text-zinc-400 mt-1">@ {formatLkr(EBOOK_DOWNLOAD_PRICE_LKR)} each</p>
         </div>
         <div className="rounded-[16px] border border-brand-main/20 bg-brand-main/5 p-5">
           <p className="text-xs font-semibold uppercase tracking-wider text-brand-main mb-1">Est. Revenue</p>
-          <p className="text-3xl font-bold font-plus-jakarta text-foreground">{formatLkr(totalRevenue)}</p>
+          <p className="text-3xl font-bold font-heading text-foreground">{formatLkr(totalRevenue)}</p>
           <p className="text-xs text-zinc-400 mt-1">Total resource sales</p>
         </div>
       </div>
 
       {/* Grant Access Form */}
       <div className="rounded-[20px] border border-zinc-200 bg-white p-6 md:p-8">
-        <h2 className="text-xl font-bold font-plus-jakarta text-foreground mb-5">Grant Resource Access</h2>
+        <h2 className="text-xl font-bold font-heading text-foreground mb-5">Grant Resource Access</h2>
         {resourceEbooks.length === 0 ? (
           <p className="text-sm text-zinc-400">No paid resources configured yet.</p>
         ) : (
@@ -210,7 +210,7 @@ export default function ResourcesClient() {
       {/* Access List */}
       <div className="rounded-[20px] border border-zinc-200 bg-white p-6 md:p-8">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
-          <h2 className="text-xl font-bold font-plus-jakarta text-foreground">Access Records ({purchases.length})</h2>
+          <h2 className="text-xl font-bold font-heading text-foreground">Access Records ({purchases.length})</h2>
           <input
             type="text"
             value={search}

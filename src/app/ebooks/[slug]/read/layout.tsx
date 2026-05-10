@@ -124,7 +124,7 @@ export default async function EbookReaderLayout({ params, children }: Props) {
         </div>
       </div>
 
-      <div className="lg:flex lg:h-screen lg:overflow-hidden bg-zinc-50 font-poppins selection:bg-transparent">
+      <div className="lg:flex lg:h-screen lg:overflow-hidden bg-zinc-50 font-body selection:bg-transparent">
         {/* Desktop sidebar */}
         <aside className="hidden lg:flex w-80 flex-col border-r border-zinc-200 bg-white">
           <div className="p-6 border-b border-zinc-100 shrink-0">
@@ -135,7 +135,7 @@ export default async function EbookReaderLayout({ params, children }: Props) {
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
               Back to Details
             </Link>
-            <h2 className="font-plus-jakarta font-bold text-xl text-foreground mt-2 leading-tight">
+            <h2 className="font-heading font-bold text-xl text-foreground mt-2 leading-tight">
               {ebook.title}
             </h2>
             <span className="inline-block mt-2 text-xs font-semibold uppercase tracking-wider text-brand-main bg-brand-main/10 px-2 py-1 rounded">

@@ -416,7 +416,7 @@ export default function OrdersClient() {
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-main">Main Workflow</p>
-            <h2 className="mt-1 text-3xl font-bold font-plus-jakarta text-foreground">Order Management</h2>
+            <h2 className="mt-1 text-3xl font-bold font-heading text-foreground">Order Management</h2>
  <p className="mt-1 text-sm text-zinc-600">Verify payment, set delivery dates, contact clients, upload final files, and export order data.</p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -467,7 +467,7 @@ export default function OrdersClient() {
               className={`rounded-[14px] border p-4 text-left ${item.tone}`}
             >
               <p className="text-xs font-bold uppercase tracking-[0.14em] opacity-75">{item.label}</p>
-              <p className="mt-2 text-2xl font-bold font-plus-jakarta">{item.value}</p>
+              <p className="mt-2 text-2xl font-bold font-heading">{item.value}</p>
             </button>
           ))}
         </div>
@@ -521,7 +521,7 @@ export default function OrdersClient() {
           </div>
 
           <div className="rounded-[12px] border border-amber-200 bg-amber-50 p-4">
-            <h3 className="font-plus-jakarta text-lg font-bold text-foreground">Signature Series Schedule</h3>
+            <h3 className="font-heading text-lg font-bold text-foreground">Signature Series Schedule</h3>
             <p className="mt-1 text-xs text-amber-800">Client-facing availability is shown as 2 premium slots per day.</p>
             <div className="mt-3 space-y-2">
               {premiumSchedule.length === 0 ? (

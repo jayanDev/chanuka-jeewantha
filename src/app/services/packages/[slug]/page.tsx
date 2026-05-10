@@ -65,7 +65,7 @@ export default async function ServicePackagesBySlugPage({
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4].map((i) => (
-              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none">
                 SERVICES
               </span>
             ))}
@@ -84,7 +84,7 @@ export default async function ServicePackagesBySlugPage({
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">{category.title.replace(" Packages", "")}</span>
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
             {category.title.replace(" Packages", "")} <span className="text-brand-main">Packages</span>
           </h1>
         </div>
@@ -93,7 +93,7 @@ export default async function ServicePackagesBySlugPage({
       <section className="w-full bg-zinc-50 py-[64px] sm:py-[80px] md:py-[96px]">
         <div className="mx-auto max-w-[1512px] px-4 sm:px-6">
           <div className="mx-auto mb-8 max-w-5xl rounded-[24px] border border-zinc-200 bg-white p-8 text-center md:p-10">
-            <h2 className="font-plus-jakarta text-[34px] font-bold text-foreground md:text-[42px]">{category.title}</h2>
+            <h2 className="font-heading text-[34px] font-bold text-foreground md:text-[42px]">{category.title}</h2>
             <p className="mt-4 text-lg leading-relaxed text-text-body">{category.description}</p>
           </div>
           <ServicesPackageFilter lockedServiceKey={category.key as ServiceKey} />

@@ -155,7 +155,7 @@ export default function OffersPageClient() {
  <section className="w-full bg-zinc-50 py-[64px] sm:py-[80px] md:py-[96px]">
       <div className="mx-auto w-full max-w-[1512px] px-4 sm:px-6 space-y-8">
  <div className="rounded-[20px] border border-zinc-200 bg-white p-6 md:p-8">
-          <h1 className="text-[36px] md:text-[52px] font-bold font-plus-jakarta text-foreground leading-[1.1]">
+          <h1 className="text-[36px] md:text-[52px] font-bold font-heading text-foreground leading-[1.1]">
             Website Offers and Deals
           </h1>
           <p className="mt-3 text-text-body text-lg max-w-3xl">
@@ -215,7 +215,7 @@ export default function OffersPageClient() {
                         {offer.discountPercent}% OFF
                       </span>
                     </div>
-                    <h2 className="text-[26px] md:text-[32px] font-bold font-plus-jakarta text-foreground">
+                    <h2 className="text-[26px] md:text-[32px] font-bold font-heading text-foreground">
                       {offer.title}
                     </h2>
  <p className="mt-2 text-sm text-zinc-600">

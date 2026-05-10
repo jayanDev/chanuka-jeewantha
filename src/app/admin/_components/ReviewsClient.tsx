@@ -86,7 +86,7 @@ export default function ReviewsClient() {
       <div className="rounded-[16px] border border-zinc-200 bg-white p-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h2 className="text-2xl font-bold font-plus-jakarta">Review Approval</h2>
+            <h2 className="text-2xl font-bold font-heading">Review Approval</h2>
             <p className="text-sm text-zinc-500 mt-1">Pending: {pendingReviews} · Total: {reviews.length}</p>
           </div>
           <div className="flex flex-wrap gap-2">

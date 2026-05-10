@@ -71,7 +71,7 @@ export default function ServicesPage() {
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none">
                 SERVICES
               </span>
             ))}
@@ -84,7 +84,7 @@ export default function ServicesPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Services</span>
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
             Career Development Services Built for <span className="text-brand-main">Modern Hiring Systems</span>
           </h1>
         </div>
@@ -95,7 +95,7 @@ export default function ServicesPage() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div>
               <span className="text-brand-main font-semibold tracking-wider uppercase mb-2 block">Our Service</span>
-              <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground leading-[1.1]">
+              <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-heading text-foreground leading-[1.1]">
                 What I Help You <span className="text-brand-light pl-2">Achieve.</span>
               </h2>
               <span className="mt-3 inline-block rounded-full bg-brand-main/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-dark">
@@ -123,7 +123,7 @@ export default function ServicesPage() {
  <div className="relative mb-8 h-[250px] w-full overflow-hidden rounded-[15px] border border-zinc-200 bg-zinc-100">
                   <AnimatedServiceTextVisual label={service.title} className="h-full min-h-full transition-transform duration-500 group-hover:scale-[1.02]" />
                 </div>
-                <h3 className="text-[28px] font-bold font-plus-jakarta mb-4 text-foreground">{service.title}</h3>
+                <h3 className="text-[28px] font-bold font-heading mb-4 text-foreground">{service.title}</h3>
                 <p className="text-text-body mb-8 flex-grow text-lg leading-relaxed">
                   {service.desc}
                 </p>
@@ -148,7 +148,7 @@ export default function ServicesPage() {
               <span className="inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
                 Free Visibility Layer
               </span>
-              <h2 className="mt-4 text-[26px] font-bold font-plus-jakarta text-foreground">Use free career tools before you buy</h2>
+              <h2 className="mt-4 text-[26px] font-bold font-heading text-foreground">Use free career tools before you buy</h2>
               <p className="mt-3 text-text-body">
                 Try the ATS audit, LinkedIn headline generator, and interview story bank to improve readiness and create stronger entry points into paid services.
               </p>
@@ -162,7 +162,7 @@ export default function ServicesPage() {
               <span className="inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
                 Group Programs
               </span>
-              <h2 className="mt-4 text-[26px] font-bold font-plus-jakarta text-foreground">Book workshops for campuses and institutes</h2>
+              <h2 className="mt-4 text-[26px] font-bold font-heading text-foreground">Book workshops for campuses and institutes</h2>
               <p className="mt-3 text-text-body">
                 Extend the same career strategy to student communities, university career units, and professional groups through practical workshops.
               </p>
@@ -179,7 +179,7 @@ export default function ServicesPage() {
                 <span className="inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
                   SEO Growth Layer
                 </span>
-                <h2 className="mt-4 text-[28px] font-bold font-plus-jakarta text-foreground">Browse audience-specific service pages</h2>
+                <h2 className="mt-4 text-[28px] font-bold font-heading text-foreground">Browse audience-specific service pages</h2>
                 <p className="mt-3 text-text-body">
                   Explore tailored guidance for different industries and role groups instead of relying on one generic service path.
                 </p>
@@ -204,7 +204,7 @@ export default function ServicesPage() {
           </section>
 
  <aside className="mt-8 rounded-[16px] border border-zinc-200 bg-zinc-50 p-6">
-            <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Plan Your Next Step</h2>
+            <h2 className="text-[24px] font-bold font-heading text-foreground mb-3">Plan Your Next Step</h2>
             <p className="text-text-body mb-5">
               Compare packages, check free and paid resources, or contact me for custom guidance.
             </p>

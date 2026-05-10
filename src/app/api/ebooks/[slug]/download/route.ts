@@ -138,7 +138,7 @@ export async function GET(
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Poppins:wght@400;500;600&family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap" rel="stylesheet">
       <style>
-        :root { --brand: #8ac826; }
+        :root { --brand: #0A2540; }
         html, body {
           font-family: 'Poppins', 'Noto Sans Sinhala', sans-serif;
           font-size: 16px;

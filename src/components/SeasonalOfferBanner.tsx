@@ -150,7 +150,7 @@ export default function SeasonalOfferBanner() {
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
-          <p className="font-plus-jakarta text-sm md:text-base font-bold tracking-wide">
+          <p className="font-heading text-sm md:text-base font-bold tracking-wide">
             {offer.startAtMs > now ? "Starts in" : "Ends in"} {remaining}
           </p>
           <Link

@@ -92,7 +92,7 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">{entry.label}</span>
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
             {entry.label} <span className="text-brand-main">Service.</span>
           </h1>
         </div>
@@ -104,7 +104,7 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
             <AnimatedServiceTextVisual label={entry.label} variant="dark" className="h-full min-h-full rounded-[24px]" />
           </div>
 
-          <article className="prose prose-lg mx-auto max-w-4xl prose-headings:font-plus-jakarta prose-headings:text-foreground prose-p:text-text-body prose-a:text-brand-main">
+          <article className="prose prose-lg mx-auto max-w-4xl prose-headings:font-heading prose-headings:text-foreground prose-p:text-text-body prose-a:text-brand-main">
             <h2>Overview</h2>
             <p>
               In today&#39;s hiring environment, your professional profile must be clear, role-aligned, and results-focused. This {entry.label.toLowerCase()} service is designed to improve how recruiters and hiring managers understand your value.

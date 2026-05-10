@@ -148,7 +148,7 @@ export default async function ResourceSinglePage({ params }: ResourcePageProps) 
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">{resource.title}</span>
           </div>
-          <h1 className="text-[32px] sm:text-[44px] md:text-[62px] font-bold font-plus-jakarta leading-[1.08] mb-4 !text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]">
+          <h1 className="text-[32px] sm:text-[44px] md:text-[62px] font-bold font-heading leading-[1.08] mb-4 !text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]">
             {resource.title} <span className="text-brand-main">Resource</span>
           </h1>
           <p className="text-xl text-white/90 max-w-3xl">{resource.subtitle}</p>
@@ -184,7 +184,7 @@ export default async function ResourceSinglePage({ params }: ResourcePageProps) 
  <div className="space-y-8 border-t border-zinc-200 pt-8">
                   {resource.contentSections.map((section) => (
                     <section key={section.heading}>
-                      <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">{section.heading}</h2>
+                      <h2 className="text-[28px] font-bold font-heading text-foreground">{section.heading}</h2>
                       <div className="mt-4 space-y-4 text-text-body">
                         {section.paragraphs.map((paragraph) => (
                           <p key={paragraph}>{paragraph}</p>
@@ -209,7 +209,7 @@ export default async function ResourceSinglePage({ params }: ResourcePageProps) 
                 <p className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-zinc-500">
                   {isFreeResource ? "Access" : "Investment"}
                 </p>
-                <p className="mb-6 text-[24px] font-bold font-plus-jakarta text-foreground">
+                <p className="mb-6 text-[24px] font-bold font-heading text-foreground">
                   {isFreeResource ? "Free Resource" : formatLkr(priceLkr)}
                 </p>
                 {isFreeResource && resourceDownload ? (

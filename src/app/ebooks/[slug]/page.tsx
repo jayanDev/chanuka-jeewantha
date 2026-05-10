@@ -134,7 +134,7 @@ export default async function EbookSinglePage({ params }: EbookPageProps) {
               <span className="mb-4 inline-flex rounded-full bg-brand-main/15 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-brand-main">
                 {ebook.category === "paid" ? "Paid Ebook" : "Free Ebook"}
               </span>
-              <h1 className="text-[22px] sm:text-[28px] md:text-[36px] font-bold font-plus-jakarta leading-[1.15] mb-3 text-white">{ebook.title}</h1>
+              <h1 className="text-[22px] sm:text-[28px] md:text-[36px] font-bold font-heading leading-[1.15] mb-3 text-white">{ebook.title}</h1>
               <p className="text-[22px] font-semibold text-brand-light mb-5">{ebook.subtitle}</p>
               <p className="text-text-light text-lg leading-relaxed mb-8">{ebook.description}</p>
 
@@ -209,7 +209,7 @@ export default async function EbookSinglePage({ params }: EbookPageProps) {
                   <div className="w-full mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="rounded-[14px] border border-zinc-200 p-4">
                       <p className="text-xs font-bold uppercase tracking-wider text-zinc-400 mb-1">Read Online</p>
-                      <p className="text-2xl font-bold font-plus-jakarta text-white mb-3">{formatLkr(ebook.readPriceLkr ?? EBOOK_READ_PRICE_LKR)}</p>
+                      <p className="text-2xl font-bold font-heading text-white mb-3">{formatLkr(ebook.readPriceLkr ?? EBOOK_READ_PRICE_LKR)}</p>
                       <p className="text-sm text-text-light mb-3">Access all chapters on the website.</p>
                       <a
                         href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hello Chanuka, I want to purchase READ access for:\nEbook: ${ebook.title}\nPrice: LKR ${(ebook.readPriceLkr ?? EBOOK_READ_PRICE_LKR).toLocaleString("en-LK")}`)}`}
@@ -224,7 +224,7 @@ export default async function EbookSinglePage({ params }: EbookPageProps) {
                     <div className="rounded-[14px] border-2 border-brand-main p-4 relative">
                       <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-main text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">Best Value</span>
                       <p className="text-xs font-bold uppercase tracking-wider text-brand-main mb-1">Download + Read</p>
-                      <p className="text-2xl font-bold font-plus-jakarta text-white mb-3">{formatLkr(ebook.downloadPriceLkr ?? EBOOK_DOWNLOAD_PRICE_LKR)}</p>
+                      <p className="text-2xl font-bold font-heading text-white mb-3">{formatLkr(ebook.downloadPriceLkr ?? EBOOK_DOWNLOAD_PRICE_LKR)}</p>
                       <p className="text-sm text-text-light mb-3">Read online + download full ebook PDF.</p>
                       <a
                         href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hello Chanuka, I want to purchase DOWNLOAD access for:\nEbook: ${ebook.title}\nPrice: LKR ${(ebook.downloadPriceLkr ?? EBOOK_DOWNLOAD_PRICE_LKR).toLocaleString("en-LK")}`)}`}

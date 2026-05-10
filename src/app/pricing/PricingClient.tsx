@@ -21,7 +21,7 @@ export default function PricingClient() {
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4, 5].map((i) => (
-              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none">
                 PRICING
               </span>
             ))}
@@ -34,7 +34,7 @@ export default function PricingClient() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Pricing</span>
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
             Career Service Starting <span className="text-brand-main">Prices.</span>
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-relaxed text-white/80">
@@ -48,7 +48,7 @@ export default function PricingClient() {
           <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <span className="mb-2 block font-semibold uppercase tracking-wider text-brand-main">Starting Prices</span>
-              <h2 className="font-plus-jakarta text-[30px] font-bold leading-[1.1] text-foreground sm:text-[40px] md:text-[56px]">
+              <h2 className="font-heading text-[30px] font-bold leading-[1.1] text-foreground sm:text-[40px] md:text-[56px]">
                 Compare the service menu.
               </h2>
             </div>
@@ -66,14 +66,14 @@ export default function PricingClient() {
                 <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand-main">
                   {category.isPriority ? "Priority Service" : "Service"}
                 </p>
-                <h3 className="mt-3 min-h-[64px] font-plus-jakarta text-[25px] font-bold leading-tight text-foreground">
+                <h3 className="mt-3 min-h-[64px] font-heading text-[25px] font-bold leading-tight text-foreground">
                   {category.title.replace(" Packages", "")}
                 </h3>
                 <p className="mt-3 min-h-[72px] text-sm leading-relaxed text-zinc-600">{category.description}</p>
 
                 <div className="mt-6 rounded-[14px] border border-brand-main/20 bg-brand-main/5 p-5">
                   <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand-dark">Starting From</p>
-                  <p className="mt-2 font-plus-jakarta text-[32px] font-bold text-foreground">
+                  <p className="mt-2 font-heading text-[32px] font-bold text-foreground">
                     {(() => {
                       const price = getLowestStartingPrice(category.key);
                       return price === null ? "N/A" : formatLkr(price);
@@ -103,7 +103,7 @@ export default function PricingClient() {
           </div>
 
           <div className="mt-8 rounded-[16px] border border-emerald-200 bg-emerald-50 p-6">
-            <h3 className="font-plus-jakarta text-[24px] font-bold text-foreground">Supervised bundle discounts</h3>
+            <h3 className="font-heading text-[24px] font-bold text-foreground">Supervised bundle discounts</h3>
             <p className="mt-2 text-zinc-700">
               CV + Cover Letter gets 10% off, CV + LinkedIn gets 15% off, and CV + Cover Letter + LinkedIn gets 20% off when all selected services are Essentials packages.
             </p>

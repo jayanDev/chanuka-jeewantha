@@ -100,7 +100,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             <span className="text-brand-main line-clamp-1">{study.title}</span>
           </div>
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-brand-main">{study.category}</p>
-          <h1 className="max-w-5xl text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold font-plus-jakarta leading-[1.08] !text-white">
+          <h1 className="max-w-5xl text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold font-heading leading-[1.08] !text-white">
             {study.title}
           </h1>
           <p className="mt-6 max-w-3xl text-lg text-text-light">{study.summary}</p>
@@ -138,7 +138,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
               <div className="space-y-10">
                 <section>
-                  <h2 className="text-[30px] font-bold font-plus-jakarta text-foreground">The Challenge</h2>
+                  <h2 className="text-[30px] font-bold font-heading text-foreground">The Challenge</h2>
                   <ul className="mt-5 space-y-3">
                     {study.challenge.map((item) => (
  <li key={item} className="flex items-start gap-3 text-zinc-700">
@@ -150,7 +150,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 </section>
 
                 <section>
-                  <h2 className="text-[30px] font-bold font-plus-jakarta text-foreground">What Changed</h2>
+                  <h2 className="text-[30px] font-bold font-heading text-foreground">What Changed</h2>
                   <ul className="mt-5 space-y-3">
                     {study.strategy.map((item) => (
  <li key={item} className="flex items-start gap-3 text-zinc-700">
@@ -162,7 +162,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 </section>
 
                 <section>
-                  <h2 className="text-[30px] font-bold font-plus-jakarta text-foreground">Outcome</h2>
+                  <h2 className="text-[30px] font-bold font-heading text-foreground">Outcome</h2>
                   <ul className="mt-5 space-y-3">
                     {study.outcomes.map((item) => (
  <li key={item} className="flex items-start gap-3 text-zinc-700">
@@ -177,7 +177,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
             <aside className="space-y-6">
  <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6">
-                <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">Proof Points</h3>
+                <h3 className="text-[24px] font-bold font-heading text-foreground">Proof Points</h3>
                 <ul className="mt-5 space-y-3">
                   {study.proofPoints.map((point) => (
  <li key={point} className="text-sm font-medium text-zinc-700">{point}</li>
@@ -186,7 +186,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
               </div>
 
  <div className="rounded-[20px] border border-zinc-200 bg-white p-6">
-                <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground">Next Steps</h3>
+                <h3 className="text-[24px] font-bold font-heading text-foreground">Next Steps</h3>
                 <div className="mt-5 flex flex-col gap-3">
                   {study.relatedServices.map((item) => (
                     <Link

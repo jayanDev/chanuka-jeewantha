@@ -59,7 +59,7 @@ export default function ContactForm() {
             {/* Left Content */}
             <div className="w-full lg:w-1/2 flex flex-col items-start">
               <span className="text-brand-main font-semibold tracking-wider uppercase mb-4 block">Contact Us</span>
-              <h2 className="text-[36px] md:text-[52px] font-bold font-plus-jakarta text-foreground leading-[1.2] mb-6">
+              <h2 className="text-[36px] md:text-[52px] font-bold font-heading text-foreground leading-[1.2] mb-6">
                 Get Career <span className="text-brand-light">Support</span>
               </h2>
               <p className="text-text-body text-[18px] mb-12 max-w-lg leading-relaxed">
@@ -83,7 +83,7 @@ export default function ContactForm() {
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                   </div>
                   <div>
-                    <h3 className="font-bold text-[18px] font-plus-jakarta mb-1 text-foreground">WhatsApp Orders</h3>
+                    <h3 className="font-bold text-[18px] font-heading mb-1 text-foreground">WhatsApp Orders</h3>
                     <p className="text-text-body">+94 77 390 2230</p>
                   </div>
                 </div>
@@ -94,7 +94,7 @@ export default function ContactForm() {
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                   </div>
                   <div>
-                    <h3 className="font-bold text-[18px] font-plus-jakarta mb-1 text-foreground">LinkedIn</h3>
+                    <h3 className="font-bold text-[18px] font-heading mb-1 text-foreground">LinkedIn</h3>
                     <p className="text-text-body">linkedin.com/in/chanuka-jeewantha</p>
                   </div>
                 </div>
@@ -103,7 +103,7 @@ export default function ContactForm() {
 
             {/* Right Content - Form */}
  <div className="w-full lg:w-1/2 bg-white p-8 md:p-12 rounded-[24px] shadow-lg border border-zinc-100">
-              <h3 className="text-[28px] font-bold font-plus-jakarta mb-8 text-foreground">Send a Message</h3>
+              <h3 className="text-[28px] font-bold font-heading mb-8 text-foreground">Send a Message</h3>
               <form className="flex flex-col gap-6" onSubmit={handleSubmit} noValidate>
                 {/* aria-live region announces status changes to screen readers */}
                 <div aria-live="polite" aria-atomic="true">

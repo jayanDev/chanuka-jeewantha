@@ -151,7 +151,7 @@ export default function Header({ initialUser = null }: HeaderProps) {
       <div className="flex items-center justify-between relative bg-background z-40 py-2">
         {/* Logo Container */}
         <div className="flex-shrink-0 w-auto md:mr-8">
-          <Link href="/" className="text-2xl font-bold font-plus-jakarta text-foreground">
+          <Link href="/" className="text-2xl font-bold font-heading text-foreground">
             Chanuka.
           </Link>
         </div>
@@ -227,7 +227,7 @@ export default function Header({ initialUser = null }: HeaderProps) {
  <Link href="/auth/signin" className="rounded-[10px] border border-zinc-300 px-4 py-2 text-[15px] font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                   Sign In
                 </Link>
-                <Link href="/auth/signup" className="rounded-[10px] bg-brand-main px-4 py-2 text-[15px] font-semibold text-foreground transition-colors hover:bg-brand-dark hover:text-background">
+                <Link href="/auth/signup" className="rounded-[10px] bg-brand-main px-4 py-2 text-[15px] font-semibold text-foreground transition-colors hover:bg-brand-dark">
                   Sign Up
                 </Link>
               </div>
@@ -395,7 +395,7 @@ export default function Header({ initialUser = null }: HeaderProps) {
  <Link href="/auth/signin" onClick={() => setIsMobileMenuOpen(false)} className="rounded-[10px] border border-zinc-300 px-4 py-3 text-center text-[16px] font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Sign In
               </Link>
-              <Link href="/auth/signup" onClick={() => setIsMobileMenuOpen(false)} className="rounded-[10px] bg-brand-main px-4 py-3 text-center text-[16px] font-semibold text-white transition-colors hover:bg-brand-dark">
+              <Link href="/auth/signup" onClick={() => setIsMobileMenuOpen(false)} className="rounded-[10px] bg-brand-main px-4 py-3 text-center text-[16px] font-semibold text-foreground transition-colors hover:bg-brand-dark">
                 Sign Up
               </Link>
             </div>

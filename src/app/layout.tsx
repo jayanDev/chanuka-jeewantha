@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
+import { Plus_Jakarta_Sans, Poppins, Playfair_Display, Inter } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -76,8 +76,23 @@ const poppins = Poppins({
   display: "optional",
 });
 
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
 export const viewport = {
-  themeColor: "#8ac826",
+  themeColor: "#0A2540",
 };
 
 export const metadata: Metadata = {
@@ -163,12 +178,12 @@ export default async function RootLayout({
   return (
     <html
       lang="en-LK"
-      className={`${plusJakarta.variable} ${poppins.variable} h-full antialiased`}
+      className={`${plusJakarta.variable} ${poppins.variable} ${playfairDisplay.variable} ${inter.variable} h-full antialiased`}
     >
       <head>
         <link rel="alternate" type="application/rss+xml" title="Chanuka Jeewantha Blog RSS Feed" href={`${siteUrl}/feed.xml`} />
       </head>
-      <body className="min-h-full flex flex-col font-poppins">
+      <body className="min-h-full flex flex-col font-body">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:z-[9999] focus:top-4 focus:left-4 focus:rounded-lg focus:bg-brand-main focus:px-4 focus:py-2 focus:text-white focus:font-semibold focus:shadow-lg"

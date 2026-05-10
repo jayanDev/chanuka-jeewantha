@@ -93,7 +93,7 @@ export default async function ChecklistReadPage({ params }: Props) {
           <span className="mb-3 inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] text-brand-dark">
             Free Checklist
           </span>
-          <h1 className="text-[22px] sm:text-[28px] font-bold font-plus-jakarta text-foreground leading-snug">
+          <h1 className="text-[22px] sm:text-[28px] font-bold font-heading text-foreground leading-snug">
             {checklist.title}
           </h1>
           <p className="text-text-body mt-2 text-[15px] leading-relaxed">{checklist.subtitle}</p>

@@ -136,7 +136,7 @@ export default function ServicesPackageFilter({ lockedServiceKey }: ServicesPack
                 {pkg.audience}
               </span>
             </div>
-            <h3 className="font-plus-jakarta text-[22px] font-bold leading-tight text-foreground">{pkg.name}</h3>
+            <h3 className="font-heading text-[22px] font-bold leading-tight text-foreground">{pkg.name}</h3>
             <p className="mt-3 text-sm leading-relaxed text-zinc-600">{pkg.description}</p>
             <div className="mt-5 grid grid-cols-2 gap-3">
               <div className="rounded-[10px] bg-zinc-50 p-3">

@@ -258,7 +258,7 @@ function renderTable(title: string, rows: TableRow[]) {
   return (
  <article className="rounded-[24px] border border-zinc-200 bg-white shadow-sm">
  <div className="border-b border-zinc-200 px-6 py-5 sm:px-8">
-        <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">{title}</h2>
+        <h2 className="text-[28px] font-bold font-heading text-foreground">{title}</h2>
       </div>
       <div className="overflow-x-auto">
         <table className="min-w-full border-collapse">
@@ -289,7 +289,7 @@ function renderPackageTable(category: PackageCategory) {
  <div className="border-b border-zinc-200 px-6 py-5 sm:px-8">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
-            <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">{category.title}</h2>
+            <h2 className="text-[28px] font-bold font-heading text-foreground">{category.title}</h2>
  <p className="mt-2 max-w-4xl text-sm leading-relaxed text-zinc-600">{category.description}</p>
           </div>
           {category.isPriority ? (
@@ -422,7 +422,7 @@ export default function ReviewsPage() {
             {[1, 2, 3, 4].map((i) => (
               <span
                 key={i}
-                className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none"
+                className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none"
               >
                 GOOGLE REVIEWS
               </span>
@@ -438,7 +438,7 @@ export default function ReviewsPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Reviews</span>
           </div>
-          <h1 className="font-plus-jakarta text-[32px] sm:text-[40px] md:text-[52px] lg:text-[64px] font-bold leading-[1.08] max-w-6xl !text-white">
+          <h1 className="font-heading text-[32px] sm:text-[40px] md:text-[52px] lg:text-[64px] font-bold leading-[1.08] max-w-6xl !text-white">
             Chanuka Jeewantha - <span className="text-brand-main">Professional CV Writing, Linkedin Account Optimization & Career Development Services</span>
           </h1>
           <p className="mt-6 max-w-4xl text-lg text-text-light">
@@ -484,7 +484,7 @@ export default function ReviewsPage() {
                   className="object-cover"
                 />
               </div>
-              <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">Quick Note for Reviewers</h2>
+              <h2 className="text-[28px] font-bold font-heading text-foreground">Quick Note for Reviewers</h2>
  <p className="mt-3 text-sm leading-relaxed text-zinc-700">
                 Honest, specific reviews help future clients understand the quality of the service and the type of results they can expect. A short, genuine review is enough.
               </p>
@@ -518,7 +518,7 @@ export default function ReviewsPage() {
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6 space-y-8">
           <section className="space-y-8">
  <div className="rounded-[24px] border border-zinc-200 bg-white px-6 py-5 shadow-sm sm:px-8">
-              <h2 className="text-[30px] font-bold font-plus-jakarta text-foreground">Package Details Tables</h2>
+              <h2 className="text-[30px] font-bold font-heading text-foreground">Package Details Tables</h2>
  <p className="mt-3 max-w-4xl text-sm leading-relaxed text-zinc-600">
                 The tables below show your main package categories, audiences, pricing, delivery timelines, and features so visitors can review the service range before leaving feedback or placing a new order.
               </p>

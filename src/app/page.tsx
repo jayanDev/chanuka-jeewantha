@@ -96,22 +96,22 @@ export default async function Home() {
       <section className="reveal-section w-full relative pt-[50px] md:pt-[73px] pb-[100px] md:pb-[146px] flex flex-col items-center justify-center overflow-hidden">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6 w-full flex flex-col md:flex-row items-center gap-12 z-10">
           <div className="flex-1 flex flex-col items-start px-[24px]">
-            <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-extrabold leading-[0.95em] mb-6 text-foreground">
-              Hi, I am <br /> <span className="text-brand-dark">Chanuka Jeewantha</span>
+            <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.05em] tracking-tight mb-6 text-primary">
+              Hi, I am <br /> <span className="text-brand-main">Chanuka Jeewantha</span>
             </h1>
-            <p className="text-text-body text-[16px] md:text-[24px] font-medium max-w-2xl mb-8">
+            <p className="text-text-body text-[16px] md:text-[20px] font-normal leading-relaxed max-w-2xl mb-8">
               Professional CV Writer and Career Development Specialist with 8+ years of experience helping job seekers build ATS-friendly, recruiter-ready career profiles.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/pricing"
-                className="px-[25px] py-[15px] bg-foreground hover:bg-brand-dark rounded-[10px] text-background hover:text-background font-medium transition-colors text-center"
+                className="btn btn-primary"
               >
                 View CV Writing Packages
               </Link>
               <Link
                 href="/services"
-                className="px-[25px] py-[15px] bg-brand-main hover:bg-brand-dark rounded-[10px] text-foreground hover:text-background font-medium transition-colors text-center"
+                className="btn btn-secondary"
               >
                 Explore Services
               </Link>
@@ -183,7 +183,7 @@ export default async function Home() {
                 "30K+ Follower Growth Proof",
                 "ATS-Friendly CV Writing",
               ].map((skill, index) => (
-                <span key={index} className="text-text-light text-[22px] md:text-[30px] font-plus-jakarta font-bold uppercase whitespace-nowrap">
+                <span key={index} className="text-text-light text-[22px] md:text-[30px] font-heading font-bold uppercase whitespace-nowrap">
                   {skill} <span className="text-brand-main ml-[50px] md:ml-[90px]">*</span>
                 </span>
               ))}
@@ -194,14 +194,14 @@ export default async function Home() {
 
       <section className="bundles-showcase w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
         <div className="container max-w-[1512px] mx-auto px-4 sm:px-6">
-          <h2 className="section-title text-center text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground leading-[1.1] mb-4">Most Clients Choose One of These 3 Packages</h2>
+          <h2 className="section-title text-center text-[30px] sm:text-[40px] md:text-[56px] font-bold font-heading text-foreground leading-[1.1] mb-4">Most Clients Choose One of These 3 Packages</h2>
           <p className="section-subtitle text-center text-text-body max-w-2xl mx-auto mb-12">Bundled services. Better outcomes. Better value.</p>
           
           <div className="bundles-grid grid grid-cols-1 md:grid-cols-3 gap-8">
             
             <div className="bundle-card starter bg-white rounded-[20px] border border-zinc-200 p-6 shadow-lg hover:shadow-xl transition-shadow">
               <span className="bundle-tag inline-block rounded-full bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-700 mb-4">For Students & Graduates</span>
-              <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-4">🎓 Starter Pack</h3>
+              <h3 className="text-[24px] font-bold font-heading text-foreground mb-4">🎓 Starter Pack</h3>
               <div className="bundle-price mb-6">
                 <span className="price-amount text-[28px] font-bold text-foreground">LKR 9,500</span>
                 <span className="price-original line-through block text-sm text-zinc-400">LKR 11,850</span>
@@ -221,7 +221,7 @@ export default async function Home() {
             <div className="bundle-card career featured bg-white rounded-[20px] border-2 border-[#C9A961] p-6 shadow-lg hover:shadow-xl transition-shadow transform scale-105">
               <span className="bundle-tag-popular inline-block rounded-full bg-[#C9A961] text-white px-4 py-2 text-sm font-bold uppercase tracking-wider mb-4">⭐ MOST POPULAR</span>
               <span className="bundle-tag block rounded-full bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-700 mb-4">For Working Professionals</span>
-              <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-4">🚀 Career Pack</h3>
+              <h3 className="text-[24px] font-bold font-heading text-foreground mb-4">🚀 Career Pack</h3>
               <div className="bundle-price mb-6">
                 <span className="price-amount text-[28px] font-bold text-foreground">LKR 22,500</span>
                 <span className="price-original line-through block text-sm text-zinc-400">LKR 30,000</span>
@@ -243,7 +243,7 @@ export default async function Home() {
             
             <div className="bundle-card executive bg-white rounded-[20px] border border-zinc-200 p-6 shadow-lg hover:shadow-xl transition-shadow">
               <span className="bundle-tag inline-block rounded-full bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-700 mb-4">For Senior Professionals</span>
-              <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-4">👑 Executive Pack</h3>
+              <h3 className="text-[24px] font-bold font-heading text-foreground mb-4">👑 Executive Pack</h3>
               <div className="bundle-price mb-6">
                 <span className="price-amount text-[28px] font-bold text-foreground">LKR 45,000</span>
                 <span className="price-original line-through block text-sm text-zinc-400">LKR 60,000</span>
@@ -276,7 +276,7 @@ export default async function Home() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div>
               <span className="text-brand-dark font-semibold tracking-wider uppercase mb-2 block">What I Do</span>
-              <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground leading-[1.1]">
+              <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-heading text-foreground leading-[1.1]">
                 Career Services <span className="text-brand-dark">That Deliver Results</span>
               </h2>
             </div>
@@ -301,7 +301,7 @@ export default async function Home() {
                     <span className="text-xs font-bold uppercase tracking-[0.14em] text-brand-dark">Client Favorite</span>
                   </div>
                 )}
-                <h3 className="text-[28px] font-bold font-plus-jakarta mb-4">{service.title}</h3>
+                <h3 className="text-[28px] font-bold font-heading mb-4">{service.title}</h3>
                 <p className="text-text-body mb-8 flex-grow">{service.desc}</p>
                 <Link href={service.href} aria-label={`Learn more about ${service.title}`} className="text-brand-dark hover:text-brand-main font-semibold flex items-center gap-2 transition-transform hover:translate-x-2">
                   Learn More
@@ -318,7 +318,7 @@ export default async function Home() {
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <div>
               <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-dark">Digital Store</span>
-              <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Ebooks</h3>
+              <h3 className="text-[30px] font-bold font-heading text-foreground">Ebooks</h3>
             </div>
  <Link href="/ebooks" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
               See All Ebooks
@@ -355,7 +355,7 @@ export default async function Home() {
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <div>
               <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Guides & Templates</span>
-              <h3 className="text-[30px] font-bold font-plus-jakarta text-white">Resources</h3>
+              <h3 className="text-[30px] font-bold font-heading text-white">Resources</h3>
             </div>
  <Link href="/resources" className="rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black">
               See All Resources
@@ -365,7 +365,7 @@ export default async function Home() {
             {resourceHighlights.map((item) => (
  <article key={item.title} className="group h-full flex flex-col rounded-[20px] border border-zinc-700 bg-zinc-800 p-8 transition-all hover:-translate-y-1 hover:border-brand-main/40 hover:shadow-[0_16px_36px_rgba(255,255,255,0.05)]">
  <span className="mb-3 self-start inline-flex rounded-full border border-brand-main/30 bg-brand-main/10 px-3 py-1 text-xs font-semibold text-white">{item.type}</span>
- <h4 className="mb-2 text-[20px] font-bold font-plus-jakarta text-white transition-colors">{item.title}</h4>
+ <h4 className="mb-2 text-[20px] font-bold font-heading text-white transition-colors">{item.title}</h4>
  <p className="mb-5 text-sm leading-relaxed text-white transition-colors">{item.desc}</p>
  <Link href={item.href} className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-brand-main">
                   Open Resource
@@ -392,7 +392,7 @@ export default async function Home() {
 
             <div className="w-full lg:w-[51%] lg:pl-[72px] flex flex-col items-start">
               <span className="text-brand-dark font-semibold tracking-wider uppercase mb-4 block">About Me</span>
-              <h2 className="text-[36px] md:text-[52px] font-bold font-plus-jakarta text-foreground leading-[1.2] mb-6">
+              <h2 className="text-[36px] md:text-[52px] font-bold font-heading text-foreground leading-[1.2] mb-6">
                 Strategy, proof, and clear communication to help professionals win in modern hiring systems.
               </h2>
               <p className="text-text-body text-[18px] mb-10 leading-relaxed">
@@ -401,19 +401,19 @@ export default async function Home() {
 
               <div className="grid grid-cols-2 gap-6 w-full">
  <div className="border border-zinc-200 rounded-[15px] p-6 flex flex-col hover:border-brand-main transition-colors text-center md:text-left">
-                  <span className="text-[40px] font-bold font-plus-jakarta text-brand-dark mb-2">8+</span>
+                  <span className="text-[40px] font-bold font-heading text-brand-dark mb-2">8+</span>
                   <span className="text-text-body font-medium">Years Experience</span>
                 </div>
  <div className="border border-zinc-200 rounded-[15px] p-6 flex flex-col hover:border-brand-main transition-colors text-center md:text-left">
-                  <span className="text-[40px] font-bold font-plus-jakarta text-brand-dark mb-2">30K+</span>
+                  <span className="text-[40px] font-bold font-heading text-brand-dark mb-2">30K+</span>
                   <span className="text-text-body font-medium">LinkedIn Growth Proof</span>
                 </div>
  <div className="border border-zinc-200 rounded-[15px] p-6 flex flex-col hover:border-brand-main transition-colors text-center md:text-left">
-                  <span className="text-[40px] font-bold font-plus-jakarta text-brand-dark mb-2">5000+</span>
+                  <span className="text-[40px] font-bold font-heading text-brand-dark mb-2">5000+</span>
                   <span className="text-text-body font-medium">CVs Completed Across Industries</span>
                 </div>
  <div className="border border-zinc-200 rounded-[15px] p-6 flex flex-col hover:border-brand-main transition-colors text-center md:text-left">
-                  <span className="text-[40px] font-bold font-plus-jakarta text-brand-dark mb-2">8</span>
+                  <span className="text-[40px] font-bold font-heading text-brand-dark mb-2">8</span>
                   <span className="text-text-body font-medium">Core Career Services</span>
                 </div>
               </div>
@@ -427,7 +427,7 @@ export default async function Home() {
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <div>
               <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-dark">Client Voice</span>
-              <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground">Testimonials</h3>
+              <h3 className="text-[30px] font-bold font-heading text-foreground">Testimonials</h3>
             </div>
  <Link href="/testimonials" className="rounded-[10px] border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-brand-main hover:text-brand-main">
               See All Testimonials
@@ -463,7 +463,7 @@ export default async function Home() {
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <span className="text-brand-dark font-semibold tracking-wider uppercase mb-2 block">Real Transformation</span>
-            <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground leading-[1.1]">
+            <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-heading text-foreground leading-[1.1]">
               See the <span className="text-brand-dark">CV Difference</span>
             </h2>
             <p className="mt-4 text-text-body max-w-2xl mx-auto">
@@ -490,7 +490,7 @@ export default async function Home() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div className="max-w-3xl">
               <span className="text-brand-main font-semibold tracking-wider uppercase mb-2 block">Latest Insights</span>
-              <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta leading-[1.1] !text-white">
+              <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-heading leading-[1.1] !text-white">
                 Career guidance for ATS-ready applications, LinkedIn visibility, and strategic growth.
               </h2>
             </div>
@@ -515,7 +515,7 @@ export default async function Home() {
                   <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-brand-subtle">
                     {post.category}
                   </p>
-                  <h3 className="text-[24px] font-bold font-plus-jakarta mb-3 !text-white">{post.title}</h3>
+                  <h3 className="text-[24px] font-bold font-heading mb-3 !text-white">{post.title}</h3>
                   <p className="!text-white text-sm mb-6 line-clamp-3">{post.excerpt}</p>
                   <Link href={`/blog/${post.slug}`} aria-label={`Read more: ${post.title}`} className="text-white font-semibold transition-colors">
                     Read More
@@ -531,7 +531,7 @@ export default async function Home() {
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <span className="text-brand-dark font-semibold tracking-wider uppercase mb-2 block">Frequently Asked Questions</span>
-            <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground leading-[1.1]">
+            <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-heading text-foreground leading-[1.1]">
               Your Questions <span className="text-brand-dark">Answered</span>
             </h2>
           </div>

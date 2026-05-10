@@ -96,7 +96,7 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
             <span className="text-brand-main">{pkg.name}</span>
           </div>
 
-          <h1 className="text-[32px] sm:text-[44px] md:text-[62px] font-bold font-plus-jakarta leading-[1.08] mb-4 !text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]">
+          <h1 className="text-[32px] sm:text-[44px] md:text-[62px] font-bold font-heading leading-[1.08] mb-4 !text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]">
             {packageTitleMain}{" "}
             {hasSimplePackageWord && <span className="text-brand-main">Package</span>}
           </h1>
@@ -118,12 +118,12 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
             <p className="text-lg font-semibold text-foreground mb-5">{pkg.category}</p>
 
             <p className="text-sm uppercase tracking-wide text-zinc-500 mb-2">Price</p>
-            <p className="text-2xl font-bold font-plus-jakarta text-foreground mb-5">{getPackageDisplayPrice(pkg)}</p>
+            <p className="text-2xl font-bold font-heading text-foreground mb-5">{getPackageDisplayPrice(pkg)}</p>
 
             <p className="text-sm uppercase tracking-wide text-zinc-500 mb-2">Delivery Time</p>
             <p className="text-lg font-semibold text-foreground mb-8">{pkg.delivery}</p>
 
-            <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground mb-5">Package Includes</h2>
+            <h2 className="text-[28px] font-bold font-heading text-foreground mb-5">Package Includes</h2>
             <ul className="space-y-3 mb-10">
               {pkg.features.map((feature) => (
                 <li key={feature} className="flex items-start gap-3 text-text-body">
@@ -135,7 +135,7 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
 
             {pkg.idealFor && (
               <div className="mb-10 rounded-[16px] border border-brand-main/15 bg-brand-main/5 p-5">
-                <h2 className="text-[22px] font-bold font-plus-jakarta text-foreground mb-3">Ideal For</h2>
+                <h2 className="text-[22px] font-bold font-heading text-foreground mb-3">Ideal For</h2>
                 <p className="leading-relaxed text-text-body">{pkg.idealFor}</p>
               </div>
             )}
@@ -151,7 +151,7 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
           </article>
 
  <aside className="rounded-[22px] border border-zinc-200 p-6 bg-zinc-50 h-fit">
-            <h3 className="text-xl font-bold font-plus-jakarta text-foreground mb-3">More Packages</h3>
+            <h3 className="text-xl font-bold font-heading text-foreground mb-3">More Packages</h3>
             <div className="space-y-3">
               {packageProducts
                 .filter((item) => item.slug !== pkg.slug)

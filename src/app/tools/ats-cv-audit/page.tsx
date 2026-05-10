@@ -65,7 +65,7 @@ export default function AtsCvAuditPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">ATS CV Audit Tool</span>
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.08] max-w-5xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.08] max-w-5xl !text-white">
             Free <span className="text-brand-main">ATS CV audit</span> before you apply.
           </h1>
           <p className="mt-6 max-w-3xl text-lg text-text-light">
@@ -88,7 +88,7 @@ export default function AtsCvAuditPage() {
  <section className="w-full bg-white py-[40px] sm:py-[56px] border-t border-zinc-200">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
  <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6">
-            <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">What to do after the audit</h2>
+            <h2 className="text-[28px] font-bold font-heading text-foreground">What to do after the audit</h2>
             <p className="mt-3 text-text-body">
               If the score is weak, move to CV writing or a professional review. If the score is decent but inconsistent, start with the checklist and strengthen your metrics, keywords, and structure.
             </p>

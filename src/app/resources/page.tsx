@@ -33,7 +33,7 @@ export default function ResourcesPage() {
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4].map((i) => (
-              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none">
                 RESOURCES
               </span>
             ))}
@@ -45,7 +45,7 @@ export default function ResourcesPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Resources</span>
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-5xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-5xl !text-white">
             Career <span className="text-brand-main">resources</span> for cleaner applications and smarter growth.
           </h1>
           <p className="text-text-light text-[18px] md:text-[22px] max-w-2xl leading-relaxed mt-6">
@@ -59,7 +59,7 @@ export default function ResourcesPage() {
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-10 flex flex-col gap-3 text-center">
             <span className="text-brand-dark font-semibold tracking-wider uppercase">Templates</span>
-            <h2 className="text-[30px] sm:text-[40px] font-bold font-plus-jakarta text-foreground leading-[1.12]">
+            <h2 className="text-[30px] sm:text-[40px] font-bold font-heading text-foreground leading-[1.12]">
               Downloadable Templates and Career Resources
             </h2>
             <p className="mx-auto max-w-2xl text-text-body">
@@ -80,7 +80,7 @@ export default function ResourcesPage() {
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-dark" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
             </div>
             <div>
-              <h2 className="text-[22px] font-bold font-plus-jakarta text-foreground leading-tight">Checklists</h2>
+              <h2 className="text-[22px] font-bold font-heading text-foreground leading-tight">Checklists</h2>
               <p className="text-sm text-text-body mt-0.5">Step-by-step action guides - free for everyone</p>
             </div>
           </div>
@@ -112,7 +112,7 @@ export default function ResourcesPage() {
                 </div>
 
                 <div className="flex flex-col flex-1 p-5">
-                  <h3 className="text-[16px] font-bold font-plus-jakarta text-foreground leading-snug mb-2 group-hover:text-brand-dark transition-colors">
+                  <h3 className="text-[16px] font-bold font-heading text-foreground leading-snug mb-2 group-hover:text-brand-dark transition-colors">
                     {checklist.title}
                   </h3>
                   <p className="text-sm text-text-body leading-relaxed mb-4 flex-1">
@@ -134,7 +134,7 @@ export default function ResourcesPage() {
 
           {/* Related links */}
           <aside className="mt-16 rounded-[16px] border border-zinc-200 bg-zinc-50 p-6">
-            <h2 className="text-[22px] font-bold font-plus-jakarta text-foreground mb-3">Explore More</h2>
+            <h2 className="text-[22px] font-bold font-heading text-foreground mb-3">Explore More</h2>
             <p className="text-text-body mb-5">Pair these checklists with deeper reading and hands-on services.</p>
             <div className="flex flex-wrap gap-3">
               <Link href="/ebooks" className="rounded-[10px] border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">

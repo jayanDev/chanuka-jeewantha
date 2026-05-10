@@ -84,7 +84,7 @@ export default function SubscribersClient() {
       <div className="rounded-[16px] border border-zinc-200 bg-white p-6">
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
-            <h2 className="text-2xl font-bold font-plus-jakarta">Newsletter Subscribers</h2>
+            <h2 className="text-2xl font-bold font-heading">Newsletter Subscribers</h2>
             <p className="text-sm text-zinc-500 mt-1">
               Everyone who signed up for your newsletter.
             </p>
@@ -111,15 +111,15 @@ export default function SubscribersClient() {
         {/* Summary stats */}
         <div className="mt-5 grid grid-cols-3 gap-4">
           <div className="rounded-[12px] border border-zinc-200 p-4 text-center">
-            <p className="text-2xl font-bold font-plus-jakarta text-foreground">{subscribers.length}</p>
+            <p className="text-2xl font-bold font-heading text-foreground">{subscribers.length}</p>
             <p className="text-xs text-zinc-500 mt-1">Total</p>
           </div>
           <div className="rounded-[12px] border border-emerald-200 bg-emerald-50 p-4 text-center">
-            <p className="text-2xl font-bold font-plus-jakarta text-emerald-700">{totalActive}</p>
+            <p className="text-2xl font-bold font-heading text-emerald-700">{totalActive}</p>
             <p className="text-xs text-emerald-600 mt-1">Active</p>
           </div>
           <div className="rounded-[12px] border border-zinc-200 p-4 text-center">
-            <p className="text-2xl font-bold font-plus-jakarta text-zinc-500">{totalUnsub}</p>
+            <p className="text-2xl font-bold font-heading text-zinc-500">{totalUnsub}</p>
             <p className="text-xs text-zinc-400 mt-1">Unsubscribed</p>
           </div>
         </div>

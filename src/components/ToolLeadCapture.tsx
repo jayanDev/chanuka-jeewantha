@@ -53,7 +53,7 @@ export default function ToolLeadCapture({
   return (
  <aside className="rounded-[20px] border border-zinc-200 bg-white p-6 shadow-sm">
       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Free Career Updates</p>
-      <h3 className="mt-3 text-[24px] font-bold font-plus-jakarta text-foreground">{title}</h3>
+      <h3 className="mt-3 text-[24px] font-bold font-heading text-foreground">{title}</h3>
  <p className="mt-3 text-sm leading-relaxed text-zinc-600">{description}</p>
 
       {status === "success" ? (

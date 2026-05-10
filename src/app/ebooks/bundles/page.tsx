@@ -27,7 +27,7 @@ export default function BundlesPage() {
 
         <div className="mb-12">
           <span className="mb-4 inline-flex rounded-full bg-brand-main/15 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-brand-main">Bundle Deals</span>
-          <h1 className="text-[28px] sm:text-[38px] font-bold font-plus-jakarta leading-tight mb-4 text-white">
+          <h1 className="text-[28px] sm:text-[38px] font-bold font-heading leading-tight mb-4 text-white">
             Ebook Bundles
           </h1>
           <p className="text-text-light text-lg max-w-2xl">
@@ -71,7 +71,7 @@ export default function BundlesPage() {
 
                   {/* Price */}
                   <div className="flex items-end gap-3 mb-4">
-                    <span className="text-2xl font-extrabold font-plus-jakarta text-white">
+                    <span className="text-2xl font-extrabold font-heading text-white">
                       LKR {discountedLkr.toLocaleString("en-LK")}
                     </span>
                     <span className="text-base text-text-light line-through mb-0.5">
