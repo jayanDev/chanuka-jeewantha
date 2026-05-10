@@ -28,7 +28,7 @@ export default function AnnouncementBar() {
           <span className="announcement-text text-sm sm:text-base font-medium text-[#0A2540]">
             <strong>New Bundle Pricing Available!</strong>
             <span className="hidden sm:inline"> Save up to 25% with our Career & Executive Packs.</span>
-            <a href="#bundles" className="announcement-link ml-2 font-semibold underline hover:no-underline">
+            <a href="/bundles" className="announcement-link ml-2 font-semibold underline hover:no-underline">
               See Bundles →
             </a>
           </span>
