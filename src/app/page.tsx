@@ -144,22 +144,30 @@ export default async function Home() {
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="trust-container grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="trust-item text-center">
-              <span className="trust-icon text-[24px] mb-2 block">⭐</span>
+              <span className="trust-icon text-brand-main mb-3 flex justify-center">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              </span>
               <strong className="block text-sm font-bold text-foreground">60+ Google Reviews</strong>
               <small className="block text-xs text-zinc-600">4.9/5 Average Rating</small>
             </div>
             <div className="trust-item text-center">
-              <span className="trust-icon text-[24px] mb-2 block">🏆</span>
+              <span className="trust-icon text-brand-main mb-3 flex justify-center">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg>
+              </span>
               <strong className="block text-sm font-bold text-foreground">CPRW & CPCC Certified</strong>
               <small className="block text-xs text-zinc-600">International Standards</small>
             </div>
             <div className="trust-item text-center">
-              <span className="trust-icon text-[24px] mb-2 block">📈</span>
+              <span className="trust-icon text-brand-main mb-3 flex justify-center">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+              </span>
               <strong className="block text-sm font-bold text-foreground">167,000+ Followers</strong>
               <small className="block text-xs text-zinc-600">Trusted Community</small>
             </div>
             <div className="trust-item text-center">
-              <span className="trust-icon text-[24px] mb-2 block">✅</span>
+              <span className="trust-icon text-brand-main mb-3 flex justify-center">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </span>
               <strong className="block text-sm font-bold text-foreground">5000+ CVs Completed</strong>
               <small className="block text-xs text-zinc-600">Across Industries</small>
             </div>
