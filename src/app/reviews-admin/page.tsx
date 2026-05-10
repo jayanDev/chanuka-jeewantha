@@ -80,7 +80,7 @@ export default function ReviewsAdminPage() {
  <section className="w-full min-h-screen bg-zinc-50 py-16">
       <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
  <div className="mb-8 rounded-[20px] border border-zinc-200 bg-white p-8">
-          <h1 className="mb-2 text-[34px] font-bold font-plus-jakarta text-foreground">Review Moderation</h1>
+          <h1 className="mb-2 text-[34px] font-bold font-heading text-foreground">Review Moderation</h1>
           <p className="mb-6 text-text-body">
             Enter your admin token to approve or hide client reviews. Only approved reviews appear on the testimonials page.
           </p>
@@ -138,7 +138,7 @@ export default function ReviewsAdminPage() {
  <article key={review.id} className="rounded-[16px] border border-zinc-200 bg-white p-6">
               <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <h2 className="text-xl font-bold font-plus-jakarta text-foreground">{review.name}</h2>
+                  <h2 className="text-xl font-bold font-heading text-foreground">{review.name}</h2>
                   <p className="text-sm text-zinc-500">
                     Rating: {review.rating}/5 | {new Date(review.createdAt).toLocaleDateString("en-LK")}
                   </p>

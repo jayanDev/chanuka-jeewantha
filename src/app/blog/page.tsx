@@ -115,7 +115,7 @@ export default async function BlogPage({
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none">
                 BLOG ARTICLES
               </span>
             ))}
@@ -134,7 +134,7 @@ export default async function BlogPage({
               </>
             )}
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
             {activeCategory ? (
               <>Articles on <span className="text-brand-main">{activeCategory}</span></>
             ) : (
@@ -173,7 +173,7 @@ export default async function BlogPage({
               </div>
 
  <div className="bg-white border border-zinc-200 rounded-[16px] p-6">
- <h3 className="font-bold text-zinc-900 mb-4 font-plus-jakarta">Categories</h3>
+ <h3 className="font-bold text-zinc-900 mb-4 font-heading">Categories</h3>
                 <div className="flex flex-col gap-2">
                   <Link 
                     href={buildCategoryHref(null)}
@@ -226,7 +226,7 @@ export default async function BlogPage({
                           <span className="bg-brand-light/20 text-brand-dark px-2.5 py-1 rounded-md text-[11px] font-bold tracking-wide uppercase">{post.category}</span>
                           <span className="text-zinc-400 text-xs font-medium">{post.publishedAt ? new Date(post.publishedAt).toISOString().slice(0, 10) : "-"}</span>
                         </div>
-                        <h3 className="text-[20px] font-bold font-plus-jakarta mb-2 group-hover:text-brand-main transition-colors text-foreground leading-tight">
+                        <h3 className="text-[20px] font-bold font-heading mb-2 group-hover:text-brand-main transition-colors text-foreground leading-tight">
                           <Link href={`/blog/${post.slug}`} className="focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-main rounded">
                             {post.title}
                           </Link>

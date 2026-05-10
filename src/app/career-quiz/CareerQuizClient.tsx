@@ -287,7 +287,7 @@ export default function CareerQuizClient() {
               <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-main/10 font-bold text-brand-dark">
                 {index + 1}
               </span>
-              <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground">{question.title}</h2>
+              <h2 className="text-[24px] font-bold font-heading text-foreground">{question.title}</h2>
             </div>
 
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
@@ -323,7 +323,7 @@ export default function CareerQuizClient() {
       <aside className="space-y-6 lg:sticky lg:top-24">
  <div className="rounded-[22px] border border-zinc-200 bg-white p-6 shadow-sm">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-main">Your Best Next Step</p>
-          <h2 className="mt-3 text-[28px] font-bold font-plus-jakarta text-foreground">{recommendations.primary.label}</h2>
+          <h2 className="mt-3 text-[28px] font-bold font-heading text-foreground">{recommendations.primary.label}</h2>
  <p className="mt-4 text-sm leading-relaxed text-zinc-700">{recommendations.primary.reason}</p>
           <Link
             href={recommendations.primary.href}
@@ -336,7 +336,7 @@ export default function CareerQuizClient() {
 
  <div className="rounded-[22px] border border-zinc-200 bg-zinc-50 p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">Free Tool</p>
-          <h3 className="mt-3 text-[22px] font-bold font-plus-jakarta text-foreground">{recommendations.tool.label}</h3>
+          <h3 className="mt-3 text-[22px] font-bold font-heading text-foreground">{recommendations.tool.label}</h3>
  <p className="mt-3 text-sm leading-relaxed text-zinc-700">{recommendations.tool.reason}</p>
           <Link href={recommendations.tool.href} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
             Use Free Tool
@@ -346,7 +346,7 @@ export default function CareerQuizClient() {
 
  <div className="rounded-[22px] border border-zinc-200 bg-white p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">Resource</p>
-          <h3 className="mt-3 text-[22px] font-bold font-plus-jakarta text-foreground">{recommendations.resource.label}</h3>
+          <h3 className="mt-3 text-[22px] font-bold font-heading text-foreground">{recommendations.resource.label}</h3>
  <p className="mt-3 text-sm leading-relaxed text-zinc-700">{recommendations.resource.reason}</p>
           <Link href={recommendations.resource.href} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
             Open Resource
@@ -357,7 +357,7 @@ export default function CareerQuizClient() {
         {recommendations.industry ? (
  <div className="rounded-[22px] border border-zinc-200 bg-white p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">Relevant Career Page</p>
-            <h3 className="mt-3 text-[22px] font-bold font-plus-jakarta text-foreground">{recommendations.industry.label}</h3>
+            <h3 className="mt-3 text-[22px] font-bold font-heading text-foreground">{recommendations.industry.label}</h3>
  <p className="mt-3 text-sm leading-relaxed text-zinc-700">{recommendations.industry.reason}</p>
             <Link href={recommendations.industry.href} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-main">
               View Industry Page
@@ -367,7 +367,7 @@ export default function CareerQuizClient() {
         ) : null}
 
  <div className="rounded-[22px] border border-zinc-200 bg-foreground p-6 text-background">
-          <h3 className="text-[22px] font-bold font-plus-jakarta !text-white">Use This Like a Decision Shortcut</h3>
+          <h3 className="text-[22px] font-bold font-heading !text-white">Use This Like a Decision Shortcut</h3>
           <p className="mt-3 text-sm leading-relaxed text-text-light">
             If you prefer {answers.support === "self-serve" ? "self-serve support" : answers.support === "hybrid" ? "a hybrid path" : "done-for-you execution"}, start with the free tool and resource above, then move into the primary recommendation when you want stronger results.
           </p>
@@ -375,7 +375,7 @@ export default function CareerQuizClient() {
 
  <div className="rounded-[22px] border border-brand-main/30 bg-brand-main/5 p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-dark">Ready to Get Started?</p>
-          <h3 className="mt-2 text-[20px] font-bold font-plus-jakarta text-foreground">Book a Free Consultation</h3>
+          <h3 className="mt-2 text-[20px] font-bold font-heading text-foreground">Book a Free Consultation</h3>
           <p className="mt-3 text-sm leading-relaxed text-zinc-700">
             Not sure which package fits best? A quick call takes 15 minutes and gives you a clear path forward — no obligation.
           </p>

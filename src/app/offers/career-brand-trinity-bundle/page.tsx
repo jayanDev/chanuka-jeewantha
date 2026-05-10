@@ -20,7 +20,7 @@ export default function CareerBrandTrinityBundlePage() {
       <div className="mx-auto w-full max-w-[1100px] px-4 sm:px-6">
  <article className="rounded-[20px] border border-zinc-200 bg-white p-6 md:p-8 space-y-5">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-main">Bundle Package</p>
-          <h1 className="text-[34px] md:text-[48px] font-bold font-plus-jakarta text-foreground leading-[1.1]">{pkg.name}</h1>
+          <h1 className="text-[34px] md:text-[48px] font-bold font-heading text-foreground leading-[1.1]">{pkg.name}</h1>
           <p className="text-lg text-text-body">{pkg.audience}</p>
           <p className="text-xl font-bold text-foreground">From {formatLkr(pkg.priceLkr)}</p>
  <ul className="space-y-1 text-sm text-zinc-600">

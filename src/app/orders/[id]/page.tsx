@@ -274,7 +274,7 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
         <div className="rounded-[16px] border border-zinc-200 bg-white p-6 space-y-4">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <h1 className="text-2xl font-bold font-plus-jakarta text-foreground">
+              <h1 className="text-2xl font-bold font-heading text-foreground">
                 Order #{order.id.slice(0, 8)}
               </h1>
               <p className="text-sm text-zinc-500 mt-0.5">

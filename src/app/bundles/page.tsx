@@ -13,10 +13,10 @@ export default function BundlesPage() {
   return (
     <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="w-full bg-gradient-to-b from-[#0A2540] to-[#1a3a5c] text-white px-4 py-16 sm:px-6 md:py-24">
+      <section className="w-full bg-gradient-to-b from-[#0A2540] to-[#1B3E66] text-white px-4 py-16 sm:px-6 md:py-24">
         <div className="max-w-[1512px] mx-auto text-center">
           <span className="inline-block text-[#C9A961] font-semibold uppercase tracking-[0.18em] mb-4">Smart Pricing</span>
-          <h1 className="font-plus-jakarta text-[36px] sm:text-[48px] md:text-[64px] font-bold leading-[1.1] mb-6">
+          <h1 className="font-heading text-[36px] sm:text-[48px] md:text-[64px] font-bold leading-[1.1] mb-6">
             Bundle Packages That Save You Money
           </h1>
           <p className="text-white/80 text-lg max-w-3xl mx-auto mb-8">
@@ -33,7 +33,7 @@ export default function BundlesPage() {
             {/* Starter Pack */}
             <div className="bundle-card bg-white rounded-[20px] border border-zinc-200 p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="font-plus-jakarta text-[32px] font-bold text-foreground">🎓 Starter Pack</h2>
+                <h2 className="font-heading text-[32px] font-bold text-foreground">🎓 Starter Pack</h2>
               </div>
               <p className="text-sm font-semibold text-[#C9A961] uppercase tracking-wider mb-4">For Students & Graduates</p>
               
@@ -104,7 +104,7 @@ export default function BundlesPage() {
             {/* Career Pack - Featured */}
             <div className="bundle-card featured bg-gradient-to-br from-[#C9A961]/10 to-white rounded-[20px] border-2 border-[#C9A961] p-8 shadow-2xl hover:shadow-2xl transition-all hover:-translate-y-2 md:scale-105 md:z-10">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="font-plus-jakarta text-[32px] font-bold text-foreground">🚀 Career Pack</h2>
+                <h2 className="font-heading text-[32px] font-bold text-foreground">🚀 Career Pack</h2>
                 <span className="bg-[#C9A961] text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider">⭐ POPULAR</span>
               </div>
               <p className="text-sm font-semibold text-[#C9A961] uppercase tracking-wider mb-4">For Working Professionals</p>
@@ -183,7 +183,7 @@ export default function BundlesPage() {
             {/* Executive Pack */}
             <div className="bundle-card bg-white rounded-[20px] border border-zinc-200 p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="font-plus-jakarta text-[32px] font-bold text-foreground">👑 Executive Pack</h2>
+                <h2 className="font-heading text-[32px] font-bold text-foreground">👑 Executive Pack</h2>
               </div>
               <p className="text-sm font-semibold text-[#C9A961] uppercase tracking-wider mb-4">For Senior Professionals</p>
               
@@ -269,7 +269,7 @@ export default function BundlesPage() {
       <section className="w-full py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-zinc-50">
         <div className="max-w-[1512px] mx-auto">
           <div className="text-center mb-12">
-            <h2 className="font-plus-jakarta text-[36px] sm:text-[48px] font-bold text-foreground mb-4">
+            <h2 className="font-heading text-[36px] sm:text-[48px] font-bold text-foreground mb-4">
               Compare The Bundles
             </h2>
             <p className="text-text-body max-w-2xl mx-auto">
@@ -331,9 +331,9 @@ export default function BundlesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="w-full py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-gradient-to-r from-[#0A2540] to-[#1a3a5c] text-white">
+      <section className="w-full py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-gradient-to-r from-[#0A2540] to-[#1B3E66] text-white">
         <div className="max-w-[1512px] mx-auto text-center">
-          <h2 className="font-plus-jakarta text-[36px] sm:text-[48px] font-bold mb-6">
+          <h2 className="font-heading text-[36px] sm:text-[48px] font-bold mb-6">
             Ready to Get Started?
           </h2>
           <p className="text-white/80 text-lg max-w-2xl mx-auto mb-8">

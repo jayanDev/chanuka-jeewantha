@@ -152,7 +152,7 @@ export default function ServicePackageShowcase({ title, description, packages }:
  <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50">
       <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
  <div className="max-w-5xl mx-auto rounded-[24px] border border-zinc-200 bg-white p-8 md:p-10 text-center mb-8">
-          <h2 className="text-[34px] md:text-[42px] font-bold font-plus-jakarta text-foreground mb-4">{title}</h2>
+          <h2 className="text-[34px] md:text-[42px] font-bold font-heading text-foreground mb-4">{title}</h2>
           <p className="text-text-body text-lg leading-relaxed">{description}</p>
           {feedback && <p className="mt-4 text-sm font-medium text-brand-dark">{feedback}</p>}
         </div>
@@ -181,7 +181,7 @@ export default function ServicePackageShowcase({ title, description, packages }:
                 </div>
               )}
 
-              <h3 className="text-[26px] font-bold font-plus-jakarta text-foreground mb-2">{pkg.name}</h3>
+              <h3 className="text-[26px] font-bold font-heading text-foreground mb-2">{pkg.name}</h3>
               <p className="text-text-body mb-6">{pkg.description ?? pkg.audience}</p>
 
               <div className="grid grid-cols-2 gap-4 mb-6">

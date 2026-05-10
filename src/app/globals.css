@@ -35,8 +35,9 @@
   --color-border-navy: #0A2540;       /* Navy — strong borders */
 
   /* ===== TYPOGRAPHY FAMILIES ===== */
-  --font-heading: 'Playfair Display', Georgia, serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* next/font injects --font-playfair and --font-inter on <html> via layout.tsx */
+  --font-heading: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  --font-body: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
   /* ===== FONT SIZES (DESKTOP) ===== */

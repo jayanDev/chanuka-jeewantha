@@ -69,7 +69,7 @@ export default function ContactPage() {
             {[1, 2, 3, 4, 5].map((i) => (
               <span
                 key={i}
-                className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none"
+                className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none"
               >
                 CONTACT
               </span>
@@ -83,7 +83,7 @@ export default function ContactPage() {
             <span className="text-brand-main text-xs" aria-hidden="true">/</span>
             <span className="text-brand-main">Contact</span>
           </nav>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.08] max-w-4xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.08] max-w-4xl !text-white">
             Let&apos;s Work <span className="text-brand-main">Together</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-text-light">

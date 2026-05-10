@@ -76,6 +76,15 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
     sku: pkg.slug,
   });
 
+  const whatsappMessage = [
+    `Hello Chanuka, I'd like to order: ${pkg.name}`,
+    `Price: ${getPackageDisplayPrice(pkg)}`,
+    `Delivery: ${pkg.delivery}`,
+    "",
+    "Please confirm next steps and payment details.",
+  ].join("\n");
+  const whatsappUrl = `https://wa.me/94773902230?text=${encodeURIComponent(whatsappMessage)}`;
+
   return (
     <>
       <script
@@ -96,7 +105,7 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
             <span className="text-brand-main">{pkg.name}</span>
           </div>
 
-          <h1 className="text-[32px] sm:text-[44px] md:text-[62px] font-bold font-plus-jakarta leading-[1.08] mb-4 !text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]">
+          <h1 className="text-[32px] sm:text-[44px] md:text-[62px] font-bold font-heading leading-[1.08] mb-4 !text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]">
             {packageTitleMain}{" "}
             {hasSimplePackageWord && <span className="text-brand-main">Package</span>}
           </h1>
@@ -118,12 +127,12 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
             <p className="text-lg font-semibold text-foreground mb-5">{pkg.category}</p>
 
             <p className="text-sm uppercase tracking-wide text-zinc-500 mb-2">Price</p>
-            <p className="text-2xl font-bold font-plus-jakarta text-foreground mb-5">{getPackageDisplayPrice(pkg)}</p>
+            <p className="text-2xl font-bold font-heading text-foreground mb-5">{getPackageDisplayPrice(pkg)}</p>
 
             <p className="text-sm uppercase tracking-wide text-zinc-500 mb-2">Delivery Time</p>
             <p className="text-lg font-semibold text-foreground mb-8">{pkg.delivery}</p>
 
-            <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground mb-5">Package Includes</h2>
+            <h2 className="text-[28px] font-bold font-heading text-foreground mb-5">Package Includes</h2>
             <ul className="space-y-3 mb-10">
               {pkg.features.map((feature) => (
                 <li key={feature} className="flex items-start gap-3 text-text-body">
@@ -135,23 +144,34 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
 
             {pkg.idealFor && (
               <div className="mb-10 rounded-[16px] border border-brand-main/15 bg-brand-main/5 p-5">
-                <h2 className="text-[22px] font-bold font-plus-jakarta text-foreground mb-3">Ideal For</h2>
+                <h2 className="text-[22px] font-bold font-heading text-foreground mb-3">Ideal For</h2>
                 <p className="leading-relaxed text-text-body">{pkg.idealFor}</p>
               </div>
             )}
 
             <div className="flex flex-wrap gap-3">
-              <Link href={`/catalogue?service=${pkg.serviceKey}`} className="rounded-[10px] bg-brand-main px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-dark">
-                Buy This Package
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/>
+                </svg>
+                Order on WhatsApp
+              </a>
+              <Link href={`/catalogue?service=${pkg.serviceKey}`} className="btn btn-secondary">
+                Order via Form
               </Link>
- <Link href="/contact" className="rounded-[10px] border border-zinc-300 px-6 py-3 font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
+              <Link href="/contact" className="rounded-[10px] border border-zinc-300 px-6 py-3 font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main">
                 Ask a Question
               </Link>
             </div>
           </article>
 
  <aside className="rounded-[22px] border border-zinc-200 p-6 bg-zinc-50 h-fit">
-            <h3 className="text-xl font-bold font-plus-jakarta text-foreground mb-3">More Packages</h3>
+            <h3 className="text-xl font-bold font-heading text-foreground mb-3">More Packages</h3>
             <div className="space-y-3">
               {packageProducts
                 .filter((item) => item.slug !== pkg.slug)
@@ -165,6 +185,39 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
           </aside>
         </div>
       </section>
+
+      {/* Sticky mobile order bar */}
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-zinc-200 bg-white shadow-[0_-4px_16px_rgba(10,37,64,0.08)] lg:hidden">
+        <div className="mx-auto flex max-w-[1200px] items-center gap-3 px-4 py-3">
+          <div className="min-w-0 flex-shrink">
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-text-secondary">From</p>
+            <p className="font-heading text-[18px] font-bold text-primary leading-tight">
+              {getPackageDisplayPrice(pkg)}
+            </p>
+          </div>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 inline-flex items-center justify-center gap-2 rounded-[8px] bg-brand-main px-3 py-3 text-sm font-semibold text-primary shadow-[0_4px_16px_rgba(201,169,97,0.3)] transition-all active:translate-y-[1px]"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/>
+            </svg>
+            WhatsApp
+          </a>
+          <Link
+            href={`/catalogue?service=${pkg.serviceKey}`}
+            className="inline-flex items-center justify-center rounded-[8px] border-2 border-brand-main px-3 py-3 text-sm font-semibold text-brand-main"
+          >
+            Form
+          </Link>
+        </div>
+        <div className="h-[env(safe-area-inset-bottom)]" />
+      </div>
+
+      {/* Spacer so sticky bar doesn't overlap content on mobile */}
+      <div className="h-24 lg:hidden" aria-hidden="true" />
     </>
   );
 }

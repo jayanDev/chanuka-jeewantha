@@ -162,7 +162,7 @@ function renderDetailTable(title: string, rows: DetailRow[]) {
   return (
  <article className="rounded-[24px] border border-zinc-200 bg-white shadow-sm">
  <div className="border-b border-zinc-200 px-6 py-5 sm:px-8">
-        <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">{title}</h2>
+        <h2 className="text-[28px] font-bold font-heading text-foreground">{title}</h2>
       </div>
       <div className="overflow-x-auto">
         <table className="min-w-full border-collapse">
@@ -193,7 +193,7 @@ function renderPackageTable(category: PackageCategory) {
  <div className="border-b border-zinc-200 px-6 py-5 sm:px-8">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
-            <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">{category.title}</h2>
+            <h2 className="text-[28px] font-bold font-heading text-foreground">{category.title}</h2>
  <p className="mt-2 max-w-4xl text-sm leading-relaxed text-zinc-600">{category.description}</p>
           </div>
           {category.isPriority ? (
@@ -329,7 +329,7 @@ export default function BookingPage() {
             {[1, 2, 3, 4].map((i) => (
               <span
                 key={i}
-                className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none"
+                className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none"
               >
                 BOOKING
               </span>
@@ -345,7 +345,7 @@ export default function BookingPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Booking</span>
           </div>
-          <h1 className="font-plus-jakarta text-[32px] sm:text-[40px] md:text-[52px] lg:text-[64px] font-bold leading-[1.08] max-w-6xl !text-white">
+          <h1 className="font-heading text-[32px] sm:text-[40px] md:text-[52px] lg:text-[64px] font-bold leading-[1.08] max-w-6xl !text-white">
             Chanuka Jeewantha - <span className="text-brand-main">Professional CV Writing, Linkedin Account Optimization & Career Development Services</span>
           </h1>
           <p className="mt-6 max-w-4xl text-lg text-text-light">
@@ -386,7 +386,7 @@ export default function BookingPage() {
 
           <section className="space-y-8">
  <div className="rounded-[24px] border border-zinc-200 bg-white px-6 py-5 shadow-sm sm:px-8">
-              <h2 className="text-[30px] font-bold font-plus-jakarta text-foreground">Packages and Service Tables</h2>
+              <h2 className="text-[30px] font-bold font-heading text-foreground">Packages and Service Tables</h2>
  <p className="mt-3 max-w-4xl text-sm leading-relaxed text-zinc-600">
                 Each table below lists the package name, target audience, price, delivery timeline, included features, and direct booking action. Clients can use the package page or WhatsApp option from the same row.
               </p>
@@ -396,7 +396,7 @@ export default function BookingPage() {
           </section>
 
  <section className="rounded-[24px] border border-zinc-200 bg-white p-6 shadow-sm sm:p-8">
-            <h2 className="text-[28px] font-bold font-plus-jakarta text-foreground">Direct Booking Options</h2>
+            <h2 className="text-[28px] font-bold font-heading text-foreground">Direct Booking Options</h2>
             <div className="mt-5 overflow-x-auto">
               <table className="min-w-full border-collapse">
                 <thead className="bg-foreground text-background">

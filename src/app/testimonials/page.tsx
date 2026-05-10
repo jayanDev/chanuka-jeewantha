@@ -112,7 +112,7 @@ export default function TestimonialsPage() {
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4, 5].map((i) => (
-              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none">
                 TESTIMONIALS
               </span>
             ))}
@@ -125,7 +125,7 @@ export default function TestimonialsPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Testimonials</span>
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
             See what my clients have to <span className="text-brand-main">say about me.</span>
           </h1>
         </div>
@@ -151,7 +151,7 @@ export default function TestimonialsPage() {
               <div className="w-16 h-16 text-brand-light opacity-50 mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"></path></svg>
               </div>
-              <h2 className="text-[32px] md:text-[40px] font-bold font-plus-jakarta text-foreground leading-[1.2]">
+              <h2 className="text-[32px] md:text-[40px] font-bold font-heading text-foreground leading-[1.2]">
                 Hi, I am Chanuka Jeewantha
               </h2>
               <p className="text-[24px] md:text-[32px] font-medium text-text-body leading-relaxed italic">
@@ -182,7 +182,7 @@ export default function TestimonialsPage() {
  <section className="w-full py-[64px] sm:py-[80px] md:py-[96px] bg-zinc-50 border-y border-zinc-200">
         <div className="max-w-[920px] mx-auto px-4 sm:px-6">
  <div className="bg-white rounded-[24px] border border-zinc-200 p-8 md:p-10 shadow-sm">
-            <h2 className="text-[32px] md:text-[40px] font-bold font-plus-jakarta text-foreground mb-2">
+            <h2 className="text-[32px] md:text-[40px] font-bold font-heading text-foreground mb-2">
               Leave Your Review
             </h2>
             <p className="text-text-body mb-8 text-lg">
@@ -306,7 +306,7 @@ export default function TestimonialsPage() {
                     "{review.message}"
                   </p>
                   <div className="flex items-center justify-between gap-4">
-                    <h4 className="font-bold font-plus-jakarta text-[18px] text-foreground">{review.name}</h4>
+                    <h4 className="font-bold font-heading text-[18px] text-foreground">{review.name}</h4>
                     <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">
                       {new Date(review.createdAt).toLocaleDateString("en-LK")}
                     </span>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import {
   calculateCatalogueTotal,
@@ -263,7 +264,7 @@ export default function CatalogueClient() {
       <section className="w-full bg-foreground px-4 py-12 text-background sm:px-6 md:py-16">
         <div className="mx-auto max-w-5xl text-center">
           <p className="font-semibold uppercase tracking-[0.18em] text-brand-main">Career Studio Catalogue</p>
-          <h1 className="mt-4 font-plus-jakarta text-[34px] font-bold leading-[1.08] !text-white sm:text-[46px] md:text-[64px]">
+          <h1 className="mt-4 font-heading text-[34px] font-bold leading-[1.08] !text-white sm:text-[46px] md:text-[64px]">
             Find the right package in three questions.
           </h1>
           <p className="mx-auto mt-5 max-w-3xl text-lg leading-relaxed text-white/80">
@@ -275,7 +276,7 @@ export default function CatalogueClient() {
       <section className="tier-comparison w-full bg-white px-4 py-12 sm:px-6 md:py-16">
         <div className="mx-auto max-w-5xl">
           <div className="text-center mb-12">
-            <h2 className="font-plus-jakarta text-[30px] sm:text-[40px] font-bold text-foreground mb-3">Choose Your Service Level</h2>
+            <h2 className="font-heading text-[30px] sm:text-[40px] font-bold text-foreground mb-3">Choose Your Service Level</h2>
             <p className="text-text-body max-w-2xl mx-auto">Two ways to work with us — same quality framework, different experience.</p>
           </div>
           
@@ -283,7 +284,7 @@ export default function CatalogueClient() {
             
             <div className="tier-card signature rounded-[12px] border-2 border-[#C9A961] bg-gradient-to-br from-[#C9A961]/5 to-white p-8 shadow-md hover:shadow-lg transition-shadow flex flex-col">
               <span className="tier-badge inline-block rounded-full bg-[#C9A961] text-white px-4 py-1.5 text-xs font-bold uppercase tracking-wider mb-4 w-fit">Premium</span>
-              <h3 className="font-plus-jakarta text-[24px] font-bold text-foreground mb-2">✨ Signature Series</h3>
+              <h3 className="font-heading text-[24px] font-bold text-foreground mb-2">✨ Signature Series</h3>
               <p className="tier-tagline text-sm font-semibold text-[#6B7280] mb-1">Personally crafted by Chanuka Jeewantha</p>
               <p className="certifications text-xs font-semibold text-[#0A2540] mb-4">CPRW & CPCC Certified</p>
               <ul className="tier-features space-y-2 text-sm text-zinc-700 mb-4 flex-grow">
@@ -302,7 +303,7 @@ export default function CatalogueClient() {
             
             <div className="tier-card essentials rounded-[12px] border border-zinc-200 bg-white p-8 shadow-md hover:shadow-lg transition-shadow flex flex-col">
               <span className="tier-badge inline-block rounded-full bg-[#6B7280] text-white px-4 py-1.5 text-xs font-bold uppercase tracking-wider mb-4 w-fit">Accessible</span>
-              <h3 className="font-plus-jakarta text-[24px] font-bold text-foreground mb-2">📋 Essentials</h3>
+              <h3 className="font-heading text-[24px] font-bold text-foreground mb-2">📋 Essentials</h3>
               <p className="tier-tagline text-sm font-semibold text-[#6B7280] mb-1">Team-crafted, Chanuka supervised</p>
               <p className="certifications text-xs font-semibold text-[#0A2540] mb-4">Same Quality Standards</p>
               <ul className="tier-features space-y-2 text-sm text-zinc-700 mb-4 flex-grow">
@@ -332,8 +333,19 @@ export default function CatalogueClient() {
 
         {step === 1 && (
           <div className="rounded-[18px] border border-zinc-200 bg-white p-6 shadow-sm md:p-8">
+            <div className="mb-5 flex flex-col gap-2 rounded-[12px] border border-zinc-200 bg-bg-cream p-4 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-sm text-text-body">
+                Already know what you need?
+              </p>
+              <Link
+                href="/packages"
+                className="inline-flex items-center gap-1 text-sm font-semibold text-brand-main hover:text-brand-dark"
+              >
+                Skip the quiz — browse all packages →
+              </Link>
+            </div>
             <p className="text-sm font-bold uppercase tracking-[0.14em] text-brand-main">Question 1</p>
-            <h2 className="mt-2 font-plus-jakarta text-[30px] font-bold text-foreground">What kind of services do you need?</h2>
+            <h2 className="mt-2 font-heading text-[30px] font-bold text-foreground">What kind of services do you need?</h2>
             <p className="mt-2 text-zinc-600">You can select multiple services.</p>
             <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2">
               {serviceOptions.map((service) => (
@@ -365,7 +377,7 @@ export default function CatalogueClient() {
         {step === 2 && (
           <div className="rounded-[18px] border border-zinc-200 bg-white p-6 shadow-sm md:p-8">
             <p className="text-sm font-bold uppercase tracking-[0.14em] text-brand-main">Question 2</p>
-            <h2 className="mt-2 font-plus-jakarta text-[30px] font-bold text-foreground">How many experience do you have?</h2>
+            <h2 className="mt-2 font-heading text-[30px] font-bold text-foreground">How many experience do you have?</h2>
             <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2">
               {experienceOptions.map((item) => (
                 <label key={item.key} className="flex cursor-pointer gap-3 rounded-[12px] border border-zinc-200 p-4 hover:border-brand-main">
@@ -399,7 +411,7 @@ export default function CatalogueClient() {
         {step === 3 && (
           <div className="rounded-[18px] border border-zinc-200 bg-white p-6 shadow-sm md:p-8">
             <p className="text-sm font-bold uppercase tracking-[0.14em] text-brand-main">Question 3</p>
-            <h2 className="mt-2 font-plus-jakarta text-[30px] font-bold text-foreground">Which service option you prefer?</h2>
+            <h2 className="mt-2 font-heading text-[30px] font-bold text-foreground">Which service option you prefer?</h2>
             <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
               {serviceOptionChoices.map((item) => (
                 <label
@@ -452,47 +464,11 @@ export default function CatalogueClient() {
 
         {step === 4 && (
           <div className="space-y-8">
-            <section className="tier-comparison rounded-[18px] border border-zinc-200 bg-white p-6 shadow-sm md:p-8">
-              <h2 className="mb-8 text-center font-plus-jakarta text-[30px] font-bold text-foreground">Choose Your Service Level</h2>
-              <div className="tiers-grid grid grid-cols-1 gap-6 md:grid-cols-2">
-                
-                <div className="tier-card signature rounded-[20px] border-2 border-[#C9A961] bg-gradient-to-br from-[#C9A961]/5 to-white p-6 shadow-lg">
-                  <span className="tier-badge inline-block rounded-full bg-[#C9A961] px-4 py-2 text-sm font-bold uppercase tracking-wider text-white">PREMIUM</span>
-                  <h3 className="mt-4 font-plus-jakarta text-[24px] font-bold text-foreground">✨ Signature Series</h3>
-                  <p className="tier-tagline mt-2 text-sm font-semibold text-[#6B7280]">Personally crafted by Chanuka Jeewantha</p>
-                  <ul className="tier-features mt-4 space-y-2 text-sm text-zinc-700">
-                    <li>✓ Industry-specific strategic positioning</li>
-                    <li>✓ Country-specific format optimization</li>
-                    <li>✓ 30-day post-delivery support</li>
-                    <li>✓ Premium delivery within 5 days</li>
-                    <li>✓ Limited to 2 new clients per day</li>
-                    <li>✓ CPRW & CPCC certified expertise</li>
-                  </ul>
-                  <p className="tier-best-for mt-4 text-sm font-semibold text-zinc-600">Best for: Career-focused professionals investing in long-term success</p>
-                </div>
-                
-                <div className="tier-card essentials rounded-[20px] border border-zinc-200 bg-white p-6 shadow-lg">
-                  <span className="tier-badge inline-block rounded-full bg-[#6B7280] px-4 py-2 text-sm font-bold uppercase tracking-wider text-white">VALUE</span>
-                  <h3 className="mt-4 font-plus-jakarta text-[24px] font-bold text-foreground">📋 Essentials</h3>
-                  <p className="tier-tagline mt-2 text-sm font-semibold text-[#6B7280]">Team-crafted, Chanuka supervised</p>
-                  <ul className="tier-features mt-4 space-y-2 text-sm text-zinc-700">
-                    <li>✓ Standard ATS-friendly format</li>
-                    <li>✓ Basic optimization</li>
-                    <li>✓ 7-day delivery</li>
-                    <li>✓ Email-based support</li>
-                    <li>✓ Quality reviewed by Chanuka</li>
-                  </ul>
-                  <p className="tier-best-for mt-4 text-sm font-semibold text-zinc-600">Best for: Students, fresh graduates, and budget-conscious professionals</p>
-                </div>
-                
-              </div>
-            </section>
-
             <div className="rounded-[18px] border border-zinc-200 bg-white p-6 shadow-sm md:p-8">
               <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
                 <div>
                   <p className="text-sm font-bold uppercase tracking-[0.14em] text-brand-main">Your Catalogue</p>
-                  <h2 className="mt-2 font-plus-jakarta text-[30px] font-bold text-foreground">Recommended packages</h2>
+                  <h2 className="mt-2 font-heading text-[30px] font-bold text-foreground">Recommended packages</h2>
                   <p className="mt-2 text-zinc-600">
                     {selectedServices.map((key) => getServiceByKey(key)?.shortTitle).filter(Boolean).join(", ")} for {selectedExperience?.title} through {selectedOption?.shortTitle}.
                   </p>
@@ -525,7 +501,7 @@ export default function CatalogueClient() {
                         {pkg.optionKey === "founder-led" ? "Signature Series" : "Essentials"}
                       </span>
                     </div>
-                    <h3 className="font-plus-jakarta text-[23px] font-bold leading-tight text-foreground">{pkg.name}</h3>
+                    <h3 className="font-heading text-[23px] font-bold leading-tight text-foreground">{pkg.name}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-zinc-600">{pkg.description}</p>
                     <p className="mt-4 text-2xl font-bold text-foreground">{getPackageDisplayPrice(pkg)}</p>
                     <ul className="mt-4 space-y-2 text-sm text-zinc-700">
@@ -544,7 +520,7 @@ export default function CatalogueClient() {
                 <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
                   <div>
                     <p className="text-sm text-zinc-500">Order total</p>
-                    <p className="font-plus-jakarta text-[28px] font-bold text-foreground">{formatLkr(totals.totalLkr)}</p>
+                    <p className="font-heading text-[28px] font-bold text-foreground">{formatLkr(totals.totalLkr)}</p>
                     {totals.discountPercent > 0 && (
                       <p className="text-sm font-semibold text-emerald-700">
                         {totals.discountPercent}% supervised bundle discount applied. You save {formatLkr(totals.discountLkr)}.
@@ -583,7 +559,7 @@ export default function CatalogueClient() {
                 <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                   <div>
                     <p className="text-sm font-bold uppercase tracking-[0.14em] text-brand-main">Order this package</p>
-                    <h2 className="mt-2 font-plus-jakarta text-[30px] font-bold text-foreground">
+                    <h2 className="mt-2 font-heading text-[30px] font-bold text-foreground">
                       Step {orderStep} of 5
                     </h2>
                   </div>
@@ -600,7 +576,7 @@ export default function CatalogueClient() {
                 {orderStep === 1 && (
                   <section className="mt-6 space-y-5">
                     <div>
-                      <h3 className="font-plus-jakarta text-[24px] font-bold text-foreground">Personal Information</h3>
+                      <h3 className="font-heading text-[24px] font-bold text-foreground">Personal Information</h3>
                       <p className="mt-1 text-sm text-zinc-600">We use this to contact you and match your order to payment.</p>
                     </div>
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -633,7 +609,7 @@ export default function CatalogueClient() {
                 {orderStep === 2 && (
                   <section className="mt-6 space-y-5">
                     <div>
-                      <h3 className="font-plus-jakarta text-[24px] font-bold text-foreground">Career Background</h3>
+                      <h3 className="font-heading text-[24px] font-bold text-foreground">Career Background</h3>
                       <p className="mt-1 text-sm text-zinc-600">Add your current role, experience, achievements, and skills.</p>
                     </div>
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -668,7 +644,7 @@ export default function CatalogueClient() {
                 {orderStep === 3 && (
                   <section className="mt-6 space-y-5">
                     <div>
-                      <h3 className="font-plus-jakarta text-[24px] font-bold text-foreground">Education, Languages & Referees</h3>
+                      <h3 className="font-heading text-[24px] font-bold text-foreground">Education, Languages & Referees</h3>
                       <p className="mt-1 text-sm text-zinc-600">Share qualifications and language proficiency.</p>
                     </div>
                     {qualificationLongFields.map((field) => (
@@ -705,7 +681,7 @@ export default function CatalogueClient() {
                 {orderStep === 4 && (
                   <section className="mt-6 space-y-5">
                     <div>
-                      <h3 className="font-plus-jakarta text-[24px] font-bold text-foreground">Career Goals & Final Notes</h3>
+                      <h3 className="font-heading text-[24px] font-bold text-foreground">Career Goals & Final Notes</h3>
                       <p className="mt-1 text-sm text-zinc-600">Tell us what roles and markets you are targeting.</p>
                     </div>
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -749,7 +725,7 @@ export default function CatalogueClient() {
                 {orderStep === 5 && (
                   <section className="mt-6 space-y-5">
                     <div>
-                      <h3 className="font-plus-jakarta text-[24px] font-bold text-foreground">Payment Confirmation</h3>
+                      <h3 className="font-heading text-[24px] font-bold text-foreground">Payment Confirmation</h3>
                       <p className="mt-1 text-sm text-zinc-600">Upload your transfer receipt to activate the order.</p>
                     </div>
                     <div className="rounded-[14px] border border-zinc-200 bg-zinc-50 p-5">

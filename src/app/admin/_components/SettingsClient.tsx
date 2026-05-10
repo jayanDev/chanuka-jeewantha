@@ -127,7 +127,7 @@ export default function SettingsClient() {
   return (
     <section className="space-y-4">
       <div className="rounded-[16px] border border-zinc-200 bg-white p-6">
-        <h2 className="text-2xl font-bold font-plus-jakarta">Settings</h2>
+        <h2 className="text-2xl font-bold font-heading">Settings</h2>
         <p className="mt-1 text-sm text-zinc-500">General admin controls and quick configuration.</p>
       </div>
 

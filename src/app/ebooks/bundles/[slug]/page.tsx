@@ -85,7 +85,7 @@ export default async function BundlePage({ params }: BundlePageProps) {
             <span className="mb-4 inline-flex rounded-full bg-brand-main/15 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-brand-main">
               Bundle Deal
             </span>
-            <h1 className="text-[22px] sm:text-[28px] md:text-[36px] font-bold font-plus-jakarta leading-[1.15] mb-3 text-white">
+            <h1 className="text-[22px] sm:text-[28px] md:text-[36px] font-bold font-heading leading-[1.15] mb-3 text-white">
               {bundle.title}
             </h1>
             <p className="text-[18px] font-semibold text-brand-light mb-5">{bundle.subtitle}</p>
@@ -104,7 +104,7 @@ export default async function BundlePage({ params }: BundlePageProps) {
             {/* Pricing */}
             <div className="rounded-[16px] border border-white/10 bg-white/5 p-6 mb-8">
               <div className="flex items-end gap-4 mb-2">
-                <span className="text-4xl font-extrabold font-plus-jakarta text-white">
+                <span className="text-4xl font-extrabold font-heading text-white">
                   LKR {discountedLkr.toLocaleString("en-LK")}
                 </span>
                 <span className="text-xl text-text-light line-through mb-1">

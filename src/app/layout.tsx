@@ -183,7 +183,7 @@ export default async function RootLayout({
       <head>
         <link rel="alternate" type="application/rss+xml" title="Chanuka Jeewantha Blog RSS Feed" href={`${siteUrl}/feed.xml`} />
       </head>
-      <body className="min-h-full flex flex-col font-poppins">
+      <body className="min-h-full flex flex-col font-body">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:z-[9999] focus:top-4 focus:left-4 focus:rounded-lg focus:bg-brand-main focus:px-4 focus:py-2 focus:text-white focus:font-semibold focus:shadow-lg"

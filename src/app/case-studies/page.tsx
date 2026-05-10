@@ -31,7 +31,7 @@ export default function CaseStudiesPage() {
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4, 5].map((i) => (
-              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none">
                 CASE STUDIES
               </span>
             ))}
@@ -44,7 +44,7 @@ export default function CaseStudiesPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Case Studies</span>
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-4xl !text-white">
             Success stories & <span className="text-brand-main">Impact.</span>
           </h1>
         </div>
@@ -74,7 +74,7 @@ export default function CaseStudiesPage() {
 
                 <div className="w-full md:w-1/2 flex flex-col">
                   <span className="text-brand-main font-bold mb-4">{study.year}</span>
-                  <h2 className="text-[32px] md:text-[40px] font-bold font-plus-jakarta text-foreground leading-[1.2] mb-6">
+                  <h2 className="text-[32px] md:text-[40px] font-bold font-heading text-foreground leading-[1.2] mb-6">
                     {study.title}
                   </h2>
                   <p className="text-text-body text-lg leading-relaxed mb-8">
@@ -91,7 +91,7 @@ export default function CaseStudiesPage() {
           </div>
 
  <aside className="mt-10 rounded-[16px] border border-zinc-200 bg-white p-6">
-            <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Keep Exploring Results</h2>
+            <h2 className="text-[24px] font-bold font-heading text-foreground mb-3">Keep Exploring Results</h2>
             <p className="text-text-body mb-5">
               Compare service scope, portfolio samples, and implementation packages.
             </p>

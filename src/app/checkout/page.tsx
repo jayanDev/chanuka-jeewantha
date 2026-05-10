@@ -540,7 +540,7 @@ export default function CheckoutPage() {
     <>
  <section className="w-full bg-zinc-50 py-16 min-h-[70vh]">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 space-y-8">
-          <h1 className="text-4xl font-bold font-plus-jakarta text-foreground">Checkout</h1>
+          <h1 className="text-4xl font-bold font-heading text-foreground">Checkout</h1>
 
           {error && <p className="rounded-[10px] border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>}
           {success && <p className="rounded-[10px] border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">{success}</p>}
@@ -873,7 +873,7 @@ export default function CheckoutPage() {
               <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#25D366] text-white flex-shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
               </span>
-              <h2 className="text-xl font-bold font-plus-jakarta text-foreground">Order Submitted!</h2>
+              <h2 className="text-xl font-bold font-heading text-foreground">Order Submitted!</h2>
             </div>
  <p className="text-zinc-600 text-sm mb-3">
               Your order has been submitted successfully. Send a WhatsApp message to confirm your order and get faster delivery updates.

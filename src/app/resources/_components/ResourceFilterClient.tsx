@@ -127,7 +127,7 @@ export default function ResourceFilterClient({ resources }: { resources: Digital
                 )}
               </div>
 
-              <h2 className="text-[26px] font-bold font-plus-jakarta text-foreground mb-2 group-hover:text-brand-main transition-colors leading-[1.2]">
+              <h2 className="text-[26px] font-bold font-heading text-foreground mb-2 group-hover:text-brand-main transition-colors leading-[1.2]">
                 {resource.title}
               </h2>
               <p className="text-zinc-500 font-semibold mb-4 leading-relaxed">{resource.subtitle}</p>
@@ -147,10 +147,10 @@ export default function ResourceFilterClient({ resources }: { resources: Digital
                 <div>
                   <span className="text-sm font-semibold text-zinc-500 mb-1 block">Investment</span>
                   {resource.category === "free" ? (
-                    <span className="text-2xl font-bold font-plus-jakarta text-green-600">Free</span>
+                    <span className="text-2xl font-bold font-heading text-green-600">Free</span>
                   ) : (
                     <div className="flex items-baseline gap-2">
-                       <span className="text-2xl font-bold font-plus-jakarta text-foreground">
+                       <span className="text-2xl font-bold font-heading text-foreground">
                          {resource.priceLkr ? formatLkr(resource.priceLkr) : ""}
                        </span>
                     </div>
@@ -170,7 +170,7 @@ export default function ResourceFilterClient({ resources }: { resources: Digital
         </div>
       ) : (
  <div className="text-center py-20 bg-zinc-50 rounded-[20px] border border-zinc-200">
-          <h3 className="text-2xl font-bold font-plus-jakarta text-foreground mb-2">No resources found</h3>
+          <h3 className="text-2xl font-bold font-heading text-foreground mb-2">No resources found</h3>
           <p className="text-zinc-500">Try adjusting your search or category filter.</p>
         </div>
       )}

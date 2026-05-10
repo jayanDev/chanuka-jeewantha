@@ -64,7 +64,7 @@ export default function WorkshopBookingForm() {
         <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-main/10 text-brand-dark">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
         </div>
-        <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-2">Inquiry Received</h3>
+        <h3 className="text-[24px] font-bold font-heading text-foreground mb-2">Inquiry Received</h3>
         <p className="text-text-body">
           Thank you for your interest. I&apos;ll get back to you within 1–2 business days to discuss your workshop requirements.
         </p>
@@ -74,7 +74,7 @@ export default function WorkshopBookingForm() {
 
   return (
     <div className="rounded-[20px] border border-zinc-200 bg-white p-8 shadow-sm">
-      <h3 className="text-[28px] font-bold font-plus-jakarta text-foreground mb-2">Book a Workshop</h3>
+      <h3 className="text-[28px] font-bold font-heading text-foreground mb-2">Book a Workshop</h3>
       <p className="text-text-body mb-8 text-sm">
         Fill in your details and I&apos;ll reach out to discuss session goals, format, and scheduling.
       </p>

@@ -58,7 +58,7 @@ export default function BusinessesPage() {
         <div className="absolute top-[150px] left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap">
           <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
             {[1, 2, 3, 4, 5].map((i) => (
-              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-plus-jakarta font-extrabold uppercase leading-none">
+              <span key={i} className="text-[72px] sm:text-[120px] md:text-[200px] font-heading font-extrabold uppercase leading-none">
                 BUSINESSES
               </span>
             ))}
@@ -71,7 +71,7 @@ export default function BusinessesPage() {
             <span className="text-brand-main text-xs">/</span>
             <span className="text-brand-main">Businesses</span>
           </div>
-          <h1 className="font-plus-jakarta text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-5xl !text-white">
+          <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] max-w-5xl !text-white">
             Explore the ventures behind <span className="text-brand-main">my career ecosystem</span>.
           </h1>
         </div>
@@ -81,7 +81,7 @@ export default function BusinessesPage() {
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
           <div className="mb-14 max-w-4xl">
             <span className="text-brand-main font-semibold tracking-wider uppercase mb-2 block">Business Showcase</span>
-            <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground leading-[1.1] mb-4">
+            <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-heading text-foreground leading-[1.1] mb-4">
               Built to support careers from awareness to outcomes.
             </h2>
             <p className="text-text-body text-lg">
@@ -100,7 +100,7 @@ export default function BusinessesPage() {
                   <span className="text-xs font-bold uppercase tracking-[0.16em] text-brand-dark">Venture {index + 1}</span>
                 </div>
 
-                <h3 className="text-[30px] font-bold font-plus-jakarta text-foreground mb-2">{business.name}</h3>
+                <h3 className="text-[30px] font-bold font-heading text-foreground mb-2">{business.name}</h3>
                 <p className="text-brand-dark font-semibold mb-4">{business.type}</p>
                 <p className="text-text-body leading-relaxed mb-6">{business.summary}</p>
 
@@ -122,7 +122,7 @@ export default function BusinessesPage() {
           </div>
 
  <aside className="mt-8 rounded-[16px] border border-zinc-200 bg-zinc-50 p-6">
-            <h2 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-3">Discover Connected Pages</h2>
+            <h2 className="text-[24px] font-bold font-heading text-foreground mb-3">Discover Connected Pages</h2>
             <p className="text-text-body mb-5">
               Explore the services and proof-based content behind each business initiative.
             </p>

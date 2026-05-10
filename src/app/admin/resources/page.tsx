@@ -12,7 +12,7 @@ export default function AdminResourcesPage() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold font-plus-jakarta text-foreground">Resources Access</h1>
+        <h1 className="text-2xl font-bold font-heading text-foreground">Resources Access</h1>
         <p className="text-text-body text-sm mt-1">Grant or revoke access to paid resources (guides, systems, toolkits).</p>
       </div>
       <ResourcesClient />

@@ -80,7 +80,7 @@ export default async function ChecklistDetailPage({ params }: ChecklistPageProps
               <span className="mb-4 inline-flex rounded-full bg-brand-main/15 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-brand-main">
                 Free Checklist
               </span>
-              <h1 className="text-[22px] sm:text-[28px] md:text-[36px] font-bold font-plus-jakarta leading-[1.15] mb-3 text-white">
+              <h1 className="text-[22px] sm:text-[28px] md:text-[36px] font-bold font-heading leading-[1.15] mb-3 text-white">
                 {checklist.title}
               </h1>
               <p className="text-[20px] font-semibold text-brand-light mb-5">{checklist.subtitle}</p>
@@ -99,19 +99,19 @@ export default async function ChecklistDetailPage({ params }: ChecklistPageProps
                 <div className="flex flex-wrap gap-6">
                   <div>
                     <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-zinc-400 mb-1">Sections</p>
-                    <p className="text-2xl font-bold font-plus-jakarta text-white">{checklist.steps.length}</p>
+                    <p className="text-2xl font-bold font-heading text-white">{checklist.steps.length}</p>
                   </div>
                   <div>
                     <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-zinc-400 mb-1">Checklist Items</p>
-                    <p className="text-2xl font-bold font-plus-jakarta text-white">{totalItems}</p>
+                    <p className="text-2xl font-bold font-heading text-white">{totalItems}</p>
                   </div>
                   <div>
                     <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-zinc-400 mb-1">Open Preview</p>
-                    <p className="text-2xl font-bold font-plus-jakarta text-brand-main">{checklist.freeSteps}</p>
+                    <p className="text-2xl font-bold font-heading text-brand-main">{checklist.freeSteps}</p>
                   </div>
                   <div>
                     <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-zinc-400 mb-1">Price</p>
-                    <p className="text-2xl font-bold font-plus-jakarta text-white">100% Free</p>
+                    <p className="text-2xl font-bold font-heading text-white">100% Free</p>
                   </div>
                 </div>
               </div>
@@ -138,7 +138,7 @@ export default async function ChecklistDetailPage({ params }: ChecklistPageProps
 
       <section className="w-full py-[64px] sm:py-[80px] bg-zinc-50">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
-          <h2 className="text-[26px] sm:text-[32px] font-bold font-plus-jakarta text-foreground mb-8">
+          <h2 className="text-[26px] sm:text-[32px] font-bold font-heading text-foreground mb-8">
             What Is Inside
           </h2>
           <ol className="space-y-3">

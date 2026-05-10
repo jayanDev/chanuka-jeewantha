@@ -127,12 +127,12 @@ export default function AdminOrderDetailClient({ orderId }: { orderId: string })
           <div>
             <Link href="/admin/orders" className="text-sm font-semibold text-brand-main">Back to Orders</Link>
             <p className="mt-4 text-xs font-bold uppercase tracking-[0.16em] text-zinc-500">Order Details</p>
-            <h2 className="mt-1 font-plus-jakarta text-3xl font-bold text-foreground">{order.user.name}</h2>
+            <h2 className="mt-1 font-heading text-3xl font-bold text-foreground">{order.user.name}</h2>
             <p className="mt-1 text-sm text-zinc-600">{order.user.email} | {order.paymentWhatsApp}</p>
           </div>
           <div className="rounded-[14px] bg-brand-main/10 p-4 text-right">
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand-dark">Total</p>
-            <p className="mt-1 font-plus-jakarta text-3xl font-bold text-foreground">{formatLkr(order.totalLkr)}</p>
+            <p className="mt-1 font-heading text-3xl font-bold text-foreground">{formatLkr(order.totalLkr)}</p>
           </div>
         </div>
 
@@ -179,7 +179,7 @@ export default function AdminOrderDetailClient({ orderId }: { orderId: string })
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-[380px_minmax(0,1fr)]">
         <aside className="space-y-5">
           <div className="rounded-[18px] border border-zinc-200 bg-white p-5 shadow-sm">
-            <h3 className="font-plus-jakarta text-xl font-bold text-foreground">Manage Order</h3>
+            <h3 className="font-heading text-xl font-bold text-foreground">Manage Order</h3>
             <label className="mt-4 block text-sm font-semibold text-zinc-700">
               Status
               <select value={status} onChange={(event) => setStatus(event.target.value as AdminOrder["status"])} className="mt-2 w-full rounded-[10px] border border-zinc-300 px-3 py-3">
@@ -200,7 +200,7 @@ export default function AdminOrderDetailClient({ orderId }: { orderId: string })
           </div>
 
           <div className="rounded-[18px] border border-zinc-200 bg-white p-5 shadow-sm">
-            <h3 className="font-plus-jakarta text-xl font-bold text-foreground">Fast Actions</h3>
+            <h3 className="font-heading text-xl font-bold text-foreground">Fast Actions</h3>
             <div className="mt-4 grid grid-cols-1 gap-2">
               <button type="button" onClick={() => { setStatus("confirmed"); void save("confirmed"); }} className="rounded-[10px] border border-brand-main bg-brand-main/10 px-4 py-2.5 text-sm font-semibold text-brand-dark">
                 Confirm Payment
@@ -225,7 +225,7 @@ export default function AdminOrderDetailClient({ orderId }: { orderId: string })
 
         <div className="space-y-5">
           <div id="packages" className="rounded-[18px] border border-zinc-200 bg-white p-5 shadow-sm">
-            <h3 className="font-plus-jakarta text-xl font-bold text-foreground">Packages</h3>
+            <h3 className="font-heading text-xl font-bold text-foreground">Packages</h3>
             <div className="mt-4 space-y-3">
               {order.items.map((item) => (
                 <div key={item.id} className="rounded-[12px] border border-zinc-200 bg-zinc-50 p-4">
@@ -238,7 +238,7 @@ export default function AdminOrderDetailClient({ orderId }: { orderId: string })
 
           {order.intake && (
             <div id="intake" className="rounded-[18px] border border-zinc-200 bg-white p-5 shadow-sm">
-              <h3 className="font-plus-jakarta text-xl font-bold text-foreground">Client Intake Details</h3>
+              <h3 className="font-heading text-xl font-bold text-foreground">Client Intake Details</h3>
               <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
                 {Object.entries(order.intake).filter(([, value]) => value).map(([key, value]) => (
                   <div key={key} className="rounded-[12px] border border-zinc-200 bg-zinc-50 p-3">
@@ -251,7 +251,7 @@ export default function AdminOrderDetailClient({ orderId }: { orderId: string })
           )}
 
           <div id="timeline" className="rounded-[18px] border border-zinc-200 bg-white p-5 shadow-sm">
-            <h3 className="font-plus-jakarta text-xl font-bold text-foreground">Progress Timeline</h3>
+            <h3 className="font-heading text-xl font-bold text-foreground">Progress Timeline</h3>
             <div className="mt-4 space-y-3">
               {order.updates.length === 0 ? (
                 <p className="text-sm text-zinc-500">No updates yet.</p>
@@ -268,7 +268,7 @@ export default function AdminOrderDetailClient({ orderId }: { orderId: string })
           </div>
 
           <div id="revisions" className="rounded-[18px] border border-zinc-200 bg-white p-5 shadow-sm">
-            <h3 className="font-plus-jakarta text-xl font-bold text-foreground">Revision Requests</h3>
+            <h3 className="font-heading text-xl font-bold text-foreground">Revision Requests</h3>
             <div className="mt-4 space-y-3">
               {order.revisions.length === 0 ? (
                 <p className="text-sm text-zinc-500">No revision requests from customer yet.</p>

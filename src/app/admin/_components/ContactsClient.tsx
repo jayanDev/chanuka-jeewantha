@@ -128,7 +128,7 @@ export default function ContactsClient() {
       <div className="rounded-[16px] border border-zinc-200 bg-white p-6">
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
-            <h2 className="text-2xl font-bold font-plus-jakarta">Contact Inbox</h2>
+            <h2 className="text-2xl font-bold font-heading">Contact Inbox</h2>
             <p className="text-sm text-zinc-500 mt-1">
               Messages submitted through the contact form.
             </p>

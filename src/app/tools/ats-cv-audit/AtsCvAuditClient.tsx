@@ -160,7 +160,7 @@ export default function AtsCvAuditClient() {
  <div className="rounded-[20px] border border-zinc-200 bg-white p-6 shadow-sm">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">ATS Score</p>
           <div className="mt-4 flex items-end gap-3">
-            <p className="text-[56px] font-bold font-plus-jakarta text-foreground">{analysis?.totalScore ?? 0}</p>
+            <p className="text-[56px] font-bold font-heading text-foreground">{analysis?.totalScore ?? 0}</p>
             <p className="mb-2 text-sm font-medium text-zinc-500">/ 100</p>
           </div>
  <p className="mt-4 text-sm leading-relaxed text-zinc-600">
@@ -173,7 +173,7 @@ export default function AtsCvAuditClient() {
         {analysis ? (
           <>
  <div className="rounded-[20px] border border-zinc-200 bg-zinc-50 p-6">
-              <h3 className="text-[22px] font-bold font-plus-jakarta text-foreground">Quick Signals</h3>
+              <h3 className="text-[22px] font-bold font-heading text-foreground">Quick Signals</h3>
  <ul className="mt-4 space-y-3 text-sm text-zinc-700">
                 <li>CV word count: {analysis.cvWords}</li>
                 <li>Matched target keywords: {analysis.matchedKeywords.length}</li>
@@ -184,7 +184,7 @@ export default function AtsCvAuditClient() {
             </div>
 
  <div className="rounded-[20px] border border-zinc-200 bg-white p-6">
-              <h3 className="text-[22px] font-bold font-plus-jakarta text-foreground">Matched Keywords</h3>
+              <h3 className="text-[22px] font-bold font-heading text-foreground">Matched Keywords</h3>
               <div className="mt-4 flex flex-wrap gap-2">
                 {analysis.matchedKeywords.length > 0 ? analysis.matchedKeywords.map((keyword) => (
                   <span key={keyword} className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
@@ -195,7 +195,7 @@ export default function AtsCvAuditClient() {
             </div>
 
  <div className="rounded-[20px] border border-zinc-200 bg-white p-6">
-              <h3 className="text-[22px] font-bold font-plus-jakarta text-foreground">Missing Keywords</h3>
+              <h3 className="text-[22px] font-bold font-heading text-foreground">Missing Keywords</h3>
               <div className="mt-4 flex flex-wrap gap-2">
                 {analysis.missingKeywords.length > 0 ? analysis.missingKeywords.map((keyword) => (
                   <span key={keyword} className="rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-red-700">
@@ -206,7 +206,7 @@ export default function AtsCvAuditClient() {
             </div>
 
  <div className="rounded-[20px] border border-zinc-200 bg-white p-6">
-              <h3 className="text-[22px] font-bold font-plus-jakarta text-foreground">What Is Working</h3>
+              <h3 className="text-[22px] font-bold font-heading text-foreground">What Is Working</h3>
               <ul className="mt-4 space-y-3">
                 {analysis.strengths.map((item) => (
  <li key={item} className="flex items-start gap-3 text-sm text-zinc-700">
@@ -218,7 +218,7 @@ export default function AtsCvAuditClient() {
             </div>
 
  <div className="rounded-[20px] border border-zinc-200 bg-white p-6">
-              <h3 className="text-[22px] font-bold font-plus-jakarta text-foreground">What To Improve</h3>
+              <h3 className="text-[22px] font-bold font-heading text-foreground">What To Improve</h3>
               <ul className="mt-4 space-y-3">
                 {analysis.improvements.map((item) => (
  <li key={item} className="flex items-start gap-3 text-sm text-zinc-700">

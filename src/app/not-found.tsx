@@ -8,7 +8,7 @@ export default function NotFound() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full overflow-hidden opacity-5 pointer-events-none select-none flex whitespace-nowrap z-0">
         <div className="animate-[marquee_30s_linear_infinite] flex gap-8">
           {[1, 2, 3, 4, 5, 6].map((i) => (
-            <span key={i} className="text-[200px] md:text-[300px] font-plus-jakarta font-extrabold uppercase leading-none">
+            <span key={i} className="text-[200px] md:text-[300px] font-heading font-extrabold uppercase leading-none">
               404 ERROR
             </span>
           ))}
@@ -16,10 +16,10 @@ export default function NotFound() {
       </div>
 
       <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-2xl mx-auto">
-        <h1 className="font-plus-jakarta text-[80px] md:text-[120px] font-bold leading-[1] mb-2 text-brand-main">
+        <h1 className="font-heading text-[80px] md:text-[120px] font-bold leading-[1] mb-2 text-brand-main">
           404
         </h1>
-        <h2 className="text-[32px] md:text-[48px] font-bold font-plus-jakarta mb-6">
+        <h2 className="text-[32px] md:text-[48px] font-bold font-heading mb-6">
           Page Not Found!
         </h2>
         <p className="text-text-light/80 text-[18px] mb-10 leading-relaxed">

@@ -129,7 +129,7 @@ export default function ResourceDownloadGate({ slug, title, fileName, isSignedIn
         <p className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-brand-dark">
           Free Template Download
         </p>
-        <h3 className="mb-3 text-[24px] font-bold font-plus-jakarta text-foreground">{title}</h3>
+        <h3 className="mb-3 text-[24px] font-bold font-heading text-foreground">{title}</h3>
         <p className="mb-5 text-sm leading-relaxed text-text-body">
           Create a free website account first. After signup, you will see two short website recommendations before the DOCX download unlocks.
         </p>
@@ -173,7 +173,7 @@ export default function ResourceDownloadGate({ slug, title, fileName, isSignedIn
                   {stage === "service-ad" ? "Ad 1 of 2" : "Ad 2 of 2"}
                 </span>
               </div>
-              <h2 id="resource-download-ad-title" className="text-[28px] font-bold font-plus-jakarta leading-tight text-white">
+              <h2 id="resource-download-ad-title" className="text-[28px] font-bold font-heading leading-tight text-white">
                 {activeAd.title}
               </h2>
             </div>
