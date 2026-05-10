@@ -521,7 +521,7 @@ export default function OrdersClient() {
           </div>
 
           <div className="rounded-[12px] border border-amber-200 bg-amber-50 p-4">
-            <h3 className="font-plus-jakarta text-lg font-bold text-foreground">Founder-Led Premium Schedule</h3>
+            <h3 className="font-plus-jakarta text-lg font-bold text-foreground">Signature Series Schedule</h3>
             <p className="mt-1 text-xs text-amber-800">Client-facing availability is shown as 2 premium slots per day.</p>
             <div className="mt-3 space-y-2">
               {premiumSchedule.length === 0 ? (

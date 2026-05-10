@@ -401,6 +401,42 @@ export default function CatalogueClient() {
 
         {step === 4 && (
           <div className="space-y-8">
+            <section className="tier-comparison rounded-[18px] border border-zinc-200 bg-white p-6 shadow-sm md:p-8">
+              <h2 className="mb-8 text-center font-plus-jakarta text-[30px] font-bold text-foreground">Choose Your Service Level</h2>
+              <div className="tiers-grid grid grid-cols-1 gap-6 md:grid-cols-2">
+                
+                <div className="tier-card signature rounded-[20px] border-2 border-[#C9A961] bg-gradient-to-br from-[#C9A961]/5 to-white p-6 shadow-lg">
+                  <span className="tier-badge inline-block rounded-full bg-[#C9A961] px-4 py-2 text-sm font-bold uppercase tracking-wider text-white">PREMIUM</span>
+                  <h3 className="mt-4 font-plus-jakarta text-[24px] font-bold text-foreground">✨ Signature Series</h3>
+                  <p className="tier-tagline mt-2 text-sm font-semibold text-[#6B7280]">Personally crafted by Chanuka Jeewantha</p>
+                  <ul className="tier-features mt-4 space-y-2 text-sm text-zinc-700">
+                    <li>✓ Industry-specific strategic positioning</li>
+                    <li>✓ Country-specific format optimization</li>
+                    <li>✓ 30-day post-delivery support</li>
+                    <li>✓ Premium delivery within 5 days</li>
+                    <li>✓ Limited to 2 new clients per day</li>
+                    <li>✓ CPRW & CPCC certified expertise</li>
+                  </ul>
+                  <p className="tier-best-for mt-4 text-sm font-semibold text-zinc-600">Best for: Career-focused professionals investing in long-term success</p>
+                </div>
+                
+                <div className="tier-card essentials rounded-[20px] border border-zinc-200 bg-white p-6 shadow-lg">
+                  <span className="tier-badge inline-block rounded-full bg-[#6B7280] px-4 py-2 text-sm font-bold uppercase tracking-wider text-white">VALUE</span>
+                  <h3 className="mt-4 font-plus-jakarta text-[24px] font-bold text-foreground">📋 Essentials</h3>
+                  <p className="tier-tagline mt-2 text-sm font-semibold text-[#6B7280]">Team-crafted, Chanuka supervised</p>
+                  <ul className="tier-features mt-4 space-y-2 text-sm text-zinc-700">
+                    <li>✓ Standard ATS-friendly format</li>
+                    <li>✓ Basic optimization</li>
+                    <li>✓ 7-day delivery</li>
+                    <li>✓ Email-based support</li>
+                    <li>✓ Quality reviewed by Chanuka</li>
+                  </ul>
+                  <p className="tier-best-for mt-4 text-sm font-semibold text-zinc-600">Best for: Students, fresh graduates, and budget-conscious professionals</p>
+                </div>
+                
+              </div>
+            </section>
+
             <div className="rounded-[18px] border border-zinc-200 bg-white p-6 shadow-sm md:p-8">
               <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
                 <div>
@@ -425,7 +461,7 @@ export default function CatalogueClient() {
               {serviceOption === "founder-led" && (
                 <div className="mt-5 rounded-[12px] border border-amber-200 bg-amber-50 p-4">
                   <p className="font-semibold text-amber-900">{availabilityLabel}</p>
-                  <p className="mt-1 text-sm text-amber-800">Founder-led premium packages are shown as limited daily slots to protect premium quality.</p>
+                  <p className="mt-1 text-sm text-amber-800">Signature Series packages are shown as limited daily slots to protect premium quality.</p>
                 </div>
               )}
 
@@ -435,7 +471,7 @@ export default function CatalogueClient() {
                     <div className="mb-3 flex flex-wrap gap-2">
                       <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-zinc-700">{pkg.audience}</span>
                       <span className="rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold text-brand-dark">
-                        {pkg.optionKey === "founder-led" ? "Founder-Led Premium" : "Supervised Professional"}
+                        {pkg.optionKey === "founder-led" ? "Signature Series" : "Essentials"}
                       </span>
                     </div>
                     <h3 className="font-plus-jakarta text-[23px] font-bold leading-tight text-foreground">{pkg.name}</h3>

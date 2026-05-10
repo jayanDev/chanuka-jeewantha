@@ -3,9 +3,9 @@ import CatalogueClient from "@/app/catalogue/CatalogueClient";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Career Service Catalogue | Chanuka Jeewantha",
+  title: "CV Writing & Career Services Pricing | Signature & Essentials Tiers | Chanuka Jeewantha",
   description:
-    "Answer three quick questions and see the exact CV, LinkedIn, cover letter, foreign job CV, graphical CV, or consultation packages that match you.",
+    "Choose from Signature Series (premium, personally crafted) or Essentials (team-crafted, supervised) tiers. ATS CV, LinkedIn, Cover Letter, Foreign Job CV. Bundle discounts available.",
   path: "/catalogue",
 });
 

@@ -173,56 +173,58 @@ export const serviceOptionChoices: Array<{
   {
     key: "founder-led",
     number: 1,
-    title: "Founder-Led Premium Service Premium Packages",
-    shortTitle: "Founder-Led Premium",
+    title: "Signature Series Premium Packages",
+    shortTitle: "Signature Series",
     description:
-      "Personally written and strategically developed by Chanuka Jeewantha.",
+      "Personally crafted by Chanuka Jeewantha with premium positioning and strategic development.",
   },
   {
     key: "supervised",
     number: 2,
-    title: "Supervised Professional Packages",
-    shortTitle: "Supervised Professional",
+    title: "Essentials Packages",
+    shortTitle: "Essentials",
     description:
-      "Prepared by the Career Studio team and quality reviewed under Chanuka Jeewantha's supervision.",
+      "Team-crafted under Chanuka's supervision with quality review and practical delivery.",
   },
 ];
 
 const founderLedPrices: Record<ServiceKey, Array<number | { thirtyMin: number; oneHour: number }>> = {
-  "ats-cv": [5000, 6000, 8000, 10000, 15000],
-  linkedin: [5000, 6000, 8000, 10000, 15000],
-  "cover-letter": [3000, 4000, 5000, 6000, 8000],
-  "foreign-cv": [8000, 9000, 10000, 12000, 18000],
-  "graphical-cv": [3000, 4000, 5000, 6000, 8000],
+  "ats-cv": [7500, 9500, 14500, 19500, 32500],
+  linkedin: [7500, 9500, 14500, 19500, 32500],
+  "cover-letter": [4500, 6000, 8500, 11500, 16500],
+  "foreign-cv": [11500, 14500, 18500, 24500, 38500],
+  "graphical-cv": [4500, 6000, 8500, 11500, 16500],
   consultation: [
-    { thirtyMin: 5000, oneHour: 7500 },
-    { thirtyMin: 6000, oneHour: 8000 },
-    { thirtyMin: 8000, oneHour: 10000 },
-    { thirtyMin: 10000, oneHour: 12000 },
-    { thirtyMin: 15000, oneHour: 20000 },
+    { thirtyMin: 6500, oneHour: 9500 },
+    { thirtyMin: 8000, oneHour: 11500 },
+    { thirtyMin: 12000, oneHour: 17500 },
+    { thirtyMin: 16000, oneHour: 22500 },
+    { thirtyMin: 22500, oneHour: 35000 },
   ],
 };
 
 const supervisedPrices: Partial<Record<ServiceKey, number[]>> = {
-  "ats-cv": [2500, 3000, 4000, 5000, 7500],
-  linkedin: [2500, 3000, 4000, 5000, 7500],
-  "cover-letter": [1500, 2000, 2500, 3000, 5000],
-  "foreign-cv": [3000, 4000, 5000, 6000, 8500],
-  "graphical-cv": [1500, 2000, 2500, 3000, 4000],
+  "ats-cv": [1950, 2950, 4950, 6950, 9950],
+  linkedin: [1950, 2950, 4950, 6950, 9950],
+  "cover-letter": [1450, 1950, 2950, 3950, 5950],
+  "foreign-cv": [3950, 4950, 6950, 7950, 10950],
+  "graphical-cv": [1950, 2950, 3950, 4950, 5950],
 };
 
 const optionTone: Record<ServiceOptionKey, string[]> = {
   "founder-led": [
-    "Founder-led strategy and personal writing direction",
+    "Signature Series: Personally crafted by Chanuka Jeewantha",
     "Premium positioning for your selected career level",
-    "ATS, recruiter, and market-aligned document structure",
-    "Quality-focused delivery with clear revision direction",
+    "Industry-specific strategic positioning and country optimization",
+    "30-day post-delivery support with premium quality",
+    "Limited to 2 new clients per day for exclusivity",
   ],
   supervised: [
-    "Prepared by the Career Studio professional team",
-    "Quality reviewed under Chanuka Jeewantha's supervision",
-    "Structured around your selected career level",
-    "Practical, budget-friendly professional delivery",
+    "Essentials: Team-crafted under Chanuka's supervision",
+    "Quality reviewed by Chanuka with practical delivery",
+    "Standard ATS-friendly format with basic optimization",
+    "7-day delivery with email-based support",
+    "Budget-friendly option for students and graduates",
   ],
 };
 

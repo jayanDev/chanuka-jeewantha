@@ -105,7 +105,7 @@ export default function PricingClient() {
           <div className="mt-8 rounded-[16px] border border-emerald-200 bg-emerald-50 p-6">
             <h3 className="font-plus-jakarta text-[24px] font-bold text-foreground">Supervised bundle discounts</h3>
             <p className="mt-2 text-zinc-700">
-              CV + Cover Letter gets 10% off, CV + LinkedIn gets 15% off, and CV + Cover Letter + LinkedIn gets 20% off when all selected services are supervised professional packages.
+              CV + Cover Letter gets 10% off, CV + LinkedIn gets 15% off, and CV + Cover Letter + LinkedIn gets 20% off when all selected services are Essentials packages.
             </p>
           </div>
         </div>

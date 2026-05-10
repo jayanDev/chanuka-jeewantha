@@ -10,9 +10,9 @@ import { digitalResources } from "@/lib/resources";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Professional CV Writing Services & ATS Friendly CV Maker | Chanuka Jeewantha",
+  title: "Premium CV Writing & LinkedIn Optimization Sri Lanka | CPRW & CPCC Certified | Chanuka Jeewantha",
   description:
-    "Need a Professional CV? I am an expert CV maker offering ATS Friendly CV writing, Cover Letter Writing, and complete LinkedIn Optimization services.",
+    "Sri Lanka's trusted CPRW & CPCC certified CV writer. 60+ Google reviews, 500+ CVs delivered, 167K+ followers. Premium ATS CV, LinkedIn, Cover Letter & Foreign Job CV services.",
   path: "/",
 });
 
@@ -140,6 +140,33 @@ export default async function Home() {
         </div>
       </section>
 
+      <section className="trust-strip w-full bg-[#FAF8F3] py-[40px]">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
+          <div className="trust-container grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="trust-item text-center">
+              <span className="trust-icon text-[24px] mb-2 block">⭐</span>
+              <strong className="block text-sm font-bold text-foreground">60+ Google Reviews</strong>
+              <small className="block text-xs text-zinc-600">4.9/5 Average Rating</small>
+            </div>
+            <div className="trust-item text-center">
+              <span className="trust-icon text-[24px] mb-2 block">🏆</span>
+              <strong className="block text-sm font-bold text-foreground">CPRW & CPCC Certified</strong>
+              <small className="block text-xs text-zinc-600">International Standards</small>
+            </div>
+            <div className="trust-item text-center">
+              <span className="trust-icon text-[24px] mb-2 block">📈</span>
+              <strong className="block text-sm font-bold text-foreground">167,000+ Followers</strong>
+              <small className="block text-xs text-zinc-600">Trusted Community</small>
+            </div>
+            <div className="trust-item text-center">
+              <span className="trust-icon text-[24px] mb-2 block">✅</span>
+              <strong className="block text-sm font-bold text-foreground">500+ CVs Delivered</strong>
+              <small className="block text-xs text-zinc-600">Proven Results</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div className="reveal-section w-full overflow-x-clip my-12">
         <section className="w-full bg-foreground py-6 overflow-hidden transform -rotate-2 scale-105">
           <div className="flex whitespace-nowrap">
@@ -164,6 +191,81 @@ export default async function Home() {
           </div>
         </section>
       </div>
+
+      <section className="bundles-showcase w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
+        <div className="container max-w-[1512px] mx-auto px-4 sm:px-6">
+          <h2 className="section-title text-center text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground leading-[1.1] mb-4">Most Clients Choose One of These 3 Packages</h2>
+          <p className="section-subtitle text-center text-text-body max-w-2xl mx-auto mb-12">Bundled services. Better outcomes. Better value.</p>
+          
+          <div className="bundles-grid grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div className="bundle-card starter bg-white rounded-[20px] border border-zinc-200 p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <span className="bundle-tag inline-block rounded-full bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-700 mb-4">For Students & Graduates</span>
+              <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-4">🎓 Starter Pack</h3>
+              <div className="bundle-price mb-6">
+                <span className="price-amount text-[28px] font-bold text-foreground">LKR 12,500</span>
+                <span className="price-note block text-sm text-zinc-600">Essentials Tier</span>
+              </div>
+              <ul className="bundle-includes space-y-2 text-sm text-zinc-700 mb-6">
+                <li>✓ Essentials ATS CV</li>
+                <li>✓ Cover Letter</li>
+                <li>✓ LinkedIn Optimization</li>
+                <li>✓ 7-day delivery</li>
+              </ul>
+              <a href="/catalogue?bundle=starter" className="bundle-cta inline-block w-full text-center px-6 py-3 border border-zinc-300 rounded-[10px] text-zinc-700 font-semibold hover:border-brand-main hover:text-brand-main transition-colors">
+                Get Started →
+              </a>
+            </div>
+            
+            <div className="bundle-card career featured bg-white rounded-[20px] border-2 border-[#C9A961] p-6 shadow-lg hover:shadow-xl transition-shadow transform scale-105">
+              <span className="bundle-tag-popular inline-block rounded-full bg-[#C9A961] text-white px-4 py-2 text-sm font-bold uppercase tracking-wider mb-4">⭐ MOST POPULAR</span>
+              <span className="bundle-tag block rounded-full bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-700 mb-4">For Working Professionals</span>
+              <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-4">🚀 Career Pack</h3>
+              <div className="bundle-price mb-6">
+                <span className="price-amount text-[28px] font-bold text-foreground">LKR 28,500</span>
+                <span className="price-savings block text-sm font-bold text-[#10B981]">Save LKR 12,000</span>
+                <span className="price-note block text-sm text-zinc-600">Signature Tier</span>
+              </div>
+              <ul className="bundle-includes space-y-2 text-sm text-zinc-700 mb-6">
+                <li>✓ Signature ATS CV</li>
+                <li>✓ Cover Letter</li>
+                <li>✓ LinkedIn Optimization</li>
+                <li>✓ Foreign Job CV</li>
+                <li>✓ 30-day premium support</li>
+              </ul>
+              <a href="/catalogue?bundle=career" className="bundle-cta primary inline-block w-full text-center px-6 py-3 bg-[#C9A961] rounded-[10px] text-white font-semibold hover:bg-[#C9A961]/90 transition-colors">
+                Choose Career Pack →
+              </a>
+            </div>
+            
+            <div className="bundle-card executive bg-white rounded-[20px] border border-zinc-200 p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <span className="bundle-tag inline-block rounded-full bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-700 mb-4">For Senior Professionals</span>
+              <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-4">👑 Executive Pack</h3>
+              <div className="bundle-price mb-6">
+                <span className="price-amount text-[28px] font-bold text-foreground">LKR 58,500</span>
+                <span className="price-savings block text-sm font-bold text-[#10B981]">Save LKR 25,500</span>
+                <span className="price-note block text-sm text-zinc-600">Signature Tier</span>
+              </div>
+              <ul className="bundle-includes space-y-2 text-sm text-zinc-700 mb-6">
+                <li>✓ Executive Signature CV</li>
+                <li>✓ Foreign Job CV</li>
+                <li>✓ Executive LinkedIn Optimization</li>
+                <li>✓ Executive Cover Letter</li>
+                <li>✓ 1-Hour Strategy Consultation</li>
+                <li>✓ 60-day premium support</li>
+              </ul>
+              <a href="/catalogue?bundle=executive" className="bundle-cta inline-block w-full text-center px-6 py-3 border border-zinc-300 rounded-[10px] text-zinc-700 font-semibold hover:border-brand-main hover:text-brand-main transition-colors">
+                View Executive Pack →
+              </a>
+            </div>
+            
+          </div>
+          
+          <div className="bundles-footer text-center mt-12">
+            <p className="text-zinc-600">Need something specific? <a href="/catalogue" className="text-brand-main font-semibold hover:text-brand-dark transition-colors">View all individual services →</a></p>
+          </div>
+        </div>
+      </section>
 
       <section className="reveal-section w-full py-[64px] sm:py-[80px] md:py-[96px]">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
@@ -417,6 +519,51 @@ export default async function Home() {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="faq-section w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
+        <div className="max-w-[1512px] mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12">
+            <span className="text-brand-dark font-semibold tracking-wider uppercase mb-2 block">Frequently Asked Questions</span>
+            <h2 className="text-[30px] sm:text-[40px] md:text-[56px] font-bold font-plus-jakarta text-foreground leading-[1.1]">
+              Your Questions <span className="text-brand-dark">Answered</span>
+            </h2>
+          </div>
+          <div className="max-w-4xl mx-auto space-y-4">
+            <details className="faq-item bg-zinc-50 rounded-[12px] p-6 border border-zinc-200">
+              <summary className="font-semibold text-lg text-foreground cursor-pointer">What's the difference between Signature and Essentials?</summary>
+              <p className="mt-4 text-zinc-600">Signature Series packages are personally crafted by Chanuka Jeewantha with premium positioning, industry-specific strategies, and 30-day support. Essentials packages are team-crafted under Chanuka's supervision with quality review, offering great value for students and budget-conscious professionals.</p>
+            </details>
+            <details className="faq-item bg-zinc-50 rounded-[12px] p-6 border border-zinc-200">
+              <summary className="font-semibold text-lg text-foreground cursor-pointer">How long does delivery take?</summary>
+              <p className="mt-4 text-zinc-600">Signature Series packages are delivered within 5 days. Essentials packages are delivered within 7 days. Rush delivery options are available for urgent requirements.</p>
+            </details>
+            <details className="faq-item bg-zinc-50 rounded-[12px] p-6 border border-zinc-200">
+              <summary className="font-semibold text-lg text-foreground cursor-pointer">Do you offer revisions?</summary>
+              <p className="mt-4 text-zinc-600">Yes, all packages include revisions. Signature Series includes unlimited revisions during the support period. Essentials includes up to 3 rounds of revisions within 7 days of delivery.</p>
+            </details>
+            <details className="faq-item bg-zinc-50 rounded-[12px] p-6 border border-zinc-200">
+              <summary className="font-semibold text-lg text-foreground cursor-pointer">What payment methods are accepted?</summary>
+              <p className="mt-4 text-zinc-600">We accept bank transfers, credit/debit cards through our secure payment gateway, and PayPal. All payments are processed securely and invoices are provided for your records.</p>
+            </details>
+            <details className="faq-item bg-zinc-50 rounded-[12px] p-6 border border-zinc-200">
+              <summary className="font-semibold text-lg text-foreground cursor-pointer">Do you offer a money-back guarantee?</summary>
+              <p className="mt-4 text-zinc-600">Yes, we offer a 100% satisfaction guarantee. If you're not completely satisfied with your deliverables, we'll refund your payment or provide additional revisions until you're happy.</p>
+            </details>
+            <details className="faq-item bg-zinc-50 rounded-[12px] p-6 border border-zinc-200">
+              <summary className="font-semibold text-lg text-foreground cursor-pointer">Can I get a sample before paying?</summary>
+              <p className="mt-4 text-zinc-600">We don't provide free samples, but we offer paid consultations where I can review your current materials and provide specific recommendations. This ensures you get exactly what you need.</p>
+            </details>
+            <details className="faq-item bg-zinc-50 rounded-[12px] p-6 border border-zinc-200">
+              <summary className="font-semibold text-lg text-foreground cursor-pointer">Why are your prices higher than competitors?</summary>
+              <p className="mt-4 text-zinc-600">Our pricing reflects the expertise of a CPRW & CPCC certified professional with 8+ years of experience. We provide personalized service, industry-specific positioning, and ongoing support that ensures long-term career success.</p>
+            </details>
+            <details className="faq-item bg-zinc-50 rounded-[12px] p-6 border border-zinc-200">
+              <summary className="font-semibold text-lg text-foreground cursor-pointer">Do you serve international clients?</summary>
+              <p className="mt-4 text-zinc-600">Yes, we serve clients worldwide. Our Foreign Job CV service is specifically designed for international job markets, and we understand the requirements of different countries and industries.</p>
+            </details>
           </div>
         </div>
       </section>

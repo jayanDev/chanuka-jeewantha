@@ -130,7 +130,7 @@ export default function ServicesPackageFilter({ lockedServiceKey }: ServicesPack
           <article key={pkg.slug} className="rounded-[16px] border border-zinc-200 bg-white p-6 shadow-sm">
             <div className="mb-4 flex flex-wrap gap-2">
               <span className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-semibold text-zinc-700">
-                {pkg.optionKey === "founder-led" ? "Founder-Led Premium" : "Supervised Professional"}
+                {pkg.optionKey === "founder-led" ? "Signature Series" : "Essentials"}
               </span>
               <span className="rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold text-brand-dark">
                 {pkg.audience}
