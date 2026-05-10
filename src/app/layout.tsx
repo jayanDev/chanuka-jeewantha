@@ -10,6 +10,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import AnalyticsHeartbeat from "@/components/AnalyticsHeartbeat";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import SeasonalOfferBanner from "@/components/SeasonalOfferBanner";
+import AnnouncementBar from "@/components/AnnouncementBar";
 import { getServerUser } from "@/lib/auth-server";
 import { getBaseUrl } from "@/lib/site-url";
 import { TARGET_SEO_KEYWORDS } from "@/lib/seo";
@@ -188,6 +189,7 @@ export default async function RootLayout({
           </Suspense>
         ) : null}
         <AnalyticsHeartbeat />
+        <AnnouncementBar />
         <div id="site-nav">
           <Header initialUser={currentUser} />
           <SeasonalOfferBanner />

@@ -12,7 +12,7 @@ import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 export const metadata: Metadata = buildPageMetadata({
   title: "Premium CV Writing & LinkedIn Optimization Sri Lanka | CPRW & CPCC Certified | Chanuka Jeewantha",
   description:
-    "Sri Lanka's trusted CPRW & CPCC certified CV writer. 60+ Google reviews, 500+ CVs delivered, 167K+ followers. Premium ATS CV, LinkedIn, Cover Letter & Foreign Job CV services.",
+    "Sri Lanka's trusted CPRW & CPCC certified CV writer. 60+ Google reviews, 500+ CVs delivered, 167K+ followers. Premium ATS CV, LinkedIn, Cover Letter & Foreign Job CV services starting from LKR 1,950.",
   path: "/",
 });
 
@@ -203,8 +203,9 @@ export default async function Home() {
               <span className="bundle-tag inline-block rounded-full bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-700 mb-4">For Students & Graduates</span>
               <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-4">🎓 Starter Pack</h3>
               <div className="bundle-price mb-6">
-                <span className="price-amount text-[28px] font-bold text-foreground">LKR 12,500</span>
-                <span className="price-note block text-sm text-zinc-600">Essentials Tier</span>
+                <span className="price-amount text-[28px] font-bold text-foreground">LKR 9,500</span>
+                <span className="price-original line-through block text-sm text-zinc-400">LKR 11,850</span>
+                <span className="price-note block text-sm text-zinc-600">Essentials Tier • Save 20%</span>
               </div>
               <ul className="bundle-includes space-y-2 text-sm text-zinc-700 mb-6">
                 <li>✓ Essentials ATS CV</li>
@@ -222,8 +223,9 @@ export default async function Home() {
               <span className="bundle-tag block rounded-full bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-700 mb-4">For Working Professionals</span>
               <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-4">🚀 Career Pack</h3>
               <div className="bundle-price mb-6">
-                <span className="price-amount text-[28px] font-bold text-foreground">LKR 28,500</span>
-                <span className="price-savings block text-sm font-bold text-[#10B981]">Save LKR 12,000</span>
+                <span className="price-amount text-[28px] font-bold text-foreground">LKR 22,500</span>
+                <span className="price-original line-through block text-sm text-zinc-400">LKR 30,000</span>
+                <span className="price-savings block text-sm font-bold text-[#10B981]">Save LKR 7,500</span>
                 <span className="price-note block text-sm text-zinc-600">Signature Tier</span>
               </div>
               <ul className="bundle-includes space-y-2 text-sm text-zinc-700 mb-6">
@@ -232,6 +234,7 @@ export default async function Home() {
                 <li>✓ LinkedIn Optimization</li>
                 <li>✓ Foreign Job CV</li>
                 <li>✓ 30-day premium support</li>
+                <li>✓ Direct WhatsApp access to Chanuka</li>
               </ul>
               <a href="/catalogue?bundle=career" className="bundle-cta primary inline-block w-full text-center px-6 py-3 bg-[#C9A961] rounded-[10px] text-white font-semibold hover:bg-[#C9A961]/90 transition-colors">
                 Choose Career Pack →
@@ -242,8 +245,9 @@ export default async function Home() {
               <span className="bundle-tag inline-block rounded-full bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-700 mb-4">For Senior Professionals</span>
               <h3 className="text-[24px] font-bold font-plus-jakarta text-foreground mb-4">👑 Executive Pack</h3>
               <div className="bundle-price mb-6">
-                <span className="price-amount text-[28px] font-bold text-foreground">LKR 58,500</span>
-                <span className="price-savings block text-sm font-bold text-[#10B981]">Save LKR 25,500</span>
+                <span className="price-amount text-[28px] font-bold text-foreground">LKR 45,000</span>
+                <span className="price-original line-through block text-sm text-zinc-400">LKR 60,000</span>
+                <span className="price-savings block text-sm font-bold text-[#10B981]">Save LKR 15,000</span>
                 <span className="price-note block text-sm text-zinc-600">Signature Tier</span>
               </div>
               <ul className="bundle-includes space-y-2 text-sm text-zinc-700 mb-6">
@@ -533,36 +537,36 @@ export default async function Home() {
           </div>
           <div className="max-w-4xl mx-auto space-y-4">
             <details className="faq-item bg-zinc-50 rounded-[12px] p-6 border border-zinc-200">
-              <summary className="font-semibold text-lg text-foreground cursor-pointer">What's the difference between Signature and Essentials?</summary>
-              <p className="mt-4 text-zinc-600">Signature Series packages are personally crafted by Chanuka Jeewantha with premium positioning, industry-specific strategies, and 30-day support. Essentials packages are team-crafted under Chanuka's supervision with quality review, offering great value for students and budget-conscious professionals.</p>
+              <summary className="font-semibold text-lg text-foreground cursor-pointer">What's the difference between Signature Series and Essentials?</summary>
+              <p className="mt-4 text-zinc-600">Signature Series CVs are personally crafted by Chanuka Jeewantha (CPRW, CPCC) with deep industry research, country-specific optimization, and 30-day post-delivery support. Essentials are created by our trained team and supervised by Chanuka — same quality framework at a more accessible price point. Both are professional, ATS-friendly, and result-driven.</p>
             </details>
             <details className="faq-item bg-zinc-50 rounded-[12px] p-6 border border-zinc-200">
               <summary className="font-semibold text-lg text-foreground cursor-pointer">How long does delivery take?</summary>
-              <p className="mt-4 text-zinc-600">Signature Series packages are delivered within 5 days. Essentials packages are delivered within 7 days. Rush delivery options are available for urgent requirements.</p>
+              <p className="mt-4 text-zinc-600">Signature Series: 5 business days (premium turnaround). Essentials: 7 business days. Rush delivery available for both tiers (+LKR 1,500).</p>
             </details>
             <details className="faq-item bg-zinc-50 rounded-[12px] p-6 border border-zinc-200">
               <summary className="font-semibold text-lg text-foreground cursor-pointer">Do you offer revisions?</summary>
-              <p className="mt-4 text-zinc-600">Yes, all packages include revisions. Signature Series includes unlimited revisions during the support period. Essentials includes up to 3 rounds of revisions within 7 days of delivery.</p>
+              <p className="mt-4 text-zinc-600">Yes. Both tiers include 2 free revisions within 14 days of initial delivery. Additional revisions available at LKR 500 per round.</p>
             </details>
             <details className="faq-item bg-zinc-50 rounded-[12px] p-6 border border-zinc-200">
               <summary className="font-semibold text-lg text-foreground cursor-pointer">What payment methods are accepted?</summary>
-              <p className="mt-4 text-zinc-600">We accept bank transfers, credit/debit cards through our secure payment gateway, and PayPal. All payments are processed securely and invoices are provided for your records.</p>
+              <p className="mt-4 text-zinc-600">Bank transfer, PayHere (cards/online), and direct deposit. International clients can pay via Wise, PayPal, or USD bank transfer.</p>
             </details>
             <details className="faq-item bg-zinc-50 rounded-[12px] p-6 border border-zinc-200">
               <summary className="font-semibold text-lg text-foreground cursor-pointer">Do you offer a money-back guarantee?</summary>
-              <p className="mt-4 text-zinc-600">Yes, we offer a 100% satisfaction guarantee. If you're not completely satisfied with your deliverables, we'll refund your payment or provide additional revisions until you're happy.</p>
+              <p className="mt-4 text-zinc-600">Yes. If you're not satisfied with the first draft, we'll refund 100% within 7 days — no questions asked. Our reputation depends on client success.</p>
             </details>
             <details className="faq-item bg-zinc-50 rounded-[12px] p-6 border border-zinc-200">
               <summary className="font-semibold text-lg text-foreground cursor-pointer">Can I get a sample before paying?</summary>
-              <p className="mt-4 text-zinc-600">We don't provide free samples, but we offer paid consultations where I can review your current materials and provide specific recommendations. This ensures you get exactly what you need.</p>
+              <p className="mt-4 text-zinc-600">We offer a free 5-point CV audit (review of your existing CV with improvement recommendations). For our work samples, view our portfolio section. Custom samples are part of paid services to ensure quality.</p>
             </details>
             <details className="faq-item bg-zinc-50 rounded-[12px] p-6 border border-zinc-200">
-              <summary className="font-semibold text-lg text-foreground cursor-pointer">Why are your prices higher than competitors?</summary>
-              <p className="mt-4 text-zinc-600">Our pricing reflects the expertise of a CPRW & CPCC certified professional with 8+ years of experience. We provide personalized service, industry-specific positioning, and ongoing support that ensures long-term career success.</p>
+              <summary className="font-semibold text-lg text-foreground cursor-pointer">Why are your prices higher than some other services?</summary>
+              <p className="mt-4 text-zinc-600">Three reasons: (1) CPRW & CPCC certified expertise vs unqualified writers, (2) personalized service vs templates, (3) outcome-focused approach with 30-day post-delivery support. Compare results, not just prices.</p>
             </details>
             <details className="faq-item bg-zinc-50 rounded-[12px] p-6 border border-zinc-200">
               <summary className="font-semibold text-lg text-foreground cursor-pointer">Do you serve international clients?</summary>
-              <p className="mt-4 text-zinc-600">Yes, we serve clients worldwide. Our Foreign Job CV service is specifically designed for international job markets, and we understand the requirements of different countries and industries.</p>
+              <p className="mt-4 text-zinc-600">Yes. We serve Sri Lankan diaspora in UAE, Australia, Canada, UK, EU, and beyond. We accept USD payments and understand multi-country job market requirements.</p>
             </details>
           </div>
         </div>

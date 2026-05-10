@@ -272,6 +272,57 @@ export default function CatalogueClient() {
         </div>
       </section>
 
+      <section className="tier-comparison w-full bg-white px-4 py-12 sm:px-6 md:py-16">
+        <div className="mx-auto max-w-5xl">
+          <div className="text-center mb-12">
+            <h2 className="font-plus-jakarta text-[30px] sm:text-[40px] font-bold text-foreground mb-3">Choose Your Service Level</h2>
+            <p className="text-text-body max-w-2xl mx-auto">Two ways to work with us — same quality framework, different experience.</p>
+          </div>
+          
+          <div className="tiers-grid grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <div className="tier-card signature rounded-[12px] border-2 border-[#C9A961] bg-gradient-to-br from-[#C9A961]/5 to-white p-8 shadow-md hover:shadow-lg transition-shadow flex flex-col">
+              <span className="tier-badge inline-block rounded-full bg-[#C9A961] text-white px-4 py-1.5 text-xs font-bold uppercase tracking-wider mb-4 w-fit">Premium</span>
+              <h3 className="font-plus-jakarta text-[24px] font-bold text-foreground mb-2">✨ Signature Series</h3>
+              <p className="tier-tagline text-sm font-semibold text-[#6B7280] mb-1">Personally crafted by Chanuka Jeewantha</p>
+              <p className="certifications text-xs font-semibold text-[#0A2540] mb-4">CPRW & CPCC Certified</p>
+              <ul className="tier-features space-y-2 text-sm text-zinc-700 mb-4 flex-grow">
+                <li>✓ Industry-specific strategic positioning</li>
+                <li>✓ Country-specific format optimization</li>
+                <li>✓ 30-day post-delivery support</li>
+                <li>✓ Premium delivery within 5 days</li>
+                <li>✓ Direct WhatsApp access to Chanuka</li>
+                <li>✓ Limited to 2 new clients per day</li>
+              </ul>
+              <p className="tier-best-for text-sm text-zinc-600 mb-4">
+                <strong>Best for:</strong> Career-focused professionals investing in long-term success
+              </p>
+              <p className="price-from text-sm text-zinc-700">Starting from <strong className="text-foreground">LKR 4,000</strong></p>
+            </div>
+            
+            <div className="tier-card essentials rounded-[12px] border border-zinc-200 bg-white p-8 shadow-md hover:shadow-lg transition-shadow flex flex-col">
+              <span className="tier-badge inline-block rounded-full bg-[#6B7280] text-white px-4 py-1.5 text-xs font-bold uppercase tracking-wider mb-4 w-fit">Accessible</span>
+              <h3 className="font-plus-jakarta text-[24px] font-bold text-foreground mb-2">📋 Essentials</h3>
+              <p className="tier-tagline text-sm font-semibold text-[#6B7280] mb-1">Team-crafted, Chanuka supervised</p>
+              <p className="certifications text-xs font-semibold text-[#0A2540] mb-4">Same Quality Standards</p>
+              <ul className="tier-features space-y-2 text-sm text-zinc-700 mb-4 flex-grow">
+                <li>✓ ATS-friendly format</li>
+                <li>✓ Professional optimization</li>
+                <li>✓ 7-day delivery</li>
+                <li>✓ Email-based support</li>
+                <li>✓ Quality reviewed by Chanuka</li>
+                <li>✓ Bundle discounts available</li>
+              </ul>
+              <p className="tier-best-for text-sm text-zinc-600 mb-4">
+                <strong>Best for:</strong> Students, fresh graduates, and budget-conscious professionals
+              </p>
+              <p className="price-from text-sm text-zinc-700">Starting from <strong className="text-foreground">LKR 1,950</strong></p>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 md:py-14">
         <div className="mb-6 grid grid-cols-3 gap-2">
           {[1, 2, 3].map((item) => (

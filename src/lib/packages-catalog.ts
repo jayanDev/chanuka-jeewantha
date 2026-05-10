@@ -189,26 +189,26 @@ export const serviceOptionChoices: Array<{
 ];
 
 const founderLedPrices: Record<ServiceKey, Array<number | { thirtyMin: number; oneHour: number }>> = {
-  "ats-cv": [7500, 9500, 14500, 19500, 32500],
-  linkedin: [7500, 9500, 14500, 19500, 32500],
-  "cover-letter": [4500, 6000, 8500, 11500, 16500],
-  "foreign-cv": [11500, 14500, 18500, 24500, 38500],
-  "graphical-cv": [4500, 6000, 8500, 11500, 16500],
+  "ats-cv": [6500, 8000, 11500, 15500, 22500],
+  linkedin: [6500, 8000, 11500, 15500, 22500],
+  "cover-letter": [4000, 5000, 7000, 8500, 12500],
+  "foreign-cv": [10500, 12500, 14500, 18500, 27500],
+  "graphical-cv": [4000, 5000, 7000, 8500, 12500],
   consultation: [
     { thirtyMin: 6500, oneHour: 9500 },
-    { thirtyMin: 8000, oneHour: 11500 },
-    { thirtyMin: 12000, oneHour: 17500 },
-    { thirtyMin: 16000, oneHour: 22500 },
-    { thirtyMin: 22500, oneHour: 35000 },
+    { thirtyMin: 7500, oneHour: 10500 },
+    { thirtyMin: 10500, oneHour: 14500 },
+    { thirtyMin: 13500, oneHour: 18500 },
+    { thirtyMin: 18500, oneHour: 27500 },
   ],
 };
 
 const supervisedPrices: Partial<Record<ServiceKey, number[]>> = {
-  "ats-cv": [1950, 2950, 4950, 6950, 9950],
-  linkedin: [1950, 2950, 4950, 6950, 9950],
-  "cover-letter": [1450, 1950, 2950, 3950, 5950],
-  "foreign-cv": [3950, 4950, 6950, 7950, 10950],
-  "graphical-cv": [1950, 2950, 3950, 4950, 5950],
+  "ats-cv": [2950, 3950, 4950, 5950, 8950],
+  linkedin: [2950, 3950, 4950, 5950, 8950],
+  "cover-letter": [1950, 2450, 2950, 3450, 5450],
+  "foreign-cv": [3450, 4450, 5950, 6950, 9950],
+  "graphical-cv": [1950, 2450, 2950, 3450, 4450],
 };
 
 const optionTone: Record<ServiceOptionKey, string[]> = {
