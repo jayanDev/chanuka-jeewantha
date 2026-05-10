@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import {
   calculateCatalogueTotal,
@@ -332,6 +333,17 @@ export default function CatalogueClient() {
 
         {step === 1 && (
           <div className="rounded-[18px] border border-zinc-200 bg-white p-6 shadow-sm md:p-8">
+            <div className="mb-5 flex flex-col gap-2 rounded-[12px] border border-zinc-200 bg-bg-cream p-4 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-sm text-text-body">
+                Already know what you need?
+              </p>
+              <Link
+                href="/packages"
+                className="inline-flex items-center gap-1 text-sm font-semibold text-brand-main hover:text-brand-dark"
+              >
+                Skip the quiz — browse all packages →
+              </Link>
+            </div>
             <p className="text-sm font-bold uppercase tracking-[0.14em] text-brand-main">Question 1</p>
             <h2 className="mt-2 font-heading text-[30px] font-bold text-foreground">What kind of services do you need?</h2>
             <p className="mt-2 text-zinc-600">You can select multiple services.</p>
@@ -452,42 +464,6 @@ export default function CatalogueClient() {
 
         {step === 4 && (
           <div className="space-y-8">
-            <section className="tier-comparison rounded-[18px] border border-zinc-200 bg-white p-6 shadow-sm md:p-8">
-              <h2 className="mb-8 text-center font-heading text-[30px] font-bold text-foreground">Choose Your Service Level</h2>
-              <div className="tiers-grid grid grid-cols-1 gap-6 md:grid-cols-2">
-                
-                <div className="tier-card signature rounded-[20px] border-2 border-[#C9A961] bg-gradient-to-br from-[#C9A961]/5 to-white p-6 shadow-lg">
-                  <span className="tier-badge inline-block rounded-full bg-[#C9A961] px-4 py-2 text-sm font-bold uppercase tracking-wider text-white">PREMIUM</span>
-                  <h3 className="mt-4 font-heading text-[24px] font-bold text-foreground">✨ Signature Series</h3>
-                  <p className="tier-tagline mt-2 text-sm font-semibold text-[#6B7280]">Personally crafted by Chanuka Jeewantha</p>
-                  <ul className="tier-features mt-4 space-y-2 text-sm text-zinc-700">
-                    <li>✓ Industry-specific strategic positioning</li>
-                    <li>✓ Country-specific format optimization</li>
-                    <li>✓ 30-day post-delivery support</li>
-                    <li>✓ Premium delivery within 5 days</li>
-                    <li>✓ Limited to 2 new clients per day</li>
-                    <li>✓ CPRW & CPCC certified expertise</li>
-                  </ul>
-                  <p className="tier-best-for mt-4 text-sm font-semibold text-zinc-600">Best for: Career-focused professionals investing in long-term success</p>
-                </div>
-                
-                <div className="tier-card essentials rounded-[20px] border border-zinc-200 bg-white p-6 shadow-lg">
-                  <span className="tier-badge inline-block rounded-full bg-[#6B7280] px-4 py-2 text-sm font-bold uppercase tracking-wider text-white">VALUE</span>
-                  <h3 className="mt-4 font-heading text-[24px] font-bold text-foreground">📋 Essentials</h3>
-                  <p className="tier-tagline mt-2 text-sm font-semibold text-[#6B7280]">Team-crafted, Chanuka supervised</p>
-                  <ul className="tier-features mt-4 space-y-2 text-sm text-zinc-700">
-                    <li>✓ Standard ATS-friendly format</li>
-                    <li>✓ Basic optimization</li>
-                    <li>✓ 7-day delivery</li>
-                    <li>✓ Email-based support</li>
-                    <li>✓ Quality reviewed by Chanuka</li>
-                  </ul>
-                  <p className="tier-best-for mt-4 text-sm font-semibold text-zinc-600">Best for: Students, fresh graduates, and budget-conscious professionals</p>
-                </div>
-                
-              </div>
-            </section>
-
             <div className="rounded-[18px] border border-zinc-200 bg-white p-6 shadow-sm md:p-8">
               <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
                 <div>
