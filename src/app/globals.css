@@ -698,8 +698,223 @@ label {
   }
 }
 
+/* ===== RESPONSIVE TYPOGRAPHY ===== */
+@media (max-width: 1024px) {
+  h1 { font-size: 42px; }
+  h2 { font-size: 32px; }
+  h3 { font-size: 22px; }
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 38px; }
+  h2 { font-size: 28px; }
+  h3 { font-size: 20px; }
+  body { font-size: 15px; }
+  
+  .btn {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 375px) {
   h1 { font-size: 32px; }
   h2 { font-size: 24px; }
   h3 { font-size: 18px; }
+}
+
+/* ===== BRAND-SPECIFIC UTILITY CLASSES ===== */
+.text-navy { color: var(--color-primary); }
+.bg-navy { background-color: var(--color-primary); }
+.border-navy { border-color: var(--color-primary); }
+
+.text-gold { color: var(--color-accent); }
+.bg-gold { background-color: var(--color-accent); }
+.border-gold { border-color: var(--color-accent); }
+
+.text-cream { color: var(--color-bg-cream); }
+.bg-cream { background-color: var(--color-bg-cream); }
+
+.text-on-navy { color: var(--color-text-white); }
+.text-on-navy-secondary { color: rgba(255, 255, 255, 0.8); }
+
+.shadow-navy { box-shadow: var(--shadow-md); }
+.shadow-gold { box-shadow: var(--shadow-gold); }
+
+/* ===== PREMIUM TIER STYLING ===== */
+.tier-signature {
+  border: 2px solid var(--color-accent);
+  box-shadow: var(--shadow-gold);
+}
+
+.tier-signature-badge {
+  background: var(--color-accent);
+  color: var(--color-primary);
+}
+
+/* ===== ESSENTIALS TIER STYLING ===== */
+.tier-essentials {
+  border: 1px solid var(--color-border);
+}
+
+.tier-essentials-badge {
+  background: var(--color-bg-light);
+  color: var(--color-text-secondary);
+}
+
+/* ===== SECTION BACKGROUNDS ===== */
+.bg-navy-dark { background-color: var(--color-primary-dark); }
+.bg-navy-light { background-color: var(--color-primary-light); }
+
+/* ===== GRADIENT UTILITIES ===== */
+.gradient-navy {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+}
+
+.gradient-gold {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+}
+
+.gradient-hero {
+  background: linear-gradient(to bottom, var(--color-primary), var(--color-primary-light));
+}
+
+/* ===== TRUST STRIP ===== */
+.trust-strip {
+  background-color: var(--color-bg-cream);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.trust-strip-icon {
+  color: var(--color-accent);
+}
+
+.trust-strip-text {
+  color: var(--color-text-primary);
+}
+
+/* ===== ANNOUNCEMENT BAR ===== */
+.announcement-bar {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+}
+
+.announcement-text {
+  color: var(--color-primary);
+}
+
+.announcement-link {
+  color: var(--color-primary);
+  transition: all var(--transition-fast);
+}
+
+.announcement-link:hover {
+  opacity: 0.8;
+}
+
+.announcement-close {
+  color: var(--color-primary);
+  opacity: 0.6;
+  transition: opacity var(--transition-fast);
+}
+
+.announcement-close:hover {
+  opacity: 1;
+}
+
+/* ===== TESTIMONIAL CARDS ===== */
+.testimonial-card {
+  background: var(--color-bg-cream);
+  border-left: 4px solid var(--color-accent);
+}
+
+.testimonial-quote {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--color-text-primary);
+  line-height: var(--leading-loose);
+}
+
+.testimonial-author {
+  color: var(--color-primary);
+  font-weight: var(--weight-semibold);
+}
+
+.testimonial-title {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+}
+
+.testimonial-stars {
+  color: var(--color-accent);
+}
+
+/* ===== FAQ ACCORDION ===== */
+.faq-question {
+  color: var(--color-primary);
+  font-weight: var(--weight-semibold);
+  transition: color var(--transition-fast);
+}
+
+.faq-question:hover {
+  color: var(--color-accent);
+}
+
+.faq-answer {
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.faq-icon {
+  color: var(--color-accent);
+  transition: transform var(--transition-base);
+}
+
+.faq-item-open .faq-icon {
+  transform: rotate(180deg);
+}
+
+/* ===== PRICING SECTION ===== */
+.pricing-section {
+  background: var(--color-bg-cream);
+}
+
+.pricing-card {
+  background: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+}
+
+.pricing-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-gold);
+  transform: translateY(-4px);
+}
+
+.pricing-tier-label {
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+.pricing-amount {
+  font-family: var(--font-heading);
+  font-size: 36px;
+  font-weight: var(--weight-bold);
+  color: var(--color-primary);
+}
+
+.pricing-original {
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+}
+
+.pricing-saving {
+  font-size: var(--text-sm);
+  color: var(--color-success);
+  font-weight: var(--weight-semibold);
 }
