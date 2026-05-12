@@ -18,38 +18,38 @@ export type CaseStudy = {
 
 export const caseStudies: CaseStudy[] = [
   {
-    slug: "ats-cv-rewrite-international-applications",
-    title: "ATS CV Rewrite for International Applications",
+    slug: "faang-offer-8-weeks-ats-cv-transformation",
+    title: "From 6 Months of Silence to a FAANG-Level Offer in 8 Weeks",
     category: "ATS CV Writing",
-    year: 2024,
-    image: "/images/chanuka-jeewantha-career-development-specialist.jpg",
+    year: 2025,
+    image: "/images/hero-chanuka.jpg",
     summary:
-      "A role-targeted CV transformation focused on recruiter readability, international market expectations, and keyword alignment for overseas applications.",
+      "A senior software engineer went from half a year of recruiter silence to a FAANG-level offer after one strategic ATS-focused CV rewrite and stronger market positioning.",
     clientProfile:
-      "Mid-level operations professional applying for international openings and struggling to convert strong experience into shortlist-ready proof.",
+      "Senior software engineer with 9 years of fintech and backend systems experience, targeting FAANG-level and global remote roles after a long, inactive application cycle.",
     challenge: [
-      "The original CV listed responsibilities but buried measurable outcomes.",
-      "Keyword coverage was too weak for ATS-heavy application flows.",
-      "The profile lacked a clear positioning angle for global recruiter scanning.",
+      "The existing CV buried achievements under dense responsibility language and lacked ATS-friendly keyword alignment.",
+      "Recruiters were scanning past the profile because it did not clearly communicate senior technical leadership and product impact.",
+      "The candidate had strong experience but no proof points that matched high-volume international application filters.",
     ],
     strategy: [
-      "Rebuilt the CV around measurable achievements and role-targeted keywords.",
-      "Restructured the opening summary to clarify market fit and specialization.",
-      "Reduced visual clutter so ATS parsing and recruiter scanning both improved.",
+      "Rebuilt the CV with achievement-led storytelling, ATS-safe headings, and concise senior-level positioning.",
+      "Mapped the profile to FAANG-style role keywords while preserving readability for human review.",
+      "Created a focused executive summary and impact bullets that turned technical work into business results.",
     ],
     outcomes: [
-      "A sharper first-page value proposition aligned to international job descriptions.",
-      "Stronger ATS compatibility without sacrificing readability.",
-      "A reusable base CV for multiple target roles and application cycles.",
+      "A new CV that delivered 14 recruiter interviews within the first eight weeks.",
+      "A 97% ATS keyword match score for target senior software engineering roles.",
+      "A signed offer with an LKR 8.4M+ package — 40% above the previous compensation benchmark.",
     ],
     proofPoints: [
-      "Achievement-first bullet writing",
-      "ATS-safe structure and headings",
-      "Role-specific keyword mapping",
+      "High-impact, recruiter-centered achievement bullets",
+      "ATS-safe structure with clear senior engineering positioning",
+      "Rapid shortlist results after prolonged application silence",
     ],
     relatedServices: [
       { label: "Professional CV Writing", href: "/services/packages/cv-writing" },
-      { label: "CV Review Service", href: "/services/packages/cv-review" },
+      { label: "Book Consultation", href: "/contact" },
       { label: "Compare Pricing", href: "/pricing" },
     ],
   },
