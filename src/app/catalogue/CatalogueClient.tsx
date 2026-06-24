@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import SignatureDiscountBanner from "@/components/SignatureDiscountBanner";
 import {
   calculateCatalogueTotal,
   experienceOptions,
@@ -272,6 +273,10 @@ export default function CatalogueClient() {
           </p>
         </div>
       </section>
+
+      <div className="w-full bg-bg-cream px-4 pt-12 sm:px-6">
+        <SignatureDiscountBanner />
+      </div>
 
       <section className="tier-comparison w-full bg-white px-4 py-12 sm:px-6 md:py-16">
         <div className="mx-auto max-w-5xl">
