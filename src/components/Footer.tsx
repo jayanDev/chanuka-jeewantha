@@ -50,6 +50,7 @@ export default function Footer() {
               <li><Link href="/portfolio" className="hover:text-brand-main transition-colors text-text-light/80">Portfolio</Link></li>
               <li><Link href="/businesses" className="hover:text-brand-main transition-colors text-text-light/80">Businesses</Link></li>
               <li><Link href="/ebooks" className="hover:text-brand-main transition-colors text-text-light/80">Ebooks</Link></li>
+              <li><Link href="/free-ats-cv-template" className="hover:text-brand-main transition-colors text-brand-main font-semibold">Free ATS CV Template</Link></li>
               <li><Link href="/fiverr-orders" className="hover:text-brand-main transition-colors text-text-light/80">Fiverr Orders (50% OFF)</Link></li>
               <li><Link href="/affiliate" className="hover:text-brand-main transition-colors text-text-light/80 text-brand-main font-semibold">Affiliate Network [HOT]</Link></li>
               <li><Link href="/blog" className="hover:text-brand-main transition-colors text-text-light/80">Blog</Link></li>
