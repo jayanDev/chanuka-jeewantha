@@ -17,6 +17,7 @@ import { TARGET_SEO_KEYWORDS } from "@/lib/seo";
 
 const siteUrl = getBaseUrl();
 const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
+const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim();
 const organizationId = `${siteUrl}#organization`;
 const websiteId = `${siteUrl}#website`;
 
@@ -163,9 +164,9 @@ export const metadata: Metadata = {
     creator: "@chanukajeewantha",
     site: "@chanukajeewantha",
   },
-  verification: {
-    google: "google-site-verification-code", // Will need real code
-  },
+  ...(googleSiteVerification
+    ? { verification: { google: googleSiteVerification } }
+    : {}),
 };
 
 export default async function RootLayout({
