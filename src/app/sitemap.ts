@@ -33,6 +33,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/resources",
     "/free-ats-cv-template",
     "/dubai",
+    "/australia",
     "/90-day-interview-guarantee",
     "/tools",
     "/booking",

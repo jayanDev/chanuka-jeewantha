@@ -6,7 +6,7 @@ import { buildBreadcrumbList, buildFaqPageSchema } from "@/lib/structured-data";
 export const metadata: Metadata = buildPageMetadata({
   title: "90-Day Interview Guarantee — Terms & Conditions | Chanuka Jeewantha",
   description:
-    "Full terms of the 90-Day Interview Guarantee on Dubai Professional & Executive packages: eligibility, application requirements, proof, and the free-rewrite or 50% refund remedy.",
+    "Full terms of the 90-Day Interview Guarantee on Dubai and Australia Professional & Executive packages: eligibility, application requirements, proof, and the free-rewrite or 50% refund remedy.",
   path: "/90-day-interview-guarantee",
   keywords: [
     "90 day interview guarantee",
@@ -23,7 +23,7 @@ const conditions = [
   },
   {
     title: "Applications must match the CV's target",
-    body: "Applications must be to Dubai/UAE roles matching the seniority and job types your package was built for. Applying to unrelated roles or markets does not count toward the guarantee.",
+    body: "Applications must be to roles in the market your package was built for (Dubai/UAE or Australia), matching the seniority and job types targeted by your CV. Applying to unrelated roles or markets does not count toward the guarantee.",
   },
   {
     title: "Use the final delivered documents without edits",
@@ -43,7 +43,7 @@ const faqs = [
   {
     question: "Which packages include the 90-Day Interview Guarantee?",
     answer:
-      "The guarantee is included with the Dubai Professional Package and the Dubai Executive Package. The Dubai Starter Package does not include the guarantee.",
+      "The guarantee is included with the Dubai Professional, Dubai Executive, Australia Professional, and Australia Migration Pro packages. The Dubai Starter and Australia Starter packages do not include the guarantee.",
   },
   {
     question: "What exactly do I get if I don't receive an interview within 90 days?",
@@ -97,7 +97,7 @@ export default function GuaranteePage() {
             we&apos;ll rewrite your CV free of charge, or refund 50%.
           </p>
           <p className="mt-4 text-sm text-white/60">
-            Included with the Dubai Professional &amp; Dubai Executive packages.
+            Included with the Dubai Professional &amp; Executive and Australia Professional &amp; Migration Pro packages.
           </p>
         </div>
       </section>
@@ -227,11 +227,14 @@ export default function GuaranteePage() {
             Ready to start your Dubai job search — risk managed?
           </h2>
           <p className="mt-3 text-white/80">
-            The guarantee is included with the Dubai Professional and Executive packages.
+            The guarantee is included with the Dubai and Australia Professional-level packages and above.
           </p>
           <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap">
             <Link href="/dubai#packages" className="btn btn-primary btn-lg">
               View Dubai Packages →
+            </Link>
+            <Link href="/australia#packages" className="btn btn-primary btn-lg">
+              View Australia Packages →
             </Link>
             <Link href="/contact" className="btn btn-secondary !border-white/40 !text-white hover:!bg-white/10">
               Ask a Question First
