@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
 	compress: true,
 	outputFileTracingIncludes: {
 		"/api/resources/templates/[slug]/download": ["./Resources/Templates/Free/**/*.docx"],
+		"/api/free-cv-template/download": ["./Resources/Templates/Free/**/*.docx"],
+		"/api/free-cv-checklist/download": ["./Resources/Checklists/Free/**/*.pdf"],
 	},
 	async redirects() {
 		return [
