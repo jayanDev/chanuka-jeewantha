@@ -193,6 +193,25 @@ export default function FreeCvTemplateLandingPage() {
         </div>
       </section>
 
+      {/* Pair it with the checklist */}
+      <section className="w-full bg-white px-4 py-14 sm:px-6 md:py-20">
+        <div className="mx-auto max-w-4xl text-center">
+          <p className="section-label">Recommended Next</p>
+          <h2 className="font-heading text-[26px] font-bold text-foreground sm:text-[34px]">
+            Pair it with the ATS checklist
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-text-body">
+            Once you&apos;ve filled in this format with your own details, run it through our free
+            32-point ATS checklist to confirm it will pass automated screening.
+          </p>
+          <div className="mt-6">
+            <Link href="/free-ats-cv-checklist" className="btn btn-secondary">
+              Get the Free Checklist →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Upsell */}
       <section className="w-full bg-primary px-4 py-14 text-white sm:px-6 md:py-20">
         <div className="mx-auto max-w-4xl text-center">
