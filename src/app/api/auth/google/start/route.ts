@@ -1,5 +1,6 @@
 import { randomBytes } from "node:crypto";
 import { NextResponse } from "next/server";
+import { buildGoogleRedirectUri } from "@/lib/google-oauth";
 
 const GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth";
 const OAUTH_STATE_COOKIE = "google_oauth_state";
@@ -10,26 +11,6 @@ function sanitizeReturnTo(value: string | null): string {
   if (!value.startsWith("/")) return "/";
   if (value.startsWith("//")) return "/";
   return value;
-}
-
-function buildGoogleRedirectUri(requestUrl: URL): string {
-  const configuredRedirectUri = process.env.GOOGLE_REDIRECT_URI?.trim();
-  if (configuredRedirectUri) {
-    try {
-      return new URL(configuredRedirectUri).toString();
-    } catch {
-      // Fall back to origin-based construction when env value is malformed.
-    }
-  }
-
-  const configuredOrigin =
-    process.env.GOOGLE_REDIRECT_ORIGIN?.trim() ||
-    process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
-    process.env.SITE_URL?.trim() ||
-    requestUrl.origin;
-
-  const normalizedOrigin = configuredOrigin.replace(/\/$/, "");
-  return `${normalizedOrigin}/api/auth/google/callback`;
 }
 
 export async function GET(request: Request) {

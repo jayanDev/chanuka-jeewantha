@@ -6,12 +6,7 @@ export type ServiceKey =
   | "graphical-cv"
   | "consultation";
 
-export type ExperienceKey =
-  | "student"
-  | "fresh-graduate"
-  | "professional"
-  | "senior-professional"
-  | "executive";
+export type ExperienceKey = "student" | "professional" | "executive";
 
 export type ServiceOptionKey = "founder-led" | "supervised";
 
@@ -136,29 +131,22 @@ export const experienceOptions: Array<{
   title: string;
   shortTitle: string;
 }> = [
-  { key: "student", number: 1, title: "Student (No Experience)", shortTitle: "Student" },
   {
-    key: "fresh-graduate",
-    number: 2,
-    title: "Fresh Graduate (0-12 Months of Experience)",
-    shortTitle: "Fresh Graduate",
+    key: "student",
+    number: 1,
+    title: "Student / Fresh Graduate Level (Less than 1 Year of Experience)",
+    shortTitle: "Student / Fresh Graduate",
   },
   {
     key: "professional",
-    number: 3,
-    title: "Professional Level (1-5 Years of Experience)",
+    number: 2,
+    title: "Professional Level (1-9 Years of Experience)",
     shortTitle: "Professional",
   },
   {
-    key: "senior-professional",
-    number: 4,
-    title: "Senior Professional Level (6-12 Years of Experience)",
-    shortTitle: "Senior Professional",
-  },
-  {
     key: "executive",
-    number: 5,
-    title: "Executive Level (More than 12 Years of Experience)",
+    number: 3,
+    title: "Executive Level (More than 9 Years of Experience)",
     shortTitle: "Executive",
   },
 ];
@@ -189,26 +177,24 @@ export const serviceOptionChoices: Array<{
 ];
 
 const founderLedPrices: Record<ServiceKey, Array<number | { thirtyMin: number; oneHour: number }>> = {
-  "ats-cv": [6500, 8000, 11500, 15500, 22500],
-  linkedin: [6500, 8000, 11500, 15500, 22500],
-  "cover-letter": [4000, 5000, 7000, 8500, 12500],
-  "foreign-cv": [10500, 12500, 14500, 18500, 27500],
-  "graphical-cv": [4000, 5000, 7000, 8500, 12500],
+  "ats-cv": [6500, 12500, 18500],
+  linkedin: [6500, 12500, 18500],
+  "cover-letter": [4500, 7500, 12500],
+  "foreign-cv": [11500, 16500, 27500],
+  "graphical-cv": [4000, 7000, 12500],
   consultation: [
     { thirtyMin: 6500, oneHour: 9500 },
-    { thirtyMin: 7500, oneHour: 10500 },
     { thirtyMin: 10500, oneHour: 14500 },
-    { thirtyMin: 13500, oneHour: 18500 },
     { thirtyMin: 18500, oneHour: 27500 },
   ],
 };
 
 const supervisedPrices: Partial<Record<ServiceKey, number[]>> = {
-  "ats-cv": [2950, 3950, 4950, 5950, 8950],
-  linkedin: [2950, 3950, 4950, 5950, 8950],
-  "cover-letter": [1950, 2450, 2950, 3450, 5450],
-  "foreign-cv": [3450, 4450, 5950, 6950, 9950],
-  "graphical-cv": [1950, 2450, 2950, 3450, 4450],
+  "ats-cv": [2950, 4950, 8950],
+  linkedin: [2950, 4950, 8950],
+  "cover-letter": [1950, 2950, 4950],
+  "foreign-cv": [3950, 6450, 9950],
+  "graphical-cv": [1950, 2950, 4450],
 };
 
 const optionTone: Record<ServiceOptionKey, string[]> = {
@@ -350,14 +336,8 @@ export function getFilteredPackages(selection: CatalogueSelection): PackageProdu
 }
 
 export function getSupervisedBundleDiscount(serviceKeys: ServiceKey[]): number {
-  const keys = new Set(serviceKeys);
-  const hasCv = keys.has("ats-cv");
-  const hasCover = keys.has("cover-letter");
-  const hasLinkedin = keys.has("linkedin");
-
-  if (hasCv && hasCover && hasLinkedin) return 20;
-  if (hasCv && hasLinkedin) return 15;
-  if (hasCv && hasCover) return 10;
+  // Automatic Essentials multi-service discounts have been retired.
+  void serviceKeys;
   return 0;
 }
 
@@ -368,17 +348,12 @@ export function calculateCatalogueTotal(packages: PackageProduct[]): {
   totalLkr: number;
 } {
   const subtotalLkr = packages.reduce((sum, pkg) => sum + pkg.priceLkr, 0);
-  const allSupervised = packages.length > 0 && packages.every((pkg) => pkg.optionKey === "supervised");
-  const discountPercent = allSupervised
-    ? getSupervisedBundleDiscount(packages.map((pkg) => pkg.serviceKey))
-    : 0;
-  const discountLkr = Math.round((subtotalLkr * discountPercent) / 100);
 
   return {
     subtotalLkr,
-    discountPercent,
-    discountLkr,
-    totalLkr: Math.max(0, subtotalLkr - discountLkr),
+    discountPercent: 0,
+    discountLkr: 0,
+    totalLkr: subtotalLkr,
   };
 }
 

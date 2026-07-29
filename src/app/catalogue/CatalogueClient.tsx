@@ -130,7 +130,14 @@ export default function CatalogueClient() {
 
   useEffect(() => {
     const serviceParam = params.get("service") as ServiceKey | null;
-    const expParam = params.get("experience") as ExperienceKey | null;
+    const rawExpParam = params.get("experience");
+    const expParam = (
+      rawExpParam === "fresh-graduate"
+        ? "student"
+        : rawExpParam === "senior-professional"
+          ? "professional"
+          : rawExpParam
+    ) as ExperienceKey | null;
     const optParam = params.get("option") as ServiceOptionKey | null;
     const bundleParam = params.get("bundle");
 
@@ -210,8 +217,6 @@ export default function CatalogueClient() {
       `Services: ${selectedServices.map((key) => getServiceByKey(key)?.title).filter(Boolean).join(", ")}`,
       `Experience: ${selectedExperience?.title ?? ""}`,
       `Service option: ${selectedOption?.title ?? ""}`,
-      `Subtotal: ${formatLkr(totals.subtotalLkr)}`,
-      totals.discountLkr > 0 ? `Discount: ${formatLkr(totals.discountLkr)} (${totals.discountPercent}%)` : "",
       `Total: ${formatLkr(totals.totalLkr)}`,
       "",
       "Please confirm availability and payment details.",
@@ -446,7 +451,7 @@ export default function CatalogueClient() {
                     <li>✓ ATS-friendly professional format</li>
                     <li>✓ 7-day delivery</li>
                     <li>✓ Email-based support</li>
-                    <li>✓ Bundle discounts up to 20%</li>
+                    <li>✓ Transparent fixed pricing</li>
                     <li className="font-semibold">From LKR 1,950</li>
                   </ul>
                 </div>
@@ -561,11 +566,6 @@ export default function CatalogueClient() {
                   <div>
                     <p className="text-sm text-zinc-500">Order total</p>
                     <p className="font-heading text-[28px] font-bold text-foreground">{formatLkr(totals.totalLkr)}</p>
-                    {totals.discountPercent > 0 && (
-                      <p className="text-sm font-semibold text-emerald-700">
-                        {totals.discountPercent}% Essentials bundle discount applied. You save {formatLkr(totals.discountLkr)}.
-                      </p>
-                    )}
                   </div>
                   <div className="flex flex-col gap-2 sm:flex-row">
                     <button
@@ -590,7 +590,6 @@ export default function CatalogueClient() {
                     </a>
                   </div>
                 </div>
-                <p className="mt-3 text-sm text-zinc-500">Subtotal: {formatLkr(totals.subtotalLkr)}</p>
               </div>
             </div>
 

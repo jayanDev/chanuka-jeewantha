@@ -10,8 +10,10 @@ import { getBlogCategoryPath, getIndexableFallbackBlogPosts } from "@/lib/blog-d
 import { careerTools } from "@/lib/tools";
 import { industryLandingPages } from "@/lib/industry-pages";
 
+import { landingPages } from "@/lib/landing-pages";
+import { cvGuidePages } from "@/lib/cv-guide-pages";
 const baseUrl = getBaseUrl();
-const siteLastUpdated = new Date("2026-04-20T00:00:00.000Z");
+const siteLastUpdated = new Date("2026-07-30T00:00:00.000Z");
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = [
@@ -60,6 +62,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/contact",
     "/help",
     "/privacy-policy",
+    "/cv-writing-guides",
     "/terms-and-conditions",
     "/resume",
     "/blog",
@@ -149,6 +152,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.69,
   }));
 
+  const landingEntries = landingPages.map((item) => ({
+    url: `${baseUrl}/${item.slug}`,
+    lastModified: siteLastUpdated,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  const cvGuideEntries = cvGuidePages.map((item) => ({
+    url: `${baseUrl}/cv-writing-guides/${item.slug}`,
+    lastModified: siteLastUpdated,
+    changeFrequency: "monthly" as const,
+    priority: 0.68,
+    images: [`${baseUrl}${item.heroImage}`],
+  }));
+
   const industryEntries = industryLandingPages.map((item) => ({
     url: `${baseUrl}/services/industries/${item.slug}`,
     lastModified: siteLastUpdated,
@@ -177,6 +195,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...blogEntries,
     ...packageEntries,
     ...resourceEntries,
+    ...landingEntries,
+    ...cvGuideEntries,
     ...toolEntries,
     ...industryEntries,
     ...ebookEntries,

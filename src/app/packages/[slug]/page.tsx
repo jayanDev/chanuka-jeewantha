@@ -15,6 +15,16 @@ const retiredPackageRedirects: Record<string, string> = {
   "starter-cover-letter": "/packages/student-cover-letter",
   "starter-linkedin-package": "/packages/student-linkedin-package",
 };
+function getLegacyExperienceRedirect(slug: string): string | null {
+  if (slug.includes("-fresh-graduate-")) {
+    return `/packages/${slug.replace("-fresh-graduate-", "-student-")}`;
+  }
+  if (slug.includes("-senior-professional-")) {
+    return `/packages/${slug.replace("-senior-professional-", "-professional-")}`;
+  }
+  return null;
+}
+
 
 export async function generateStaticParams() {
   return packageProducts.map((pkg) => ({ slug: pkg.slug }));
@@ -22,10 +32,10 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PackagePageProps): Promise<Metadata> {
   const { slug } = await params;
-  if (retiredPackageRedirects[slug]) {
+  if (retiredPackageRedirects[slug] || getLegacyExperienceRedirect(slug)) {
     return buildNoIndexMetadata({
       title: "Package Moved",
-      description: "This package has moved to the current Student package page.",
+      description: "This package has moved to the current experience-level package page.",
       path: `/packages/${slug}`,
     });
   }
@@ -50,7 +60,7 @@ export async function generateMetadata({ params }: PackagePageProps): Promise<Me
 
 export default async function PackageSinglePage({ params }: PackagePageProps) {
   const { slug } = await params;
-  const retiredRedirect = retiredPackageRedirects[slug];
+  const retiredRedirect = retiredPackageRedirects[slug] ?? getLegacyExperienceRedirect(slug);
   if (retiredRedirect) {
     permanentRedirect(retiredRedirect);
   }

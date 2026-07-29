@@ -97,7 +97,7 @@ export default async function Home() {
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6 w-full flex flex-col md:flex-row items-center gap-12 z-10">
           <div className="flex-1 flex flex-col items-start px-[24px]">
             <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.05em] tracking-tight mb-6 text-primary">
-              Hi, I am <br /> <span className="text-brand-main">Chanuka Jeewantha</span>
+              Sri Lanka&apos;s No 1 <br /> <span className="text-brand-main">Professional CV Writer</span>
             </h1>
             <p className="text-text-body text-[16px] md:text-[20px] font-normal leading-relaxed max-w-2xl mb-8">
               Professional CV Writer and Career Development Specialist with 8+ years of experience helping job seekers build ATS-friendly, recruiter-ready career profiles.

@@ -9,6 +9,7 @@ import {
   hashPassword,
   setAuthUserRole,
 } from "@/lib/auth";
+import { buildGoogleRedirectUri } from "@/lib/google-oauth";
 
 const TOKEN_URL = "https://oauth2.googleapis.com/token";
 const USERINFO_URL = "https://openidconnect.googleapis.com/v1/userinfo";
@@ -20,26 +21,6 @@ function sanitizeReturnTo(value: string | null): string {
   if (!value.startsWith("/")) return "/";
   if (value.startsWith("//")) return "/";
   return value;
-}
-
-function buildGoogleRedirectUri(requestUrl: URL): string {
-  const configuredRedirectUri = process.env.GOOGLE_REDIRECT_URI?.trim();
-  if (configuredRedirectUri) {
-    try {
-      return new URL(configuredRedirectUri).toString();
-    } catch {
-      // Fall back to origin-based construction when env value is malformed.
-    }
-  }
-
-  const configuredOrigin =
-    process.env.GOOGLE_REDIRECT_ORIGIN?.trim() ||
-    process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
-    process.env.SITE_URL?.trim() ||
-    requestUrl.origin;
-
-  const normalizedOrigin = configuredOrigin.replace(/\/$/, "");
-  return `${normalizedOrigin}/api/auth/google/callback`;
 }
 
 function getAdminEmailSet(): Set<string> {

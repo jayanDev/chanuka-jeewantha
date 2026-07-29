@@ -863,7 +863,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
   },
   {
-    packageSlug: "ats-cv-fresh-graduate-supervised",
+    packageSlug: "ats-cv-student-supervised",
     title: "Starter CV Review Package: Fix Entry-Level CV Mistakes Before Recruiters See Them",
     excerpt:
       "A practical CV review roadmap for freshers and early-career job seekers to improve ATS alignment, clarity, and interview readiness.",

@@ -141,6 +141,10 @@ Required environment variables:
 ```bash
 GOOGLE_CLIENT_ID="your-google-oauth-client-id"
 GOOGLE_CLIENT_SECRET="your-google-oauth-client-secret"
+# Optional: set one of these if you want to pin the production callback domain.
+GOOGLE_REDIRECT_URI="https://chanukajeewantha.lk/api/auth/google/callback"
+# or:
+GOOGLE_REDIRECT_ORIGIN="https://chanukajeewantha.lk"
 # Optional: comma-separated list of emails that should get admin role after Google sign-in.
 GOOGLE_ADMIN_EMAILS="admin1@example.com,admin2@example.com"
 ```
@@ -150,7 +154,13 @@ Google Cloud OAuth settings:
 - Authorized redirect URI:
 
 ```text
-https://your-domain.com/api/auth/google/callback
+https://chanukajeewantha.lk/api/auth/google/callback
+```
+
+If you also use `www`, add that callback separately too:
+
+```text
+https://www.chanukajeewantha.lk/api/auth/google/callback
 ```
 
 For local development also add:
