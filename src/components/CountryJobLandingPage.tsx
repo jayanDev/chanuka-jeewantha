@@ -129,6 +129,7 @@ export function buildCountryLandingMetadata(market: CountryJobMarket): Metadata 
 }
 
 export default function CountryJobLandingPage({ market }: CountryJobLandingPageProps) {
+  const hasCustomCoverImage = Boolean(market.coverImage);
   const faqs = buildFaqs(market);
   const baseUrl = getBaseUrl();
   const allCountryPackages = countryServices.flatMap((service) =>
@@ -200,7 +201,13 @@ export default function CountryJobLandingPage({ market }: CountryJobLandingPageP
               "radial-gradient(circle at 12% 18%, rgba(249,115,22,.65), transparent 25%), radial-gradient(circle at 88% 72%, rgba(255,255,255,.2), transparent 30%)",
           }}
         />
-        <div className="relative mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-[minmax(0,1.15fr)_420px]">
+        <div
+          className={`relative mx-auto grid max-w-[1240px] items-center gap-12 ${
+            hasCustomCoverImage
+              ? "lg:grid-cols-[minmax(0,1fr)_520px]"
+              : "lg:grid-cols-[minmax(0,1.15fr)_420px]"
+          }`}
+        >
           <div>
             <div className="mb-6 flex flex-wrap items-center gap-2 text-sm">
               <Link href="/" className="text-white/70 transition-colors hover:text-brand-main">
@@ -261,24 +268,38 @@ export default function CountryJobLandingPage({ market }: CountryJobLandingPageP
             </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-[420px]">
+          <div
+            className={`relative mx-auto w-full ${
+              hasCustomCoverImage ? "max-w-[560px]" : "max-w-[420px]"
+            }`}
+          >
             <div className="absolute -inset-4 rounded-[34px] bg-brand-main/20 blur-2xl" aria-hidden="true" />
             <div className="relative overflow-hidden rounded-[30px] border border-white/20 bg-white/10 p-3 shadow-2xl backdrop-blur">
               <Image
-                src="/images/about-chanurgka.jpg"
-                alt={`Chanuka Jeewantha, professional CV writer for Sri Lankans targeting jobs in ${market.name}`}
-                width={600}
-                height={760}
+                src={market.coverImage ?? "/images/about-chanurgka.jpg"}
+                alt={
+                  hasCustomCoverImage
+                    ? `Are you looking for a job in ${market.name}? Country-specific CV services by Chanuka Jeewantha`
+                    : `Chanuka Jeewantha, professional CV writer for Sri Lankans targeting jobs in ${market.name}`
+                }
+                width={hasCustomCoverImage ? 1200 : 600}
+                height={hasCustomCoverImage ? 630 : 760}
                 priority
-                className="aspect-[4/5] w-full rounded-[22px] object-cover object-top"
+                className={
+                  hasCustomCoverImage
+                    ? "aspect-[1200/630] w-full rounded-[22px] object-cover"
+                    : "aspect-[4/5] w-full rounded-[22px] object-cover object-top"
+                }
               />
-              <div className="absolute inset-x-6 bottom-6 rounded-2xl bg-primary/90 p-4 shadow-lg backdrop-blur">
+              {!hasCustomCoverImage && (
+                <div className="absolute inset-x-6 bottom-6 rounded-2xl bg-primary/90 p-4 shadow-lg backdrop-blur">
                 <p className="text-xs font-bold uppercase tracking-[0.12em] text-brand-main">
                   Sri Lanka&apos;s No. 1 Professional CV Writer
                 </p>
                 <p className="mt-1 text-xl font-bold text-white">Chanuka Jeewantha</p>
                 <p className="mt-1 text-xs text-white/70">CPRW · CPCC · Country-specific career positioning</p>
-              </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

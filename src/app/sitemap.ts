@@ -162,7 +162,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: siteLastUpdated,
     changeFrequency: "monthly" as const,
     priority: 0.76,
-    images: [`${baseUrl}/images/about-chanurgka.jpg`],
+    images: [`${baseUrl}${market.coverImage ?? "/images/about-chanurgka.jpg"}`],
   }));
 
 

@@ -58,6 +58,17 @@ describe("country job markets", () => {
   it("uses standalone static routes only for the two existing premium URLs", () => {
     expect([...standaloneCountrySlugs].sort()).toEqual(["australia", "dubai"]);
   });
+
+  it("uses the supplied Dubai-specific cover artwork only on the Dubai page", () => {
+    const marketsWithCustomCovers = countryJobMarkets.filter((market) => market.coverImage);
+
+    expect(marketsWithCustomCovers).toEqual([
+      expect.objectContaining({
+        slug: "dubai",
+        coverImage: "/images/dubai-job-cv-cover-chanuka-jeewantha.jpg",
+      }),
+    ]);
+  });
 });
 
 describe("country page package pricing", () => {

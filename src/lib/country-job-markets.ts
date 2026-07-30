@@ -4,6 +4,7 @@ export type CountryJobMarket = {
   destinationLabel: string;
   region: string;
   documentName: "CV" | "resume" | "CV or resume";
+  coverImage?: string;
   heroLine: string;
   metaDescription: string;
   keywords: string[];
@@ -23,6 +24,7 @@ export const countryJobMarkets: CountryJobMarket[] = [
     destinationLabel: "Dubai job market",
     region: "GCC",
     documentName: "CV",
+    coverImage: "/images/dubai-job-cv-cover-chanuka-jeewantha.jpg",
     heroLine: "Build a Dubai-ready career profile before you leave Sri Lanka",
     metaDescription:
       "Dubai CV writing, cover letter and LinkedIn optimization for Sri Lankans applying for UAE jobs. Compare every foreign-job service price in LKR.",
