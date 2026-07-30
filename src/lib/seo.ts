@@ -8,6 +8,12 @@ type BuildPageMetadataInput = {
   keywords?: string[];
   noIndex?: boolean;
   type?: "website" | "article" | "profile";
+  image?: {
+    url: string;
+    width: number;
+    height: number;
+    alt: string;
+  };
   /** hreflang language alternates, e.g. { 'si': '/blog/some-sinhala-slug' } */
   alternateLanguages?: Record<string, string>;
 };
@@ -54,6 +60,12 @@ export function buildPageMetadata(input: BuildPageMetadataInput): Metadata {
   const mergedKeywords = Array.from(
     new Set([...TARGET_SEO_KEYWORDS, ...(input.keywords || [])])
   );
+  const previewImage = input.image ?? {
+    url: DEFAULT_OG_IMAGE,
+    width: 1200,
+    height: 630,
+    alt: `${SITE_NAME} preview image`,
+  };
 
   return {
     title: input.title,
@@ -95,20 +107,13 @@ export function buildPageMetadata(input: BuildPageMetadataInput): Metadata {
       siteName: SITE_NAME,
       locale: "en_LK",
       type: input.type ?? "website",
-      images: [
-        {
-          url: DEFAULT_OG_IMAGE,
-          width: 1200,
-          height: 630,
-          alt: `${SITE_NAME} preview image`,
-        },
-      ],
+      images: [previewImage],
     },
     twitter: {
       card: "summary_large_image",
       title: input.title,
       description: input.description,
-      images: [DEFAULT_OG_IMAGE],
+      images: [previewImage.url],
     },
   };
 }

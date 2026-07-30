@@ -125,6 +125,16 @@ export function buildCountryLandingMetadata(market: CountryJobMarket): Metadata 
     description: market.metaDescription,
     path: `/${market.slug}`,
     keywords: market.keywords,
+    ...(market.coverImage
+      ? {
+          image: {
+            url: market.coverImage,
+            width: 1200,
+            height: 630,
+            alt: `${market.name} job CV services by Chanuka Jeewantha`,
+          },
+        }
+      : {}),
   });
 }
 
