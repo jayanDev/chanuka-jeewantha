@@ -5,6 +5,7 @@ import AnimatedServiceTextVisual from "@/components/AnimatedServiceTextVisual";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
 import { industryLandingPages } from "@/lib/industry-pages";
+import { countryJobMarkets } from "@/lib/country-job-markets";
 import ServicesPackageFilter from "@/app/services/ServicesPackageFilter";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -142,6 +143,31 @@ export default function ServicesPage() {
           </div>
 
           <ServicesPackageFilter />
+
+          <section className="mt-10 rounded-[20px] border border-orange-200 bg-orange-50 p-6 md:p-8">
+            <div className="max-w-3xl">
+              <span className="inline-flex rounded-full bg-brand-main/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-dark">
+                International Job Markets
+              </span>
+              <h2 className="mt-4 text-[30px] font-bold font-heading text-foreground">
+                Country-specific CV services for Sri Lankans
+              </h2>
+              <p className="mt-3 leading-relaxed text-text-body">
+                Compare Foreign Job CV, Cover Letter and LinkedIn Optimization prices, then review application guidance written for your target destination.
+              </p>
+            </div>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {countryJobMarkets.map((market) => (
+                <Link
+                  key={market.slug}
+                  href={`/${market.slug}`}
+                  className="rounded-full border border-orange-200 bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-brand-main hover:text-brand-main"
+                >
+                  {market.name}
+                </Link>
+              ))}
+            </div>
+          </section>
 
           <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
  <article className="rounded-[18px] border border-zinc-200 bg-zinc-50 p-6">

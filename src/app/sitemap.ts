@@ -12,6 +12,7 @@ import { industryLandingPages } from "@/lib/industry-pages";
 
 import { landingPages } from "@/lib/landing-pages";
 import { cvGuidePages } from "@/lib/cv-guide-pages";
+import { countryJobMarkets } from "@/lib/country-job-markets";
 const baseUrl = getBaseUrl();
 const siteLastUpdated = new Date("2026-07-30T00:00:00.000Z");
 
@@ -35,8 +36,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/resources",
     "/free-ats-cv-template",
     "/free-ats-cv-checklist",
-    "/dubai",
-    "/australia",
     "/90-day-interview-guarantee",
     "/tools",
     "/booking",
@@ -158,6 +157,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
+  const countryJobEntries = countryJobMarkets.map((market) => ({
+    url: `${baseUrl}/${market.slug}`,
+    lastModified: siteLastUpdated,
+    changeFrequency: "monthly" as const,
+    priority: 0.76,
+    images: [`${baseUrl}/images/about-chanurgka.jpg`],
+  }));
+
 
   const cvGuideEntries = cvGuidePages.map((item) => ({
     url: `${baseUrl}/cv-writing-guides/${item.slug}`,
@@ -197,6 +204,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...resourceEntries,
     ...landingEntries,
     ...cvGuideEntries,
+    ...countryJobEntries,
     ...toolEntries,
     ...industryEntries,
     ...ebookEntries,

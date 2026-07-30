@@ -5,6 +5,14 @@ import { buildBreadcrumbList } from "@/lib/structured-data";
 import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 import { formatLkr, packageProducts } from "@/lib/packages-catalog";
 import { getLandingPageBySlug, landingPages } from "@/lib/landing-pages";
+import CountryJobLandingPage, {
+  buildCountryLandingMetadata,
+} from "@/components/CountryJobLandingPage";
+import {
+  countryJobMarkets,
+  getCountryJobMarketBySlug,
+  standaloneCountrySlugs,
+} from "@/lib/country-job-markets";
 
 type LandingPageProps = {
   params: Promise<{ landingSlug: string }>;
@@ -13,12 +21,22 @@ type LandingPageProps = {
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return landingPages.map((item) => ({ landingSlug: item.slug }));
+  return [
+    ...landingPages.map((item) => ({ landingSlug: item.slug })),
+    ...countryJobMarkets
+      .filter((item) => !standaloneCountrySlugs.has(item.slug))
+      .map((item) => ({ landingSlug: item.slug })),
+  ];
 }
 
 export async function generateMetadata({ params }: LandingPageProps): Promise<Metadata> {
   const { landingSlug } = await params;
+  const countryMarket = getCountryJobMarketBySlug(landingSlug);
   const page = getLandingPageBySlug(landingSlug);
+  if (countryMarket) {
+    return buildCountryLandingMetadata(countryMarket);
+  }
+
 
   if (!page) {
     return buildNoIndexMetadata({
@@ -38,7 +56,12 @@ export async function generateMetadata({ params }: LandingPageProps): Promise<Me
 
 export default async function LandingPage({ params }: LandingPageProps) {
   const { landingSlug } = await params;
+  const countryMarket = getCountryJobMarketBySlug(landingSlug);
   const page = getLandingPageBySlug(landingSlug);
+  if (countryMarket) {
+    return <CountryJobLandingPage market={countryMarket} />;
+  }
+
 
   if (!page) {
     notFound();
