@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { formatLkr, packageCategories, type PackageCategory } from "@/lib/packages-catalog";
+import { formatLkr, publicPackageCategories as packageCategories, type PackageCategory } from "@/lib/packages-catalog";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList, buildOfferCatalogSchema } from "@/lib/structured-data";
 import { getBaseUrl } from "@/lib/site-url";

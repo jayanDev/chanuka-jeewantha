@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { formatLkr, packageProducts } from "@/lib/packages-catalog";
+import { formatLkr, publicPackageProducts as packageProducts } from "@/lib/packages-catalog";
 
 type PublicOffer = {
   id: string;

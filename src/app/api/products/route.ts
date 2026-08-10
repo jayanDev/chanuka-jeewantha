@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { packageProducts } from "@/lib/packages-catalog";
+import { publicPackageProducts as packageProducts } from "@/lib/packages-catalog";
 import { applyOfferToPrice, getEffectiveSeasonalOffer } from "@/lib/seasonal-offers";
 
 export async function GET(request: Request) {

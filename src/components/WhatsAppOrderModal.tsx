@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { packageCategories, formatLkr, type PackageProduct } from "@/lib/packages-catalog";
+import { publicPackageCategories as packageCategories, formatLkr, type PackageProduct } from "@/lib/packages-catalog";
 import { ebooks, ebookBundles, getBundlePrice, type Ebook, type EbookBundle } from "@/lib/ebooks";
 import { EBOOK_READ_PRICE_LKR } from "@/lib/ebook-pricing";
 

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { buildBreadcrumbList } from "@/lib/structured-data";
 import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
-import { formatLkr, packageProducts } from "@/lib/packages-catalog";
+import { formatLkr, publicPackageProducts as packageProducts } from "@/lib/packages-catalog";
 import { getLandingPageBySlug, landingPages } from "@/lib/landing-pages";
 import CountryJobLandingPage, {
   buildCountryLandingMetadata,

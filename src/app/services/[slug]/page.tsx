@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AnimatedServiceTextVisual from "@/components/AnimatedServiceTextVisual";
 import SubscribeForm from "@/components/SubscribeForm";
-import { formatLkr, packageProducts } from "@/lib/packages-catalog";
+import { formatLkr, publicPackageProducts as packageProducts } from "@/lib/packages-catalog";
 import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 
 const serviceMetadataMap: Record<string, { label: string; title: string; description: string }> = {

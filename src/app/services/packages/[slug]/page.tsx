@@ -2,16 +2,13 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ServicesPackageFilter from "@/app/services/ServicesPackageFilter";
-import { packageCategories, type ServiceKey } from "@/lib/packages-catalog";
+import { publicPackageCategories as packageCategories, type ServiceKey } from "@/lib/packages-catalog";
 import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 
 const slugToCategoryTitle: Record<string, string> = {
   "ats-cv": "ATS Friendly Professional CV Writing Packages",
   linkedin: "LinkedIn Account Optimization Packages",
   "cover-letter": "Professional Cover Letter Writing Packages",
-  "foreign-cv": "Foreign Job CV Writing Packages",
-  "graphical-cv": "Graphical CV Writing / Resume Writing Packages",
-  consultation: "Career Consultation Packages",
 };
 
 export function generateStaticParams() {

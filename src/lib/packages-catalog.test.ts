@@ -4,6 +4,10 @@ import {
   experienceOptions,
   getSupervisedBundleDiscount,
   packageProducts,
+  publicPackageCategories,
+  publicPackageProducts,
+  publicPackageServiceKeys,
+  publicServiceOptions,
   type ExperienceKey,
   type ServiceKey,
   type ServiceOptionKey,
@@ -86,5 +90,22 @@ describe("packages catalogue", () => {
       discountLkr: 0,
       totalLkr: 7850,
     });
+  });
+
+  it("exposes only the three active services on public package pages", () => {
+    const publicKeys = ["ats-cv", "linkedin", "cover-letter"];
+
+    expect(publicPackageServiceKeys).toEqual(publicKeys);
+    expect(publicServiceOptions.map((item) => item.key)).toEqual(publicKeys);
+    expect(publicPackageCategories.map((item) => item.key)).toEqual(publicKeys);
+    expect(publicPackageProducts).toHaveLength(18);
+    expect(new Set(publicPackageProducts.map((item) => item.serviceKey))).toEqual(
+      new Set(publicKeys)
+    );
+    expect(
+      packageProducts.filter((item) =>
+        ["foreign-cv", "graphical-cv", "consultation"].includes(item.serviceKey)
+      )
+    ).toHaveLength(15);
   });
 });

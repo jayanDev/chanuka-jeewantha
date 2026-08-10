@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import {
   formatLkr,
-  packageCategories,
+  publicPackageCategories as packageCategories,
   paymentInstructions,
   type PackageCategory,
   type PackageProduct,

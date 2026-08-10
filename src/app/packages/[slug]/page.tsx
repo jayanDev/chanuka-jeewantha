@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
-import { packageProducts, formatLkr, getPackageDisplayPrice } from "@/lib/packages-catalog";
+import { publicPackageProducts as packageProducts, formatLkr, getPackageDisplayPrice } from "@/lib/packages-catalog";
 import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList, buildProductSchema } from "@/lib/structured-data";
 import SignatureDiscountBanner from "@/components/SignatureDiscountBanner";

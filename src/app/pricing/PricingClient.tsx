@@ -3,7 +3,7 @@
 import Link from "next/link";
 import {
   formatLkr,
-  packageCategories,
+  publicPackageCategories as packageCategories,
 } from "@/lib/packages-catalog";
 
 function getLowestStartingPrice(categoryKey: string): number | null {
@@ -69,9 +69,9 @@ export default function PricingClient() {
                 <li>✓ LinkedIn Optimization</li>
                 <li>✓ 7-day delivery</li>
               </ul>
-              <a href="/catalogue?bundle=starter" className="bundle-cta inline-block w-full text-center px-6 py-3 border border-zinc-300 rounded-[10px] text-zinc-700 font-semibold hover:border-brand-main hover:text-brand-main transition-colors">
+              <Link href="/catalogue?bundle=starter" className="bundle-cta inline-block w-full text-center px-6 py-3 border border-zinc-300 rounded-[10px] text-zinc-700 font-semibold hover:border-brand-main hover:text-brand-main transition-colors">
                 Get Started →
-              </a>
+              </Link>
             </div>
 
             {/* Career Pack — MOST POPULAR */}
@@ -93,9 +93,9 @@ export default function PricingClient() {
                 <li>✓ 30-day premium support</li>
                 <li>✓ Direct WhatsApp access to Chanuka</li>
               </ul>
-              <a href="/catalogue?bundle=career" className="bundle-cta primary inline-block w-full text-center px-6 py-3 bg-[#C9A961] rounded-[10px] text-white font-semibold hover:bg-[#C9A961]/90 transition-colors">
+              <Link href="/catalogue?bundle=career" className="bundle-cta primary inline-block w-full text-center px-6 py-3 bg-[#C9A961] rounded-[10px] text-white font-semibold hover:bg-[#C9A961]/90 transition-colors">
                 Choose Career Pack →
-              </a>
+              </Link>
             </div>
 
             {/* Executive Pack */}
@@ -116,9 +116,9 @@ export default function PricingClient() {
                 <li>✓ 1-Hour Strategy Consultation</li>
                 <li>✓ 60-day premium support</li>
               </ul>
-              <a href="/catalogue?bundle=executive" className="bundle-cta inline-block w-full text-center px-6 py-3 border border-zinc-300 rounded-[10px] text-zinc-700 font-semibold hover:border-brand-main hover:text-brand-main transition-colors">
+              <Link href="/catalogue?bundle=executive" className="bundle-cta inline-block w-full text-center px-6 py-3 border border-zinc-300 rounded-[10px] text-zinc-700 font-semibold hover:border-brand-main hover:text-brand-main transition-colors">
                 View Executive Pack →
-              </a>
+              </Link>
             </div>
           </div>
 

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { formatLkr, packageCategories, type PackageProduct } from "@/lib/packages-catalog";
+import { formatLkr, publicPackageCategories as packageCategories, type PackageProduct } from "@/lib/packages-catalog";
 import {
   calculateBundlePricing,
   getConfigurableBundleRule,

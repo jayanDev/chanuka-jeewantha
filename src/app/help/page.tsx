@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList, buildFaqPageSchema } from "@/lib/structured-data";
-import { formatLkr, packageCategories, paymentInstructions } from "@/lib/packages-catalog";
+import { formatLkr, publicPackageCategories as packageCategories, paymentInstructions } from "@/lib/packages-catalog";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Help Center | Support, Instructions, Packages & Customer FAQs",

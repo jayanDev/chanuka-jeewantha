@@ -125,6 +125,17 @@ export const serviceOptions: Array<{
   },
 ];
 
+export const publicPackageServiceKeys: ServiceKey[] = [
+  "ats-cv",
+  "linkedin",
+  "cover-letter",
+];
+
+const publicPackageServiceKeySet = new Set(publicPackageServiceKeys);
+export const publicServiceOptions = serviceOptions.filter((service) =>
+  publicPackageServiceKeySet.has(service.key)
+);
+
 export const experienceOptions: Array<{
   key: ExperienceKey;
   number: number;
@@ -297,6 +308,10 @@ export const packageProducts: PackageProduct[] = serviceOptions.flatMap((service
   )
 );
 
+export const publicPackageProducts = packageProducts.filter((product) =>
+  publicPackageServiceKeySet.has(product.serviceKey)
+);
+
 export const packageCategories: PackageCategory[] = serviceOptions.map((service) => ({
   key: service.key,
   title: service.categoryTitle,
@@ -305,6 +320,10 @@ export const packageCategories: PackageCategory[] = serviceOptions.map((service)
   packages: packageProducts.filter((item) => item.serviceKey === service.key),
 }));
 
+
+export const publicPackageCategories = packageCategories.filter((category) =>
+  publicPackageServiceKeySet.has(category.key as ServiceKey)
+);
 export function formatLkr(price: number): string {
   return `LKR ${price.toLocaleString("en-LK")}`;
 }

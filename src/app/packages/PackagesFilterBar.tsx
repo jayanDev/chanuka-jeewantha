@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { packageCategories } from "@/lib/packages-catalog";
+import { publicPackageCategories as packageCategories } from "@/lib/packages-catalog";
 
 const SERVICE_PILLS = [
   { key: "all", label: "All Services" },

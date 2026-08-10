@@ -12,7 +12,7 @@ import {
 import { getBaseUrl } from "@/lib/site-url";
 import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
-import { formatLkr, packageProducts } from "@/lib/packages-catalog";
+import { formatLkr, publicPackageProducts as packageProducts } from "@/lib/packages-catalog";
 
 type CvGuidePageProps = {
   params: Promise<{ slug: string }>;

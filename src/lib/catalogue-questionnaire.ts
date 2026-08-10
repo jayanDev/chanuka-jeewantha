@@ -1,6 +1,7 @@
 import {
   formatLkr,
   getServiceByKey,
+  publicPackageServiceKeys,
   type PackageProduct,
   type ServiceKey,
 } from "@/lib/packages-catalog";
@@ -8,11 +9,7 @@ import {
 export type DeliverySpeed = "fast" | "normal";
 export type TargetCountryOption = "sri-lanka" | "foreign";
 
-export const catalogueServiceKeys: ServiceKey[] = [
-  "ats-cv",
-  "linkedin",
-  "cover-letter",
-];
+export const catalogueServiceKeys: ServiceKey[] = [...publicPackageServiceKeys];
 
 export const deliveryChoices: Array<{
   key: DeliverySpeed;

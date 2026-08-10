@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import {
-  packageCategories,
+  publicPackageCategories as packageCategories,
   getPackageDisplayPrice,
   serviceOptionChoices,
 } from "@/lib/packages-catalog";
@@ -18,7 +18,7 @@ export default function PackagesPageClient() {
         <div className="mx-auto max-w-5xl text-center">
           <p className="font-semibold uppercase tracking-[0.18em] text-brand-main">All Packages</p>
           <h1 className="mt-4 font-heading text-[34px] font-bold leading-[1.08] !text-white sm:text-[44px] md:text-[56px]">
-            Browse every package, side by side
+            Browse available packages, side by side
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg">
             Prices, delivery times, and what&apos;s included — visible upfront. No quiz required.
@@ -137,7 +137,7 @@ export default function PackagesPageClient() {
             Still not sure which one fits?
           </h2>
           <p className="mt-3 text-white/80">
-            Answer 3 short questions and we&apos;ll recommend the best package for your stage and goals.
+            Answer 6 short questions and we&apos;ll recommend the best package for your stage and goals.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Link href="/catalogue" className="btn btn-primary">

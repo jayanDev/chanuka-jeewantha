@@ -5,9 +5,9 @@ import Link from "next/link";
 import {
   experienceOptions,
   getPackageDisplayPrice,
-  packageProducts,
+  publicPackageProducts as packageProducts,
   serviceOptionChoices,
-  serviceOptions,
+  publicServiceOptions as serviceOptions,
   type ExperienceKey,
   type ServiceKey,
   type ServiceOptionKey,

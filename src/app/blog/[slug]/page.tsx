@@ -10,7 +10,7 @@ import { blogPosts, getPostBySlug } from "@/content/blog-posts";
 import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList } from "@/lib/structured-data";
 import { getBaseUrl } from "@/lib/site-url";
-import { packageProducts } from "@/lib/packages-catalog";
+import { publicPackageProducts as packageProducts } from "@/lib/packages-catalog";
 import { isIndexableFallbackBlogPost } from "@/lib/blog-discovery";
 import { getBlogPostLanguage, getSinhalaHreflangAlternates } from "@/lib/blog-i18n";
 import { getBlogCoverImage, isGeneratedBlogCoverImage } from "@/lib/blog-images";

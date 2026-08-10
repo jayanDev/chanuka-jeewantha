@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
 import { getBaseUrl } from "@/lib/site-url";
 import { blogPosts } from "@/content/blog-posts";
-import { packageProducts } from "@/lib/packages-catalog";
+import { publicPackageProducts as packageProducts } from "@/lib/packages-catalog";
 import { digitalResources } from "@/lib/resources";
 import { ebooks } from "@/lib/ebooks";
 import { caseStudies } from "@/lib/case-studies";

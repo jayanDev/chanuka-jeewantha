@@ -40,21 +40,6 @@ export default function ServicesPage() {
       href: "/services/packages/cover-letter",
     },
     {
-      title: "Foreign Job CV Writing",
-      desc: "International-market CV packages for Middle East, UK/Europe, Australia/New Zealand, Canada, and other target markets.",
-      href: "/services/packages/foreign-cv",
-    },
-    {
-      title: "Graphical CV Writing / Resume Writing",
-      desc: "Modern visual CV and resume writing packages when presentation and personal brand need stronger impact.",
-      href: "/services/packages/graphical-cv",
-    },
-    {
-      title: "Consultation",
-      desc: "Founder-led career consultation packages for direction, strategy, and application positioning.",
-      href: "/services/packages/consultation",
-    },
-    {
       title: "Personal Website & Career Portfolio",
       desc: "A portfolio-style personal website that gives your career brand a public proof layer beyond the CV, LinkedIn profile, and application documents.",
       href: "/services/personal-website",
