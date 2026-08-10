@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
 		"/api/resources/templates/[slug]/download": ["./Resources/Templates/Free/**/*.docx"],
 		"/api/free-cv-template/download": ["./Resources/Templates/Free/**/*.docx"],
 		"/api/free-cv-checklist/download": ["./Resources/Checklists/Free/**/*.pdf"],
+		"/api/free-linkedin-headline-formula/download": ["./Resources/Guides/Free/**/*.pdf"],
 	},
 	async redirects() {
 		return [
