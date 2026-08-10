@@ -15,14 +15,14 @@ export default function AnimatedServiceTextVisual({
   const isDark = variant === "dark";
   const frameClasses = isDark
     ? "border-white/15 bg-foreground text-white"
-    : "border-zinc-200 bg-[#f4fbf0] text-foreground";
+    : "border-zinc-200 bg-brand-subtle text-foreground";
   const trackClasses = isDark ? "text-white/14" : "text-brand-dark/16";
   const mainClasses = isDark
     ? "text-white drop-shadow-[0_10px_28px_rgba(0,0,0,0.32)]"
     : "text-foreground";
   const panelClasses = isDark
-    ? "bg-[linear-gradient(135deg,rgba(138,200,38,0.24),rgba(255,255,255,0.08),rgba(37,99,235,0.18))]"
-    : "bg-[linear-gradient(135deg,rgba(138,200,38,0.22),rgba(255,255,255,0.72),rgba(245,158,11,0.16))]";
+    ? "bg-[linear-gradient(135deg,rgba(201,169,97,0.22),rgba(255,255,255,0.08),rgba(9,9,9,0.28))]"
+    : "bg-[linear-gradient(135deg,rgba(201,169,97,0.20),rgba(255,255,255,0.78),rgba(9,9,9,0.05))]";
 
   return (
     <div

@@ -2,9 +2,9 @@
 
 :root {
   /* ===== PRIMARY BRAND COLORS ===== */
-  --color-primary: #0A2540;           /* Deep Navy — main brand color */
-  --color-primary-light: #1B3E66;     /* Navy Light — hover states */
-  --color-primary-dark: #061828;      /* Navy Dark — deep shadows */
+  --color-primary: #090909;           /* Deep Navy — main brand color */
+  --color-primary-light: #181818;     /* Navy Light — hover states */
+  --color-primary-dark: #000000;      /* Navy Dark — deep shadows */
 
   /* ===== ACCENT COLORS ===== */
   --color-accent: #C9A961;            /* Gold — premium accent */
@@ -13,26 +13,26 @@
 
   /* ===== BACKGROUND COLORS ===== */
   --color-bg-white: #FFFFFF;          /* Pure white — main bg */
-  --color-bg-cream: #FAF8F3;          /* Warm cream — section bg */
-  --color-bg-navy: #0A2540;           /* Dark sections, footer */
-  --color-bg-light: #F5F5F0;          /* Light warm gray — cards */
+  --color-bg-cream: #FCFBF8;          /* Warm cream — section bg */
+  --color-bg-navy: #090909;           /* Dark sections, footer */
+  --color-bg-light: #F7F6F2;          /* Light warm gray — cards */
 
   /* ===== TEXT COLORS ===== */
-  --color-text-primary: #1F2937;      /* Dark gray — body text */
-  --color-text-secondary: #6B7280;    /* Medium gray — subtitles */
-  --color-text-muted: #9CA3AF;        /* Light gray — captions */
+  --color-text-primary: #111111;      /* Dark gray — body text */
+  --color-text-secondary: rgba(9, 9, 9, 0.68);    /* Medium gray — subtitles */
+  --color-text-muted: rgba(9, 9, 9, 0.48);        /* Light gray — captions */
   --color-text-white: #FFFFFF;        /* White — on dark bg */
   --color-text-gold: #C9A961;         /* Gold — highlights */
 
   /* ===== STATUS COLORS ===== */
-  --color-success: #10B981;           /* Green — savings, success */
-  --color-warning: #F59E0B;           /* Amber — notices */
-  --color-error: #EF4444;             /* Red — errors */
+  --color-success: #9A7838;           /* Green — savings, success */
+  --color-warning: #C9A961;           /* Amber — notices */
+  --color-error: #090909;             /* Red — errors */
 
   /* ===== BORDER COLORS ===== */
-  --color-border: #E5E7EB;            /* Light gray — default borders */
+  --color-border: rgba(9, 9, 9, 0.14);            /* Light gray — default borders */
   --color-border-gold: #C9A961;       /* Gold — premium borders */
-  --color-border-navy: #0A2540;       /* Navy — strong borders */
+  --color-border-navy: #090909;       /* Navy — strong borders */
 
   /* ===== TYPOGRAPHY FAMILIES ===== */
   /* next/font injects --font-playfair and --font-inter on <html> via layout.tsx */
@@ -99,17 +99,17 @@
   --space-24: 96px;
 
   /* ===== SHADOWS ===== */
-  --shadow-sm: 0 1px 3px rgba(10, 37, 64, 0.06);
-  --shadow-md: 0 4px 16px rgba(10, 37, 64, 0.08);
-  --shadow-lg: 0 8px 32px rgba(10, 37, 64, 0.12);
-  --shadow-xl: 0 16px 48px rgba(10, 37, 64, 0.16);
-  --shadow-gold: 0 4px 24px rgba(201, 169, 97, 0.25);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.10);
+  --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.14);
+  --shadow-gold: 0 12px 36px rgba(201, 169, 97, 0.18);
 
   /* ===== BORDER RADIUS ===== */
-  --radius-sm: 4px;     /* Badges, chips */
-  --radius-md: 8px;     /* Buttons, inputs */
-  --radius-lg: 12px;    /* Cards */
-  --radius-xl: 16px;    /* Large cards, modals */
+  --radius-sm: 3px;     /* Badges, chips */
+  --radius-md: 6px;     /* Buttons, inputs */
+  --radius-lg: 8px;    /* Cards */
+  --radius-xl: 12px;    /* Large cards, modals */
   --radius-full: 9999px;/* Pills, avatars */
 
   /* ===== TRANSITIONS ===== */
@@ -119,16 +119,16 @@
 
   /* ===== LEGACY VARIABLES (for backward compatibility) ===== */
   --background: #ffffff;
-  --foreground: #1F2937;
-  --text-body: #1F2937;
-  --text-light: #9CA3AF;
+  --foreground: #090909;
+  --text-body: #171717;
+  --text-light: rgba(9, 9, 9, 0.56);
   --brand-main: #C9A961;
   --brand-dark: #B8985A;
   --brand-light: #E0C882;
-  --brand-subtle: #FAF8F3;
+  --brand-subtle: #FCFBF8;
   --surface-1: #ffffff;
-  --surface-2: #f4f4f5;
-  --border-color: #e4e4e7;
+  --surface-2: #F7F6F2;
+  --border-color: rgba(9, 9, 9, 0.14);
 }
 
 @theme inline {
@@ -918,4 +918,268 @@ label {
   font-size: var(--text-sm);
   color: var(--color-success);
   font-weight: var(--weight-semibold);
+}
+
+/* ===== PREMIUM BLACK / GOLD / WHITE THEME ===== */
+.premium-theme {
+  --premium-black: #090909;
+  --premium-black-soft: #181818;
+  --premium-white: #FFFFFF;
+  --premium-ivory: #FCFBF8;
+  --premium-gold: #C9A961;
+  --premium-gold-light: #E0C882;
+  --premium-gold-dark: #9A7838;
+
+  /* Neutralise Tailwind's utility palette site-wide. */
+  --color-zinc-50: #FCFBF8;
+  --color-zinc-100: #F7F6F2;
+  --color-zinc-200: #E8E6E0;
+  --color-zinc-300: #D5D2CB;
+  --color-zinc-400: #A3A09A;
+  --color-zinc-500: #74716C;
+  --color-zinc-600: #57544F;
+  --color-zinc-700: #3B3935;
+  --color-zinc-800: #1C1B19;
+  --color-zinc-900: #090909;
+
+  --color-gray-50: var(--color-zinc-50);
+  --color-gray-100: var(--color-zinc-100);
+  --color-gray-200: var(--color-zinc-200);
+  --color-gray-300: var(--color-zinc-300);
+  --color-gray-400: var(--color-zinc-400);
+  --color-gray-500: var(--color-zinc-500);
+  --color-gray-600: var(--color-zinc-600);
+  --color-gray-700: var(--color-zinc-700);
+  --color-gray-800: var(--color-zinc-800);
+  --color-gray-900: var(--color-zinc-900);
+
+  --color-slate-50: var(--color-zinc-50);
+  --color-slate-100: var(--color-zinc-100);
+  --color-slate-200: var(--color-zinc-200);
+  --color-slate-300: var(--color-zinc-300);
+  --color-slate-400: var(--color-zinc-400);
+  --color-slate-500: var(--color-zinc-500);
+  --color-slate-600: var(--color-zinc-600);
+  --color-slate-700: var(--color-zinc-700);
+  --color-slate-800: var(--color-zinc-800);
+  --color-slate-900: var(--color-zinc-900);
+
+  --premium-tone-50: #FFFCF5;
+  --premium-tone-100: #F8EFD9;
+  --premium-tone-200: #EEDDB6;
+  --premium-tone-300: #E0C882;
+  --premium-tone-400: #D4B66F;
+  --premium-tone-500: #C9A961;
+  --premium-tone-600: #B8985A;
+  --premium-tone-700: #9A7838;
+  --premium-tone-800: #3B3020;
+  --premium-tone-900: #090909;
+
+  --color-red-50: var(--premium-tone-50);
+  --color-red-100: var(--premium-tone-100);
+  --color-red-200: var(--premium-tone-200);
+  --color-red-300: var(--premium-tone-300);
+  --color-red-400: var(--premium-tone-400);
+  --color-red-500: var(--premium-tone-500);
+  --color-red-600: var(--premium-tone-600);
+  --color-red-700: var(--premium-tone-700);
+  --color-red-800: var(--premium-tone-800);
+  --color-red-900: var(--premium-tone-900);
+
+  --color-emerald-50: var(--premium-tone-50);
+  --color-emerald-100: var(--premium-tone-100);
+  --color-emerald-200: var(--premium-tone-200);
+  --color-emerald-300: var(--premium-tone-300);
+  --color-emerald-400: var(--premium-tone-400);
+  --color-emerald-500: var(--premium-tone-500);
+  --color-emerald-600: var(--premium-tone-600);
+  --color-emerald-700: var(--premium-tone-700);
+  --color-emerald-800: var(--premium-tone-800);
+  --color-emerald-900: var(--premium-tone-900);
+
+  --color-green-50: var(--premium-tone-50);
+  --color-green-100: var(--premium-tone-100);
+  --color-green-200: var(--premium-tone-200);
+  --color-green-300: var(--premium-tone-300);
+  --color-green-400: var(--premium-tone-400);
+  --color-green-500: var(--premium-tone-500);
+  --color-green-600: var(--premium-tone-600);
+  --color-green-700: var(--premium-tone-700);
+  --color-green-800: var(--premium-tone-800);
+  --color-green-900: var(--premium-tone-900);
+
+  --color-blue-50: var(--premium-tone-50);
+  --color-blue-100: var(--premium-tone-100);
+  --color-blue-200: var(--premium-tone-200);
+  --color-blue-300: var(--premium-tone-300);
+  --color-blue-400: var(--premium-tone-400);
+  --color-blue-500: var(--premium-tone-500);
+  --color-blue-600: var(--premium-tone-600);
+  --color-blue-700: var(--premium-tone-700);
+  --color-blue-800: var(--premium-tone-800);
+  --color-blue-900: var(--premium-tone-900);
+
+  --color-amber-50: var(--premium-tone-50);
+  --color-amber-100: var(--premium-tone-100);
+  --color-amber-200: var(--premium-tone-200);
+  --color-amber-300: var(--premium-tone-300);
+  --color-amber-400: var(--premium-tone-400);
+  --color-amber-500: var(--premium-tone-500);
+  --color-amber-600: var(--premium-tone-600);
+  --color-amber-700: var(--premium-tone-700);
+  --color-amber-800: var(--premium-tone-800);
+  --color-amber-900: var(--premium-tone-900);
+
+  --color-orange-50: var(--premium-tone-50);
+  --color-orange-100: var(--premium-tone-100);
+  --color-orange-200: var(--premium-tone-200);
+  --color-orange-300: var(--premium-tone-300);
+  --color-orange-400: var(--premium-tone-400);
+  --color-orange-500: var(--premium-tone-500);
+  --color-orange-600: var(--premium-tone-600);
+  --color-orange-700: var(--premium-tone-700);
+  --color-orange-800: var(--premium-tone-800);
+  --color-orange-900: var(--premium-tone-900);
+
+  --color-yellow-400: var(--premium-tone-400);
+  --color-purple-100: var(--premium-tone-100);
+  --color-purple-800: var(--premium-tone-800);
+  --color-pink-100: var(--premium-tone-100);
+  --color-pink-800: var(--premium-tone-800);
+
+  background: var(--premium-white);
+  color: var(--premium-black);
+}
+
+.premium-theme #site-nav {
+  position: relative;
+  z-index: 50;
+  border-bottom: 1px solid rgba(9, 9, 9, 0.10);
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.premium-header > div {
+  background: transparent;
+}
+
+.premium-theme main {
+  background: var(--premium-white);
+}
+
+.premium-theme .home-premium-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 82% 22%, rgba(201, 169, 97, 0.16), transparent 30%),
+    linear-gradient(115deg, transparent 0 64%, rgba(201, 169, 97, 0.05) 64% 64.15%, transparent 64.15%);
+}
+
+.premium-theme .home-premium-hero img {
+  filter: saturate(0.72) contrast(1.04);
+}
+
+.premium-theme .card,
+.premium-theme .pricing-card,
+.premium-theme .testimonial-card,
+.premium-theme .faq-item {
+  box-shadow: none;
+}
+
+.premium-theme .card:hover,
+.premium-theme .pricing-card:hover {
+  border-color: var(--premium-gold);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.premium-theme .shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+.premium-theme .shadow-xl,
+.premium-theme .shadow-2xl {
+  box-shadow: var(--shadow-xl);
+}
+
+.premium-theme [class~="rounded-[20px]"] {
+  border-radius: 10px;
+}
+
+.premium-theme [class~="rounded-[16px]"],
+.premium-theme [class~="rounded-[12px]"] {
+  border-radius: 8px;
+}
+
+.premium-theme [class~="rounded-[10px]"] {
+  border-radius: 6px;
+}
+
+.premium-theme input,
+.premium-theme textarea,
+.premium-theme select {
+  border-color: rgba(9, 9, 9, 0.18);
+  background: var(--premium-white);
+  color: var(--premium-black);
+}
+
+.premium-theme :focus-visible {
+  outline: 2px solid var(--premium-gold);
+  outline-offset: 3px;
+}
+
+.premium-theme [class~="bg-[#25D366]"],
+.premium-theme [class~="bg-[#10B981]"],
+.premium-theme [class~="bg-[#22c55e]"],
+.premium-theme [class~="bg-[#1DBF73]"] {
+  background-color: var(--premium-gold) !important;
+  color: var(--premium-black) !important;
+}
+
+.premium-theme [class~="text-[#25D366]"],
+.premium-theme [class~="text-[#10B981]"],
+.premium-theme [class~="text-[#22c55e]"],
+.premium-theme [class~="text-[#1DBF73]"] {
+  color: var(--premium-gold-dark) !important;
+}
+
+.premium-theme [class~="hover:bg-[#1fb85a]"]:hover,
+.premium-theme [class~="hover:bg-[#17a862]"]:hover {
+  background-color: var(--premium-black) !important;
+  color: var(--premium-white) !important;
+}
+
+.premium-theme [class~="hover:bg-[#E1306C]"]:hover {
+  background-color: var(--premium-gold) !important;
+}
+
+.premium-theme [class~="bg-[#0A2540]"],
+.premium-theme [class~="bg-[#1B3E66]"] {
+  background-color: var(--premium-black) !important;
+}
+
+.premium-theme [class~="text-[#0A2540]"],
+.premium-theme [class~="text-[#1B3E66]"] {
+  color: var(--premium-black) !important;
+}
+
+.premium-theme ::selection {
+  background: var(--premium-gold);
+  color: var(--premium-black);
+}
+
+.premium-theme svg [fill="#EA4335"],
+.premium-theme svg [fill="#34A853"],
+.premium-theme svg [fill="#4A90E2"],
+.premium-theme svg [fill="#FBBC05"] {
+  color: var(--premium-gold);
+  fill: currentColor;
+}
+
+.premium-theme footer,
+.premium-theme [class~="bg-foreground"],
+.premium-theme [class~="bg-primary"],
+.premium-theme .section-dark {
+  --text-light: rgba(255, 255, 255, 0.70);
 }

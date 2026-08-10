@@ -94,8 +94,8 @@ export default function ServicesPage() {
             {services.map((service) => (
               <div
                 key={service.title}
-                className={`bg-[#f0f9ff]/40 rounded-[20px] p-8 md:p-12 hover:shadow-xl transition-shadow flex flex-col group border ${
-                  service.isMostPopular ? "border-brand-main" : "border-[#e1f5fe]"
+                className={`bg-brand-subtle rounded-[20px] p-8 md:p-12 hover:shadow-xl transition-shadow flex flex-col group border ${
+                  service.isMostPopular ? "border-brand-main" : "border-zinc-200"
                 }`}
               >
                 {service.isMostPopular && (
@@ -121,7 +121,7 @@ export default function ServicesPage() {
             ))}
           </div>
 
-          <div className="mt-10 rounded-[16px] border border-[#e1f5fe] bg-[#f0f9ff]/60 p-6 text-center">
+          <div className="mt-10 rounded-[16px] border border-zinc-200 bg-brand-subtle p-6 text-center">
             <p className="text-text-body text-lg">
               Use the filters below to compare every package by service type, experience level, and founder-led or supervised delivery.
             </p>

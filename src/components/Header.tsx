@@ -147,12 +147,12 @@ export default function Header({ initialUser = null }: HeaderProps) {
   const displayUnreadNotificationCount = user ? unreadNotificationCount : 0;
 
   return (
-    <header suppressHydrationWarning className="w-full max-w-[1512px] mx-auto px-4 sm:px-6 py-4 md:py-6 relative z-40">
+    <header suppressHydrationWarning className="premium-header w-full max-w-[1512px] mx-auto px-4 sm:px-6 py-4 md:py-5 relative z-40">
       <div className="flex items-center justify-between relative bg-background z-40 py-2">
         {/* Logo Container */}
         <div className="flex-shrink-0 w-auto md:mr-8">
-          <Link href="/" className="text-2xl font-bold font-heading text-foreground">
-            Chanuka.
+          <Link href="/" className="text-2xl font-bold font-heading text-foreground tracking-tight">
+            Chanuka<span className="text-brand-main">.</span>
           </Link>
         </div>
 

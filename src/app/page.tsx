@@ -93,13 +93,13 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
       />
 
-      <section className="reveal-section w-full relative pt-[50px] md:pt-[73px] pb-[100px] md:pb-[146px] flex flex-col items-center justify-center overflow-hidden">
+      <section className="home-premium-hero reveal-section w-full relative bg-foreground pt-[64px] md:pt-[88px] pb-[100px] md:pb-[132px] flex flex-col items-center justify-center overflow-hidden">
         <div className="max-w-[1512px] mx-auto px-4 sm:px-6 w-full flex flex-col md:flex-row items-center gap-12 z-10">
           <div className="flex-1 flex flex-col items-start px-[24px]">
-            <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.05em] tracking-tight mb-6 text-primary">
+            <h1 className="font-heading text-[34px] sm:text-[44px] md:text-[56px] lg:text-[72px] font-bold leading-[1.05em] tracking-tight mb-6 !text-white">
               Sri Lanka&apos;s No 1 <br /> <span className="text-brand-main">Professional CV Writer</span>
             </h1>
-            <p className="text-text-body text-[16px] md:text-[20px] font-normal leading-relaxed max-w-2xl mb-8">
+            <p className="!text-white/75 text-[16px] md:text-[20px] font-normal leading-relaxed max-w-2xl mb-8">
               Professional CV Writer and Career Development Specialist with 8+ years of experience helping job seekers build ATS-friendly, recruiter-ready career profiles.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -117,7 +117,7 @@ export default async function Home() {
               </Link>
               <Link
                 href="/contact"
-                className="px-[25px] py-[15px] border border-border hover:border-brand-main text-text-body hover:text-brand-main rounded-[10px] font-medium transition-colors text-center"
+                className="px-[25px] py-[15px] border border-white/35 hover:border-brand-main text-white hover:text-brand-main rounded-[6px] font-medium transition-colors text-center"
               >
                 Book Consultation
               </Link>
@@ -126,7 +126,7 @@ export default async function Home() {
 
           <div className="flex-1 relative w-full mt-[40px] md:mt-0 max-w-[520px] aspect-[4/5]">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[85%] bg-brand-light opacity-20 blur-[100px] rounded-full" />
- <div className="relative z-10 w-full h-full rounded-[20px] shadow-lg overflow-hidden group border border-zinc-200">
+ <div className="relative z-10 w-full h-full rounded-[10px] shadow-2xl overflow-hidden group border border-brand-main/55">
               <Image
                 src="/images/hero-chanuka.jpg"
                 alt="Chanuka Jeewantha"
@@ -221,9 +221,9 @@ export default async function Home() {
                 <li>✓ LinkedIn Optimization</li>
                 <li>✓ 7-day delivery</li>
               </ul>
-              <a href="/catalogue?bundle=starter" className="bundle-cta inline-block w-full text-center px-6 py-3 border border-zinc-300 rounded-[10px] text-zinc-700 font-semibold hover:border-brand-main hover:text-brand-main transition-colors">
+              <Link href="/catalogue?bundle=starter" className="bundle-cta inline-block w-full text-center px-6 py-3 border border-zinc-300 rounded-[10px] text-zinc-700 font-semibold hover:border-brand-main hover:text-brand-main transition-colors">
                 Get Started →
-              </a>
+              </Link>
             </div>
             
             <div className="bundle-card career featured bg-white rounded-[20px] border-2 border-[#C9A961] p-6 shadow-lg hover:shadow-xl transition-shadow transform scale-105">
@@ -244,9 +244,9 @@ export default async function Home() {
                 <li>✓ 30-day premium support</li>
                 <li>✓ Direct WhatsApp access to Chanuka</li>
               </ul>
-              <a href="/catalogue?bundle=career" className="bundle-cta primary inline-block w-full text-center px-6 py-3 bg-[#C9A961] rounded-[10px] text-white font-semibold hover:bg-[#C9A961]/90 transition-colors">
+              <Link href="/catalogue?bundle=career" className="bundle-cta primary inline-block w-full text-center px-6 py-3 bg-[#C9A961] rounded-[10px] text-white font-semibold hover:bg-[#C9A961]/90 transition-colors">
                 Choose Career Pack →
-              </a>
+              </Link>
             </div>
             
             <div className="bundle-card executive bg-white rounded-[20px] border border-zinc-200 p-6 shadow-lg hover:shadow-xl transition-shadow">
@@ -266,15 +266,15 @@ export default async function Home() {
                 <li>✓ 1-Hour Strategy Consultation</li>
                 <li>✓ 60-day premium support</li>
               </ul>
-              <a href="/catalogue?bundle=executive" className="bundle-cta inline-block w-full text-center px-6 py-3 border border-zinc-300 rounded-[10px] text-zinc-700 font-semibold hover:border-brand-main hover:text-brand-main transition-colors">
+              <Link href="/catalogue?bundle=executive" className="bundle-cta inline-block w-full text-center px-6 py-3 border border-zinc-300 rounded-[10px] text-zinc-700 font-semibold hover:border-brand-main hover:text-brand-main transition-colors">
                 View Executive Pack →
-              </a>
+              </Link>
             </div>
             
           </div>
           
           <div className="bundles-footer text-center mt-12 space-y-3">
-            <p className="text-zinc-600">Need something specific? <a href="/catalogue" className="text-brand-main font-semibold hover:text-brand-dark transition-colors">View all individual services →</a></p>
+            <p className="text-zinc-600">Need something specific? <Link href="/catalogue" className="text-brand-main font-semibold hover:text-brand-dark transition-colors">View all individual services →</Link></p>
             <p className="text-zinc-500">
               Need help choosing?{" "}
               <a
@@ -457,7 +457,7 @@ export default async function Home() {
             {testimonialHighlights.map((item) => (
  <article key={item.id} className="group flex flex-col w-full rounded-[20px] border border-zinc-200 bg-gradient-to-br from-white to-zinc-50 p-6 shadow-[0_10px_24px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)]">
                 <div className="mb-5 flex items-center justify-between">
-                  <div className="flex items-center gap-1 text-[#f59e0b]" aria-hidden="true">
+                  <div className="flex items-center gap-1 text-brand-main" aria-hidden="true">
                     {Array.from({ length: item.rating }).map((_, idx) => (
                       <svg key={idx} xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
                     ))}

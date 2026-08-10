@@ -139,10 +139,10 @@ export default function SeasonalOfferBanner() {
         : `${offer.selectedCategories.length} categories included`;
 
   return (
-    <section className="w-full border-b border-red-900/30 bg-red-600 text-white">
-      <div className="mx-auto flex max-w-[1512px] flex-col gap-3 px-4 py-4 sm:px-6 md:flex-row md:items-center md:justify-between animate-pulse">
+    <section className="w-full border-y border-brand-main/35 bg-foreground text-white">
+      <div className="mx-auto flex max-w-[1512px] flex-col gap-3 px-4 py-4 sm:px-6 md:flex-row md:items-center md:justify-between">
         <div className="flex items-start gap-3">
- <span className="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-white animate-bounce" aria-hidden="true" />
+ <span className="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-brand-main" aria-hidden="true" />
           <p className="font-semibold text-sm md:text-base leading-relaxed">
             {offer.title}: {offer.discountPercent}% OFF
             <span className="font-normal opacity-90"> - {offerScopeText}</span>
@@ -155,7 +155,7 @@ export default function SeasonalOfferBanner() {
           </p>
           <Link
             href="/offers"
- className="rounded-[10px] border border-white/70 bg-white px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-white hover:text-red-700"
+ className="rounded-[6px] border border-brand-main bg-brand-main px-3 py-1.5 text-xs font-semibold !text-foreground transition-colors hover:border-white hover:bg-white"
           >
             View Offers
           </Link>
