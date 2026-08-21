@@ -9,6 +9,7 @@ import BackToTop from "@/components/BackToTop";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import AnalyticsHeartbeat from "@/components/AnalyticsHeartbeat";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import MetaPixel from "@/components/MetaPixel";
 import SeasonalOfferBanner from "@/components/SeasonalOfferBanner";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import { getServerUser } from "@/lib/auth-server";
@@ -204,6 +205,9 @@ export default async function RootLayout({
             <GoogleAnalytics measurementId={gaMeasurementId} />
           </Suspense>
         ) : null}
+        <Suspense fallback={null}>
+          <MetaPixel />
+        </Suspense>
         <AnalyticsHeartbeat />
         <AnnouncementBar />
         <div id="site-nav">
