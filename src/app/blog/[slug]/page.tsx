@@ -481,7 +481,20 @@ export default async function BlogPostPage({
                     </p>
                   </>
                 ) : contentPost?.body ? (
-                  <BlogArticleBody blocks={contentPost.body} />
+                  <>
+                    <BlogArticleBody blocks={contentPost.body} />
+                    {contentPost.faqs && contentPost.faqs.length > 0 && (
+                      <section aria-label="Frequently asked questions">
+                        <BlogArticleBody blocks={[
+                          { type: "heading", level: 2, text: "Frequently Asked Questions" },
+                          ...contentPost.faqs.flatMap((faq) => [
+                            { type: "heading" as const, level: 3 as const, text: faq.question },
+                            { type: "paragraph" as const, text: faq.answer },
+                          ]),
+                        ]} />
+                      </section>
+                    )}
+                  </>
                 ) : (
                   <>
                     <p className="leading-relaxed mb-6">{post.content}</p>

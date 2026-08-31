@@ -41,6 +41,13 @@ async function main() {
         assert.ok(posting.wordCount > 300, `Incorrect word count: ${topic.slug}`);
         assert.equal(faq.mainEntity.length, articles[topic.id - 1].faqs.length);
         const articleText = document.querySelector("article").textContent;
+        const visibleFaq = document.querySelector('article section[aria-label="Frequently asked questions"]');
+        assert.ok(visibleFaq, `Missing visible FAQs: ${topic.slug}`);
+        for (const item of articles[topic.id - 1].faqs) {
+          const plainText = (value) => value.replace(/\[([^\]]+)\]\([^)]*\)/g, "$1").replace(/\*\*/g, "");
+          assert.ok(visibleFaq.textContent.includes(plainText(item.question)), `Missing FAQ question: ${topic.slug}`);
+          assert.ok(visibleFaq.textContent.includes(plainText(item.answer)), `Missing FAQ answer: ${topic.slug}`);
+        }
         for (const block of articles[topic.id - 1].body) {
           if (block.type === "heading") assert.ok(articleText.includes(block.text.replace(/\*\*/g, "")), `Missing heading: ${topic.slug}`);
         }
