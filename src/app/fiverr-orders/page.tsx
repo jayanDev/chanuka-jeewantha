@@ -1,79 +1,36 @@
+import Link from "next/link";
+import { formatLkr, publicPackageProducts } from "@/lib/packages-catalog";
 import { buildPageMetadata } from "@/lib/seo";
-import { formatLkr, packageCategories } from "@/lib/packages-catalog";
 
 export const metadata = buildPageMetadata({
-  title: "Fiverr CV Orders | 50% Off",
-  description:
-    "Order any CV Writing package through Fiverr and get 50% off. Compare package prices and place your Fiverr order instantly.",
+  title: "Fiverr CV Orders | Chanuka Jeewantha",
+  description: "Explore current website CV writing package prices or continue to Fiverr to confirm available services, prices, and delivery before ordering.",
   path: "/fiverr-orders",
-  keywords: ["fiverr cv writing", "50 off cv package", "cv writing discount", "fiverr orders"],
+  keywords: ["fiverr cv writing", "professional cv packages", "fiverr orders"],
 });
-
 const fiverrGigUrl = "https://www.fiverr.com/s/kLBDGAb";
-const cvWritingCategory = packageCategories.find((category) => category.key === "ats-cv");
-
-function discountedPrice(priceLkr: number): number {
-  return Math.max(1, Math.round(priceLkr * 0.5));
-}
+const cvPackages = publicPackageProducts.filter((pkg) => pkg.serviceKey === "ats-cv");
 
 export default function FiverrOrdersPage() {
-  const packages = cvWritingCategory?.packages ?? [];
-
-  return (
- <section className="w-full bg-zinc-50 py-[64px] sm:py-[80px] md:py-[96px]">
-      <div className="mx-auto w-full max-w-[1512px] px-4 sm:px-6 space-y-8">
- <div className="rounded-[20px] border border-zinc-200 bg-white p-6 md:p-8">
-          <p className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-700">Fiverr Special</p>
-          <h1 className="mt-3 text-[34px] md:text-[48px] font-bold font-heading text-foreground leading-[1.1]">
-            Fiverr Orders - 50% OFF on All CV Writing Packages
-          </h1>
-          <p className="mt-3 max-w-3xl text-lg text-text-body">
-            Place your CV Writing order through Fiverr and automatically get 50% off the standard website package price.
-            Use the button below to order directly from the official gig.
-          </p>
-          <div className="mt-5">
-            <a
-              href={fiverrGigUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-[10px] bg-emerald-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-700"
-            >
-              Order on Fiverr Now
-            </a>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {packages.map((pkg) => (
- <article key={pkg.slug} className="rounded-[16px] border border-zinc-200 bg-white p-5">
-              <h2 className="text-xl font-bold font-heading text-foreground">{pkg.name}</h2>
- <p className="mt-2 text-sm text-zinc-600">{pkg.audience}</p>
-
- <div className="mt-4 rounded-[12px] bg-zinc-50 p-4">
-                <p className="text-xs uppercase tracking-wide text-zinc-500">Standard Price</p>
-                <p className="text-sm text-zinc-500 line-through">{formatLkr(pkg.priceLkr)}</p>
-                <p className="mt-2 text-xs uppercase tracking-wide text-emerald-700">Fiverr Price (50% OFF)</p>
-                <p className="text-2xl font-bold text-emerald-700">{formatLkr(discountedPrice(pkg.priceLkr))}</p>
-              </div>
-
- <ul className="mt-4 space-y-1 text-sm text-zinc-600">
-                {pkg.features.slice(0, 3).map((feature) => (
-                  <li key={feature}>- {feature}</li>
-                ))}
-              </ul>
-
-              <a
-                href={fiverrGigUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-5 inline-flex w-full items-center justify-center rounded-[10px] border border-emerald-300 bg-emerald-50 px-4 py-2.5 text-sm font-semibold text-emerald-800 transition-colors hover:bg-emerald-100"
-              >
-                Order This Package on Fiverr
-              </a>
-            </article>
-          ))}
+  return <section className="bg-zinc-50 px-4 py-14 sm:px-6 md:py-20">
+    <div className="mx-auto max-w-[1200px]">
+      <div className="mb-9 rounded-[20px] border border-zinc-200 bg-white p-6 md:p-9">
+        <h1 className="font-heading text-[36px] font-bold text-foreground md:text-[52px]">Fiverr CV Orders</h1>
+        <p className="mt-4 max-w-3xl text-zinc-600">You can also order through Fiverr. The prices below are our standard website prices in LKR. Confirm the current Fiverr gig price, currency, fees, and delivery details on Fiverr before purchasing.</p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <a href={fiverrGigUrl} target="_blank" rel="noopener noreferrer" className="rounded-[10px] bg-brand-main px-5 py-3 font-semibold text-foreground">View Services on Fiverr</a>
+          <Link href="/pricing" className="rounded-[10px] border border-zinc-300 px-5 py-3 font-semibold text-foreground">Compare Website Prices</Link>
         </div>
       </div>
-    </section>
-  );
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {cvPackages.map((pkg) => <article key={pkg.slug} className="rounded-[20px] border border-zinc-200 bg-white p-6">
+          <h2 className="font-heading text-2xl font-bold text-foreground">{pkg.name}</h2>
+          <p className="mt-3 text-sm text-zinc-600">{pkg.audience}</p>
+          <p className="mt-5 text-xs uppercase tracking-wide text-zinc-500">Website price</p>
+          <p className="mt-1 text-2xl font-bold text-foreground">{formatLkr(pkg.priceLkr)}</p>
+          <Link href={`/packages/${pkg.slug}`} className="mt-5 inline-block font-semibold text-brand-dark">View Package Details →</Link>
+        </article>)}
+      </div>
+    </div>
+  </section>;
 }

@@ -1,4 +1,4 @@
-import { packageProducts, type PackageProduct } from "@/lib/packages-catalog";
+import { packageProducts, formatLkr, type PackageProduct } from "@/lib/packages-catalog";
 import { careerGrowthBlogPosts } from "./blog-career-library";
 import { enrichBlogPostContent } from "./blog-content-enrichment";
 import { cvSeriesEn } from "./blog-cv-series-en";
@@ -53,6 +53,7 @@ const servicePathByCategory: Record<string, string> = {
 };
 
 type PackageGuideDraft = {
+  articleSlug?: string;
   packageSlug: string;
   title: string;
   excerpt: string;
@@ -130,7 +131,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
         heading: "Package Includes",
         paragraphs: [
           "The Student Package focuses on professional presentation, ATS readability, and student profile positioning. It gives your CV a stronger base for first-stage screening and human recruiter review.",
-          "Price: LKR 5,000. Delivery Time: 3-7 Days. The package is built around ATS Optimization 75%+ and a Word format you can edit as your career grows.",
+          `Price: ${formatLkr(getPackageOrThrow("ats-cv-student-founder-led").priceLkr)}. Delivery Time: 3-7 Days. The package is built around ATS Optimization 75%+ and a Word format you can edit as your career grows.`,
         ],
         bullets: [
           "Professional CV Design & Formatting",
@@ -175,7 +176,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
       {
         question: "What is the price and delivery time?",
         answer:
-          "The Student Package is LKR 5,000 and the delivery time is 3-7 Days.",
+          `The Student Package is ${formatLkr(getPackageOrThrow("ats-cv-student-founder-led").priceLkr)} and the delivery time is 3-7 Days.`,
       },
       {
         question: "Can I update the CV later?",
@@ -217,7 +218,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
         heading: "Package Includes",
         paragraphs: [
           "The Professional Package reframes your experience around career value, achievements, and target-role relevance while preserving ATS-friendly structure and readability.",
-          "Price: LKR 10,000. Delivery Time: 3-7 Days. The package is built for an ATS Score 80-90% and includes 3 revisions within 3 days after delivery.",
+          `Price: ${formatLkr(getPackageOrThrow("ats-cv-professional-founder-led").priceLkr)}. Delivery Time: 3-7 Days. The package is built for an ATS Score 80-90% and includes 3 revisions within 3 days after delivery.`,
         ],
         bullets: [
           "Premium CV Writing & Design",
@@ -256,7 +257,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
       {
         question: "What is the price and delivery time?",
         answer:
-          "The Professional Package is LKR 10,000 and the delivery time is 3-7 Days.",
+          `The Professional Package is ${formatLkr(getPackageOrThrow("ats-cv-professional-founder-led").priceLkr)} and the delivery time is 3-7 Days.`,
       },
     ],
   },
@@ -293,7 +294,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
         heading: "Package Includes",
         paragraphs: [
           "This package structures your experience around strategic impact rather than operational detail. It highlights leadership narrative, governance discipline, business value, and senior-level career direction.",
-          "Price: LKR 15,000. Delivery Time: 3-7 Days. The package includes an editable Word file and 3 revisions within 3 days after delivery.",
+          `Price: ${formatLkr(getPackageOrThrow("ats-cv-executive-founder-led").priceLkr)}. Delivery Time: 3-7 Days. The package includes an editable Word file and 3 revisions within 3 days after delivery.`,
         ],
         bullets: [
           "Tailored Executive CV & Resume",
@@ -334,7 +335,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
       {
         question: "What is the price and delivery time?",
         answer:
-          "The Executive Package is LKR 15,000 and the delivery time is 3-7 Days.",
+          `The Executive Package is ${formatLkr(getPackageOrThrow("ats-cv-executive-founder-led").priceLkr)} and the delivery time is 3-7 Days.`,
       },
     ],
   },
@@ -373,7 +374,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
         heading: "Package Includes",
         paragraphs: [
           "The package focuses on a simple, professional structure that connects your education, strengths, motivation, and career interest to the target opportunity.",
-          "Price: LKR 3,000. Delivery Time: 2-5 Days. The package includes one revision and is delivered as an editable Word file.",
+          `Price: ${formatLkr(getPackageOrThrow("cover-letter-student-founder-led").priceLkr)}. Delivery Time: 2-5 Days. The package includes one revision and is delivered as an editable Word file.`,
         ],
         bullets: [
           "Simple, Professional Cover Letter",
@@ -406,7 +407,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
       {
         question: "What is the price and delivery time?",
         answer:
-          "The Student Package is LKR 3,000 and the delivery time is 2-5 Days.",
+          `The Student Package is ${formatLkr(getPackageOrThrow("cover-letter-student-founder-led").priceLkr)} and the delivery time is 2-5 Days.`,
       },
       {
         question: "Can I edit the cover letter later?",
@@ -448,7 +449,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
         heading: "Package Includes",
         paragraphs: [
           "The Professional Package uses achievement-focused content, industry-specific wording, and ATS-friendly writing structure to support competitive job applications.",
-          "Price: LKR 4,000. Delivery Time: 2-5 Days. The package includes 2 revisions and is delivered as an editable Word file.",
+          `Price: ${formatLkr(getPackageOrThrow("cover-letter-professional-founder-led").priceLkr)}. Delivery Time: 2-5 Days. The package includes 2 revisions and is delivered as an editable Word file.`,
         ],
         bullets: [
           "Fully Tailored Professional Cover Letter",
@@ -482,7 +483,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
       {
         question: "What is the price and delivery time?",
         answer:
-          "The Professional Package is LKR 4,000 and the delivery time is 2-5 Days.",
+          `The Professional Package is ${formatLkr(getPackageOrThrow("cover-letter-professional-founder-led").priceLkr)} and the delivery time is 2-5 Days.`,
       },
       {
         question: "How many revisions are included?",
@@ -524,7 +525,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
         heading: "Package Includes",
         paragraphs: [
           "The Executive Package focuses on leadership value, strategic contribution, business impact, and suitability for senior-level opportunities.",
-          "Price: LKR 5,000. Delivery Time: 2-5 Days. The package includes unlimited revisions within 24 hours of delivery and is delivered as an editable Word file.",
+          `Price: ${formatLkr(getPackageOrThrow("cover-letter-executive-founder-led").priceLkr)}. Delivery Time: 2-5 Days. The package includes unlimited revisions within 24 hours of delivery and is delivered as an editable Word file.`,
         ],
         bullets: [
           "Leadership-Focused High-Impact Writing",
@@ -558,7 +559,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
       {
         question: "What is the price and delivery time?",
         answer:
-          "The Executive Package is LKR 5,000 and the delivery time is 2-5 Days.",
+          `The Executive Package is ${formatLkr(getPackageOrThrow("cover-letter-executive-founder-led").priceLkr)} and the delivery time is 2-5 Days.`,
       },
       {
         question: "What revision support is included?",
@@ -601,7 +602,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
         heading: "Package Includes",
         paragraphs: [
           "The Student Package improves profile clarity through practical review, headline suggestions, About section guidance, skill keywords, and profile visibility tips.",
-          "Price: LKR 5,000. Delivery Time: 3-7 Days. The package gives a personalized improvement direction for a stronger student LinkedIn presence.",
+          `Price: ${formatLkr(getPackageOrThrow("linkedin-student-founder-led").priceLkr)}. Delivery Time: 3-7 Days. The package gives a personalized improvement direction for a stronger student LinkedIn presence.`,
         ],
         bullets: [
           "LinkedIn Profile Review",
@@ -635,7 +636,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
       {
         question: "What is the price and delivery time?",
         answer:
-          "The Student Package is LKR 5,000 and the delivery time is 3-7 Days.",
+          `The Student Package is ${formatLkr(getPackageOrThrow("linkedin-student-founder-led").priceLkr)} and the delivery time is 3-7 Days.`,
       },
       {
         question: "What if I have limited experience?",
@@ -677,7 +678,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
         heading: "Package Includes",
         paragraphs: [
           "The Professional Package provides a deep profile audit, headline improvement, About guidance, experience section recommendations, keyword strategy, and personal branding direction.",
-          "Price: LKR 10,000. Delivery Time: 3-7 Days. It is ideal for professionals who want to showcase achievements, skills, and career direction while improving recruiter discovery.",
+          `Price: ${formatLkr(getPackageOrThrow("linkedin-professional-founder-led").priceLkr)}. Delivery Time: 3-7 Days. It is ideal for professionals who want to showcase achievements, skills, and career direction while improving recruiter discovery.`,
         ],
         bullets: [
           "Deep LinkedIn Profile Audit",
@@ -712,7 +713,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
       {
         question: "What is the price and delivery time?",
         answer:
-          "The Professional Package is LKR 10,000 and the delivery time is 3-7 Days.",
+          `The Professional Package is ${formatLkr(getPackageOrThrow("linkedin-professional-founder-led").priceLkr)} and the delivery time is 3-7 Days.`,
       },
       {
         question: "Does this help recruiter visibility?",
@@ -754,7 +755,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
         heading: "Package Includes",
         paragraphs: [
           "The Executive Package strengthens leadership brand through executive profile audit, personal branding strategy, high-impact keyword direction, and authority-building recommendations.",
-          "Price: LKR 15,000. Delivery Time: 3-7 Days. It is ideal for leaders who want to present experience, achievements, strategic value, industry credibility, and leadership brand clearly.",
+          `Price: ${formatLkr(getPackageOrThrow("linkedin-executive-founder-led").priceLkr)}. Delivery Time: 3-7 Days. It is ideal for leaders who want to present experience, achievements, strategic value, industry credibility, and leadership brand clearly.`,
         ],
         bullets: [
           "Executive-Level LinkedIn Profile Audit",
@@ -789,7 +790,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
       {
         question: "What is the price and delivery time?",
         answer:
-          "The Executive Package is LKR 15,000 and the delivery time is 3-7 Days.",
+          `The Executive Package is ${formatLkr(getPackageOrThrow("linkedin-executive-founder-led").priceLkr)} and the delivery time is 3-7 Days.`,
       },
       {
         question: "What leadership value does this package improve?",
@@ -799,7 +800,8 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
   },
   {
-    packageSlug: "ats-cv-student-supervised",
+    packageSlug: "cv-review-student-supervised",
+    articleSlug: "package-guide-ats-cv-student-supervised",
     title: "Student CV Review Package: Expert Feedback Before You Apply",
     excerpt:
       "A student-focused CV review guide that explains how feedback-driven improvements can boost internship and trainee application quality quickly.",
@@ -871,7 +873,8 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
   },
   {
-    packageSlug: "ats-cv-student-supervised",
+    packageSlug: "cv-review-student-supervised",
+    articleSlug: "package-guide-ats-cv-student-supervised",
     title: "Starter CV Review Package: Fix Entry-Level CV Mistakes Before Recruiters See Them",
     excerpt:
       "A practical CV review roadmap for freshers and early-career job seekers to improve ATS alignment, clarity, and interview readiness.",
@@ -943,7 +946,8 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
   },
   {
-    packageSlug: "ats-cv-professional-supervised",
+    packageSlug: "cv-review-professional-supervised",
+    articleSlug: "package-guide-ats-cv-professional-supervised",
     title: "Professional CV Review Package: Audit Your CV Before High-Stakes Applications",
     excerpt:
       "A mid-level CV audit guide showing how expert review can strengthen positioning, outcomes language, and ATS performance before applying to competitive roles.",
@@ -1015,7 +1019,8 @@ const packageGuideDrafts: PackageGuideDraft[] = [
     ],
   },
   {
-    packageSlug: "ats-cv-executive-supervised",
+    packageSlug: "cv-review-executive-supervised",
+    articleSlug: "package-guide-ats-cv-executive-supervised",
     title: "Executive CV Review Package: Senior-Level CV Audit for Leadership Opportunities",
     excerpt:
       "An executive CV review framework for directors and senior leaders who need stronger strategic positioning, leadership narrative, and premium presentation.",
@@ -1091,7 +1096,7 @@ const packageGuideDrafts: PackageGuideDraft[] = [
 const packageFocusedPosts: BlogPost[] = packageGuideDrafts.map((draft) => {
   const pkg = getPackageOrThrow(draft.packageSlug);
   return {
-    slug: `package-guide-${pkg.slug}`,
+    slug: draft.articleSlug ?? `package-guide-${pkg.slug}`,
     title: draft.title,
     excerpt: draft.excerpt,
     content: draft.content,

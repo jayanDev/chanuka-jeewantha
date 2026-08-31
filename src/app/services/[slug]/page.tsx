@@ -67,7 +67,7 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
   }
 
   const serviceCategoryMap: Record<string, string[]> = {
-    "cv-writing": ["CV Writing"],
+    "cv-writing": ["ATS CV Writing"],
     "cover-letter-writing": ["Cover Letter Writing"],
     "linkedin-optimization": ["LinkedIn Optimization"],
     "cv-review": ["CV Review"],

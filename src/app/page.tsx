@@ -8,11 +8,13 @@ import { getCachedPublicReviews } from "@/lib/reviews";
 import { getCachedBlogListing } from "@/lib/blog-listing";
 import { digitalResources } from "@/lib/resources";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
+import ServiceCombinationCards from "@/components/ServiceCombinationCards";
+import { formatLkr, publicPackageProducts } from "@/lib/packages-catalog";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Premium CV Writing & LinkedIn Optimization Sri Lanka | CPRW & CPCC Certified | Chanuka Jeewantha",
   description:
-    "Sri Lanka's trusted CPRW & CPCC certified CV writer. 60+ Google reviews, 5000+ CVs completed, 167K+ followers. Premium ATS CV, LinkedIn, Cover Letter & Foreign Job CV services starting from LKR 1,950.",
+    `Sri Lanka's trusted CPRW & CPCC certified CV writer. Premium CV writing, LinkedIn, cover letter, foreign job CV and CV review packages from ${formatLkr(Math.min(...publicPackageProducts.map((pkg) => pkg.priceLkr)))}.`,
   path: "/",
 });
 
@@ -200,94 +202,12 @@ export default async function Home() {
         </section>
       </div>
 
-      <section className="bundles-showcase w-full py-[64px] sm:py-[80px] md:py-[96px] bg-white">
-        <div className="container max-w-[1512px] mx-auto px-4 sm:px-6">
-          <h2 className="section-title text-center text-[30px] sm:text-[40px] md:text-[56px] font-bold font-heading text-foreground leading-[1.1] mb-4">Most Clients Choose One of These 3 Packages</h2>
-          <p className="section-subtitle text-center text-text-body max-w-2xl mx-auto mb-12">Bundled services. Better outcomes. Better value.</p>
-          
-          <div className="bundles-grid grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            <div className="bundle-card starter bg-white rounded-[20px] border border-zinc-200 p-6 shadow-lg hover:shadow-xl transition-shadow">
-              <span className="bundle-tag inline-block rounded-full bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-700 mb-4">For Students & Graduates</span>
-              <h3 className="text-[24px] font-bold font-heading text-foreground mb-4">🎓 Starter Pack</h3>
-              <div className="bundle-price mb-6">
-                <span className="price-amount text-[28px] font-bold text-foreground">LKR 9,500</span>
-                <span className="price-original line-through block text-sm text-zinc-400">LKR 11,850</span>
-                <span className="price-note block text-sm text-zinc-600">Essentials Tier • Save 20%</span>
-              </div>
-              <ul className="bundle-includes space-y-2 text-sm text-zinc-700 mb-6">
-                <li>✓ Essentials ATS CV</li>
-                <li>✓ Cover Letter</li>
-                <li>✓ LinkedIn Optimization</li>
-                <li>✓ 7-day delivery</li>
-              </ul>
-              <Link href="/catalogue?bundle=starter" className="bundle-cta inline-block w-full text-center px-6 py-3 border border-zinc-300 rounded-[10px] text-zinc-700 font-semibold hover:border-brand-main hover:text-brand-main transition-colors">
-                Get Started →
-              </Link>
-            </div>
-            
-            <div className="bundle-card career featured bg-white rounded-[20px] border-2 border-[#C9A961] p-6 shadow-lg hover:shadow-xl transition-shadow transform scale-105">
-              <span className="bundle-tag-popular inline-block rounded-full bg-[#C9A961] text-white px-4 py-2 text-sm font-bold uppercase tracking-wider mb-4">⭐ MOST POPULAR</span>
-              <span className="bundle-tag block rounded-full bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-700 mb-4">For Working Professionals</span>
-              <h3 className="text-[24px] font-bold font-heading text-foreground mb-4">🚀 Career Pack</h3>
-              <div className="bundle-price mb-6">
-                <span className="price-amount text-[28px] font-bold text-foreground">LKR 22,500</span>
-                <span className="price-original line-through block text-sm text-zinc-400">LKR 30,000</span>
-                <span className="price-savings block text-sm font-bold text-[#10B981]">Save LKR 7,500</span>
-                <span className="price-note block text-sm text-zinc-600">Signature Tier</span>
-              </div>
-              <ul className="bundle-includes space-y-2 text-sm text-zinc-700 mb-6">
-                <li>✓ Signature ATS CV</li>
-                <li>✓ Cover Letter</li>
-                <li>✓ LinkedIn Optimization</li>
-                <li>✓ Foreign Job CV</li>
-                <li>✓ 30-day premium support</li>
-                <li>✓ Direct WhatsApp access to Chanuka</li>
-              </ul>
-              <Link href="/catalogue?bundle=career" className="bundle-cta primary inline-block w-full text-center px-6 py-3 bg-[#C9A961] rounded-[10px] text-white font-semibold hover:bg-[#C9A961]/90 transition-colors">
-                Choose Career Pack →
-              </Link>
-            </div>
-            
-            <div className="bundle-card executive bg-white rounded-[20px] border border-zinc-200 p-6 shadow-lg hover:shadow-xl transition-shadow">
-              <span className="bundle-tag inline-block rounded-full bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-700 mb-4">For Senior Professionals</span>
-              <h3 className="text-[24px] font-bold font-heading text-foreground mb-4">👑 Executive Pack</h3>
-              <div className="bundle-price mb-6">
-                <span className="price-amount text-[28px] font-bold text-foreground">LKR 45,000</span>
-                <span className="price-original line-through block text-sm text-zinc-400">LKR 60,000</span>
-                <span className="price-savings block text-sm font-bold text-[#10B981]">Save LKR 15,000</span>
-                <span className="price-note block text-sm text-zinc-600">Signature Tier</span>
-              </div>
-              <ul className="bundle-includes space-y-2 text-sm text-zinc-700 mb-6">
-                <li>✓ Executive Signature CV</li>
-                <li>✓ Foreign Job CV</li>
-                <li>✓ Executive LinkedIn Optimization</li>
-                <li>✓ Executive Cover Letter</li>
-                <li>✓ 1-Hour Strategy Consultation</li>
-                <li>✓ 60-day premium support</li>
-              </ul>
-              <Link href="/catalogue?bundle=executive" className="bundle-cta inline-block w-full text-center px-6 py-3 border border-zinc-300 rounded-[10px] text-zinc-700 font-semibold hover:border-brand-main hover:text-brand-main transition-colors">
-                View Executive Pack →
-              </Link>
-            </div>
-            
-          </div>
-          
-          <div className="bundles-footer text-center mt-12 space-y-3">
-            <p className="text-zinc-600">Need something specific? <Link href="/catalogue" className="text-brand-main font-semibold hover:text-brand-dark transition-colors">View all individual services →</Link></p>
-            <p className="text-zinc-500">
-              Need help choosing?{" "}
-              <a
-                href="https://wa.me/94773902230?text=Hi%20Chanuka%2C%20I%20need%20help%20choosing%20a%20package."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-[#25D366] font-semibold hover:text-[#1fb85a] transition-colors"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.387 0-4.596-.798-6.36-2.144l-.444-.34-3.262 1.093 1.093-3.262-.34-.444A9.935 9.935 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
-                Order on WhatsApp
-              </a>
-            </p>
-          </div>
+      <section className="bundles-showcase w-full bg-white px-4 py-16 sm:px-6 md:py-24">
+        <div className="mx-auto max-w-[1200px]">
+          <h2 className="text-center font-heading text-[32px] font-bold leading-tight text-foreground sm:text-[44px]">Choose the Services Your Career Needs</h2>
+          <p className="mx-auto mb-10 mt-4 max-w-2xl text-center text-zinc-600">Current Essential and Signature rates, with each service priced clearly. These combinations use standard prices without an automatic discount.</p>
+          <ServiceCombinationCards />
+          <p className="mt-8 text-center"><Link href="/pricing" className="font-semibold text-brand-dark">Compare all Essential and Signature prices →</Link></p>
         </div>
       </section>
 
@@ -562,7 +482,7 @@ export default async function Home() {
             </details>
             <details className="faq-item bg-zinc-50 rounded-[12px] p-6 border border-zinc-200">
               <summary className="font-semibold text-lg text-foreground cursor-pointer">How long does delivery take?</summary>
-              <p className="mt-4 text-zinc-600">Signature Series: 5 business days (premium turnaround). Essentials: 7 business days. Rush delivery available for both tiers (+LKR 1,500).</p>
+              <p className="mt-4 text-zinc-600">Normal delivery is 3–7 days. Fast delivery is 1–2 days at 20% above the standard package price, as shown in the catalogue. Please confirm availability before ordering.</p>
             </details>
             <details className="faq-item bg-zinc-50 rounded-[12px] p-6 border border-zinc-200">
               <summary className="font-semibold text-lg text-foreground cursor-pointer">Do you offer revisions?</summary>

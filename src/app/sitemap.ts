@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
 import { getBaseUrl } from "@/lib/site-url";
 import { blogPosts } from "@/content/blog-posts";
-import { publicPackageProducts as packageProducts } from "@/lib/packages-catalog";
+import { publicPackageProducts as packageProducts, publicPackageServiceKeys } from "@/lib/packages-catalog";
 import { digitalResources } from "@/lib/resources";
 import { ebooks } from "@/lib/ebooks";
 import { caseStudies } from "@/lib/case-studies";
@@ -32,6 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/services/packages/cover-letter-writing",
     "/services/packages/linkedin-optimization",
     "/services/packages/cv-review",
+    ...publicPackageServiceKeys.map((key) => `/services/packages/${key}`),
     "/services/personal-website",
     "/services/industries",
     "/businesses",
@@ -57,6 +58,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/offers/career-brand-trinity-bundle",
     "/offers/application-duo-bundle",
     "/pricing",
+    "/catalogue",
+    "/bundles",
     "/fiverr-orders",
     "/affiliate",
     "/case-studies",
@@ -73,7 +76,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticEntries = staticRoutes.map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: siteLastUpdated,
+    lastModified: ["", "/pricing", "/bundles", "/catalogue", "/fiverr-orders", "/booking"].includes(route) || route.startsWith("/services/")
+      ? new Date("2026-08-31T00:00:00.000Z")
+      : siteLastUpdated,
     changeFrequency: "weekly" as const,
     priority: route === "" ? 1 : 0.7,
   }));
@@ -141,7 +146,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const packageEntries = packageProducts.map((item) => ({
     url: `${baseUrl}/packages/${item.slug}`,
-    lastModified: siteLastUpdated,
+    lastModified: new Date("2026-08-31T00:00:00.000Z"),
     changeFrequency: "weekly" as const,
     priority: 0.72,
   }));
@@ -168,7 +173,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
   const countryJobEntries = countryJobMarkets.map((market) => ({
     url: `${baseUrl}/${market.slug}`,
-    lastModified: siteLastUpdated,
+    lastModified: new Date("2026-08-31T00:00:00.000Z"),
     changeFrequency: "monthly" as const,
     priority: 0.76,
     images: [`${baseUrl}${market.coverImage ?? "/images/about-chanurgka.jpg"}`],

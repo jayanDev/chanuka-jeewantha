@@ -4,7 +4,6 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { publicPackageProducts as packageProducts, formatLkr, getPackageDisplayPrice } from "@/lib/packages-catalog";
 import { buildNoIndexMetadata, buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbList, buildProductSchema } from "@/lib/structured-data";
-import SignatureDiscountBanner from "@/components/SignatureDiscountBanner";
 
 type PackagePageProps = {
   params: Promise<{ slug: string }>;
@@ -123,10 +122,6 @@ export default async function PackageSinglePage({ params }: PackagePageProps) {
           <p className="text-xl text-white/90 max-w-3xl">{pkg.description ?? pkg.audience}</p>
         </div>
       </section>
-
- <div className="w-full bg-bg-cream px-4 pt-10 sm:px-6">
-        <SignatureDiscountBanner />
-      </div>
 
  <section className="w-full py-[90px] bg-white">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10">

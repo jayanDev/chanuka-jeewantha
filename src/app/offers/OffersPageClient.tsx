@@ -172,7 +172,7 @@ export default function OffersPageClient() {
               href="/fiverr-orders"
               className="rounded-[10px] border border-emerald-300 bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-800 transition-colors hover:bg-emerald-100"
             >
-              Fiverr Orders - 50% OFF
+              Fiverr Orders
             </Link>
             <Link
               href="/pricing"

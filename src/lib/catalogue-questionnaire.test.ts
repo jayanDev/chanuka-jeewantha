@@ -9,11 +9,12 @@ import {
 import { packageProducts } from "@/lib/packages-catalog";
 
 describe("catalogue questionnaire", () => {
-  it("shows only the three requested services in question one", () => {
+  it("shows the four selectable services, with foreign CV resolved by country", () => {
     expect(catalogueServiceKeys).toEqual([
       "ats-cv",
       "linkedin",
       "cover-letter",
+      "cv-review",
     ]);
   });
 
@@ -31,8 +32,8 @@ describe("catalogue questionnaire", () => {
   });
 
   it("keeps normal prices and applies the fast-delivery price", () => {
-    expect(getDeliveryAdjustedPrice(4950, "normal")).toBe(4950);
-    expect(getDeliveryAdjustedPrice(4950, "fast")).toBe(5940);
+    expect(getDeliveryAdjustedPrice(5950, "normal")).toBe(5950);
+    expect(getDeliveryAdjustedPrice(5950, "fast")).toBe(7140);
 
     const packages = packageProducts.filter((pkg) =>
       [
@@ -41,8 +42,8 @@ describe("catalogue questionnaire", () => {
       ].includes(pkg.slug)
     );
 
-    expect(calculateDeliveryAdjustedTotal(packages, "normal")).toBe(9900);
-    expect(calculateDeliveryAdjustedTotal(packages, "fast")).toBe(11880);
+    expect(calculateDeliveryAdjustedTotal(packages, "normal")).toBe(11900);
+    expect(calculateDeliveryAdjustedTotal(packages, "fast")).toBe(14280);
   });
 
   it("creates a clearly formatted WhatsApp message with role and country", () => {
@@ -71,7 +72,7 @@ describe("catalogue questionnaire", () => {
     expect(message).toContain("Target job role(s): Senior Accountant");
     expect(message).toContain("Target country/market: Foreign — Dubai, UAE");
     expect(message).toContain("Delivery: Fast Delivery (1–2 days)");
-    expect(message).toContain("TOTAL: LKR 7,740");
+    expect(message).toContain("TOTAL: LKR 8,940");
     expect(message).not.toContain("20%");
     expect(message.toLowerCase()).not.toContain("surcharge");
   });

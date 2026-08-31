@@ -9,6 +9,11 @@ const slugToCategoryTitle: Record<string, string> = {
   "ats-cv": "ATS Friendly Professional CV Writing Packages",
   linkedin: "LinkedIn Account Optimization Packages",
   "cover-letter": "Professional Cover Letter Writing Packages",
+  "foreign-cv": "Foreign Job CV Writing Packages",
+  "cv-review": "CV Review Packages",
+  "cv-writing": "ATS Friendly Professional CV Writing Packages",
+  "cover-letter-writing": "Professional Cover Letter Writing Packages",
+  "linkedin-optimization": "LinkedIn Account Optimization Packages",
 };
 
 export function generateStaticParams() {

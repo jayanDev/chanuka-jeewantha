@@ -92,8 +92,8 @@ describe("country page package pricing", () => {
       ])
     );
 
-    expect(pricesByService["foreign-cv"]).toEqual([3950, 6450, 9950, 11500, 16500, 27500]);
-    expect(pricesByService["cover-letter"]).toEqual([1950, 2950, 4500, 4950, 7500, 12500]);
-    expect(pricesByService.linkedin).toEqual([2950, 4950, 6500, 8950, 12500, 18500]);
+    expect(pricesByService["foreign-cv"]).toEqual([4950, 7450, 10950, 12500, 17500, 28500]);
+    expect(pricesByService["cover-letter"]).toEqual([2950, 3950, 5500, 5950, 8500, 13500]);
+    expect(pricesByService.linkedin).toEqual([3950, 5950, 7500, 9950, 13500, 19500]);
   });
 });

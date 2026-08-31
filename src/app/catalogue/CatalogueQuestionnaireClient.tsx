@@ -8,7 +8,6 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import SignatureDiscountBanner from "@/components/SignatureDiscountBanner";
 import {
   buildCatalogueWhatsAppMessage,
   calculateDeliveryAdjustedTotal,
@@ -298,10 +297,6 @@ export default function CatalogueQuestionnaireClient() {
           </p>
         </div>
       </section>
-
-      <div className="w-full bg-bg-cream px-4 pt-8 sm:px-6">
-        <SignatureDiscountBanner />
-      </div>
 
       <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 md:py-14">
         <div

@@ -3,6 +3,7 @@ export type ServiceKey =
   | "linkedin"
   | "cover-letter"
   | "foreign-cv"
+  | "cv-review"
   | "graphical-cv"
   | "consultation";
 
@@ -115,6 +116,14 @@ export const serviceOptions: Array<{
       "Modern visual CV and resume writing for situations where presentation and personal brand matter.",
   },
   {
+    key: "cv-review",
+    number: 7,
+    title: "Professional CV Review",
+    shortTitle: "CV Review",
+    categoryTitle: "CV Review Packages",
+    description: "A review of your existing CV with practical feedback on content, structure, readability, and ATS compatibility. You make the edits.",
+  },
+  {
     key: "consultation",
     number: 6,
     title: "Consultation",
@@ -129,6 +138,8 @@ export const publicPackageServiceKeys: ServiceKey[] = [
   "ats-cv",
   "linkedin",
   "cover-letter",
+  "foreign-cv",
+  "cv-review",
 ];
 
 const publicPackageServiceKeySet = new Set(publicPackageServiceKeys);
@@ -188,10 +199,11 @@ export const serviceOptionChoices: Array<{
 ];
 
 const founderLedPrices: Record<ServiceKey, Array<number | { thirtyMin: number; oneHour: number }>> = {
-  "ats-cv": [6500, 12500, 18500],
-  linkedin: [6500, 12500, 18500],
-  "cover-letter": [4500, 7500, 12500],
-  "foreign-cv": [11500, 16500, 27500],
+  "ats-cv": [7500, 13500, 19500],
+  linkedin: [7500, 13500, 19500],
+  "cover-letter": [5500, 8500, 13500],
+  "foreign-cv": [12500, 17500, 28500],
+  "cv-review": [2500, 3500, 4500],
   "graphical-cv": [4000, 7000, 12500],
   consultation: [
     { thirtyMin: 6500, oneHour: 9500 },
@@ -201,12 +213,20 @@ const founderLedPrices: Record<ServiceKey, Array<number | { thirtyMin: number; o
 };
 
 const supervisedPrices: Partial<Record<ServiceKey, number[]>> = {
-  "ats-cv": [2950, 4950, 8950],
-  linkedin: [2950, 4950, 8950],
-  "cover-letter": [1950, 2950, 4950],
-  "foreign-cv": [3950, 6450, 9950],
+  "ats-cv": [3950, 5950, 9950],
+  linkedin: [3950, 5950, 9950],
+  "cover-letter": [2950, 3950, 5950],
+  "foreign-cv": [4950, 7450, 10950],
+  "cv-review": [1490, 1990, 2490],
   "graphical-cv": [1950, 2950, 4450],
 };
+
+export function getConsultationPrice(experienceKey: ExperienceKey, duration: "thirtyMin" | "oneHour"): number {
+  const index = experienceOptions.findIndex((experience) => experience.key === experienceKey);
+  const price = founderLedPrices.consultation[index];
+  if (!price || typeof price === "number") throw new Error("Consultation pricing is unavailable.");
+  return price[duration];
+}
 
 const optionTone: Record<ServiceOptionKey, string[]> = {
   "founder-led": [
@@ -287,7 +307,16 @@ function makePackage(
     priceNote: price.priceNote,
     delivery,
     features: [
-      ...optionTone[option.key],
+      ...(service.key === "cv-review"
+        ? [
+            option.key === "founder-led"
+              ? "Signature CV Review: Personally reviewed by Chanuka Jeewantha"
+              : "Essential CV Review: Team-reviewed and quality-checked by Chanuka",
+            "Feedback matched to your career level and target role",
+            "ATS, content, structure, and readability recommendations",
+            "Review and guidance only; CV rewriting is not included",
+          ]
+        : optionTone[option.key]),
       service.key === "consultation"
         ? "Action-focused consultation notes and next-step guidance"
         : "Editable final document or improvement guidance where applicable",

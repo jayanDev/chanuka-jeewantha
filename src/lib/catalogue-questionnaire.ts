@@ -9,7 +9,8 @@ import {
 export type DeliverySpeed = "fast" | "normal";
 export type TargetCountryOption = "sri-lanka" | "foreign";
 
-export const catalogueServiceKeys: ServiceKey[] = [...publicPackageServiceKeys];
+// The country question switches Professional CV to Foreign Job CV when needed.
+export const catalogueServiceKeys: ServiceKey[] = publicPackageServiceKeys.filter((key) => key !== "foreign-cv");
 
 export const deliveryChoices: Array<{
   key: DeliverySpeed;
