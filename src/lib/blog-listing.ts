@@ -1,4 +1,5 @@
 import { unstable_cache } from "next/cache";
+import { createHash } from "node:crypto";
 import { blogPosts, getPostBySlug } from "@/content/blog-posts";
 import { prisma } from "@/lib/prisma";
 import { getIndexableFallbackBlogPosts } from "@/lib/blog-discovery";
@@ -75,7 +76,10 @@ async function loadMergedBlogListing(): Promise<BlogListingPost[]> {
   }
 }
 
-export const getCachedBlogListing = unstable_cache(loadMergedBlogListing, ["blog-listing:merged"], {
+// Invalidate persisted listings when repository-backed article metadata changes.
+const contentRevision = createHash("sha256").update(JSON.stringify(fallbackPosts)).digest("hex");
+
+export const getCachedBlogListing = unstable_cache(loadMergedBlogListing, ["blog-listing:merged", contentRevision], {
   revalidate: 3600,
   tags: ["blog-listing"],
 });

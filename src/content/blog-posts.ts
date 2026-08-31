@@ -3,6 +3,13 @@ import { careerGrowthBlogPosts } from "./blog-career-library";
 import { enrichBlogPostContent } from "./blog-content-enrichment";
 import { cvSeriesEn } from "./blog-cv-series-en";
 import { cvSeriesSi } from "./blog-cv-series-si";
+import { careerSeoSeries } from "./blog-career-seo-series";
+
+export type BlogBlock =
+  | { type: "paragraph" | "quote"; text: string }
+  | { type: "heading"; text: string; level: 2 | 3 }
+  | { type: "list"; items: string[]; ordered: boolean }
+  | { type: "divider" };
 
 export type BlogLink = {
   label: string;
@@ -35,6 +42,7 @@ export type BlogPost = {
   internalLinks?: BlogLink[];
   ctaButtons?: BlogLink[];
   faqs?: BlogFaq[];
+  body?: BlogBlock[];
 };
 
 const servicePathByCategory: Record<string, string> = {
@@ -1277,7 +1285,7 @@ const editorialPosts: BlogPost[] = [
   },
 ];
 
-export const blogPosts: BlogPost[] = [...careerGrowthBlogPosts, ...packageFocusedPosts, ...editorialPosts, ...cvSeriesEn, ...cvSeriesSi].map(enrichBlogPostContent).sort(
+export const blogPosts: BlogPost[] = [...careerSeoSeries, ...[...careerGrowthBlogPosts, ...packageFocusedPosts, ...editorialPosts, ...cvSeriesEn, ...cvSeriesSi].map(enrichBlogPostContent)].sort(
   (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
 );
 

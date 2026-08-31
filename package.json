@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prebuild": "prisma generate",
+    "content:build": "node scripts/build-career-seo-series.cjs",
+    "content:check": "node scripts/build-career-seo-series.cjs --check",
+    "prebuild": "npm run content:check && prisma generate",
     "pretest": "npm run db:push",
     "dev": "node ./scripts/next-wrapper.cjs dev --webpack",
     "build": "node ./scripts/next-wrapper.cjs build --webpack",

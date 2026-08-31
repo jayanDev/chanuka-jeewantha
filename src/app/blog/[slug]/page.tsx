@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
+import BlogArticleBody from "@/components/BlogArticleBody";
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
@@ -227,7 +228,11 @@ export default async function BlogPostPage({
   const articleImageUrl = featuredImage.startsWith("http") ? featuredImage : `${baseUrl}${featuredImage}`;
   const publishedIso = post.publishedAt ? post.publishedAt.toISOString() : new Date().toISOString();
   const modifiedIso = post.updatedAt ? post.updatedAt.toISOString() : publishedIso;
-  const wordCount = post.content.split(/\s+/).filter(Boolean).length;
+  const articleText = contentPost?.body
+    ? contentPost.body.flatMap((block) => block.type === "list" ? block.items : "text" in block ? [block.text] : []).join(" ")
+    : [post.content, ...(contentPost?.sections ?? []).flatMap((section) => [section.heading, ...section.paragraphs, ...(section.bullets ?? [])])].join(" ");
+  const faqText = (contentPost?.faqs ?? []).map((faq) => `${faq.question} ${faq.answer}`).join(" ");
+  const wordCount = `${articleText} ${faqText}`.replace(/\[([^\]]+)\]\([^)]*\)/g, "$1").replace(/\*\*/g, "").split(/\s+/).filter(Boolean).length;
   const readingTimeMinutes = Math.max(1, Math.ceil(wordCount / 200));
   const postLanguage = getBlogPostLanguage(post.slug);
   const packageInfo = contentPost?.packageSlug
@@ -475,6 +480,8 @@ export default async function BlogPostPage({
                       The goal is simple: build a profile that is easy to understand, difficult to ignore, and strategically aligned with real hiring behavior.
                     </p>
                   </>
+                ) : contentPost?.body ? (
+                  <BlogArticleBody blocks={contentPost.body} />
                 ) : (
                   <>
                     <p className="leading-relaxed mb-6">{post.content}</p>
@@ -533,7 +540,7 @@ export default async function BlogPostPage({
 
               {contentPost?.internalLinks && contentPost.internalLinks.length > 0 && (
  <div className="rounded-[20px] border border-zinc-200 bg-white p-6 md:p-8">
-                  <h3 className="text-[24px] font-bold font-heading text-foreground mb-4">Related Backlinks</h3>
+                  <h3 className="text-[24px] font-bold font-heading text-foreground mb-4">Related Articles and Resources</h3>
                   <ul className="space-y-2">
                     {contentPost.internalLinks.map((linkItem) => (
                       <li key={`${linkItem.href}-${linkItem.label}`}>
@@ -548,7 +555,7 @@ export default async function BlogPostPage({
 
               {/* Tags & Share */}
  <div className="flex flex-col sm:flex-row items-center justify-between py-6 border-t border-b border-zinc-200 mt-8 gap-4">
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-3 min-w-0">
                   <span className="font-bold text-foreground">Tags:</span>
                   {tagKeywords.slice(0, 4).map((tag) => (
                     <Link

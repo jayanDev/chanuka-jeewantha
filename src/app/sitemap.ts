@@ -16,6 +16,9 @@ import { countryJobMarkets } from "@/lib/country-job-markets";
 const baseUrl = getBaseUrl();
 const siteLastUpdated = new Date("2026-07-30T00:00:00.000Z");
 
+// Refresh database additions too; repository articles are included on each build.
+export const revalidate = 3600;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = [
     "",
@@ -110,13 +113,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.65,
   }));
 
-  const blogPostsPerPage = 9;
+  const blogLastUpdated = new Date(Math.max(
+    siteLastUpdated.getTime(),
+    ...posts.map((post) => Math.max(post.publishedAt?.getTime() ?? 0, post.updatedAt.getTime())),
+  ));
+
+  const blogPostsPerPage = 12;
   const blogTotalPages = Math.max(1, Math.ceil(posts.length / blogPostsPerPage));
   const blogIndexEntries = Array.from({ length: blogTotalPages }, (_, index) => {
     const page = index + 1;
     return {
       url: page === 1 ? `${baseUrl}/blog` : `${baseUrl}/blog?page=${page}`,
-      lastModified: siteLastUpdated,
+      lastModified: blogLastUpdated,
       changeFrequency: "weekly" as const,
       priority: page === 1 ? 0.72 : 0.62,
     };
@@ -126,7 +134,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .sort()
     .map((category) => ({
       url: `${baseUrl}${getBlogCategoryPath(category)}`,
-      lastModified: siteLastUpdated,
+      lastModified: blogLastUpdated,
       changeFrequency: "weekly" as const,
       priority: 0.69,
     }));
@@ -196,7 +204,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [
+  const entries = [
     ...staticEntries,
     ...blogIndexEntries,
     ...categoryEntries,
@@ -211,4 +219,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...ebookEntries,
     ...caseStudyEntries,
   ];
+
+  // /blog also exists in staticRoutes. Keep its current index metadata once.
+  return Array.from(new Map(entries.map((entry) => [entry.url, entry])).values());
 }
