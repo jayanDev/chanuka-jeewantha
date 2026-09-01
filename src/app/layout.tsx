@@ -15,6 +15,7 @@ import AnnouncementBar from "@/components/AnnouncementBar";
 import { getServerUser } from "@/lib/auth-server";
 import { getBaseUrl } from "@/lib/site-url";
 import { TARGET_SEO_KEYWORDS } from "@/lib/seo";
+import { Analytics } from "@vercel/analytics/next";
 
 const siteUrl = getBaseUrl();
 const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
@@ -221,6 +222,7 @@ export default async function RootLayout({
         <Footer />
         <WhatsAppOrderButton />
         <BackToTop />
+        <Analytics />
       </body>
     </html>
   );
